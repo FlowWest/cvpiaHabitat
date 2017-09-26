@@ -1,0 +1,13 @@
+"results are for steelhead, use same values for fall run",,,
+WUA in square feet per 1000 feet,,,
+flow_cfs,spawn_WUA,fry_WUA,juv_WUA
+12,1800,5800,4200
+35,3200,4300,4300
+50,3000,3200,4000
+100,1500,2000,3300
+150,1100,1500,3050
+200,800,1400,3000
+250,500,1500,3000
+300,500,1700,3050
+350,700,1900,3100
+400,900,2000,3300
