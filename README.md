@@ -2,7 +2,11 @@
 
 * UpperSac
 * MidSac
+* LowerSac
 
+*Notes* 
+
+* Colusa appears in the Gard sheets but is not in the metadata tables.
 
 
 *Funky Instream*
@@ -11,4 +15,7 @@
 * Clear
 * Colusa
 * Cottonwood (check conversion, our cottonwood length is 22 miles not 10.76)
+
+
+
 
