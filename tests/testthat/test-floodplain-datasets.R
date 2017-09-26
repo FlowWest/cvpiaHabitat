@@ -4,6 +4,8 @@ zero_range <- function(x, tol = .Machine$double.eps ^ 0.5) {
   isTRUE(all.equal(x[1], x[2], tolerance = tol))
 }
 
+column_names <- c("flow_cfs", "floodplain_acres", "watershed", "species")
+
 test_that("datasets have equal length for each species", {
   rows_of_each <- function(df) {
     df %>% dplyr::group_by(species) %>%
@@ -19,4 +21,23 @@ test_that("datasets have equal length for each species", {
   expect_true(zero_range(rows_of_each(deer_creek_floodplain)))
   expect_true(zero_range(rows_of_each(feather_river_floodplain)))
   expect_true(zero_range(rows_of_each(yuba_river_floodplain)))
+  expect_true(zero_range(rows_of_each(yolo_bypass_floodplain)))
+  expect_true(zero_range(rows_of_each(american_river_floodplain)))
+  expect_true(zero_range(rows_of_each(north_delta_floodplain)))
+
+})
+
+
+test_that("all datasets have the correct colnames", {
+  compare_colnames <- function(df) {
+    sum(colnames(df) != column_names)
+  }
+
+  expect_equal(0, compare_colnames(cottonwood_creek_floodplain))
+  expect_equal(0, compare_colnames(bear_river_floodplain))
+  expect_equal(0, compare_colnames(big_chico_creek_floodplain))
+  expect_equal(0, compare_colnames(butte_creek_floodplain))
+  expect_equal(0, compare_colnames(yolo_bypass_floodplain))
+  expect_equal(0, compare_colnames(american_river_floodplain))
+  expect_equal(0, compare_colnames(north_delta_floodplain))
 })
