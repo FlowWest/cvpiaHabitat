@@ -24,6 +24,8 @@ test_that("datasets have equal length for each species", {
   expect_true(zero_range(rows_of_each(yolo_bypass_floodplain)))
   expect_true(zero_range(rows_of_each(american_river_floodplain)))
   expect_true(zero_range(rows_of_each(north_delta_floodplain)))
+  expect_true(zero_range(rows_of_each(calaveras_river_floodplain)))
+  expect_true(zero_range(rows_of_each(san_joaquin_river_floodplain)))
 
 })
 
@@ -40,4 +42,7 @@ test_that("all datasets have the correct colnames", {
   expect_equal(0, compare_colnames(yolo_bypass_floodplain))
   expect_equal(0, compare_colnames(american_river_floodplain))
   expect_equal(0, compare_colnames(north_delta_floodplain))
+  expect_equal(0, compare_colnames(calaveras_river_floodplain))
+  expect_equal(0, compare_colnames(san_joaquin_river_floodplain))
+
 })
