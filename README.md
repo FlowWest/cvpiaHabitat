@@ -11,11 +11,14 @@
 
 *Funky Instream*
 * American
-* Butte
 * Clear
-* Colusa
 * Cottonwood (check conversion, our cottonwood length is 22 miles not 10.76)
-
+* Merced
+* Mokelumne (check conversion)
+* Sacramento
+* South Cow
+* Stan
+* sutter and yolo WUA in sqft
 
 
 
