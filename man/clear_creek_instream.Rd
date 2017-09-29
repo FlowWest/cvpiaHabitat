@@ -29,8 +29,8 @@ A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second
 }
 \details{
-The spawning and rearing WUA were derived from a FWS River2D model. The WUA values are the summation
-of three river segments, Upper Alluvial (2.27 miles), Canyon Segment (7.33 miles), and Lower Alluvial (8.81 miles).
+The spawning and rearing WUA were derived from a FWS River2D model. The WUA values are from
+three river segments, Upper Alluvial (2.27 miles), Canyon Segment (7.33 miles), and Lower Alluvial (8.81 miles).
 Fall Run are only in the Lower Alluvial Segment and there is a segregation weir that prevents the
 Spring Run from spawning in the Lower Alluvial Segment.
 }

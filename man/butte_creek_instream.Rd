@@ -24,8 +24,8 @@ A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second
 }
 \details{
-The spawning WUA was derived from a FWS River2D model and the rearing WUA from a PHABSIM
-model created for the 2008 FERC relicensing of DeSabla. The spawning values are the summation of two river
+The spawning WUA values were derived from a FWS River2D model and the rearing WUA from a PHABSIM
+model created for the 2008 FERC relicensing of DeSabla. The spawning values are from two river
 segments, above Centerville Powerhouse (6.5 miles) and below (9 miles).
 The spawning results are for Spring Run Chinook. The rearing results are for Fall Run Chinook.
 }
