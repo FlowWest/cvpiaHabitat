@@ -1,25 +1,70 @@
-"WUA in square feet, fr = fall run, sr = spring run, st = steelhead",,,,,,,,,,
-flow_cfs,fr_spawn_WUA,fr_fry_WUA,fr_juv_WUA,sr_spawn_WUA,sr_fry_WUA,sr_juv_WUA,st_spawn_WUA,st_fry_WUA,st_juv_WUA,watershed
-50,78145,536166,224915,79882,305087,181084,25890,224356,181084,Clear Creek
-75,107008,528779,248454,110327,300786,231295,39938,222351,231295,Clear Creek
-100,130194,515513,267634,135180,302878,276361,52317,214949,276361,Clear Creek
-125,151079,501845,283272,157583,308988,316822,63403,211348,316822,Clear Creek
-150,168950,490718,296863,176898,310298,353767,73006,209184,353767,Clear Creek
-175,185871,478203,308968,195357,314688,391364,81779,206849,391364,Clear Creek
-200,197705,470453,318200,208444,318856,421350,87297,203238,421350,Clear Creek
-225,206377,463637,325414,218282,330375,447973,91304,208995,447973,Clear Creek
-250,212410,458051,330224,225430,338441,473325,94050,209322,473325,Clear Creek
-275,216026,454405,334768,230093,355645,495004,95724,212115,495004,Clear Creek
-300,217880,450992,337862,232958,369849,515631,96695,220851,515631,Clear Creek
-350,217553,444511,338627,234429,381099,552011,96214,228833,552011,Clear Creek
-400,213538,440975,334869,232001,389480,583890,93735,230063,583890,Clear Creek
-450,207615,438123,315866,227359,407051,605088,90894,241496,605088,Clear Creek
-500,199662,425804,315769,220388,420617,635094,87330,246000,635094,Clear Creek
-550,191877,418842,304825,213256,438624,653678,83739,251634,653678,Clear Creek
-600,184133,417735,284289,206167,463029,662533,79922,261221,662533,Clear Creek
-650,176448,410118,273178,199029,470058,676055,76057,268887,676055,Clear Creek
-700,169132,404258,263294,191987,471109,686271,71918,270618,686271,Clear Creek
-750,162105,400288,253609,185029,476652,693625,67934,271310,693625,Clear Creek
-800,155008,393976,242998,178047,480913,699399,63952,271035,699399,Clear Creek
-850,148934,390482,234032,171887,497147,701810,60386,274512,701810,Clear Creek
-900,143371,389928,226215,166383,510275,703629,57324,275489,703629,Clear Creek
+flow_cfs,FR_spawning,FR_fry,FR_juv,SR_spawning,ST_spawning,SR_fry,ST_fry,SR_juvenile,ST_juvenile,Reach,Reach_length,length_units,WUA_units
+50,NA,NA,NA,"1,698","12,276","111,496","69,405","41,405","41,405",Upper Alluvial Segment,2.27,miles,square feet
+75,NA,NA,NA,"3,208","18,951","105,592","68,867","54,279","54,279",Upper Alluvial Segment,2.27,miles,square feet
+100,NA,NA,NA,"4,777","25,084","107,039","67,107","65,641","65,641",Upper Alluvial Segment,2.27,miles,square feet
+125,NA,NA,NA,"6,185","30,175","112,173","70,706","76,214","76,214",Upper Alluvial Segment,2.27,miles,square feet
+150,NA,NA,NA,"7,519","34,579","114,039","72,571","86,324","86,324",Upper Alluvial Segment,2.27,miles,square feet
+175,NA,NA,NA,"8,934","38,615","118,857","73,787","96,403","96,403",Upper Alluvial Segment,2.27,miles,square feet
+200,NA,NA,NA,"10,095","40,980","121,064","73,936","104,687","104,687",Upper Alluvial Segment,2.27,miles,square feet
+225,NA,NA,NA,"11,163","42,634","129,437","81,008","111,553","111,553",Upper Alluvial Segment,2.27,miles,square feet
+250,NA,NA,NA,"12,195","43,851","131,840","81,542","119,125","119,125",Upper Alluvial Segment,2.27,miles,square feet
+275,NA,NA,NA,"13,155","44,725","136,603","83,088","124,187","124,187",Upper Alluvial Segment,2.27,miles,square feet
+300,NA,NA,NA,"14,075","45,390","140,071","87,584","130,221","130,221",Upper Alluvial Segment,2.27,miles,square feet
+350,NA,NA,NA,"15,674","45,582","144,634","88,916","141,343","141,343",Upper Alluvial Segment,2.27,miles,square feet
+400,NA,NA,NA,"17,066","44,758","146,540","88,073","152,816","152,816",Upper Alluvial Segment,2.27,miles,square feet
+450,NA,NA,NA,"18,160","43,845","155,367","94,518","163,383","163,383",Upper Alluvial Segment,2.27,miles,square feet
+500,NA,NA,NA,"18,956","42,622","161,976","96,337","174,861","174,861",Upper Alluvial Segment,2.27,miles,square feet
+550,NA,NA,NA,"19,467","41,396","173,547","101,880","183,485","183,485",Upper Alluvial Segment,2.27,miles,square feet
+600,NA,NA,NA,"20,039","40,133","188,689","108,040","190,954","190,954",Upper Alluvial Segment,2.27,miles,square feet
+650,NA,NA,NA,"20,517","39,001","188,431","112,254","197,707","197,707",Upper Alluvial Segment,2.27,miles,square feet
+700,NA,NA,NA,"20,797","37,880","181,605","112,639","203,598","203,598",Upper Alluvial Segment,2.27,miles,square feet
+750,NA,NA,NA,"20,909","36,925","179,584","111,018","208,808","208,808",Upper Alluvial Segment,2.27,miles,square feet
+800,NA,NA,NA,"21,118","36,032","169,701","107,855","214,871","214,871",Upper Alluvial Segment,2.27,miles,square feet
+850,NA,NA,NA,"21,158","35,177","164,082","104,947","218,808","218,808",Upper Alluvial Segment,2.27,miles,square feet
+900,NA,NA,NA,"21,432","34,486","157,886","102,170","222,601","222,601",Upper Alluvial Segment,2.27,miles,square feet
+50,NA,NA,NA,39,651,"66,475","44,378","54,914","54,914",Canyon Segment,7.33,miles,square feet
+75,NA,NA,NA,111,"1,469","68,700","45,607","67,067","67,067",Canyon Segment,7.33,miles,square feet
+100,NA,NA,NA,209,"2,432","67,915","45,096","78,942","78,942",Canyon Segment,7.33,miles,square feet
+125,NA,NA,NA,319,"3,394","66,400","43,888","89,087","89,087",Canyon Segment,7.33,miles,square feet
+150,NA,NA,NA,429,"4,047","66,973","43,499","97,980","97,980",Canyon Segment,7.33,miles,square feet
+175,NA,NA,NA,552,"4,501","65,761","43,120","106,763","106,763",Canyon Segment,7.33,miles,square feet
+200,NA,NA,NA,644,"4,636","65,873","42,101","113,358","113,358",Canyon Segment,7.33,miles,square feet
+225,NA,NA,NA,742,"4,708","67,663","42,180","119,145","119,145",Canyon Segment,7.33,miles,square feet
+250,NA,NA,NA,825,"4,691","71,629","43,741","123,982","123,982",Canyon Segment,7.33,miles,square feet
+275,NA,NA,NA,912,"4,642","77,850","45,863","128,942","128,942",Canyon Segment,7.33,miles,square feet
+300,NA,NA,NA,"1,003","4,512","86,557","50,188","132,951","132,951",Canyon Segment,7.33,miles,square feet
+350,NA,NA,NA,"1,202","4,253","93,609","57,337","139,729","139,729",Canyon Segment,7.33,miles,square feet
+400,NA,NA,NA,"1,397","4,028","96,938","59,321","144,433","144,433",Canyon Segment,7.33,miles,square feet
+450,NA,NA,NA,"1,584","4,171","102,656","61,180","147,453","147,453",Canyon Segment,7.33,miles,square feet
+500,NA,NA,NA,"1,770","4,557","106,005","64,624","149,726","149,726",Canyon Segment,7.33,miles,square feet
+550,NA,NA,NA,"1,912","4,964","109,174","65,393","151,456","151,456",Canyon Segment,7.33,miles,square feet
+600,NA,NA,NA,"1,995","5,148","112,289","66,998","152,296","152,296",Canyon Segment,7.33,miles,square feet
+650,NA,NA,NA,"2,064","5,119","113,402","69,604","152,743","152,743",Canyon Segment,7.33,miles,square feet
+700,NA,NA,NA,"2,058","4,724","112,727","69,955","152,587","152,587",Canyon Segment,7.33,miles,square feet
+750,NA,NA,NA,"2,015","4,195","112,707","69,885","151,682","151,682",Canyon Segment,7.33,miles,square feet
+800,NA,NA,NA,"1,921","3,590","114,554","70,116","149,932","149,932",Canyon Segment,7.33,miles,square feet
+850,NA,NA,NA,"1,795","2,991","121,330","75,246","148,278","148,278",Canyon Segment,7.33,miles,square feet
+900,NA,NA,NA,"1,580","2,513","126,192","76,214","148,226","148,226",Canyon Segment,7.33,miles,square feet
+50,"78,145","536,166","224,915",NA,"12,963","127,116","110,573","84,765","84,765",Lower Alluvial Segment,8.81,miles,square feet
+75,"107,008","528,779","248,454",NA,"19,518","126,494","107,877","109,949","109,949",Lower Alluvial Segment,8.81,miles,square feet
+100,"130,194","515,513","267,634",NA,"24,801","127,924","102,746","131,778","131,778",Lower Alluvial Segment,8.81,miles,square feet
+125,"151,079","501,845","283,272",NA,"29,834","130,415","96,754","151,521","151,521",Lower Alluvial Segment,8.81,miles,square feet
+150,"168,950","490,718","296,863",NA,"34,380","129,286","93,114","169,463","169,463",Lower Alluvial Segment,8.81,miles,square feet
+175,"185,871","478,203","308,968",NA,"38,663","130,070","89,942","188,198","188,198",Lower Alluvial Segment,8.81,miles,square feet
+200,"197,705","470,453","318,200",NA,"41,681","131,919","87,201","203,305","203,305",Lower Alluvial Segment,8.81,miles,square feet
+225,"206,377","463,637","325,414",NA,"43,962","133,275","85,807","217,275","217,275",Lower Alluvial Segment,8.81,miles,square feet
+250,"212,410","458,051","330,224",NA,"45,508","134,972","84,039","230,218","230,218",Lower Alluvial Segment,8.81,miles,square feet
+275,"216,026","454,405","334,768",NA,"46,357","141,192","83,164","241,875","241,875",Lower Alluvial Segment,8.81,miles,square feet
+300,"217,880","450,992","337,862",NA,"46,793","143,221","83,079","252,459","252,459",Lower Alluvial Segment,8.81,miles,square feet
+350,"217,553","444,511","338,627",NA,"46,379","142,856","82,580","270,939","270,939",Lower Alluvial Segment,8.81,miles,square feet
+400,"213,538","440,975","334,869",NA,"44,949","146,002","82,669","286,641","286,641",Lower Alluvial Segment,8.81,miles,square feet
+450,"207,615","438,123","315,866",NA,"42,878","149,028","85,798","294,252","294,252",Lower Alluvial Segment,8.81,miles,square feet
+500,"199,662","425,804","315,769",NA,"40,151","152,636","85,039","310,507","310,507",Lower Alluvial Segment,8.81,miles,square feet
+550,"191,877","418,842","304,825",NA,"37,379","155,903","84,361","318,737","318,737",Lower Alluvial Segment,8.81,miles,square feet
+600,"184,133","417,735","284,289",NA,"34,641","162,051","86,183","319,283","319,283",Lower Alluvial Segment,8.81,miles,square feet
+650,"176,448","410,118","273,178",NA,"31,937","168,225","87,029","325,605","325,605",Lower Alluvial Segment,8.81,miles,square feet
+700,"169,132","404,258","263,294",NA,"29,314","176,777","88,024","330,086","330,086",Lower Alluvial Segment,8.81,miles,square feet
+750,"162,105","400,288","253,609",NA,"26,814","184,361","90,407","333,135","333,135",Lower Alluvial Segment,8.81,miles,square feet
+800,"155,008","393,976","242,998",NA,"24,330","196,658","93,064","334,596","334,596",Lower Alluvial Segment,8.81,miles,square feet
+850,"148,934","390,482","234,032",NA,"22,218","211,735","94,319","334,724","334,724",Lower Alluvial Segment,8.81,miles,square feet
+900,"143,371","389,928","226,215",NA,"20,325","226,197","97,105","332,802","332,802",Lower Alluvial Segment,8.81,miles,square feet

@@ -11,12 +11,9 @@
 *Funky Instream*
 * American
 * Clear- asked mark gard if i include FR spawning for SR
-* Merced
 * Mokelumne (check conversion)
 * Sacramento
-* South Cow
-* Stan
-* sutter and yolo WUA in sqft
+* Yuba convert to sq ft / 1000 sq ft to accomodate measurements not available at all cfs across locations?
 
 
 
