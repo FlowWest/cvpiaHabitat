@@ -205,3 +205,25 @@
 #'
 #' @source FWS 2011
 "cow_creek_instream"
+
+#' Stanislaus River Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 47 rows and 7 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv}{fall run juvenile WUA in square feet per 1000 feet}
+#'   \item{ST_fry}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{ST_juv}{steelhead juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The spawning WUA was derived from the Aceituno 1993 (FWS) PHABSIM model and the rearing from
+#' the FWS River2D model.
+#'
+#' @source FWS
+"stanislaus_river_instream"

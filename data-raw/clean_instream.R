@@ -23,3 +23,19 @@ cottonwood_creek_instream <- cottonwood %>%
   arrange(flow_cfs)
 
 devtools::use_data(cottonwood_creek_instream)
+
+stan <- read_csv('data-raw/stanislaus_river_instream.csv', skip = 1)
+
+stanislaus_river_instream <- stan %>%
+  gather(species_stage, WUA, -flow_cfs, -watershed) %>%
+  filter(!is.na(WUA)) %>%
+  spread(species_stage, WUA) %>%
+  select(flow_cfs, spawn_WUA, FR_fry_WUA = fr_fry_WUA,
+         FR_juv_WUA = fr_juv_WUA, ST_fry_WUA = st_fry_WUA,
+         ST_juv_WUA = st_juv_WUA, watershed)
+
+devtools::use_data(stanislaus_river_instream)
+
+up_sac <- read_csv('data-raw/upper_sacramento_river_instream.csv', skip = 1)
+up_sac
+#6-2 upper sac spawning, 6-4 upper sac rearing
