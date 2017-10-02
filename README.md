@@ -1,23 +1,19 @@
 *Two Table List in Gard Flow Area Relationships* 
-
 * UpperSac
 * MidSac
 * LowerSac
 
 
 *Notes for Gard Spreadsheet* 
-
-* Colusa appears in the Gard sheets but is not in the metadata tables.
 * Consumnes has just one value in the floodplain area column 
 * Mokelumne has just one value in the floodplain area column
 
 *Funky Instream*
 * American
-* Butte
-* Clear
-* Colusa
-* Cottonwood (check conversion, our cottonwood length is 22 miles not 10.76)
-
+* Mokelumne (need to ask mark about juv units)
+* Sacramento
+* Yuba convert to sq ft / 1000 sq ft to accomodate measurements not available at all cfs across locations?
+* Sutter and Yolo WUA in sq ft, what length was study done on?
 
 
 
