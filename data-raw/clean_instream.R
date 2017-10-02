@@ -1,4 +1,5 @@
 library(tidyverse)
+library(devtools)
 
 # clear creek instream cleaning-----------------------------------
 # in units sqft want in units sqft/1000ft
@@ -37,5 +38,28 @@ stanislaus_river_instream <- stan %>%
 devtools::use_data(stanislaus_river_instream)
 
 up_sac <- read_csv('data-raw/upper_sacramento_river_instream.csv', skip = 1)
-up_sac
+View(up_sac)
+glimpse(up_sac)
+
 #6-2 upper sac spawning, 6-4 upper sac rearing
+upper_sac_ACID_boards_out <- up_sac %>%
+  gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
+  filter(Segment != '6 ACID Boards In', !is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_length = sum(length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA)
+
+upper_sac_ACID_boards_in <- up_sac %>%
+  gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
+  filter(Segment != '6 ACID Boards Out', !is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_length = sum(length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA)
+
+use_data(upper_sac_ACID_boards_in)
+use_data(upper_sac_ACID_boards_out)
+

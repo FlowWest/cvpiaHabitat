@@ -1,3 +1,23 @@
+#' Butte Creek Instream Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 31 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' The total area * suitability (25%)
+#'
+#' @source CVFPP 2012
+"butte_creek_floodplain"
+
 #' Butte Creek Instream Flow to Habitat Area Relationship
 #'
 #' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
@@ -227,3 +247,93 @@
 #'
 #' @source FWS
 "stanislaus_river_instream"
+
+#' Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards In)
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 30 rows and 11 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_fry_WUA}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_WUA}{fall run juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_WUA}{fall run spawning WUA in square feet per 1000 feet}
+#'   \item{LFR_fry_WUA}{late-fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{LFR_juv_WUA}{late-fall run fry juvenile WUA in square feet per 1000 feet}
+#'   \item{LFR_spawn_WUA}{late-fall run fry spawning WUA in square feet per 1000 feet}
+#'   \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
+#'   \item{WR_fry_WUA}{winter run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{WR_juv_WUA}{winter run juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The spawning WUA were derived from a FWS River2D model. The study is broken into several
+#'  segments: Keswick to A.C.I.D. (3.5 mi), A.C.I.D. to Cow Creek (18.5 mi),
+#'  Cow Creek to Battle Creek (8.5 mi), Battle Creek to Red Bluff (22.5 mi), and
+#'  Red Bluff to Deer Creek (23.5 mi). The Upper Sacramento fall run
+#' spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River
+#' (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle
+#' Creek. The rearing WUA values come from two models, River2D (Keswick to Battle Creek)
+#' and HEC-RAS 1D (Battle Creek to Red Bluff). The A.C.I.D. boards are in April 1st - October 31st
+#'
+#' \tabular{lllllll}{
+#'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
+#'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
+#'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
+#'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
+#' }
+#'
+#' \emph{Generalised life history Yoshinyama et al. 1998}
+#'
+#' Use these values to compute spawning habitat for Winter Run. Use these values to compute rearing habitat
+#' for ....
+#'
+#' @source FWS and Hendrix 2017
+"upper_sac_ACID_boards_in"
+
+#' Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards Out)
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 30 rows and 11 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_fry_WUA}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_WUA}{fall run juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_WUA}{fall run spawning WUA in square feet per 1000 feet}
+#'   \item{LFR_fry_WUA}{late-fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{LFR_juv_WUA}{late-fall run fry juvenile WUA in square feet per 1000 feet}
+#'   \item{LFR_spawn_WUA}{late-fall run fry spawning WUA in square feet per 1000 feet}
+#'   \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
+#'   \item{WR_fry_WUA}{winter run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{WR_juv_WUA}{winter run juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The spawning WUA were derived from a FWS River2D model. The study is broken into several
+#'  segments: Keswick to A.C.I.D. (3.5 mi), A.C.I.D. to Cow Creek (18.5 mi),
+#'  Cow Creek to Battle Creek (8.5 mi), Battle Creek to Red Bluff (22.5 mi), and
+#'  Red Bluff to Deer Creek (23.5 mi). The Upper Sacramento fall run
+#' spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River
+#' (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle
+#' Creek. The rearing WUA values come from two models, River2D (Keswick to Battle Creek)
+#' and HEC-RAS 1D (Battle Creek to Red Bluff). The A.C.I.D. boards are in April 1st - October 31st
+#'
+#' \tabular{lllllll}{
+#'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
+#'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
+#'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
+#'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
+#' }
+#'
+#' \emph{Generalised life history Yoshinyama et al. 1998}
+#'
+#' Use these values to compute spawning habitat for .... Use these values to compute rearing habitat
+#' for ....
+#'
+#' @source FWS and Hendrix 2017
+"upper_sac_ACID_boards_out"
+
+
