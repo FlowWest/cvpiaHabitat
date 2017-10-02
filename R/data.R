@@ -1,4 +1,4 @@
-#' Butte Creek Instream Flow to Floodplain Habitat Area Relationship
+#' Butte Creek Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
