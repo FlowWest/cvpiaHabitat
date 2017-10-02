@@ -54,3 +54,15 @@ test_that("all datasets have the correct colnames", {
   expect_equal(0, compare_colnames(mokelumne_river_floodplain))
 
 })
+
+species <- c("Fall Run", "Spring Run", "Steelhead")
+
+elements_match <- function(df) {
+  species_in_df <- df %>% dplyr::distinct(species) %>% dplyr::pull()
+
+}
+
+# create a test to make sure columns entries entered corrected
+test_that("all species are spelled correctly", {
+
+})
