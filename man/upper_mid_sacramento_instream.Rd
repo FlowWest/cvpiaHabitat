@@ -27,6 +27,6 @@ from Red Blurr to Wilkins Slough (122.45 mi).
 
 \strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
 American River (58.0 mi). To calculate the available habitat, use a proportional combination of
-the WUA from the Upper-mid and Lower Sacramento instream values.
+the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
 }
 \keyword{datasets}
