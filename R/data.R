@@ -1,3 +1,39 @@
+#' Bear River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details TODO
+#'
+#' @source TODO
+"bear_river_floodplain"
+
+#' American River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 35 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details TODO
+#'
+#' @source TODO
+"american_river_floodplain"
+
 #' Butte Creek Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
