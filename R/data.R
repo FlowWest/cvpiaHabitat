@@ -220,7 +220,7 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The rearing WUA values are from a River2D model done on South Cow Creek. The values from two river
+#' @details The rearing WUA values are from a River2D model done on South Cow Creek. The values are from two river
 #' segments, Valley Floor Reach (5.11 miles) and Boero Reach (1.68 miles).
 #'
 #' @source FWS 2011
@@ -281,6 +281,7 @@
 #'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
 #'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
 #'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
+#'   Spring Run \tab Mar-Sep \tab May-Jun \tab Aug-Oct \tab Mid-Sep \tab Nov-Mar \tab 3-15 mths \cr
 #'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
 #' }
 #'
@@ -289,7 +290,7 @@
 #' Use these values to compute spawning habitat for Winter Run. Use these values to compute rearing habitat
 #' for ....
 #'
-#' @source FWS and Hendrix 2017
+#' @source FWS and NMFS Life Cycle Model, Hendrix 2017
 "upper_sac_ACID_boards_in"
 
 #' Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards Out)
@@ -325,6 +326,7 @@
 #'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
 #'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
 #'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
+#'   Spring Run \tab Mar-Sep \tab May-Jun \tab Aug-Oct \tab Mid-Sep \tab Nov-Mar \tab 3-15 mths \cr
 #'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
 #' }
 #'
@@ -333,7 +335,52 @@
 #' Use these values to compute spawning habitat for .... Use these values to compute rearing habitat
 #' for ....
 #'
-#' @source FWS and Hendrix 2017
+#' @source FWS and NMFS Life Cycle Model, Hendrix 2017
 "upper_sac_ACID_boards_out"
 
+#' Upper-Mid Sacramento River Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 45 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from Battle Creek to
+#' the confluence with the Feather River (189.1 mi). The CVPIA Upper-mid Sacramento River extends
+#' from Red Blurr to Wilkins Slough (122.45 mi).
+#'
+#' \strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
+#' American River (58.0 mi). To calculate the available habitat, use a proportional combination of
+#' the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
+#'
+#' @source NMFS Life Cycle Model, Hendrix 2017
+"upper_mid_sacramento_instream"
+
+#' Lower Sacramento River Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 45 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from
+#' the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower Sacramento River extends
+#' from the confluence with the American River to Freeport (13.7 mi).
+#'
+#' \strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
+#' American River (58.0 mi). To calculate the available habitat, use a proportional combination of
+#' the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
+#'
+#' @source NMFS Life Cycle Model, Hendrix 2017
+"lower_sacramento_instream"
 

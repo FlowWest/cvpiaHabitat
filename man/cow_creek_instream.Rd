@@ -22,7 +22,7 @@ A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second
 }
 \details{
-The rearing WUA values are from a River2D model done on South Cow Creek. The values from two river
+The rearing WUA values are from a River2D model done on South Cow Creek. The values are from two river
 segments, Valley Floor Reach (5.11 miles) and Boero Reach (1.68 miles).
 }
 \keyword{datasets}

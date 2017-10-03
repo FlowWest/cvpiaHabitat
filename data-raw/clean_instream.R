@@ -49,7 +49,8 @@ upper_sac_ACID_boards_out <- up_sac %>%
   mutate(total_length = sum(length)) %>%
   summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
   ungroup() %>%
-  spread(species_stage, WUA)
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Upper Sacramento River')
 
 upper_sac_ACID_boards_in <- up_sac %>%
   gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
@@ -58,8 +59,42 @@ upper_sac_ACID_boards_in <- up_sac %>%
   mutate(total_length = sum(length)) %>%
   summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
   ungroup() %>%
-  spread(species_stage, WUA)
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Upper Sacramento River')
 
-use_data(upper_sac_ACID_boards_in)
-use_data(upper_sac_ACID_boards_out)
+use_data(upper_sac_ACID_boards_in, overwrite = T)
+use_data(upper_sac_ACID_boards_out, overwrite = T)
 
+# cvpia sac rearing segments ----
+# upper sac Keswick-Red Bluff 59.2 mi
+# upper-mid sac red-bluff to wilkins slough 122.45 mi
+# lower-mid sac wilkins slough to American 58.0 mi
+# lower sac American to freeport 13.7 mi
+
+# river 2D segments ----
+# Reach 6 – keswick to ACID;
+# reach 5 ACID to Cow;
+# reach 4 cow to battle
+# reach 3 battle to red bluff
+# reach 2 red bluff to deer
+# NOTE: no rearing for reach 3 and 2
+
+# hec-ras 1d sac segments ---
+# battle to feather 189.1 mi
+# feather to freeport 33.4 mi
+
+sacramento_instream <- read_csv('data-raw/sacramento_river_instream.csv', skip = 1)
+
+upper_mid_sacramento_instream <- sacramento_instream %>%
+  mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Upper-mid Sacramento River') %>%
+  filter(reach == 'Battle Creek to Feather River') %>%
+  select(flow_cfs, juv_WUA, watershed)
+
+use_data(upper_mid_sacramento_instream)
+
+lower_sacramento_instream <- sacramento_instream %>%
+  mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower Sacramento River') %>%
+  filter(reach == 'Feather River to Freeport') %>%
+  select(flow_cfs, juv_WUA, watershed)
+
+use_data(lower_sacramento_instream)

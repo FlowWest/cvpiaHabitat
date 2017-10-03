@@ -19,7 +19,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FWS and Hendrix 2017
+FWS and NMFS Life Cycle Model, Hendrix 2017
 }
 \usage{
 upper_sac_ACID_boards_out
@@ -42,6 +42,7 @@ and HEC-RAS 1D (Battle Creek to Red Bluff). The A.C.I.D. boards are in April 1st
   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
+  Spring Run \tab Mar-Sep \tab May-Jun \tab Aug-Oct \tab Mid-Sep \tab Nov-Mar \tab 3-15 mths \cr
   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
 }
 
