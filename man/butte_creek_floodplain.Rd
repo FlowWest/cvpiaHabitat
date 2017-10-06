@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-CVFPP 2012
+CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
 }
 \usage{
 butte_creek_floodplain

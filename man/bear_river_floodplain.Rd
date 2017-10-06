@@ -12,7 +12,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-TODO
+NA
 }
 \usage{
 bear_river_floodplain
@@ -22,6 +22,6 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-TODO
+NA
 }
 \keyword{datasets}

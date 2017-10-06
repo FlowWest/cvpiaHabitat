@@ -1,3 +1,128 @@
+#' Feather River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+"feather_river_floodplain"
+
+#' Elder Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+"elder_creek_floodplain"
+
+#' Deer Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the Deer Creek Watershed Conservancy HEC-RAS 1D 2011 model.
+#'
+#' @source TODO
+"deer_creek_floodplain"
+
+#' Cottonwood Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the FWS 2017 HEC-RAS 1D model.
+#'
+#' @source FWS \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}
+"cottonwood_creek_floodplain"
+
+#' Cosumnes River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details NA
+#'
+#' @source NA
+"cosumnes_river_floodplain"
+
+#' Calaveras River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 37 rows and 4 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+"calaveras_river_floodplain"
+
+
+#' Big Chico Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 32 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+"big_chico_creek_floodplain"
+
+
 #' Bear River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
@@ -11,9 +136,9 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details TODO
+#' @details NA
 #'
-#' @source TODO
+#' @source NA
 "bear_river_floodplain"
 
 #' American River Flow to Floodplain Habitat Area Relationship
@@ -29,9 +154,9 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details TODO
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source TODO
+#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
 "american_river_floodplain"
 
 #' Butte Creek Flow to Floodplain Habitat Area Relationship
@@ -51,7 +176,7 @@
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #' The total area * suitability (25%)
 #'
-#' @source CVFPP 2012
+#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
 "butte_creek_floodplain"
 
 #' Butte Creek Instream Flow to Habitat Area Relationship
