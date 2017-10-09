@@ -44,6 +44,8 @@ feat_area(4500)/33.4
 sac %>%
   group_by(reach) %>%
   summarise(min = min(flow_cfs), max = max(flow_cfs), count = n())
+View(feat)
+View(feat)
 
 #test method
 55.5 * kes_area(2637.426)/55.5 + (59.2-55.5) * bat_area(2637.426)/189.1
