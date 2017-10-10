@@ -7,7 +7,7 @@
 \format{dataframe with 31 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acerage}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{

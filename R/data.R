@@ -6,15 +6,15 @@
 #' @format dataframe with 28 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @details The habitat area was derived from the SRH2D model, Pasternack 2012.
 #'
-#' @source SRH2D \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}{SRH2D}
 "yuba_river_floodplain"
 
 #' Yolo Bypass Flow to Floodplain Habitat Area Relationship
@@ -25,15 +25,15 @@
 #' @format dataframe with 62 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
 #'
-#' @source NMFS life cycle model \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
 "yolo_bypass_floodplain"
 
 #' Tuolumne River Flow to Floodplain Habitat Area Relationship
@@ -44,15 +44,15 @@
 #' @format dataframe with 37 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @details The habitat area was derived from the Flo2D model by Stillwater, 2014.
 #'
-#' @source \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
 "tuolumne_river_floodplain"
 
 
@@ -64,15 +64,15 @@
 #' @format dataframe with 16 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @details The habitat area was derived from the SRH2D model from Newfields 2013.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "stanislaus_river_floodplain"
 
 
@@ -84,15 +84,15 @@
 #' @format dataframe with 32 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "san_joaquin_river_floodplain"
 
 #' North Delta Flow to Floodplain Habitat Area Relationship
@@ -103,15 +103,15 @@
 #' @format dataframe with 73 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
 #'
-#' @source NMFS life cycle model \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}
+#' @source  \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
 "north_delta_floodplain"
 
 
@@ -123,9 +123,9 @@
 #' @format dataframe with 31 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -142,9 +142,9 @@
 #' @format dataframe with 40 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -161,7 +161,7 @@
 #' @format dataframe with 31 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -178,7 +178,7 @@
 #' @format dataframe with 30 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -195,7 +195,7 @@
 #' @format dataframe with 32 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -212,8 +212,8 @@
 #' @format dataframe with 36 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -230,8 +230,8 @@
 #' @format dataframe with 37 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -249,7 +249,7 @@
 #' @format dataframe with 32 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -267,8 +267,8 @@
 #' @format dataframe with 37 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -285,8 +285,8 @@
 #' @format dataframe with 35 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -303,9 +303,9 @@
 #' @format dataframe with 31 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acerage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acerage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acerage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
