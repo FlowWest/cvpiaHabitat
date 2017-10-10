@@ -12,7 +12,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FWS 2011
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf}{FWS 2011}
 }
 \usage{
 cow_creek_instream

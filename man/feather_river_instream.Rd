@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-Payne 2002
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf}{Payne 2002}
 }
 \usage{
 feather_river_instream

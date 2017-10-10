@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-CDFW 1979 and FWS 2014
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CDFW1979_CottonwoodSpawningIFIM.PDF}{CDFW 1979 and FWS 2014}
 }
 \usage{
 cottonwood_creek_instream

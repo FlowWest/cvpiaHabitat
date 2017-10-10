@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-\url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}{Hendirx 2017 HEC-RAS 1D model}
 }
 \usage{
 north_delta_floodplain

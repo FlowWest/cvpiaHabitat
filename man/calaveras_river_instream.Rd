@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FishBio and Payne 2009
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf}{FishBio and Payne 2009}
 }
 \usage{
 calaveras_river_instream

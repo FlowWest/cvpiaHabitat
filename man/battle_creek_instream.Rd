@@ -14,7 +14,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-Payne 1995
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf}{Payne 1995}
 }
 \usage{
 battle_creek_instream

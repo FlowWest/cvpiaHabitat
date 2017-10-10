@@ -14,7 +14,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FWS and 2008 FERC relicensing of DeSabla
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf}{FWS and 2008 FERC relicensing of DeSabla}
 }
 \usage{
 butte_creek_instream

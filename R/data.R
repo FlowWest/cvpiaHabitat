@@ -111,7 +111,7 @@
 #'
 #' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
 #'
-#' @source  \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}{Hendirx 2017 HEC-RAS 1D model}
 "north_delta_floodplain"
 
 
@@ -150,7 +150,7 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "feather_river_floodplain"
 
 #' Elder Creek Flow to Floodplain Habitat Area Relationship
@@ -167,7 +167,7 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "elder_creek_floodplain"
 
 #' Deer Creek Flow to Floodplain Habitat Area Relationship
@@ -201,7 +201,7 @@
 #'
 #' @details The habitat area was derived from the FWS 2017 HEC-RAS 1D model.
 #'
-#' @source FWS \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}{FWS}
 "cottonwood_creek_floodplain"
 
 #' Cosumnes River Flow to Floodplain Habitat Area Relationship
@@ -237,7 +237,7 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "calaveras_river_floodplain"
 
 
@@ -255,7 +255,7 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "big_chico_creek_floodplain"
 
 
@@ -292,7 +292,7 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "american_river_floodplain"
 
 #' Butte Creek Flow to Floodplain Habitat Area Relationship
@@ -335,7 +335,7 @@
 #' segments, above Centerville Powerhouse (6.5 miles) and below (9 miles).
 #' The spawning results are for Spring Run Chinook. The rearing results are for Fall Run Chinook.
 #'
-#' @source FWS and 2008 FERC relicensing of DeSabla
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf}{FWS and 2008 FERC relicensing of DeSabla}
 "butte_creek_instream"
 
 #' Battle Creek Instream Flow to Habitat Area Relationship
@@ -355,7 +355,7 @@
 #'
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. The results are for Fall Run Chinook.
 #'
-#' @source Payne 1995
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf}{Payne 1995}
 "battle_creek_instream"
 
 #' Bear River Instream Flow to Habitat Area Relationship
@@ -374,7 +374,7 @@
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. A River2D model is in development.
 #' The results are for Fall Run Chinook.
 #'
-#' @source Holten 1985
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF}{Holten 1985}
 "bear_river_instream"
 
 #' Calaveras River Instream Flow to Habitat Area Relationship
@@ -393,7 +393,7 @@
 #'
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. The reults are for Steelhead.
 #'
-#' @source FishBio and Payne 2009
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf}{FishBio and Payne 2009}
 "calaveras_river_instream"
 
 #' Clear Creek Instream Flow to Habitat Area Relationship
@@ -421,7 +421,7 @@
 #' Fall Run are only in the Lower Alluvial Segment and there is a segregation weir that prevents the
 #' Spring Run from spawning in the Lower Alluvial Segment.
 #'
-#' @source FWS 2007-2013
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2007-2013_ClearCreekInstream.pdf}{FWS 2007-2013}
 "clear_creek_instream"
 
 #' Cottonwood Creek Instream Flow to Habitat Area Relationship
@@ -441,7 +441,7 @@
 #' @details The spawning WUA values were derived from a PHABSIM model. The rearing values are from the FWS 2014
 #' River2D model. The results are for Fall Run.
 #'
-#' @source CDFW 1979 and FWS 2014
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CDFW1979_CottonwoodSpawningIFIM.PDF}{CDFW 1979 and FWS 2014}
 "cottonwood_creek_instream"
 
 #' Feather River Instream Flow to Habitat Area Relationship
@@ -460,7 +460,7 @@
 #'
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. The results are for Fall Run.
 #'
-#' @source Payne 2002
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf}{Payne 2002}
 "feather_river_instream"
 
 #' Merced River Instream Flow to Habitat Area Relationship
@@ -481,7 +481,7 @@
 #' @details The spawning WUA values were derived from the FWS 1996 PHABSIM model and the rearing from
 #' the MID 2013 PHABSIM.
 #'
-#' @source FWS 1996 and MID 2013
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS1996_AmericanRiverSpawningFinalReport.pdf}{FWS 1996 and MID 2013}
 "merced_river_instream"
 
 #' Mokelumne River Instream Flow to Habitat Area Relationship
@@ -520,7 +520,7 @@
 #' @details The rearing WUA values are from a River2D model done on South Cow Creek. The values are from two river
 #' segments, Valley Floor Reach (5.11 miles) and Boero Reach (1.68 miles).
 #'
-#' @source FWS 2011
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf}{FWS 2011}
 "cow_creek_instream"
 
 #' Stanislaus River Instream Flow to Habitat Area Relationship

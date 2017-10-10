@@ -14,7 +14,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FWS 1996 and MID 2013
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS1996_AmericanRiverSpawningFinalReport.pdf}{FWS 1996 and MID 2013}
 }
 \usage{
 merced_river_instream

@@ -11,7 +11,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FWS \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}{FWS}
 }
 \usage{
 cottonwood_creek_floodplain

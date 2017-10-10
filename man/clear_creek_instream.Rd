@@ -19,7 +19,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-FWS 2007-2013
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2007-2013_ClearCreekInstream.pdf}{FWS 2007-2013}
 }
 \usage{
 clear_creek_instream

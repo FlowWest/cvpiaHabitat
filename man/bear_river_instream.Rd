@@ -12,7 +12,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-Holten 1985
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF}{Holten 1985}
 }
 \usage{
 bear_river_instream
