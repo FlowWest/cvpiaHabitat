@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 }
 \usage{
 butte_creek_floodplain
@@ -24,6 +24,6 @@ function of flow in cubic feet per second
 }
 \details{
 The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
-The total area * suitability (25%)
+The total area * suitability (25\%)
 }
 \keyword{datasets}

@@ -43,7 +43,14 @@ feat_area(4500)/33.4
 
 sac %>%
   group_by(reach) %>%
-  summarise(min = min(flow_cfs), max = max(flow_cfs), count = n())
+  summarise(min = min(flow_cfs), max = max(flow_cfs), count = n()) %>%
+  arrange(count)
+
+xtra_flow_kes <- bat %>%
+  filter(flow_cfs > 62457) %>%
+  mutate(floodplain_acres = kes_area(62457),
+         reach = 'Keswick to Battle Creek ', miles = 55.5)
+
 
 #test method
 55.5 * kes_area(2637.426)/55.5 + (59.2-55.5) * bat_area(2637.426)/189.1
@@ -56,10 +63,14 @@ sac %>%
 # rates
 
 upper_sacramento_river_floodplain <- kes %>%
+  bind_rows(xtra_flow_kes) %>%
   mutate(fp_per_mile_kes = floodplain_acres/miles,
          fp_per_mile_bat = bat_area(flow_cfs)/189.1,
          floodplain_acres = miles * fp_per_mile_kes + (59.2 - miles) * fp_per_mile_bat,
          watershed = 'Upper Sacramento River') %>%
-  select(flow_cfs, floodplain_acres, watershed)
+  select(flow_cfs, floodplain_acres, watershed) %>%
+  filter(flow_cfs > 0)
 
-use_data(upper_sacramento_river_floodplain)
+use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
+
+View(feat)
