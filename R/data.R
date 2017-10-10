@@ -310,9 +310,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
-#' The total area * suitability (25%)
+#' The total area * suitability (25\%)
 #'
-#' @source CVFPP 2012 \url{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "butte_creek_floodplain"
 
 #' Butte Creek Instream Flow to Habitat Area Relationship
