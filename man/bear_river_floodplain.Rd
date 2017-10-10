@@ -12,7 +12,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-NA
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 }
 \usage{
 bear_river_floodplain
@@ -22,6 +22,6 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-NA
+The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 }
 \keyword{datasets}

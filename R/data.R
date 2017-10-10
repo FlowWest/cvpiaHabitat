@@ -272,9 +272,9 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details NA
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
-#' @source NA
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "bear_river_floodplain"
 
 #' American River Flow to Floodplain Habitat Area Relationship
