@@ -4,10 +4,10 @@ library(devtools)
 sac <- read_csv('data-raw/sacramento_river_floodplain.csv')
 
 # cvpia sac rearing segments ----
-# upper sac Keswick-Red Bluff 59.2 mi
-# upper-mid sac red-bluff to wilkins slough 122.45 mi
-# lower-mid sac wilkins slough to American 58.0 mi
-# lower sac American to freeport 13.7 mi
+# Upper Sacramento River: Keswick-Red Bluff 59.2 mi (keswick to battle and battle to feather studies)
+# Upper-mid Sacramento River: red-bluff to wilkins slough 122.45 mi (battle to feather study)
+# Lower-mid Sacramento River: wilkins slough to American 58.0 mi (battle to feather 38.2 miles and feather to freeport 58-38.2)
+# Lower Sacramento River: American to freeport 13.7 mi
 
 # hec-ras 1d sac segments ---
 # keswick to battle 55.5 mi
@@ -31,7 +31,7 @@ bat %>%
   ggplot(aes(flow_cfs, floodplain_acres)) +
   geom_line()
 
-# linear extrapolation functions for each study reach
+# linear interpolation functions for each study reach
 kes_area <- approxfun(x = kes$flow_cfs, y = kes$floodplain_acres)
 bat_area <- approxfun(x = bat$flow_cfs, y = bat$floodplain_acres)
 feat_area <- approxfun(x = feat$flow_cfs, y = feat$floodplain_acres)
