@@ -27,6 +27,21 @@ feat <- sac %>%
   filter(reach == 'Feather River to Freeport') %>%
   bind_rows(tibble(flow_cfs = 0, floodplain_acres = 0, reach = 'Feather River to Freeport', miles = 33.4))
 
+# Emanuel: renaming the above for easier reference for me
+# add zeros for extrapolating past lower limit
+kes_bat <- sac %>%
+  filter(reach == 'Keswick to Battle Creek') %>%
+  bind_rows(tibble(flow_cfs = 0, floodplain_acres = 0, reach = 'Keswick to Battle Creek', miles = 55.5))
+
+bat_feat <- sac %>%
+  filter(reach == 'Battle Creek to Feather River') %>%
+  bind_rows(tibble(flow_cfs = 0, floodplain_acres = 0, reach = 'Battle Creek to Feather River', miles = 189.1))
+
+feat_free <- sac %>%
+  filter(reach == 'Feather River to Freeport') %>%
+  bind_rows(tibble(flow_cfs = 0, floodplain_acres = 0, reach = 'Feather River to Freeport', miles = 33.4))
+
+
 bat %>%
   ggplot(aes(flow_cfs, floodplain_acres)) +
   geom_line()
@@ -46,6 +61,10 @@ sac %>%
   summarise(min = min(flow_cfs), max = max(flow_cfs), count = n()) %>%
   arrange(count)
 
+# Emanuel: reference for myself
+# create new frame with instances where flow values between battle and feather
+# are over the max flow between keswick to battle, assign these instances the
+# max value from kes_bat and determine the area by using the kes_area() functions
 xtra_flow_kes <- bat %>%
   filter(flow_cfs > 62457) %>%
   mutate(floodplain_acres = kes_area(62457),
@@ -53,6 +72,8 @@ xtra_flow_kes <- bat %>%
 
 
 #test method
+# a weighted average where the weights are determined by how much length
+# is covered by each of the studies
 55.5 * kes_area(2637.426)/55.5 + (59.2-55.5) * bat_area(2637.426)/189.1
 
 # upper sac is 59.2 miles, 55.5 of those miles are in the study's first reach
