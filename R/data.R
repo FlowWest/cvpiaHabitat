@@ -698,3 +698,21 @@
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2003_AmericanRiverPHABSIM2DFinalReport.pdf}{FWS 2003}
 "american_river_instream"
+
+#' Yuba River Instream Flow to Habitat Area Relationship
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 34 rows and 10 variables
+#' \describe{
+#' \item{flow_cfs}{numeric flow value in cubic feet per second}
+#' \item{FR_spawning}{Fall Run spawning WUA in square feet per 1000 feet}
+#' \item{FR_SR_fry}{Fall and Spring Run fry WUA in square feet per 1000 feet}
+#' \item{FR_SR_juv}{Fall and Spring Run juvenile WUA in square feet per 1000 feet}
+#' \item{SR_spawning}{Spring Run spawning WUA in square feet per 1000 feet}
+#' \item{ST_fry}{Steelhead fry WUA in square feet per 1000 feet}
+#' \item{ST_juv}{Steelhead juvenile WUA in square feet per 1000 feet}
+#' \item{ST_spawning}{Steelhead spawning WUA in square feet per 1000 feet}
+#' \item{watershed}{name of watershed}
+#' }
+"yuba_river_instream"

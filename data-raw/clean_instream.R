@@ -173,7 +173,7 @@ dag_to_feather_interpolated <- tibble(
   "SR_Spawn" = sr_spawn,
   "FR_Spawn" = fr_spawn,
   "ST_Spawn" = st_spawn,
-  "FR_SR_Spawn" = fr_sr_fry,
+  "FR_SR_fry" = fr_sr_fry,
   "ST_fry" = st_fry,
   "FR_SR_juv" = fr_sr_juv,
   "ST_juv" = st_juv,
@@ -194,9 +194,14 @@ yuba_river_instream <- yuba_witn_interpolated %>%
   summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
   ungroup() %>%
   spread(species_stage, WUA) %>%
-  mutate(watershed = 'Yuba River')
+  mutate(watershed = 'Yuba River') %>%
+  rename(
+    FR_spawning = FR_Spawn,
+    SR_spawning = SR_Spawn,
+    ST_spawning = ST_Spawn
+  )
 
-devtools::use_data(yuba_river_instream)
+devtools::use_data(yuba_river_instream, overwrite = TRUE)
 
 # how do the two methods compare?
 plot_ly() %>%

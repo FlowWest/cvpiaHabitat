@@ -107,9 +107,12 @@ View(feat)
 
 # battle to feather requires no more processing:
 upper_mid_sacramento_river_floodplain <- bat_feat %>%
-  transmute(flow_cfs, floodplain_acres, watershed = "Upper-mid Sacramento River")
+  mutate(fp_per_mile_bat_feat = floodplain_acres/miles,
+         floodplain_acres = 122.45 * fp_per_mile_bat_feat,
+         watershed = "Upper-mid Sacramento River") %>%
+  select(flow_cfs, floodplain_acres, watershed)
 
-use_data(upper_mid_sacramento_river_floodplain)
+use_data(upper_mid_sacramento_river_floodplain, overwrite = TRUE)
 
 
 # cvpia sac rearing segments ----
@@ -146,10 +149,10 @@ lower_mid_sacramento_river_floodplain <- feat_free_with_extra_flow %>%
          fp_per_mile_bat_feat = bat_area(flow_cfs)/189.1,
          floodplain_acres = (38.2 * fp_per_mile_bat_feat) + (19.8 * fp_per_mile_feat_free),
          watershed = 'Lower-mid Sacramento River') %>%
-  select(flow_cfs, floodplain_acres, reach) %>%
+  select(flow_cfs, floodplain_acres, watershed) %>%
   filter(flow_cfs > 0)
 
-devtools::use_data(lower_mid_sacramento_river_floodplain)
+devtools::use_data(lower_mid_sacramento_river_floodplain, overwrite = TRUE)
 
 # cvpia sac rearing segments ----
 # Lower Sacramento River: American to freeport 13.7 mi
@@ -160,6 +163,8 @@ devtools::use_data(lower_mid_sacramento_river_floodplain)
 # feather to freeport 33.4 mi
 
 lower_sacramento_river_floodplain <- feat_free %>%
-  transmute(flow_cfs, floodplain_acres, watershed = "Lower Sacramento River")
-
+  mutate(fp_per_mile_feat_free = floodplain_acres/miles,
+         floodplain_acres = 13.7 * fp_per_mile_bat_feat,
+         watershed = "Lower Sacramento River") %>%
+  select(flow_cfs, floodplain_acres, watershed)
 devtools::use_data(lower_sacramento_river_floodplain)
