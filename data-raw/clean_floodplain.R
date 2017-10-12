@@ -95,3 +95,78 @@ upper_sacramento_river_floodplain <- kes %>%
 use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
 
 View(feat)
+
+
+# cvpia sac rearing segments ----
+# Upper-mid Sacramento River: red-bluff to wilkins slough 122.45 mi (battle to feather study)
+
+# hec-ras 1d sac segments ---
+# keswick to battle 55.5 mi
+# battle to feather 189.1 mi
+# feather to freeport 33.4 mi
+
+# battle to feather requires no more processing:
+upper_mid_sacramento_river_floodplain <- bat_feat %>%
+  transmute(flow_cfs, floodplain_acres, watershed = "Upper-mid Sacramento River")
+
+use_data(upper_mid_sacramento_river_floodplain)
+
+
+# cvpia sac rearing segments ----
+# Lower-mid Sacramento River: wilkins slough to American 58.0 mi (battle to feather 38.2 miles and feather to freeport 58-38.2)
+
+# hec-ras 1d sac segments ---
+# keswick to battle 55.5 mi
+# battle to feather 189.1 mi
+# feather to freeport 33.4 mi
+
+sac %>%
+  group_by(reach) %>%
+  summarise(min = min(flow_cfs, na.rm =TRUE), max = max(flow_cfs, na.rm =TRUE), count = n()) %>%
+  arrange(count)
+
+# Emanuel: reference for myself
+# create new frame with instances where flow values between battle and feather
+# are over the max flow between keswick to battle, assign these instances the
+# max value from kes_bat and determine the area by using the kes_area() functions
+xtra_flow_feat_free <- bat_feat %>%
+  filter(flow_cfs < 4355.361) %>%
+  mutate(floodplain_acres = feat_area(4355.361),
+         reach = "Feather River to Freeport", miles = 58-38.2)
+
+
+# the first way where dont add extra rows into the feather to freeport
+lower_mid_sacramento_river_floodplain <- bat_feat %>%
+  mutate(fp_per_mile_bat_feat = floodplain_acres/miles,
+         fp_per_mile_feat_free = feat_area(flow_cfs)/33.4,
+         floodplain_acres = ((58-19.8) * fp_per_mile_bat_feat) + ((19.8) * fp_per_mile_feat_free),
+         reach = 'Lower-mid Sacramento River v2') %>%
+  select(flow_cfs, floodplain_acres, reach) %>%
+  filter(flow_cfs > 0)
+
+# case when we add rows to feather to freeport
+lower_mid_sacramento_river_floodplain2 <- feat_free %>%
+  bind_rows(xtra_flow_feat_free) %>%
+  mutate(fp_per_mile_feat_free = floodplain_acres/miles,
+         fp_per_mile_bat_feat = bat_area(flow_cfs)/189.1,
+         floodplain_acres = ((58-19.8) * fp_per_mile_bat_feat) + ((19.8) * fp_per_mile_feat_free),
+         reach = 'Lower-mid Sacramento River v1') %>%
+  select(flow_cfs, floodplain_acres, reach) %>%
+  filter(flow_cfs > 0)
+
+
+d <- bind_rows(
+  bat_feat,
+  feat_free,
+  lower_mid_sacramento_river_floodplain,
+  lower_mid_sacramento_river_floodplain2
+) %>% filter(flow_cfs > 0)
+
+
+# cvpia sac rearing segments ----
+# Lower Sacramento River: American to freeport 13.7 mi
+
+# hec-ras 1d sac segments ---
+# keswick to battle 55.5 mi
+# battle to feather 189.1 mi
+# feather to freeport 33.4 mi
