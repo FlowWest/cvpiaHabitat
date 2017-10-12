@@ -103,6 +103,133 @@ use_data(lower_sacramento_instream)
 #yuba
 
 
+# fixing the yuba instream based on Mark Gard Input
+yuba <- read_csv("data-raw/yuba_river_instream.csv", skip=1)
+
+# conflicts of flow ranges between segments
+yuba %>%
+  group_by(segment) %>%
+  summarise(
+    min_flow = min(Flow, na.rm = TRUE),
+    max_flow = max(Flow, na.rm = TRUE),
+    total = n()
+  )
+
+# for later comparison
+dag_to_feather <- yuba %>% filter(segment == "Daguerre to Feather Segment")
+engle_to_dag <- yuba %>% filter(segment == "Englebright to Daguerre Segment")
+
+# what do these look like next to each other
+# flow distriubtion
+yuba %>% ggplot(aes(Flow, color=segment)) + geom_density() # <- basically the same...
+# flow to other cols
+plot_ly() %>%
+  add_trace(data=dag_to_feather, x=~Flow, y=~ST_Spawn, type='scatter', mode='lines+markers') %>%
+  add_trace(data=engle_to_dag, x=~Flow, y=~ST_Spawn, type='scatter', mode='lines+markers')
+
+# straighforward method, no interop or below 400 cfs additions
+yuba_method1 <- yuba %>%
+  gather(species_stage, WUA, -Flow, -miles, -segment) %>%
+  rename(flow_cfs = Flow) %>%
+  filter(!is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_reach_length = sum(miles)) %>%
+  summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Yuba River')
+
+
+# here we interpolate and add additional values for low cfs on segment between Englebright to Daguerre Segment
+# which values are these?
+dag_to_feather %>% filter(Flow < 400)
+addins_to_engle_to_dag <- engle_to_dag %>% filter(Flow == 400)
+
+engle_to_dag_below_400 <- dag_to_feather %>% filter(Flow < 400) %>%
+  mutate(SR_Spawn=addins_to_engle_to_dag$SR_Spawn,
+         FR_Spawn=addins_to_engle_to_dag$FR_Spawn,
+         ST_Spawn=addins_to_engle_to_dag$ST_Spawn,
+         FR_SR_fry=addins_to_engle_to_dag$FR_SR_fry,
+         ST_fry=addins_to_engle_to_dag$ST_fry,
+         FR_SR_juv=addins_to_engle_to_dag$FR_SR_juv,
+         ST_juv=addins_to_engle_to_dag$ST_juv,
+         miles=addins_to_engle_to_dag$miles,
+         segment=addins_to_engle_to_dag$segment)
+
+yuba_with_additional_engle_to_dag <- bind_rows(
+  yuba,
+  engle_to_dag_below_400
+)
+
+yuba_method2 <- yuba_with_additional_engle_to_dag %>%
+  gather(species_stage, WUA, -Flow, -miles, -segment) %>%
+  rename(flow_cfs = Flow) %>%
+  filter(!is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_reach_length = sum(miles)) %>%
+  summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Yuba River')
+
+# the zig-zag stuff at the end can be collpsed by just interpolation
+# here we use the values over 3100 to interpolate linearly ()
+approx_dag_to_feather <- function(df, col, value) {
+  x = df$Flow
+  y = df[col] %>% dplyr::pull()
+  f <- approxfun(x, y)
+  f(value)
+}
+
+dag_to_feather_tail <- tail(dag_to_feather, 5)
+values_to_interpolate <- c(3100, 3500, 3900,4300)
+
+sr_spawn <- approx_dag_to_feather(dag_to_feather_tail, "SR_Spawn", values_to_interpolate)
+fr_spawn <- approx_dag_to_feather(dag_to_feather_tail, "FR_Spawn", values_to_interpolate)
+st_spawn <- approx_dag_to_feather(dag_to_feather_tail, "ST_Spawn", values_to_interpolate)
+fr_sr_fry <- approx_dag_to_feather(dag_to_feather_tail, "FR_SR_fry", values_to_interpolate)
+st_fry <- approx_dag_to_feather(dag_to_feather_tail, "ST_fry", values_to_interpolate)
+fr_sr_juv <- approx_dag_to_feather(dag_to_feather_tail, "FR_SR_juv", values_to_interpolate)
+st_juv <- approx_dag_to_feather(dag_to_feather_tail, "ST_juv", values_to_interpolate)
+
+dag_to_feather_interpolated <- tibble(
+  "Flow" =values_to_interpolate,
+  "SR_Spawn" = sr_spawn,
+  "FR_Spawn" = fr_spawn,
+  "ST_Spawn" = st_spawn,
+  "FR_SR_Spawn" = fr_sr_fry,
+  "ST_fry" = st_fry,
+  "FR_SR_juv" = fr_sr_juv,
+  "ST_juv" = st_juv,
+  "miles" = 11.4
+)
+
+yuba_witn_interpolated <- bind_rows(
+  yuba_with_additional_engle_to_dag,
+  dag_to_feather_interpolated
+)
+
+yuba_river_instream <- yuba_witn_interpolated %>%
+  gather(species_stage, WUA, -Flow, -miles, -segment) %>%
+  rename(flow_cfs = Flow) %>%
+  filter(!is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_reach_length = sum(miles)) %>%
+  summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Yuba River')
+
+devtools::use_data(yuba_river_instream)
+
+# how do the two methods compare?
+plot_ly() %>%
+  add_trace(data=yuba_method1, x=~flow_cfs, y=~FR_Spawn, type='scatter', mode='lines+markers') %>%
+  add_trace(data=yuba_method2, x=~flow_cfs, y=~FR_Spawn, type='scatter', mode='lines+markers') %>%
+  add_trace(data=yuba_river_instream, x=~flow_cfs, y=~FR_Spawn, type='scatter', mode='lines+markers')
+
+
+
 # delta
 delta <- read_csv('data-raw/north_delta_instream.csv', skip = 1)
 
