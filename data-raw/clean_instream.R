@@ -1,5 +1,6 @@
 library(tidyverse)
 library(devtools)
+library(scales)
 
 # clear creek instream cleaning-----------------------------------
 # in units sqft want in units sqft/1000ft
@@ -100,3 +101,34 @@ lower_sacramento_instream <- sacramento_instream %>%
 use_data(lower_sacramento_instream)
 
 #yuba
+
+
+# delta TODO
+delta <- read_csv('data-raw/north_delta_instream.csv', skip = 1)
+
+north_delta_instream <- delta %>%
+  select(flow_cfs, area_acres) %>%
+  arrange(flow_cfs) %>%
+  mutate(watershed = 'North Delta')
+
+north_delta_instream %>%
+  ggplot(aes(x = flow_cfs, y = area_acres)) +
+  geom_point() +
+  scale_x_continuous(label = comma) +
+  theme_minimal() +
+  geom_smooth(method = 'glm', method.args = list(family = 'poisson'))
+
+n_delta_model <- glm(area_acres ~ flow_cfs, 'poisson', north_delta_instream)
+
+tt <- lm(area_acres ~ log(flow_cfs), north_delta_instream)
+summary(tt)
+predict.lm(tt, data.frame(flow_cfs = 5000))
+
+mm <- broom::augment(tt)
+View(mm)
+
+north_delta_instream %>%
+  left_join(mm) %>% View()
+  ggplot(aes(x = flow_cfs)) +
+  geom_point(aes(y = area_acres), pch = 21) +
+  geom_point(aes(y = .fitted), alpha = .2)
