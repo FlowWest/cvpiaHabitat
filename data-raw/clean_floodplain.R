@@ -132,36 +132,24 @@ sac %>%
 xtra_flow_feat_free <- bat_feat %>%
   filter(flow_cfs < 4355.361) %>%
   mutate(floodplain_acres = feat_area(4355.361),
-         reach = "Feather River to Freeport", miles = 58-38.2)
+         reach = "Feather River to Freeport", miles = 33.4)
 
 
-# the first way where dont add extra rows into the feather to freeport
-lower_mid_sacramento_river_floodplain <- bat_feat %>%
-  mutate(fp_per_mile_bat_feat = floodplain_acres/miles,
-         fp_per_mile_feat_free = feat_area(flow_cfs)/33.4,
-         floodplain_acres = ((58-19.8) * fp_per_mile_bat_feat) + ((19.8) * fp_per_mile_feat_free),
-         reach = 'Lower-mid Sacramento River v2') %>%
-  select(flow_cfs, floodplain_acres, reach) %>%
-  filter(flow_cfs > 0)
+feat_free_with_extra_flow <- bind_rows(
+  feat_free,
+  xtra_flow_feat_free
+)
 
 # case when we add rows to feather to freeport
-lower_mid_sacramento_river_floodplain2 <- feat_free %>%
-  bind_rows(xtra_flow_feat_free) %>%
+lower_mid_sacramento_river_floodplain <- feat_free_with_extra_flow %>%
   mutate(fp_per_mile_feat_free = floodplain_acres/miles,
          fp_per_mile_bat_feat = bat_area(flow_cfs)/189.1,
-         floodplain_acres = ((58-19.8) * fp_per_mile_bat_feat) + ((19.8) * fp_per_mile_feat_free),
-         reach = 'Lower-mid Sacramento River v1') %>%
+         floodplain_acres = (38.2 * fp_per_mile_bat_feat) + (19.8 * fp_per_mile_feat_free),
+         watershed = 'Lower-mid Sacramento River') %>%
   select(flow_cfs, floodplain_acres, reach) %>%
   filter(flow_cfs > 0)
 
-
-d <- bind_rows(
-  bat_feat,
-  feat_free,
-  lower_mid_sacramento_river_floodplain,
-  lower_mid_sacramento_river_floodplain2
-) %>% filter(flow_cfs > 0)
-
+devtools::use_data(lower_mid_sacramento_river_floodplain)
 
 # cvpia sac rearing segments ----
 # Lower Sacramento River: American to freeport 13.7 mi
@@ -170,3 +158,8 @@ d <- bind_rows(
 # keswick to battle 55.5 mi
 # battle to feather 189.1 mi
 # feather to freeport 33.4 mi
+
+lower_sacramento_river_floodplain <- feat_free %>%
+  transmute(flow_cfs, floodplain_acres, watershed = "Lower Sacramento River")
+
+devtools::use_data(lower_sacramento_river_floodplain)

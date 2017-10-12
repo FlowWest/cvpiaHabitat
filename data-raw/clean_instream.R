@@ -116,7 +116,7 @@ north_delta_instream %>%
   geom_point() +
   scale_x_continuous(label = comma) +
   theme_minimal() +
-  geom_smooth(method = 'glm', method.args = list(family = 'poisson'))
+  geom_smooth(method = 'glm', formula = y~log(x))
 
 n_delta_model <- glm(area_acres ~ flow_cfs, 'poisson', north_delta_instream)
 
