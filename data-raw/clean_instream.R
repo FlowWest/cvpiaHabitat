@@ -115,3 +115,10 @@ north_delta_instream <- delta %>%
   mutate(watershed = 'North Delta')
 
 use_data(north_delta_instream)
+
+# south delta, use average % suitatbility from north delta applied to south delta area for habitat value
+south_delta_percent_suitability <- delta %>%
+  summarise(mean_percent_suitability = mean(percent_suitable)) %>%
+  pull(mean_percent_suitability)
+
+use_data(south_delta_percent_suitability)
