@@ -127,19 +127,6 @@ plot_ly() %>%
   add_trace(data=dag_to_feather, x=~Flow, y=~ST_Spawn, type='scatter', mode='lines+markers') %>%
   add_trace(data=engle_to_dag, x=~Flow, y=~ST_Spawn, type='scatter', mode='lines+markers')
 
-# straighforward method, no interop or below 400 cfs additions
-yuba_method1 <- yuba %>%
-  gather(species_stage, WUA, -Flow, -miles, -segment) %>%
-  rename(flow_cfs = Flow) %>%
-  filter(!is.na(WUA)) %>%
-  group_by(species_stage, flow_cfs) %>%
-  mutate(total_reach_length = sum(miles)) %>%
-  summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
-  ungroup() %>%
-  spread(species_stage, WUA) %>%
-  mutate(watershed = 'Yuba River')
-
-
 # here we interpolate and add additional values for low cfs on segment between Englebright to Daguerre Segment
 # which values are these?
 dag_to_feather %>% filter(Flow < 400)
@@ -160,17 +147,6 @@ yuba_with_additional_engle_to_dag <- bind_rows(
   yuba,
   engle_to_dag_below_400
 )
-
-yuba_method2 <- yuba_with_additional_engle_to_dag %>%
-  gather(species_stage, WUA, -Flow, -miles, -segment) %>%
-  rename(flow_cfs = Flow) %>%
-  filter(!is.na(WUA)) %>%
-  group_by(species_stage, flow_cfs) %>%
-  mutate(total_reach_length = sum(miles)) %>%
-  summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
-  ungroup() %>%
-  spread(species_stage, WUA) %>%
-  mutate(watershed = 'Yuba River')
 
 # the zig-zag stuff at the end can be collpsed by just interpolation
 # here we use the values over 3100 to interpolate linearly ()
@@ -256,3 +232,40 @@ south_delta_percent_suitability <- delta %>%
   pull(mean_percent_suitability)
 
 use_data(south_delta_percent_suitability)
+
+
+
+# American river
+# from MG call, all we have to look at are rows 1-32 that specify spawning
+# all else is "intermediate" steps.
+
+
+american <- read_csv("data-raw/american_river_instream.csv", skip =1)
+
+american$miles <- 2.2
+
+american_river_instream <- american %>%
+  rename(flow_cfs = Flow, species_stage = species, WUA = wua) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(WUA = WUA/miles/5.28, watershed = 'American River') %>%
+  spread(key = species_stage, value = WUA) %>%
+  select(flow_cfs, FR_spawning, ST_spawning, watershed)
+
+
+devtools::use_data(american_river_instream, overwrite = TRUE)
+
+# plot qa/qc
+
+plot_ly() %>%
+  add_trace(data=american_river_instream, x=~flow_cfs,
+            y=~FR_spawning, type='scatter', mode='lines+markers', name="1") %>%
+  add_trace(data=american_river_instream, x=~flow_cfs,
+            y=~ST_spawning, type='scatter', mode='lines+markers', name="2") %>%
+  add_trace(data=american, type='scatter', mode='lines+markers', color=~species,
+            name='american', x=~Flow, y=~wua)
+
+american_river_instream %>% ggplot(aes(flow_cfs, FR_spawning)) + geom_line() +
+  geom_line(aes(x=flow_cfs, y=ST_spawning))
+
+american %>%
+  ggplot(aes(Flow, wua, color=species)) + geom_line()
