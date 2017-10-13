@@ -164,7 +164,7 @@ devtools::use_data(lower_mid_sacramento_river_floodplain, overwrite = TRUE)
 
 lower_sacramento_river_floodplain <- feat_free %>%
   mutate(fp_per_mile_feat_free = floodplain_acres/miles,
-         floodplain_acres = 13.7 * fp_per_mile_bat_feat,
+         floodplain_acres = 13.7 * fp_per_mile_feat_free,
          watershed = "Lower Sacramento River") %>%
   select(flow_cfs, floodplain_acres, watershed)
-devtools::use_data(lower_sacramento_river_floodplain)
+devtools::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
