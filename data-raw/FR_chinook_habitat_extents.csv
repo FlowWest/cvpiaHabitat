@@ -1,0 +1,59 @@
+mapping done with watershed experts summer 2017,,,,,
+Id,River,Habitat,miles,feet,Source
+30,Tuolumne River,rearing,31.6199353371,166953.25858,Gretchen Murphey
+30,Tuolumne River,spawning,20.8139968326,109897.903276,Gretchen Murphey
+7,Clear Creek,rearing,7.9970363808,42224.3520905,Matt Brown
+7,Clear Creek,spawning,7.9970363808,42224.3520905,Matt Brown
+9,Cow Creek,spawning,63.6657077557,336154.93695,Tricia Bratcher
+9,Cow Creek,rearing,64.1702835831,338819.097319,Tricia Bratcher
+4,Bear Creek,spawning,17.1039074021,90308.6310829,Tricia Bratcher
+4,Bear Creek,rearing,17.2962225889,91324.0552695,Tricia Bratcher
+8,Cottonwood Creek,rearing,22.3564643065,118042.131538,Tricia Bratcher
+8,Cottonwood Creek,spawning,22.3564643065,118042.131538,Tricia Bratcher
+3,Battle Creek,spawning,3.9669143682,20945.3078641,Jim Smith
+3,Battle Creek,rearing,5.8717063577,31002.6095687,Jim Smith
+13,Paynes Creek,spawning,11.8092197647,62352.6803578,Tricia Bratcher
+13,Paynes Creek,rearing,11.8092197647,62352.6803578,Tricia Bratcher
+11,Elder Creek,spawning,7.1007907706,37492.1752685,Tricia Bratcher
+11,Elder Creek,rearing,7.1007907706,37492.1752685,Tricia Bratcher
+12,Mill Creek,rearing,21.0990926333,111403.209104,Matt Johnson
+12,Mill Creek,spawning,20.3924088629,107671.918796,Matt Johnson
+15,Thomes Creek,spawning,37.4740839112,197863.163051,Tricia Bratcher
+15,Thomes Creek,rearing,37.4740839112,197863.163051,Tricia Bratcher
+10,Deer Creek,spawning,18.3882899512,97090.1709422,Matt Johnson
+10,Deer Creek,rearing,18.3882899512,97090.1709422,Matt Johnson
+5,Big Chico Creek,rearing,15.0546333273,79488.4639682,Clint Garman
+5,Big Chico Creek,spawning,15.0546333273,79488.4639682,Clint Garman
+14,Stony Creek,rearing,26.1209732228,137918.738617,Clint Garman
+14,Stony Creek,spawning,26.1209732228,137918.738617,Clint Garman
+6,Butte Creek,spawning,14.0598503769,74236.0099902,Clint Garman
+6,Butte Creek,rearing,51.8176109764,273596.985955,Clint Garman
+19,Feather River,spawning,18.0230699348,95161.8092555,Ryon Kurth
+19,Feather River,rearing,39.552025873,208834.696609,Ryon Kurth
+20,Yuba River,spawning,20.5789776527,108657.002006,Paul Bratovich
+20,Yuba River,rearing,23.0720306921,121820.322054,Paul Bratovich
+23,American River,spawning,25.0453802179,132239.607551,Chris Hammersmark
+23,American River,rearing,29.9776590132,158282.03959,Chris Hammersmark
+26,Cosumnes River,spawning,13.954851975,73681.6184277,Trevor Kennedy
+26,Cosumnes River,rearing,41.3388181721,218268.959949,Trevor Kennedy
+27,Mokelumne River,spawning,10.1044703465,53351.6034297,Matt Saldate
+27,Mokelumne River,rearing,24.4633732104,129166.610551,Matt Saldate
+25,Calaveras River,rearing,18.4833309711,97591.9875276,Trevor Kennedy
+25,Calaveras River,spawning,12.2851385418,64865.5315006,Trevor Kennedy
+29,Stanislaus River,rearing,60.3127041505,318451.077915,Domenic Giudice
+29,Stanislaus River,spawning,25.5676719352,134997.307818,Domenic Giudice
+28,Merced River,spawning,24.7642038237,130754.996189,Steve Tsao
+28,Merced River,rearing,51.7593882276,273289.569842,Steve Tsao
+2,Antelope Creek,spawning,23.6855839334,125059.883168,Matt Johnson
+2,Antelope Creek,rearing,31.6190770005,166948.726562,Matt Johnson
+1,Upper Sacramento River,spawning,59.3501161191,313368.613109,Jim Smith
+18,Bear River,spawning,32.050407448,169226.151325,Justin Wood
+18,Bear River,rearing,32.050407448,169226.151325,Justin Wood
+1,Upper Sacramento River,rearing,59.1856797029,312500.388832,Jim Smith
+16,Upper-mid Sacramento River,rearing,122.450036332,646536.191831,Mike Urkov
+21,Lower-mid Sacramento River,rearing,57.9625095992,306042.050684,Mike Urkov
+0,North Delta,rearing,45.6540826049,241053.556154,Mike Urkov
+24,Lower Sacramento River,rearing,13.7021917863,72347.5726318,Mike Urkov
+0,South Delta,rearing,69.6172155266,367578.897981,Mike Urkov
+31,San Joaquin River,rearing,45.680330978,241192.147564,Mike Urkov
+28,Merced River,spawning,24.7642038237,130754.996189,Steve Tsao
