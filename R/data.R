@@ -12,8 +12,7 @@
 #'   The study only represents the lower half of Merced, scale up to
 #'   represent the whole rearing region.
 #'
-#' @source
-#'   \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
 "merced_river_floodplain"
 
 #' Yuba River Flow to Floodplain Habitat Area Relationship
