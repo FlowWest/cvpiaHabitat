@@ -1,3 +1,21 @@
+#' Merced River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#'   function of flow in cubic feet per second
+#'
+#' @format dataframe with 23 rows and 3 variables: \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{watershed}{name of watershed} }
+#'
+#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'   The study only represents the lower half of Merced, scale up to
+#'   represent the whole rearing region.
+#'
+#' @source
+#'   \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+"merced_river_floodplain"
+
 #' Yuba River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
