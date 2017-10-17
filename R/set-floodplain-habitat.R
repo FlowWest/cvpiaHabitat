@@ -153,7 +153,8 @@ lower_sacramento_river_floodplain_approx <- function(species) {
 
 merced_river_floodplain_approx <- function(species) {
   d <- cvpiaHabitat::merced_river_floodplain
-  
+  # TODO need to expand results to cover rearing extent, ask mark T
+
   switch(species,
          "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
          species_not_found_error(species))

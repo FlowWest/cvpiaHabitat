@@ -18,6 +18,7 @@ watershed_to_floodplain_methods <- list(
   "Feather River" = feather_river_floodplain_approx,
   "Lower-mid Sacramento River" = lower_mid_sacramento_river_floodplain_approx,
   "Lower Sacramento River" = lower_sacramento_river_floodplain_approx,
+  "Merced River" = merced_river_floodplain_approx,
   "Mokelumne River" = mokelumne_river_floodplain_approx,
   "North Delta" = north_delta_floodplain_approx,
   "San Joaquin River" = san_joaquin_river_floodplain_approx,
