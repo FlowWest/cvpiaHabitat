@@ -69,7 +69,7 @@
 #'
 #' @details The habitat area was derived from the Flo2D model by Stillwater, 2014.
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
+#' @source
 "tuolumne_river_floodplain"
 
 
@@ -89,7 +89,7 @@
 #'
 #' @details The habitat area was derived from the SRH2D model from Newfields 2013.
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source TODO fix source
 "stanislaus_river_floodplain"
 
 
@@ -732,4 +732,25 @@
 #' \item{ST_spawning}{Steelhead spawning WUA in square feet per 1000 feet}
 #' \item{watershed}{name of watershed}
 #' }
+#'
+#' @source
 "yuba_river_instream"
+
+
+#' Tuolumne River Instream Flow to Habitat Area Relationship
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 30 rows and 4 variables:
+#' \describe{
+#' \item{flow_cfs}{integer flow value in cubic feet per second}
+#' \item{spawn_WUA}{chinook spawning WUA in square feet per 1000 feet}
+#' \item{fry_WUA}{chinook fry (up to 50 mm) WUA in square feet per 1000 feet}
+#' \item{juv_WUA}{chinook juvenile WUA in square feet per 1000 feet}
+#' \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The spawning and rearing WUAs were derived using a PHABSIM model by Stillwater 2010.
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
+"tuolumne_river_instream"
