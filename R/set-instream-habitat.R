@@ -5,7 +5,7 @@
 #' @param life_stage life stage of fish, one of 'juv', 'adult' or 'fry'
 #' @param flow value used to determine habitat area
 #' @export
-set_instream_area <- function(watershed, species, life_stage, flow) {
+set_instream_habitat <- function(watershed, species, life_stage, flow) {
   f <- watershed_to_instream_methods[watershed][[1]](species, life_stage)
 
   wua_value <- f(flow)
@@ -211,6 +211,25 @@ yuba_river_instream_approx <- function(species, life_stage) {
          "st" = {
            if (life_stage == "juv") approxfun(d$flow_cfs, d$ST_juv)
            else if (life_stage == "fry") approxfun(d$flow_cfs, d$ST_fry)
+         },
+         instream_species_not_found_error(species))
+}
+
+tuolumne_river_instream_approx <- function(species, life_stage) {
+  d <- cvpiaHabitat::tuolumne_river_instream
+
+  switch(species,
+         "fr" = {
+           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA)
+           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA)
+         },
+         "sr" = {
+           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA)
+           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA)
+         },
+         "st" = {
+           if (life_stage == "juv") approxfun(d$flow_cfs, d$ST_juv_WUA)
+           else if (life_stage == "fry") approxfun(d$flow_cfs, d$ST_fry_WUA)
          },
          instream_species_not_found_error(species))
 }

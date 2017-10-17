@@ -5,7 +5,7 @@
 #' @param flow a flow value in cubic feet per second used to determine habitat area
 #' @return habitat area in square meters
 #' @export
-set_spawning_area <- function(watershed, species, flow) {
+set_spawning_habitat <- function(watershed, species, flow) {
   f <- watershed_to_spawning_methods[watershed][[1]](species)
 
   wua_value <- f(flow)
@@ -125,6 +125,16 @@ stanislaus_river_spawning_approx <- function(species) {
 
   switch(species,
          "fr" = approxfun(d$flow_cfs, d$spawn_WUA, rule =2),
+         spawning_species_error(species))
+}
+
+tuolumne_river_spawning_approx <- function(species) {
+  d <- cvpiaHabitat::tuolumne_river_instream
+
+  switch(species,
+         "fr" = approxfun(d$flow_cfs, d$spawn_WUA, rule = 2),
+         "sr" = approxfun(d$flow_cfs, d$spawn_WUA, rule = 2),
+         "st" = approxfun(d$flow_cfs, d$ST_spawn_WUA, rule = 2),
          spawning_species_error(species))
 }
 

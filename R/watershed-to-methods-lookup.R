@@ -32,6 +32,7 @@ watershed_to_floodplain_methods <- list(
 
 watershed_to_instream_methods <- list(
   "Battle Creek" = battle_creek_instream_approx,
+  "Bear River" = bear_river_instream_approx,
   "Butte Creek" = butte_creek_instream_approx,
   "Calaveras River" = calaveras_instream_approx,
   "Clear Creek" = clear_creek_instream_approx,
@@ -43,6 +44,7 @@ watershed_to_instream_methods <- list(
   "Mokelumne River" = mokelumne_river_instream_approx,
   "North Delta" = north_delta_instream_approx,
   "Stanislaus River" = stanislaus_river_instream_approx,
+  "Tuolumne River" = tuolumne_river_instream_approx,
   "Upper-mid Sacramento River" = upper_mid_sacramento_instream_approx,
   "Yuba River" = yuba_river_instream_approx
 )
@@ -60,6 +62,7 @@ watershed_to_spawning_methods <- list(
   "Merced River" = merced_river_spawning_approx,
   "Mokleumne River" = mokelumne_river_spawning_approx,
   "Stanislaus River" = stanislaus_river_spawning_approx,
+  "Tuolumne River" = tuolumne_river_spawning_approx,
   "Upper-mid Sacramento River" = upper_mid_sacramento_spawning_approx,
   "Yuba River" = yuba_river_spawning_approx
 )
