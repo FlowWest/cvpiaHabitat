@@ -758,3 +758,22 @@
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
 "tuolumne_river_instream"
+
+#' Habitat Extent Lengths
+#' @description A dataset containing the length of rearing and spawning extent within each CVPIA watershed for different species.
+#'
+#' @format dataframe with 57 rows and 7 variables
+#' \describe{
+#' \item{order}{integer value representing watershed order in SIT model}
+#' \item{watershed}{name of watershed}
+#' \item{lifestage}{habitat type by lifestage, 'spawing' or 'rearing'}
+#' \item{miles}{length in miles}
+#' \item{feet}{length in feet}
+#' \item{source}{Expert who delineated habitat extents}
+#' \item{species}{species of habitat extent}
+#' }
+#'
+#' @details Information comes from mapping effort undertaken in the Summer and Fall of 2017. Fall Run completed, Spring Run and Steelhead mappings in progress.
+#'
+#' @source FlowWest, add url to shp file when mapping is complete
+'watershed_lengths'
