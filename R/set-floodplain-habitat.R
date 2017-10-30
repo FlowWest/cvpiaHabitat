@@ -19,14 +19,14 @@ set_floodplain_habitat <- function(watershed, species, flow) {
   f <- watershed_to_floodplain_methods[watershed][[1]](species)
 
   # floodplain is in acres, returned value needs to be in square meters
-  f(flow)/0.00024711
+  f(flow)/0.000247105
 
 }
 
 # INTERNALS
 
 # a helper error stop function
-species_not_found_error <- function(species, w)
+species_not_found_error <- function(species)
   stop(paste0("species: '",species,"' not found for floodplain habitat in this watershed"),
        call. = FALSE)
 

@@ -1,0 +1,34 @@
+Watershed,Watershed Group,flow_gage,flow_gage_id,calsim2_node, two_yr_14d_flow , one_yr_14d_flow ,"Period of Record Used to Calculate 1 & 2-yr, 14-day Flow","ESHE ""Need"" Area (acres)", existing_fp_acres , Existing IS Area Wet Years (acres) , Existing IS Area Dry Years (acres) , Rearing Area Gap Wet Years (acres) , Rearing Area Gap Dry Years (acres) , Peterson Change Needed For Doubling 25% , Peterson Change Needed For Doubling 50% , Peterson Change Needed For Doubling 75% ,Source / Method,Contact,Previous SDM Area (100 m2/km),Previous SDM Length (km),Previous SDM Area (acres)
+American River,Lower Sacramento,American River at Fair Oaks,11446500,C303,5570,698,1957 to 2013,2250,37.6,361.8,361.8,1850.6,1850.6,0.0,45.3%,63.5%,LAR SDM,Hammersmark,14944,40.9,15103
+Antelope Creek,Mid Sacramento,Antelope Creek near Red Bluff,11379000,C11307,243,49,1940 to 1982,10,11.8,67.7,67.7,0.0,0.0,48.6%,74.3%,82.9%,Digitized Channel,Tompkins,404,21.34,213
+Battle Creek,Mid Sacramento,Battle Creek below Coleman Fish Hatchery,11376550,C10803,670,259,1961 to 2013,0,6.3,27.9,32.4,0.0,0.0,0.0%,0.0%,100.0%,Digitized Channel,Tompkins,20,24.11,12
+Bear Creek,Mid Sacramento,"Bear Creek near Millville, California",11374100,N/A,80,4,1959 to 1967,0,3.9,22.4,22.4,0.0,0.0,0.0%,0.0%,0.0%,Digitized Channel,Tompkins,437,32.91,355
+Bear River,Lower Sacramento,"Bear River near Wheatland, California",11424000,C282,927,2,1966 to 2013,0,13.3,0.1,0.1,0.0,0.0,91.1%,95.6%,97.0%,Digitized Channel,Tompkins,323,25.67,205
+Big Chico Creek,Mid Sacramento,Big Chico Creek near Chico,BIC,C11501,336,63,1997 to 2013,0,4.5,26.1,26.1,0.0,0.0,95.0%,97.5%,98.3%,Digitized Channel,Tompkins,20,38.51,19
+Butte Creek,Mid Sacramento,Butte Creek near Western Canal,BWC,C217A,450,149,1997 to 2013,50,13.7,268.7,290.1,0.0,0.0,0.0%,0.0%,100.0%,CVFPP,Tompkins,1768,114.805,5016
+Calaveras River,Mid South Delta,"Calaveras River below New Hogan near Valley Springs, California",11308900,C508,290,16,1963 to 1990,30,21.9,45.9,45.9,0.0,0.0,75.8%,87.9%,91.9%,Digitized Channel,Tompkins,2274,60.97,3426
+Clear Creek,Mid Sacramento,"Clear Creek near Igo, California",11372000,C3,375,63,1940 to 2013,0,9.8,18.1,18.1,0.0,0.0,0.0%,0.0%,100.0%,Digitized Channel,Tompkins,1768,27.281,1192
+Cosumnes River,Mid South Delta,"Cosumnes River at Michigan Bar, California",11335000,C501,1122,85,1907 to 2013,50,106.1,610.5,610.5,0.0,0.0,41.3%,70.6%,80.4%,Digitized Channel,Tompkins,91763,54.55,123693
+Cottonwood Creek,Mid Sacramento,"Cottonwood Creek near Cottonwood, California",11376000,C10802,1870,264,1940 to 2013,0,46.9,56.7,54.0,0.0,0.0,0.0%,36.8%,57.8%,Digitized Channel,Tompkins,367,38,345
+Cow Creek,Mid Sacramento,"Cow Creek near Millville, California",11374000,C10801,1220,197,1949 to 2013,0,20.9,97.8,99.4,0.0,0.0,0.0%,3.8%,35.9%,Digitized Channel,Tompkins,650,36,578
+Deer Creek,Mid Sacramento,"Deer Creek near Vina, California",11383500,C11309,571,128,1911 to 2013,0,6.3,36.4,36.4,0.0,0.0,0.0%,0.0%,20.0%,Mapped Bedforms,Tompkins,380,62.58,588
+Elder Creek,Mid Sacramento,"Elder Creek near Pasketna, California",11379500,C11303,196,23,1948 to 2013,0,6.5,37.3,37.3,0.0,0.0,0.0%,0.0%,0.0%,Digitized Channel,Tompkins,391,6.4,62
+Feather River,Lower Sacramento,Feather River at Gridley,GRL,C205,6983,857,1969 to 2013,9930,325.1,653.6,626.5,8951.3,8978.4,0.0%,17.1%,44.7%,CVFPP,Tompkins,671,102.69,1703
+Merced River,San Joaquin Mainstem,"Merced River at Stevinson, California",11272500,C566,876,81,1968 to 2013,440,43.2,272.9,285.1,123.9,111.7,47.3%,73.7%,82.4%,Digitized Channel,Tompkins,705,68.99,1202
+Mid South Delta,Mid South Delta,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,540.0,540.0,#VALUE!,#VALUE!,Not in JP List,Not in JP List,Not in JP List,N/A,N/A,N/A,N/A,N/A
+Mill Creek,Mid Sacramento,"Mill Creek near Los Molinos, California",11381500,C11308,475,152,1928 to 2013,0,4.2,24.3,24.3,0.0,0.0,0.0%,27.9%,51.9%,Digitized Channel,Tompkins,399,70.6,696
+Mokelumne River,Mid South Delta,"Mokelumne River below Camanche Dam, California",11323500,C504,1049,95,1964 to 2013,200,47,545.1,561.7,0.0,0.0,0.0%,0.0%,100.0%,Digitized Channel,Tompkins,4758,73.81,8678
+North Delta,North Delta,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,263.2,283.7,#VALUE!,#VALUE!,Not in JP List,Not in JP List,Not in JP List,N/A,N/A,N/A,N/A,N/A
+Paynes Creek,Mid Sacramento,"Paynes Creek near Red Bluff, California",11377500,C11001,146,35,1949 to 1966,0,1.3,7.4,7.4,0.0,0.0,0.0%,34.9%,56.6%,Digitized Channel,Tompkins,384,5.1,48
+Upper Sacramento River,Mid Sacramento,Sacramento River at Bend Bridge near Red Bluff,11377100,C112,20963,4950,1950 to  2013,4732,694.9,37.7,41.5,3999.4,3995.6,52.8%,76.4%,84.3%,CVFPP,Tompkins,1660,138.5,5681
+Sutter Bypass,Sutter Bypass,Not Applicable,N/A,,N/A,N/A,N/A,N/A,3456,0.0,0.0,#VALUE!,#VALUE!,0.0%,0.0%,0.0%,CVFPP,Tompkins,,,
+Mid Sacramento River,Mid Sacramento,"Sacramento River at Wilkins Slough, California",11390500,C134,15555,3056,1984 to 2013,14196,912.9,140.2,166.8,13142.9,13116.3,52.8%,76.4%,84.3%,CVFPP,Tompkins,1660,138.5,5681
+Lower Mid Sacramento & Lower Sacramento,Lower Mid Sacramento & Lower Sacramento,"Sacramento River at Verona, California",11425500,C165,39019,8210,1969 to 2013,4732,52.1,19.3,18.7,4660.6,4661.2,52.8%,76.4%,84.3%,CVFPP,Tompkins,3593,128.72,11428
+San Joaquin River (Upper),San Joaquin Mainstem,"San Joaquin River below Friant Dam, California",11251000,C18,707,18,1943 to 2013,N/A,931,935.5,935.5,#VALUE!,#VALUE!,75.8%,87.9%,91.9%,SJRRP,,n/a,n/a,#VALUE!
+San Joaquin River (Lower),San Joaquin Mainstem,"San Joaquin River at Newman, California",11274000,C620,2214,225,1943 to 2013,2900,314.3,727.2,727.2,1858.5,1858.5,75.8%,87.9%,91.9%,CVFPP,Tompkins,1667,80.23,3305
+Stanislaus River,San Joaquin Mainstem,Stanislaus River at Ripon,11303000,C528,1658,333,1980 to 2013,380,133.3,43.3,43.3,203.4,203.4,42.3%,71.2%,80.8%,SRH2D Model,Gard,2815,83.46,5805
+Stony Creek,Mid Sacramento,STONY C BL BLACK BUTTE DAM NR ORLAND,11388000,C142A,1059,17,1955 to 1989,0,5.9,33.8,33.8,0.0,0.0,75.8%,87.9%,91.9%,Digitized Channel,Tompkins,10,4.8,1
+Thomes Creek,Mid Sacramento,THOMES CREEK AT PASKENTA,11382000,C11304,684,99,1920 to 1996,0,11.6,66.8,66.8,0.0,0.0,75.8%,87.9%,91.9%,Digitized Channel,Tompkins,381,6.4,60
+Tuolumne River,San Joaquin Mainstem,Tuolumne River at Modesto,11290000,C545,1674,114,1972 to 2013,810,104.7,150.1,150.1,555.2,555.2,90.8%,95.4%,96.9%,?,Gard,836,75.41,1558
+Yolo Bypass,Yolo Bypass,N/A,N/A,????,N/A,N/A,N/A,N/A,Q:A,0.0,0.0,#VALUE!,#VALUE!,0.0%,0.0%,0.0%,BiOp,Tompkins,,,
+Yuba River,Lower Sacramento,Yuba River at Marysville,MRY,C230,3181,385,1997 to 2013,1230,149.9,11.3,11.3,1068.8,1068.8,16.5%,58.2%,72.2%,?,Gard,755,33.69,629

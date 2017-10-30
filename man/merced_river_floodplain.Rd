@@ -3,15 +3,7 @@
 \docType{data}
 \name{merced_river_floodplain}
 \alias{merced_river_floodplain}
-\title{<<<<<<< HEAD
-#' Upper Sacramento River Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 75 rows
-=======
-Merced River Flow to Floodplain Habitat Area Relationship}
+\title{Merced River Flow to Floodplain Habitat Area Relationship}
 \format{dataframe with 23 rows and 3 variables: \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_floodplain_acres}{fall run floodplain acreage}
