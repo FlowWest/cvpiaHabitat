@@ -22,19 +22,21 @@ test_that("known flows are mapped to correct habitat value", {
 })
 
 test_that("interpolated values are within a reasonable epsilon", {
-  floodplain_value_at_flow <- function(w, flow) {
-    df <- dplyr::filter(test_floodplain_df, Watershed == w, two_yr_14d_flow == flow)
-    dplyr::pull(df, 4)/0.000247105
+
+  are_within_epsilon <- function(watershed, epsilon = 5) {
+    test_df <- dplyr::filter(test_floodplain_df, Watershed == watershed)
+    test_flow <- test_df$two_yr_14d_flow
+    target_value <- test_df$existing_fp_acres/0.000247105
+    approx_value <- set_floodplain_habitat(watershed, "fr", test_flow)
+
+    all.equal(target_value, approx_value, tolerance = epsilon)
   }
 
-  expect_true(all.equal(set_floodplain_habitat("American River", "fr", 5570),
-                        floodplain_value_at_flow("American River", 5570), tolerance=5))
+  expect_true(are_within_epsilon("American River"))
 
-  expect_true(all.equal(set_floodplain_habitat("Bear River", "fr", 927),
-                        floodplain_value_at_flow("Bear River", 927), tolerance=5))
+  expect_true(are_within_epsilon("Bear River"))
 
-  expect_true(all.equal(set_floodplain_habitat("Big Chico Creek", "fr", 336),
-                        floodplain_value_at_flow("Big Chico Creek", 336), tolerance=5))
+  expect_true(are_within_epsilon("Big Chico Creek"))
 
 })
 
