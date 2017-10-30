@@ -13,7 +13,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+TODO fix source
 }
 \usage{
 stanislaus_river_floodplain

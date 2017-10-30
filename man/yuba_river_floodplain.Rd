@@ -3,9 +3,15 @@
 \docType{data}
 \name{yuba_river_floodplain}
 \alias{yuba_river_floodplain}
-\title{Upper Sacramento River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 75 rows
-Yuba River Flow to Floodplain Habitat Area Relationship}
+\title{Yuba River Flow to Floodplain Habitat Area Relationship}
+\format{dataframe with 28 rows and 5 variables:
+\describe{
+  \item{flow_cfs}{integer flow value in cubic feet per second}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
+  \item{watershed}{name of watershed}
+}}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}{SRH2D}
 }
@@ -13,9 +19,6 @@ Yuba River Flow to Floodplain Habitat Area Relationship}
 yuba_river_floodplain
 }
 \description{
-A dataset containing the floodplain habitat area in acres as a
-function of flow in cubic feet per second
-
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }

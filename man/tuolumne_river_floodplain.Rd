@@ -12,9 +12,6 @@
   \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
-\source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
-}
 \usage{
 tuolumne_river_floodplain
 }
