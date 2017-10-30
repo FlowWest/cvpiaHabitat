@@ -23,20 +23,24 @@ test_that("known flows are mapped to correct habitat value", {
 
 test_that("interpolated values are within a reasonable epsilon", {
 
-  are_within_epsilon <- function(watershed, epsilon = 5) {
+  are_within_epsilon <- function(watershed, epsilon = 1) {
     test_df <- dplyr::filter(test_floodplain_df, Watershed == watershed)
     test_flow <- test_df$two_yr_14d_flow
-    target_value <- test_df$existing_fp_acres/0.000247105
+    target_value <- test_df$existing_fp_acres/0.000247105 # make square meters
     approx_value <- set_floodplain_habitat(watershed, "fr", test_flow)
 
     all.equal(target_value, approx_value, tolerance = epsilon)
   }
 
   expect_true(are_within_epsilon("American River"))
-
   expect_true(are_within_epsilon("Bear River"))
-
   expect_true(are_within_epsilon("Big Chico Creek"))
+  expect_true(are_within_epsilon("Stanislaus River"))
 
+})
+
+# this test will fail until we define remanining (non interpolated) watershed methods
+test_that("all watersheds are defined", {
+  expect_length(setdiff(floodplain_2017_metadata$Watershed, list_floodplains()), 0)
 })
 
