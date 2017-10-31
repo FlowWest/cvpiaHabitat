@@ -2,100 +2,78 @@ library(tidyverse)
 library(readxl)
 
 # create catalogue of modeling
+watershed_region <- read_csv("data-raw/watershed_by_regions.csv")
 fall_run_fp <- read_excel('data-raw/mark_gard_data/floodplain2017update.xlsx')
 
 fp <- fall_run_fp %>%
-  mutate(Floodplain_Modeled = Method != 'redo scaling, length based and then categorize by geography') %>%
-  select(Order, Watershed, Floodplain_Modeled)
+  mutate(FR_floodplain = Method != 'redo scaling, length based and then categorize by geography') %>%
+  select(Order, Watershed, FR_floodplain)
 
 fall_run_ic <- read_excel('data-raw/mark_gard_data/instream2017update.xlsx', skip = 1)
 
+no_fry_modeling <- c('Bear River', 'Upper Sacramento River', 'Upper-mid Sacramento River',
+                     'Lower-mid Sacramento River', 'Lower Sacramento River')
+
 icr <- fall_run_ic %>%
   filter(`Life Stage` == 'rearing') %>%
-  mutate(Instream_Rearing_Modeled = Method != 'Total area * percent suitable') %>%
-  select(Watershed, Instream_Rearing_Modeled)
+  mutate(FR_juv = Method != 'Total area * percent suitable',
+         FR_fry = ifelse(FR_juv & !(Watershed %in% no_fry_modeling), TRUE, FALSE)) %>%
+  select(Order, Watershed, FR_fry, FR_juv)
 
 ics <- fall_run_ic %>%
   filter(`Life Stage` == 'spawning') %>%
-  mutate(Instream_Spawning_Modeled = Method != 'Total area * percent suitable') %>%
-  select(Watershed, Instream_Spawning_Modeled)
+  mutate(FR_spawn = Method != 'Total area * percent suitable') %>%
+  select(Order, Watershed, FR_spawn)
 
 icsr <- fall_run_ic %>%
   filter(`Life Stage` == 'spawning and rearing') %>%
-  mutate(Instream_SR_Modeled = Method != 'Total area * percent suitable') %>%
-  select(Watershed, Instream_SR_Modeled)
+  mutate(FR_spawn = Method != 'Total area * percent suitable',
+         FR_fry = ifelse(FR_spawn & !(Watershed %in% no_fry_modeling), TRUE, FALSE),
+         FR_juv = FR_spawn) %>%
+  select(Order, Watershed, FR_spawn, FR_fry, FR_juv)
 
-modeling_exist <- fp %>%
-  left_join(icr) %>%
-  left_join(ics) %>%
-  left_join(icsr) %>%
-  mutate(Instream_Spawning_Modeled = ifelse(is.na(Instream_Spawning_Modeled),
-                             Instream_SR_Modeled, Instream_Spawning_Modeled),
-         Instream_Rearing_Modeled = ifelse(is.na(Instream_Rearing_Modeled),
-                             Instream_SR_Modeled, Instream_Rearing_Modeled)) %>%
-  select(Order, Watershed, Spawning = Instream_Spawning_Modeled,
-         Rearing = Instream_Rearing_Modeled, Floodplain = Floodplain_Modeled) %>%
+FR_modeling <- full_join(ics, icr) %>%
+  full_join(icsr) %>%
+  full_join(fp) %>%
+  unique() %>%
   filter(Watershed != 'Bear Creek') %>%
-  bind_rows(tibble(Order = 4, Watershed = 'Bear Creek', Spawning = FALSE, Rearing = FALSE, Floodplain = FALSE)) %>%
-  mutate(Rearing = replace(Rearing, Watershed == 'South Delta', FALSE)) %>%
-  arrange(Order) %>%
-  unique()
-
-
-
-
-# ---
-
-watershed_region <- read_csv("data-raw/watershed_by_regions.csv")
-
-modeling_exist <- modeling_exist %>% left_join(watershed_region)
-
-
+  bind_rows(data.frame(Order = 4, Watershed = 'Bear Creek', FR_spawn = FALSE,
+                       FR_fry = FALSE, FR_juv = FALSE, FR_floodplain = FALSE)) %>%
+  arrange(Order)
+glimpse(FR_modeling)
+View(FR_modeling)
 
 sr_st_modeling_exists <- read_csv("data-raw/mark_gard_data/sr_st_modeling_exists.csv")
 
+sr_st_modeling_exists %>%
+  mutate(SR_spawn = case_when())
 
-modeling_exist <- modeling_exist %>%
+modeling_exist <- FR_modeling %>%
   left_join(sr_st_modeling_exists) %>%
-  mutate(FR = TRUE, SR = !is.na(`Spring Run`), ST = TRUE) %>%
-  select(-`Spring Run`, -Steelhead)
+  mutate(SR_spawn = case_when(
+    FR_spawn & `Spring Run` == "same method, different values" ~ TRUE,
+    FR_spawn & !is.na(`Spring Run`) ~ FALSE,
+    !FR_spawn & !is.na(`Spring Run`) ~ FALSE,
+    TRUE ~ NA),
+    SR_fry = case_when(
+      FR_fry & `Spring Run` == "same method, different values" ~ TRUE,
+      !is.na(`Spring Run`) ~ FALSE,
+      is.na(`Spring Run`) ~ NA),
+    SR_juv = case_when(
+      `Spring Run` == "same method, different values" ~ TRUE,
+      !is.na(`Spring Run`) ~ FALSE,
+      is.na(`Spring Run`) ~ NA),
+    SR_floodplain = ifelse(is.na(`Spring Run`), NA, FALSE),
+    ST_spawn = case_when(
+      FR_spawn & Steelhead == "same method different values (just for spawning)" ~ TRUE,
+      FR_spawn & Steelhead == "same method different values" ~ TRUE,
+      is.na(FR_spawn) ~ NA,
+      TRUE ~ FALSE),
+    ST_fry = ifelse(FR_fry & Steelhead == "same method different values", TRUE, FALSE),
+    ST_juv = ifelse(FR_juv  & Steelhead == "same method different values", TRUE, FALSE),
+    ST_floodplain = FALSE) %>%
+  select(-`Spring Run`, -Steelhead) %>%
+  left_join(watershed_region)
 
 devtools::use_data(modeling_exist, overwrite = TRUE)
-
-list.files("data")
-
-ww <- "Tuolumne River"
-
-reg <- paste0(unlist(strsplit(ww, " "))[1], "_.*_instream")
-
-flow_wua <- readRDS(list.files("data", reg, ignore.case = TRUE, full.names = TRUE))
-
-load("data/cow_creek_instream.rda")
-
-w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = ww)), "instream", sep = "_")
-
-x <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
-
-
-spawning_approx <- function(watershed, species = "fr") {
-  w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
-  df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
-
-  switch(species,
-         "fr" = approxfun(df$flow_cfs, df$spawn_WUA, rule = 2))
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
