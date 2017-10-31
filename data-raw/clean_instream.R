@@ -321,14 +321,55 @@ cow_creek_instream %>%
          FR_juv_wua = juv_WUA,
          watershed)
 
+# feather river
+feather_river_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         watershed)
+
+# lower sac
+lower_sacramento_instream %>%
+  select(flow_cfs,
+         FR_juv_wua = juv_WUA,
+         watershed)
 
 
 
+# merced
+merced_river_instream  %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         adult_steelhead_WUA,
+         watershed)
+# moke
+mokelumne_river_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         watershed)
 
+# stan
+stanislaus_river_instream
 
+# tuo
+tuolumne_river_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         ST_spawn_wua = ST_spawn_WUA,
+         ST_fry_wua = ST_fry_WUA,
+         ST_juv_wua = ST_juv_WUA,
+         adult_ST_WUA,
+         watershed)
 
-
-
+# upper mid
+upper_mid_sacramento_instream
 
 
 
