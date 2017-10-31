@@ -193,9 +193,20 @@ deer_creek_spawning_approx <- function(species) {
     dplyr::pull(Watershed)
 
   switch(species,
+
+
          "fr" = watershed_to_spawning_methods[d],
          "st" = watershed_to_spawning_methods[d],
          stop("TODO"))
 }
 
+
+
+spawning_approx <- function(watershed, species = "fr") {
+  w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
+  df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
+
+  switch(species,
+         "fr" = approxfun(df$flow_cfs, df$spawn_WUA, rule = 2))
+}
 
