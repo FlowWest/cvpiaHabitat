@@ -61,3 +61,41 @@ modeling_exist <- modeling_exist %>%
   select(-`Spring Run`, -Steelhead)
 
 devtools::use_data(modeling_exist, overwrite = TRUE)
+
+list.files("data")
+
+ww <- "Tuolumne River"
+
+reg <- paste0(unlist(strsplit(ww, " "))[1], "_.*_instream")
+
+flow_wua <- readRDS(list.files("data", reg, ignore.case = TRUE, full.names = TRUE))
+
+load("data/cow_creek_instream.rda")
+
+w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = ww)), "instream", sep = "_")
+
+x <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
+
+
+spawning_approx <- function(watershed, species = "fr") {
+  w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
+  df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
+
+  switch(species,
+         "fr" = approxfun(df$flow_cfs, df$spawn_WUA, rule = 2))
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

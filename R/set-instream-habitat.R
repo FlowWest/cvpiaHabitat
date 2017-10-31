@@ -233,3 +233,10 @@ tuolumne_river_instream_approx <- function(species, life_stage) {
          },
          instream_species_not_found_error(species))
 }
+
+
+rearing_approx <- function(watershed, species = "fr", life_stage) {
+  w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
+  df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
+
+}
