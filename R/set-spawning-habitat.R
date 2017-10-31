@@ -19,6 +19,7 @@ set_spawning_habitat <- function(watershed, species, flow) {
 
 # INTERNALS
 
+
 spawning_species_error <- function(species) {
   stop(paste0("species '", species,  "' was not found for spawning habitat in this watershed"),
        call. = FALSE)
@@ -84,9 +85,6 @@ cottonwood_creek_spawning_approx <- function(species) {
          spawning_species_error(species))
 }
 
-cow_creek_spawning_approx <- function(species) {
-  function(x) print("no spawning defined in this watershed")
-}
 
 feather_river_spawning_approx <- function(species) {
   d <- cvpiaHabitat::feather_river_instream
@@ -138,10 +136,6 @@ tuolumne_river_spawning_approx <- function(species) {
          spawning_species_error(species))
 }
 
-upper_mid_sacramento_spawning_approx <- function(species) {
-  # no spawning
-}
-
 yuba_river_spawning_approx <- function(species) {
   d <- cvpiaHabitat::yuba_river_instream
 
@@ -151,3 +145,57 @@ yuba_river_spawning_approx <- function(species) {
          "st" = approxfun(d$flow_cfs, d$ST_spawning, rule = 2),
          spawning_species_error(species))
 }
+
+antelope_creek_spawning_approx <- function(species) {
+  d <- dplyr::filter(modeling_exist, Spawning, Region == "Upper-mid Sacramento River") %>%
+    dplyr::pull(Watershed)
+
+  switch(species,
+         "fr" = watershed_to_spawning_methods[d],
+         "sr" = watershed_to_spawning_methods[d],
+         "st" = watershed_to_spawning_methods[d])
+
+}
+
+bear_creek_spawning_approx <- function(species) {
+  d <- dplyr::filter(modeling_exist, Spawning, Region == "Upper-mid Sacramento River") %>%
+    dplyr::pull(Watershed)
+
+  switch(species,
+         "fr" = watershed_to_spawning_methods[d],
+         "st" = watershed_to_spawning_methods[d],
+         stop("TODO"))
+
+}
+
+big_chico_creek_spawning_approx <- function(species) {
+  d <- dplyr::filter(modeling_exist, Spawning, Region == "Upper-mid Sacramento River") %>%
+    dplyr::pull(Watershed)
+
+  switch(species,
+         "fr" = watershed_to_spawning_methods[d],
+         "st" = watershed_to_spawning_methods[d],
+         stop("TODO"))
+}
+
+cow_creek_spawning_approx <- function(species) {
+  d <- dplyr::filter(modeling_exist, Spawning, Region == "Upper-mid Sacramento River") %>%
+    dplyr::pull(Watershed)
+
+  switch(species,
+         "fr" = watershed_to_spawning_methods[d],
+         "st" = watershed_to_spawning_methods[d],
+         stop("TODO"))
+}
+
+deer_creek_spawning_approx <- function(species) {
+  d <- dplyr::filter(modeling_exist, Spawning, Region == "Upper-mid Sacramento River") %>%
+    dplyr::pull(Watershed)
+
+  switch(species,
+         "fr" = watershed_to_spawning_methods[d],
+         "st" = watershed_to_spawning_methods[d],
+         stop("TODO"))
+}
+
+

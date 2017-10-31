@@ -41,3 +41,23 @@ modeling_exist <- fp %>%
   arrange(Order) %>%
   unique()
 
+
+
+
+# ---
+
+watershed_region <- read_csv("data-raw/watershed_by_regions.csv")
+
+modeling_exist <- modeling_exist %>% left_join(watershed_region)
+
+
+
+sr_st_modeling_exists <- read_csv("data-raw/mark_gard_data/sr_st_modeling_exists.csv")
+
+
+modeling_exist <- modeling_exist %>%
+  left_join(sr_st_modeling_exists) %>%
+  mutate(FR = TRUE, SR = !is.na(`Spring Run`), ST = TRUE) %>%
+  select(-`Spring Run`, -Steelhead)
+
+devtools::use_data(modeling_exist, overwrite = TRUE)
