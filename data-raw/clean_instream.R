@@ -16,15 +16,31 @@ clear_creek_instream <- clear_creek %>%
   summarise(WUA = sum(WUA)/ max(total_reach_length) / 5.28) %>%
   ungroup() %>%
   spread(species_stage, WUA) %>%
-  mutate(watershed = 'Clear Creek')
+  mutate(watershed = 'Clear Creek') %>%
+  select(flow_cfs,
+         FR_fry_wua = FR_fry,
+         FR_juv_wua = FR_juv,
+         FR_spawn_wua = FR_spawning,
+         SR_fry_wua = SR_fry,
+         SR_juv_wua = SR_juvenile,
+         SR_spawn_wua = SR_spawning,
+         ST_fry_wua = ST_fry,
+         ST_juv_wua = ST_juvenile,
+         ST_spawn_wua = ST_spawning,
+         watershed) # add new naming convention
 
-devtools::use_data(clear_creek_instream)
+devtools::use_data(clear_creek_instream, overwrite = TRUE)
 
 cottonwood <- read_csv('data-raw/cottonwood_creek_instream.csv', skip = 1)
 cottonwood_creek_instream <- cottonwood %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         watershed) %>%
   arrange(flow_cfs)
 
-devtools::use_data(cottonwood_creek_instream)
+devtools::use_data(cottonwood_creek_instream, overwrite = TRUE)
 
 stan <- read_csv('data-raw/stanislaus_river_instream.csv', skip = 1)
 
@@ -32,11 +48,15 @@ stanislaus_river_instream <- stan %>%
   gather(species_stage, WUA, -flow_cfs, -watershed) %>%
   filter(!is.na(WUA)) %>%
   spread(species_stage, WUA) %>%
-  select(flow_cfs, spawn_WUA, FR_fry_WUA = fr_fry_WUA,
-         FR_juv_WUA = fr_juv_WUA, ST_fry_WUA = st_fry_WUA,
-         ST_juv_WUA = st_juv_WUA, watershed)
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fr_fry_WUA,
+         FR_juv_wua = fr_juv_WUA,
+         ST_fry_wua = st_fry_WUA,
+         ST_juv_wua = st_juv_WUA,
+         watershed)
 
-devtools::use_data(stanislaus_river_instream)
+devtools::use_data(stanislaus_river_instream, overwrite = TRUE)
 
 up_sac <- read_csv('data-raw/upper_sacramento_river_instream.csv', skip = 1)
 View(up_sac)
@@ -89,9 +109,11 @@ sacramento_instream <- read_csv('data-raw/sacramento_river_instream.csv', skip =
 upper_mid_sacramento_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Upper-mid Sacramento River') %>%
   filter(reach == 'Battle Creek to Feather River') %>%
-  select(flow_cfs, juv_WUA, watershed)
+  select(flow_cfs,
+         FR_juv_wua = juv_WUA,
+         watershed)
 
-use_data(upper_mid_sacramento_instream)
+devtools::use_data(upper_mid_sacramento_instream, overwrite = TRUE)
 
 lower_sacramento_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower Sacramento River') %>%
@@ -203,13 +225,6 @@ yuba_river_instream <- yuba_witn_interpolated %>%
 
 devtools::use_data(yuba_river_instream, overwrite = TRUE)
 
-# how do the two methods compare?
-plot_ly() %>%
-  add_trace(data=yuba_method1, x=~flow_cfs, y=~FR_Spawn, type='scatter', mode='lines+markers') %>%
-  add_trace(data=yuba_method2, x=~flow_cfs, y=~FR_Spawn, type='scatter', mode='lines+markers') %>%
-  add_trace(data=yuba_river_instream, x=~flow_cfs, y=~FR_Spawn, type='scatter', mode='lines+markers')
-
-
 
 # delta
 delta <- read_csv('data-raw/north_delta_instream.csv', skip = 1)
@@ -254,23 +269,78 @@ american_river_instream <- american %>%
   group_by(species_stage, flow_cfs) %>%
   mutate(WUA = WUA/miles/5.28, watershed = 'American River') %>%
   spread(key = species_stage, value = WUA) %>%
-  select(flow_cfs, FR_spawning, ST_spawning, watershed)
+  select(flow_cfs,
+         FR_spawn_wua = FR_spawning,
+         ST_spawn_wua = ST_spawning,
+         watershed)
 
 
 devtools::use_data(american_river_instream, overwrite = TRUE)
 
-# plot qa/qc
+# this portion cleans up the naming conventions -------------------------------------
+# naming convention: SPECIES_LIFESTAGE_UNITS for each column
 
-plot_ly() %>%
-  add_trace(data=american_river_instream, x=~flow_cfs,
-            y=~FR_spawning, type='scatter', mode='lines+markers', name="1") %>%
-  add_trace(data=american_river_instream, x=~flow_cfs,
-            y=~ST_spawning, type='scatter', mode='lines+markers', name="2") %>%
-  add_trace(data=american, type='scatter', mode='lines+markers', color=~species,
-            name='american', x=~Flow, y=~wua)
+# battle creek
+battle_creek_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         adult_trout_wua = adult_trout_WUA,
+         watershed)
 
-american_river_instream %>% ggplot(aes(flow_cfs, FR_spawning)) + geom_line() +
-  geom_line(aes(x=flow_cfs, y=ST_spawning))
+# bear river
+bear_river_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_juv_wua = juv_WUA,
+         watershed)
 
-american %>%
-  ggplot(aes(Flow, wua, color=species)) + geom_line()
+# butte creek
+butte_creek # already fixed
+
+# calaveras river
+calaveras_river_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         watershed)
+
+
+# clear creek
+clear_creek_instream
+
+# cottonwood creek
+cottonwood_creek_instream
+
+# cow creek
+cow_creek_instream %>%
+  select(flow_cfs,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         watershed)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
