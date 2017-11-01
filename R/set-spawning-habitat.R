@@ -200,14 +200,17 @@ deer_creek_spawning_approx <- function(species) {
          stop("TODO"))
 }
 
-FR_spawn_approx <- function(df, modeling_lookup){
-  # set FR_approx to use as default method for SR and ST if no additional modeling exist
+FR_spawn_approx <- function(waterhsed, df, modeling_lookup){
   if (is.na(dplyr::pull(modeling_lookup, FR_spawn))) {
+    # no spawning in this watershed
     return(NA)
   } else if (dplyr::pull(modeling_lookup, FR_spawn)){
+    # case when modeling exists
     FR_approx <- approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)
   } else {
-    FR_approx <- region_spawn_approx(watershed, species = "fr")
+    # case when no modeling avaiable, use regional approx
+    #FR_approx <- region_spawn_approx(watershed, species = "fr")
+    stop("regional approach was attempted")
   }
 
   return(FR_approx)
@@ -215,13 +218,17 @@ FR_spawn_approx <- function(df, modeling_lookup){
 
 SR_spawn_approx <- function(watershed, df, modeling_lookup){
   if (is.na(dplyr::pull(modeling_lookup, SR_spawn))){
+    # no spawning in this watershed
     return(NA)
   } else if (dplyr::pull(modeling_lookup, SR_spawn)) {
+    # case when modeling exists
     SR_approx <- approxfun(df$flow_cfs, df$SR_spawn_wua, rule = 2)
   } else if(dplyr::pull(modeling_lookup, FR_spawn)) {
-    SR_approx <- FR_spawn_approx(df, modeling_lookup)
+    # case when no spring run modeling but fall run modeling is used
+    SR_approx <- FR_spawn_approx(watershed, df, modeling_lookup)
   } else {
-    SR_approx <- region_spawn_approx(watershed, species = "sr")
+    # case when no modeling avaiable, use regional approx
+    stop("regional approach was attempted")
   }
 
   return(SR_approx)
@@ -229,13 +236,18 @@ SR_spawn_approx <- function(watershed, df, modeling_lookup){
 
 ST_spawn_approx <- function(watershed, df, modeling_lookup){
   if (is.na(dplyr::pull(modeling_lookup, ST_spawn))){
+    # no spawning in this watershed
     return(NA)
   } else if (dplyr::pull(modeling_lookup, ST_spawn)) {
+    # case when modeling exists
     ST_approx <- approxfun(df$flow_cfs, df$ST_spawn_wua, rule = 2)
   } else if(dplyr::pull(modeling_lookup, FR_spawn)) {
-    ST_approx <- FR_spawn_approx(df, modeling_lookup)
+    # case when no steelhead modeling but fall run modeling is used
+    ST_approx <- FR_spawn_approx(watershed, df, modeling_lookup)
   } else {
-    ST_approx <- SR_approx <- region_spawn_approx(watershed, species = "st")
+    # case when no modeling avaiable, use regional approx
+    #ST_approx <- SR_approx <- region_spawn_approx(watershed, species = "st")
+    stop("regional approach was attempted")
   }
 
   return(ST_approx)
@@ -251,6 +263,17 @@ region_spawn_approx <- function(region, species) {
 
 
 spawning_approx <- function(watershed, species = "fr") {
+
+  watershed_to_skip <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                     !FR_spawn), Watershed)
+
+  # check if watershed has no modeling, if so use regional approx
+  if (watershed %in% watershed_to_skip) {
+    region <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                        Watershed == watershed), Region)
+    return(region_spawn_approx(region, species))
+  }
+
   # format watershed name to load wua relationship in the package
   watershed_name <- tolower(gsub(pattern = " ", replacement = "_", x = watershed))
   watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
@@ -260,9 +283,9 @@ spawning_approx <- function(watershed, species = "fr") {
 
 
   switch(species,
-         "fr" = {FR_spawn_approx(df, modeling_lookup)},
-         "sr" = {SR_spawn_approx(df, modeling_lookup)},
-         "st" = {ST_spawn_approx(df, modeling_lookup)}
+         "fr" = {FR_spawn_approx(watershed, df, modeling_lookup)},
+         "sr" = {SR_spawn_approx(watershed, df, modeling_lookup)},
+         "st" = {ST_spawn_approx(watershed, df, modeling_lookup)}
   )
 }
 
