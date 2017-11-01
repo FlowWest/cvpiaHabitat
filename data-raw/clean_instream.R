@@ -302,7 +302,15 @@ devtools::use_data(bear_river_instream, overwrite = TRUE)
 
 
 # butte creek
-butte_creek # already fixed
+butte_creek_instream <- butte_creek_instream %>%
+  select(flow_cfs,
+         FR_spawn_wua = spawn_WUA,
+         FR_fry_wua = fry_WUA,
+         FR_juv_wua = juv_WUA,
+         adult_trout_WUA,
+         watershed)
+
+devtools::use_data(butte_creek_instream, overwrite = TRUE)
 
 # calaveras river
 calaveras_river_instream <- calaveras_river_instream %>%

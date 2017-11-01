@@ -200,6 +200,54 @@ deer_creek_spawning_approx <- function(species) {
          stop("TODO"))
 }
 
+FR_spawn_approx <- function(df, modeling_lookup){
+  # set FR_approx to use as default method for SR and ST if no additional modeling exist
+  if (is.na(dplyr::pull(modeling_lookup, FR_spawn))) {
+    return(NA)
+  } else if (dplyr::pull(modeling_lookup, FR_spawn)){
+    FR_approx <- approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)
+  } else {
+    FR_approx <- region_spawn_approx(watershed, species = "fr")
+  }
+
+  return(FR_approx)
+}
+
+SR_spawn_approx <- function(watershed, df, modeling_lookup){
+  if (is.na(dplyr::pull(modeling_lookup, SR_spawn))){
+    return(NA)
+  } else if (dplyr::pull(modeling_lookup, SR_spawn)) {
+    SR_approx <- approxfun(df$flow_cfs, df$SR_spawn_wua, rule = 2)
+  } else if(dplyr::pull(modeling_lookup, FR_spawn)) {
+    SR_approx <- FR_spawn_approx(df, modeling_lookup)
+  } else {
+    SR_approx <- region_spawn_approx(watershed, species = "sr")
+  }
+
+  return(SR_approx)
+}
+
+ST_spawn_approx <- function(watershed, df, modeling_lookup){
+  if (is.na(dplyr::pull(modeling_lookup, ST_spawn))){
+    return(NA)
+  } else if (dplyr::pull(modeling_lookup, ST_spawn)) {
+    ST_approx <- approxfun(df$flow_cfs, df$ST_spawn_wua, rule = 2)
+  } else if(dplyr::pull(modeling_lookup, FR_spawn)) {
+    ST_approx <- FR_spawn_approx(df, modeling_lookup)
+  } else {
+    ST_approx <- SR_approx <- region_spawn_approx(watershed, species = "st")
+  }
+
+  return(ST_approx)
+}
+
+region_spawn_approx <- function(region, species) {
+  watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                        Region == region,
+                                                        FR_spawn), Watershed)
+
+  purrr::map(watersheds_with_modeling, ~spawning_approx(., species = species))
+}
 
 
 spawning_approx <- function(watershed, species = "fr") {
@@ -210,36 +258,11 @@ spawning_approx <- function(watershed, species = "fr") {
 
   modeling_lookup <- dplyr::filter(cvpiaHabitat::modeling_exist, Watershed == watershed)
 
-  # set FR_approx to use as default method for SR and ST if no additional modeling exist
-  if (is.na(dplyr::pull(modeling_lookup, FR_spawn))) {
-    FR_approx <- NA
-  } else if (dplyr::pull(modeling_lookup, FR_spawn)){
-    FR_approx <- approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)
-  } else {
-    stop("FIX ME: call other watersheds in this region")
-  }
 
   switch(species,
-         "fr" = {FR_approx},
-         "sr" = {
-           if (is.na(dplyr::pull(modeling_lookup, SR_spawn))){
-             return(NA)
-           } else if (dplyr::pull(modeling_lookup, SR_spawn)) {
-             approxfun(df$flow_cfs, df$SR_spawn_wua, rule = 2)
-           } else {
-             FR_approx
-           }
-         },
-         "st" = {
-           if (is.na(dplyr::pull(modeling_lookup, ST_spawn))){
-             return(NA)
-           } else if (dplyr::pull(modeling_lookup, ST_spawn)) {
-             approxfun(df$flow_cfs, df$ST_spawn_wua, rule = 2)
-           } else {
-             FR_approx
-           }
-         }
-
+         "fr" = {FR_spawn_approx(df, modeling_lookup)},
+         "sr" = {SR_spawn_approx(df, modeling_lookup)},
+         "st" = {ST_spawn_approx(df, modeling_lookup)}
   )
 }
 
