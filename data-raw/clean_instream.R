@@ -281,7 +281,7 @@ devtools::use_data(american_river_instream, overwrite = TRUE)
 # naming convention: SPECIES_LIFESTAGE_UNITS for each column
 
 # battle creek
-battle_creek_instream %>%
+battle_creek_instream <- battle_creek_instream %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -289,24 +289,30 @@ battle_creek_instream %>%
          adult_trout_wua = adult_trout_WUA,
          watershed)
 
+devtools::use_data(battle_creek_instream, overwrite = TRUE)
+
 # bear river
-bear_river_instream %>%
+bear_river_instream <- bear_river_instream %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_juv_wua = juv_WUA,
          watershed)
 
+devtools::use_data(bear_river_instream, overwrite = TRUE)
+
+
 # butte creek
 butte_creek # already fixed
 
 # calaveras river
-calaveras_river_instream %>%
+calaveras_river_instream <- calaveras_river_instream %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
          watershed)
 
+devtools::use_data(calaveras_river_instream, overwrite = TRUE)
 
 # clear creek
 clear_creek_instream
@@ -315,49 +321,58 @@ clear_creek_instream
 cottonwood_creek_instream
 
 # cow creek
-cow_creek_instream %>%
+cow_creek_instream <- cow_creek_instream %>%
   select(flow_cfs,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
          watershed)
 
+devtools::use_data(cow_creek_instream, overwrite = TRUE)
+
 # feather river
-feather_river_instream %>%
+feather_river_instream <- feather_river_instream %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
          watershed)
 
+devtools::use_data(feather_river_instream, overwrite = TRUE)
+
 # lower sac
-lower_sacramento_instream %>%
+lower_sacramento_instream <- lower_sacramento_instream %>%
   select(flow_cfs,
          FR_juv_wua = juv_WUA,
          watershed)
 
-
+devtools::use_data(lower_sacramento_instream, overwrite = TRUE)
 
 # merced
-merced_river_instream  %>%
+merced_river_instream <- merced_river_instream  %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
          adult_steelhead_WUA,
          watershed)
+
+devtools::use_data(merced_river_instream, overwrite = TRUE)
+
 # moke
-mokelumne_river_instream %>%
+mokelumne_river_instream <- mokelumne_river_instream %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
          watershed)
 
+devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
+
 # stan
 stanislaus_river_instream
 
 # tuo
-tuolumne_river_instream %>%
+tuolumne_river_instream <- tuolumne_river_instream %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -367,6 +382,8 @@ tuolumne_river_instream %>%
          ST_juv_wua = ST_juv_WUA,
          adult_ST_WUA,
          watershed)
+
+devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
 
 # upper mid
 upper_mid_sacramento_instream
