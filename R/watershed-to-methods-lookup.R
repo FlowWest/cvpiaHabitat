@@ -63,6 +63,5 @@ watershed_to_spawning_methods <- list(
   "Mokleumne River" = mokelumne_river_spawning_approx,
   "Stanislaus River" = stanislaus_river_spawning_approx,
   "Tuolumne River" = tuolumne_river_spawning_approx,
-  "Upper-mid Sacramento River" = upper_mid_sacramento_spawning_approx,
   "Yuba River" = yuba_river_spawning_approx
 )

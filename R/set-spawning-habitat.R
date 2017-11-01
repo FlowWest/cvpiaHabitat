@@ -206,7 +206,27 @@ spawning_approx <- function(watershed, species = "fr") {
   w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
   df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
 
+  m <- dplyr::filter(cvpiaHabitat::modeling_exist, Watershed == watershed)
+
+  if (is.na(dplyr::pull(m, FR_spawn))) {
+    FR_approx <- NA
+  } else if (dplyr::pull(m, FR_spawn)){
+    FR_approx <- approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)
+  } else {
+    stop("FIX ME: call other watersheds in this region")
+  }
+
   switch(species,
-         "fr" = approxfun(df$flow_cfs, df$spawn_WUA, rule = 2))
+         "fr" = {FR_approx},
+         "sr" = {
+           if (is.na(dplyr::pull(m, SR_spawn))){
+             return(NA)
+           } else if (dplyr::pull(m, SR_spawn)) {
+             approxfun(df$flow_cfs, df$SR_spawn_wua, rule = 2)
+           } else {
+             FR_approx
+           }
+         }
+  )
 }
 

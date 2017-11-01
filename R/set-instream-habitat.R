@@ -240,3 +240,4 @@ rearing_approx <- function(watershed, species = "fr", life_stage) {
   df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
 
 }
+
