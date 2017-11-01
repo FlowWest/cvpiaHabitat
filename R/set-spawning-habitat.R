@@ -203,14 +203,17 @@ deer_creek_spawning_approx <- function(species) {
 
 
 spawning_approx <- function(watershed, species = "fr") {
-  w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
-  df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
+  # format watershed name to load wua relationship in the package
+  watershed_name <- tolower(gsub(pattern = " ", replacement = "_", x = watershed))
+  watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
+  df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
-  m <- dplyr::filter(cvpiaHabitat::modeling_exist, Watershed == watershed)
+  modeling_lookup <- dplyr::filter(cvpiaHabitat::modeling_exist, Watershed == watershed)
 
-  if (is.na(dplyr::pull(m, FR_spawn))) {
+  # set FR_approx to use as default method for SR and ST if no additional modeling exist
+  if (is.na(dplyr::pull(modeling_lookup, FR_spawn))) {
     FR_approx <- NA
-  } else if (dplyr::pull(m, FR_spawn)){
+  } else if (dplyr::pull(modeling_lookup, FR_spawn)){
     FR_approx <- approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)
   } else {
     stop("FIX ME: call other watersheds in this region")
@@ -219,14 +222,24 @@ spawning_approx <- function(watershed, species = "fr") {
   switch(species,
          "fr" = {FR_approx},
          "sr" = {
-           if (is.na(dplyr::pull(m, SR_spawn))){
+           if (is.na(dplyr::pull(modeling_lookup, SR_spawn))){
              return(NA)
-           } else if (dplyr::pull(m, SR_spawn)) {
+           } else if (dplyr::pull(modeling_lookup, SR_spawn)) {
              approxfun(df$flow_cfs, df$SR_spawn_wua, rule = 2)
            } else {
              FR_approx
            }
+         },
+         "st" = {
+           if (is.na(dplyr::pull(modeling_lookup, ST_spawn))){
+             return(NA)
+           } else if (dplyr::pull(modeling_lookup, ST_spawn)) {
+             approxfun(df$flow_cfs, df$ST_spawn_wua, rule = 2)
+           } else {
+             FR_approx
+           }
          }
+
   )
 }
 
