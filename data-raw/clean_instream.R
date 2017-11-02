@@ -27,7 +27,7 @@ clear_creek_instream <- clear_creek %>%
          ST_fry_wua = ST_fry,
          ST_juv_wua = ST_juvenile,
          ST_spawn_wua = ST_spawning,
-         watershed) # add new naming convention
+         watershed) # add new naming convention to cols
 
 devtools::use_data(clear_creek_instream, overwrite = TRUE)
 
