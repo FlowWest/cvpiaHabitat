@@ -39,34 +39,36 @@ FR_floodplain_approx <- function(relationship_df, modeling_lookup){
   return(FR_approx)
 }
 
-#' function creates the approx function for fall run
+#' function creates the approx function for spring run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 SR_floodplain_approx <- function(relationship_df, modeling_lookup){
   if (is.na(dplyr::pull(modeling_lookup, SR_floodplain))) {
-    # no spawning in this watershed
+    # no spring run floodplain habitat in this watershed
     return(NA)
   } else if (dplyr::pull(modeling_lookup, SR_floodplain)){
     # case when modeling exists
     SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_floodplain_acres, rule=2)
   } else {
+    # assume fall run relationship can be used
     SR_approx <- FR_floodplain_approx(relationship_df, modeling_lookup)
   }
 
   return(SR_approx)
 }
 
-#' function creates the approx function for fall run
+#' function creates the approx function for steelhead
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 ST_floodplain_approx <- function(relationship_df, modeling_lookup){
   if (is.na(dplyr::pull(modeling_lookup, ST_floodplain))) {
-    # no spawning in this watershed
+    # no steelhead floodplain habitat in this watershed
     return(NA)
   } else if (dplyr::pull(modeling_lookup, ST_floodplain)){
     # case when modeling exists
     ST_approx <- approxfun(relationship_df$flow_cfs, relationship_df$ST_floodplain_acres, rule=2)
   } else {
+    # else assume fall run relationship can be used
     ST_approx <- FR_floodplain_approx(relationship_df, modeling_lookup)
   }
 
