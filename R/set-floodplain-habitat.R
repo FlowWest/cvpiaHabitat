@@ -258,3 +258,4 @@ yuba_river_floodplain_approx <- function(species) {
 #   "bear_river_floodplain" = bear_river_floodplain_approx,
 #   "big_chico_creek" = big_chico_creek_floodplain_approx
 # )
+
