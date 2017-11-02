@@ -45,7 +45,15 @@ set_spawning_habitat <- function(watershed, species, flow) {
                                 life_stage = "spawning")
     return(habitat_area)
   } else {
-    wua <- spawning_approx(watershed, species)(flow)
+    # create approx functions
+    wua_func <- spawning_approx(watershed, species)
+
+    # case when species does not exist in this watershed
+    if (!is.function(wua_func) && is.na(wua_func)) {
+      return(NA)
+    }
+
+    wua <- wua_func(flow)
     habitat_area <- wua_to_area(wua = wua, watershed = watershed,
                                 life_stage = "spawning")
     return(habitat_area)
