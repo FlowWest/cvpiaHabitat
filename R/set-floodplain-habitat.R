@@ -13,13 +13,34 @@
 #' @return floodplain habitat value in square meters
 #' @export
 set_floodplain_habitat <- function(watershed, species, flow) {
-  if (is.null(watershed_to_floodplain_methods[watershed][[1]]))
-    stop(paste0("no function associated with watershed '", watershed, "' was found"))
+  watershed_to_skip <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                 !FR_floodplain), Watershed)
 
-  f <- watershed_to_floodplain_methods[watershed][[1]](species)
+  # check if watershed has no modeling, if so use regional approx
+  if (watershed %in% watershed_to_skip) {
+    region <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                        Watershed == watershed), Region)
 
-  # floodplain is in acres, returned value needs to be in square meters
-  f(flow)/0.000247105
+    region_habitat_funcs <- region_floodplain_approx(region, species)
+    region_habitats <- purrr::map_dbl(region_habitat_funcs, function(f) {
+      f(flow)
+    })
+    habitat_area <- mean(region_habitats)/0.000247105
+
+    return(habitat_area)
+  } else {
+    # create approx functions
+    habitat_func <- floodplain_approx(watershed, species)
+
+    # case when species does not exist in this watershed
+    if (!is.function(habitat_func) && is.na(habitat_func)) {
+      return(NA)
+    }
+
+    habitat_area <- habitat_func(flow)/0.000247105
+
+    return(habitat_area)
+  }
 
 }
 
@@ -74,6 +95,21 @@ ST_floodplain_approx <- function(relationship_df, modeling_lookup){
 
   return(ST_approx)
 }
+
+#' function uses a region to return approx functions for watersheds within it with models
+#' @param region Region name, example "Upper-mid Sacramento River"
+#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
+#' @return a list of approx functions obtained from calliong spawning_approx()
+region_floodplain_approx <- function(region, species) {
+  # list of watersheds within the specified region with modeling
+  watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                        Region == region,
+                                                        FR_floodplain), Watershed)
+
+  # return list of approx function for the watersheds in region with modeling
+  purrr::map(watersheds_with_modeling, ~floodplain_approx(., species = species))
+}
+
 
 #' function uses an existing relationship to return a linear interpolated approx function
 #' @param watershed name of the watershed to compute approx function on
