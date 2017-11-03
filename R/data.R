@@ -682,7 +682,7 @@
 #' the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
 #'
 #' @source NMFS Life Cycle Model, Hendrix 2017
-"upper_mid_sacramento_instream"
+"upper_mid_sacramento_river_instream"
 
 #' Lower Sacramento River Instream Flow to Habitat Area Relationship
 #'
@@ -705,7 +705,7 @@
 #' the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
 #'
 #' @source NMFS Life Cycle Model, Hendrix 2017
-"lower_sacramento_instream"
+"lower_sacramento_river_instream"
 
 #' American River Instream Flow to Habitat Area Relationship
 #' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet

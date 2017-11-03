@@ -18,3 +18,9 @@ wua_to_area <- function(wua, watershed_name,  life_stage) {
 square_meters_to_acres <- function(sq_meters) {
   sq_meters * 0.000247105
 }
+
+#' Function converts area in acres to area in square meters
+#' @param acres area in square meters
+acres_to_square_meters <- function(acres) {
+  acres / 0.000247105
+}

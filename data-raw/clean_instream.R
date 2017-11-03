@@ -97,7 +97,6 @@ use_data(upper_sac_ACID_boards_out, overwrite = T)
 # reach 5 ACID to Cow;
 # reach 4 cow to battle
 # reach 3 battle to red bluff
-# reach 2 red bluff to deer
 # NOTE: no rearing for reach 3 and 2
 
 # hec-ras 1d sac segments ---
@@ -106,21 +105,21 @@ use_data(upper_sac_ACID_boards_out, overwrite = T)
 
 sacramento_instream <- read_csv('data-raw/sacramento_river_instream.csv', skip = 1)
 
-upper_mid_sacramento_instream <- sacramento_instream %>%
+upper_mid_sacramento_river_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Upper-mid Sacramento River') %>%
   filter(reach == 'Battle Creek to Feather River') %>%
   select(flow_cfs,
          FR_juv_wua = juv_WUA,
          watershed)
 
-devtools::use_data(upper_mid_sacramento_instream, overwrite = TRUE)
+devtools::use_data(upper_mid_sacramento_river_instream, overwrite = TRUE)
 
-lower_sacramento_instream <- sacramento_instream %>%
+lower_sacramento_river_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower Sacramento River') %>%
   filter(reach == 'Feather River to Freeport') %>%
   select(flow_cfs, juv_WUA, watershed)
 
-use_data(lower_sacramento_instream)
+devtools::use_data(lower_sacramento_river_instream, overwrite = TRUE)
 
 #yuba
 
