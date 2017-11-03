@@ -118,12 +118,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 73 rows and 5 variables:
+#' @format dataframe with 73 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -138,12 +136,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 31 rows and 5 variables:
+#' @format dataframe with 31 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -157,12 +153,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 40 rows and 5 variables:
+#' @format dataframe with 40 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -179,7 +173,7 @@
 #' @format dataframe with 31 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -196,7 +190,7 @@
 #' @format dataframe with 30 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -213,7 +207,7 @@
 #' @format dataframe with 32 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -227,11 +221,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 36 rows and 4 variables:
+#' @format dataframe with 36 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -245,11 +238,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 37 rows and 4 variables:
+#' @format dataframe with 37 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -267,7 +259,7 @@
 #' @format dataframe with 32 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -282,11 +274,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 37 rows and 4 variables:
+#' @format dataframe with 37 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -300,11 +291,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 35 rows and 4 variables:
+#' @format dataframe with 35 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -318,12 +308,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 31 rows and 5 variables:
+#' @format dataframe with 31 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'

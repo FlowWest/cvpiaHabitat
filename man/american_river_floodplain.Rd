@@ -4,11 +4,10 @@
 \name{american_river_floodplain}
 \alias{american_river_floodplain}
 \title{American River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 35 rows and 4 variables:
+\format{dataframe with 35 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage}
-  \item{ST_floodplain_acres}{steelhead floodplain acreage}
+  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
   \item{watershed}{name of watershed}
 }}
 \source{

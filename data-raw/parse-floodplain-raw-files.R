@@ -9,6 +9,7 @@ library(magrittr)
 american_river <- read_csv("data-raw/american_river_floodplain.csv")
 
 american_river_floodplain <- american_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -19,6 +20,7 @@ devtools::use_data(american_river_floodplain, overwrite = TRUE)
 bear_river <- read_csv("data-raw/bear_river_floodplain.csv")
 
 bear_river_floodplain <- bear_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -29,6 +31,7 @@ devtools::use_data(bear_river_floodplain, overwrite = TRUE)
 big_chico <- read_csv("data-raw/big_chico_creek_floodplain.csv")
 
 big_chico_creek_floodplain <- big_chico %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -39,6 +42,7 @@ devtools::use_data(big_chico_creek_floodplain, overwrite = TRUE)
 butte_creek <- read_csv("data-raw/butte_creek_floodplain.csv")
 
 butte_creek_floodplain <- butte_creek %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -49,6 +53,7 @@ devtools::use_data(butte_creek_floodplain, overwrite = TRUE)
 calaveras_river <- read_csv("data-raw/calaveras_river_floodplain.csv")
 
 calaveras_river_floodplain <- calaveras_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -59,6 +64,7 @@ devtools::use_data(calaveras_river_floodplain, overwrite = TRUE)
 cosumnes_river <- read_csv("data-raw/cosumnes_river_floodplain.csv")
 
 cosumnes_river_floodplain <- cosumnes_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -69,6 +75,7 @@ devtools::use_data(cosumnes_river_floodplain, overwrite = TRUE)
 cottonwood_creek <- read_csv("data-raw/cottonwood_creek_floodplain.csv")
 
 cottonwood_creek_floodplain <- cottonwood_creek %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -79,6 +86,7 @@ devtools::use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 deer_creek <- read_csv("data-raw/deer_creek_floodplain.csv")
 
 deer_creek_floodplain <- deer_creek %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -89,6 +97,7 @@ devtools::use_data(deer_creek_floodplain, overwrite = TRUE)
 elder_creek <- read_csv("data-raw/elder_creek_floodplain.csv")
 
 elder_creek_floodplain <- elder_creek %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -99,6 +108,7 @@ devtools::use_data(elder_creek_floodplain, overwrite = TRUE)
 feather_river <- read_csv("data-raw/feather_river_floodplain.csv")
 
 feather_river_floodplain <- feather_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -109,6 +119,7 @@ devtools::use_data(feather_river_floodplain, overwrite = TRUE)
 merced_river <- read_csv("data-raw/merced_river_floodplain.csv")
 
 merced_river_floodplain <- merced_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -119,6 +130,7 @@ devtools::use_data(merced_river_floodplain, overwrite = TRUE)
 mokelumne_river <- read_csv("data-raw/mokelumne_river_floodplain.csv")
 
 mokelumne_river_floodplain <- mokelumne_river %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -129,6 +141,7 @@ devtools::use_data(mokelumne_river_floodplain, overwrite = TRUE)
 north_delta <- read_csv("data-raw/north_delta_floodplain.csv")
 
 north_delta_floodplain <- north_delta %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -141,6 +154,7 @@ devtools::use_data(north_delta_floodplain, overwrite = TRUE)
 san_joaquin <- read_csv("data-raw/san_joaquin_river_floodplain.csv")
 
 san_joaquin_river_floodplain <- san_joaquin %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -151,6 +165,7 @@ devtools::use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 stanislaus <- read_csv("data-raw/stanislaus_river_floodplain.csv")
 
 stanislaus_river_floodplain <- stanislaus %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -161,6 +176,7 @@ devtools::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 sutter <- read_csv("data-raw/sutter_bypass_floodplain.csv")
 
 sutter_bypass_floodplain <- sutter %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -171,6 +187,7 @@ devtools::use_data(sutter_bypass_floodplain, overwrite = TRUE)
 tuo <- read_csv("data-raw/tuolumne_river_floodplain.csv")
 
 tuolumne_river_floodplain <- tuo %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
@@ -181,6 +198,7 @@ devtools::use_data(tuolumne_river_floodplain, overwrite = TRUE)
 yolo <- read_csv("data-raw/yolo_bypass_floodplain.csv")
 
 yolo_bypass_floodplain <- yolo %>%
+  filter(species == "Fall Run") %>%
   select(flow_cfs,
          FR_floodplain_acres = floodplain_acres,
          watershed)
