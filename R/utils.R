@@ -13,14 +13,18 @@ wua_to_area <- function(wua, watershed_name,  life_stage) {
 }
 
 
-#' Function converts area in square meters to area in acres
+#' Square Meters to Acres
+#' @description Function converts area in square meters to area in acres
 #' @param sq_meters area in square meters
+#' @export
 square_meters_to_acres <- function(sq_meters) {
   sq_meters * 0.000247105
 }
 
-#' Function converts area in acres to area in square meters
+#' Acres to Square Meters
+#' @description Function converts area in acres to area in square meters
 #' @param acres area in square meters
+#' @export
 acres_to_square_meters <- function(acres) {
   acres / 0.000247105
 }

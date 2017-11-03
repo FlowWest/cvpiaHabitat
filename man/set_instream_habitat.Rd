@@ -2,7 +2,7 @@
 % Please edit documentation in R/set-instream-habitat.R
 \name{set_instream_habitat}
 \alias{set_instream_habitat}
-\title{Set instream habitat area based on watershed, species, life stage and flow}
+\title{Set instream habitat}
 \usage{
 set_instream_habitat(watershed, species, life_stage, flow)
 }

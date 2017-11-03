@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{square_meters_to_acres}
 \alias{square_meters_to_acres}
-\title{Function converts area in square meters to area in acres}
+\title{Square Meters to Acres}
 \usage{
 square_meters_to_acres(sq_meters)
 }
