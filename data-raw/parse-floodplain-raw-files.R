@@ -1,4 +1,5 @@
 # This script reads in floodplain area raw files in data-raw dir for use in package
+# there are special cases not parsed here that are done so in clean_floodplain.R
 
 library(readr)
 library(dplyr)
