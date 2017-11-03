@@ -150,5 +150,3 @@ rearing_approx <- function(watershed, species, life_stage) {
          "st" = {ST_rearing_approx(df, modeling_lookup, life_stage)}
   )
 }
-
-
