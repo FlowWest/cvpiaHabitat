@@ -134,6 +134,59 @@ north_delta_floodplain <- north_delta %>%
 
 devtools::use_data(north_delta_floodplain, overwrite = TRUE)
 
+# sac river is a special case see clean_floodplain.R
+
+# san joaquin
+san_joaquin <- read_csv("data-raw/san_joaquin_river_floodplain.csv")
+
+san_joaquin_river_floodplain <- san_joaquin %>%
+  select(flow_cfs,
+         FR_floodplain_acres = floodplain_acres,
+         watershed)
+
+devtools::use_data(san_joaquin_river_floodplain, overwrite = TRUE)
+
+# stan
+stanislaus <- read_csv("data-raw/stanislaus_river_floodplain.csv")
+
+stanislaus_river_floodplain <- stanislaus %>%
+  select(flow_cfs,
+         FR_floodplain_acres = floodplain_acres,
+         watershed)
+
+devtools::use_data(stanislaus_river_floodplain, overwrite = TRUE)
+
+# sutter
+sutter <- read_csv("data-raw/sutter_bypass_floodplain.csv")
+
+sutter_bypass_floodplain <- sutter %>%
+  select(flow_cfs,
+         FR_floodplain_acres = floodplain_acres,
+         watershed)
+
+devtools::use_data(sutter_bypass_floodplain, overwrite = TRUE)
+
+# tuo
+tuo <- read_csv("data-raw/tuolumne_river_floodplain.csv")
+
+tuolumne_river_floodplain <- tuo %>%
+  select(flow_cfs,
+         FR_floodplain_acres = floodplain_acres,
+         watershed)
+
+devtools::use_data(tuolumne_river_floodplain, overwrite = TRUE)
+
+# yolo
+yolo <- read_csv("data-raw/yolo_bypass_floodplain.csv")
+
+yolo_bypass_floodplain <- yolo %>%
+  select(flow_cfs,
+         FR_floodplain_acres = floodplain_acres,
+         watershed)
+
+devtools::use_data(yolo_bypass_floodplain, overwrite = TRUE)
+
+# yuba special case see clean_floodplain.R
 
 
 
