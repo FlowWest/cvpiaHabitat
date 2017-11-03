@@ -4,7 +4,7 @@ library(scales)
 
 # clear creek instream cleaning-----------------------------------
 # in units sqft want in units sqft/1000ft
-clear_creek <- read_csv('data-raw/clear_creek_instream.csv')
+clear_creek <- read_csv('data-raw/instream/clear_creek_instream.csv')
 glimpse(clear_creek)
 View(clear_creek)
 
@@ -31,7 +31,7 @@ clear_creek_instream <- clear_creek %>%
 
 devtools::use_data(clear_creek_instream, overwrite = TRUE)
 
-cottonwood <- read_csv('data-raw/cottonwood_creek_instream.csv', skip = 1)
+cottonwood <- read_csv('data-raw/instream/cottonwood_creek_instream.csv', skip = 1)
 cottonwood_creek_instream <- cottonwood %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
@@ -42,7 +42,7 @@ cottonwood_creek_instream <- cottonwood %>%
 
 devtools::use_data(cottonwood_creek_instream, overwrite = TRUE)
 
-stan <- read_csv('data-raw/stanislaus_river_instream.csv', skip = 1)
+stan <- read_csv('data-raw/instream/stanislaus_river_instream.csv', skip = 1)
 
 stanislaus_river_instream <- stan %>%
   gather(species_stage, WUA, -flow_cfs, -watershed) %>%
@@ -58,7 +58,7 @@ stanislaus_river_instream <- stan %>%
 
 devtools::use_data(stanislaus_river_instream, overwrite = TRUE)
 
-up_sac <- read_csv('data-raw/upper_sacramento_river_instream.csv', skip = 1)
+up_sac <- read_csv('data-raw/instream/upper_sacramento_river_instream.csv', skip = 1)
 View(up_sac)
 glimpse(up_sac)
 
@@ -103,7 +103,7 @@ use_data(upper_sac_ACID_boards_out, overwrite = T)
 # battle to feather 189.1 mi
 # feather to freeport 33.4 mi
 
-sacramento_instream <- read_csv('data-raw/sacramento_river_instream.csv', skip = 1)
+sacramento_instream <- read_csv('data-raw/instream/sacramento_river_instream.csv', skip = 1)
 
 upper_mid_sacramento_river_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Upper-mid Sacramento River') %>%
@@ -125,7 +125,7 @@ devtools::use_data(lower_sacramento_river_instream, overwrite = TRUE)
 
 
 # fixing the yuba instream based on Mark Gard Input
-yuba <- read_csv("data-raw/yuba_river_instream.csv", skip=1)
+yuba <- read_csv("data-raw/instream/yuba_river_instream.csv", skip=1)
 
 # conflicts of flow ranges between segments
 yuba %>%
@@ -226,7 +226,7 @@ devtools::use_data(yuba_river_instream, overwrite = TRUE)
 
 
 # delta
-delta <- read_csv('data-raw/north_delta_instream.csv', skip = 1)
+delta <- read_csv('data-raw/instream/north_delta_instream.csv', skip = 1)
 
 # simple aggregation to remove 'duplicate' flow values
 north_delta_instream <- delta %>%
@@ -259,7 +259,7 @@ use_data(south_delta_percent_suitability)
 # all else is "intermediate" steps.
 
 
-american <- read_csv("data-raw/american_river_instream.csv", skip =1)
+american <- read_csv("data-raw/instream/american_river_instream.csv", skip =1)
 
 american$miles <- 2.2
 

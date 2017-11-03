@@ -1,7 +1,7 @@
 library(tidyverse)
 library(devtools)
 
-sac <- read_csv('data-raw/sacramento_river_floodplain.csv')
+sac <- read_csv('data-raw/floodplain/sacramento_river_floodplain.csv')
 
 # cvpia sac rearing segments ----
 # Upper Sacramento River: Keswick-Red Bluff 59.2 mi (keswick to battle and battle to feather studies)
