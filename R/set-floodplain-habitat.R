@@ -13,248 +13,50 @@
 #' @return floodplain habitat value in square meters
 #' @export
 set_floodplain_habitat <- function(watershed, species, flow) {
-  if (is.null(watershed_to_floodplain_methods[watershed][[1]]))
-    stop(paste0("no function associated with watershed '", watershed, "' was found"))
 
-  f <- watershed_to_floodplain_methods[watershed][[1]](species)
+  # TODO: refactor when we have scaling and non modeled approach
+  if (species == 'sr') {
+    sr_blah <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                         Watershed == watershed),
+                SR_floodplain)
+    if (is.na(sr_blah)) {
+      return(NA)
+    } else {
+      needs_scaling = sr_blah
+    }
+  } else if (species == 'st') {
+    needs_scaling = dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                              Watershed == watershed),
+                                ST_floodplain)
+  } else {
+    needs_scaling = FALSE
+  }
 
-  # floodplain is in acres, returned value needs to be in square meters
-  f(flow)/0.000247105
+  watershed_has_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                      FR_floodplain), Watershed)
 
-}
-
-# INTERNALS
-
-# a helper error stop function
-species_not_found_error <- function(species)
-  stop(paste0("species: '",species,"' not found for floodplain habitat in this watershed"),
-       call. = FALSE)
-
-# Below are all the approxfunc definitions for watersheds with a floodplain habitat
-
-# Note - this looks redundant, but it works... eventually as the package matures
-#        we can consider refactoring a lot of the repetitive code below
-# Note - rule = 2 in approxfun calls below make such that out of range values are assigned
-#        to either the min/max(flow_cfs) depending on the side they are on
-american_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::american_river_floodplain
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$ST_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-bear_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::bear_river_floodplain
+  scale = 1 #at some point scale should look up scaling factor based on watershed
 
 
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$ST_floodplain_acres, rule = 2),
-         species_not_found_error(species))
+  if (watershed %in% watershed_has_modeling) {
+    if (needs_scaling) {
+      acres <- floodplain_approx(watershed)(flow) * scale
+      acres_to_square_meters(acres)
+    } else {
+      acres <- floodplain_approx(watershed)(flow)
+      acres_to_square_meters(acres)
+    }
+  } else {
+    stop('implement other thing')
+  }
 
 }
 
-big_chico_creek_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::big_chico_creek_floodplain
+floodplain_approx <- function(watershed) {
+  # format watershed name to load flow to area relationship for floodplain
+  watershed_name <- tolower(gsub(pattern = " ", replacement = "_", x = watershed))
+  watershed_rda_name <- paste(watershed_name, "floodplain", sep = "_")
+  df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-
+  approxfun(df$flow_cfs, df$FR_floodplain_acres, rule = 2)
 }
-
-butte_creek_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::butte_creek_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$SR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$ST_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-calaveras_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::calaveras_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$ST_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-cosumnes_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::cosumnes_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$ST_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-cottonwood_creek_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::cottonwood_creek_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-deer_creek_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::deer_creek_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-elder_creek_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::elder_creek_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-feather_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::feather_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-lower_mid_sacramento_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::lower_mid_sacramento_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-lower_sacramento_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::lower_sacramento_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-merced_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::merced_river_floodplain
-  # TODO need to expand results to cover rearing extent, ask mark T
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-mokelumne_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::mokelumne_river_floodplain
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2))
-}
-
-north_delta_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::north_delta_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2))
-}
-
-san_joaquin_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::san_joaquin_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2))
-
-}
-
-stanislaus_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::stanislaus_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2))
-}
-
-tuolumne_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::tuolumne_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2))
-}
-
-upper_mid_sacramento_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::upper_mid_sacramento_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-upper_sacramento_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::upper_sacramento_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-yolo_bypass_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::yolo_bypass_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-yuba_river_floodplain_approx <- function(species) {
-  d <- cvpiaHabitat::yuba_river_floodplain
-
-
-  switch(species,
-         "fr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "sr" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         "st" = approxfun(d$flow_cfs, d$FR_floodplain_acres, rule = 2),
-         species_not_found_error(species))
-}
-
-# # map the watershed to correct method
-# watershed_to_method <- list(
-#   "american_river_floodplain" = american_river_floodplain_approx,
-#   "bear_river_floodplain" = bear_river_floodplain_approx,
-#   "big_chico_creek" = big_chico_creek_floodplain_approx
-# )

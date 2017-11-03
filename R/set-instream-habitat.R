@@ -6,237 +6,147 @@
 #' @param flow value used to determine habitat area
 #' @export
 set_instream_habitat <- function(watershed, species, life_stage, flow) {
-  f <- watershed_to_instream_methods[watershed][[1]](species, life_stage)
 
-  wua_value <- f(flow)
-  area_value <- wua_to_area(wua = wua_value,
-                            ws = watershed,
-                            sp = "Fall Run Chinook",
-                            ls = "rearing") # ask sadie if rearing is ok here
+  watershed_to_skip <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                 !FR_juv), Watershed)
 
-  return(area_value)
+  # check if watershed has no modeling, if so use regional approx
+  if (watershed %in% watershed_to_skip) {
+    region <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                        Watershed == watershed), Region)
+
+    approx_functions <- region_rearing_approx(region, species, life_stage)
+    wuas <- purrr::map_dbl(approx_functions, function(f) {
+      f(flow)
+    })
+    wua <- mean(wuas)
+    habitat_area <- wua_to_area(wua = wua, watershed = watershed,
+                                life_stage = "rearing")
+    return(habitat_area)
+  } else {
+    # create approx functions
+    wua_func <- rearing_approx(watershed, species, life_stage)
+
+    wua <- wua_func(flow)
+    habitat_area <- wua_to_area(wua = wua, watershed = watershed,
+                                life_stage = "rearing")
+    return(habitat_area)
+  }
 }
 
-# INTERNALS
 
-# a little error helper function
-instream_species_not_found_error <- function(species, ...)
-  stop(paste0("species '",species,"' not found for instream habitat in this watershed", ...),
-       call. = FALSE)
+# FR_juv means modeled
+# FR_fry means frying modeling, false use FR_juv
+# SR_juv NA means return NA, SR_fry T use SR_fry, if F us FR modeling
+# ST_juv use ST_juv modeling else use FR modeling
 
-battle_creek_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::battle_creek_instream
+#' function creates the approx function for fall run
+#' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
+#' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
+#' @param life_stage
+FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
+  # check to see if lifestage is fry
+  if (life_stage == "fry") {
+    fry_has_modeling <- dplyr::pull(modeling_lookup, FR_fry)
+    if (fry_has_modeling) {
+      # if modeling exists for fry use
+      FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_fry_wua, rule = 2)
+    } else {
+      # no fry modeling use juv modeling
+      FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_juv_wua, rule = 2)
+    }
+  } else {
+    # for juvs use juv modeling
+    FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_juv_wua, rule = 2)
+  }
+
+  return(FR_approx)
+}
+
+#' function creates the approx function for spring run
+#' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
+#' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
+#' @param life_stage
+SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
+  # check if sr floodplain has modeling
+  SR_has_modeling <- dplyr::pull(modeling_lookup, SR_juv)
+
+  if (is.na(SR_has_modeling)){
+    # no spring run in watershed
+    return(NA)
+  }
+
+  if (SR_has_modeling){
+    if (life_stage == 'fry') {
+      # life stage fry modeling
+      SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_fry_wua, rule = 2)
+    } else {
+      # life stage juv modeling
+      SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_juv_wua, rule = 2)
+    }
+  } else {
+    # no modeling use fall run modeling
+    SR_approx <- FR_rearing_approx(relationship_df, modeling_lookup, life_stage)
+  }
+
+  return(SR_approx)
+}
+
+#' function creates the approx function for spring run
+#' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
+#' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
+#' @param life_stage
+ST_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
+  # check if sr floodplain has modeling
+  ST_has_modeling <- dplyr::pull(modeling_lookup, ST_juv)
+
+  if (ST_has_modeling){
+    if (life_stage == 'fry') {
+      # life stage fry modeling
+      ST_approx <- approxfun(relationship_df$flow_cfs, relationship_df$ST_fry_wua, rule = 2)
+    } else {
+      # life stage juv modeling
+      ST_approx <- approxfun(relationship_df$flow_cfs, relationship_df$ST_juv_wua, rule = 2)
+    }
+  } else {
+    # no modeling use fall run modeling
+    ST_approx <- FR_rearing_approx(relationship_df, modeling_lookup, life_stage)
+  }
+
+  return(ST_approx)
+}
+
+#' function uses a region to return approx functions for watersheds within it with models
+#' @param region Region name, example "Upper-mid Sacramento River"
+#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
+#' @return a list of approx functions obtained from calliong spawning_approx()
+region_rearing_approx <- function(region, species, life_stage) {
+  # list of watersheds within the specified region with modeling
+  watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                        Region == region,
+                                                        FR_juv), Watershed)
+
+  # return list of approx function for the watersheds in region with modeling
+  purrr::map(watersheds_with_modeling, ~rearing_approx(., species = species, life_stage = life_stage))
+}
+
+#' function uses an existing relationship to return a linear interpolated approx function
+#' @param watershed name of the watershed to compute approx function on
+#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
+#' @return an approx function obtained from calling \code{\link[stats]{approxfun}}
+rearing_approx <- function(watershed, species, life_stage) {
+
+  # format watershed name to load wua relationship in the package
+  watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
+  watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
+  df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
+
+  # used to grab correct columns for approx functions
+  modeling_lookup <- dplyr::filter(cvpiaHabitat::modeling_exist, Watershed == watershed)
 
   switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else instream_species_not_found_error(species, " with life stage fry")},
-         instream_species_not_found_error(species))
-}
-
-bear_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::bear_river_instream
-
-  # ok this is gonna look ugly
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else instream_species_not_found_error(species)
-           },
-         instream_species_not_found_error(species))
-
-}
-
-butte_creek_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::butte_creek_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule =2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA, rule = 2)
-           else instream_species_not_found_error(species, " with specified life stage")
-         },
-         instream_species_not_found_error(species))
-}
-
-calaveras_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::calaveras_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA, rule = 2)
-           else instream_species_not_found_error(species, "with supplied life stage")
-         },
-         instream_species_not_found_error(species))
-}
-
-clear_creek_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::clear_creek_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$FR_juv, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$FR_fry, rule = 2)
-         },
-         "sr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$SR_juvenile, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$SR_fry)
-         },
-         "st" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$ST_juvenile, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$ST_fry, rule = 2)
-         },
-         instream_species_not_found_error(species))
-}
-
-cottonwood_creek_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::cottonwood_creek_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA)
-         },
-         instream_species_not_found_error(species))
-}
-
-cow_creek_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::cow_creek_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA, rule = 2)
-         },
-         instream_species_not_found_error(species))
-}
-
-feather_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::feather_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA, rule =2)
-         },
-         instream_species_not_found_error(species))
-}
-
-lower_sacramento_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::lower_sacramento_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else instream_species_not_found_error(species, " with supplied life stage")
-         },
-         instream_species_not_found_error(species))
-}
-
-merced_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::merced_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA, rule = 2)
-         },
-         "st" = {
-           if (life_stage == "adult") approxfun(d$flow_cfs, d$adult_steelhead_WUA)
-           else instream_species_not_found_error(species, " with supplied life stage")
-         })
-}
-
-mokelumne_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::mokelumne_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA, rule = 2)
-         },
-         instream_species_not_found_error(species))
-}
-
-# Note - this looks a little funny
-north_delta_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::north_delta_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$area_acres, rule = 2)
-           else instream_species_not_found_error(species, " with supplied life stage")
-         })
-}
-
-stanislaus_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::stanislaus_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$FR_juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$FR_fry_WUA, rule = 2)
-         },
-         "st" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$ST_juv_WUA, rule = 2)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$ST_fry_WUA, rule = 2)
-         },
-         instream_species_not_found_error(species))
-}
-
-upper_mid_sacramento_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::upper_mid_sacramento_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA, rule = 2)
-           else instream_species_not_found_error(species, " with supplied life stage")
-         },
-         instream_species_not_found_error(species))
-}
-
-yuba_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::yuba_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$FR_SR_juv)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$FR_SR_fry)
-         },
-         "sr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$FR_SR_juv)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$FR_SR_fry)
-         },
-         "st" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$ST_juv)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$ST_fry)
-         },
-         instream_species_not_found_error(species))
-}
-
-tuolumne_river_instream_approx <- function(species, life_stage) {
-  d <- cvpiaHabitat::tuolumne_river_instream
-
-  switch(species,
-         "fr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA)
-         },
-         "sr" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$juv_WUA)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$fry_WUA)
-         },
-         "st" = {
-           if (life_stage == "juv") approxfun(d$flow_cfs, d$ST_juv_WUA)
-           else if (life_stage == "fry") approxfun(d$flow_cfs, d$ST_fry_WUA)
-         },
-         instream_species_not_found_error(species))
-}
-
-
-rearing_approx <- function(watershed, species = "fr", life_stage) {
-  w <- paste(tolower(gsub(pattern = " ", replacement = "_", x = watershed)), "instream", sep = "_")
-  df <- do.call(`::`, list(pkg="cvpiaHabitat", name=w))
-
+         "fr" = {FR_rearing_approx(df, modeling_lookup, life_stage)},
+         "sr" = {SR_rearing_approx(df, modeling_lookup, life_stage)},
+         "st" = {ST_rearing_approx(df, modeling_lookup, life_stage)}
+  )
 }

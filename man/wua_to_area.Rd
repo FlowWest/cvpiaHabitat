@@ -4,16 +4,16 @@
 \alias{wua_to_area}
 \title{Function converts a weighted usable area (WUA) to area in square meters}
 \usage{
-wua_to_area(wua, ws, sp, ls)
+wua_to_area(wua, watershed_name, life_stage)
 }
 \arguments{
 \item{wua}{weighted usable area}
 
-\item{ws}{watershed}
+\item{life_stage}{life stage}
 
-\item{sp}{species}
+\item{watershed}{watershed}
 
-\item{ls}{life stage}
+\item{species}{species}
 }
 \description{
 Function converts a weighted usable area (WUA) to area in square meters

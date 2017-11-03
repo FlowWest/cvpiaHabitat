@@ -4,12 +4,10 @@
 \name{tuolumne_river_floodplain}
 \alias{tuolumne_river_floodplain}
 \title{Tuolumne River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 37 rows and 5 variables:
+\format{dataframe with 37 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage}
-  \item{SR_floodplain_acres}{spring run floodplain acreage}
-  \item{ST_floodplain_acres}{steelhead floodplain acreage}
+  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
   \item{watershed}{name of watershed}
 }}
 \usage{
