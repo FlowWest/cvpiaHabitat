@@ -5,3 +5,5 @@
 # 2 weeks: 8 days (days 1-3; 10-14) growth, 14 days (days 1-14) survival
 # 3 weeks: 15 days (days 1-3; 10-21) growth , 21 days (days 1-21) survival
 # 4 weeks: 15 days(same as above)  growth, 28 (30?) days (days 1-x) survival
+
+
