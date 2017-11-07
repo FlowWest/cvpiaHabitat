@@ -172,6 +172,7 @@ devtools::use_data(lower_sacramento_river_instream, overwrite = TRUE)
 
 
 # fixing the yuba instream based on Mark Gard Input
+# according to mark gard, on daguerre segment use 400cfs as the min cfs
 yuba <- read_csv("data-raw/instream/yuba_river_instream.csv", skip=1)
 
 # conflicts of flow ranges between segments
@@ -183,91 +184,53 @@ yuba %>%
     total = n()
   )
 
-# for later comparison
-dag_to_feather <- yuba %>% filter(segment == "Daguerre to Feather Segment")
 engle_to_dag <- yuba %>% filter(segment == "Englebright to Daguerre Segment")
+dag_to_feather <- yuba %>% filter(segment == "Daguerre to Feather Segment")
 
-# what do these look like next to each other
-# flow distriubtion
-yuba %>% ggplot(aes(Flow, color=segment)) + geom_density() # <- basically the same...
-# flow to other cols
-plot_ly() %>%
-  add_trace(data=dag_to_feather, x=~Flow, y=~ST_Spawn, type='scatter', mode='lines+markers') %>%
-  add_trace(data=engle_to_dag, x=~Flow, y=~ST_Spawn, type='scatter', mode='lines+markers')
+# create approx functions for these
+engle_to_dag_FR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry,
+                                      yleft = min(engle_to_dag$FR_SR_fry), rule=2)
+engle_to_dag_FR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_Spawn,
+                                        yleft = min(engle_to_dag$FR_Spawn), rule=2)
+engle_to_dag_FR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv,
+                                      yleft = min(engle_to_dag$FR_SR_juv), rule=2)
+engle_to_dag_SR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry,
+                                      yleft = min(engle_to_dag$FR_SR_fry), rule=2)
+engle_to_dag_SR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$SR_Spawn,
+                                        yleft = min(engle_to_dag$SR_Spawn), rule=2)
+engle_to_dag_SR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv,
+                                      yleft = min(engle_to_dag$FR_SR_juv), rule=2)
+engle_to_dag_ST_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_fry,
+                                      yleft = min(engle_to_dag$ST_fry), rule=2)
+engle_to_dag_ST_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_Spawn,
+                                        yleft = min(engle_to_dag$ST_Spawn), rule=2)
+engle_to_dag_ST_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_juv,
+                                      yleft = min(engle_to_dag$ST_juv), rule=2)
 
-# here we interpolate and add additional values for low cfs on segment between Englebright to Daguerre Segment
-# which values are these?
-dag_to_feather %>% filter(Flow < 400)
-addins_to_engle_to_dag <- engle_to_dag %>% filter(Flow == 400)
 
-engle_to_dag_below_400 <- dag_to_feather %>% filter(Flow < 400) %>%
-  mutate(SR_Spawn=addins_to_engle_to_dag$SR_Spawn,
-         FR_Spawn=addins_to_engle_to_dag$FR_Spawn,
-         ST_Spawn=addins_to_engle_to_dag$ST_Spawn,
-         FR_SR_fry=addins_to_engle_to_dag$FR_SR_fry,
-         ST_fry=addins_to_engle_to_dag$ST_fry,
-         FR_SR_juv=addins_to_engle_to_dag$FR_SR_juv,
-         ST_juv=addins_to_engle_to_dag$ST_juv,
-         miles=addins_to_engle_to_dag$miles,
-         segment=addins_to_engle_to_dag$segment)
+dag_to_feather_FR_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_fry)
+dag_to_feather_FR_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_Spawn)
+dag_to_feather_FR_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_juv)
+dag_to_feather_SR_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_fry)
+dag_to_feather_SR_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$SR_Spawn)
+dag_to_feather_SR_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_juv)
+dag_to_feather_ST_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_fry)
+dag_to_feather_ST_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_Spawn)
+dag_to_feather_ST_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_juv)
 
-yuba_with_additional_engle_to_dag <- bind_rows(
-  yuba,
-  engle_to_dag_below_400
-)
 
-# the zig-zag stuff at the end can be collpsed by just interpolation
-# here we use the values over 3100 to interpolate linearly ()
-approx_dag_to_feather <- function(df, col, value) {
-  x = df$Flow
-  y = df[col] %>% dplyr::pull()
-  f <- approxfun(x, y)
-  f(value)
-}
+yuba %>%
+  select(Flow, SR_Spawn, segment) %>%
+  spread(segment, SR_Spawn) %>%
+  mutate(`Englebright to Daguerre Segment` = case_when(
+    is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_SR_spawn_area(400),
+    TRUE ~ `Englebright to Daguerre Segment`
+  ),
+  SR_spawn_wua =
+    prop_above * `Englebright to Daguerre Segment` +
+    prop_below *`Englebright to Daguerre Segment`,
+  watershed = 'Lower-mid Sacramento River')
 
-dag_to_feather_tail <- tail(dag_to_feather, 5)
-values_to_interpolate <- c(3100, 3500, 3900,4300)
-
-sr_spawn <- approx_dag_to_feather(dag_to_feather_tail, "SR_Spawn", values_to_interpolate)
-fr_spawn <- approx_dag_to_feather(dag_to_feather_tail, "FR_Spawn", values_to_interpolate)
-st_spawn <- approx_dag_to_feather(dag_to_feather_tail, "ST_Spawn", values_to_interpolate)
-fr_sr_fry <- approx_dag_to_feather(dag_to_feather_tail, "FR_SR_fry", values_to_interpolate)
-st_fry <- approx_dag_to_feather(dag_to_feather_tail, "ST_fry", values_to_interpolate)
-fr_sr_juv <- approx_dag_to_feather(dag_to_feather_tail, "FR_SR_juv", values_to_interpolate)
-st_juv <- approx_dag_to_feather(dag_to_feather_tail, "ST_juv", values_to_interpolate)
-
-dag_to_feather_interpolated <- tibble(
-  "Flow" =values_to_interpolate,
-  "SR_Spawn" = sr_spawn,
-  "FR_Spawn" = fr_spawn,
-  "ST_Spawn" = st_spawn,
-  "FR_SR_fry" = fr_sr_fry,
-  "ST_fry" = st_fry,
-  "FR_SR_juv" = fr_sr_juv,
-  "ST_juv" = st_juv,
-  "miles" = 11.4
-)
-
-yuba_witn_interpolated <- bind_rows(
-  yuba_with_additional_engle_to_dag,
-  dag_to_feather_interpolated
-)
-
-yuba_river_instream <- yuba_witn_interpolated %>%
-  gather(species_stage, WUA, -Flow, -miles, -segment) %>%
-  rename(flow_cfs = Flow) %>%
-  filter(!is.na(WUA)) %>%
-  group_by(species_stage, flow_cfs) %>%
-  mutate(total_reach_length = sum(miles)) %>%
-  summarise(WUA = sum(WUA) / max(total_reach_length) / 5.28) %>%
-  ungroup() %>%
-  spread(species_stage, WUA) %>%
-  mutate(watershed = 'Yuba River') %>%
-  rename(
-    FR_spawning = FR_Spawn,
-    SR_spawning = SR_Spawn,
-    ST_spawning = ST_Spawn
-  )
 
 devtools::use_data(yuba_river_instream, overwrite = TRUE)
 
