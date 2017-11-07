@@ -179,13 +179,13 @@ engle_to_dag <- yuba %>% filter(segment == "Englebright to Daguerre Segment")
 dag_to_feather <- yuba %>% filter(segment == "Daguerre to Feather Segment")
 
 # create approx functions for these
-engle_to_dag_FR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry, yleft = min(engle_to_dag$FR_SR_fry), rule=2)
-engle_to_dag_FR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_Spawn, yleft = min(engle_to_dag$FR_Spawn), rule=2)
-engle_to_dag_FR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv, yleft = min(engle_to_dag$FR_SR_juv), rule=2)
-engle_to_dag_SR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$SR_Spawn, yleft = min(engle_to_dag$SR_Spawn), rule=2)
-engle_to_dag_ST_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_fry, yleft = min(engle_to_dag$ST_fry), rule=2)
-engle_to_dag_ST_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_Spawn, yleft = min(engle_to_dag$ST_Spawn), rule=2)
-engle_to_dag_ST_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_juv, yleft = min(engle_to_dag$ST_juv), rule=2)
+engle_to_dag_FR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry, rule = 2)
+engle_to_dag_FR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_Spawn, rule = 2)
+engle_to_dag_FR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv, rule = 2)
+engle_to_dag_SR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$SR_Spawn, rule = 2)
+engle_to_dag_ST_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_fry, rule = 2)
+engle_to_dag_ST_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_Spawn, rule = 2)
+engle_to_dag_ST_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_juv, rule = 2)
 
 
 dag_to_feather_FR_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_fry)
