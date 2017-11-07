@@ -97,12 +97,13 @@ use_data(upper_sac_ACID_boards_out, overwrite = T)
 # reach 5 ACID to Cow;
 # reach 4 cow to battle
 # reach 3 battle to red bluff
-# NOTE: no rearing for reach 3 and 2
+# NOTE: no rearing modeling for reach 3 and 2
 
 # hec-ras 1d sac segments ---
 # battle to feather 189.1 mi
 # feather to freeport 33.4 mi
 
+# WUA in square feet use miles/5.28 to get to square feet per 1000 feet
 sacramento_instream <- read_csv('data-raw/instream/sacramento_river_instream.csv', skip = 1)
 
 upper_mid_sacramento_river_instream <- sacramento_instream %>%
@@ -115,9 +116,16 @@ upper_mid_sacramento_river_instream <- sacramento_instream %>%
 devtools::use_data(upper_mid_sacramento_river_instream, overwrite = TRUE)
 
 # TODO get proportion of WUA for lower mid and double check others
+# lower mid sacramento has 201843.335 feet in the battle to feather study area
+# and 104198.716079 feet in the feather to freeport study area
+# the lower mid sac is 306042.051 feet long
+top_lower_mid <- 201843.335/306042.051 #34%
+bottom_lower_mid <- 104198.716079/306042.051 #66%
+
 lower_mid_sacramento_river_instream
 sacramento_instream %>%
-  glimpse()
+  mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower-mid Sacramento River') %>% glimpse()
+
 
 lower_sacramento_river_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower Sacramento River') %>%
