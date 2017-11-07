@@ -61,8 +61,8 @@ fp <- sac %>%
 # extrapolate values from the other reach. convert these values to floodplain
 # per mile and sum the miles in each study times there respective floodplain
 # rates
-upper_sac_above_battle <- 55.5/59.2
-upper_sac_below_battle <- 1 - upper_sac_above_battle
+upper_sac_above_battle <- 55.5
+upper_sac_below_battle <- 59.2 - 55.5
 
 upper_sacramento_river_floodplain <- fp %>%
   mutate(FR_floodplain_acres =
@@ -71,7 +71,7 @@ upper_sacramento_river_floodplain <- fp %>%
          watershed = 'Upper Sacramento River') %>%
   select(flow_cfs, FR_floodplain_acres, watershed)
 
-use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
+devtools::use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
 
 
 # Upper-mid Sacramento River ------------------------------------
@@ -85,59 +85,32 @@ upper_mid_sacramento_river_floodplain <- fp %>%
          watershed = "Upper-mid Sacramento River") %>%
   select(flow_cfs, FR_floodplain_acres, watershed)
 
-use_data(upper_mid_sacramento_river_floodplain, overwrite = TRUE)
+devtools::use_data(upper_mid_sacramento_river_floodplain, overwrite = TRUE)
 
 
-# cvpia sac rearing segments ----
-# Lower-mid Sacramento River: wilkins slough to American 58.0 mi (battle to feather 38.2 miles and feather to freeport 58-38.2)
+# Lower-mid Sacramento River ------------
+# wilkins slough to American 58.0 mi (battle to feather 38.2 miles and feather to freeport 58-38.2)
 
-# hec-ras 1d sac segments ---
-# keswick to battle 55.5 mi
-# battle to feather 189.1 mi
-# feather to freeport 33.4 mi
+lower_mid_above_feather <- 38.2
+lower_mid_below_feather <- 58 - 38.2
 
-sac %>%
-  group_by(reach) %>%
-  summarise(min = min(flow_cfs, na.rm =TRUE), max = max(flow_cfs, na.rm =TRUE), count = n()) %>%
-  arrange(count)
-
-# Emanuel: reference for myself
-# create new frame with instances where flow values between battle and feather
-# are over the max flow between keswick to battle, assign these instances the
-# max value from kes_bat and determine the area by using the kes_area() functions
-xtra_flow_feat_free <- bat_feat %>%
-  filter(flow_cfs < 4355.361) %>%
-  mutate(floodplain_acres = feat_area(4355.361),
-         reach = "Feather River to Freeport", miles = 33.4)
-
-
-feat_free_with_extra_flow <- bind_rows(
-  feat_free,
-  xtra_flow_feat_free
-)
-
-# case when we add rows to feather to freeport
-lower_mid_sacramento_river_floodplain <- feat_free_with_extra_flow %>%
-  mutate(fp_per_mile_feat_free = floodplain_acres/miles,
-         fp_per_mile_bat_feat = bat_area(flow_cfs)/189.1,
-         floodplain_acres = (38.2 * fp_per_mile_bat_feat) + (19.8 * fp_per_mile_feat_free),
+lower_mid_sacramento_river_floodplain <- fp %>%
+  mutate(FR_floodplain_acres =
+           (`Battle Creek to Feather River`/miles['Battle Creek to Feather River'] * lower_mid_above_feather) +
+           (`Feather River to Freeport`/miles['Feather River to Freeport'] * lower_mid_below_feather),
          watershed = 'Lower-mid Sacramento River') %>%
-  select(flow_cfs, floodplain_acres, watershed) %>%
-  filter(flow_cfs > 0)
+  select(flow_cfs, FR_floodplain_acres, watershed)
 
 devtools::use_data(lower_mid_sacramento_river_floodplain, overwrite = TRUE)
 
 # cvpia sac rearing segments ----
 # Lower Sacramento River: American to freeport 13.7 mi
+lower_within_feat_free <-  13.7
 
-# hec-ras 1d sac segments ---
-# keswick to battle 55.5 mi
-# battle to feather 189.1 mi
-# feather to freeport 33.4 mi
+lower_sacramento_river_floodplain <- fp %>%
+  mutate(FR_floodplain_acres =
+           (`Feather River to Freeport`/miles['Feather River to Freeport'] * lower_within_feat_free),
+         watershed = 'Lower Sacramento River') %>%
+  select(flow_cfs, FR_floodplain_acres, watershed)
 
-lower_sacramento_river_floodplain <- feat_free %>%
-  mutate(fp_per_mile_feat_free = floodplain_acres/miles,
-         floodplain_acres = 13.7 * fp_per_mile_feat_free,
-         watershed = "Lower Sacramento River") %>%
-  select(flow_cfs, floodplain_acres, watershed)
 devtools::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
