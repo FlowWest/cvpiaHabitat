@@ -170,66 +170,189 @@ devtools::use_data(lower_sacramento_river_instream, overwrite = TRUE)
 
 #yuba
 
-
 # fixing the yuba instream based on Mark Gard Input
-# according to mark gard, on daguerre segment use 400cfs as the min cfs
+# according to mark gard, on engle to daguerre segment use 400cfs as the min cfs
+# then on the dag to feather use linear interpolation to fill in gaps
 yuba <- read_csv("data-raw/instream/yuba_river_instream.csv", skip=1)
-
-# conflicts of flow ranges between segments
-yuba %>%
-  group_by(segment) %>%
-  summarise(
-    min_flow = min(Flow, na.rm = TRUE),
-    max_flow = max(Flow, na.rm = TRUE),
-    total = n()
-  )
 
 engle_to_dag <- yuba %>% filter(segment == "Englebright to Daguerre Segment")
 dag_to_feather <- yuba %>% filter(segment == "Daguerre to Feather Segment")
 
 # create approx functions for these
-engle_to_dag_FR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry,
-                                      yleft = min(engle_to_dag$FR_SR_fry), rule=2)
-engle_to_dag_FR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_Spawn,
-                                        yleft = min(engle_to_dag$FR_Spawn), rule=2)
-engle_to_dag_FR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv,
-                                      yleft = min(engle_to_dag$FR_SR_juv), rule=2)
-engle_to_dag_SR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry,
-                                      yleft = min(engle_to_dag$FR_SR_fry), rule=2)
-engle_to_dag_SR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$SR_Spawn,
-                                        yleft = min(engle_to_dag$SR_Spawn), rule=2)
-engle_to_dag_SR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv,
-                                      yleft = min(engle_to_dag$FR_SR_juv), rule=2)
-engle_to_dag_ST_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_fry,
-                                      yleft = min(engle_to_dag$ST_fry), rule=2)
-engle_to_dag_ST_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_Spawn,
-                                        yleft = min(engle_to_dag$ST_Spawn), rule=2)
-engle_to_dag_ST_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_juv,
-                                      yleft = min(engle_to_dag$ST_juv), rule=2)
+engle_to_dag_FR_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_fry, yleft = min(engle_to_dag$FR_SR_fry), rule=2)
+engle_to_dag_FR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_Spawn, yleft = min(engle_to_dag$FR_Spawn), rule=2)
+engle_to_dag_FR_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$FR_SR_juv, yleft = min(engle_to_dag$FR_SR_juv), rule=2)
+engle_to_dag_SR_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$SR_Spawn, yleft = min(engle_to_dag$SR_Spawn), rule=2)
+engle_to_dag_ST_fry_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_fry, yleft = min(engle_to_dag$ST_fry), rule=2)
+engle_to_dag_ST_spawn_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_Spawn, yleft = min(engle_to_dag$ST_Spawn), rule=2)
+engle_to_dag_ST_juv_area <- approxfun(engle_to_dag$Flow, engle_to_dag$ST_juv, yleft = min(engle_to_dag$ST_juv), rule=2)
 
 
 dag_to_feather_FR_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_fry)
 dag_to_feather_FR_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_Spawn)
 dag_to_feather_FR_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_juv)
-dag_to_feather_SR_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_fry)
 dag_to_feather_SR_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$SR_Spawn)
-dag_to_feather_SR_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$FR_SR_juv)
 dag_to_feather_ST_fry_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_fry)
 dag_to_feather_ST_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_Spawn)
 dag_to_feather_ST_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_juv)
 
+# yuba proportion that cover yuba based on dag location
+yuba_prop_above_dag <- .5
+yuba_prop_below_dag <- .5
 
-yuba %>%
+# Spawn Columns ---
+yuba_SR_spawn <- yuba %>%
+  mutate(SR_Spawn = SR_Spawn/miles/5.28) %>%
   select(Flow, SR_Spawn, segment) %>%
   spread(segment, SR_Spawn) %>%
-  mutate(`Englebright to Daguerre Segment` = case_when(
-    is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_SR_spawn_area(400),
-    TRUE ~ `Englebright to Daguerre Segment`
-  ),
-  SR_spawn_wua =
-    prop_above * `Englebright to Daguerre Segment` +
-    prop_below *`Englebright to Daguerre Segment`,
-  watershed = 'Lower-mid Sacramento River')
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_SR_spawn_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_SR_spawn_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    SR_spawn_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, SR_spawn_wua)
+
+yuba_FR_spawn <- yuba %>%
+  mutate(FR_Spawn = FR_Spawn/miles/5.28) %>%
+  select(Flow, FR_Spawn, segment) %>%
+  spread(segment, FR_Spawn) %>%
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_FR_spawn_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_FR_spawn_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    FR_spawn_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, FR_spawn_wua)
+
+yuba_ST_spawn <- yuba %>%
+  mutate(ST_Spawn = ST_Spawn/miles/5.28) %>%
+  select(Flow, ST_Spawn, segment) %>%
+  spread(segment, ST_Spawn) %>%
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_ST_spawn_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_ST_spawn_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    ST_spawn_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, ST_spawn_wua)
+
+yuba_spawn <- bind_cols(yuba_FR_spawn,
+                        yuba_SR_spawn,
+                        yuba_ST_spawn) %>% select(flow_cfs, contains("spawn_wua"))
+
+
+# Fry Columns --- note here we remove any case of SR since the habitat package
+#                 correctly falls back on to Fall Run
+yuba_FR_SR_fry <- yuba %>%
+  mutate(FR_SR_fry = FR_SR_fry/miles/5.28) %>%
+  select(Flow, FR_SR_fry, segment) %>%
+  spread(segment, FR_SR_fry) %>%
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_FR_fry_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_FR_fry_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    FR_fry_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, FR_fry_wua)
+
+yuba_ST_fry <- yuba %>%
+  mutate(ST_fry = ST_fry/miles/5.28) %>%
+  select(Flow, ST_fry, segment) %>%
+  spread(segment, ST_fry) %>%
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_ST_fry_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_ST_fry_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    ST_fry_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, ST_fry_wua)
+
+yuba_fry <- bind_cols(yuba_FR_SR_fry,
+                      yuba_ST_fry) %>% select(flow_cfs, contains("fry_wua"))
+
+# juv columns ---
+yuba_FR_SR_juv <- yuba %>%
+  mutate(FR_SR_juv = FR_SR_juv/miles/5.28) %>%
+  select(Flow, FR_SR_juv, segment) %>%
+  spread(segment, FR_SR_juv) %>%
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_FR_juv_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_FR_juv_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    FR_juv_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, FR_juv_wua)
+
+yuba_ST_juv <- yuba %>%
+  mutate(ST_juv = ST_juv/miles/5.28) %>%
+  select(Flow, ST_juv, segment) %>%
+  spread(segment, ST_juv) %>%
+  mutate(
+    `Englebright to Daguerre Segment` = case_when(
+      is.na(`Englebright to Daguerre Segment`) ~ engle_to_dag_ST_juv_area(Flow),
+      TRUE ~ `Englebright to Daguerre Segment`
+    ),
+    `Daguerre to Feather Segment` = case_when(
+      is.na(`Daguerre to Feather Segment`) ~ dag_to_feather_ST_juv_area(Flow),
+      TRUE ~ `Daguerre to Feather Segment`
+    ),
+    ST_juv_wua =
+      yuba_prop_above_dag * `Englebright to Daguerre Segment` +
+      yuba_prop_below_dag *`Daguerre to Feather Segment`,
+    watershed = 'Yuba River') %>%
+  select(flow_cfs = Flow, ST_juv_wua)
+
+yuba_juv <- bind_cols(yuba_FR_SR_juv,
+                      yuba_ST_juv) %>% select(flow_cfs, contains("juv_wua"))
+
+yuba_processed <- bind_cols(
+  yuba_spawn,
+  yuba_fry,
+  yuba_juv
+) %>% select(flow_cfs, contains("wua")) %>% mutate(watershed = "Yuba River")
 
 
 devtools::use_data(yuba_river_instream, overwrite = TRUE)
