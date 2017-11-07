@@ -7,9 +7,9 @@
 \format{dataframe with 30 rows and 6 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-  \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-  \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+  \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+  \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+  \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
   \item{adult_steelhead_WUA}{adult steelhead WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
 }}

@@ -7,9 +7,9 @@
 \format{dataframe with 30 rows and 4 variables:
 \describe{
 \item{flow_cfs}{integer flow value in cubic feet per second}
-\item{spawn_WUA}{chinook spawning WUA in square feet per 1000 feet}
-\item{fry_WUA}{chinook fry (up to 50 mm) WUA in square feet per 1000 feet}
-\item{juv_WUA}{chinook juvenile WUA in square feet per 1000 feet}
+\item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
+\item{FR_fry_wua}{chinook fry (up to 50 mm) WUA in square feet per 1000 feet}
+\item{FR_juv_wua}{chinook juvenile WUA in square feet per 1000 feet}
 \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
 \item{ST_fry_WUA}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
 \item{ST_juv_WUA}{steelhead juvenile WUA in square feet per 1000 feet}

@@ -7,13 +7,13 @@
 \format{dataframe with 34 rows and 10 variables
 \describe{
 \item{flow_cfs}{numeric flow value in cubic feet per second}
-\item{FR_spawning}{Fall Run spawning WUA in square feet per 1000 feet}
+\item{FR_spawn_wua}{Fall Run spawning WUA in square feet per 1000 feet}
 \item{FR_SR_fry}{Fall and Spring Run fry WUA in square feet per 1000 feet}
 \item{FR_SR_juv}{Fall and Spring Run juvenile WUA in square feet per 1000 feet}
-\item{SR_spawning}{Spring Run spawning WUA in square feet per 1000 feet}
-\item{ST_fry}{Steelhead fry WUA in square feet per 1000 feet}
-\item{ST_juv}{Steelhead juvenile WUA in square feet per 1000 feet}
-\item{ST_spawning}{Steelhead spawning WUA in square feet per 1000 feet}
+\item{SR_spawn_wua}{Spring Run spawning WUA in square feet per 1000 feet}
+\item{ST_fry_wua}{Steelhead fry WUA in square feet per 1000 feet}
+\item{ST_juv_wua}{Steelhead juvenile WUA in square feet per 1000 feet}
+\item{ST_spawn_wua}{Steelhead spawning WUA in square feet per 1000 feet}
 \item{watershed}{name of watershed}
 }}
 \source{

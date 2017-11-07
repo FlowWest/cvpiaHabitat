@@ -7,7 +7,7 @@
 \format{dataframe with 45 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+  \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
 }}
 \source{

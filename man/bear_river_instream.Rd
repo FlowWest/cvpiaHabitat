@@ -7,8 +7,8 @@
 \format{dataframe with 4 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-  \item{juv_WUA}{juvenile (>50 mm) WUA in square feet per 1000 feet}
+  \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+  \item{FR_juv_wua}{juvenile (>50 mm) WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
 }}
 \source{

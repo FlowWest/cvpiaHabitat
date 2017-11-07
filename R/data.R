@@ -3,14 +3,25 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #'   function of flow in cubic feet per second
 #'
-#' @format dataframe with 23 rows and 3 variables: \describe{
+#' @format dataframe with 23 rows and 3 variables:
+#' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
 #'   \item{watershed}{name of watershed} }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
-#'   The study only represents the lower half of Merced, scale up to
-#'   represent the whole rearing region.
+#'   The study only represents the lower 25.5 miles of the Merced River. The modeled results were scaled up to
+#'   represent the whole rearing region. We calculate an area per river mile and assign the product of
+#'   the river miles and the weighted area rate for each segment. The study area is defined in the CV Habitat Exchange
+#'   as being within the Valley Lowland, all other reaches with that same category are given the full area rate.
+#'   River miles outside the Valley Lowland category recieve some proportion of the area rate, detailed below:
+#'   \itemize{
+#'     \item RM 0 - 25.5 use areas defined by study
+#'     \item RM 25.5 - 31.2 "Valley Lowland" use 1X area/RM from modeled reach.
+#'     \item RM 31.2 - 43.6 not "Valley Lowland", use 0.5X area/RM relationship from modeled reach.
+#'     \item RM 43.6 - 47.0 "Valley Lowland", use 1X area/RM from modeled reach.
+#'     \item RM 47.0 - 52.0 not "Valley Lowland" and in dredge tailings, use 0.1X area/RM from modeled reach.
+#'   }
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
 "merced_river_floodplain"

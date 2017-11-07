@@ -7,15 +7,15 @@
 \format{dataframe with 23 rows and 11 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_fry}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-  \item{FR_juv}{fall run juvenile WUA in square feet per 1000 feet}
-  \item{FR_spawning}{fall run spawning WUA in square feet per 1000 feet}
-  \item{SR_fry}{spring run fry (up to 50 mm) WUA in square feet per 1000 feet}
-  \item{SR_juv}{spring run fry juvenile WUA in square feet per 1000 feet}
-  \item{SR_spawning}{spring run fry spawning WUA in square feet per 1000 feet}
-  \item{ST_fry}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
-  \item{ST_juv}{steelhead juvenile WUA in square feet per 1000 feet}
-  \item{ST_spawning}{steelhead spawning WUA in square feet per 1000 feet}
+  \item{FR_fry_wua}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+  \item{FR_juv_wua}{fall run juvenile WUA in square feet per 1000 feet}
+  \item{FR_spawn_wua}{fall run spawning WUA in square feet per 1000 feet}
+  \item{SR_fry_wua}{spring run fry (up to 50 mm) WUA in square feet per 1000 feet}
+  \item{SR_juv_wua}{spring run fry juvenile WUA in square feet per 1000 feet}
+  \item{SR_spawn_wua}{spring run fry spawning WUA in square feet per 1000 feet}
+  \item{ST_fry_wua}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
+  \item{ST_juv_wua}{steelhead juvenile WUA in square feet per 1000 feet}
+  \item{ST_spawn_wua}{steelhead spawning WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
 }}
 \source{
