@@ -114,6 +114,11 @@ upper_mid_sacramento_river_instream <- sacramento_instream %>%
 
 devtools::use_data(upper_mid_sacramento_river_instream, overwrite = TRUE)
 
+# TODO get proportion of WUA for lower mid and double check others
+lower_mid_sacramento_river_instream
+sacramento_instream %>%
+  glimpse()
+
 lower_sacramento_river_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower Sacramento River') %>%
   filter(reach == 'Feather River to Freeport') %>%
