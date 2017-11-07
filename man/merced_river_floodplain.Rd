@@ -10,7 +10,9 @@
   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
   \item{watershed}{name of watershed} }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+Modeling: \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+
+Scaling Criteria developed by Mark Tompkins \email{mtompkins@flowwest.com}
 }
 \usage{
 merced_river_floodplain
