@@ -24,8 +24,11 @@ A dataset containing the floodplain habitat area in acres as a
 \details{
 The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
   The study only represents the lower 25.5 miles of the Merced River. The modeled results were scaled up to
-  represent the whole rearing region. We calculate an area per river mile and assign the product of
-  the river miles and the weighted area rate for each segment. The study area is defined in the CV Habitat Exchange
+  represent the whole rearing region. We calculate area per river mile from modeled reach and assign the product of the
+  river mile distance and floodplain area per river mile for each reach defined as either in the Valley Lowland area,
+  in a higher gradient / laterally confined area between Valley Lowland areas, or in the dredge tailing area.
+  The study area is defined in the
+  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/Memo_Fish_30_August_2017.pdf}{CV Habitat Exchange}
   as being within the Valley Lowland, all other reaches with that same category are given the full area rate.
   River miles outside the Valley Lowland category recieve some proportion of the area rate, detailed below:
   \itemize{
