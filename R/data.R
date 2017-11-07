@@ -65,7 +65,7 @@
 #'
 #' @details The habitat area was derived from the Flo2D model by Stillwater, 2014.
 #'
-#' @source
+#' @source TODO fix source
 "tuolumne_river_floodplain"
 
 
@@ -713,7 +713,7 @@
 #' \item{watershed}{name of watershed}
 #' }
 #'
-#' @source
+#' @source TODO fix source
 "yuba_river_instream"
 
 #' Tuolumne River Instream Flow to Habitat Area Relationship

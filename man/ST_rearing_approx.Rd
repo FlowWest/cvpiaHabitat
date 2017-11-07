@@ -2,7 +2,7 @@
 % Please edit documentation in R/set-instream-habitat.R
 \name{ST_rearing_approx}
 \alias{ST_rearing_approx}
-\title{function creates the approx function for spring run}
+\title{Steelhead rearing habitat flow to area approximator}
 \usage{
 ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
 }

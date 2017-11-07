@@ -2,7 +2,7 @@
 % Please edit documentation in R/set-instream-habitat.R
 \name{FR_rearing_approx}
 \alias{FR_rearing_approx}
-\title{function creates the approx function for fall run}
+\title{Fall Run rearing habitat flow to area approximator}
 \usage{
 FR_rearing_approx(relationship_df, modeling_lookup, life_stage)
 }

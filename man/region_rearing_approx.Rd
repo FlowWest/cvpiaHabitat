@@ -2,7 +2,7 @@
 % Please edit documentation in R/set-instream-habitat.R
 \name{region_rearing_approx}
 \alias{region_rearing_approx}
-\title{function uses a region to return approx functions for watersheds within it with models}
+\title{Regional rearing habitat flow to area approximator}
 \usage{
 region_rearing_approx(region, species, life_stage)
 }

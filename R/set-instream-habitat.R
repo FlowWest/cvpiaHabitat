@@ -1,4 +1,5 @@
-#' Set instream habitat area based on watershed, species, life stage and flow
+#' Set instream habitat
+#' @description Set instream habitat area based on watershed, species, life stage and flow
 #'
 #' @param watershed one of the watersheds defined for the SIT model
 #' @param species one of 'fr', 'sr', or 'st'
@@ -40,7 +41,9 @@ set_instream_habitat <- function(watershed, species, life_stage, flow) {
 # SR_juv NA means return NA, SR_fry T use SR_fry, if F us FR modeling
 # ST_juv use ST_juv modeling else use FR modeling
 
-#' function creates the approx function for fall run
+#' Fall Run rearing habitat flow to area approximator
+#' @name FR_rearing_approx
+#' @description function creates the approx function for fall run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 #' @param life_stage
@@ -63,7 +66,8 @@ FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
   return(FR_approx)
 }
 
-#' function creates the approx function for spring run
+#' Spring Run rearing habitat flow to area approximator
+#' @description function creates the approx function for spring run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 #' @param life_stage
@@ -92,7 +96,8 @@ SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   return(SR_approx)
 }
 
-#' function creates the approx function for spring run
+#' Steelhead rearing habitat flow to area approximator
+#' @description function creates the approx function for spring run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 #' @param life_stage
@@ -116,7 +121,8 @@ ST_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   return(ST_approx)
 }
 
-#' function uses a region to return approx functions for watersheds within it with models
+#' Regional rearing habitat flow to area approximator
+#' @description function uses a region to return approx functions for watersheds within it with models
 #' @param region Region name, example "Upper-mid Sacramento River"
 #' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
 #' @return a list of approx functions obtained from calliong spawning_approx()
