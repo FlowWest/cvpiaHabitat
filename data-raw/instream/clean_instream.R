@@ -327,7 +327,8 @@ devtools::use_data(american_river_instream, overwrite = TRUE)
 # naming convention: SPECIES_LIFESTAGE_UNITS for each column
 
 # battle creek
-battle_creek_instream <- battle_creek_instream %>%
+battle_creek <- read_csv("data-raw/instream/battle_creek_instream.csv", skip=2)
+battle_creek_instream <- battle_creek %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -338,7 +339,8 @@ battle_creek_instream <- battle_creek_instream %>%
 devtools::use_data(battle_creek_instream, overwrite = TRUE)
 
 # bear river
-bear_river_instream <- bear_river_instream %>%
+bear_river <- read_csv("data-raw/instream/bear_river_instream.csv", skip = 2)
+bear_river_instream <- bear_river %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_juv_wua = juv_WUA,
@@ -348,7 +350,8 @@ devtools::use_data(bear_river_instream, overwrite = TRUE)
 
 
 # butte creek
-butte_creek_instream <- butte_creek_instream %>%
+butte_creek <- read_csv("data-raw/instream/butte_creek_instream.csv", skip=1)
+butte_creek_instream <- butte_creek %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -359,7 +362,8 @@ butte_creek_instream <- butte_creek_instream %>%
 devtools::use_data(butte_creek_instream, overwrite = TRUE)
 
 # calaveras river
-calaveras_river_instream <- calaveras_river_instream %>%
+calaveras_river <- read_csv("data-raw/instream/calaveras_river_instream.csv", skip=2)
+calaveras_river_instream <- calaveras_river %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -368,14 +372,13 @@ calaveras_river_instream <- calaveras_river_instream %>%
 
 devtools::use_data(calaveras_river_instream, overwrite = TRUE)
 
-# clear creek
-clear_creek_instream
+# clear creek cleaned above
 
-# cottonwood creek
-cottonwood_creek_instream
+# cottonwood creek done above
 
 # cow creek
-cow_creek_instream <- cow_creek_instream %>%
+cow_creek <- read_csv("data-raw/instream/cow_creek_instream.csv", skip=1)
+cow_creek_instream <- cow_creek %>%
   select(flow_cfs,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
@@ -384,7 +387,8 @@ cow_creek_instream <- cow_creek_instream %>%
 devtools::use_data(cow_creek_instream, overwrite = TRUE)
 
 # feather river
-feather_river_instream <- feather_river_instream %>%
+feather_river <- read_csv("data-raw/instream/feather_river_instream.csv", skip=1)
+feather_river_instream <- feather_river %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -394,7 +398,8 @@ feather_river_instream <- feather_river_instream %>%
 devtools::use_data(feather_river_instream, overwrite = TRUE)
 
 # merced
-merced_river_instream <- merced_river_instream  %>%
+merced_river <- read_csv("data-raw/instream/merced_river_instream.csv", skip = 1)
+merced_river_instream <- merced_river  %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -405,7 +410,8 @@ merced_river_instream <- merced_river_instream  %>%
 devtools::use_data(merced_river_instream, overwrite = TRUE)
 
 # moke
-mokelumne_river_instream <- mokelumne_river_instream %>%
+mokelumne_river <- read_csv("data-raw/instream/mokelumne_river_instream.csv", skip = 1)
+mokelumne_river_instream <- mokelumne_river %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -414,11 +420,12 @@ mokelumne_river_instream <- mokelumne_river_instream %>%
 
 devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
-# stan
-stanislaus_river_instream
+# stanislaus done above
 
 # tuo
-tuolumne_river_instream <- tuolumne_river_instream %>%
+tuolumne_river <- read_csv("data-raw/instream/tuolumne_river_instream.csv", skip = 1)
+
+tuolumne_river_instream <- tuolumne_river %>%
   select(flow_cfs,
          FR_spawn_wua = spawn_WUA,
          FR_fry_wua = fry_WUA,
@@ -431,7 +438,11 @@ tuolumne_river_instream <- tuolumne_river_instream %>%
 
 devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
 
+<<<<<<< HEAD
 
+=======
+# upper mid done above
+>>>>>>> e1b2e8ad8e929b09f198e49aadba18814e289238
 
 
 
