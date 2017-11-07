@@ -320,9 +320,9 @@
 #' @format dataframe with 41 rows and 6 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{adult_trout_WUA}{adult trout WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
@@ -343,9 +343,9 @@
 #' @format dataframe with 35 rows and 6 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{adult_trout_WUA}{adult trout WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
@@ -363,8 +363,8 @@
 #' @format dataframe with 4 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile (>50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile (>50 mm) WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -382,9 +382,9 @@
 #' @format dataframe with 10 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -401,15 +401,15 @@
 #' @format dataframe with 23 rows and 11 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_fry}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{FR_juv}{fall run juvenile WUA in square feet per 1000 feet}
-#'   \item{FR_spawning}{fall run spawning WUA in square feet per 1000 feet}
-#'   \item{SR_fry}{spring run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{SR_juv}{spring run fry juvenile WUA in square feet per 1000 feet}
-#'   \item{SR_spawning}{spring run fry spawning WUA in square feet per 1000 feet}
-#'   \item{ST_fry}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{ST_juv}{steelhead juvenile WUA in square feet per 1000 feet}
-#'   \item{ST_spawning}{steelhead spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{fall run juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{fall run spawning WUA in square feet per 1000 feet}
+#'   \item{SR_fry_wua}{spring run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{SR_juv_wua}{spring run fry juvenile WUA in square feet per 1000 feet}
+#'   \item{SR_spawn_wua}{spring run fry spawning WUA in square feet per 1000 feet}
+#'   \item{ST_fry_wua}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{ST_juv_wua}{steelhead juvenile WUA in square feet per 1000 feet}
+#'   \item{ST_spawn_wua}{steelhead spawning WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -429,9 +429,9 @@
 #' @format dataframe with 36 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -449,9 +449,9 @@
 #' @format dataframe with 7 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -468,9 +468,9 @@
 #' @format dataframe with 30 rows and 6 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{adult_steelhead_WUA}{adult steelhead WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
@@ -489,9 +489,9 @@
 #' @format dataframe with 14 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{fry_WUA}{fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -509,8 +509,8 @@
 #' @format dataframe with 30 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{fry_WUA}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{juv_WUA}{fall run juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{fall run juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -528,11 +528,11 @@
 #' @format dataframe with 47 rows and 7 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{spawn_WUA}{spawning WUA in square feet per 1000 feet}
-#'   \item{FR_fry}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{FR_juv}{fall run juvenile WUA in square feet per 1000 feet}
-#'   \item{ST_fry}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{ST_juv}{steelhead juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{fall run juvenile WUA in square feet per 1000 feet}
+#'   \item{ST_fry_wua}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{ST_juv_wua}{steelhead juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -640,7 +640,7 @@
 #' @format dataframe with 45 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -663,7 +663,7 @@
 #' @format dataframe with 45 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{juv_WUA}{juvenile WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -685,8 +685,8 @@
 #' @format dataframe with 30 rows and 4 variables:
 #' \describe{
 #' \item{flow_cfs}{integer flow value in cubic feet per second}
-#' \item{FR_spawning}{Fall Run spawning WUA in square feet per 1000 feet}
-#' \item{ST_spawning}{Steelhead spawning WUA in square feet per 1000 feet}
+#' \item{FR_spawn_wua}{Fall Run spawning WUA in square feet per 1000 feet}
+#' \item{ST_spawn_wua}{Steelhead spawning WUA in square feet per 1000 feet}
 #' \item{watershed}{name of watershed}
 #' }
 #'
@@ -703,13 +703,13 @@
 #' @format dataframe with 34 rows and 10 variables
 #' \describe{
 #' \item{flow_cfs}{numeric flow value in cubic feet per second}
-#' \item{FR_spawning}{Fall Run spawning WUA in square feet per 1000 feet}
+#' \item{FR_spawn_wua}{Fall Run spawning WUA in square feet per 1000 feet}
 #' \item{FR_SR_fry}{Fall and Spring Run fry WUA in square feet per 1000 feet}
 #' \item{FR_SR_juv}{Fall and Spring Run juvenile WUA in square feet per 1000 feet}
-#' \item{SR_spawning}{Spring Run spawning WUA in square feet per 1000 feet}
-#' \item{ST_fry}{Steelhead fry WUA in square feet per 1000 feet}
-#' \item{ST_juv}{Steelhead juvenile WUA in square feet per 1000 feet}
-#' \item{ST_spawning}{Steelhead spawning WUA in square feet per 1000 feet}
+#' \item{SR_spawn_wua}{Spring Run spawning WUA in square feet per 1000 feet}
+#' \item{ST_fry_wua}{Steelhead fry WUA in square feet per 1000 feet}
+#' \item{ST_juv_wua}{Steelhead juvenile WUA in square feet per 1000 feet}
+#' \item{ST_spawn_wua}{Steelhead spawning WUA in square feet per 1000 feet}
 #' \item{watershed}{name of watershed}
 #' }
 #'
@@ -723,9 +723,9 @@
 #' @format dataframe with 30 rows and 4 variables:
 #' \describe{
 #' \item{flow_cfs}{integer flow value in cubic feet per second}
-#' \item{spawn_WUA}{chinook spawning WUA in square feet per 1000 feet}
-#' \item{fry_WUA}{chinook fry (up to 50 mm) WUA in square feet per 1000 feet}
-#' \item{juv_WUA}{chinook juvenile WUA in square feet per 1000 feet}
+#' \item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
+#' \item{FR_fry_wua}{chinook fry (up to 50 mm) WUA in square feet per 1000 feet}
+#' \item{FR_juv_wua}{chinook juvenile WUA in square feet per 1000 feet}
 #' \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
 #' \item{ST_fry_WUA}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
 #' \item{ST_juv_WUA}{steelhead juvenile WUA in square feet per 1000 feet}
