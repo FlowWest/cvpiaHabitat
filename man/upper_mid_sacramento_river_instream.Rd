@@ -24,9 +24,5 @@ as a function of flow in cubic feet per second
 The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from Battle Creek to
 the confluence with the Feather River (189.1 mi). The CVPIA Upper-mid Sacramento River extends
 from Red Blurr to Wilkins Slough (122.45 mi).
-
-\strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
-American River (58.0 mi). To calculate the available habitat, use a proportional combination of
-the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
 }
 \keyword{datasets}

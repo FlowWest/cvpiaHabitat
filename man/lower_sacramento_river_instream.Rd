@@ -24,9 +24,5 @@ as a function of flow in cubic feet per second
 The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from
 the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower Sacramento River extends
 from the confluence with the American River to Freeport (13.7 mi).
-
-\strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
-American River (58.0 mi). To calculate the available habitat, use a proportional combination of
-the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
 }
 \keyword{datasets}

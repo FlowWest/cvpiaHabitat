@@ -11,8 +11,11 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'   The study only represents the lower 25.5 miles of the Merced River. The modeled results were scaled up to
-#'   represent the whole rearing region. We calculate an area per river mile and assign the product of
-#'   the river miles and the weighted area rate for each segment. The study area is defined in the CV Habitat Exchange
+#'   represent the whole rearing region. We calculate area per river mile from modeled reach and assign the product of the
+#'   river mile distance and floodplain area per river mile for each reach defined as either in the Valley Lowland area,
+#'   in a higher gradient / laterally confined area between Valley Lowland areas, or in the dredge tailing area.
+#'   The study area is defined in the
+#'   \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/Memo_Fish_30_August_2017.pdf}{CV Habitat Exchange}
 #'   as being within the Valley Lowland, all other reaches with that same category are given the full area rate.
 #'   River miles outside the Valley Lowland category recieve some proportion of the area rate, detailed below:
 #'   \itemize{
@@ -23,7 +26,9 @@
 #'     \item RM 47.0 - 52.0 not "Valley Lowland" and in dredge tailings, use 0.1X area/RM from modeled reach.
 #'   }
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+#' @source Modeling: \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+#'
+#' Scaling Criteria developed by Mark Tompkins \email{mtompkins@@flowwest.com}
 "merced_river_floodplain"
 
 #' Yuba River Flow to Floodplain Habitat Area Relationship
@@ -659,12 +664,29 @@
 #' the confluence with the Feather River (189.1 mi). The CVPIA Upper-mid Sacramento River extends
 #' from Red Blurr to Wilkins Slough (122.45 mi).
 #'
-#' \strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
-#' American River (58.0 mi). To calculate the available habitat, use a proportional combination of
-#' the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
-#'
 #' @source NMFS Life Cycle Model, Hendrix 2017
 "upper_mid_sacramento_river_instream"
+
+#' Lower-Mid Sacramento River Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 45 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The rearing WUA was derived from a HEC-RAS 1D model. The CVPIA Lower-mid Sacramento River extends
+#' from Wilkins Slough to the American River (58.0 mi). This reach overlaps with two of the study's, Battle Creek to
+#' the confluence with the Feather River (189.1 mi) and the confluence with the Feather River to Freeport (33.4 mi).
+#' To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
+#' above (34\%) and below (66\%) the Feather River. Using these values we calculate a weighted average WUA from both of the studies.
+#'
+#' @source NMFS Life Cycle Model, Hendrix 2017
+'lower_mid_sacramento_river_instream'
 
 #' Lower Sacramento River Instream Flow to Habitat Area Relationship
 #'
@@ -681,10 +703,6 @@
 #' @details The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from
 #' the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower Sacramento River extends
 #' from the confluence with the American River to Freeport (13.7 mi).
-#'
-#' \strong{NOTE:} The CVPIA Lower-mid Sacramento River segment is from Wilkins Slough to the
-#' American River (58.0 mi). To calculate the available habitat, use a proportional combination of
-#' the WUA from the Upper-mid (38.3 mi, 2/3) and Lower (19.7 mi, 1/3) Sacramento instream values.
 #'
 #' @source NMFS Life Cycle Model, Hendrix 2017
 "lower_sacramento_river_instream"
