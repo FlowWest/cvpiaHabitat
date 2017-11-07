@@ -348,7 +348,7 @@ yuba_ST_juv <- yuba %>%
 yuba_juv <- bind_cols(yuba_FR_SR_juv,
                       yuba_ST_juv) %>% select(flow_cfs, contains("juv_wua"))
 
-yuba_processed <- bind_cols(
+yuba_river_instream <- bind_cols(
   yuba_spawn,
   yuba_fry,
   yuba_juv
