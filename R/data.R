@@ -1,12 +1,3 @@
-# <<<<<<< HEAD
-# #' Upper Sacramento River Flow to Floodplain Habitat Area Relationship
-# #'
-# #' @description A dataset containing the floodplain habitat area in acres as a
-# #' function of flow in cubic feet per second
-# #'
-# #' @format dataframe with 75 rows
-# =======
-
 #' Merced River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
