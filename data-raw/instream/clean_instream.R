@@ -115,22 +115,56 @@ upper_mid_sacramento_river_instream <- sacramento_instream %>%
 
 devtools::use_data(upper_mid_sacramento_river_instream, overwrite = TRUE)
 
-# TODO get proportion of WUA for lower mid and double check others
+
 # lower mid sacramento has 201843.335 feet in the battle to feather study area
 # and 104198.716079 feet in the feather to freeport study area
 # the lower mid sac is 306042.051 feet long
-top_lower_mid <- 201843.335/306042.051 #34%
-bottom_lower_mid <- 104198.716079/306042.051 #66%
+prop_above_feather <- 201843.335/306042.051 #34%
+prop_below_feather  <- 104198.716079/306042.051 #66%
 
-lower_mid_sacramento_river_instream
+# build approx functions to use for filling in missing values at flows from other study area
 sacramento_instream %>%
-  mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower-mid Sacramento River') %>% glimpse()
+  group_by(reach) %>%
+  summarise(min_flow = min(flow_cfs), max_flow = max(flow_cfs))
 
+bat_to_feather <- sacramento_instream %>%
+  mutate(juv_WUA = juv_WUA/miles/5.28) %>%
+  filter(reach == 'Battle Creek to Feather River')
+
+# add 0 value to extrapolate below min flow value
+feather_to_free <-  sacramento_instream %>%
+  mutate(juv_WUA = juv_WUA/miles/5.28) %>%
+  filter(reach == 'Feather River to Freeport') %>%
+  select(flow_cfs, juv_WUA) %>%
+  bind_rows(tibble(flow_cfs = 0, juv_WUA = 0))
+
+
+bat_to_feather_approx <- approxfun(bat_to_feather$flow_cfs, bat_to_feather$juv_WUA, rule = 2)
+feather_to_free_approx <- approxfun(feather_to_free$flow_cfs, feather_to_free$juv_WUA, rule = 2)
+
+lower_mid_sacramento_river_instream <- sacramento_instream %>%
+  mutate(juv_WUA = juv_WUA/miles/5.28) %>%
+  select(flow_cfs, reach, juv_WUA) %>%
+  spread(reach, juv_WUA) %>%
+  mutate(`Battle Creek to Feather River` = ifelse(is.na(`Battle Creek to Feather River`),
+                                                  bat_to_feather_approx(flow_cfs), `Battle Creek to Feather River`),
+         `Feather River to Freeport` = ifelse(is.na(`Feather River to Freeport`),
+                                              feather_to_free_approx(flow_cfs), `Feather River to Freeport`),
+         FR_juv_wua =
+           prop_above_feather * `Battle Creek to Feather River` +
+           prop_below_feather *`Feather River to Freeport`,
+         watershed = 'Lower-mid Sacramento River') %>%
+  select(flow_cfs, FR_juv_wua, watershed)
+
+devtools::use_data(lower_mid_sacramento_river_instream)
 
 lower_sacramento_river_instream <- sacramento_instream %>%
   mutate(juv_WUA = juv_WUA/miles/5.28, watershed = 'Lower Sacramento River') %>%
   filter(reach == 'Feather River to Freeport') %>%
-  select(flow_cfs, juv_WUA, watershed)
+  select(flow_cfs, juv_WUA, watershed) %>%
+  select(flow_cfs,
+         FR_juv_wua = juv_WUA,
+         watershed)
 
 devtools::use_data(lower_sacramento_river_instream, overwrite = TRUE)
 
@@ -359,14 +393,6 @@ feather_river_instream <- feather_river_instream %>%
 
 devtools::use_data(feather_river_instream, overwrite = TRUE)
 
-# lower sac
-lower_sacramento_instream <- lower_sacramento_instream %>%
-  select(flow_cfs,
-         FR_juv_wua = juv_WUA,
-         watershed)
-
-devtools::use_data(lower_sacramento_instream, overwrite = TRUE)
-
 # merced
 merced_river_instream <- merced_river_instream  %>%
   select(flow_cfs,
@@ -405,8 +431,6 @@ tuolumne_river_instream <- tuolumne_river_instream %>%
 
 devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
 
-# upper mid
-upper_mid_sacramento_instream
 
 
 
