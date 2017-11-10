@@ -198,8 +198,10 @@ dag_to_feather_ST_spawn_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST
 dag_to_feather_ST_juv_area <- approxfun(dag_to_feather$Flow, dag_to_feather$ST_juv)
 
 # yuba proportion that cover yuba based on dag location
-yuba_prop_above_dag <- .5
-yuba_prop_below_dag <- .5
+yuba_miles <- yuba %>% select(miles) %>% unique() %>% pull()
+yuba_miles_proportions <- yuba_miles/sum(yuba_miles)
+yuba_prop_above_dag <- yuba_miles_proportions[1]
+yuba_prop_below_dag <- yuba_miles_proportions[2]
 
 # Spawn Columns ---
 yuba_SR_spawn <- yuba %>%
