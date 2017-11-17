@@ -60,3 +60,21 @@ floodplain_approx <- function(watershed) {
 
   approxfun(df$flow_cfs, df$FR_floodplain_acres, rule = 2)
 }
+
+#' Apply Suitability Factor
+#'
+#' @description The modeled flow to floodplain area relationships within the package are for total innundated area.
+#' This function applys a suitability factor to the total area in order to estimate total suitable floodplain area
+#' available at a given flow.
+#'
+#' @param fp_hab_sq_meters Total floodplain area in square meters
+#' @param suitable_factor Habitat suitability factor, default value of .27 from
+#' U.S. Fish and Wildlife Services San Joaquin River Restoration Program
+#' \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/20121127_MinimumRearingHabitat.pdf}{2012 report.}
+#'
+#' @return Total suitable floodplain area in square meters
+#'
+#' @export
+apply_suitability <- function(fp_hab_sq_meters, suitable_factor = .27) {
+  return(fp_hab_sq_meters * suitable_factor)
+}
