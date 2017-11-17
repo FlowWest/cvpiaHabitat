@@ -35,18 +35,11 @@ set_instream_habitat <- function(watershed, species, life_stage, flow) {
   }
 }
 
-
-# FR_juv means modeled
-# FR_fry means frying modeling, false use FR_juv
-# SR_juv NA means return NA, SR_fry T use SR_fry, if F us FR modeling
-# ST_juv use ST_juv modeling else use FR modeling
-
 #' Fall Run rearing habitat flow to area approximator
-#' @name FR_rearing_approx
 #' @description function creates the approx function for fall run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
-#' @param life_stage
+#' @param life_stage one of 'spawn', 'juv' or 'fry'
 FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
   # check to see if lifestage is fry
   if (life_stage == "fry") {
@@ -70,7 +63,7 @@ FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
 #' @description function creates the approx function for spring run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
-#' @param life_stage
+#' @param life_stage one of 'spawn', 'juv' or 'fry'
 SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   # check if sr floodplain has modeling
   SR_has_modeling <- dplyr::pull(modeling_lookup, SR_juv)
@@ -100,7 +93,7 @@ SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
 #' @description function creates the approx function for spring run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
-#' @param life_stage
+#' @param life_stage one of 'spawn', 'juv' or 'fry'
 ST_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   # check if sr floodplain has modeling
   ST_has_modeling <- dplyr::pull(modeling_lookup, ST_juv)

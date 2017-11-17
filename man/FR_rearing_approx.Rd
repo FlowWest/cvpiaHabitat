@@ -10,6 +10,8 @@ FR_rearing_approx(relationship_df, modeling_lookup, life_stage)
 \item{relationship_df}{dataframe from cvpiaHabitat with a flow to wua relationship}
 
 \item{modeling_lookup}{modeling lookup dataframe from cvpiaHabitat}
+
+\item{life_stage}{one of 'spawn', 'juv' or 'fry'}
 }
 \description{
 function creates the approx function for fall run
