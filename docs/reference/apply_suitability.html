@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cottonwood Creek Instream Flow to Habitat Area Relationship — cottonwood_creek_instream • cvpiaHabitat</title>
+<title>Apply Suitability Factor — apply_suitability • cvpiaHabitat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -75,46 +75,44 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cottonwood Creek Instream Flow to Habitat Area Relationship</h1>
+    <h1>Apply Suitability Factor</h1>
     </div>
 
     
-    <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-as a function of flow in cubic feet per second</p>
+    <p>The modeled flow to floodplain area relationships within the package are for total innundated area.
+This function applys a suitability factor to the total area in order to estimate total suitable floodplain area
+available at a given flow.</p>
     
 
-    <pre class="usage"><span class='no'>cottonwood_creek_instream</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>dataframe with 36 rows and 5 variables:</p><dl class='dl-horizontal'>
-  <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_spawn_wua</dt><dd><p>spawning WUA in square feet per 1000 feet</p></dd>
-  <dt>FR_fry_wua</dt><dd><p>fry (up to 50 mm) WUA in square feet per 1000 feet</p></dd>
-  <dt>FR_juv_wua</dt><dd><p>juvenile WUA in square feet per 1000 feet</p></dd>
-  <dt>watershed</dt><dd><p>name of watershed</p></dd>
-</dl>
+    <pre class="usage"><span class='fu'>apply_suitability</span>(<span class='no'>fp_hab_sq_meters</span>, <span class='kw'>suitable_factor</span> <span class='kw'>=</span> <span class='fl'>0.27</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CDFW1979_CottonwoodSpawningIFIM.PDF'>CDFW 1979 and FWS 2014</a></p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fp_hab_sq_meters</th>
+      <td><p>Total floodplain area in square meters</p></td>
+    </tr>
+    <tr>
+      <th>suitable_factor</th>
+      <td><p>Habitat suitability factor, default value of .27 from
+U.S. Fish and Wildlife Services San Joaquin River Restoration Program
+<a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/20121127_MinimumRearingHabitat.pdf'>2012 report.</a></p></td>
+    </tr>
+    </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The spawning WUA values were derived from a PHABSIM model. The rearing values are from the FWS 2014
-River2D model. The results are for Fall Run.</p>
+    <p>Total suitable floodplain area in square meters</p>
     
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
           </ul>
 
   </div>
