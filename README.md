@@ -1,9 +1,11 @@
-*Notes for Gard Spreadsheet* 
-* Consumnes has just one value in the floodplain area column 
-* Mokelumne has just one value in the floodplain area column
+## Modeled Habitat Areas for the CVPIA SIT Model
+*This package is for estimating spawning and rearing (instream and floodplain) habitat within the Sacramento and San Joaquin river systems for use with the CVPIA salmon life cycle model.*
 
-*Funky Instream*
-* Sutter and Yolo WUA in sq ft, what length was study done on? ask mark tompkins for lenght of the bypasses
+### About the Models
+2D and 1D  
+blah  
+Mark Gard  
 
+When no modeling exists method...
 
 
