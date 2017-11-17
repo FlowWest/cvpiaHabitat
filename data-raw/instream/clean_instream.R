@@ -62,6 +62,7 @@ up_sac <- read_csv('data-raw/instream/upper_sacramento_river_instream.csv', skip
 View(up_sac)
 glimpse(up_sac)
 
+# TODO fix upper sac rearing to include battle to red bluff from the battle to feather model
 #6-2 upper sac spawning, 6-4 upper sac rearing
 upper_sac_ACID_boards_out <- up_sac %>%
   gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
@@ -526,11 +527,6 @@ tuolumne_river_instream <- tuolumne_river %>%
 
 devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
 
-<<<<<<< HEAD
-
-=======
-# upper mid done above
->>>>>>> e1b2e8ad8e929b09f198e49aadba18814e289238
 
 
 
