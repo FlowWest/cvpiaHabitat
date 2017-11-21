@@ -11,12 +11,13 @@ home:
 
 reference:
 - title: Habitat Functions
-  desc: Functions that create habitat estimates given flow and some additional helpers.
+  desc: Functions that create habitat estimates given flow and some additional helper functions.
   contents:
   - set_spawning_habitat
   - set_instream_habitat
   - set_floodplain_habitat
   - wua_to_area
+  - apply_suitability
   - square_meters_to_acres
   - acres_to_square_meters
 - title: Instream Habitat Datasets
