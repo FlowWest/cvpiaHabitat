@@ -1,18 +1,17 @@
-## Modeled Habitat Areas for the CVPIA SIT Model
+-----
+
+### Modeled Habitat Areas for CVPIA   
 *This package is for estimating spawning and rearing (instream and floodplain) habitat within the Sacramento and San Joaquin river systems for use with the CVPIA salmon life cycle model.*
 
-### Installation
-
------
+#### Installation   
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("FlowWest/cvpiaHabitat")
 ```
 
-### Usage
+#### Usage    
 
------
 ``` r
 # determine the spawning habitat area at Cottonwood Creek for Fall Run Chinook at 1567 cfs
 set_spawning_habitat("Cottonwood Creek", "fr", 1567)
@@ -30,7 +29,8 @@ apply_suitability(fp) # total suitable area
 
 ```
 
-### About the Models
+#### About the Models    
+
 2D and 1D  
 blah  
 Mark Gard  
