@@ -8,10 +8,6 @@ desc: soon to be trash or updated
   - floodplain_2017_metadata
 
 fix data
-  - upper_sacramento_river_floodplain
-  - upper_mid_sacramento_river_floodplain
-  - lower_mid_sacramento_river_floodplain
-  - lower_sacramento_river_floodplain
 
 - title: Miscellaneous Datasets
   desc: Datasets used as reference tables

@@ -1,3 +1,87 @@
+#' Upper Sacramento River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 240 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from a HEC-RAS 1D model, Hendrix 2017.
+#' The CVPIA Upper Sacramento River extends from Keswick to Red Bluff (59.2 mi).
+#' This reach overlaps with two of the study's, Keswick to Battle Creek (55.5 mi) and Battle Creek to
+#' the confluence with the Feather River (189.1 mi). To scale the study's results to CVPIA's extents,
+#' the floodplain acerage at a given flow is the weighted average of the floodplain
+#' area per river mile within each study.
+#'
+#' @source \href{https://www.google.com}{missing}
+"upper_sacramento_river_floodplain"
+
+#' Upper-mid Sacramento River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 240 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from HEC-RAS 1D model, Hendrix 2017.
+#' The study's extent is from Battle Creek to the confluence with the Feather River (189.1 mi).
+#' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
+#' The study results are scaled to the CVPIA extent.
+#'
+#' @source \href{https://www.google.com}{NMFS Life Cycle Model, Hendrix 2017 [missing url]}
+"upper_mid_sacramento_river_floodplain"
+
+#' Lower-mid Sacramento River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 240 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from a HEC-RAS 1D model. The CVPIA Lower-mid Sacramento River extends
+#' from Wilkins Slough to the American River (58.0 mi). This reach overlaps with two of the study's, Battle Creek to
+#' the confluence with the Feather River (189.1 mi) and the confluence with the Feather River to Freeport (33.4 mi).
+#' To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
+#' above (34\%) and below (66\%) the Feather River. The floodplain acerage at a given flow is the weighted average
+#' of the floodplain area per river mile within each study.
+#'
+#' @source \href{https://www.google.com}{missing}
+"lower_mid_sacramento_river_floodplain"
+
+#' Lower Sacramento River Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 240 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The habitat area was derived from a HEC-RAS 1D model. The study's extent is
+#' from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower
+#' Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
+#' The study results are scaled to the CVPIA extent.
+#'
+#' @source \href{https://www.google.com}{missing}
+"lower_sacramento_river_floodplain"
+
 #' Merced River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
