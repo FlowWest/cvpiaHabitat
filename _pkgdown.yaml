@@ -1,0 +1,71 @@
+title: cvpiaHabitat
+url: https://flowwest.github.io/cvpiaHabitat/
+template:
+  params:
+    bootswatch: paper
+
+home:
+  links:
+  - text: Learn more about CVPIA
+    href: https://www.usbr.gov/mp/cvpia/
+
+reference:
+- title: Habitat Functions
+  desc: Functions that create habitat estimates given flow and some additional helpers.
+  contents:
+  - set_spawning_habitat
+  - set_instream_habitat
+  - set_floodplain_habitat
+  - wua_to_area
+  - square_meters_to_acres
+  - acres_to_square_meters
+- title: Instream Habitat Datasets
+  desc: Flow to area rearing and spawning modeled relationships
+  contents:
+  - american_river_instream
+  - battle_creek_instream
+  - bear_river_instream
+  - butte_creek_instream
+  - calaveras_river_instream
+  - clear_creek_instream
+  - cottonwood_creek_instream
+  - cow_creek_instream
+  - feather_river_instream
+  - merced_river_instream
+  - mokelumne_river_instream
+  - upper_sac_ACID_boards_in
+  - upper_sac_ACID_boards_out
+  - upper_mid_sacramento_river_instream
+  - lower_mid_sacramento_river_instream
+  - lower_sacramento_river_instream
+  - stanislaus_river_instream
+  - tuolumne_river_instream
+  - yuba_river_instream
+- title: Floodplain Habitat Datasets
+  desc: Flow to floodplain area modeled relationships
+  contents:
+  - american_river_floodplain
+  - bear_river_floodplain
+  - big_chico_creek_floodplain
+  - butte_creek_floodplain
+  - calaveras_river_floodplain
+  - cosumnes_river_floodplain
+  - cottonwood_creek_floodplain
+  - deer_creek_floodplain
+  - elder_creek_floodplain
+  - feather_river_floodplain
+  - merced_river_floodplain
+  - mokelumne_river_floodplain
+  - san_joaquin_river_floodplain
+  - stanislaus_river_floodplain
+  - tuolumne_river_floodplain
+  - yuba_river_floodplain
+
+navbar:
+  type: default
+  left:
+  - text: 'Reference'
+    href: reference/index.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/flowwest/cvpiaHabitat

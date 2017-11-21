@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/paper/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -52,18 +52,17 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
-    <span class="fa fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/flowwest/cvpiaHabitat">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -92,34 +91,60 @@
       <tbody>
         <tr>
           <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
+            <h2 id="section-habitat-functions" class="hasAnchor"><a href="#section-habitat-functions" class="anchor"></a>Habitat Functions</h2>
+            <p class="section-desc"><p>Functions that create habitat estimates given flow and some additional helpers.</p></p>
           </th>
         </tr>
         <tr>
           <!--  -->
           <td>
-            <p><code><a href="acres_to_square_meters.html">acres_to_square_meters</a></code> </p>
+            <p><code><a href="set_spawning_habitat.html">set_spawning_habitat</a></code> </p>
           </td>
-          <td><p>Acres to Square Meters</p></td>
+          <td><p>Set spawning habitat area based on watershed, species, life stage and flow.</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="american_river_floodplain.html">american_river_floodplain</a></code> </p>
+            <p><code><a href="set_instream_habitat.html">set_instream_habitat</a></code> </p>
           </td>
-          <td><p>American River Flow to Floodplain Habitat Area Relationship</p></td>
+          <td><p>Set instream habitat</p></td>
         </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="set_floodplain_habitat.html">set_floodplain_habitat</a></code> </p>
+          </td>
+          <td><p>set floodplain area based on a watershed, species and a flow</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="wua_to_area.html">wua_to_area</a></code> </p>
+          </td>
+          <td><p>Function converts a weighted usable area (WUA) to area in square meters</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="square_meters_to_acres.html">square_meters_to_acres</a></code> </p>
+          </td>
+          <td><p>Square Meters to Acres</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="acres_to_square_meters.html">acres_to_square_meters</a></code> </p>
+          </td>
+          <td><p>Acres to Square Meters</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-instream-habitat-datasets" class="hasAnchor"><a href="#section-instream-habitat-datasets" class="anchor"></a>Instream Habitat Datasets</h2>
+            <p class="section-desc"><p>Flow to area rearing and spawning modeled relationships</p></p>
+          </th>
+        </tr>
+        <tr>
           <!--  -->
           <td>
             <p><code><a href="american_river_instream.html">american_river_instream</a></code> </p>
           </td>
           <td><p>American River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="apply_suitability.html">apply_suitability</a></code> </p>
-          </td>
-          <td><p>Apply Suitability Factor</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -129,39 +154,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="bear_river_floodplain.html">bear_river_floodplain</a></code> </p>
-          </td>
-          <td><p>Bear River Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="bear_river_instream.html">bear_river_instream</a></code> </p>
           </td>
           <td><p>Bear River Instream Flow to Habitat Area Relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="big_chico_creek_floodplain.html">big_chico_creek_floodplain</a></code> </p>
-          </td>
-          <td><p>Big Chico Creek Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="butte_creek_floodplain.html">butte_creek_floodplain</a></code> </p>
-          </td>
-          <td><p>Butte Creek Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="butte_creek_instream.html">butte_creek_instream</a></code> </p>
           </td>
           <td><p>Butte Creek Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="calaveras_river_floodplain.html">calaveras_river_floodplain</a></code> </p>
-          </td>
-          <td><p>Calaveras River Flow to Floodplain Habitat Area Relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -177,18 +178,6 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="cosumnes_river_floodplain.html">cosumnes_river_floodplain</a></code> </p>
-          </td>
-          <td><p>Cosumnes River Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cottonwood_creek_floodplain.html">cottonwood_creek_floodplain</a></code> </p>
-          </td>
-          <td><p>Cottonwood Creek Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="cottonwood_creek_instream.html">cottonwood_creek_instream</a></code> </p>
           </td>
           <td><p>Cottonwood Creek Instream Flow to Habitat Area Relationship</p></td>
@@ -198,6 +187,122 @@
             <p><code><a href="cow_creek_instream.html">cow_creek_instream</a></code> </p>
           </td>
           <td><p>Cow Creek Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="feather_river_instream.html">feather_river_instream</a></code> </p>
+          </td>
+          <td><p>Feather River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="merced_river_instream.html">merced_river_instream</a></code> </p>
+          </td>
+          <td><p>Merced River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="mokelumne_river_instream.html">mokelumne_river_instream</a></code> </p>
+          </td>
+          <td><p>Mokelumne River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="upper_sac_ACID_boards_in.html">upper_sac_ACID_boards_in</a></code> </p>
+          </td>
+          <td><p>Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards In)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="upper_sac_ACID_boards_out.html">upper_sac_ACID_boards_out</a></code> </p>
+          </td>
+          <td><p>Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards Out)</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="upper_mid_sacramento_river_instream.html">upper_mid_sacramento_river_instream</a></code> </p>
+          </td>
+          <td><p>Upper-Mid Sacramento River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="lower_mid_sacramento_river_instream.html">lower_mid_sacramento_river_instream</a></code> </p>
+          </td>
+          <td><p>Lower-Mid Sacramento River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="lower_sacramento_river_instream.html">lower_sacramento_river_instream</a></code> </p>
+          </td>
+          <td><p>Lower Sacramento River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="stanislaus_river_instream.html">stanislaus_river_instream</a></code> </p>
+          </td>
+          <td><p>Stanislaus River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="tuolumne_river_instream.html">tuolumne_river_instream</a></code> </p>
+          </td>
+          <td><p>Tuolumne River Instream Flow to Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="yuba_river_instream.html">yuba_river_instream</a></code> </p>
+          </td>
+          <td><p>Yuba River Instream Flow to Habitat Area Relationship</p></td>
+        </tr>
+      </tbody><tbody>
+        <tr>
+          <th colspan="2">
+            <h2 id="section-floodplain-habitat-datasets" class="hasAnchor"><a href="#section-floodplain-habitat-datasets" class="anchor"></a>Floodplain Habitat Datasets</h2>
+            <p class="section-desc"><p>Flow to floodplain area modeled relationships</p></p>
+          </th>
+        </tr>
+        <tr>
+          <!--  -->
+          <td>
+            <p><code><a href="american_river_floodplain.html">american_river_floodplain</a></code> </p>
+          </td>
+          <td><p>American River Flow to Floodplain Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="bear_river_floodplain.html">bear_river_floodplain</a></code> </p>
+          </td>
+          <td><p>Bear River Flow to Floodplain Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="big_chico_creek_floodplain.html">big_chico_creek_floodplain</a></code> </p>
+          </td>
+          <td><p>Big Chico Creek Flow to Floodplain Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="butte_creek_floodplain.html">butte_creek_floodplain</a></code> </p>
+          </td>
+          <td><p>Butte Creek Flow to Floodplain Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="calaveras_river_floodplain.html">calaveras_river_floodplain</a></code> </p>
+          </td>
+          <td><p>Calaveras River Flow to Floodplain Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="cosumnes_river_floodplain.html">cosumnes_river_floodplain</a></code> </p>
+          </td>
+          <td><p>Cosumnes River Flow to Floodplain Habitat Area Relationship</p></td>
+        </tr><tr>
+          <!--  -->
+          <td>
+            <p><code><a href="cottonwood_creek_floodplain.html">cottonwood_creek_floodplain</a></code> </p>
+          </td>
+          <td><p>Cottonwood Creek Flow to Floodplain Habitat Area Relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -219,45 +324,9 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="feather_river_instream.html">feather_river_instream</a></code> </p>
-          </td>
-          <td><p>Feather River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="FR_rearing_approx.html">FR_rearing_approx</a></code> </p>
-          </td>
-          <td><p>Fall Run rearing habitat flow to area approximator</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="FR_spawn_approx.html">FR_spawn_approx</a></code> </p>
-          </td>
-          <td><p>function creates the approx function for fall run</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="lower_mid_sacramento_river_instream.html">lower_mid_sacramento_river_instream</a></code> </p>
-          </td>
-          <td><p>Lower-Mid Sacramento River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="lower_sacramento_river_instream.html">lower_sacramento_river_instream</a></code> </p>
-          </td>
-          <td><p>Lower Sacramento River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="merced_river_floodplain.html">merced_river_floodplain</a></code> </p>
           </td>
           <td><p>Merced River Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="merced_river_instream.html">merced_river_instream</a></code> </p>
-          </td>
-          <td><p>Merced River Instream Flow to Habitat Area Relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -267,93 +336,9 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="mokelumne_river_instream.html">mokelumne_river_instream</a></code> </p>
-          </td>
-          <td><p>Mokelumne River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="north_delta_floodplain.html">north_delta_floodplain</a></code> </p>
-          </td>
-          <td><p>North Delta Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rearing_approx.html">rearing_approx</a></code> </p>
-          </td>
-          <td><p>function uses an existing relationship to return a linear interpolated approx function</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="region_rearing_approx.html">region_rearing_approx</a></code> </p>
-          </td>
-          <td><p>Regional rearing habitat flow to area approximator</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="region_spawn_approx.html">region_spawn_approx</a></code> </p>
-          </td>
-          <td><p>function uses a region to return approx functions for watersheds within it with models</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="san_joaquin_river_floodplain.html">san_joaquin_river_floodplain</a></code> </p>
           </td>
           <td><p>San Joaquin River Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_floodplain_habitat.html">set_floodplain_habitat</a></code> </p>
-          </td>
-          <td><p>set floodplain area based on a watershed, species and a flow</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_instream_habitat.html">set_instream_habitat</a></code> </p>
-          </td>
-          <td><p>Set instream habitat</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_spawning_habitat.html">set_spawning_habitat</a></code> </p>
-          </td>
-          <td><p>Set spawning habitat area based on watershed, species, life stage and flow.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="spawning_approx.html">spawning_approx</a></code> </p>
-          </td>
-          <td><p>function uses an existing relationship to return a linear interpolated approx function</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="square_meters_to_acres.html">square_meters_to_acres</a></code> </p>
-          </td>
-          <td><p>Square Meters to Acres</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="SR_rearing_approx.html">SR_rearing_approx</a></code> </p>
-          </td>
-          <td><p>Spring Run rearing habitat flow to area approximator</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="SR_spawn_approx.html">SR_spawn_approx</a></code> </p>
-          </td>
-          <td><p>function creates the approx function for spring run</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ST_rearing_approx.html">ST_rearing_approx</a></code> </p>
-          </td>
-          <td><p>Steelhead rearing habitat flow to area approximator</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ST_spawn_approx.html">ST_spawn_approx</a></code> </p>
-          </td>
-          <td><p>function creates the approx function for steelhead</p></td>
         </tr><tr>
           <!--  -->
           <td>
@@ -363,69 +348,15 @@
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="stanislaus_river_instream.html">stanislaus_river_instream</a></code> </p>
-          </td>
-          <td><p>Stanislaus River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="tuolumne_river_floodplain.html">tuolumne_river_floodplain</a></code> </p>
           </td>
           <td><p>Tuolumne River Flow to Floodplain Habitat Area Relationship</p></td>
         </tr><tr>
           <!--  -->
           <td>
-            <p><code><a href="tuolumne_river_instream.html">tuolumne_river_instream</a></code> </p>
-          </td>
-          <td><p>Tuolumne River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="upper_mid_sacramento_river_instream.html">upper_mid_sacramento_river_instream</a></code> </p>
-          </td>
-          <td><p>Upper-Mid Sacramento River Instream Flow to Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="upper_sac_ACID_boards_in.html">upper_sac_ACID_boards_in</a></code> </p>
-          </td>
-          <td><p>Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards In)</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="upper_sac_ACID_boards_out.html">upper_sac_ACID_boards_out</a></code> </p>
-          </td>
-          <td><p>Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards Out)</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="watershed_lengths.html">watershed_lengths</a></code> </p>
-          </td>
-          <td><p>Habitat Extent Lengths</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wua_to_area.html">wua_to_area</a></code> </p>
-          </td>
-          <td><p>Function converts a weighted usable area (WUA) to area in square meters</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="yolo_bypass_floodplain.html">yolo_bypass_floodplain</a></code> </p>
-          </td>
-          <td><p>Yolo Bypass Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
             <p><code><a href="yuba_river_floodplain.html">yuba_river_floodplain</a></code> </p>
           </td>
           <td><p>Yuba River Flow to Floodplain Habitat Area Relationship</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="yuba_river_instream.html">yuba_river_instream</a></code> </p>
-          </td>
-          <td><p>Yuba River Instream Flow to Habitat Area Relationship</p></td>
         </tr>
       </tbody>
       </table>
@@ -435,7 +366,9 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#section-habitat-functions">Habitat Functions</a></li>
+      <li><a href="#section-instream-habitat-datasets">Instream Habitat Datasets</a></li>
+      <li><a href="#section-floodplain-habitat-datasets">Floodplain Habitat Datasets</a></li>
     </ul>
   </div>
 </div>

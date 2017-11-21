@@ -1,0 +1,20 @@
+- title: Datasets that will be changing soon
+desc: soon to be trash or updated
+- north_delta_floodplain
+- north_delta_instream
+- south_delta_percent_suitability
+- sutter_bypass_floodplain
+- yolo_bypass_floodplain
+  - floodplain_2017_metadata
+
+fix data
+  - upper_sacramento_river_floodplain
+  - upper_mid_sacramento_river_floodplain
+  - lower_mid_sacramento_river_floodplain
+  - lower_sacramento_river_floodplain
+
+- title: Miscellaneous Datasets
+  desc: Datasets used as reference tables
+  contents:
+  - modeling_exist
+  - watershed_lengths
