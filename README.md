@@ -1,6 +1,7 @@
 -----
+<img src="cvpia_logo2.png" align="right" width="40%"/>
 
-### Modeled Habitat Areas for CVPIA   
+### Modeled Habitat Areas
 *This package is for estimating spawning and rearing (instream and floodplain) habitat within the Sacramento and San Joaquin river systems for use with the CVPIA salmon life cycle model.*
 
 #### Installation   
