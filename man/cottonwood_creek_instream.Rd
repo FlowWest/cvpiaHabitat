@@ -26,4 +26,8 @@ as a function of flow in cubic feet per second
 The spawning WUA values were derived from a PHABSIM model. The rearing values are from the FWS 2014
 River2D model. The results are for Fall Run.
 }
+\examples{
+cottonwood_creek_instream
+
+}
 \keyword{datasets}

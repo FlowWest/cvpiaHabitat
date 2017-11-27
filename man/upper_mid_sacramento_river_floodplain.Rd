@@ -26,4 +26,8 @@ The study's extent is from Battle Creek to the confluence with the Feather River
 The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
 The study results are scaled to the CVPIA extent.
 }
+\examples{
+upper_mid_sacramento_river_floodplain
+
+}
 \keyword{datasets}

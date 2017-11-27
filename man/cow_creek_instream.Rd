@@ -25,4 +25,8 @@ as a function of flow in cubic feet per second
 The rearing WUA values are from a River2D model done on South Cow Creek. The values are from two river
 segments, Valley Floor Reach (5.11 miles) and Boero Reach (1.68 miles).
 }
+\examples{
+cow_creek_instream
+
+}
 \keyword{datasets}

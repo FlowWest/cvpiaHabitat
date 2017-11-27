@@ -25,4 +25,8 @@ The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from
 the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower Sacramento River extends
 from the confluence with the American River to Freeport (13.7 mi).
 }
+\examples{
+lower_sacramento_river_instream
+
+}
 \keyword{datasets}

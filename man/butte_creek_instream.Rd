@@ -29,4 +29,8 @@ model created for the 2008 FERC relicensing of DeSabla. The spawning values are 
 segments, above Centerville Powerhouse (6.5 miles) and below (9 miles).
 The spawning results are for Spring Run Chinook. The rearing results are for Fall Run Chinook.
 }
+\examples{
+butte_creek_instream
+
+}
 \keyword{datasets}

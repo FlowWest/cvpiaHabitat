@@ -25,4 +25,8 @@ as a function of flow in cubic feet per second
 \details{
 The spawning and rearing WUA values were derived from a PHABSIM model. The reults are for Steelhead.
 }
+\examples{
+calaveras_river_instream
+
+}
 \keyword{datasets}

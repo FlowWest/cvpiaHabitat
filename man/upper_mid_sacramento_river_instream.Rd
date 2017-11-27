@@ -25,4 +25,8 @@ The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from 
 the confluence with the Feather River (189.1 mi). The CVPIA Upper-mid Sacramento River extends
 from Red Blurr to Wilkins Slough (122.45 mi).
 }
+\examples{
+upper_mid_sacramento_river_instream
+
+}
 \keyword{datasets}

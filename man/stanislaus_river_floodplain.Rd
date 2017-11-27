@@ -23,4 +23,8 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the SRH2D model from Newfields 2013.
 }
+\examples{
+stanislaus_river_floodplain
+
+}
 \keyword{datasets}

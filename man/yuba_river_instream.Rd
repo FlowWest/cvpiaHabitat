@@ -26,4 +26,8 @@ yuba_river_instream
 A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second
 }
+\examples{
+yuba_river_instream
+
+}
 \keyword{datasets}

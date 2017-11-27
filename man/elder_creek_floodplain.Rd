@@ -23,4 +23,8 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 }
+\examples{
+elder_creek_floodplain
+
+}
 \keyword{datasets}

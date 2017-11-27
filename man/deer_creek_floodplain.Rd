@@ -23,4 +23,7 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the Deer Creek Watershed Conservancy HEC-RAS 1D 2011 model.
 }
+\examples{
+deer_creek_floodplain
+}
 \keyword{datasets}

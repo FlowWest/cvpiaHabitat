@@ -26,4 +26,8 @@ as a function of flow in cubic feet per second
 \details{
 The spawning and rearing WUA values were derived from a PHABSIM model. The results are for Fall Run Chinook.
 }
+\examples{
+battle_creek_instream
+
+}
 \keyword{datasets}

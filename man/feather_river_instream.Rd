@@ -25,4 +25,8 @@ as a function of flow in cubic feet per second
 \details{
 The spawning and rearing WUA values were derived from a PHABSIM model. The results are for Fall Run.
 }
+\examples{
+feather_river_instream
+
+}
 \keyword{datasets}

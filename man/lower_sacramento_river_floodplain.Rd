@@ -26,4 +26,8 @@ from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lowe
 Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
 The study results are scaled to the CVPIA extent.
 }
+\examples{
+lower_sacramento_river_floodplain
+
+}
 \keyword{datasets}

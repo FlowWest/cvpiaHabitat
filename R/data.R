@@ -10,6 +10,9 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
+#' @examples
+#' upper_sacramento_river_floodplain
+#'
 #' @details The habitat area was derived from a HEC-RAS 1D model, Hendrix 2017.
 #' The CVPIA Upper Sacramento River extends from Keswick to Red Bluff (59.2 mi).
 #' This reach overlaps with two of the study's, Keswick to Battle Creek (55.5 mi) and Battle Creek to
@@ -31,6 +34,9 @@
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
+#'
+#' @examples
+#' upper_mid_sacramento_river_floodplain
 #'
 #' @details The habitat area was derived from HEC-RAS 1D model, Hendrix 2017.
 #' The study's extent is from Battle Creek to the confluence with the Feather River (189.1 mi).
@@ -59,6 +65,9 @@
 #' above (34\%) and below (66\%) the Feather River. The floodplain acerage at a given flow is the weighted average
 #' of the floodplain area per river mile within each study.
 #'
+#' @examples
+#' lower_mid_sacramento_river_floodplain
+#'
 #' @source \href{https://www.google.com}{missing}
 "lower_mid_sacramento_river_floodplain"
 
@@ -78,6 +87,9 @@
 #' from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower
 #' Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
 #' The study results are scaled to the CVPIA extent.
+#'
+#' @examples
+#' lower_sacramento_river_floodplain
 #'
 #' @source \href{https://www.google.com}{missing}
 "lower_sacramento_river_floodplain"
@@ -112,6 +124,9 @@
 #'
 #' @source Modeling: \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
 #'
+#' @examples
+#' merced_river_floodplain
+#'
 #' Scaling Criteria developed by Mark Tompkins \email{mtompkins@@flowwest.com}
 "merced_river_floodplain"
 
@@ -131,6 +146,9 @@
 #'
 #' @details The habitat area was derived from the SRH2D model, Pasternack 2012.
 #'
+#' @examples
+#' yuba_river_floodplain
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}{SRH2D}
 "yuba_river_floodplain"
 
@@ -148,6 +166,9 @@
 #'
 #' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
 #'
+#' @examples
+#' yolo_bypass_floodplain
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
 "yolo_bypass_floodplain"
 
@@ -164,6 +185,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the Flo2D model by Stillwater, 2014.
+#'
+#' @examples
+#' tuolumne_river_floodplain
 #'
 #' @source TODO fix source
 "tuolumne_river_floodplain"
@@ -183,6 +207,9 @@
 #'
 #' @details The habitat area was derived from the SRH2D model from Newfields 2013.
 #'
+#' @examples
+#' stanislaus_river_floodplain
+#'
 #' @source TODO fix source
 "stanislaus_river_floodplain"
 
@@ -201,6 +228,9 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
+#' @examples
+#' san_joaquin_river_floodplain
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "san_joaquin_river_floodplain"
 
@@ -217,6 +247,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
+#'
+#' @examples
+#' north_delta_floodplain
 #'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}{Hendirx 2017 HEC-RAS 1D model}
 "north_delta_floodplain"
@@ -237,6 +270,9 @@
 #' @details NA
 #'
 #' @source NA
+#'
+#' @examples
+#' mokelumne_river_floodplain
 "mokelumne_river_floodplain"
 
 #' Feather River Flow to Floodplain Habitat Area Relationship
@@ -252,6 +288,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @examples
+#' feather_river_floodplain
 #'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "feather_river_floodplain"
@@ -269,6 +308,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @examples
+#' elder_creek_floodplain
 #'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "elder_creek_floodplain"
@@ -288,6 +330,9 @@
 #' @details The habitat area was derived from the Deer Creek Watershed Conservancy HEC-RAS 1D 2011 model.
 #'
 #' @source TODO
+#'
+#' @examples
+#' deer_creek_floodplain
 "deer_creek_floodplain"
 
 #' Cottonwood Creek Flow to Floodplain Habitat Area Relationship
@@ -303,6 +348,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the FWS 2017 HEC-RAS 1D model.
+#'
+#' @examples
+#' cottonwood_creek_floodplain
 #'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}{FWS}
 "cottonwood_creek_floodplain"
@@ -322,6 +370,9 @@
 #' @details NA
 #'
 #' @source NA
+#'
+#' @examples
+#' cosumnes_river_floodplain
 "cosumnes_river_floodplain"
 
 #' Calaveras River Flow to Floodplain Habitat Area Relationship
@@ -337,6 +388,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @examples
+#' calaveras_river_floodplain
 #'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "calaveras_river_floodplain"
@@ -356,6 +410,9 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
+#' @examples
+#' big_chico_creek_floodplain
+#'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "big_chico_creek_floodplain"
 
@@ -374,6 +431,9 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #'
+#' @examples
+#' bear_river_floodplain
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "bear_river_floodplain"
 
@@ -390,6 +450,9 @@
 #' }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#'
+#' @examples
+#' american_river_floodplain
 #'
 #' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "american_river_floodplain"
@@ -408,6 +471,9 @@
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 #' The total area * suitability (25\%)
+#'
+#' @examples
+#' butte_creek_floodplain
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
 "butte_creek_floodplain"
@@ -432,6 +498,9 @@
 #' segments, above Centerville Powerhouse (6.5 miles) and below (9 miles).
 #' The spawning results are for Spring Run Chinook. The rearing results are for Fall Run Chinook.
 #'
+#' @examples
+#' butte_creek_instream
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf}{FWS and 2008 FERC relicensing of DeSabla}
 "butte_creek_instream"
 
@@ -452,6 +521,9 @@
 #'
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. The results are for Fall Run Chinook.
 #'
+#' @examples
+#' battle_creek_instream
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf}{Payne 1995}
 "battle_creek_instream"
 
@@ -471,6 +543,9 @@
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. A River2D model is in development.
 #' The results are for Fall Run Chinook.
 #'
+#' @examples
+#' bear_river_instream
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF}{Holten 1985}
 "bear_river_instream"
 
@@ -489,6 +564,9 @@
 #' }
 #'
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. The reults are for Steelhead.
+#'
+#' @examples
+#' calaveras_river_instream
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf}{FishBio and Payne 2009}
 "calaveras_river_instream"
@@ -518,6 +596,9 @@
 #' Fall Run are only in the Lower Alluvial Segment and there is a segregation weir that prevents the
 #' Spring Run from spawning in the Lower Alluvial Segment.
 #'
+#' @examples
+#' clear_creek_instream
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2007-2013_ClearCreekInstream.pdf}{FWS 2007-2013}
 "clear_creek_instream"
 
@@ -538,6 +619,9 @@
 #' @details The spawning WUA values were derived from a PHABSIM model. The rearing values are from the FWS 2014
 #' River2D model. The results are for Fall Run.
 #'
+#' @examples
+#' cottonwood_creek_instream
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CDFW1979_CottonwoodSpawningIFIM.PDF}{CDFW 1979 and FWS 2014}
 "cottonwood_creek_instream"
 
@@ -556,6 +640,9 @@
 #' }
 #'
 #' @details The spawning and rearing WUA values were derived from a PHABSIM model. The results are for Fall Run.
+#'
+#' @examples
+#' feather_river_instream
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf}{Payne 2002}
 "feather_river_instream"
@@ -578,6 +665,9 @@
 #' @details The spawning WUA values were derived from the FWS 1996 PHABSIM model and the rearing from
 #' the MID 2013 PHABSIM.
 #'
+#' @examples
+#' merced_river_instream
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS1996_AmericanRiverSpawningFinalReport.pdf}{FWS 1996 and MID 2013}
 "merced_river_instream"
 
@@ -598,6 +688,9 @@
 #' @details The spawning WUA values were derived from the EBMUD 2016 SRH2D model and the rearing from
 #' the CDFW 1998 PHABSIM.
 #'
+#' @examples
+#' mokelumne_river_instream
+#'
 #' @source EBMUD 2016 and CDFW 1998
 "mokelumne_river_instream"
 
@@ -616,6 +709,9 @@
 #'
 #' @details The rearing WUA values are from a River2D model done on South Cow Creek. The values are from two river
 #' segments, Valley Floor Reach (5.11 miles) and Boero Reach (1.68 miles).
+#'
+#' @examples
+#' cow_creek_instream
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf}{FWS 2011}
 "cow_creek_instream"
@@ -638,6 +734,9 @@
 #'
 #' @details The spawning WUA was derived from the Aceituno 1993 (FWS) PHABSIM model and the rearing from
 #' the FWS River2D model.
+#'
+#' @examples
+#' stanislaus_river_instream
 #'
 #' @source FWS
 "stanislaus_river_instream"
@@ -684,6 +783,9 @@
 #' Use these values to compute spawning habitat for Winter Run. Use these values to compute rearing habitat
 #' for ....
 #'
+#' @examples
+#' upper_sac_ACID_boards_in
+#'
 #' @source FWS and NMFS Life Cycle Model, Hendrix 2017
 "upper_sac_ACID_boards_in"
 
@@ -729,6 +831,9 @@
 #' Use these values to compute spawning habitat for .... Use these values to compute rearing habitat
 #' for ....
 #'
+#' @examples
+#' upper_sac_ACID_boards_out
+#'
 #' @source FWS and NMFS Life Cycle Model, Hendrix 2017
 "upper_sac_ACID_boards_out"
 
@@ -747,6 +852,9 @@
 #' @details The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from Battle Creek to
 #' the confluence with the Feather River (189.1 mi). The CVPIA Upper-mid Sacramento River extends
 #' from Red Blurr to Wilkins Slough (122.45 mi).
+#'
+#' @examples
+#' upper_mid_sacramento_river_instream
 #'
 #' @source NMFS Life Cycle Model, Hendrix 2017
 "upper_mid_sacramento_river_instream"
@@ -769,6 +877,9 @@
 #' To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
 #' above (34\%) and below (66\%) the Feather River. Using these values we calculate a weighted average WUA from both of the studies.
 #'
+#' @examples
+#' lower_mid_sacramento_river_instream
+#'
 #' @source NMFS Life Cycle Model, Hendrix 2017
 'lower_mid_sacramento_river_instream'
 
@@ -788,6 +899,9 @@
 #' the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower Sacramento River extends
 #' from the confluence with the American River to Freeport (13.7 mi).
 #'
+#' @examples
+#' lower_sacramento_river_instream
+#'
 #' @source NMFS Life Cycle Model, Hendrix 2017
 "lower_sacramento_river_instream"
 
@@ -805,6 +919,9 @@
 #'
 #' @details The spawning WUA was derived from a River2D,
 #' applied habitat suitability model.
+#'
+#' @examples
+#' american_river_instream
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2003_AmericanRiverPHABSIM2DFinalReport.pdf}{FWS 2003}
 "american_river_instream"
@@ -825,6 +942,9 @@
 #' \item{ST_spawn_wua}{Steelhead spawning WUA in square feet per 1000 feet}
 #' \item{watershed}{name of watershed}
 #' }
+#'
+#' @examples
+#' yuba_river_instream
 #'
 #' @source TODO fix source
 "yuba_river_instream"
@@ -847,6 +967,9 @@
 #' }
 #'
 #' @details The spawning and rearing WUAs were derived using a PHABSIM model by Stillwater 2010.
+#'
+#' @examples
+#' tuolumne_river_instream
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
 "tuolumne_river_instream"

@@ -23,4 +23,8 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the Flo2D model by Stillwater, 2014.
 }
+\examples{
+tuolumne_river_floodplain
+
+}
 \keyword{datasets}

@@ -27,4 +27,8 @@ the confluence with the Feather River (189.1 mi) and the confluence with the Fea
 To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
 above (34\%) and below (66\%) the Feather River. Using these values we calculate a weighted average WUA from both of the studies.
 }
+\examples{
+lower_mid_sacramento_river_instream
+
+}
 \keyword{datasets}

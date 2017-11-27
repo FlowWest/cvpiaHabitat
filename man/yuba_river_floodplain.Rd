@@ -25,4 +25,8 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the SRH2D model, Pasternack 2012.
 }
+\examples{
+yuba_river_floodplain
+
+}
 \keyword{datasets}

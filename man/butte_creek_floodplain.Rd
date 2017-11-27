@@ -24,4 +24,8 @@ function of flow in cubic feet per second
 The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
 The total area * suitability (25\%)
 }
+\examples{
+butte_creek_floodplain
+
+}
 \keyword{datasets}

@@ -28,4 +28,8 @@ the confluence with the Feather River (189.1 mi). To scale the study's results t
 the floodplain acerage at a given flow is the weighted average of the floodplain
 area per river mile within each study.
 }
+\examples{
+upper_sacramento_river_floodplain
+
+}
 \keyword{datasets}

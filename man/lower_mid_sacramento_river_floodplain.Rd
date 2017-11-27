@@ -28,4 +28,8 @@ To scale the study's results to CVPIA's extents, we calculate the proportion of 
 above (34\%) and below (66\%) the Feather River. The floodplain acerage at a given flow is the weighted average
 of the floodplain area per river mile within each study.
 }
+\examples{
+lower_mid_sacramento_river_floodplain
+
+}
 \keyword{datasets}

@@ -29,4 +29,8 @@ as a function of flow in cubic feet per second
 \details{
 The spawning and rearing WUAs were derived using a PHABSIM model by Stillwater 2010.
 }
+\examples{
+tuolumne_river_instream
+
+}
 \keyword{datasets}

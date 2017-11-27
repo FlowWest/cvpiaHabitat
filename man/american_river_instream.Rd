@@ -25,4 +25,8 @@ as a function of flow in cubic feet per second
 The spawning WUA was derived from a River2D,
 applied habitat suitability model.
 }
+\examples{
+american_river_instream
+
+}
 \keyword{datasets}

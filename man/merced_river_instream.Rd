@@ -27,4 +27,8 @@ as a function of flow in cubic feet per second
 The spawning WUA values were derived from the FWS 1996 PHABSIM model and the rearing from
 the MID 2013 PHABSIM.
 }
+\examples{
+merced_river_instream
+
+}
 \keyword{datasets}

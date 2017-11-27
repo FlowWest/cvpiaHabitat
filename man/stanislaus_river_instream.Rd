@@ -28,4 +28,8 @@ as a function of flow in cubic feet per second
 The spawning WUA was derived from the Aceituno 1993 (FWS) PHABSIM model and the rearing from
 the FWS River2D model.
 }
+\examples{
+stanislaus_river_instream
+
+}
 \keyword{datasets}

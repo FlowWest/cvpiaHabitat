@@ -25,4 +25,8 @@ as a function of flow in cubic feet per second
 The spawning and rearing WUA values were derived from a PHABSIM model. A River2D model is in development.
 The results are for Fall Run Chinook.
 }
+\examples{
+bear_river_instream
+
+}
 \keyword{datasets}

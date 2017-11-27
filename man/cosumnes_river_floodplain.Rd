@@ -23,4 +23,7 @@ function of flow in cubic feet per second
 \details{
 NA
 }
+\examples{
+cosumnes_river_floodplain
+}
 \keyword{datasets}

@@ -23,4 +23,8 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the FWS 2017 HEC-RAS 1D model.
 }
+\examples{
+cottonwood_creek_floodplain
+
+}
 \keyword{datasets}

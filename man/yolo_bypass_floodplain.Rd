@@ -23,4 +23,8 @@ function of flow in cubic feet per second
 \details{
 The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
 }
+\examples{
+yolo_bypass_floodplain
+
+}
 \keyword{datasets}

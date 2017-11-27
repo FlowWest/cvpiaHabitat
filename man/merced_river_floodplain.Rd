@@ -11,8 +11,6 @@
   \item{watershed}{name of watershed} }}
 \source{
 Modeling: \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
-
-Scaling Criteria developed by Mark Tompkins \email{mtompkins@flowwest.com}
 }
 \usage{
 merced_river_floodplain
@@ -38,5 +36,10 @@ The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
     \item RM 43.6 - 47.0 "Valley Lowland", use 1X area/RM from modeled reach.
     \item RM 47.0 - 52.0 not "Valley Lowland" and in dredge tailings, use 0.1X area/RM from modeled reach.
   }
+}
+\examples{
+merced_river_floodplain
+
+Scaling Criteria developed by Mark Tompkins \\email{mtompkins@flowwest.com}
 }
 \keyword{datasets}

@@ -26,4 +26,8 @@ as a function of flow in cubic feet per second
 The spawning WUA values were derived from the EBMUD 2016 SRH2D model and the rearing from
 the CDFW 1998 PHABSIM.
 }
+\examples{
+mokelumne_river_instream
+
+}
 \keyword{datasets}

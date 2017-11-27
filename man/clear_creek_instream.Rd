@@ -34,4 +34,8 @@ three river segments, Upper Alluvial (2.27 miles), Canyon Segment (7.33 miles), 
 Fall Run are only in the Lower Alluvial Segment and there is a segregation weir that prevents the
 Spring Run from spawning in the Lower Alluvial Segment.
 }
+\examples{
+clear_creek_instream
+
+}
 \keyword{datasets}
