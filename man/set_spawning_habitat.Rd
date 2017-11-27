@@ -2,7 +2,7 @@
 % Please edit documentation in R/set-spawning-habitat.R
 \name{set_spawning_habitat}
 \alias{set_spawning_habitat}
-\title{Set spawning habitat area based on watershed, species, life stage and flow.}
+\title{Set Spawning Habitat Area}
 \usage{
 set_spawning_habitat(watershed, species, flow)
 }
@@ -17,7 +17,7 @@ set_spawning_habitat(watershed, species, flow)
 habitat area in square meters
 }
 \description{
-Set spawning habitat area based on watershed, species, life stage and flow.
+This function returns an estimated spawning area based on watershed, species and flow.
 }
 \section{Modeling Existance}{
 

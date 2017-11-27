@@ -865,7 +865,36 @@
 #' \item{species}{species of habitat extent}
 #' }
 #'
-#' @details Information comes from mapping effort undertaken in the Summer and Fall of 2017. Fall Run completed, Spring Run and Steelhead mappings in progress.
+#' @details Information comes from expert outreach undertaken in 2017.
 #'
 #' @source FlowWest, add url to shp file when mapping is complete
 'watershed_lengths'
+
+#' Habitat Modeling Status
+#' @description A table lifestage, species, and watershed
+#'
+#' @format dataframe with 33 rows and 15 variables
+#' \describe{
+#' \item{Order}{integer value representing watershed order in SIT model}
+#' \item{Watershed}{name of watershed}
+#' \item{FR_spawn}{TRUE if spawning habitat modeling exists for Fall Run}
+#' \item{FR_fry}{TRUE if fry rearing habitat modeling exists for Fall Run}
+#' \item{FR_juv}{TRUE if juvenile rearing habitat modeling exists for Fall Run}
+#' \item{FR_floodplain}{TRUE if floodplain rearing modeling exists for Fall Run}
+#' \item{SR_spawn}{TRUE if spawning habitat modeling exists for Spring Run}
+#' \item{SR_fry}{TRUE if fry rearing habitat modeling exists for Spring Run}
+#' \item{SR_juv}{TRUE if juvenile rearing habitat modeling exists for Spring Run}
+#' \item{SR_floodplain}{TRUE if floodplain rearing modeling exists for Spring Run}
+#' \item{ST_spawn}{TRUE if spawning habitat modeling exists for Steelhead}
+#' \item{ST_fry}{TRUE if fry rearing habitat modeling exists for Steelhead}
+#' \item{ST_juv}{TRUE if juvenile rearing habitat modeling exists for Steelhead}
+#' \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
+#' \item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
+#' }
+#'
+#' @details This table was compiled from information provided by Mark Gard \email{mark_gard@@fws.gov}.
+#' Used as look up table for \code{\link{set_spawning_habitat}},
+#' \code{\link{set_instream_habitat}}, and \code{\link{set_floodplain_habitat}}
+#'
+#' @source Sadie Gill \email{sgill@@flowwest.com}
+'modeling_exist'

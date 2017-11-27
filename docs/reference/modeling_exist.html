@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Habitat Extent Lengths — watershed_lengths • cvpiaHabitat</title>
+<title>Habitat Modeling Status — modeling_exist • cvpiaHabitat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,34 +74,44 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Habitat Extent Lengths</h1>
+    <h1>Habitat Modeling Status</h1>
     </div>
 
     
-    <p>A dataset containing the length of rearing and spawning extent within each CVPIA watershed for different species.</p>
+    <p>A table lifestage, species, and watershed</p>
     
 
-    <pre class="usage"><span class='no'>watershed_lengths</span></pre>
+    <pre class="usage"><span class='no'>modeling_exist</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 57 rows and 7 variables</p><dl class='dl-horizontal'>
-<dt>order</dt><dd><p>integer value representing watershed order in SIT model</p></dd>
-<dt>watershed</dt><dd><p>name of watershed</p></dd>
-<dt>lifestage</dt><dd><p>habitat type by lifestage, 'spawing' or 'rearing'</p></dd>
-<dt>miles</dt><dd><p>length in miles</p></dd>
-<dt>feet</dt><dd><p>length in feet</p></dd>
-<dt>source</dt><dd><p>Expert who delineated habitat extents</p></dd>
-<dt>species</dt><dd><p>species of habitat extent</p></dd>
+    <p>dataframe with 33 rows and 15 variables</p><dl class='dl-horizontal'>
+<dt>Order</dt><dd><p>integer value representing watershed order in SIT model</p></dd>
+<dt>Watershed</dt><dd><p>name of watershed</p></dd>
+<dt>FR_spawn</dt><dd><p>TRUE if spawning habitat modeling exists for Fall Run</p></dd>
+<dt>FR_fry</dt><dd><p>TRUE if fry rearing habitat modeling exists for Fall Run</p></dd>
+<dt>FR_juv</dt><dd><p>TRUE if juvenile rearing habitat modeling exists for Fall Run</p></dd>
+<dt>FR_floodplain</dt><dd><p>TRUE if floodplain rearing modeling exists for Fall Run</p></dd>
+<dt>SR_spawn</dt><dd><p>TRUE if spawning habitat modeling exists for Spring Run</p></dd>
+<dt>SR_fry</dt><dd><p>TRUE if fry rearing habitat modeling exists for Spring Run</p></dd>
+<dt>SR_juv</dt><dd><p>TRUE if juvenile rearing habitat modeling exists for Spring Run</p></dd>
+<dt>SR_floodplain</dt><dd><p>TRUE if floodplain rearing modeling exists for Spring Run</p></dd>
+<dt>ST_spawn</dt><dd><p>TRUE if spawning habitat modeling exists for Steelhead</p></dd>
+<dt>ST_fry</dt><dd><p>TRUE if fry rearing habitat modeling exists for Steelhead</p></dd>
+<dt>ST_juv</dt><dd><p>TRUE if juvenile rearing habitat modeling exists for Steelhead</p></dd>
+<dt>ST_floodplain</dt><dd><p>TRUE if floodplain rearing modeling exists for Steelhead</p></dd>
+<dt>Region</dt><dd><p>Regional grouping of watersheds used for estimating values for watersheds without modeling</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>FlowWest, add url to shp file when mapping is complete</p>
+    <p>Sadie Gill <a href='mailto:sgill@flowwest.com'>sgill@flowwest.com</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Information comes from expert outreach undertaken in 2017.</p>
+    <p>This table was compiled from information provided by Mark Gard <a href='mailto:mark_gard@fws.gov'>mark_gard@fws.gov</a>.
+Used as look up table for <code><a href='set_spawning_habitat.html'>set_spawning_habitat</a></code>,
+<code><a href='set_instream_habitat.html'>set_instream_habitat</a></code>, and <code><a href='set_floodplain_habitat.html'>set_floodplain_habitat</a></code></p>
     
 
   </div>

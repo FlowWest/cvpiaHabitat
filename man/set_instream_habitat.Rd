@@ -2,19 +2,28 @@
 % Please edit documentation in R/set-instream-habitat.R
 \name{set_instream_habitat}
 \alias{set_instream_habitat}
-\title{Set instream habitat}
+\title{Set Instream Habitat Area}
 \usage{
 set_instream_habitat(watershed, species, life_stage, flow)
 }
 \arguments{
 \item{watershed}{one of the watersheds defined for the SIT model}
 
-\item{species}{one of 'fr', 'sr', or 'st'}
+\item{species}{one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)}
 
 \item{life_stage}{life stage of fish, one of 'juv', 'adult' or 'fry'}
 
 \item{flow}{value used to determine habitat area}
 }
+\value{
+habitat area in square meters
+}
 \description{
-Set instream habitat area based on watershed, species, life stage and flow
+This function returns an estimated instream habitat area based on watershed, species, life stage and flow.
+}
+\examples{
+# Fry rearing habitat value in square meters for Fall Run in the Merced River at 425 cfs.
+set_instream_habitat('Merced River', 'fr', 'fry', 425) # habitat modeling exists
+# Juvenile rearing habitat value in square meters for Fall Run in Elder Creek at 300 cfs.
+set_instream_habitat('Elder Creek', 'fr', 'juv', 300) # no habitat modeling exists, composite used
 }

@@ -1,10 +1,16 @@
-#' Set instream habitat
-#' @description Set instream habitat area based on watershed, species, life stage and flow
+#' Set Instream Habitat Area
+#' @description This function returns an estimated instream habitat area based on watershed, species, life stage and flow.
 #'
 #' @param watershed one of the watersheds defined for the SIT model
-#' @param species one of 'fr', 'sr', or 'st'
+#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
 #' @param life_stage life stage of fish, one of 'juv', 'adult' or 'fry'
 #' @param flow value used to determine habitat area
+#' @return habitat area in square meters
+#' @examples
+#' # Fry rearing habitat value in square meters for Fall Run in the Merced River at 425 cfs.
+#' set_instream_habitat('Merced River', 'fr', 'fry', 425) # habitat modeling exists
+#' # Juvenile rearing habitat value in square meters for Fall Run in Elder Creek at 300 cfs.
+#' set_instream_habitat('Elder Creek', 'fr', 'juv', 300) # no habitat modeling exists, composite used
 #' @export
 set_instream_habitat <- function(watershed, species, life_stage, flow) {
 

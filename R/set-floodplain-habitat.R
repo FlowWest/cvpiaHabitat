@@ -1,9 +1,9 @@
-#' set floodplain area based on a watershed, species and a flow
-#' @description based on watershed, species and flow return a WUA
+#' Set Floodplain Habitat Area
+#' @description This function returns an estimated floodplain area based on watershed, species and flow.
 #'
 #' @param watershed a watershed defined for the SIT model
-#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead).
-#' @param flow a flow value in cubic feet per second.
+#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
+#' @param flow a flow value in cubic feet per second
 #' @examples
 #' # floodplain habitat value in square meters for Fall Run in the American River
 #' set_floodplain_habitat("American River", "fr", 34652)

@@ -24,6 +24,6 @@ watershed_lengths
 A dataset containing the length of rearing and spawning extent within each CVPIA watershed for different species.
 }
 \details{
-Information comes from mapping effort undertaken in the Summer and Fall of 2017. Fall Run completed, Spring Run and Steelhead mappings in progress.
+Information comes from expert outreach undertaken in 2017.
 }
 \keyword{datasets}

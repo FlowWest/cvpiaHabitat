@@ -2,22 +2,22 @@
 % Please edit documentation in R/set-floodplain-habitat.R
 \name{set_floodplain_habitat}
 \alias{set_floodplain_habitat}
-\title{set floodplain area based on a watershed, species and a flow}
+\title{Set Floodplain Habitat Area}
 \usage{
 set_floodplain_habitat(watershed, species, flow)
 }
 \arguments{
 \item{watershed}{a watershed defined for the SIT model}
 
-\item{species}{one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead).}
+\item{species}{one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)}
 
-\item{flow}{a flow value in cubic feet per second.}
+\item{flow}{a flow value in cubic feet per second}
 }
 \value{
 floodplain habitat value in square meters
 }
 \description{
-based on watershed, species and flow return a WUA
+This function returns an estimated floodplain area based on watershed, species and flow.
 }
 \examples{
 # floodplain habitat value in square meters for Fall Run in the American River

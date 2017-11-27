@@ -1,4 +1,5 @@
-#' Set spawning habitat area based on watershed, species, life stage and flow.
+#' Set Spawning Habitat Area
+#' @description This function returns an estimated spawning area based on watershed, species and flow.
 #'
 #' @param watershed one of the watersheds defined for the SIT model
 #' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)

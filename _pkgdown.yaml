@@ -67,6 +67,11 @@ reference:
   - stanislaus_river_floodplain
   - tuolumne_river_floodplain
   - yuba_river_floodplain
+- title: Miscellaneous Datasets
+  desc: Datasets used as reference tables
+  contents:
+  - modeling_exist
+  - watershed_lengths
 
 navbar:
   type: default

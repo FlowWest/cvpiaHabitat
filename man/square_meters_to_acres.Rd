@@ -12,3 +12,8 @@ square_meters_to_acres(sq_meters)
 \description{
 Function converts area in square meters to area in acres
 }
+\examples{
+hab_sq_meters <- set_instream_habitat('Merced River', 'fr', 'fry', 425)
+square_meters_to_acres(hab_sq_meters)
+
+}

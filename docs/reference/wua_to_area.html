@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function converts a weighted usable area (WUA) to area in square meters — wua_to_area • cvpiaHabitat</title>
+<title>WUA to Area in Square Meters — wua_to_area • cvpiaHabitat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,11 +74,13 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Function converts a weighted usable area (WUA) to area in square meters</h1>
+    <h1>WUA to Area in Square Meters</h1>
     </div>
 
     
-    <p>Function converts a weighted usable area (WUA) to area in square meters</p>
+    <p>Function converts a Weighted Usable Area (WUA) to an
+area in square meters by multiplying the WUA by the stream's length used by the species.
+The lengths were obtained through expert outreach in 2017 and are available here <code><a href='http://www.rdocumentation.org/packages/cvpiaHabitat/topics/watershed_lengths'>cvpiaHabitat::watershed_lengths</a></code></p>
     
 
     <pre class="usage"><span class='fu'>wua_to_area</span>(<span class='no'>wua</span>, <span class='no'>watershed_name</span>, <span class='no'>life_stage</span>)</pre>
@@ -88,7 +90,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>wua</th>
-      <td><p>weighted usable area</p></td>
+      <td><p>WUA in square feet per 1000 feet</p></td>
     </tr>
     <tr>
       <th>life_stage</th>

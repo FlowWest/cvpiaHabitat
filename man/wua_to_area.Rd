@@ -2,12 +2,12 @@
 % Please edit documentation in R/utils.R
 \name{wua_to_area}
 \alias{wua_to_area}
-\title{Function converts a weighted usable area (WUA) to area in square meters}
+\title{WUA to Area in Square Meters}
 \usage{
 wua_to_area(wua, watershed_name, life_stage)
 }
 \arguments{
-\item{wua}{weighted usable area}
+\item{wua}{WUA in square feet per 1000 feet}
 
 \item{life_stage}{life stage}
 
@@ -16,5 +16,7 @@ wua_to_area(wua, watershed_name, life_stage)
 \item{species}{species}
 }
 \description{
-Function converts a weighted usable area (WUA) to area in square meters
+Function converts a Weighted Usable Area (WUA) to an
+area in square meters by multiplying the WUA by the stream's length used by the species.
+The lengths were obtained through expert outreach in 2017 and are available here \code{\link{cvpiaHabitat::watershed_lengths}}
 }
