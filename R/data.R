@@ -865,6 +865,9 @@
 #' \item{species}{species of habitat extent}
 #' }
 #'
+#' @examples
+#' watershed_lengths
+#'
 #' @details Information comes from expert outreach undertaken in 2017.
 #'
 #' @source FlowWest, add url to shp file when mapping is complete
@@ -891,6 +894,9 @@
 #' \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
 #' \item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
 #' }
+#'
+#' @examples
+#' modeling_exist
 #'
 #' @details This table was compiled from information provided by Mark Gard \email{mark_gard@@fws.gov}.
 #' Used as look up table for \code{\link{set_spawning_habitat}},

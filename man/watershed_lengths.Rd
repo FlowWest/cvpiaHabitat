@@ -26,4 +26,8 @@ A dataset containing the length of rearing and spawning extent within each CVPIA
 \details{
 Information comes from expert outreach undertaken in 2017.
 }
+\examples{
+watershed_lengths
+
+}
 \keyword{datasets}

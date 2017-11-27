@@ -36,4 +36,8 @@ This table was compiled from information provided by Mark Gard \email{mark_gard@
 Used as look up table for \code{\link{set_spawning_habitat}},
 \code{\link{set_instream_habitat}}, and \code{\link{set_floodplain_habitat}}
 }
+\examples{
+modeling_exist
+
+}
 \keyword{datasets}
