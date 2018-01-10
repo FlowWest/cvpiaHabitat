@@ -36,6 +36,10 @@ apply_suitability(fp) # total suitable area
 blah  
 Mark Gard  
 
-When no modeling exists method...
+When no modeling exists method...   
 
+
+
+<style>.logo{margin-top: 40px;}</style>
+<div class = 'logo'>Data Assembled and Maintained by <a href = "http://www.flowwest.com/" target = "_blank"> <img src="TransLogoTreb.png" width="150px"/></div>
 
