@@ -17,33 +17,59 @@ set_spawning_habitat(watershed, species, flow)
 habitat area in square meters
 }
 \description{
-This function returns an estimated spawning area based on watershed, species and flow.
+This function returns an estimated spawning area based on watershed, species, and flow.
 }
-\section{Modeling Existance}{
+\details{
+The function relies on a dataframe called
+\code{\link{modeling_exist}} that contains data on whether the species is present in a watershed
+and whether habitat modeling exists.
+If a model for the watershed does exist, the function looks up the flow to WUA relationship
+(e.g. \code{\link{battle_creek_instream}}) and selects the correct WUA for the
+given flow and species. This WUA is then multiplied by the watershed's
+typical spawning habitat extent length (stored in \code{\link{watershed_lengths}}),
+to return an estimate of suitable spawning habitat within the watershed.
 
-The set_spawning_habitat function relies on a dataframe exported by the package called
-cvpiaHabitat::modeling_exist. This dataframe allows the set_spawning_habitat function to
-determine whether a given watershed has either no existance of the species, has
-existance but no model, or whether a model exists. Changes to the dataframe will affect
-whether an attempt is made to look for the relationship between flow and wua or
-a region approximation is made to determine habitat area.
-The process for updating this dataframe requires not only altering the dataframe,
-but adding a relationship to package in the form of a dataframe using
-devtools::use_data(watershed_name_instream). For more details see \href{#}{here}
+
+\strong{Regional Approximation:}
+When a watershed has no associated flow to WUA reltionship, a regional approximation is made.
+This approach uses the mean WUA at the given flow from a set of similar watersheds nearby
+for which a model does exists. It then calculates the appropriate area using the
+river length of the watershed of interest.
+
+Below are the regions (defined by the downstream watershed) that contain
+watersheds with unmodeled spawning relationships. The modeled watersheds
+used to approximate spawning area for the unmodeled watersheds
+are marked with an asterisk.
+
+
+\strong{Upper-mid Sacramento River}
+\itemize{
+  \item Battle Creek*
+  \item Bear Creek
+  \item Big Chico Creek
+  \item Butte Creek*
+  \item Clear Creek*
+  \item Cottonwood Creek*
+  \item Cow Creek
+  \item Deer Creek
+  \item Elder Creek
+  \item Mill Creek
+  \item Paynes Creek
+  \item Stony Creek
+  \item Thomes Creek
 }
-
-\section{Region Approximation}{
-
-When a watershed has no associated flow to wua reltionship a region approximation is made.
-Simply put, this approach determines a set of related watersheds (defined as a region)
-for which a model does exists. It then applies set_spawning_habitat for each, takes
-a mean of them and returns the appropriate area from this calculation.
+\strong{South Delta}
+\itemize{
+  \item Calaveras River*
+  \item Cosumnes River
+  \item Mokelumne River*
 }
-
+}
 \examples{
 # determine the spawning habitat area at Cottonwood Creek for Fall Run Chinook at flow 1567
 set_spawning_habitat("Cottonwood Creek", "fr", 1567)
 
 # determine spawning habitat for a watershed with no modeling, uses region approximation
 set_spawning_habitat("Antelope Creek", "fr", 1597)
+
 }
