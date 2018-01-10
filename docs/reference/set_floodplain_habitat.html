@@ -104,6 +104,20 @@
 
     <p>floodplain habitat value in square meters</p>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The function relies on a dataframe called
+<code><a href='modeling_exist.html'>modeling_exist</a></code> that contains data on whether the species is present in a watershed
+and whether habitat modeling exists.
+If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
+(e.g. <code><a href='merced_river_floodplain.html'>merced_river_floodplain</a></code>) and selects the correct area for the
+given flow and species.
+When additional species modeling is not available, the fall run floodplain area
+values are used. [What about when extent is different between species]</p>
+<p><strong>Regional Approximation:</strong>
+When a watershed has no associated floodplain modeling, an approximation is made.
+[insert method description]</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># floodplain habitat value in square meters for Fall Run in the American River</span>
@@ -117,6 +131,8 @@
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

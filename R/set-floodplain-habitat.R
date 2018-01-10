@@ -11,6 +11,22 @@
 #' # floodplain habitat value in square meters for Steelhead in the American River
 #' set_floodplain_habitat("American River", "st", 34652)
 #' @return floodplain habitat value in square meters
+#'
+#' @details The function relies on a dataframe called
+#' \code{\link{modeling_exist}} that contains data on whether the species is present in a watershed
+#' and whether habitat modeling exists.
+#' If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
+#' (e.g. \code{\link{merced_river_floodplain}}) and selects the correct area for the
+#' given flow and species.
+#' When additional species modeling is not available, the fall run floodplain area
+#' values are used. [What about when extent is different between species]
+#'
+#'
+#' \strong{Regional Approximation:}
+#' When a watershed has no associated floodplain modeling, an approximation is made.
+#' [insert method description]
+#'
+#'
 #' @export
 set_floodplain_habitat <- function(watershed, species, flow) {
 

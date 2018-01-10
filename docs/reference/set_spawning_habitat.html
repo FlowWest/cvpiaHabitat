@@ -109,21 +109,22 @@
     <p>The function relies on a dataframe called
 <code><a href='modeling_exist.html'>modeling_exist</a></code> that contains data on whether the species is present in a watershed
 and whether habitat modeling exists.
-If a model for the watershed does exist, the function looks up the flow to WUA relationship
+If a model for the watershed does exist, the function looks up the flow to weighted usable area (WUA) relationship
 (e.g. <code><a href='battle_creek_instream.html'>battle_creek_instream</a></code>) and selects the correct WUA for the
 given flow and species. This WUA is then multiplied by the watershed's
 typical spawning habitat extent length (stored in <code><a href='watershed_lengths.html'>watershed_lengths</a></code>),
-to return an estimate of suitable spawning habitat within the watershed.</p>
+to return an estimate of suitable spawning habitat within the watershed.
+When additional species modeling is not available, the fall run WUA
+values are used (lengths are modified if the habitat extent varies across species).</p>
 <p><strong>Regional Approximation:</strong>
 When a watershed has no associated flow to WUA reltionship, a regional approximation is made.
-This approach uses the mean WUA at the given flow from a set of similar watersheds nearby
-for which a model does exists. It then calculates the appropriate area using the
-river length of the watershed of interest.</p>
+First, the mean WUA at the given flow vale from a set of similar modeled watersheds nearby is calculated.
+Then the mean WUA is multiplied by the river length of the watershed of interest.</p>
 <p>Below are the regions (defined by the downstream watershed) that contain
 watersheds with unmodeled spawning relationships. The modeled watersheds
 used to approximate spawning area for the unmodeled watersheds
 are marked with an asterisk.</p>
-<p><strong>Upper-mid Sacramento River</strong></p><ul>
+    <p><strong>Upper-mid Sacramento River</strong></p><ul>
 <li><p>Battle Creek*</p></li>
 <li><p>Bear Creek</p></li>
 <li><p>Big Chico Creek</p></li>

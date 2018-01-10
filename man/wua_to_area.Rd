@@ -18,5 +18,6 @@ wua_to_area(wua, watershed_name, life_stage)
 \description{
 Function converts a Weighted Usable Area (WUA) to an
 area in square meters by multiplying the WUA by the stream's length used by the species.
-The lengths were obtained through expert outreach in 2017 and are available here \code{\link{cvpiaHabitat::watershed_lengths}}
+The lengths were obtained through expert outreach in 2017 and are available here
+ \code{\link{watershed_lengths}}.
 }

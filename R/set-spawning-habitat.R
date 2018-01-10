@@ -16,23 +16,25 @@
 #' @details The function relies on a dataframe called
 #' \code{\link{modeling_exist}} that contains data on whether the species is present in a watershed
 #' and whether habitat modeling exists.
-#' If a model for the watershed does exist, the function looks up the flow to WUA relationship
+#' If a model for the watershed does exist, the function looks up the flow to weighted usable area (WUA) relationship
 #' (e.g. \code{\link{battle_creek_instream}}) and selects the correct WUA for the
 #' given flow and species. This WUA is then multiplied by the watershed's
 #' typical spawning habitat extent length (stored in \code{\link{watershed_lengths}}),
 #' to return an estimate of suitable spawning habitat within the watershed.
+#' When additional species modeling is not available, the fall run WUA
+#' values are used (lengths are modified if the habitat extent varies across species).
 #'
 #'
 #' \strong{Regional Approximation:}
 #' When a watershed has no associated flow to WUA reltionship, a regional approximation is made.
-#' This approach uses the mean WUA at the given flow from a set of similar watersheds nearby
-#' for which a model does exists. It then calculates the appropriate area using the
-#' river length of the watershed of interest.
+#' First, the mean WUA at the given flow vale from a set of similar modeled watersheds nearby is calculated.
+#' Then the mean WUA is multiplied by the river length of the watershed of interest.
 #'
 #' Below are the regions (defined by the downstream watershed) that contain
 #' watersheds with unmodeled spawning relationships. The modeled watersheds
 #' used to approximate spawning area for the unmodeled watersheds
 #' are marked with an asterisk.
+#'
 #'
 #'
 #' \strong{Upper-mid Sacramento River}

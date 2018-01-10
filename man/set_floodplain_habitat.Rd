@@ -19,6 +19,21 @@ floodplain habitat value in square meters
 \description{
 This function returns an estimated floodplain area based on watershed, species and flow.
 }
+\details{
+The function relies on a dataframe called
+\code{\link{modeling_exist}} that contains data on whether the species is present in a watershed
+and whether habitat modeling exists.
+If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
+(e.g. \code{\link{merced_river_floodplain}}) and selects the correct area for the
+given flow and species.
+When additional species modeling is not available, the fall run floodplain area
+values are used. [What about when extent is different between species]
+
+
+\strong{Regional Approximation:}
+When a watershed has no associated floodplain modeling, an approximation is made.
+[insert method description]
+}
 \examples{
 # floodplain habitat value in square meters for Fall Run in the American River
 set_floodplain_habitat("American River", "fr", 34652)
