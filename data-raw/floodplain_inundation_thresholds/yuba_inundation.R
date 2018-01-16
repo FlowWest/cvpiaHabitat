@@ -14,8 +14,14 @@ yuba <- dataRetrieval::readNWISdv(siteNumbers = '11421000', parameterCd = '00060
 
 fp_threshold_flow <- cvpiaHabitat::yuba_river_floodplain$flow_cfs[which(cumsum(cvpiaHabitat::yuba_river_floodplain$FR_floodplain_acres != 0) == 1) - 1]
 
+
+
+
 yuba %>%
   select(date = Date, flow_cfs = X_00060_00003) %>%
+  # group_by(year = year(date)) %>%
+  # summarise(n())
+  # arrange(desc(flow_cfs))
   ggplot(aes(x = date, y = flow_cfs)) +
   geom_col()
 
@@ -32,13 +38,20 @@ days_inundated <- yuba %>%
 
 
 days_inundated %>%
-  ggplot(aes(y = monthly_mean_flow, x = days_inundated, color = days_inundated > 0)) +
+  ggplot(aes(x = monthly_mean_flow, y = days_inundated)) +
   geom_jitter(pch = 1, alpha = .5, width = .2) +
-  geom_hline(yintercept = fp_threshold_flow) +
-  geom_hline(yintercept = 5000) +
+  geom_vline(xintercept = fp_threshold_flow) +
+  geom_vline(xintercept = 5000, linetype = 2) +
   theme_minimal() +
-  scale_color_manual(values = c('#666666', '#FF0000'))
+  # scale_color_manual(values = c('#666666', '#FF0000'))+
+  geom_hline(yintercept = 7) +
+  geom_hline(yintercept = 14) +
+  geom_hline(yintercept = 21) +
+  geom_hline(yintercept = 28) +
+  annotate(geom = 'segment', xend = 5000, x = 6000, y = 25, yend = 22, arrow = arrow(length = unit(0.2, 'cm'))) +
+  annotate(geom = 'text', x = 6500, y = 26, label = '"real" yuba threshold')
 # non linear
+# cor(days_inundated$days_inundated, days_inundated$monthly_mean_flow)
 
 days_inundated %>%
   ungroup() %>%

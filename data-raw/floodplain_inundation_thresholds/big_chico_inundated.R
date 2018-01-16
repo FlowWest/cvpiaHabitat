@@ -1,7 +1,3 @@
-modeling_exist %>%
-  filter(FR_floodplain) %>%
-  select(Watershed, FR_floodplain)
-
 library(tidyverse)
 library(lubridate)
 library(CDECRetrieve)
@@ -40,18 +36,23 @@ days_inundated <- big_chico %>%
       cvpiaHabitat::set_floodplain_habitat(watershed = 'Big Chico Creek', species = 'fr', flow = monthly_mean_flow))))
 
 days_inundated %>%
-  filter(days_inundated > 0) %>%
-  ggplot(aes(y = monthly_mean_flow, x = days_inundated)) +
-  geom_jitter(pch = 1, alpha = .5, width = .2) +
-  geom_hline(yintercept = fp_threshold_flow) +
+  # filter(days_inundated > 0) %>%
+  filter(monthly_mean_flow > fp_threshold_flow) %>%
+  ggplot(aes(x = monthly_mean_flow, y = days_inundated)) +
+  geom_jitter(width = .2) +
+  # geom_vline(xintercept = fp_threshold_flow) +
   theme_minimal() +
-  scale_color_manual(values = c('#666666', '#FF0000')) +
-  geom_smooth(method = 'lm') +
-  geom_vline(xintercept = 7) +
-  geom_vline(xintercept = 14) +
-  geom_vline(xintercept = 21) +
-  geom_vline(xintercept = 28)
+  geom_smooth(method = 'lm', se = FALSE) +
+  geom_hline(yintercept = 7) +
+  geom_hline(yintercept = 14) +
+  geom_hline(yintercept = 21) +
+  geom_hline(yintercept = 28)
 # linearish
+ddd <- lm(days_inundated ~ monthly_mean_flow, filter(days_inundated, monthly_mean_flow > fp_threshold_flow))
+summary(ddd)
+cor(days_inundated$days_inundated, days_inundated$monthly_mean_flow)
+
+
 
 # if big chico has floodplain inundation it is usually for 2 weeks, above 900 its 4 weeks
 
