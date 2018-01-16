@@ -45,10 +45,11 @@ days_inundated <- butte %>%
       cvpiaHabitat::set_floodplain_habitat(watershed = 'Butte Creek', species = 'fr', flow = monthly_mean_flow))))
 
 days_inundated %>%
-  filter(days_inundated > 0, monthly_mean_flow > fp_threshold_flow) %>%
+  filter(monthly_mean_flow > fp_threshold_flow) %>%
+  # filter(days_inundated > 0) %>%
   ggplot(aes(x = monthly_mean_flow, y = days_inundated)) +
-  geom_jitter( width = .2) +
-  # geom_vline(xintercept = fp_threshold_flow) +
+  geom_jitter(pch = 1, width = .2) +
+  geom_vline(xintercept = fp_threshold_flow) +
   theme_minimal() +
   geom_hline(yintercept = 7) +
   geom_hline(yintercept = 14) +

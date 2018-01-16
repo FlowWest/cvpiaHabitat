@@ -48,9 +48,10 @@ days_inundated %>%
   geom_hline(yintercept = 21) +
   geom_hline(yintercept = 28)
 # linearish
-ddd <- lm(days_inundated ~ monthly_mean_flow, filter(days_inundated, monthly_mean_flow > fp_threshold_flow))
+d <- filter(days_inundated, monthly_mean_flow > fp_threshold_flow)
+ddd <- lm(days_inundated ~ monthly_mean_flow, d)
 summary(ddd)
-cor(days_inundated$days_inundated, days_inundated$monthly_mean_flow)
+cor(d$days_inundated, d$monthly_mean_flow)
 
 
 
