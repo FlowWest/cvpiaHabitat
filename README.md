@@ -13,6 +13,8 @@ devtools::install_github("FlowWest/cvpiaHabitat")
 
 #### Usage    
 
+This package provides habitat related datasets to the [`cvpiaData`](https://flowwest.github.io/cvpiaData/) package.
+
 ``` r
 # determine the spawning habitat area at Cottonwood Creek for Fall Run Chinook at 1567 cfs
 set_spawning_habitat("Cottonwood Creek", "fr", 1567)

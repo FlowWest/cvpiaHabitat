@@ -1027,3 +1027,47 @@
 #'
 #' @source Sadie Gill \email{sgill@@flowwest.com}
 'modeling_exist'
+
+#' Flow Thresholds for Number of Weeks Inundated
+#' @description Estimated relationship between duration of inundation and monthly mean flow
+#' @format dataframe with rows and 3 variables
+#' \describe{
+#' \item{watershed}{name of CVPIA watershed}
+#' \item{weeks_inundated}{integer value between 0 and 4 to represent weeks of floodplain inundation}
+#' \item{flow_threshold}{flow threshold in cubic feet per second associated with number of weeks inundated}
+#' }
+#'
+#' @examples
+#' weeks_inundated
+#'
+#' @details
+#' Visual inspection of measured flow and professional judgement were used to define relationships
+#' between number of days inundated and the mean monthly flow.
+#'
+#'
+#' \strong{Relationship Modeled:} \cr
+#' \itemize{
+#'   \item Sacramento River
+#'   \item Big Chico Creek
+#'   \item Butte Creek
+#'   \item Cottonwood Creek
+#'   \item Deer Creek
+#'   \item Elder Creek
+#'   \item Sutter Bypass
+#'   \item Bear River
+#'   \item Feather River
+#'   \item Yuba River
+#'   \item Yolo Bypass
+#'   \item American River
+#'   \item Calaveras River
+#'   \item Merced River
+#'   \item Stanislaus River
+#'   \item Tuolumne River
+#'   \item San Joaquin River
+#' }
+#'
+#'
+#' All other watersheds are assumed to have a two week inundation.
+#'
+#' @source Sadie Gill  \email{sgill@@flowwest.com}
+'weeks_inundated'

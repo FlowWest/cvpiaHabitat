@@ -74,8 +74,10 @@ floodplain_approx <- function(watershed) {
   watershed_rda_name <- paste(watershed_name, "floodplain", sep = "_")
   df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
-  approxfun(df$flow_cfs, df$FR_floodplain_acres, rule = 2)
+  approxfun(df$flow_cfs, df$FR_floodplain_acres, yleft = 0, yright = max(df$FR_floodplain_acres))
 }
+
+
 
 #' Apply Suitability Factor
 #'

@@ -19,6 +19,7 @@ reference:
   - set_instream_habitat
   - set_floodplain_habitat
   - wua_to_area
+  - weeks_flooded
   - apply_suitability
   - square_meters_to_acres
   - acres_to_square_meters
@@ -72,6 +73,7 @@ reference:
   contents:
   - modeling_exist
   - watershed_lengths
+  - weeks_inundated
 
 navbar:
   type: default

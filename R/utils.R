@@ -36,3 +36,32 @@ square_meters_to_acres <- function(sq_meters) {
 acres_to_square_meters <- function(acres) {
   acres / 0.000247105
 }
+
+#' Duration of Floodplain Inundation
+#' @description Function returns number of weeks of floodplain inundation given a flow for a watershed
+#' @param watershed name of CVPIA watershed
+#' @param flow_cfs monthly mean flow in cubic feet per second
+#' @return integer value for number of weeks
+#' @export
+#'
+#' @details
+#' These relationships between number of days inundated and the mean monthly flow
+#' are stored in \code{\link{weeks_inundated}} and referenced by this function.
+#' For watersheds without a defined relationship, a two week inundation duration is assumed.
+#'
+#' @examples
+#' weeks_flooded('Yuba River', 900)
+#'
+weeks_flooded <- function(watershed, flow_cfs) {
+
+  flow_thresholds <- cvpiaHabitat::weeks_inundated[cvpiaHabitat::weeks_inundated$watershed == watershed, 'flow_threshhold']
+
+  # select closest number of weeks inundated given flow without going over
+  v <- flow_thresholds[!is.na(flow_thresholds)]
+  number_of_weeks <- (0:4)[!is.na(flow_thresholds)]
+  i <- which.min(abs(v - flow_cfs))
+  closest_threshold_index <- ifelse(flow_cfs < v[i], i - 1, i)
+
+  number_of_weeks[closest_threshold_index]
+}
+
