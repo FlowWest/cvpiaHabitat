@@ -20,7 +20,7 @@ deer %>%
   # group_by(year = year(date)) %>%
   # summarise(n())
   arrange(desc(flow_cfs))
-  ggplot(aes(x = date, y = flow_cfs)) +
+ggplot(aes(x = date, y = flow_cfs)) +
   geom_line()
 
 days_inundated <- deer %>%
