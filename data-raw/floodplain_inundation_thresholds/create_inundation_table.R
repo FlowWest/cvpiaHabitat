@@ -12,6 +12,7 @@ weeks_inundated <- bind_rows(
   read_rds('data-raw/floodplain_inundation_thresholds/american_river_inundated.rds'),
   read_rds('data-raw/floodplain_inundation_thresholds/calaveras_river_inundated.rds'),
   read_rds('data-raw/floodplain_inundation_thresholds/merced_river_inundated.rds'),
-  read_rds('data-raw/floodplain_inundation_thresholds/stanislaus_river_inundated.rds'))
+  read_rds('data-raw/floodplain_inundation_thresholds/stanislaus_river_inundated.rds'),
+  read_rds('data-raw/floodplain_inundation_thresholds/tuolumne_river_inundated.rds'))
 
 devtools::use_data(weeks_inundated, overwrite = TRUE)
