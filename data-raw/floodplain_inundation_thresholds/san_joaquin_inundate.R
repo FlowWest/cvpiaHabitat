@@ -58,5 +58,5 @@ days_inundated %>%
 data.frame(
   watershed = rep(c('San Joaquin River'), 5),
   weeks_inundated = 0:4,
-  flow_threshhold = c(0, NA, NA, NA, 1000)
-) %>% write_rds('data-raw/floodplain_inundation_thresholds/tuolumne_river_inundated.rds')
+  flow_threshhold = c(0, NA, NA, NA, 1520)
+) %>% write_rds('data-raw/floodplain_inundation_thresholds/san_joaquin_river_inundated.rds')

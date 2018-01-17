@@ -67,5 +67,5 @@ summary(ddd)
 data.frame(
   watershed = rep(c('Butte Creek'), 5),
   weeks_inundated = 0:4,
-  flow_threshhold = c(0, NA, 310, NA, NA)
+  flow_threshhold = c(0, NA, 310, NA, 500)
 ) %>% write_rds('data-raw/floodplain_inundation_thresholds/butte_inundated.rds')

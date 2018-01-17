@@ -39,14 +39,12 @@ days_inundated %>%
   # filter(days_inundated > 0) %>%
   ggplot(aes(x = monthly_mean_flow, y = days_inundated)) +
   geom_jitter(pch = 1, width = .2) +
-  # geom_vline(xintercept = fp_threshold_flow) +
+  geom_vline(xintercept = fp_threshold_flow) +
   theme_minimal() +
   geom_hline(yintercept = 7) +
   geom_hline(yintercept = 14) +
   geom_hline(yintercept = 21) +
-  geom_hline(yintercept = 28) +
-  scale_y_continuous(limits = c(0, 32)) +
-  scale_x_continuous(limits = c(0, 1300))
+  geom_hline(yintercept = 28)
   # geom_smooth(method = 'lm', se = FALSE)
 # non linear
 cor(days_inundated$days_inundated, days_inundated$monthly_mean_flow)
@@ -57,10 +55,9 @@ days_inundated %>%
   # filter(monthly_mean_flow >= fp_threshold_flow) %>%
   pull(days_inundated) %>% summary()
 
-# if deer has floodplain inundation it is usually for 4 weeks
 
 data.frame(
-  watershed = rep(c('Deer Creek'), 5),
+  watershed = rep(c('Elder Creek'), 5),
   weeks_inundated = 0:4,
-  flow_threshhold = c(0, NA, 370, NA, 1000)
-) %>% write_rds('data-raw/floodplain_inundation_thresholds/deer_inundated.rds')
+  flow_threshhold = c(0, NA, 130, NA, 250)
+) %>% write_rds('data-raw/floodplain_inundation_thresholds/elder_inundated.rds')
