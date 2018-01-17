@@ -6,24 +6,24 @@ library(cvpiaHabitat)
 
 cvpiaHabitat::apply_suitability(
   cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_floodplain_habitat(watershed = 'Bear River', species = 'fr', flow = 2000)))
+    cvpiaHabitat::set_floodplain_habitat(watershed = 'American River', species = 'fr', flow = 5000)))
 
-# BEAR R NR WHEATLAND CA-------------------
-bear <- dataRetrieval::readNWISdv(siteNumbers = '11424000', parameterCd = '00060',
-                                  startDate = '1984-01-01', endDate = '2003-12-31')
+# AMERICAN R A FAIR OAKS CA-------------------
+american <- dataRetrieval::readNWISdv(siteNumbers = '11446500', parameterCd = '00060',
+                                     startDate = '1980-01-01', endDate = '2004-12-31')
 
-fp_threshold_flow <- cvpiaHabitat::bear_river_floodplain$flow_cfs[which(cumsum(cvpiaHabitat::bear_river_floodplain$FR_floodplain_acres != 0) == 1) - 1]
+fp_threshold_flow <- cvpiaHabitat::american_river_floodplain$flow_cfs[which(cumsum(cvpiaHabitat::american_river_floodplain$FR_floodplain_acres != 0) == 1) - 1]
 
 
-bear %>%
+american %>%
   select(date = Date, flow_cfs = X_00060_00003) %>%
   # group_by(year = year(date)) %>%
   # summarise(n())
-  arrange(desc(flow_cfs))
-ggplot(aes(x = date, y = flow_cfs)) +
+  # arrange(desc(flow_cfs))
+  ggplot(aes(x = date, y = flow_cfs)) +
   geom_line()
 
-days_inundated <- bear %>%
+days_inundated <- american %>%
   select(date = Date, flow_cfs = X_00060_00003) %>%
   mutate(fp_active = flow_cfs >= fp_threshold_flow) %>%
   group_by(year = year(date), month = month(date)) %>%
@@ -31,7 +31,7 @@ days_inundated <- bear %>%
             monthly_mean_flow = mean(flow_cfs, na.rm = TRUE)) %>%
   mutate(fp_area_acres = cvpiaHabitat::apply_suitability(
     cvpiaHabitat::square_meters_to_acres(
-      cvpiaHabitat::set_floodplain_habitat(watershed = 'Bear River', species = 'fr', flow = monthly_mean_flow))))
+      cvpiaHabitat::set_floodplain_habitat(watershed = 'American River', species = 'fr', flow = monthly_mean_flow))))
 
 
 days_inundated %>%
@@ -45,9 +45,9 @@ days_inundated %>%
   geom_hline(yintercept = 14) +
   geom_hline(yintercept = 21) +
   geom_hline(yintercept = 28)
-  # geom_smooth(method = 'lm', se = FALSE)
+# geom_smooth(method = 'lm', se = FALSE)
 # non linear
-cor(days_inundated$days_inundated, days_inundated$monthly_mean_flow)
+# cor(days_inundated$days_inundated, days_inundated$monthly_mean_flow)
 
 days_inundated %>%
   ungroup() %>%
@@ -58,7 +58,7 @@ days_inundated %>%
 # if deer has floodplain inundation it is usually for 4 weeks
 
 data.frame(
-  watershed = rep(c('Bear River'), 5),
+  watershed = rep(c('American River'), 5),
   weeks_inundated = 0:4,
-  flow_threshhold = c(0, NA, 760, NA, 1000)
-) %>% write_rds('data-raw/floodplain_inundation_thresholds/bear_river_inundated.rds')
+  flow_threshhold = c(0, NA, NA, NA, 4200)
+) %>% write_rds('data-raw/floodplain_inundation_thresholds/american_river_inundated.rds')
