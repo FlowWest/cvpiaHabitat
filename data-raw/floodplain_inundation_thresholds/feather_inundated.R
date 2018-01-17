@@ -55,7 +55,6 @@ days_inundated %>%
   filter(monthly_mean_flow >= fp_threshold_flow) %>%
   pull(days_inundated) %>% summary()
 
-# if deer has floodplain inundation it is usually for 4 weeks
 
 data.frame(
   watershed = rep(c('Feather River'), 5),
