@@ -4,8 +4,8 @@ library(dataRetrieval)
 library(stringr)
 library(CDECRetrieve)
 
-img_dates <- read_csv('data-raw/EarthEngine/channel_width_imagery_dates.csv')
-gage_ids <- read_csv('data-raw/EarthEngine/watershed_gage_ids.csv')
+img_dates <- read_csv('data-raw/earth_engine/channel_width_imagery_dates.csv')
+gage_ids <- read_csv('data-raw/earth_engine/watershed_gage_ids.csv')
 glimpse(img_dates)
 
 # cdec gages
