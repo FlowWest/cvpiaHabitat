@@ -1,97 +1,30 @@
-flow_cfs,floodplain_acres,watershed,species
-20,,San Joaquin River,Fall Run
-770,,San Joaquin River,Fall Run
-1520,,San Joaquin River,Fall Run
-2214,314.300758249158,San Joaquin River,Fall Run
-2270,340.514848484849,San Joaquin River,Fall Run
-3020,1056.51895775941,San Joaquin River,Fall Run
-3770,1296.98006887052,San Joaquin River,Fall Run
-4520,1601.02212580349,San Joaquin River,Fall Run
-5270,1833.75116620753,San Joaquin River,Fall Run
-6020,2109.11553719008,San Joaquin River,Fall Run
-6770,2401.62086317723,San Joaquin River,Fall Run
-7520,2828.54643709826,San Joaquin River,Fall Run
-8270,3381.60458677686,San Joaquin River,Fall Run
-9020,3927.36558310376,San Joaquin River,Fall Run
-9770,4557.17752066116,San Joaquin River,Fall Run
-10520,5077.93266299357,San Joaquin River,Fall Run
-11270,5824.28133149679,San Joaquin River,Fall Run
-12020,6743.97214876033,San Joaquin River,Fall Run
-12770,7280.50279614325,San Joaquin River,Fall Run
-13520,7860.34604683196,San Joaquin River,Fall Run
-14270,8453.99691919192,San Joaquin River,Fall Run
-15020,8923.76723599632,San Joaquin River,Fall Run
-15770,9506.01801652893,San Joaquin River,Fall Run
-16520,10016.7642286501,San Joaquin River,Fall Run
-17270,10401.4401928375,San Joaquin River,Fall Run
-18020,10764.0709550046,San Joaquin River,Fall Run
-18770,11081.5388613407,San Joaquin River,Fall Run
-19520,11413.8171671258,San Joaquin River,Fall Run
-20270,11744.7580762167,San Joaquin River,Fall Run
-21020,12124.5982736455,San Joaquin River,Fall Run
-21770,12361.9366345271,San Joaquin River,Fall Run
-22520,12648.5094306703,San Joaquin River,Fall Run
-20,,San Joaquin River,Spring Run
-770,,San Joaquin River,Spring Run
-1520,,San Joaquin River,Spring Run
-2214,314.300758249158,San Joaquin River,Spring Run
-2270,340.514848484849,San Joaquin River,Spring Run
-3020,1056.51895775941,San Joaquin River,Spring Run
-3770,1296.98006887052,San Joaquin River,Spring Run
-4520,1601.02212580349,San Joaquin River,Spring Run
-5270,1833.75116620753,San Joaquin River,Spring Run
-6020,2109.11553719008,San Joaquin River,Spring Run
-6770,2401.62086317723,San Joaquin River,Spring Run
-7520,2828.54643709826,San Joaquin River,Spring Run
-8270,3381.60458677686,San Joaquin River,Spring Run
-9020,3927.36558310376,San Joaquin River,Spring Run
-9770,4557.17752066116,San Joaquin River,Spring Run
-10520,5077.93266299357,San Joaquin River,Spring Run
-11270,5824.28133149679,San Joaquin River,Spring Run
-12020,6743.97214876033,San Joaquin River,Spring Run
-12770,7280.50279614325,San Joaquin River,Spring Run
-13520,7860.34604683196,San Joaquin River,Spring Run
-14270,8453.99691919192,San Joaquin River,Spring Run
-15020,8923.76723599632,San Joaquin River,Spring Run
-15770,9506.01801652893,San Joaquin River,Spring Run
-16520,10016.7642286501,San Joaquin River,Spring Run
-17270,10401.4401928375,San Joaquin River,Spring Run
-18020,10764.0709550046,San Joaquin River,Spring Run
-18770,11081.5388613407,San Joaquin River,Spring Run
-19520,11413.8171671258,San Joaquin River,Spring Run
-20270,11744.7580762167,San Joaquin River,Spring Run
-21020,12124.5982736455,San Joaquin River,Spring Run
-21770,12361.9366345271,San Joaquin River,Spring Run
-22520,12648.5094306703,San Joaquin River,Spring Run
-20,,San Joaquin River,Steelhead
-770,,San Joaquin River,Steelhead
-1520,,San Joaquin River,Steelhead
-2214,314.300758249158,San Joaquin River,Steelhead
-2270,340.514848484849,San Joaquin River,Steelhead
-3020,1056.51895775941,San Joaquin River,Steelhead
-3770,1296.98006887052,San Joaquin River,Steelhead
-4520,1601.02212580349,San Joaquin River,Steelhead
-5270,1833.75116620753,San Joaquin River,Steelhead
-6020,2109.11553719008,San Joaquin River,Steelhead
-6770,2401.62086317723,San Joaquin River,Steelhead
-7520,2828.54643709826,San Joaquin River,Steelhead
-8270,3381.60458677686,San Joaquin River,Steelhead
-9020,3927.36558310376,San Joaquin River,Steelhead
-9770,4557.17752066116,San Joaquin River,Steelhead
-10520,5077.93266299357,San Joaquin River,Steelhead
-11270,5824.28133149679,San Joaquin River,Steelhead
-12020,6743.97214876033,San Joaquin River,Steelhead
-12770,7280.50279614325,San Joaquin River,Steelhead
-13520,7860.34604683196,San Joaquin River,Steelhead
-14270,8453.99691919192,San Joaquin River,Steelhead
-15020,8923.76723599632,San Joaquin River,Steelhead
-15770,9506.01801652893,San Joaquin River,Steelhead
-16520,10016.7642286501,San Joaquin River,Steelhead
-17270,10401.4401928375,San Joaquin River,Steelhead
-18020,10764.0709550046,San Joaquin River,Steelhead
-18770,11081.5388613407,San Joaquin River,Steelhead
-19520,11413.8171671258,San Joaquin River,Steelhead
-20270,11744.7580762167,San Joaquin River,Steelhead
-21020,12124.5982736455,San Joaquin River,Steelhead
-21770,12361.9366345271,San Joaquin River,Steelhead
-22520,12648.5094306703,San Joaquin River,Steelhead
+flow_cfs,floodplain_acres,watershed
+2214,314.3,San Joaquin River
+2270,340.5,San Joaquin River
+3020,1056.5,San Joaquin River
+3770,1297,San Joaquin River
+4520,1601,San Joaquin River
+5270,1833.8,San Joaquin River
+6020,2109.1,San Joaquin River
+6770,2401.6,San Joaquin River
+7520,2828.5,San Joaquin River
+8270,3381.6,San Joaquin River
+9020,3927.4,San Joaquin River
+9770,4557.2,San Joaquin River
+10520,5077.9,San Joaquin River
+11270,5824.3,San Joaquin River
+12020,6744,San Joaquin River
+12770,7280.5,San Joaquin River
+13520,7860.3,San Joaquin River
+14270,8454,San Joaquin River
+15020,8923.8,San Joaquin River
+15770,9506,San Joaquin River
+16520,10016.8,San Joaquin River
+17270,10401.4,San Joaquin River
+18020,10764.1,San Joaquin River
+18770,11081.5,San Joaquin River
+19520,11413.8,San Joaquin River
+20270,11744.8,San Joaquin River
+21020,12124.6,San Joaquin River
+21770,12361.9,San Joaquin River
+22520,12648.5,San Joaquin River

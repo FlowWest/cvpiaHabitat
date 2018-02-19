@@ -83,13 +83,7 @@ devtools::use_data(merced_river_floodplain, overwrite = TRUE)
 
 # moke
 mokelumne_river <- read_csv("data-raw/floodplain/mokelumne_river_floodplain.csv")
-
-mokelumne_river_floodplain <- mokelumne_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+mokelumne_river_floodplain <- mokelumne_river
 devtools::use_data(mokelumne_river_floodplain, overwrite = TRUE)
 
 # north delta
@@ -107,13 +101,7 @@ devtools::use_data(north_delta_floodplain, overwrite = TRUE)
 
 # san joaquin
 san_joaquin <- read_csv("data-raw/floodplain/san_joaquin_river_floodplain.csv")
-
-san_joaquin_river_floodplain <- san_joaquin %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+san_joaquin_river_floodplain <- san_joaquin
 devtools::use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 
 # stan
@@ -162,7 +150,9 @@ devtools::use_data(yolo_bypass_floodplain, overwrite = TRUE)
 
 # yuba special case see clean_floodplain.R
 
-
+yuba_river <- read_csv("data-raw/floodplain/yuba_river_floodplain.csv")
+yuba_river_floodplain <- yuba_river
+devtools::use_data(yuba_river_floodplain, overwrite = TRUE)
 
 
 

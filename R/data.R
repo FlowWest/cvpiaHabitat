@@ -1,3 +1,5 @@
+# FLOODPLAIN -------------------------------------------------------------------------------
+
 #' Upper Sacramento River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
@@ -135,12 +137,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 28 rows and 5 variables:
+#' @format dataframe with 28 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -222,16 +222,16 @@
 #' @format dataframe with 32 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.
 #'
 #' @examples
 #' san_joaquin_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "san_joaquin_river_floodplain"
 
 #' North Delta Flow to Floodplain Habitat Area Relationship
@@ -263,7 +263,7 @@
 #' @format dataframe with 31 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -401,7 +401,7 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 32 rows and 3 variables:
+#' @format dataframe with 7 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
@@ -422,7 +422,7 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 37 rows and 3 variables:
+#' @format dataframe with 35 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
@@ -475,6 +475,10 @@
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "butte_creek_floodplain"
+
+
+# INSTREAMS ----------------------------------------------------------------------------------------
+
 
 #' Butte Creek Instream Flow to Habitat Area Relationship
 #'

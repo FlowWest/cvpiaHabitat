@@ -130,6 +130,3 @@ merced_river_floodplain <- merced %>%
 devtools::use_data(merced_river_floodplain, overwrite = TRUE)
 
 
-
-# Clean new version of the flow -> acres csv files
-# there is not much cleaning

@@ -7,11 +7,11 @@
 \format{dataframe with 30 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
   \item{watershed}{name of watershed}
 }}
 \source{
-TODO
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model}
 }
 \usage{
 deer_creek_floodplain
@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-The habitat area was derived from the Deer Creek Watershed Conservancy HEC-RAS 1D 2011 model.
+HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.
 }
 \examples{
 deer_creek_floodplain
