@@ -45,6 +45,8 @@ reference:
   - stanislaus_river_instream
   - tuolumne_river_instream
   - yuba_river_instream
+  - sutter_bypass_instream
+  - yolo_bypass_instream
 - title: Floodplain Habitat Datasets
   desc: Flow to floodplain area modeled relationships
   contents:
@@ -68,6 +70,8 @@ reference:
   - stanislaus_river_floodplain
   - tuolumne_river_floodplain
   - yuba_river_floodplain
+  - sutter_bypass_floodplain
+  - yolo_bypass_floodplain
 - title: Miscellaneous Datasets
   desc: Datasets used as reference tables
   contents:

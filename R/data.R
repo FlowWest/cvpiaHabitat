@@ -1073,3 +1073,99 @@
 #'
 #' @source Sadie Gill  \email{sgill@@flowwest.com}
 'weeks_inundated'
+
+#' Yolo Bypass Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 2 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{Yolo Bypass 1}{floodplain acreage in the Yolo Bypass, Fremont Weir to Sacramento Weir}
+#'   \item{Yolo Bypass 2}{floodplain acreage in the Yolo Bypass below Sacramento Weir}
+#' }
+#'
+#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#' High quality defined by:
+#' Channel depth > 0.2 m and < 1.5 m
+#' Velocity <= 0.15 m/s
+#'
+#' @examples
+#' yolo_bypass_floodplain
+#'
+#' @source \href{https://www.google.com}{TODO}
+'yolo_bypass_floodplain'
+
+#' Sutter Bypass Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing the floodplain habitat area in acres as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 41 rows and 5 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{Sutter Bypass 1}{floodplain acreage in the Sutter Bypass, to Moulton Weir}
+#'   \item{Sutter Bypass 2}{floodplain acreage in the Sutter Bypass, to Colusa Weir}
+#'   \item{Sutter Bypass 3}{floodplain acreage in the Sutter Bypass, to Tisdale Weir}
+#'   \item{Sutter Bypass 4}{floodplain acreage in the Sutter Bypass below Tisdale Weir}
+#' }
+#'
+#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#' High quality defined by:
+#' Channel depth > 0.2 m and < 1.5 m
+#' Velocity <= 0.15 m/s
+#'
+#' @examples
+#' sutter_bypass_floodplain
+#'
+#' @source \href{https://www.google.com}{TODO}
+'sutter_bypass_floodplain'
+
+#' Yolo Bypass Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 41 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{Yolo Bypass 1}{juvenile rearing habitat WUA in the Yolo Bypass, Fremont Weir to Sacramento Weir}
+#'   \item{Yolo Bypass 2}{juvenile rearing habitat WUA in the Yolo Bypass below Sacramento Weir}
+#' }
+#'
+#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#' High quality defined by:
+#' Channel depth > 0.2 m and < 1.5 m
+#' Velocity <= 0.15 m/s
+#'
+#' @examples
+#' yolo_bypass_instream
+#'
+#' @source \href{https://www.google.com}{TODO}
+'yolo_bypass_instream'
+
+#' Sutter Bypass Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 41 rows and 5 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{Sutter Bypass 1}{juvenile rearing habitat WUA in the Sutter Bypass, to Moulton Weir}
+#'   \item{Sutter Bypass 2}{juvenile rearing habitat WUA in the Sutter Bypass, to Colusa Weir}
+#'   \item{Sutter Bypass 3}{juvenile rearing habitat WUA in the Sutter Bypass, to Tisdale Weir}
+#'   \item{Sutter Bypass 4}{juvenile rearing habitat WUA in the Sutter Bypass below Tisdale Weir}
+#' }
+#'
+#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#' High quality defined by:
+#' Channel depth > 0.2 m and < 1.5 m
+#' Velocity <= 0.15 m/s
+#'
+#' @examples
+#' sutter_bypass_instream
+#'
+#' @source \href{https://www.google.com}{TODO}
+'sutter_bypass_instream'
