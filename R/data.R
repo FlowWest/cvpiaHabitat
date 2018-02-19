@@ -101,10 +101,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #'   function of flow in cubic feet per second
 #'
-#' @format dataframe with 23 rows and 3 variables:
+#' @format dataframe with 22 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
 #'   \item{watershed}{name of watershed} }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
