@@ -30,13 +30,7 @@ devtools::use_data(butte_creek_floodplain, overwrite = TRUE)
 
 # calaveras
 calaveras_river <- read_csv("data-raw/floodplain/calaveras_river_floodplain.csv")
-
-calaveras_river_floodplain <- calaveras_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+calaveras_river_floodplain <- calaveras_river
 devtools::use_data(calaveras_river_floodplain, overwrite = TRUE)
 
 # consumnes river
@@ -63,35 +57,17 @@ devtools::use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 
 # deer creek
 deer_creek <- read_csv("data-raw/floodplain/deer_creek_floodplain.csv")
-
-deer_creek_floodplain <- deer_creek %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+deer_creek_floodplain <- deer_creek
 devtools::use_data(deer_creek_floodplain, overwrite = TRUE)
 
 # elder creek
 elder_creek <- read_csv("data-raw/floodplain/elder_creek_floodplain.csv")
-
-elder_creek_floodplain <- elder_creek %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+elder_creek_floodplain <- elder_creek
 devtools::use_data(elder_creek_floodplain, overwrite = TRUE)
 
 # feather river
 feather_river <- read_csv("data-raw/floodplain/feather_river_floodplain.csv")
-
-feather_river_floodplain <- feather_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+feather_river_floodplain <- feather_river
 devtools::use_data(feather_river_floodplain, overwrite = TRUE)
 
 # merced river

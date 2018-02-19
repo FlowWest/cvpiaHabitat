@@ -267,10 +267,10 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details NA
+#' @details TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mokelumne River scaling factor of 50% was calculated as the average ratio of Mokelumne River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 58.4 mile mapped rearing extent in the Mokelumne River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 241.2 acres) versus floodplain inundation areas.
 #'
-#' @source NA
 #'
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model}
 #' @examples
 #' mokelumne_river_floodplain
 "mokelumne_river_floodplain"
