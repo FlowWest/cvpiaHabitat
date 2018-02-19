@@ -1,32 +1,30 @@
-flow_cfs,floodplain_acres,watershed,species
-10,0,Elder Creek,Fall Run
-50,0,Elder Creek,Fall Run
-90,0,Elder Creek,Fall Run
-130,0,Elder Creek,Fall Run
-170,4.4498668503214,Elder Creek,Fall Run
-196,6.49597910927457,Elder Creek,Fall Run
-210,7.5977318640955,Elder Creek,Fall Run
-250,10.1110238751148,Elder Creek,Fall Run
-290,12.4736730945822,Elder Creek,Fall Run
-330,14.4834986225895,Elder Creek,Fall Run
-370,16.275624426079,Elder Creek,Fall Run
-410,17.6181634527089,Elder Creek,Fall Run
-450,18.8599219467401,Elder Creek,Fall Run
-490,20.0662350780533,Elder Creek,Fall Run
-530,21.0786776859504,Elder Creek,Fall Run
-570,22.0514279155188,Elder Creek,Fall Run
-610,23.0221120293848,Elder Creek,Fall Run
-650,23.9026446280992,Elder Creek,Fall Run
-690,24.7715151515152,Elder Creek,Fall Run
-730,25.6210560146924,Elder Creek,Fall Run
-770,26.3908907254362,Elder Creek,Fall Run
-810,27.2732369146006,Elder Creek,Fall Run
-850,27.9621946740129,Elder Creek,Fall Run
-890,28.5977089072544,Elder Creek,Fall Run
-930,29.2082920110193,Elder Creek,Fall Run
-970,29.9084986225895,Elder Creek,Fall Run
-1010,30.4833838383838,Elder Creek,Fall Run
-1050,31.1085674931129,Elder Creek,Fall Run
-1090,31.6167860422406,Elder Creek,Fall Run
-1130,32.19036271809,Elder Creek,Fall Run
-1170,32.7028282828283,Elder Creek,Fall Run
+flow_cfs,floodplain_acres,watershed
+90,0,Elder Creek
+130,12.77,Elder Creek
+170,21.56,Elder Creek
+196,24.25,Elder Creek
+210,25.7,Elder Creek
+250,29,Elder Creek
+290,32.11,Elder Creek
+330,34.75,Elder Creek
+370,37.11,Elder Creek
+410,38.87,Elder Creek
+450,40.51,Elder Creek
+490,42.09,Elder Creek
+530,43.42,Elder Creek
+570,44.7,Elder Creek
+610,45.98,Elder Creek
+650,47.14,Elder Creek
+690,48.28,Elder Creek
+730,49.4,Elder Creek
+770,50.41,Elder Creek
+810,51.57,Elder Creek
+850,52.47,Elder Creek
+890,53.31,Elder Creek
+930,54.11,Elder Creek
+970,55.03,Elder Creek
+1010,55.79,Elder Creek
+1050,56.61,Elder Creek
+1090,57.28,Elder Creek
+1130,58.03,Elder Creek
+1170,58.71,Elder Creek
