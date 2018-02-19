@@ -4,7 +4,7 @@
 \name{calaveras_river_floodplain}
 \alias{calaveras_river_floodplain}
 \title{Calaveras River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 37 rows and 3 variables:
+\format{dataframe with 33 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Calaveras River scaling factor of 20% was calculated as the average ratio of Calaveras River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 18.5 mile mapped rearing extent in the Calaveras River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 75 acres) versus floodplain inundation areas.
+TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Calaveras River scaling factor of 20\% was calculated as the average ratio of Calaveras River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 18.5 mile mapped rearing extent in the Calaveras River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 75 acres) versus floodplain inundation areas.
 }
 \examples{
 calaveras_river_floodplain

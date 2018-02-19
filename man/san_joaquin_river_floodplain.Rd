@@ -4,7 +4,7 @@
 \name{san_joaquin_river_floodplain}
 \alias{san_joaquin_river_floodplain}
 \title{San Joaquin River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 32 rows and 3 variables:
+\format{dataframe with 29 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.
+CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57\% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.
 }
 \examples{
 san_joaquin_river_floodplain

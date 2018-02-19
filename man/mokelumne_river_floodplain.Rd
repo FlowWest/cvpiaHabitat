@@ -4,7 +4,7 @@
 \name{mokelumne_river_floodplain}
 \alias{mokelumne_river_floodplain}
 \title{Mokelumne River to Floodplain Habitat Area Relationship}
-\format{dataframe with 31 rows and 3 variables:
+\format{dataframe with 33 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mokelumne River scaling factor of 50% was calculated as the average ratio of Mokelumne River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 58.4 mile mapped rearing extent in the Mokelumne River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 241.2 acres) versus floodplain inundation areas.
+TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mokelumne River scaling factor of 50\% was calculated as the average ratio of Mokelumne River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 58.4 mile mapped rearing extent in the Mokelumne River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 241.2 acres) versus floodplain inundation areas.
 }
 \examples{
 mokelumne_river_floodplain

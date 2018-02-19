@@ -4,7 +4,7 @@
 \name{yuba_river_floodplain}
 \alias{yuba_river_floodplain}
 \title{Yuba River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 28 rows and 3 variables:
+\format{dataframe with 20 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{floodplain_acres}{fall run floodplain acreage}

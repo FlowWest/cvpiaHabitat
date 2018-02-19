@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.
+HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10\% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.
 }
 \examples{
 deer_creek_floodplain
