@@ -1,0 +1,95 @@
+Id,River,Habitat,miles,feet,Source,Species
+30,Tuolumne River,spawning,20.81399683260,109897.90327600000,Gretchen Murphey,Fall Run Chinook
+7,Clear Creek,rearing,7.99703638078,42224.35209050000,Matt Brown,Fall Run Chinook
+7,Clear Creek,spawning,7.99703638078,42224.35209050000,Matt Brown,Fall Run Chinook
+9,Cow Creek,spawning,63.66570775570,336154.93695000000,Tricia Bratcher,Fall Run Chinook
+9,Cow Creek,rearing,64.17028358310,338819.09731900000,Tricia Bratcher,Fall Run Chinook
+4,Bear Creek,spawning,17.10390740210,90308.63108290000,Tricia Bratcher,Fall Run Chinook
+4,Bear Creek,rearing,17.29622258890,91324.05526950000,Tricia Bratcher,Fall Run Chinook
+8,Cottonwood Creek,rearing,22.35646430650,118042.13153800000,Tricia Bratcher,Fall Run Chinook
+8,Cottonwood Creek,spawning,22.35646430650,118042.13153800000,Tricia Bratcher,Fall Run Chinook
+3,Battle Creek,spawning,3.96691436821,20945.30786410000,Jim Smith,Fall Run Chinook
+3,Battle Creek,rearing,5.87170635770,31002.60956870000,Jim Smith,Fall Run Chinook
+13,Paynes Creek,spawning,11.80921976470,62352.68035780000,Tricia Bratcher,Fall Run Chinook
+13,Paynes Creek,rearing,11.80921976470,62352.68035780000,Tricia Bratcher,Fall Run Chinook
+11,Elder Creek,spawning,7.10079077055,37492.17526850000,Tricia Bratcher,Fall Run Chinook
+11,Elder Creek,rearing,7.10079077055,37492.17526850000,Tricia Bratcher,Fall Run Chinook
+12,Mill Creek,rearing,21.09909263330,111403.20910400000,Matt Johnson,Fall Run Chinook
+12,Mill Creek,spawning,20.39240886290,107671.91879600000,Matt Johnson,Fall Run Chinook
+15,Thomes Creek,spawning,37.47408391120,197863.16305100000,Tricia Bratcher,Fall Run Chinook
+15,Thomes Creek,rearing,37.47408391120,197863.16305100000,Tricia Bratcher,Fall Run Chinook
+10,Deer Creek,spawning,18.38828995120,97090.17094220000,Matt Johnson,Fall Run Chinook
+10,Deer Creek,rearing,18.38828995120,97090.17094220000,Matt Johnson,Fall Run Chinook
+5,Big Chico Creek,rearing,15.05463332730,79488.46396820000,Clint Garman,Fall Run Chinook
+5,Big Chico Creek,spawning,15.05463332730,79488.46396820000,Clint Garman,Fall Run Chinook
+14,Stony Creek,rearing,26.12097322280,137918.73861700000,Clint Garman,Fall Run Chinook
+14,Stony Creek,spawning,26.12097322280,137918.73861700000,Clint Garman,Fall Run Chinook
+6,Butte Creek,spawning,14.05985037690,74236.00999020000,Clint Garman,Fall Run Chinook
+19,Feather River,spawning,18.02306993480,95161.80925550000,Ryon Kurth,Fall Run Chinook
+19,Feather River,rearing,64.98259688590,343108.11155700000,Ryon Kurth,Fall Run Chinook
+20,Yuba River,spawning,20.57897765270,108657.00200600000,Paul Bratovich,Fall Run Chinook
+20,Yuba River,rearing,23.07203069210,121820.32205400000,Paul Bratovich,Fall Run Chinook
+23,American River,spawning,17.87932221980,94402.82132040000,Chris Hammersmark,Fall Run Chinook
+23,American River,rearing,22.81160101510,120445.25336000000,Chris Hammersmark,Fall Run Chinook
+26,Cosumnes River,spawning,13.95485197500,73681.61842770000,Trevor Kennedy,Fall Run Chinook
+26,Cosumnes River,rearing,41.33881817210,218268.95994900000,Trevor Kennedy,Fall Run Chinook
+27,Mokelumne River,spawning,10.10447034650,53351.60342970000,Matt Saldate,Fall Run Chinook
+27,Mokelumne River,rearing,24.46337321040,129166.61055100000,Matt Saldate,Fall Run Chinook
+25,Calaveras River,rearing,18.48333097110,97591.98752760000,Trevor Kennedy,Fall Run Chinook
+25,Calaveras River,spawning,12.28513854180,64865.53150060000,Trevor Kennedy,Fall Run Chinook
+29,Stanislaus River,rearing,60.31270415050,318451.07791500000,Domenic Giudice,Fall Run Chinook
+29,Stanislaus River,spawning,25.56767193520,134997.30781800000,Domenic Giudice,Fall Run Chinook
+28,Merced River,spawning,24.76420382370,130754.99618900000,Steve Tsao,Fall Run Chinook
+28,Merced River,rearing,51.75938822760,273289.56984200000,Steve Tsao,Fall Run Chinook
+2,Antelope Creek,spawning,23.68558393340,125059.88316800000,Matt Johnson,Fall Run Chinook
+2,Antelope Creek,rearing,31.61907700050,166948.72656200000,Matt Johnson,Fall Run Chinook
+1,Upper Sacramento River,spawning,59.35011611910,313368.61310900000,Jim Smith,Fall Run Chinook
+18,Bear River,spawning,32.05040744800,169226.15132500000,Justin Wood,Fall Run Chinook
+18,Bear River,rearing,32.05040744800,169226.15132500000,Justin Wood,Fall Run Chinook
+1,Upper Sacramento River,rearing,59.18567970290,312500.38883200000,Jim Smith,Fall Run Chinook
+16,Upper-mid Sacramento River,rearing,122.45003633200,646536.19183100000,Mike Urkov,Fall Run Chinook
+21,Lower-mid Sacramento River,rearing,57.96250959920,306042.05068400000,Mike Urkov,Fall Run Chinook
+32,North Delta,rearing,45.65408260490,241053.55615400000,Mike Urkov,Fall Run Chinook
+24,Lower Sacramento River,rearing,13.70219178630,72347.57263180000,Mike Urkov,Fall Run Chinook
+33,South Delta,rearing,69.61721552660,367578.89798100000,Mike Urkov,Fall Run Chinook
+31,San Joaquin River,rearing,45.68033097800,241192.14756400000,Mike Urkov,Fall Run Chinook
+28,Merced River,spawning,24.76420382370,130754.99618900000,Steve Tsao,Fall Run Chinook
+30,Tuolumne River,rearing,54.33113934720,286868.41575300000,Wikert John,Fall Run Chinook
+6,Butte Creek,rearing,17.14237856710,90511.75883430000,Clint Garman,Fall Run Chinook
+7,Clear Creek,rearing,17.92201492700,94628.23881470000,Matt Brown,Steelhead
+7,Clear Creek,rearing,17.92201492700,94628.23881470000,Matt Brown,Spring Run Chinook
+7,Clear Creek,spawning,10.61382514330,56040.99675690000,Matt Brown,Spring Run Chinook
+7,Clear Creek,spawning,17.92201492700,94628.23881470000,Matt Brown,Steelhead
+6,Butte Creek,rearing,31.66908257530,167212.75599800000,Clint Garman,Spring Run Chinook
+6,Butte Creek,spawning,14.54625838190,76804.24425630000,Clint Garman,Steelhead
+6,Butte Creek,rearing,31.66908257530,167212.75599800000,Clint Garman,Steelhead
+6,Butte Creek,spawning,14.54625838190,76804.24425630000,Clint Garman,Spring Run Chinook
+5,Big Chico Creek,rearing,23.83776287890,125863.38800100000,Clint Garman,Spring Run Chinook
+5,Big Chico Creek,spawning,23.83776287890,125863.38800100000,Clint Garman,Spring Run Chinook
+5,Big Chico Creek,spawning,23.83776287890,125863.38800100000,Clint Garman,Steelhead
+5,Big Chico Creek,rearing,23.83776287890,125863.38800100000,Clint Garman,Steelhead
+9,Cow Creek,spawning,94.18962844820,497321.23820700000,Patricia Bratcher,Steelhead
+9,Cow Creek,rearing,94.18962844820,497321.23820700000,Patricia Bratcher,Steelhead
+3,Battle Creek,rearing,24.40903833190,128879.72239200000,Laurie Earley,Steelhead
+3,Battle Creek,rearing,24.40903833190,128879.72239200000,Laurie Earley,Spring Run Chinook
+3,Battle Creek,spawning,18.53733197420,97877.11282360000,Laurie Earley,Spring Run Chinook
+3,Battle Creek,spawning,18.53733197420,97877.11282360000,Laurie Earley,Steelhead
+8,Cottonwood Creek,spawning,142.25590692400,751111.18856100000,Patricia Bratcher,Steelhead
+8,Cottonwood Creek,spawning,19.36344085100,102238.96769300000,Patricia Bratcher,Spring Run Chinook
+8,Cottonwood Creek,rearing,142.25590692400,751111.18856100000,Patricia Bratcher,Steelhead
+8,Cottonwood Creek,rearing,119.47701982100,630838.66465400000,Patricia Bratcher,Spring Run Chinook
+10,Deer Creek,rearing,47.92152569580,253025.65567400000,Matt Johnson,Steelhead
+10,Deer Creek,spawning,24.75243342460,130692.84848200000,Matt Johnson,Steelhead
+10,Deer Creek,rearing,47.92152569580,253025.65567400000,Matt Johnson,Spring Run Chinook
+10,Deer Creek,spawning,24.75243342460,130692.84848200000,Matt Johnson,Spring Run Chinook
+12,Mill Creek,rearing,53.49046589860,282429.65994500000,Matt Johnson,Steelhead
+12,Mill Creek,spawning,39.43321454400,208207.37279200000,Matt Johnson,Steelhead
+12,Mill Creek,rearing,53.49046589860,282429.65994500000,Matt Johnson,Spring Run Chinook
+12,Mill Creek,spawning,39.43321454400,208207.37279200000,Matt Johnson,Spring Run Chinook
+13,Paynes Creek,rearing,27.81061932940,146840.07005900000,Patricia Bratcher,Steelhead
+13,Paynes Creek,spawning,27.81061932940,146840.07005900000,Patricia Bratcher,Steelhead
+15,Thomes Creek,rearing,42.69661421620,225438.12306100000,Patricia Bratcher,Steelhead
+15,Thomes Creek,spawning,2.76772354228,14613.58030320000,Patricia Bratcher,Spring Run Chinook
+15,Thomes Creek,spawning,26.06214649540,137608.13349600000,Patricia Bratcher,Steelhead
+15,Thomes Creek,rearing,42.69661421620,225438.12306100000,Patricia Bratcher,Spring Run Chinook
+27,Mokelumne River,rearing,58.39758714690,308339.26013600000,Robyn Bilski,Fall Run Chinook
