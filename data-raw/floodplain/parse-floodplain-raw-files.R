@@ -1,52 +1,31 @@
 # This script reads in floodplain area raw files in data-raw/floodplain dir for use in package
 # there are special cases not parsed here that are done so in clean_floodplain.R
 
+# UPDATE: new version of flow to floodplain curves were added on 2018-02-19 -emanuel
+# updates to the documentation also added
+
 library(readr)
 library(dplyr)
 library(magrittr)
 
 # american river
 american_river <- read_csv("data-raw/floodplain/american_river_floodplain.csv")
-
-american_river_floodplain <- american_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+american_river_floodplain <- american_river
 devtools::use_data(american_river_floodplain, overwrite = TRUE)
 
 # bear river
 bear_river <- read_csv("data-raw/floodplain/bear_river_floodplain.csv")
-
-bear_river_floodplain <- bear_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+bear_river_floodplain <- bear_river
 devtools::use_data(bear_river_floodplain, overwrite = TRUE)
 
 # big chico
 big_chico <- read_csv("data-raw/floodplain/big_chico_creek_floodplain.csv")
-
-big_chico_creek_floodplain <- big_chico %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+big_chico_creek_floodplain <- big_chico
 devtools::use_data(big_chico_creek_floodplain, overwrite = TRUE)
 
 # butte creek
 butte_creek <- read_csv("data-raw/floodplain/butte_creek_floodplain.csv")
-
-butte_creek_floodplain <- butte_creek %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+butte_creek_floodplain <- butte_creek
 devtools::use_data(butte_creek_floodplain, overwrite = TRUE)
 
 # calaveras

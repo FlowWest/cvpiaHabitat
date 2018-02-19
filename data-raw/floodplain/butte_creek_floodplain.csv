@@ -1,94 +1,29 @@
-flow_cfs,floodplain_acres,watershed,species
-10,0,Butte Creek,Fall Run
-110,0,Butte Creek,Fall Run
-210,0,Butte Creek,Fall Run
-310,0,Butte Creek,Fall Run
-410,2.03863177226813,Butte Creek,Fall Run
-450,13.6996143250689,Butte Creek,Fall Run
-510,31.19108815427,Butte Creek,Fall Run
-610,56.9370477502296,Butte Creek,Fall Run
-710,73.5042194674013,Butte Creek,Fall Run
-810,84.6033700642792,Butte Creek,Fall Run
-910,91.9677640036731,Butte Creek,Fall Run
-1010,98.6928328741965,Butte Creek,Fall Run
-1110,109.238907254362,Butte Creek,Fall Run
-1210,115.787300275482,Butte Creek,Fall Run
-1310,123.001625344353,Butte Creek,Fall Run
-1410,128.162093663912,Butte Creek,Fall Run
-1510,132.925684113866,Butte Creek,Fall Run
-1610,140.440215794307,Butte Creek,Fall Run
-1710,145.555688705234,Butte Creek,Fall Run
-1810,157.408741965106,Butte Creek,Fall Run
-1910,162.819830119376,Butte Creek,Fall Run
-2010,167.204426078972,Butte Creek,Fall Run
-2110,171.614044995409,Butte Creek,Fall Run
-2210,176.41064738292,Butte Creek,Fall Run
-2310,182.986932966024,Butte Creek,Fall Run
-2410,186.979724517906,Butte Creek,Fall Run
-2510,190.990101010101,Butte Creek,Fall Run
-2610,197.038838383838,Butte Creek,Fall Run
-2710,200.85217630854,Butte Creek,Fall Run
-2810,205.067993572084,Butte Creek,Fall Run
-2910,208.846827364555,Butte Creek,Fall Run
-10,0,Butte Creek,Spring Run
-110,0,Butte Creek,Spring Run
-210,0,Butte Creek,Spring Run
-310,0,Butte Creek,Spring Run
-410,2.03863177226813,Butte Creek,Spring Run
-450,13.6996143250689,Butte Creek,Spring Run
-510,31.19108815427,Butte Creek,Spring Run
-610,56.9370477502296,Butte Creek,Spring Run
-710,73.5042194674013,Butte Creek,Spring Run
-810,84.6033700642792,Butte Creek,Spring Run
-910,91.9677640036731,Butte Creek,Spring Run
-1010,98.6928328741965,Butte Creek,Spring Run
-1110,109.238907254362,Butte Creek,Spring Run
-1210,115.787300275482,Butte Creek,Spring Run
-1310,123.001625344353,Butte Creek,Spring Run
-1410,128.162093663912,Butte Creek,Spring Run
-1510,132.925684113866,Butte Creek,Spring Run
-1610,140.440215794307,Butte Creek,Spring Run
-1710,145.555688705234,Butte Creek,Spring Run
-1810,157.408741965106,Butte Creek,Spring Run
-1910,162.819830119376,Butte Creek,Spring Run
-2010,167.204426078972,Butte Creek,Spring Run
-2110,171.614044995409,Butte Creek,Spring Run
-2210,176.41064738292,Butte Creek,Spring Run
-2310,182.986932966024,Butte Creek,Spring Run
-2410,186.979724517906,Butte Creek,Spring Run
-2510,190.990101010101,Butte Creek,Spring Run
-2610,197.038838383838,Butte Creek,Spring Run
-2710,200.85217630854,Butte Creek,Spring Run
-2810,205.067993572084,Butte Creek,Spring Run
-2910,208.846827364555,Butte Creek,Spring Run
-10,0,Butte Creek,Steelhead
-110,0,Butte Creek,Steelhead
-210,0,Butte Creek,Steelhead
-310,0,Butte Creek,Steelhead
-410,2.03863177226813,Butte Creek,Steelhead
-450,13.6996143250689,Butte Creek,Steelhead
-510,31.19108815427,Butte Creek,Steelhead
-610,56.9370477502296,Butte Creek,Steelhead
-710,73.5042194674013,Butte Creek,Steelhead
-810,84.6033700642792,Butte Creek,Steelhead
-910,91.9677640036731,Butte Creek,Steelhead
-1010,98.6928328741965,Butte Creek,Steelhead
-1110,109.238907254362,Butte Creek,Steelhead
-1210,115.787300275482,Butte Creek,Steelhead
-1310,123.001625344353,Butte Creek,Steelhead
-1410,128.162093663912,Butte Creek,Steelhead
-1510,132.925684113866,Butte Creek,Steelhead
-1610,140.440215794307,Butte Creek,Steelhead
-1710,145.555688705234,Butte Creek,Steelhead
-1810,157.408741965106,Butte Creek,Steelhead
-1910,162.819830119376,Butte Creek,Steelhead
-2010,167.204426078972,Butte Creek,Steelhead
-2110,171.614044995409,Butte Creek,Steelhead
-2210,176.41064738292,Butte Creek,Steelhead
-2310,182.986932966024,Butte Creek,Steelhead
-2410,186.979724517906,Butte Creek,Steelhead
-2510,190.990101010101,Butte Creek,Steelhead
-2610,197.038838383838,Butte Creek,Steelhead
-2710,200.85217630854,Butte Creek,Steelhead
-2810,205.067993572084,Butte Creek,Steelhead
-2910,208.846827364555,Butte Creek,Steelhead
+flow_cfs,floodplain_acres,watershed
+310,0,Butte Creek
+410,19.6,Butte Creek
+450,31.3,Butte Creek
+510,48.8,Butte Creek
+610,74.5,Butte Creek
+710,91.1,Butte Creek
+810,102.2,Butte Creek
+910,109.5,Butte Creek
+1010,116.3,Butte Creek
+1110,126.8,Butte Creek
+1210,133.4,Butte Creek
+1310,140.6,Butte Creek
+1410,145.7,Butte Creek
+1510,150.5,Butte Creek
+1610,158,Butte Creek
+1710,163.1,Butte Creek
+1810,175,Butte Creek
+1910,180.4,Butte Creek
+2010,184.8,Butte Creek
+2110,189.2,Butte Creek
+2210,194,Butte Creek
+2310,200.6,Butte Creek
+2410,204.5,Butte Creek
+2510,208.6,Butte Creek
+2610,214.6,Butte Creek
+2710,218.4,Butte Creek
+2810,222.6,Butte Creek
+2910,226.4,Butte Creek

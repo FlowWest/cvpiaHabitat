@@ -1,71 +1,36 @@
-flow_cfs,floodplain_acres,watershed,species
-200,0,American River,Fall Run
-1200,0,American River,Fall Run
-2200,0,American River,Fall Run
-3200,0,American River,Fall Run
-4200,0,American River,Fall Run
-5200,11.8139439853077,American River,Fall Run
-5570,37.6003872819101,American River,Fall Run
-6200,81.5070339761249,American River,Fall Run
-7200,133.431414141414,American River,Fall Run
-8200,198.052350780533,American River,Fall Run
-9200,243.119683195592,American River,Fall Run
-10200,277.940459136823,American River,Fall Run
-11200,312.04282369146,American River,Fall Run
-12200,341.146565656566,American River,Fall Run
-13200,365.886740128558,American River,Fall Run
-14200,390.346634527089,American River,Fall Run
-15200,416.165436179982,American River,Fall Run
-16200,448.115459136823,American River,Fall Run
-17200,472.94704775023,American River,Fall Run
-18200,494.190619834711,American River,Fall Run
-19200,519.587819100092,American River,Fall Run
-20200,543.451776859504,American River,Fall Run
-21200,569.72266758494,American River,Fall Run
-22200,590.022782369146,American River,Fall Run
-23200,605.855381083563,American River,Fall Run
-24200,623.940573921028,American River,Fall Run
-25200,643.757975206612,American River,Fall Run
-26200,662.527809917356,American River,Fall Run
-27200,680.996978879706,American River,Fall Run
-28200,696.827075298439,American River,Fall Run
-29200,712.388339455158,American River,Fall Run
-30200,727.949603611876,American River,Fall Run
-31200,743.510867768595,American River,Fall Run
-32200,759.599435261708,American River,Fall Run
-33200,775.688002754821,American River,Fall Run
-200,0,American River,Steelhead
-1200,0,American River,Steelhead
-2200,0,American River,Steelhead
-3200,0,American River,Steelhead
-4200,0,American River,Steelhead
-5200,11.8139439853077,American River,Steelhead
-5570,37.6003872819101,American River,Steelhead
-6200,81.5070339761249,American River,Steelhead
-7200,133.431414141414,American River,Steelhead
-8200,198.052350780533,American River,Steelhead
-9200,243.119683195592,American River,Steelhead
-10200,277.940459136823,American River,Steelhead
-11200,312.04282369146,American River,Steelhead
-12200,341.146565656566,American River,Steelhead
-13200,365.886740128558,American River,Steelhead
-14200,390.346634527089,American River,Steelhead
-15200,416.165436179982,American River,Steelhead
-16200,448.115459136823,American River,Steelhead
-17200,472.94704775023,American River,Steelhead
-18200,494.190619834711,American River,Steelhead
-19200,519.587819100092,American River,Steelhead
-20200,543.451776859504,American River,Steelhead
-21200,569.72266758494,American River,Steelhead
-22200,590.022782369146,American River,Steelhead
-23200,605.855381083563,American River,Steelhead
-24200,623.940573921028,American River,Steelhead
-25200,643.757975206612,American River,Steelhead
-26200,662.527809917356,American River,Steelhead
-27200,680.996978879706,American River,Steelhead
-28200,696.827075298439,American River,Steelhead
-29200,712.388339455158,American River,Steelhead
-30200,727.949603611876,American River,Steelhead
-31200,743.510867768595,American River,Steelhead
-32200,759.599435261708,American River,Steelhead
-33200,775.688002754821,American River,Steelhead
+flow_cfs,floodplain_acres,watershed
+200,0,American River
+1200,0,American River
+2200,6,American River
+3200,159.88,American River
+4200,228.01,American River
+5200,268.52,American River
+5570,294.31,American River
+6200,338.22,American River
+7200,390.14,American River
+8200,454.76,American River
+9200,499.83,American River
+10200,534.65,American River
+11200,568.75,American River
+12200,597.86,American River
+13200,622.6,American River
+14200,647.06,American River
+15200,672.88,American River
+16200,704.83,American River
+17200,729.66,American River
+18200,750.9,American River
+19200,776.3,American River
+20200,800.16,American River
+21200,826.43,American River
+22200,846.73,American River
+23200,862.57,American River
+24200,880.65,American River
+25200,900.47,American River
+26200,919.24,American River
+27200,937.71,American River
+28200,953.54,American River
+29200,969.1,American River
+30200,984.66,American River
+31200,1000.22,American River
+32200,1016.31,American River
+33200,1032.4,American River
