@@ -1,75 +1,36 @@
-flow_cfs,floodplain_acres,watershed,species
-10,0,Bear River,Fall Run
-160,0,Bear River,Fall Run
-310,0,Bear River,Fall Run
-460,0,Bear River,Fall Run
-610,0,Bear River,Fall Run
-760,0,Bear River,Fall Run
-910,11.887258953168,Bear River,Fall Run
-927,13.2517938475666,Bear River,Fall Run
-1060,23.9272727272727,Bear River,Fall Run
-1210,33.6188934802571,Bear River,Fall Run
-1360,41.6129935720845,Bear River,Fall Run
-1510,48.1365472910927,Bear River,Fall Run
-1660,54.660101010101,Bear River,Fall Run
-1810,61.1836547291093,Bear River,Fall Run
-1960,67.669696969697,Bear River,Fall Run
-2110,73.1818526170799,Bear River,Fall Run
-2260,78.6940082644628,Bear River,Fall Run
-2410,83.5682966023875,Bear River,Fall Run
-2560,88.0639807162534,Bear River,Fall Run
-2710,94.3392791551882,Bear River,Fall Run
-2860,99.4477272727273,Bear River,Fall Run
-3010,103.664026629936,Bear River,Fall Run
-3160,108.741896235078,Bear River,Fall Run
-3310,113.183149678604,Bear River,Fall Run
-3460,117.622887970615,Bear River,Fall Run
-3610,122.431175390266,Bear River,Fall Run
-3760,127.615955004591,Bear River,Fall Run
-3910,132.430211202938,Bear River,Fall Run
-4060,139.658815426997,Bear River,Fall Run
-4210,145.833126721763,Bear River,Fall Run
-4360,166.952708907254,Bear River,Fall Run
-4510,176.922865013774,Bear River,Fall Run
-4660,186.156496786042,Bear River,Fall Run
-4810,204.254981634527,Bear River,Fall Run
-4960,213.639393939394,Bear River,Fall Run
-5110,224.01593204775,Bear River,Fall Run
-5260,235.281427915519,Bear River,Fall Run
-10,0,Bear River,Steelhead
-160,0,Bear River,Steelhead
-310,0,Bear River,Steelhead
-460,0,Bear River,Steelhead
-610,0,Bear River,Steelhead
-760,0,Bear River,Steelhead
-910,11.887258953168,Bear River,Steelhead
-927,13.2517938475666,Bear River,Steelhead
-1060,23.9272727272727,Bear River,Steelhead
-1210,33.6188934802571,Bear River,Steelhead
-1360,41.6129935720845,Bear River,Steelhead
-1510,48.1365472910927,Bear River,Steelhead
-1660,54.660101010101,Bear River,Steelhead
-1810,61.1836547291093,Bear River,Steelhead
-1960,67.669696969697,Bear River,Steelhead
-2110,73.1818526170799,Bear River,Steelhead
-2260,78.6940082644628,Bear River,Steelhead
-2410,83.5682966023875,Bear River,Steelhead
-2560,88.0639807162534,Bear River,Steelhead
-2710,94.3392791551882,Bear River,Steelhead
-2860,99.4477272727273,Bear River,Steelhead
-3010,103.664026629936,Bear River,Steelhead
-3160,108.741896235078,Bear River,Steelhead
-3310,113.183149678604,Bear River,Steelhead
-3460,117.622887970615,Bear River,Steelhead
-3610,122.431175390266,Bear River,Steelhead
-3760,127.615955004591,Bear River,Steelhead
-3910,132.430211202938,Bear River,Steelhead
-4060,139.658815426997,Bear River,Steelhead
-4210,145.833126721763,Bear River,Steelhead
-4360,166.952708907254,Bear River,Steelhead
-4510,176.922865013774,Bear River,Steelhead
-4660,186.156496786042,Bear River,Steelhead
-4810,204.254981634527,Bear River,Steelhead
-4960,213.639393939394,Bear River,Steelhead
-5110,224.01593204775,Bear River,Steelhead
-5260,235.281427915519,Bear River,Steelhead
+flow_cfs,floodplain_acres,watershed
+310,0,Bear River
+460,54,Bear River
+610,93.5,Bear River
+760,132.9,Bear River
+910,156.5,Bear River
+927,159.1,Bear River
+1060,180,Bear River
+1210,198.9,Bear River
+1360,214.5,Bear River
+1510,227.3,Bear River
+1660,240,Bear River
+1810,252.8,Bear River
+1960,265.5,Bear River
+2110,276.2,Bear River
+2260,287,Bear River
+2410,296.5,Bear River
+2560,305.3,Bear River
+2710,317.6,Bear River
+2860,327.6,Bear River
+3010,335.8,Bear River
+3160,345.7,Bear River
+3310,354.4,Bear River
+3460,363.1,Bear River
+3610,372.5,Bear River
+3760,382.6,Bear River
+3910,392,Bear River
+4060,406.2,Bear River
+4210,418.2,Bear River
+4360,459.5,Bear River
+4510,479,Bear River
+4660,497,Bear River
+4810,532.4,Bear River
+4960,550.7,Bear River
+5110,571,Bear River
+5260,593,Bear River

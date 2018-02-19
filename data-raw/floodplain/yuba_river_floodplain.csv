@@ -1,85 +1,21 @@
-flow_cfs,floodplain_acres,watershed,species
-300,0,Yuba River,Fall Run
-350,0,Yuba River,Fall Run
-400,0,Yuba River,Fall Run
-450,0,Yuba River,Fall Run
-530,0,Yuba River,Fall Run
-600,0,Yuba River,Fall Run
-622,0,Yuba River,Fall Run
-700,0,Yuba River,Fall Run
-800,0,Yuba River,Fall Run
-880,0.994191919191919,Yuba River,Fall Run
-930,1.61352157943067,Yuba River,Fall Run
-1000,2.43732782369146,Yuba River,Fall Run
-1300,5.61627640036731,Yuba River,Fall Run
-1500,27.1854912764004,Yuba River,Fall Run
-1700,42.2834710743802,Yuba River,Fall Run
-2000,65.6656106519743,Yuba River,Fall Run
-2500,100.374724517906,Yuba River,Fall Run
-3000,137.417056932966,Yuba River,Fall Run
-4000,206.147956841139,Yuba River,Fall Run
-5000,266.624288337925,Yuba River,Fall Run
-7500,406.67904040404,Yuba River,Fall Run
-10000,555.894100091827,Yuba River,Fall Run
-15000,875.199724517906,Yuba River,Fall Run
-21100,1132.75027548209,Yuba River,Fall Run
-30000,1389.45730027548,Yuba River,Fall Run
-42200,1574.85847107438,Yuba River,Fall Run
-84400,2201.13252984389,Yuba River,Fall Run
-110400,2561.90833333333,Yuba River,Fall Run
-300,0,Yuba River,Spring Run
-350,0,Yuba River,Spring Run
-400,0,Yuba River,Spring Run
-450,0,Yuba River,Spring Run
-530,0,Yuba River,Spring Run
-600,0,Yuba River,Spring Run
-622,0,Yuba River,Spring Run
-700,0,Yuba River,Spring Run
-800,0,Yuba River,Spring Run
-880,0.994191919191919,Yuba River,Spring Run
-930,1.61352157943067,Yuba River,Spring Run
-1000,2.43732782369146,Yuba River,Spring Run
-1300,5.61627640036731,Yuba River,Spring Run
-1500,27.1854912764004,Yuba River,Spring Run
-1700,42.2834710743802,Yuba River,Spring Run
-2000,65.6656106519743,Yuba River,Spring Run
-2500,100.374724517906,Yuba River,Spring Run
-3000,137.417056932966,Yuba River,Spring Run
-4000,206.147956841139,Yuba River,Spring Run
-5000,266.624288337925,Yuba River,Spring Run
-7500,406.67904040404,Yuba River,Spring Run
-10000,555.894100091827,Yuba River,Spring Run
-15000,875.199724517906,Yuba River,Spring Run
-21100,1132.75027548209,Yuba River,Spring Run
-30000,1389.45730027548,Yuba River,Spring Run
-42200,1574.85847107438,Yuba River,Spring Run
-84400,2201.13252984389,Yuba River,Spring Run
-110400,2561.90833333333,Yuba River,Spring Run
-300,0,Yuba River,Steelhead
-350,0,Yuba River,Steelhead
-400,0,Yuba River,Steelhead
-450,0,Yuba River,Steelhead
-530,0,Yuba River,Steelhead
-600,0,Yuba River,Steelhead
-622,0,Yuba River,Steelhead
-700,0,Yuba River,Steelhead
-800,0,Yuba River,Steelhead
-880,0.994191919191919,Yuba River,Steelhead
-930,1.61352157943067,Yuba River,Steelhead
-1000,2.43732782369146,Yuba River,Steelhead
-1300,5.61627640036731,Yuba River,Steelhead
-1500,27.1854912764004,Yuba River,Steelhead
-1700,42.2834710743802,Yuba River,Steelhead
-2000,65.6656106519743,Yuba River,Steelhead
-2500,100.374724517906,Yuba River,Steelhead
-3000,137.417056932966,Yuba River,Steelhead
-4000,206.147956841139,Yuba River,Steelhead
-5000,266.624288337925,Yuba River,Steelhead
-7500,406.67904040404,Yuba River,Steelhead
-10000,555.894100091827,Yuba River,Steelhead
-15000,875.199724517906,Yuba River,Steelhead
-21100,1132.75027548209,Yuba River,Steelhead
-30000,1389.45730027548,Yuba River,Steelhead
-42200,1574.85847107438,Yuba River,Steelhead
-84400,2201.13252984389,Yuba River,Steelhead
-110400,2561.90833333333,Yuba River,Steelhead
+flow_cfs,floodplain_acres,watershed
+800,0,Yuba River
+880,0.9942,Yuba River
+930,1.6135,Yuba River
+1000,2.4373,Yuba River
+1300,5.6163,Yuba River
+1500,27.1855,Yuba River
+1700,42.2835,Yuba River
+2000,65.6656,Yuba River
+2500,100.3747,Yuba River
+3000,137.4171,Yuba River
+4000,206.148,Yuba River
+5000,266.6243,Yuba River
+7500,406.679,Yuba River
+10000,555.8941,Yuba River
+15000,875.1997,Yuba River
+21100,1132.7503,Yuba River
+30000,1389.4573,Yuba River
+42200,1574.8585,Yuba River
+84400,2201.1325,Yuba River
+110400,2561.9083,Yuba River

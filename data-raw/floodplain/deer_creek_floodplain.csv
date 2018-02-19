@@ -1,31 +1,23 @@
-flow_cfs,floodplain_acres,watershed,species
-70,0,Deer Creek,Fall Run
-170,0,Deer Creek,Fall Run
-270,0,Deer Creek,Fall Run
-370,0,Deer Creek,Fall Run
-470,0.401510560146924,Deer Creek,Fall Run
-570,6.24212121212121,Deer Creek,Fall Run
-571,6.29862603305785,Deer Creek,Fall Run
-670,11.8926033057851,Deer Creek,Fall Run
-770,18.272378328742,Deer Creek,Fall Run
-870,23.4906749311295,Deer Creek,Fall Run
-970,28.2564462809917,Deer Creek,Fall Run
-1070,32.2537603305785,Deer Creek,Fall Run
-1170,36.552842056933,Deer Creek,Fall Run
-1270,40.3539439853076,Deer Creek,Fall Run
-1370,44.4070202020202,Deer Creek,Fall Run
-1470,48.2332828282828,Deer Creek,Fall Run
-1570,51.9347061524334,Deer Creek,Fall Run
-1670,55.1120018365473,Deer Creek,Fall Run
-1770,58.1533241505969,Deer Creek,Fall Run
-1870,61.0141368227732,Deer Creek,Fall Run
-1970,63.539595959596,Deer Creek,Fall Run
-2070,66.1994214876033,Deer Creek,Fall Run
-2170,68.2718044077135,Deer Creek,Fall Run
-2270,70.3573415977961,Deer Creek,Fall Run
-2370,72.1644582185491,Deer Creek,Fall Run
-2470,74.1421671258035,Deer Creek,Fall Run
-2570,76.0532782369146,Deer Creek,Fall Run
-2670,77.9221717171717,Deer Creek,Fall Run
-2770,79.7057805325987,Deer Creek,Fall Run
-2870,81.1387924701561,Deer Creek,Fall Run
+flow_cfs,floodplain_acres,watershed
+770,0,Deer Creek
+870,2.6,Deer Creek
+970,7.63,Deer Creek
+1070,11.86,Deer Creek
+1170,16.4,Deer Creek
+1270,20.41,Deer Creek
+1370,24.69,Deer Creek
+1470,28.74,Deer Creek
+1570,32.65,Deer Creek
+1670,36,Deer Creek
+1770,39.22,Deer Creek
+1870,42.24,Deer Creek
+1970,44.91,Deer Creek
+2070,47.72,Deer Creek
+2170,49.91,Deer Creek
+2270,52.11,Deer Creek
+2370,54.02,Deer Creek
+2470,56.11,Deer Creek
+2570,58.13,Deer Creek
+2670,60.1,Deer Creek
+2770,61.98,Deer Creek
+2870,63.5,Deer Creek

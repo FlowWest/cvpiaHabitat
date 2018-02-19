@@ -1,75 +1,34 @@
-flow_cfs,floodplain_acres,watershed,species
-10,0,Calaveras River,Fall Run
-110,0,Calaveras River,Fall Run
-210,0,Calaveras River,Fall Run
-290,21.8976629935721,Calaveras River,Fall Run
-310,28.4156841138659,Calaveras River,Fall Run
-410,45.2453902662994,Calaveras River,Fall Run
-510,56.6547796143251,Calaveras River,Fall Run
-610,66.0576492194674,Calaveras River,Fall Run
-710,74.9966758494031,Calaveras River,Fall Run
-810,82.2138705234159,Calaveras River,Fall Run
-910,88.4921074380165,Calaveras River,Fall Run
-1010,94.8777364554637,Calaveras River,Fall Run
-1110,101.142681359045,Calaveras River,Fall Run
-1210,108.15487144169,Calaveras River,Fall Run
-1310,113.135404040404,Calaveras River,Fall Run
-1410,117.988365472911,Calaveras River,Fall Run
-1510,122.235358126722,Calaveras River,Fall Run
-1610,126.403769513315,Calaveras River,Fall Run
-1710,130.69621671258,Calaveras River,Fall Run
-1810,134.929090909091,Calaveras River,Fall Run
-1910,138.664306703398,Calaveras River,Fall Run
-2010,142.392956841139,Calaveras River,Fall Run
-2110,146.223558310376,Calaveras River,Fall Run
-2210,149.676106519743,Calaveras River,Fall Run
-2310,153.116441689624,Calaveras River,Fall Run
-2410,157.193599632691,Calaveras River,Fall Run
-2510,160.80668503214,Calaveras River,Fall Run
-2610,164.224522497704,Calaveras River,Fall Run
-2710,167.516280991736,Calaveras River,Fall Run
-2810,171.088158861341,Calaveras River,Fall Run
-2910,176.991303948577,Calaveras River,Fall Run
-3010,181.643002754821,Calaveras River,Fall Run
-3110,186.034600550964,Calaveras River,Fall Run
-3210,191.185564738292,Calaveras River,Fall Run
-3310,195.062699724518,Calaveras River,Fall Run
-3410,199.467038567493,Calaveras River,Fall Run
-3510,200.528195592287,Calaveras River,Fall Run
-10,0,Calaveras River,Steelhead
-110,0,Calaveras River,Steelhead
-210,0,Calaveras River,Steelhead
-290,21.8976629935721,Calaveras River,Steelhead
-310,28.4156841138659,Calaveras River,Steelhead
-410,45.2453902662994,Calaveras River,Steelhead
-510,56.6547796143251,Calaveras River,Steelhead
-610,66.0576492194674,Calaveras River,Steelhead
-710,74.9966758494031,Calaveras River,Steelhead
-810,82.2138705234159,Calaveras River,Steelhead
-910,88.4921074380165,Calaveras River,Steelhead
-1010,94.8777364554637,Calaveras River,Steelhead
-1110,101.142681359045,Calaveras River,Steelhead
-1210,108.15487144169,Calaveras River,Steelhead
-1310,113.135404040404,Calaveras River,Steelhead
-1410,117.988365472911,Calaveras River,Steelhead
-1510,122.235358126722,Calaveras River,Steelhead
-1610,126.403769513315,Calaveras River,Steelhead
-1710,130.69621671258,Calaveras River,Steelhead
-1810,134.929090909091,Calaveras River,Steelhead
-1910,138.664306703398,Calaveras River,Steelhead
-2010,142.392956841139,Calaveras River,Steelhead
-2110,146.223558310376,Calaveras River,Steelhead
-2210,149.676106519743,Calaveras River,Steelhead
-2310,153.116441689624,Calaveras River,Steelhead
-2410,157.193599632691,Calaveras River,Steelhead
-2510,160.80668503214,Calaveras River,Steelhead
-2610,164.224522497704,Calaveras River,Steelhead
-2710,167.516280991736,Calaveras River,Steelhead
-2810,171.088158861341,Calaveras River,Steelhead
-2910,176.991303948577,Calaveras River,Steelhead
-3010,181.643002754821,Calaveras River,Steelhead
-3110,186.034600550964,Calaveras River,Steelhead
-3210,191.185564738292,Calaveras River,Steelhead
-3310,195.062699724518,Calaveras River,Steelhead
-3410,199.467038567493,Calaveras River,Steelhead
-3510,200.528195592287,Calaveras River,Steelhead
+flow_cfs,floodplain_acres,watershed
+200.5,0,Calaveras River
+250.6,2.46,Calaveras River
+300.7,5.24,Calaveras River
+350.9,7.98,Calaveras River
+401,10.71,Calaveras River
+451.1,13.45,Calaveras River
+501.2,16.9,Calaveras River
+551.4,20.27,Calaveras River
+601.5,23.21,Calaveras River
+651.6,26.6,Calaveras River
+701.7,30,Calaveras River
+751.9,33.35,Calaveras River
+802,36.71,Calaveras River
+852.1,40.02,Calaveras River
+902.2,43.34,Calaveras River
+952.4,46.44,Calaveras River
+1002.5,49.55,Calaveras River
+1052.6,53.22,Calaveras River
+1102.7,56.89,Calaveras River
+1152.8,60.38,Calaveras River
+1203,63.86,Calaveras River
+1253.1,67.48,Calaveras River
+1303.2,71.1,Calaveras River
+1353.3,74.13,Calaveras River
+1403.5,77.17,Calaveras River
+1453.6,80.39,Calaveras River
+1503.7,83.62,Calaveras River
+1553.8,87.03,Calaveras River
+1604,90.44,Calaveras River
+1654.1,102.04,Calaveras River
+1704.2,113.64,Calaveras River
+1754.3,118.53,Calaveras River
+1804.5,123.42,Calaveras River

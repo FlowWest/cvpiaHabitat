@@ -4,14 +4,14 @@
 \name{bear_river_floodplain}
 \alias{bear_river_floodplain}
 \title{Bear River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 37 rows and 3 variables:
+\format{dataframe with 35 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 }
 \usage{
 bear_river_floodplain
@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 16.4 miles. Floodplain area for the remaining 15.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 147.8 acres) and floodplain inundation area.
 }
 \examples{
 bear_river_floodplain

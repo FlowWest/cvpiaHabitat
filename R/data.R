@@ -1,3 +1,5 @@
+# FLOODPLAIN -------------------------------------------------------------------------------
+
 #' Upper Sacramento River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
@@ -99,10 +101,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #'   function of flow in cubic feet per second
 #'
-#' @format dataframe with 23 rows and 3 variables:
+#' @format dataframe with 22 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
 #'   \item{watershed}{name of watershed} }
 #'
 #' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
@@ -135,12 +137,10 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 28 rows and 5 variables:
+#' @format dataframe with 20 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -219,19 +219,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 32 rows and 3 variables:
+#' @format dataframe with 29 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57\% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.
 #'
 #' @examples
 #' san_joaquin_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "san_joaquin_river_floodplain"
 
 #' North Delta Flow to Floodplain Habitat Area Relationship
@@ -260,17 +260,17 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 31 rows and 3 variables:
+#' @format dataframe with 33 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details NA
+#' @details TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mokelumne River scaling factor of 50\% was calculated as the average ratio of Mokelumne River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 58.4 mile mapped rearing extent in the Mokelumne River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 241.2 acres) versus floodplain inundation areas.
 #'
-#' @source NA
 #'
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model}
 #' @examples
 #' mokelumne_river_floodplain
 "mokelumne_river_floodplain"
@@ -280,19 +280,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 40 rows and 3 variables:
+#' @format dataframe with 39 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 66 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 2363.2 acres) and floodplain inundation area.
 #'
 #' @examples
 #' feather_river_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "feather_river_floodplain"
 
 #' Elder Creek Flow to Floodplain Habitat Area Relationship
@@ -300,19 +300,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 31 rows and 3 variables:
+#' @format dataframe with 29 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 5.4 miles. Floodplain area for the remaining 1.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 24.3 acres) and floodplain inundation area.
 #'
 #' @examples
 #' elder_creek_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "elder_creek_floodplain"
 
 #' Deer Creek Flow to Floodplain Habitat Area Relationship
@@ -323,13 +323,13 @@
 #' @format dataframe with 30 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the Deer Creek Watershed Conservancy HEC-RAS 1D 2011 model.
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10\% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.
 #'
-#' @source TODO
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model}
 #'
 #' @examples
 #' deer_creek_floodplain
@@ -380,19 +380,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 37 rows and 3 variables:
+#' @format dataframe with 33 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Calaveras River scaling factor of 20\% was calculated as the average ratio of Calaveras River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 18.5 mile mapped rearing extent in the Calaveras River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 75 acres) versus floodplain inundation areas.
 #'
 #' @examples
 #' calaveras_river_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model}
 "calaveras_river_floodplain"
 
 
@@ -401,19 +401,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 32 rows and 3 variables:
+#' @format dataframe with 7 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 8.7 miles. Floodplain area for the remaining 6.3 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 89 acres) and floodplain inundation area.
 #'
 #' @examples
 #' big_chico_creek_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "big_chico_creek_floodplain"
 
 
@@ -422,19 +422,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 37 rows and 3 variables:
+#' @format dataframe with 35 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 16.4 miles. Floodplain area for the remaining 15.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 147.8 acres) and floodplain inundation area.
 #'
 #' @examples
 #' bear_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "bear_river_floodplain"
 
 #' American River Flow to Floodplain Habitat Area Relationship
@@ -445,16 +445,16 @@
 #' @format dataframe with 35 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream to Nimbus Dam. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 670.2 acres) and floodplain inundation area.
 #'
 #' @examples
 #' american_river_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "american_river_floodplain"
 
 #' Butte Creek Flow to Floodplain Habitat Area Relationship
@@ -465,18 +465,20 @@
 #' @format dataframe with 31 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
-#' The total area * suitability (25\%)
-#'
+#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 16.8 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 103.4 acres) and floodplain inundation area.
 #' @examples
 #' butte_creek_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP 2012}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "butte_creek_floodplain"
+
+
+# INSTREAMS ----------------------------------------------------------------------------------------
+
 
 #' Butte Creek Instream Flow to Habitat Area Relationship
 #'

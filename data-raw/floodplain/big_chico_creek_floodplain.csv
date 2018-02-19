@@ -1,33 +1,8 @@
-flow_cfs,floodplain_acres,watershed,species
-15,0,Big Chico Creek,Fall Run
-65,0,Big Chico Creek,Fall Run
-115,0,Big Chico Creek,Fall Run
-165,0,Big Chico Creek,Fall Run
-215,0,Big Chico Creek,Fall Run
-265,0,Big Chico Creek,Fall Run
-315,2.69598255280074,Big Chico Creek,Fall Run
-336,4.51630073461892,Big Chico Creek,Fall Run
-365,7.03007346189164,Big Chico Creek,Fall Run
-415,11.3280073461892,Big Chico Creek,Fall Run
-465,15.1607897153352,Big Chico Creek,Fall Run
-515,18.8812442607897,Big Chico Creek,Fall Run
-565,22.0650367309458,Big Chico Creek,Fall Run
-615,24.9419880624426,Big Chico Creek,Fall Run
-665,27.2412534435262,Big Chico Creek,Fall Run
-715,29.4129247015611,Big Chico Creek,Fall Run
-765,31.3722451790634,Big Chico Creek,Fall Run
-815,33.0997015610652,Big Chico Creek,Fall Run
-865,34.7437786960514,Big Chico Creek,Fall Run
-915,36.2930211202938,Big Chico Creek,Fall Run
-965,38.0112258953168,Big Chico Creek,Fall Run
-1015,40.0470385674931,Big Chico Creek,Fall Run
-1065,42.085766758494,Big Chico Creek,Fall Run
-1115,44.4830808080808,Big Chico Creek,Fall Run
-1165,46.4991046831956,Big Chico Creek,Fall Run
-1215,48.3626492194674,Big Chico Creek,Fall Run
-1265,50.1733241505969,Big Chico Creek,Fall Run
-1315,52.6922865013774,Big Chico Creek,Fall Run
-1365,55.9250229568411,Big Chico Creek,Fall Run
-1415,58.2026400367309,Big Chico Creek,Fall Run
-1465,60.3552112029385,Big Chico Creek,Fall Run
-1515,62.286753902663,Big Chico Creek,Fall Run
+flow_cfs,floodplain_acres,watershed
+1215,0,Big Chico Creek
+1265,1.4,Big Chico Creek
+1315,4,Big Chico Creek
+1365,6.6,Big Chico Creek
+1415,9.8,Big Chico Creek
+1465,12.9,Big Chico Creek
+1515,15.5,Big Chico Creek
