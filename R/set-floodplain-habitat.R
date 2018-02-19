@@ -30,6 +30,10 @@
 #' @export
 set_floodplain_habitat <- function(watershed, species, flow) {
 
+  if (watershed %in% c("yolo1", "yolo2", "sutter1", "sutter2", "sutter3", "sutter4")) {
+    return(bypass_habitat_fp_area(watershed, flow))
+  }
+
   # TODO: refactor when we have scaling and non modeled approach
   if (species == 'sr') {
     sr_blah <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
@@ -77,7 +81,21 @@ floodplain_approx <- function(watershed) {
   approxfun(df$flow_cfs, df$floodplain_acres, yleft = 0, yright = max(df$floodplain_acres))
 }
 
+bypass_habitat_fp_area <- function(watershed, flow) {
 
+  df <- switch(watershed,
+               "yolo1" = dplyr::select(yolo_bypass_floodplain, flow_cfs, `Yolo Bypass 1`),
+               "yolo2" = dplyr::select(yolo_bypass_floodplain, flow_cfs, `Yolo Bypass 2`),
+               "sutter1" = dplyr::select(sutter_bypass_floodplain, flow_cfs, `Sutter Bypass 1`),
+               "sutter2" = dplyr::select(sutter_bypass_floodplain, flow_cfs, `Sutter Bypass 2`),
+               "sutter3" = dplyr::select(sutter_bypass_floodplain, flow_cfs, `Sutter Bypass 3`),
+               "sutter4" = dplyr::select(sutter_bypass_floodplain, flow_cfs, `Sutter Bypass 4`))
+
+  bypass_habitat_approx <- approxfun(df[[1]], df[[2]], yleft = 0, yright = max(df[[2]]))
+
+  return(bypass_habitat_approx(flow) * 0.092903)
+
+}
 
 #' Apply Suitability Factor
 #'
