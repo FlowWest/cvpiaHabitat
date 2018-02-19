@@ -5,15 +5,21 @@
 #'  \code{\link{watershed_lengths}}.
 #' @param wua WUA in square feet per 1000 feet
 #' @param watershed watershed
-#' @param species species
+#' @param species species, "fr" - fall run or "sr" - spring run or "st" - steel head
 #' @param life_stage life stage
-wua_to_area <- function(wua, watershed_name,  life_stage) {
-  length <- dplyr::pull(dplyr::filter(cvpiaHabitat::watershed_lengths,
+wua_to_area <- function(wua, watershed_name,  life_stage, species_name) {
+  stream_length <- dplyr::pull(dplyr::filter(cvpiaHabitat::watershed_lengths,
                                     watershed == watershed_name,
-                                    #species == species_name,
+                                    species == species_name,
                                     lifestage == life_stage), feet)
+  if (length(stream_length) == 0) {
+    stream_length <- dplyr::pull(dplyr::filter(cvpiaHabitat::watershed_lengths,
+                                               watershed == watershed_name,
+                                               species == 'fr',
+                                               lifestage == life_stage), feet)
+  }
 
-  ((length/1000) * wua)/10.7639
+  ((stream_length/1000) * wua)/10.7639
 }
 
 

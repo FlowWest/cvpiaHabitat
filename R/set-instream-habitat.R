@@ -71,12 +71,17 @@ set_instream_habitat <- function(watershed, species, life_stage, flow) {
                                         Watershed == watershed), Region)
 
     approx_functions <- region_rearing_approx(region, species, life_stage)
-    wuas <- purrr::map_dbl(approx_functions, function(f) {
+
+    # remove NA approx functions for places without species present
+    approx_funcs <- approx_functions[!is.na(approx_functions)]
+    if (length(approx_funcs) == 0) {return(NA)}
+
+    wuas <- purrr::map_dbl(approx_funcs, function(f) {
       f(flow)
     })
     wua <- mean(wuas)
     habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "rearing")
+                                life_stage = "rearing", species_name = species)
     return(habitat_area)
   } else {
     # create approx functions
@@ -84,7 +89,7 @@ set_instream_habitat <- function(watershed, species, life_stage, flow) {
 
     wua <- wua_func(flow)
     habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "rearing")
+                                life_stage = "rearing", species_name = species)
     return(habitat_area)
   }
 }

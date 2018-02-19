@@ -61,6 +61,12 @@
 #' }
 set_spawning_habitat <- function(watershed, species, flow) {
 
+  no_species_within_watershed <- is.na(dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                           Watershed == watershed),
+                                             paste(toupper(species), 'spawn', sep = '_')))
+
+  if (no_species_within_watershed) {return (NA)}
+
   # identify watersheds without modeling
   watersheds_with_no_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
                                                  !FR_spawn), Watershed)
@@ -71,12 +77,17 @@ set_spawning_habitat <- function(watershed, species, flow) {
                                         Watershed == watershed), Region)
 
     approx_functions <- region_spawn_approx(region, species)
+    # remove NA approx functions for places without species present
+    approx_funcs <- approx_functions[!is.na(approx_functions)]
+    if (length(approx_funcs) == 0) {return(NA)}
+    if(length(approx_funcs) < 3) {warning(paste('only', lenth(approx_funcs), 'approx functions within the region used for estimate'))}
+
     wuas <- purrr::map_dbl(approx_functions, function(f) {
       f(flow)
     })
     wua <- mean(wuas)
     habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "spawning")
+                                life_stage = "spawning", species_name = species)
     return(habitat_area)
   } else {
     # create approx functions
@@ -89,7 +100,7 @@ set_spawning_habitat <- function(watershed, species, flow) {
 
     wua <- wua_func(flow)
     habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "spawning")
+                                life_stage = "spawning", species_name = species)
     return(habitat_area)
   }
 
@@ -159,7 +170,7 @@ region_spawn_approx <- function(region, species) {
                                                         FR_spawn), Watershed)
 
   # return list of approx function for the watersheds in region with modeling
-  purrr::map(watersheds_with_modeling, ~spawning_approx(., species = species))
+  purrr::map(watersheds_with_modeling, ~spawning_approx(., species = 'fr'))
 }
 
 #' function uses an existing relationship to return a linear interpolated approx function

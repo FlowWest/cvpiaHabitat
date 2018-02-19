@@ -77,3 +77,4 @@ modeling_exist <- FR_modeling %>%
 
 devtools::use_data(modeling_exist, overwrite = TRUE)
 
+View(modeling_exist)
