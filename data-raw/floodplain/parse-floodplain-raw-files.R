@@ -46,13 +46,7 @@ devtools::use_data(cosumnes_river_floodplain, overwrite = TRUE)
 
 # cottonwood creek
 cottonwood_creek <- read_csv("data-raw/floodplain/cottonwood_creek_floodplain.csv")
-
-cottonwood_creek_floodplain <- cottonwood_creek %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+cottonwood_creek_floodplain <- cottonwood_creek
 devtools::use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 
 # deer creek
@@ -72,13 +66,7 @@ devtools::use_data(feather_river_floodplain, overwrite = TRUE)
 
 # merced river
 merced_river <- read_csv("data-raw/floodplain/merced_river_floodplain.csv")
-
-merced_river_floodplain <- merced_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+merced_river_floodplain <- merced_river
 devtools::use_data(merced_river_floodplain, overwrite = TRUE)
 
 # moke
@@ -110,7 +98,7 @@ stanislaus <- read_csv("data-raw/floodplain/stanislaus_river_floodplain.csv")
 stanislaus_river_floodplain <- stanislaus %>%
   filter(species == "Fall Run") %>%
   select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
+         floodplain_acres = floodplain_acres,
          watershed)
 
 devtools::use_data(stanislaus_river_floodplain, overwrite = TRUE)
@@ -153,6 +141,33 @@ devtools::use_data(yolo_bypass_floodplain, overwrite = TRUE)
 yuba_river <- read_csv("data-raw/floodplain/yuba_river_floodplain.csv")
 yuba_river_floodplain <- yuba_river
 devtools::use_data(yuba_river_floodplain, overwrite = TRUE)
+
+
+# clear creek
+clear_creek <- read_csv("data-raw/floodplain/clear_creek_floodplain.csv")
+clear_creek_floodplain <- clear_creek
+devtools::use_data(clear_creek_floodplain, overwrite = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
