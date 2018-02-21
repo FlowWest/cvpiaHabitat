@@ -86,36 +86,36 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 37 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 33 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP 2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf'>Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.</p>
+    <p>TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Calaveras River scaling factor of 20% was calculated as the average ratio of Calaveras River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 18.5 mile mapped rearing extent in the Calaveras River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 75 acres) versus floodplain inundation areas.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>calaveras_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 37 x 3
-#&gt;    flow_cfs FR_floodplain_acres       watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;           &lt;chr&gt;
-#&gt;  1       10             0.00000 Calaveras River
-#&gt;  2      110             0.00000 Calaveras River
-#&gt;  3      210             0.00000 Calaveras River
-#&gt;  4      290            21.89766 Calaveras River
-#&gt;  5      310            28.41568 Calaveras River
-#&gt;  6      410            45.24539 Calaveras River
-#&gt;  7      510            56.65478 Calaveras River
-#&gt;  8      610            66.05765 Calaveras River
-#&gt;  9      710            74.99668 Calaveras River
-#&gt; 10      810            82.21387 Calaveras River
-#&gt; # ... with 27 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>calaveras_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 33 x 3
+#&gt;    flow_cfs floodplain_acres       watershed
+#&gt;       &lt;dbl&gt;            &lt;dbl&gt;           &lt;chr&gt;
+#&gt;  1    200.5             0.00 Calaveras River
+#&gt;  2    250.6             2.46 Calaveras River
+#&gt;  3    300.7             5.24 Calaveras River
+#&gt;  4    350.9             7.98 Calaveras River
+#&gt;  5    401.0            10.71 Calaveras River
+#&gt;  6    451.1            13.45 Calaveras River
+#&gt;  7    501.2            16.90 Calaveras River
+#&gt;  8    551.4            20.27 Calaveras River
+#&gt;  9    601.5            23.21 Calaveras River
+#&gt; 10    651.6            26.60 Calaveras River
+#&gt; # ... with 23 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -136,7 +136,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">

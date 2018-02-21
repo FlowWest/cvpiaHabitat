@@ -4,7 +4,8 @@ Title: Estimate Spawning and Rearing Habitat
 Version: 0.1.0
 Authors@R: c(
     person("Sadie", "Gill", email = "sgill@flowwest.com", role = c("aut", "cre")), 
-    person("Emanuel", "Rodriguez", email = "erodriguez@flowwest.com", role = "aut"))
+    person("Emanuel", "Rodriguez", email = "erodriguez@flowwest.com", role = "aut"),
+    person("Mark", "Tompkins", email = "mtompkins@flowwest.com", role = "aut"))
 Maintainer: The package maintainer <yourself@somewhere.net>
 Description: This package is for estimating spawning and rearing (instream and floodplain) habitat 
     within the Sacramento and San Joaquin river systems for use with the CVPIA salmon life cycle model.

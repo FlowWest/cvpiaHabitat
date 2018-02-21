@@ -88,34 +88,34 @@ function of flow in cubic feet per second</p>
 
     <p>dataframe with 30 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>TODO</p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf'>Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the Deer Creek Watershed Conservancy HEC-RAS 1D 2011 model.</p>
+    <p>HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>deer_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 30 x 3
-#&gt;    flow_cfs FR_floodplain_acres  watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;      &lt;chr&gt;
-#&gt;  1       70           0.0000000 Deer Creek
-#&gt;  2      170           0.0000000 Deer Creek
-#&gt;  3      270           0.0000000 Deer Creek
-#&gt;  4      370           0.0000000 Deer Creek
-#&gt;  5      470           0.4015106 Deer Creek
-#&gt;  6      570           6.2421212 Deer Creek
-#&gt;  7      571           6.2986260 Deer Creek
-#&gt;  8      670          11.8926033 Deer Creek
-#&gt;  9      770          18.2723783 Deer Creek
-#&gt; 10      870          23.4906749 Deer Creek
-#&gt; # ... with 20 more rows</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>deer_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 22 x 3
+#&gt;    flow_cfs floodplain_acres  watershed
+#&gt;       &lt;int&gt;            &lt;dbl&gt;      &lt;chr&gt;
+#&gt;  1      770             0.00 Deer Creek
+#&gt;  2      870             2.60 Deer Creek
+#&gt;  3      970             7.63 Deer Creek
+#&gt;  4     1070            11.86 Deer Creek
+#&gt;  5     1170            16.40 Deer Creek
+#&gt;  6     1270            20.41 Deer Creek
+#&gt;  7     1370            24.69 Deer Creek
+#&gt;  8     1470            28.74 Deer Creek
+#&gt;  9     1570            32.65 Deer Creek
+#&gt; 10     1670            36.00 Deer Creek
+#&gt; # ... with 12 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -135,7 +135,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">

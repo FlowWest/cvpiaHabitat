@@ -86,36 +86,36 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 37 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 35 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP 2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.</p>
+    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 16.4 miles. Floodplain area for the remaining 15.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 147.8 acres) and floodplain inundation area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>bear_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 37 x 3
-#&gt;    flow_cfs FR_floodplain_acres  watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;      &lt;chr&gt;
-#&gt;  1       10             0.00000 Bear River
-#&gt;  2      160             0.00000 Bear River
-#&gt;  3      310             0.00000 Bear River
-#&gt;  4      460             0.00000 Bear River
-#&gt;  5      610             0.00000 Bear River
-#&gt;  6      760             0.00000 Bear River
-#&gt;  7      910            11.88726 Bear River
-#&gt;  8      927            13.25179 Bear River
-#&gt;  9     1060            23.92727 Bear River
-#&gt; 10     1210            33.61889 Bear River
-#&gt; # ... with 27 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>bear_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 35 x 3
+#&gt;    flow_cfs floodplain_acres  watershed
+#&gt;       &lt;int&gt;            &lt;dbl&gt;      &lt;chr&gt;
+#&gt;  1      310              0.0 Bear River
+#&gt;  2      460             54.0 Bear River
+#&gt;  3      610             93.5 Bear River
+#&gt;  4      760            132.9 Bear River
+#&gt;  5      910            156.5 Bear River
+#&gt;  6      927            159.1 Bear River
+#&gt;  7     1060            180.0 Bear River
+#&gt;  8     1210            198.9 Bear River
+#&gt;  9     1360            214.5 Bear River
+#&gt; 10     1510            227.3 Bear River
+#&gt; # ... with 25 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -136,7 +136,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">

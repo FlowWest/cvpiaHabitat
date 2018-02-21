@@ -86,36 +86,32 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 32 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 7 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP 2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.</p>
+    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 8.7 miles. Floodplain area for the remaining 6.3 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 89 acres) and floodplain inundation area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>big_chico_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 32 x 3
-#&gt;    flow_cfs FR_floodplain_acres       watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;           &lt;chr&gt;
-#&gt;  1       15            0.000000 Big Chico Creek
-#&gt;  2       65            0.000000 Big Chico Creek
-#&gt;  3      115            0.000000 Big Chico Creek
-#&gt;  4      165            0.000000 Big Chico Creek
-#&gt;  5      215            0.000000 Big Chico Creek
-#&gt;  6      265            0.000000 Big Chico Creek
-#&gt;  7      315            2.695983 Big Chico Creek
-#&gt;  8      336            4.516301 Big Chico Creek
-#&gt;  9      365            7.030073 Big Chico Creek
-#&gt; 10      415           11.328007 Big Chico Creek
-#&gt; # ... with 22 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>big_chico_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 7 x 3
+#&gt;   flow_cfs floodplain_acres       watershed
+#&gt;      &lt;int&gt;            &lt;dbl&gt;           &lt;chr&gt;
+#&gt; 1     1215              0.0 Big Chico Creek
+#&gt; 2     1265              1.4 Big Chico Creek
+#&gt; 3     1315              4.0 Big Chico Creek
+#&gt; 4     1365              6.6 Big Chico Creek
+#&gt; 5     1415              9.8 Big Chico Creek
+#&gt; 6     1465             12.9 Big Chico Creek
+#&gt; 7     1515             15.5 Big Chico Creek</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -136,7 +132,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">

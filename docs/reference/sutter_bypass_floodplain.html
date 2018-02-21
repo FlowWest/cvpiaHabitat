@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Cow Creek Instream Flow to Habitat Area Relationship — cow_creek_instream • cvpiaHabitat</title>
+<title>Sutter Bypass Flow to Floodplain Habitat Area Relationship — sutter_bypass_floodplain • cvpiaHabitat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,50 +74,53 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Cow Creek Instream Flow to Habitat Area Relationship</h1>
+    <h1>Sutter Bypass Flow to Floodplain Habitat Area Relationship</h1>
     </div>
 
     
-    <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-as a function of flow in cubic feet per second</p>
+    <p>A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second</p>
     
 
-    <pre class="usage"><span class='no'>cow_creek_instream</span></pre>
+    <pre class="usage"><span class='no'>sutter_bypass_floodplain</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 30 rows and 4 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 41 rows and 5 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_fry_wua</dt><dd><p>fall run fry (up to 50 mm) WUA in square feet per 1000 feet</p></dd>
-  <dt>FR_juv_wua</dt><dd><p>fall run juvenile WUA in square feet per 1000 feet</p></dd>
-  <dt>watershed</dt><dd><p>name of watershed</p></dd>
+  <dt>Sutter Bypass 1</dt><dd><p>floodplain acreage in the Sutter Bypass, to Moulton Weir</p></dd>
+  <dt>Sutter Bypass 2</dt><dd><p>floodplain acreage in the Sutter Bypass, to Colusa Weir</p></dd>
+  <dt>Sutter Bypass 3</dt><dd><p>floodplain acreage in the Sutter Bypass, to Tisdale Weir</p></dd>
+  <dt>Sutter Bypass 4</dt><dd><p>floodplain acreage in the Sutter Bypass below Tisdale Weir</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf'>FWS 2011</a></p>
+    <p><a href='https://www.google.com'>TODO</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The rearing WUA values are from a River2D model done on South Cow Creek. The values are from two river
-segments, Valley Floor Reach (5.11 miles) and Boero Reach (1.68 miles).</p>
+    <p>Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+High quality defined by:
+Channel depth &gt; 0.2 m and &lt; 1.5 m
+Velocity &lt;= 0.15 m/s</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cow_creek_instream</span></div><div class='output co'>#&gt; # A tibble: 30 x 4
-#&gt;    flow_cfs FR_fry_wua FR_juv_wua watershed
-#&gt;       &lt;int&gt;      &lt;dbl&gt;      &lt;dbl&gt;     &lt;chr&gt;
-#&gt;  1       10   12208.28   3748.369 Cow Creek
-#&gt;  2       20   11880.26   4673.649 Cow Creek
-#&gt;  3       30   12324.15   5031.646 Cow Creek
-#&gt;  4       40   12859.06   5662.284 Cow Creek
-#&gt;  5       50   13409.94   6190.437 Cow Creek
-#&gt;  6       60   14123.64   6630.928 Cow Creek
-#&gt;  7       70   14426.36   7044.744 Cow Creek
-#&gt;  8       80   14535.28   7420.220 Cow Creek
-#&gt;  9       90   14663.57   7665.278 Cow Creek
-#&gt; 10      100   14661.54   7951.913 Cow Creek
-#&gt; # ... with 20 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>sutter_bypass_floodplain</span></div><div class='output co'>#&gt; # A tibble: 41 x 5
+#&gt;    flow_cfs `Sutter Bypass 1` `Sutter Bypass 2` `Sutter Bypass 3`
+#&gt;  *    &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
+#&gt;  1       10         0.0000000          6.737225         0.0000000
+#&gt;  2       20         0.0000000         26.480142         0.6348337
+#&gt;  3       30         0.1919283         78.072729         0.6560252
+#&gt;  4       40         0.2002831         99.774472         0.6740380
+#&gt;  5       50         0.2077097        110.380948         0.6899316
+#&gt;  6       60         1.1788731        109.903506         0.7037061
+#&gt;  7       70         1.1856209        188.665664         0.7164209
+#&gt;  8       80         1.8673173        194.535464         0.7291358
+#&gt;  9       90         1.8684968        201.806997         0.7407911
+#&gt; 10      100         1.8696763        248.119919         0.7503273
+#&gt; # ... with 31 more rows, and 1 more variables: `Sutter Bypass 4` &lt;dbl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

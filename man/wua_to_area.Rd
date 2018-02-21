@@ -4,7 +4,7 @@
 \alias{wua_to_area}
 \title{WUA to Area in Square Meters}
 \usage{
-wua_to_area(wua, watershed_name, life_stage)
+wua_to_area(wua, watershed_name, life_stage, species_name)
 }
 \arguments{
 \item{wua}{WUA in square feet per 1000 feet}
@@ -13,7 +13,7 @@ wua_to_area(wua, watershed_name, life_stage)
 
 \item{watershed}{watershed}
 
-\item{species}{species}
+\item{species}{species, "fr" - fall run or "sr" - spring run or "st" - steel head}
 }
 \description{
 Function converts a Weighted Usable Area (WUA) to an

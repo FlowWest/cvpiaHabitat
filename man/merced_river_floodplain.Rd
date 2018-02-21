@@ -4,10 +4,10 @@
 \name{merced_river_floodplain}
 \alias{merced_river_floodplain}
 \title{Merced River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 23 rows and 3 variables:
+\format{dataframe with 22 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
+  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
   \item{watershed}{name of watershed} }}
 \source{
 Modeling: \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}

@@ -34,11 +34,11 @@ apply_suitability(fp) # total suitable area
 
 #### About the Models    
 
-2D and 1D  
-blah  
-Mark Gard  
+This data package includes flow to suitable habitat area relationships for salmonid (Fall Run, Spring Run - pending, and steelhead - pending) spawning, instream rearing, and floodplain rearing habitat.   
 
-When no modeling exists method...   
+Where available, results from Instream Flow Incremental Methodology (IFIM) studies were used to generate instream spawning and rearing flow to suitable area relationships. For watersheds without IFIM (or comparable) studies, suitable instream areas were scaled from nearby, geomorphically similar watersheds.    
+
+Similarly, where available, results from floodplain hydraulic modeling studies were used to generate floodplain flow to suitable area relationships. Where no modeling studies were available, suitable floodplain area were scaled from nearby, geomorphically similar watersheds. Specific methods and supporting documents for instream and floodplain habitat inputs in every watershed are provided on the reference tab. 
 
 
 
