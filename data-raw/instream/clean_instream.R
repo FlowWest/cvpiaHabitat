@@ -1,6 +1,7 @@
 library(tidyverse)
 library(devtools)
 library(scales)
+library(readxl)
 
 # clear creek instream cleaning-----------------------------------
 # in units sqft want in units sqft/1000ft
@@ -499,13 +500,20 @@ merced_river_instream <- merced_river  %>%
 devtools::use_data(merced_river_instream, overwrite = TRUE)
 
 # moke
+# 24.7 reach length
+robin_rearing <- readxl::read_excel('data-raw/mark_gard_data/Mokelumne CS fry and juvenile WUA Results.xlsx', sheet = 1, skip = 16) %>%
+  select(flow_cfs = Flow, `Fall-run fry (ft2)`, `Fall-run juvenile (ft2)`) %>%
+  mutate(FR_fry_wua = `Fall-run fry (ft2)` / (24.7 * 5280 / 1000),
+         FR_juv_wua = `Fall-run juvenile (ft2)` / (24.7 * 5280 / 1000)) %>%
+  select(flow_cfs, FR_fry_wua, FR_juv_wua)
+
 mokelumne_river <- read_csv("data-raw/instream/mokelumne_river_instream.csv", skip = 1)
 mokelumne_river_instream <- mokelumne_river %>%
   select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_fry_wua = fry_WUA,
-         FR_juv_wua = juv_WUA,
-         watershed)
+         FR_spawn_wua = spawn_WUA) %>%
+  filter(!is.na(FR_spawn_wua)) %>%
+  full_join(robin_rearing) %>%
+  mutate(watershed = 'Mokelumne River')
 
 devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
