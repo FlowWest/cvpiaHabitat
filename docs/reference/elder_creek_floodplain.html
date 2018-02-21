@@ -86,36 +86,36 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 31 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 29 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP 2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.</p>
+    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 5.4 miles. Floodplain area for the remaining 1.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 24.3 acres) and floodplain inundation area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>elder_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 31 x 3
-#&gt;    flow_cfs FR_floodplain_acres   watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;       &lt;chr&gt;
-#&gt;  1       10            0.000000 Elder Creek
-#&gt;  2       50            0.000000 Elder Creek
-#&gt;  3       90            0.000000 Elder Creek
-#&gt;  4      130            0.000000 Elder Creek
-#&gt;  5      170            4.449867 Elder Creek
-#&gt;  6      196            6.495979 Elder Creek
-#&gt;  7      210            7.597732 Elder Creek
-#&gt;  8      250           10.111024 Elder Creek
-#&gt;  9      290           12.473673 Elder Creek
-#&gt; 10      330           14.483499 Elder Creek
-#&gt; # ... with 21 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>elder_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 29 x 3
+#&gt;    flow_cfs floodplain_acres   watershed
+#&gt;       &lt;int&gt;            &lt;dbl&gt;       &lt;chr&gt;
+#&gt;  1       90             0.00 Elder Creek
+#&gt;  2      130            12.77 Elder Creek
+#&gt;  3      170            21.56 Elder Creek
+#&gt;  4      196            24.25 Elder Creek
+#&gt;  5      210            25.70 Elder Creek
+#&gt;  6      250            29.00 Elder Creek
+#&gt;  7      290            32.11 Elder Creek
+#&gt;  8      330            34.75 Elder Creek
+#&gt;  9      370            37.11 Elder Creek
+#&gt; 10      410            38.87 Elder Creek
+#&gt; # ... with 19 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -136,7 +136,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">

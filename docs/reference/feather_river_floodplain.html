@@ -86,36 +86,36 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 40 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 39 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP 2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.</p>
+    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 66 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 2363.2 acres) and floodplain inundation area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>feather_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 40 x 3
-#&gt;    flow_cfs FR_floodplain_acres     watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;         &lt;chr&gt;
-#&gt;  1     1100           0.0000000 Feather River
-#&gt;  2     2600           0.0000000 Feather River
-#&gt;  3     4056           0.1498517 Feather River
-#&gt;  4     4100          15.3456382 Feather River
-#&gt;  5     5600         199.9060376 Feather River
-#&gt;  6     6983         325.1045150 Feather River
-#&gt;  7     7100         335.6961433 Feather River
-#&gt;  8     8600         503.7409091 Feather River
-#&gt;  9    10100         674.1404500 Feather River
-#&gt; 10    11600         799.1651515 Feather River
-#&gt; # ... with 30 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>feather_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 39 x 3
+#&gt;    flow_cfs floodplain_acres     watershed
+#&gt;       &lt;int&gt;            &lt;dbl&gt;         &lt;chr&gt;
+#&gt;  1     2600             0.00 Feather River
+#&gt;  2     4056             0.15 Feather River
+#&gt;  3     4100            15.35 Feather River
+#&gt;  4     5600           199.91 Feather River
+#&gt;  5     6983           325.10 Feather River
+#&gt;  6     7100           335.70 Feather River
+#&gt;  7     8600           503.74 Feather River
+#&gt;  8    10100           674.14 Feather River
+#&gt;  9    11600           799.17 Feather River
+#&gt; 10    13100           946.72 Feather River
+#&gt; # ... with 29 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -136,7 +136,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">

@@ -86,36 +86,36 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 32 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 29 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP 2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.</p>
+    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>san_joaquin_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 32 x 3
-#&gt;    flow_cfs FR_floodplain_acres         watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;             &lt;chr&gt;
-#&gt;  1       20                  NA San Joaquin River
-#&gt;  2      770                  NA San Joaquin River
-#&gt;  3     1520                  NA San Joaquin River
-#&gt;  4     2214            314.3008 San Joaquin River
-#&gt;  5     2270            340.5148 San Joaquin River
-#&gt;  6     3020           1056.5190 San Joaquin River
-#&gt;  7     3770           1296.9801 San Joaquin River
-#&gt;  8     4520           1601.0221 San Joaquin River
-#&gt;  9     5270           1833.7512 San Joaquin River
-#&gt; 10     6020           2109.1155 San Joaquin River
-#&gt; # ... with 22 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>san_joaquin_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 29 x 3
+#&gt;    flow_cfs floodplain_acres         watershed
+#&gt;       &lt;int&gt;            &lt;dbl&gt;             &lt;chr&gt;
+#&gt;  1     2214            314.3 San Joaquin River
+#&gt;  2     2270            340.5 San Joaquin River
+#&gt;  3     3020           1056.5 San Joaquin River
+#&gt;  4     3770           1297.0 San Joaquin River
+#&gt;  5     4520           1601.0 San Joaquin River
+#&gt;  6     5270           1833.8 San Joaquin River
+#&gt;  7     6020           2109.1 San Joaquin River
+#&gt;  8     6770           2401.6 San Joaquin River
+#&gt;  9     7520           2828.5 San Joaquin River
+#&gt; 10     8270           3381.6 San Joaquin River
+#&gt; # ... with 19 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -136,7 +136,7 @@ function of flow in cubic feet per second</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sadie Gill, Emanuel Rodriguez.</p>
+  <p>Developed by Sadie Gill, Emanuel Rodriguez, Mark Tompkins.</p>
 </div>
 
 <div class="pkgdown">
