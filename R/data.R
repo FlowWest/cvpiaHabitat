@@ -184,13 +184,127 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the Flo2D model by Stillwater, 2014.
+#' @details Model extent was from the confluence of the San Joaquin River upstream to LaGrange Dam.
 #'
 #' @examples
 #' tuolumne_river_floodplain
 #'
-#' @source TODO fix source
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{TUFLOW hydraulic model with 1D channel and 2D overbank components}
 "tuolumne_river_floodplain"
+
+#' Antelope Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 22 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. An Antelope scaling factor of 47\% was calculated as the average ratio of Antelope Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 10.5 mile low gradient and 21.1 mile high gradient mapped rearing extent in Antelope Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 199 acres) and floodplain inundation area.
+#'
+#' @examples
+#' antelope_creek_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
+"antelope_creek_floodplain"
+
+#' Battle Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 22 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Battle Creek scaling factor of 147\% was calculated as the average ratio of Battle Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 5.87 mile low gradient mapped rearing extent in Battle Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 52.4 acres) and floodplain inundation area.
+#'
+#' @examples
+#' battle_creek_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
+"battle_creek_floodplain"
+
+#' Bear Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 22 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Bear Creek scaling factor of 25\% was calculated as the average ratio of Bear Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 4.3 mile low gradient and 13.0 miles of high gradient mapped rearing extent in Bear Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 29.6 acres) and floodplain inundation area.
+#'
+#' @examples
+#' bear_creek_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
+"bear_creek_floodplain"
+
+#' Cow Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 22 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Cow Creek scaling factor of 216\% was calculated as the average ratio of Cow Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 8.6 mile low gradient and 55.6 miles of high gradient mapped rearing extent in Cow Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 217.5 acres) and floodplain inundation area.
+#'
+#' @examples
+#' cow_creek_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
+"cow_creek_floodplain"
+
+#' Mill Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 22 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mill Creek scaling factor of 98% was calculated as the average ratio of Mill Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 7.5 mile low gradient and 13.6 miles of high gradient mapped rearing extent in Mill Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 119.9 acres) and floodplain inundation area.
+#'
+#' @examples
+#' mill_creek_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
+"mill_creek_floodplain"
+
+#' Paynes Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 22 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Paynes Creek scaling factor of 22\% was calculated as the average ratio of Paynes Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 2.0 mile low gradient and 9.8 miles of high gradient mapped rearing extent in paynes Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 29.6 acres) and floodplain inundation area.
+#'
+#' @examples
+#' paynes_creek_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
+"paynes_creek_floodplain"
 
 
 #' Stanislaus River Flow to Floodplain Habitat Area Relationship
@@ -198,19 +312,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 16 rows and 3 variables:
+#' @format dataframe with 15 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the SRH2D model from Newfields 2013.
+#' @details Model extent was from the confluence of the San Joaquin River upstream to Goodwin Dam.  Active channel area delineated based on geomorphic features to differentiate between instream and floodplain habitat.
 #'
 #' @examples
 #' stanislaus_river_floodplain
 #'
-#' @source TODO fix source
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf}{SRH-2D hyraulic model developed by NewFields (now FlowWest www.flowwest.com)}
 "stanislaus_river_floodplain"
 
 

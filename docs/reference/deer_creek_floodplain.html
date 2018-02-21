@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Deer Creek Flow to Floodplain Habitat Area Relationship — deer_creek_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -103,18 +110,18 @@ function of flow in cubic feet per second</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>deer_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 22 x 3
-#&gt;    flow_cfs floodplain_acres  watershed
-#&gt;       &lt;int&gt;            &lt;dbl&gt;      &lt;chr&gt;
-#&gt;  1      770             0.00 Deer Creek
+#&gt;    flow_cfs floodplain_acres watershed 
+#&gt;       &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;     
+#&gt;  1      770             0    Deer Creek
 #&gt;  2      870             2.60 Deer Creek
 #&gt;  3      970             7.63 Deer Creek
-#&gt;  4     1070            11.86 Deer Creek
-#&gt;  5     1170            16.40 Deer Creek
-#&gt;  6     1270            20.41 Deer Creek
-#&gt;  7     1370            24.69 Deer Creek
-#&gt;  8     1470            28.74 Deer Creek
-#&gt;  9     1570            32.65 Deer Creek
-#&gt; 10     1670            36.00 Deer Creek
+#&gt;  4     1070            11.9  Deer Creek
+#&gt;  5     1170            16.4  Deer Creek
+#&gt;  6     1270            20.4  Deer Creek
+#&gt;  7     1370            24.7  Deer Creek
+#&gt;  8     1470            28.7  Deer Creek
+#&gt;  9     1570            32.6  Deer Creek
+#&gt; 10     1670            36.0  Deer Creek
 #&gt; # ... with 12 more rows</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -139,7 +146,7 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

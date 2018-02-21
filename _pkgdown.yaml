@@ -72,6 +72,12 @@ reference:
   - yuba_river_floodplain
   - sutter_bypass_floodplain
   - yolo_bypass_floodplain
+  - antelope_creek_floodplain
+  - battle_creek_floodplain
+  - bear_creek_floodplain
+  - clear_creek_floodplain
+  - cow_creek_floodplain
+  - paynes_creek_floodplain
 - title: Miscellaneous Datasets
   desc: Datasets used as reference tables
   contents:
@@ -87,3 +93,10 @@ navbar:
   right:
   - icon: fa-github fa-lg
     href: https://github.com/flowwest/cvpiaHabitat
+
+
+
+
+
+
+

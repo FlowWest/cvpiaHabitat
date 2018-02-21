@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Cosumnes River Flow to Floodplain Habitat Area Relationship — cosumnes_river_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -103,15 +110,15 @@ function of flow in cubic feet per second</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>cosumnes_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 35 x 3
-#&gt;    flow_cfs FR_floodplain_acres      watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;          &lt;chr&gt;
+#&gt;    flow_cfs FR_floodplain_acres watershed     
+#&gt;       &lt;int&gt;               &lt;dbl&gt; &lt;chr&gt;         
 #&gt;  1       10                  NA Cosumnes River
 #&gt;  2      210                  NA Cosumnes River
 #&gt;  3      410                  NA Cosumnes River
 #&gt;  4      610                  NA Cosumnes River
 #&gt;  5      810                  NA Cosumnes River
 #&gt;  6     1010                  NA Cosumnes River
-#&gt;  7     1122               106.1 Cosumnes River
+#&gt;  7     1122                 106 Cosumnes River
 #&gt;  8     1210                  NA Cosumnes River
 #&gt;  9     1410                  NA Cosumnes River
 #&gt; 10     1610                  NA Cosumnes River
@@ -139,7 +146,7 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

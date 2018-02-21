@@ -94,13 +94,7 @@ devtools::use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 
 # stan
 stanislaus <- read_csv("data-raw/floodplain/stanislaus_river_floodplain.csv")
-
-stanislaus_river_floodplain <- stanislaus %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         floodplain_acres = floodplain_acres,
-         watershed)
-
+stanislaus_river_floodplain <- stanislaus
 devtools::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 
 # sutter
@@ -116,14 +110,38 @@ devtools::use_data(sutter_bypass_floodplain, overwrite = TRUE)
 
 # tuo
 tuo <- read_csv("data-raw/floodplain/tuolumne_river_floodplain.csv")
-
-tuolumne_river_floodplain <- tuo %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+tuolumne_river_floodplain <- tuo
 devtools::use_data(tuolumne_river_floodplain, overwrite = TRUE)
+
+# antelope \0/
+antelope <- read_csv("data-raw/floodplain/antelope_creek_floodplain.csv")
+antelope_creek_floodplain <- antelope
+devtools::use_data(antelope_creek_floodplain, overwrite = TRUE)
+
+# battle
+battle <- read_csv("data-raw/floodplain/battle_creek_floodplain.csv")
+battle_creek_floodplain <- battle
+devtools::use_data(battle_creek_floodplain, overwrite = TRUE)
+
+# bear creek
+bear <- read_csv("data-raw/floodplain/bear_creek_floodplain.csv")
+bear_creek_floodplain <- bear
+devtools::use_data(bear_creek_floodplain, overwrite = TRUE)
+
+# cow creek
+cow <- read_csv("data-raw/floodplain/cow_creek_floodplain.csv")
+cow_creek_floodplain <- cow
+devtools::use_data(cow_creek_floodplain, overwrite = TRUE)
+
+# mill creek
+mill <- read_csv("data-raw/floodplain/mill_creek_floodplain.csv")
+mill_creek_floodplain <- mill
+devtools::use_data(mill_creek_floodplain, overwrite = TRUE)
+
+# paynes
+paynes <- read_csv("data-raw/floodplain/paynes_creek_floodplain.csv")
+paynes_creek_floodplain <- paynes
+devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
 
 # yolo
 yolo <- read_csv("data-raw/floodplain/yolo_bypass_floodplain.csv")

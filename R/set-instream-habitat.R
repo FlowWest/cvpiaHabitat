@@ -197,7 +197,7 @@ region_rearing_approx <- function(region, species, life_stage) {
 #' @return an approx function obtained from calling \code{\link[stats]{approxfun}}
 rearing_approx <- function(watershed, species, life_stage) {
 
-  `# format watershed name to load wua relationship in the package
+  # format watershed name to load wua relationship in the package
   watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
   watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
   df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
@@ -215,12 +215,12 @@ rearing_approx <- function(watershed, species, life_stage) {
 bypass_habitat_area <- function(watershed, flow) {
 
   df <- switch(watershed,
-         "yolo1" = dplyr::select(yolo_bypass_instream, flow_cfs, `Yolo Bypass 1`),
-         "yolo2" = dplyr::select(yolo_bypass_instream, flow_cfs, `Yolo Bypass 2`),
-         "sutter1" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 1`),
-         "sutter2" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 2`),
-         "sutter3" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 3`),
-         "sutter4" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 4`)
+         "yolo1" = dplyr::select(yolo_bypass_instream, "flow_cfs", "Yolo Bypass 1"),
+         "yolo2" = dplyr::select(yolo_bypass_instream, "flow_cfs", "Yolo Bypass 2"),
+         "sutter1" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 1"),
+         "sutter2" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 2"),
+         "sutter3" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 3"),
+         "sutter4" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 4")
          )
 
   bypass_habitat_approx <- approxfun(df[[1]], df[[2]], rule = 2)
