@@ -306,6 +306,46 @@
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
 "paynes_creek_floodplain"
 
+#' Stony Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 8 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Cottonwood Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Stony Creek scaling factor of 59\% was calculated as the average ratio of Stony Creek monthly mean flow to Cottonwood Creek monthly mean flow between December and June. This scaling factor was applied to Cottonwood Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 26 mile mapped rearing extent in Stony Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 203.5 acres) and floodplain inundation area.
+#'
+#' @examples
+#' stony_creek_floodplain
+#'
+#' @source \href{#}{Scaled from a Cottonwood Creek flow to floodplain area relationship generated with a hybrid USFWS / FEMA 1D HEC-RAS hydraulic model}
+"stony_creek_floodplain"
+
+
+#' Thomes Creek Flow to Floodplain Habitat Area Relationship
+#'
+#' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
+#'
+#' @format dataframe with 8 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details HEC-RAS model runs to generate Cottonwood Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Thomes Creek scaling factor of 37% was calculated as the average ratio of Thomes Creek monthly mean flow to Cottonwood Creek monthly mean flow between December and June. This scaling factor was applied to Cottonwood Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 37.5 mile mapped rearing extent in Thomes Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 192.3 acres) and floodplain inundation area.
+#'
+#' @examples
+#' thomes_creek_floodplain
+#'
+#' @source \href{#}{Scaled from a Cottonwood Creek flow to floodplain area relationship generated with a hybrid USFWS / FEMA 1D HEC-RAS hydraulic model}
+"thomes_creek_floodplain"
+
+
 
 #' Stanislaus River Flow to Floodplain Habitat Area Relationship
 #'

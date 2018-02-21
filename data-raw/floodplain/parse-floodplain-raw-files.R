@@ -143,6 +143,16 @@ paynes <- read_csv("data-raw/floodplain/paynes_creek_floodplain.csv")
 paynes_creek_floodplain <- paynes
 devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
 
+# stony creek
+stony <- read_csv("data-raw/floodplain/stony_creek_floodplain.csv")
+stony_creek_floodplain <- stony
+devtools::use_data(stony_creek_floodplain, overwrite = TRUE)
+
+#thomes creek
+thomes <- read_csv("data-raw/floodplain/thomes_creek_floodplain.csv")
+thomes_creek_floodplain <- thomes
+devtools::use_data(thomes_creek_floodplain, overwrite = TRUE)
+
 # yolo
 yolo <- read_csv("data-raw/floodplain/yolo_bypass_floodplain.csv")
 
