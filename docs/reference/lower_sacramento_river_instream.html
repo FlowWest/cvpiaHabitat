@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Lower Sacramento River Instream Flow to Habitat Area Relationship — lower_sacramento_river_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -105,18 +112,18 @@ from the confluence with the American River to Freeport (13.7 mi).</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>lower_sacramento_river_instream</span></div><div class='output co'>#&gt; # A tibble: 34 x 3
-#&gt;    flow_cfs FR_juv_wua              watershed
-#&gt;       &lt;dbl&gt;      &lt;dbl&gt;                  &lt;chr&gt;
-#&gt;  1 4355.361   16317.26 Lower Sacramento River
-#&gt;  2 4724.396   14727.22 Lower Sacramento River
-#&gt;  3 4830.508   14300.51 Lower Sacramento River
-#&gt;  4 5318.438   13583.95 Lower Sacramento River
-#&gt;  5 5744.989   13566.01 Lower Sacramento River
-#&gt;  6 6267.772   12363.47 Lower Sacramento River
-#&gt;  7 6747.746   12121.75 Lower Sacramento River
-#&gt;  8 7202.808   11830.40 Lower Sacramento River
-#&gt;  9 7781.572   11150.14 Lower Sacramento River
-#&gt; 10 8272.345   10638.52 Lower Sacramento River
+#&gt;    flow_cfs FR_juv_wua watershed             
+#&gt;       &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;                 
+#&gt;  1     4355      16317 Lower Sacramento River
+#&gt;  2     4724      14727 Lower Sacramento River
+#&gt;  3     4831      14301 Lower Sacramento River
+#&gt;  4     5318      13584 Lower Sacramento River
+#&gt;  5     5745      13566 Lower Sacramento River
+#&gt;  6     6268      12363 Lower Sacramento River
+#&gt;  7     6748      12122 Lower Sacramento River
+#&gt;  8     7203      11830 Lower Sacramento River
+#&gt;  9     7782      11150 Lower Sacramento River
+#&gt; 10     8272      10639 Lower Sacramento River
 #&gt; # ... with 24 more rows</div><div class='input'>
 </div></pre>
   </div>
@@ -142,7 +149,7 @@ from the confluence with the American River to Freeport (13.7 mi).</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

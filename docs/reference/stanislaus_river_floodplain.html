@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Stanislaus River Flow to Floodplain Habitat Area Relationship — stanislaus_river_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -86,41 +93,40 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 16 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 15 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>TODO fix source</p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf'>SRH-2D hyraulic model developed by NewFields (now FlowWest www.flowwest.com)</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The habitat area was derived from the SRH2D model from Newfields 2013.</p>
+    <p>Model extent was from the confluence of the San Joaquin River upstream to Goodwin Dam.  Active channel area delineated based on geomorphic features to differentiate between instream and floodplain habitat.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>stanislaus_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 16 x 3
-#&gt;    flow_cfs FR_floodplain_acres        watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;            &lt;chr&gt;
-#&gt;  1        0            0.000000 Stanislaus River
-#&gt;  2      250            0.000000 Stanislaus River
-#&gt;  3      500            3.310213 Stanislaus River
-#&gt;  4      750            7.553739 Stanislaus River
-#&gt;  5     1000           12.421452 Stanislaus River
-#&gt;  6     1250           40.479679 Stanislaus River
-#&gt;  7     1500          103.884236 Stanislaus River
-#&gt;  8     1750          150.420448 Stanislaus River
-#&gt;  9     2000          183.329338 Stanislaus River
-#&gt; 10     2001          183.477535 Stanislaus River
-#&gt; 11     2500          257.427839 Stanislaus River
-#&gt; 12     3000          364.868652 Stanislaus River
-#&gt; 13     3500          419.615406 Stanislaus River
-#&gt; 14     4000          502.653409 Stanislaus River
-#&gt; 15     4500          623.298006 Stanislaus River
-#&gt; 16     5000          810.137711 Stanislaus River</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>stanislaus_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 15 x 3
+#&gt;    flow_cfs floodplain_acres watershed       
+#&gt;       &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;           
+#&gt;  1      250             0    Stanislaus River
+#&gt;  2      500             3.31 Stanislaus River
+#&gt;  3      750             7.55 Stanislaus River
+#&gt;  4     1000            12.4  Stanislaus River
+#&gt;  5     1250            40.5  Stanislaus River
+#&gt;  6     1500           104    Stanislaus River
+#&gt;  7     1750           150    Stanislaus River
+#&gt;  8     2000           183    Stanislaus River
+#&gt;  9     2001           183    Stanislaus River
+#&gt; 10     2500           257    Stanislaus River
+#&gt; 11     3000           365    Stanislaus River
+#&gt; 12     3500           420    Stanislaus River
+#&gt; 13     4000           503    Stanislaus River
+#&gt; 14     4500           623    Stanislaus River
+#&gt; 15     5000           810    Stanislaus River</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -145,7 +151,7 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

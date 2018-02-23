@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Calaveras River Flow to Floodplain Habitat Area Relationship — calaveras_river_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -103,18 +110,18 @@ function of flow in cubic feet per second</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>calaveras_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 33 x 3
-#&gt;    flow_cfs floodplain_acres       watershed
-#&gt;       &lt;dbl&gt;            &lt;dbl&gt;           &lt;chr&gt;
-#&gt;  1    200.5             0.00 Calaveras River
-#&gt;  2    250.6             2.46 Calaveras River
-#&gt;  3    300.7             5.24 Calaveras River
-#&gt;  4    350.9             7.98 Calaveras River
-#&gt;  5    401.0            10.71 Calaveras River
-#&gt;  6    451.1            13.45 Calaveras River
-#&gt;  7    501.2            16.90 Calaveras River
-#&gt;  8    551.4            20.27 Calaveras River
-#&gt;  9    601.5            23.21 Calaveras River
-#&gt; 10    651.6            26.60 Calaveras River
+#&gt;    flow_cfs floodplain_acres watershed      
+#&gt;       &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;          
+#&gt;  1      200             0    Calaveras River
+#&gt;  2      251             2.46 Calaveras River
+#&gt;  3      301             5.24 Calaveras River
+#&gt;  4      351             7.98 Calaveras River
+#&gt;  5      401            10.7  Calaveras River
+#&gt;  6      451            13.4  Calaveras River
+#&gt;  7      501            16.9  Calaveras River
+#&gt;  8      551            20.3  Calaveras River
+#&gt;  9      602            23.2  Calaveras River
+#&gt; 10      652            26.6  Calaveras River
 #&gt; # ... with 23 more rows</div><div class='input'>
 </div></pre>
   </div>
@@ -140,7 +147,7 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Clear Creek Instream Flow to Habitat Area Relationship — clear_creek_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -116,16 +123,16 @@ Spring Run from spawning in the Lower Alluvial Segment.</p>
     <pre class="examples"><div class='input'><span class='no'>clear_creek_instream</span></div><div class='output co'>#&gt; # A tibble: 23 x 11
 #&gt;    flow_cfs FR_fry_wua FR_juv_wua FR_spawn_wua SR_fry_wua SR_juv_wua
 #&gt;       &lt;int&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-#&gt;  1       50  11526.287   4835.135     1679.931   3138.600   1862.912
-#&gt;  2       75  11367.484   5341.167     2300.416   3094.353   2379.461
-#&gt;  3      100  11082.297   5753.491     2798.860   3115.875   2843.080
-#&gt;  4      125  10788.468   6089.671     3247.837   3178.732   3259.325
-#&gt;  5      150  10549.264   6381.845     3632.021   3192.209   3639.398
-#&gt;  6      175  10280.221   6642.073     3995.782   3237.371   4026.180
-#&gt;  7      200  10113.615   6840.539     4250.185   3280.250   4334.662
-#&gt;  8      225   9967.087   6995.623     4436.612   3398.752   4608.548
-#&gt;  9      250   9847.002   7099.027     4566.307   3481.731   4869.358
-#&gt; 10      275   9768.621   7196.712     4644.043   3658.718   5092.382
+#&gt;  1       50      11526       4835         1680       3139       1863
+#&gt;  2       75      11367       5341         2300       3094       2379
+#&gt;  3      100      11082       5753         2799       3116       2843
+#&gt;  4      125      10788       6090         3248       3179       3259
+#&gt;  5      150      10549       6382         3632       3192       3639
+#&gt;  6      175      10280       6642         3996       3237       4026
+#&gt;  7      200      10114       6841         4250       3280       4335
+#&gt;  8      225       9967       6996         4437       3399       4609
+#&gt;  9      250       9847       7099         4566       3482       4869
+#&gt; 10      275       9769       7197         4644       3659       5092
 #&gt; # ... with 13 more rows, and 5 more variables: SR_spawn_wua &lt;dbl&gt;,
 #&gt; #   ST_fry_wua &lt;dbl&gt;, ST_juv_wua &lt;dbl&gt;, ST_spawn_wua &lt;dbl&gt;, watershed &lt;chr&gt;</div><div class='input'>
 </div></pre>
@@ -152,7 +159,7 @@ Spring Run from spawning in the Lower Alluvial Segment.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

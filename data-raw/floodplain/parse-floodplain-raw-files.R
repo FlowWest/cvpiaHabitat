@@ -46,13 +46,7 @@ devtools::use_data(cosumnes_river_floodplain, overwrite = TRUE)
 
 # cottonwood creek
 cottonwood_creek <- read_csv("data-raw/floodplain/cottonwood_creek_floodplain.csv")
-
-cottonwood_creek_floodplain <- cottonwood_creek %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+cottonwood_creek_floodplain <- cottonwood_creek
 devtools::use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 
 # deer creek
@@ -72,13 +66,7 @@ devtools::use_data(feather_river_floodplain, overwrite = TRUE)
 
 # merced river
 merced_river <- read_csv("data-raw/floodplain/merced_river_floodplain.csv")
-
-merced_river_floodplain <- merced_river %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+merced_river_floodplain <- merced_river
 devtools::use_data(merced_river_floodplain, overwrite = TRUE)
 
 # moke
@@ -106,13 +94,7 @@ devtools::use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 
 # stan
 stanislaus <- read_csv("data-raw/floodplain/stanislaus_river_floodplain.csv")
-
-stanislaus_river_floodplain <- stanislaus %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+stanislaus_river_floodplain <- stanislaus
 devtools::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 
 # sutter
@@ -128,14 +110,48 @@ devtools::use_data(sutter_bypass_floodplain, overwrite = TRUE)
 
 # tuo
 tuo <- read_csv("data-raw/floodplain/tuolumne_river_floodplain.csv")
-
-tuolumne_river_floodplain <- tuo %>%
-  filter(species == "Fall Run") %>%
-  select(flow_cfs,
-         FR_floodplain_acres = floodplain_acres,
-         watershed)
-
+tuolumne_river_floodplain <- tuo
 devtools::use_data(tuolumne_river_floodplain, overwrite = TRUE)
+
+# antelope \0/
+antelope <- read_csv("data-raw/floodplain/antelope_creek_floodplain.csv")
+antelope_creek_floodplain <- antelope
+devtools::use_data(antelope_creek_floodplain, overwrite = TRUE)
+
+# battle
+battle <- read_csv("data-raw/floodplain/battle_creek_floodplain.csv")
+battle_creek_floodplain <- battle
+devtools::use_data(battle_creek_floodplain, overwrite = TRUE)
+
+# bear creek
+bear <- read_csv("data-raw/floodplain/bear_creek_floodplain.csv")
+bear_creek_floodplain <- bear
+devtools::use_data(bear_creek_floodplain, overwrite = TRUE)
+
+# cow creek
+cow <- read_csv("data-raw/floodplain/cow_creek_floodplain.csv")
+cow_creek_floodplain <- cow
+devtools::use_data(cow_creek_floodplain, overwrite = TRUE)
+
+# mill creek
+mill <- read_csv("data-raw/floodplain/mill_creek_floodplain.csv")
+mill_creek_floodplain <- mill
+devtools::use_data(mill_creek_floodplain, overwrite = TRUE)
+
+# paynes
+paynes <- read_csv("data-raw/floodplain/paynes_creek_floodplain.csv")
+paynes_creek_floodplain <- paynes
+devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
+
+# stony creek
+stony <- read_csv("data-raw/floodplain/stony_creek_floodplain.csv")
+stony_creek_floodplain <- stony
+devtools::use_data(stony_creek_floodplain, overwrite = TRUE)
+
+#thomes creek
+thomes <- read_csv("data-raw/floodplain/thomes_creek_floodplain.csv")
+thomes_creek_floodplain <- thomes
+devtools::use_data(thomes_creek_floodplain, overwrite = TRUE)
 
 # yolo
 yolo <- read_csv("data-raw/floodplain/yolo_bypass_floodplain.csv")
@@ -153,6 +169,33 @@ devtools::use_data(yolo_bypass_floodplain, overwrite = TRUE)
 yuba_river <- read_csv("data-raw/floodplain/yuba_river_floodplain.csv")
 yuba_river_floodplain <- yuba_river
 devtools::use_data(yuba_river_floodplain, overwrite = TRUE)
+
+
+# clear creek
+clear_creek <- read_csv("data-raw/floodplain/clear_creek_floodplain.csv")
+clear_creek_floodplain <- clear_creek
+devtools::use_data(clear_creek_floodplain, overwrite = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -7,11 +7,11 @@
 \format{dataframe with 37 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
   \item{watershed}{name of watershed}
 }}
 \source{
-TODO fix source
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{TUFLOW hydraulic model with 1D channel and 2D overbank components}
 }
 \usage{
 tuolumne_river_floodplain
@@ -21,7 +21,7 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-The habitat area was derived from the Flo2D model by Stillwater, 2014.
+Model extent was from the confluence of the San Joaquin River upstream to LaGrange Dam.
 }
 \examples{
 tuolumne_river_floodplain

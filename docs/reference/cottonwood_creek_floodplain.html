@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Cottonwood Creek Flow to Floodplain Habitat Area Relationship — cottonwood_creek_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -86,9 +93,9 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 32 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 10 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -102,20 +109,19 @@ function of flow in cubic feet per second</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cottonwood_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 32 x 3
-#&gt;    flow_cfs FR_floodplain_acres        watershed
-#&gt;       &lt;int&gt;               &lt;dbl&gt;            &lt;chr&gt;
-#&gt;  1       40            0.000000 Cottonwood Creek
-#&gt;  2      400            7.814715 Cottonwood Creek
-#&gt;  3      760           13.463705 Cottonwood Creek
-#&gt;  4     1120           21.574082 Cottonwood Creek
-#&gt;  5     1480           28.451768 Cottonwood Creek
-#&gt;  6     1840           35.037006 Cottonwood Creek
-#&gt;  7     1870           35.675121 Cottonwood Creek
-#&gt;  8     2200           42.694376 Cottonwood Creek
-#&gt;  9     2560           53.050459 Cottonwood Creek
-#&gt; 10     2920           65.924541 Cottonwood Creek
-#&gt; # ... with 22 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>cottonwood_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 10 x 3
+#&gt;    flow_cfs floodplain_acres watershed       
+#&gt;       &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;           
+#&gt;  1     7600             0    Cottonwood Creek
+#&gt;  2     7960             5.91 Cottonwood Creek
+#&gt;  3     8320            13.3  Cottonwood Creek
+#&gt;  4     8680            19.3  Cottonwood Creek
+#&gt;  5     9040            24.2  Cottonwood Creek
+#&gt;  6     9400            29.2  Cottonwood Creek
+#&gt;  7     9760            33.4  Cottonwood Creek
+#&gt;  8    10120            38.0  Cottonwood Creek
+#&gt;  9    10480            43.2  Cottonwood Creek
+#&gt; 10    10840            47.5  Cottonwood Creek</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -140,7 +146,7 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

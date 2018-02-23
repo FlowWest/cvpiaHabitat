@@ -1,49 +1,16 @@
-flow_cfs,floodplain_acres,watershed,species
-0,0,Stanislaus River,Fall Run
-250,0,Stanislaus River,Fall Run
-500,3.31021258404644,Stanislaus River,Fall Run
-750,7.55373906253475,Stanislaus River,Fall Run
-1000,12.4214516404036,Stanislaus River,Fall Run
-1250,40.4796793571328,Stanislaus River,Fall Run
-1500,103.884236459288,Stanislaus River,Fall Run
-1750,150.420448395921,Stanislaus River,Fall Run
-2000,183.329338476403,Stanislaus River,Fall Run
-2001,183.477535478036,Stanislaus River,Fall Run
-2500,257.427839293083,Stanislaus River,Fall Run
-3000,364.868651575168,Stanislaus River,Fall Run
-3500,419.615406474634,Stanislaus River,Fall Run
-4000,502.653408683748,Stanislaus River,Fall Run
-4500,623.298005619158,Stanislaus River,Fall Run
-5000,810.137711367057,Stanislaus River,Fall Run
-0,0,Stanislaus River,Spring Run
-250,0,Stanislaus River,Spring Run
-500,3.31021258404644,Stanislaus River,Spring Run
-750,7.55373906253475,Stanislaus River,Spring Run
-1000,12.4214516404036,Stanislaus River,Spring Run
-1250,40.4796793571328,Stanislaus River,Spring Run
-1500,103.884236459288,Stanislaus River,Spring Run
-1750,150.420448395921,Stanislaus River,Spring Run
-2000,183.329338476403,Stanislaus River,Spring Run
-2001,183.477535478036,Stanislaus River,Spring Run
-2500,257.427839293083,Stanislaus River,Spring Run
-3000,364.868651575168,Stanislaus River,Spring Run
-3500,419.615406474634,Stanislaus River,Spring Run
-4000,502.653408683748,Stanislaus River,Spring Run
-4500,623.298005619158,Stanislaus River,Spring Run
-5000,810.137711367057,Stanislaus River,Spring Run
-0,0,Stanislaus River,Steelhead
-250,0,Stanislaus River,Steelhead
-500,3.31021258404644,Stanislaus River,Steelhead
-750,7.55373906253475,Stanislaus River,Steelhead
-1000,12.4214516404036,Stanislaus River,Steelhead
-1250,40.4796793571328,Stanislaus River,Steelhead
-1500,103.884236459288,Stanislaus River,Steelhead
-1750,150.420448395921,Stanislaus River,Steelhead
-2000,183.329338476403,Stanislaus River,Steelhead
-2001,183.477535478036,Stanislaus River,Steelhead
-2500,257.427839293083,Stanislaus River,Steelhead
-3000,364.868651575168,Stanislaus River,Steelhead
-3500,419.615406474634,Stanislaus River,Steelhead
-4000,502.653408683748,Stanislaus River,Steelhead
-4500,623.298005619158,Stanislaus River,Steelhead
-5000,810.137711367057,Stanislaus River,Steelhead
+flow_cfs,floodplain_acres,watershed
+250,0,Stanislaus River
+500,3.3102,Stanislaus River
+750,7.5537,Stanislaus River
+1000,12.4215,Stanislaus River
+1250,40.4797,Stanislaus River
+1500,103.8842,Stanislaus River
+1750,150.4204,Stanislaus River
+2000,183.3293,Stanislaus River
+2001,183.4775,Stanislaus River
+2500,257.4278,Stanislaus River
+3000,364.8687,Stanislaus River
+3500,419.6154,Stanislaus River
+4000,502.6534,Stanislaus River
+4500,623.298,Stanislaus River
+5000,810.1377,Stanislaus River

@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Bear River Flow to Floodplain Habitat Area Relationship — bear_river_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -103,18 +110,18 @@ function of flow in cubic feet per second</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>bear_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 35 x 3
-#&gt;    flow_cfs floodplain_acres  watershed
-#&gt;       &lt;int&gt;            &lt;dbl&gt;      &lt;chr&gt;
-#&gt;  1      310              0.0 Bear River
+#&gt;    flow_cfs floodplain_acres watershed 
+#&gt;       &lt;int&gt;            &lt;dbl&gt; &lt;chr&gt;     
+#&gt;  1      310              0   Bear River
 #&gt;  2      460             54.0 Bear River
 #&gt;  3      610             93.5 Bear River
-#&gt;  4      760            132.9 Bear River
-#&gt;  5      910            156.5 Bear River
-#&gt;  6      927            159.1 Bear River
-#&gt;  7     1060            180.0 Bear River
-#&gt;  8     1210            198.9 Bear River
-#&gt;  9     1360            214.5 Bear River
-#&gt; 10     1510            227.3 Bear River
+#&gt;  4      760            133   Bear River
+#&gt;  5      910            156   Bear River
+#&gt;  6      927            159   Bear River
+#&gt;  7     1060            180   Bear River
+#&gt;  8     1210            199   Bear River
+#&gt;  9     1360            214   Bear River
+#&gt; 10     1510            227   Bear River
 #&gt; # ... with 25 more rows</div><div class='input'>
 </div></pre>
   </div>
@@ -140,7 +147,7 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

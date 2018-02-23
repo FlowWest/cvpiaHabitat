@@ -215,12 +215,13 @@ rearing_approx <- function(watershed, species, life_stage) {
 bypass_habitat_area <- function(watershed, flow) {
 
   df <- switch(watershed,
-         "yolo1" = dplyr::select(yolo_bypass_instream, flow_cfs, `Yolo Bypass 1`),
-         "yolo2" = dplyr::select(yolo_bypass_instream, flow_cfs, `Yolo Bypass 2`),
-         "sutter1" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 1`),
-         "sutter2" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 2`),
-         "sutter3" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 3`),
-         "sutter4" = dplyr::select(sutter_bypass_instream, flow_cfs, `Sutter Bypass 4`))
+         "yolo1" = dplyr::select(yolo_bypass_instream, "flow_cfs", "Yolo Bypass 1"),
+         "yolo2" = dplyr::select(yolo_bypass_instream, "flow_cfs", "Yolo Bypass 2"),
+         "sutter1" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 1"),
+         "sutter2" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 2"),
+         "sutter3" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 3"),
+         "sutter4" = dplyr::select(sutter_bypass_instream, "flow_cfs", "Sutter Bypass 4")
+         )
 
   bypass_habitat_approx <- approxfun(df[[1]], df[[2]], rule = 2)
 

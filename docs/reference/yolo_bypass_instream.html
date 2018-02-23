@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Yolo Bypass Instream Flow to Habitat Area Relationship — yolo_bypass_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -108,16 +115,16 @@ Velocity &lt;= 0.15 m/s</p>
     <pre class="examples"><div class='input'><span class='no'>yolo_bypass_instream</span></div><div class='output co'>#&gt; # A tibble: 41 x 3
 #&gt;    flow_cfs `Yolo Bypass 1` `Yolo Bypass 2`
 #&gt;  *    &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
-#&gt;  1       10        300652.6         2731966
-#&gt;  2       20       3309909.4         7563891
-#&gt;  3       30       4576113.9         9743979
-#&gt;  4       40       5616552.7        10461007
-#&gt;  5       50       6467238.4        11242509
-#&gt;  6       60       6920548.6        12236649
-#&gt;  7       70       6897813.8        11800874
-#&gt;  8       80       6524632.0        12947857
-#&gt;  9       90       6697192.3        13916003
-#&gt; 10      100       6389856.1        14809679
+#&gt;  1     10.0          300653         2731966
+#&gt;  2     20.0         3309909         7563891
+#&gt;  3     30.0         4576114         9743979
+#&gt;  4     40.0         5616553        10461007
+#&gt;  5     50.0         6467238        11242509
+#&gt;  6     60.0         6920549        12236649
+#&gt;  7     70.0         6897814        11800874
+#&gt;  8     80.0         6524632        12947857
+#&gt;  9     90.0         6697192        13916003
+#&gt; 10    100           6389856        14809679
 #&gt; # ... with 31 more rows</div><div class='input'>
 </div></pre>
   </div>
@@ -143,7 +150,7 @@ Velocity &lt;= 0.15 m/s</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
