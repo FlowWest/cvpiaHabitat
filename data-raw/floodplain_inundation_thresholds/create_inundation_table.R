@@ -15,7 +15,9 @@ weeks_inundated <- bind_rows(
   read_rds('data-raw/floodplain_inundation_thresholds/merced_river_inundated.rds'),
   read_rds('data-raw/floodplain_inundation_thresholds/stanislaus_river_inundated.rds'),
   read_rds('data-raw/floodplain_inundation_thresholds/tuolumne_river_inundated.rds'),
-  read_rds('data-raw/floodplain_inundation_thresholds/san_joaquin_river_inundated.rds'))
+  read_rds('data-raw/floodplain_inundation_thresholds/san_joaquin_river_inundated.rds')) %>%
+  rename(flow_threshold = flow_threshhold)
 
 devtools::use_data(weeks_inundated, overwrite = TRUE)
-N
+
+cvpiaData::watershed_ordering$watershed[!(cvpiaData::watershed_ordering$watershed %in% unique(weeks_inundated$watershed))]

@@ -12,7 +12,7 @@ cvpiaHabitat::apply_suitability(
 calaveras <- dataRetrieval::readNWISdv(siteNumbers = '11308900', parameterCd = '00060',
                                   startDate = '1970-01-01', endDate = '1989-12-31')
 
-fp_threshold_flow <- cvpiaHabitat::calaveras_river_floodplain$flow_cfs[which(cumsum(cvpiaHabitat::calaveras_river_floodplain$FR_floodplain_acres != 0) == 1) - 1]
+fp_threshold_flow <- cvpiaHabitat::calaveras_river_floodplain$flow_cfs[which(cumsum(cvpiaHabitat::calaveras_river_floodplain$floodplain_acres != 0) == 1) - 1]
 
 
 calaveras %>%
@@ -55,7 +55,6 @@ days_inundated %>%
   filter(monthly_mean_flow >= fp_threshold_flow) %>%
   pull(days_inundated) %>% summary()
 
-# if deer has floodplain inundation it is usually for 4 weeks
 
 data.frame(
   watershed = rep(c('Calaveras River'), 5),
