@@ -18,8 +18,6 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -27,11 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-<meta property="og:title" content="Stanislaus River Instream Flow to Habitat Area Relationship — stanislaus_river_instream" />
-
-<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-as a function of flow in cubic feet per second" />
-<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -115,19 +108,19 @@ the FWS River2D model.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>stanislaus_river_instream</span></div><div class='output co'>#&gt; # A tibble: 47 x 7
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua ST_fry_wua ST_juv_wua watershed 
-#&gt;  *    &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;     
-#&gt;  1       25          235         NA         NA         NA         NA Stanislau…
-#&gt;  2       50          911         NA         NA         NA         NA Stanislau…
-#&gt;  3      100         2440         NA         NA         NA         NA Stanislau…
-#&gt;  4      150         3584         NA         NA         NA         NA Stanislau…
-#&gt;  5      200         4235         NA         NA         NA         NA Stanislau…
-#&gt;  6      250         4717       3727       2174       3257       2673 Stanislau…
-#&gt;  7      300         4922       3574       2384       3296       2678 Stanislau…
-#&gt;  8      350         4748         NA         NA         NA         NA Stanislau…
-#&gt;  9      400         4459       3334       2660       3243       2837 Stanislau…
-#&gt; 10      450         4190         NA         NA         NA         NA Stanislau…
-#&gt; # ... with 37 more rows</div><div class='input'>
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua ST_fry_wua ST_juv_wua
+#&gt;  *    &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+#&gt;  1       25     235.3977         NA         NA         NA         NA
+#&gt;  2       50     910.5568         NA         NA         NA         NA
+#&gt;  3      100    2439.9356         NA         NA         NA         NA
+#&gt;  4      150    3584.4318         NA         NA         NA         NA
+#&gt;  5      200    4234.5303         NA         NA         NA         NA
+#&gt;  6      250    4717.1212   3726.605   2173.521   3257.344   2673.157
+#&gt;  7      300    4922.3333   3574.013   2383.702   3295.913   2678.420
+#&gt;  8      350    4748.2538         NA         NA         NA         NA
+#&gt;  9      400    4458.9053   3334.020   2659.582   3243.065   2837.099
+#&gt; 10      450    4190.4773         NA         NA         NA         NA
+#&gt; # ... with 37 more rows, and 1 more variables: watershed &lt;chr&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -152,7 +145,7 @@ the FWS River2D model.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

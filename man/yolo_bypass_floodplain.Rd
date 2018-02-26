@@ -3,42 +3,33 @@
 \docType{data}
 \name{yolo_bypass_floodplain}
 \alias{yolo_bypass_floodplain}
-\alias{yolo_bypass_floodplain}
 \title{Yolo Bypass Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 62 rows and 3 variables:
+\format{dataframe with 2 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
-  \item{watershed}{name of watershed}
+  \item{Yolo Bypass 1}{floodplain acreage in the Yolo Bypass, Fremont Weir to Sacramento Weir}
+  \item{Yolo Bypass 2}{floodplain acreage in the Yolo Bypass below Sacramento Weir}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
-
 \href{https://www.google.com}{TODO}
 }
 \usage{
-yolo_bypass_floodplain
-
 yolo_bypass_floodplain
 }
 \description{
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
-
-A dataset containing the floodplain habitat area in acres as a
-function of flow in cubic feet per second
 }
 \details{
-The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
-
 Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+
 High quality defined by:
+
 Channel depth > 0.2 m and < 1.5 m
+
 Velocity <= 0.15 m/s
 }
 \examples{
-yolo_bypass_floodplain
-
 yolo_bypass_floodplain
 
 }

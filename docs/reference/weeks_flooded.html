@@ -18,8 +18,6 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -27,10 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-<meta property="og:title" content="Duration of Floodplain Inundation — weeks_flooded" />
-
-<meta property="og:description" content="Function returns number of weeks of floodplain inundation given a flow for a watershed" />
-<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -87,13 +81,13 @@
     <p>Function returns number of weeks of floodplain inundation given a flow for a watershed</p>
     
 
-    <pre class="usage"><span class='fu'>weeks_flooded</span>(<span class='no'>watershed</span>, <span class='no'>flow_cfs</span>)</pre>
+    <pre class="usage"><span class='fu'>weeks_flooded</span>(<span class='no'>ws</span>, <span class='no'>flow_cfs</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>watershed</th>
+      <th>ws</th>
       <td><p>name of CVPIA watershed</p></td>
     </tr>
     <tr>
@@ -138,7 +132,7 @@ For watersheds without a defined relationship, a two week inundation duration is
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

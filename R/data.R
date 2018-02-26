@@ -152,26 +152,6 @@
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}{SRH2D}
 "yuba_river_floodplain"
 
-#' Yolo Bypass Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 62 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
-#'
-#' @examples
-#' yolo_bypass_floodplain
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}
-"yolo_bypass_floodplain"
-
 #' Tuolumne River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
@@ -1261,8 +1241,11 @@
 #' }
 #'
 #' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#'
 #' High quality defined by:
+#'
 #' Channel depth > 0.2 m and < 1.5 m
+#'
 #' Velocity <= 0.15 m/s
 #'
 #' @examples
@@ -1343,3 +1326,33 @@
 #'
 #' @source \href{https://www.google.com}{TODO}
 'sutter_bypass_instream'
+
+#' Delta Habitat Area
+#'
+#' @description A dataset containing the area of highly suitable habitat within the
+#' North and South Deltas
+#'
+#' @format dataframe with 372 rows and 3 variables
+#' \describe{
+#'   \item{date}{modeled results for 1980-2010}
+#'   \item{North Delta}{high quality habitat area in square meters}
+#'   \item{South Delta}{high quality habitat area in square meters}
+#' }
+#'
+#' @details
+#' Habitat estimates from Correigh Greene's Winter Run Life Cycle Model. The model
+#' outputs habitat area estimates for months December-May. Habitat for months
+#' June-Novemeber are represented by the yearly average habitat.
+#'
+#' High quality habitat defined by:
+#' Channel type: mainstem, distributaries, or open water
+#' Depth: > 0.2 m and <= 1.5 m
+#' Cover Vegetated edge
+#'
+#' @source
+#' \itemize{
+#'   \item Modeling Output: Correigh Green \email{correigh.greene@@noaa.gov}
+#'   \item Delta Node Selection: Mark Tompkins \email{mtompkins@@flowwest.com}
+#'   \item Data Wrangling: Sadie Gill \email{sgill@@flowwest.com}
+#' }
+'delta_habitat'

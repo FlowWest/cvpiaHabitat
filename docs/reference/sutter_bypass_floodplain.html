@@ -18,8 +18,6 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
-<!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -27,11 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-<meta property="og:title" content="Sutter Bypass Flow to Floodplain Habitat Area Relationship — sutter_bypass_floodplain" />
-
-<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
-function of flow in cubic feet per second" />
-<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -115,19 +108,19 @@ Velocity &lt;= 0.15 m/s</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>sutter_bypass_floodplain</span></div><div class='output co'>#&gt; # A tibble: 41 x 5
-#&gt;    flow_cfs `Sutter Bypass … `Sutter Bypass … `Sutter Bypass … `Sutter Bypass …
-#&gt;  *    &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
-#&gt;  1     10.0            0                 6.74            0                    0
-#&gt;  2     20.0            0                26.5             0.635                0
-#&gt;  3     30.0            0.192            78.1             0.656                0
-#&gt;  4     40.0            0.200            99.8             0.674                0
-#&gt;  5     50.0            0.208           110               0.690                0
-#&gt;  6     60.0            1.18            110               0.704                0
-#&gt;  7     70.0            1.19            189               0.716                0
-#&gt;  8     80.0            1.87            195               0.729                0
-#&gt;  9     90.0            1.87            202               0.741                0
-#&gt; 10    100              1.87            248               0.750                0
-#&gt; # ... with 31 more rows</div><div class='input'>
+#&gt;    flow_cfs `Sutter Bypass 1` `Sutter Bypass 2` `Sutter Bypass 3`
+#&gt;  *    &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
+#&gt;  1       10         0.0000000          6.737225         0.0000000
+#&gt;  2       20         0.0000000         26.480142         0.6348337
+#&gt;  3       30         0.1919283         78.072729         0.6560252
+#&gt;  4       40         0.2002831         99.774472         0.6740380
+#&gt;  5       50         0.2077097        110.380948         0.6899316
+#&gt;  6       60         1.1788731        109.903506         0.7037061
+#&gt;  7       70         1.1856209        188.665664         0.7164209
+#&gt;  8       80         1.8673173        194.535464         0.7291358
+#&gt;  9       90         1.8684968        201.806997         0.7407911
+#&gt; 10      100         1.8696763        248.119919         0.7503273
+#&gt; # ... with 31 more rows, and 1 more variables: `Sutter Bypass 4` &lt;dbl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -152,7 +145,7 @@ Velocity &lt;= 0.15 m/s</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

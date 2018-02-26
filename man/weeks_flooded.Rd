@@ -4,10 +4,10 @@
 \alias{weeks_flooded}
 \title{Duration of Floodplain Inundation}
 \usage{
-weeks_flooded(watershed, flow_cfs)
+weeks_flooded(ws, flow_cfs)
 }
 \arguments{
-\item{watershed}{name of CVPIA watershed}
+\item{ws}{name of CVPIA watershed}
 
 \item{flow_cfs}{monthly mean flow in cubic feet per second}
 }

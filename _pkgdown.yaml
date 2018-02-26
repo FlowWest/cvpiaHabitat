@@ -80,6 +80,10 @@ reference:
   - paynes_creek_floodplain
   - stony_creek_floodplain
   - thomes_creek_floodplain
+- title: Delta
+  desc: Delta Habitat Values
+  contents:
+  - delta_habitat
 - title: Miscellaneous Datasets
   desc: Datasets used as reference tables
   contents:
