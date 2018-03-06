@@ -30,8 +30,11 @@ outputs habitat area estimates for months December-May. Habitat for months
 June-Novemeber are represented by the yearly average habitat.
 
 High quality habitat defined by:
+
 Channel type: mainstem, distributaries, or open water
+
 Depth: > 0.2 m and <= 1.5 m
+
 Cover Vegetated edge
 }
 \keyword{datasets}

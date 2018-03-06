@@ -74,8 +74,19 @@ set_floodplain_habitat <- function(watershed, species, flow) {
 
 floodplain_approx <- function(watershed) {
   # format watershed name to load flow to area relationship for floodplain
+
   watershed_name <- tolower(gsub(pattern = " ", replacement = "_", x = watershed))
   watershed_rda_name <- paste(watershed_name, "floodplain", sep = "_")
+
+  # TODO fix this hacky thing
+  if (watershed == 'Upper-mid Sacramento River') {
+    watershed_rda_name <- 'upper_mid_sacramento_river_floodplain'
+  }
+
+  if (watershed == 'Lower-mid Sacramento River') {
+    watershed_rda_name <- 'lower_mid_sacramento_river_floodplain'
+  }
+
   df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
   approxfun(df$flow_cfs, df$floodplain_acres, yleft = 0, yright = max(df$floodplain_acres))

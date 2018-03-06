@@ -80,7 +80,7 @@ set_spawning_habitat <- function(watershed, species, flow) {
     # remove NA approx functions for places without species present
     approx_funcs <- approx_functions[!is.na(approx_functions)]
     if (length(approx_funcs) == 0) {return(NA)}
-    if(length(approx_funcs) < 3) {warning(paste('only', lenth(approx_funcs), 'approx functions within the region used for estimate'))}
+    if(length(approx_funcs) < 3) {warning(paste('only', length(approx_funcs), 'approx functions within the region used for estimate'))}
 
     wuas <- purrr::map_dbl(approx_functions, function(f) {
       f(flow)

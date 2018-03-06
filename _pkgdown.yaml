@@ -18,6 +18,7 @@ reference:
   - set_spawning_habitat
   - set_instream_habitat
   - set_floodplain_habitat
+  - set_bypass_instream_habitat
   - wua_to_area
   - weeks_flooded
   - apply_suitability

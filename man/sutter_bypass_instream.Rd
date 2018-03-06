@@ -24,8 +24,11 @@ as a function of flow in cubic feet per second
 }
 \details{
 Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+
 High quality defined by:
+
 Channel depth > 0.2 m and < 1.5 m
+
 Velocity <= 0.15 m/s
 }
 \examples{

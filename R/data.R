@@ -1269,8 +1269,11 @@
 #' }
 #'
 #' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#'
 #' High quality defined by:
+#'
 #' Channel depth > 0.2 m and < 1.5 m
+#'
 #' Velocity <= 0.15 m/s
 #'
 #' @examples
@@ -1292,8 +1295,11 @@
 #' }
 #'
 #' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#'
 #' High quality defined by:
+#'
 #' Channel depth > 0.2 m and < 1.5 m
+#'
 #' Velocity <= 0.15 m/s
 #'
 #' @examples
@@ -1317,8 +1323,11 @@
 #' }
 #'
 #' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#'
 #' High quality defined by:
+#'
 #' Channel depth > 0.2 m and < 1.5 m
+#'
 #' Velocity <= 0.15 m/s
 #'
 #' @examples
@@ -1345,8 +1354,11 @@
 #' June-Novemeber are represented by the yearly average habitat.
 #'
 #' High quality habitat defined by:
+#'
 #' Channel type: mainstem, distributaries, or open water
+#'
 #' Depth: > 0.2 m and <= 1.5 m
+#'
 #' Cover Vegetated edge
 #'
 #' @source
