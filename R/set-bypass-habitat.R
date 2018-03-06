@@ -39,5 +39,36 @@ set_bypass_instream_habitat <- function(bypass, flow) {
   }
 }
 
+#' Set Bypass Floodplain Habitat Area
+#' @description This function returns an estimated total floodplain habitat area based on bypass and flow.
+#'
+#' @param bypass one section of the bypasses ('yolo1', 'yolo2', 'sutter1', 'sutter2', 'sutter3', or 'sutter4')
+#' @param flow value used to determine habitat area
+#' @return habitat area in square meters
+#'
+#' @examples
+#' # habitat area in square meters for section 1 of the yolo bypass at 200 cfs
+#' set_bypass_floodplain_habitat('yolo1', 200000)
+#' @export
+set_bypass_floodplain_habitat <- function(bypass, flow) {
+
+  yb <- as.data.frame(cvpiaHabitat::yolo_bypass_floodplain)
+  sb <- as.data.frame(cvpiaHabitat::sutter_bypass_floodplain)
+  i <- which(c('yolo1', 'yolo2', 'sutter1', 'sutter2', 'sutter3', 'sutter4') == bypass)
+
+  if (bypass == 'yolo1') {
+    yolofp <- approxfun(yb$flow_cfs, yb$`Yolo Bypass 1`,
+                        yleft = 0, yright = max(yb$`Yolo Bypass 1`, na.rm = TRUE))
+
+    return(yolofp(flow) * 4046.86)
+
+  } else if (bypass == 'yolo2') {
+    return(0)
+
+  } else {
+    sutterfp <- approxfun(sb$flow_cfs, sb[, i - 1], yleft = 0, yright = sb[length(sb$flow_cfs), i - 1])
+    return(sutterfp(flow) * 4046.86)
+  }
+}
 
 
