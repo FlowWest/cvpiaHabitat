@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Sutter Bypass Instream Flow to Habitat Area Relationship — sutter_bypass_instream • cvpiaHabitat</title>
+<title>Set Bypass Instream Habitat Area — set_bypass_instream_habitat • cvpiaHabitat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,64 +74,43 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Sutter Bypass Instream Flow to Habitat Area Relationship</h1>
+    <h1>Set Bypass Instream Habitat Area</h1>
     </div>
 
     
-    <p>A dataset containing the Weighted Usable Area (WUA) in square feet
-as a function of flow in cubic feet per second</p>
+    <p>This function returns an estimated instream habitat area based on bypass and flow.</p>
     
 
-    <pre class="usage"><span class='no'>sutter_bypass_instream</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>dataframe with 41 rows and 5 variables:</p><dl class='dl-horizontal'>
-  <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>Sutter Bypass 1</dt><dd><p>juvenile rearing habitat WUA in the Sutter Bypass, to Moulton Weir</p></dd>
-  <dt>Sutter Bypass 2</dt><dd><p>juvenile rearing habitat WUA in the Sutter Bypass, to Colusa Weir</p></dd>
-  <dt>Sutter Bypass 3</dt><dd><p>juvenile rearing habitat WUA in the Sutter Bypass, to Tisdale Weir</p></dd>
-  <dt>Sutter Bypass 4</dt><dd><p>juvenile rearing habitat WUA in the Sutter Bypass below Tisdale Weir</p></dd>
-</dl>
+    <pre class="usage"><span class='fu'>set_bypass_instream_habitat</span>(<span class='no'>bypass</span>, <span class='no'>flow</span>)</pre>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='https://www.google.com'>TODO</a></p>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>bypass</th>
+      <td><p>one section of the bypasses ('yolo1', 'yolo2', 'sutter1', 'sutter2', 'sutter3', or 'sutter4')</p></td>
+    </tr>
+    <tr>
+      <th>flow</th>
+      <td><p>value used to determine habitat area</p></td>
+    </tr>
+    </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Habitat estimates from Correigh Greene's Winter Run Life Cycle Model</p>
-<p>High quality defined by:</p>
-<p>Channel depth &gt; 0.2 m and &lt; 1.5 m</p>
-<p>Velocity &lt;= 0.15 m/s</p>
+    <p>habitat area in square meters</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>sutter_bypass_instream</span></div><div class='output co'>#&gt; # A tibble: 41 x 5
-#&gt;    flow_cfs `Sutter Bypass 1` `Sutter Bypass 2` `Sutter Bypass 3`
-#&gt;  *    &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;
-#&gt;  1       10           2613292           1168074           5674414
-#&gt;  2       20           5302250           2632234           7529966
-#&gt;  3       30           6221161           3808180           9582359
-#&gt;  4       40           6703418           4275595          12193654
-#&gt;  5       50           7498144           4422091          14231994
-#&gt;  6       60          11703359           4667249          15132002
-#&gt;  7       70          12254095           4825101          15538677
-#&gt;  8       80          12193444           5152135          16445649
-#&gt;  9       90          12118327           5062672          17111271
-#&gt; 10      100          11689165           5122701          18389934
-#&gt; # ... with 31 more rows, and 1 more variables: `Sutter Bypass 4` &lt;dbl&gt;</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># habitat area in square meters for section 1 of the yolo bypass at 200 cfs</span>
+<span class='fu'>set_bypass_instream_habitat</span>(<span class='st'>'yolo1'</span>, <span class='fl'>200</span>)</div><div class='output co'>#&gt; [1] 974867.7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-
-      <li><a href="#source">Source</a></li>
-
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
