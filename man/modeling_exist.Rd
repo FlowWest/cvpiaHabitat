@@ -21,6 +21,9 @@
 \item{ST_juv}{TRUE if juvenile rearing habitat modeling exists for Steelhead}
 \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
 \item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
+\item{UseRearRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed}
+\item{UseSpawnRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed}
+\item{UseFloodplainRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed}
 }}
 \source{
 Sadie Gill \email{sgill@flowwest.com}

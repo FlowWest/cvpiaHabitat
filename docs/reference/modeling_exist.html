@@ -101,6 +101,9 @@
 <dt>ST_juv</dt><dd><p>TRUE if juvenile rearing habitat modeling exists for Steelhead</p></dd>
 <dt>ST_floodplain</dt><dd><p>TRUE if floodplain rearing modeling exists for Steelhead</p></dd>
 <dt>Region</dt><dd><p>Regional grouping of watersheds used for estimating values for watersheds without modeling</p></dd>
+<dt>UseRearRegionApprox</dt><dd><p>boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed</p></dd>
+<dt>UseSpawnRegionApprox</dt><dd><p>boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed</p></dd>
+<dt>UseFloodplainRegionApprox</dt><dd><p>boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -115,22 +118,23 @@ Used as look up table for <code><a href='set_spawning_habitat.html'>set_spawning
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>modeling_exist</span></div><div class='output co'>#&gt; # A tibble: 31 x 15
+    <pre class="examples"><div class='input'><span class='no'>modeling_exist</span></div><div class='output co'>#&gt; # A tibble: 31 x 18
 #&gt;    Order              Watershed FR_spawn FR_fry FR_juv FR_floodplain SR_spawn
 #&gt;    &lt;int&gt;                  &lt;chr&gt;    &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;         &lt;lgl&gt;    &lt;lgl&gt;
 #&gt;  1     1 Upper Sacramento River     TRUE  FALSE   TRUE          TRUE    FALSE
-#&gt;  2     2         Antelope Creek    FALSE  FALSE  FALSE          TRUE    FALSE
-#&gt;  3     3           Battle Creek     TRUE   TRUE   TRUE          TRUE    FALSE
-#&gt;  4     4             Bear Creek    FALSE  FALSE  FALSE          TRUE       NA
+#&gt;  2     2         Antelope Creek    FALSE  FALSE  FALSE         FALSE    FALSE
+#&gt;  3     3           Battle Creek     TRUE   TRUE   TRUE         FALSE    FALSE
+#&gt;  4     4             Bear Creek    FALSE  FALSE  FALSE         FALSE       NA
 #&gt;  5     5        Big Chico Creek    FALSE  FALSE  FALSE          TRUE       NA
 #&gt;  6     6            Butte Creek     TRUE   TRUE   TRUE          TRUE    FALSE
-#&gt;  7     7            Clear Creek     TRUE   TRUE   TRUE          TRUE     TRUE
+#&gt;  7     7            Clear Creek     TRUE   TRUE   TRUE         FALSE     TRUE
 #&gt;  8     8       Cottonwood Creek     TRUE   TRUE   TRUE          TRUE    FALSE
-#&gt;  9     9              Cow Creek    FALSE   TRUE   TRUE          TRUE       NA
+#&gt;  9     9              Cow Creek    FALSE   TRUE   TRUE         FALSE       NA
 #&gt; 10    10             Deer Creek    FALSE  FALSE  FALSE          TRUE    FALSE
-#&gt; # ... with 21 more rows, and 8 more variables: SR_fry &lt;lgl&gt;, SR_juv &lt;lgl&gt;,
+#&gt; # ... with 21 more rows, and 11 more variables: SR_fry &lt;lgl&gt;, SR_juv &lt;lgl&gt;,
 #&gt; #   SR_floodplain &lt;lgl&gt;, ST_spawn &lt;lgl&gt;, ST_fry &lt;lgl&gt;, ST_juv &lt;lgl&gt;,
-#&gt; #   ST_floodplain &lt;lgl&gt;, Region &lt;chr&gt;</div><div class='input'>
+#&gt; #   ST_floodplain &lt;lgl&gt;, Region &lt;chr&gt;, UseRearRegionApprox &lt;lgl&gt;,
+#&gt; #   UseSpawnRegionApprox &lt;lgl&gt;, UseFloodplainRegionApprox &lt;lgl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

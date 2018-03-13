@@ -898,6 +898,60 @@
 #' @source Sadie Gill
 "san_joaquin_river_instream"
 
+#' Upper-mid Sacramento River Region Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 14 rows and 5 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details Some of the Upper Sacramento Rivers' instream rearing habitat have not been modeled.
+#' The rearing WUA values were estimated using the mean WUA at each flow from Battle Creek,
+#' Butte Creek, Clear Creek, and Cow Creek. The spawning WUA values were estimated using the mean
+#' WUA at each flow from Battle Creek, Butte Creek, and Clear Creek.
+#'
+#' Spawning Not Modeled:
+#'
+#' \itemize{
+#'   \item Antelope Creek
+#'   \item Bear Creek
+#'   \item Big Chico Creek
+#'   \item Cow Creek
+#'   \item Deer Creek
+#'   \item Elder Creek
+#'   \item Mill Creek
+#'   \item Paynes Creek
+#'   \item Stony Creek
+#'   \item Thomes Creek
+#' }
+#'
+#' Rearing Not Modeled:
+#'
+#' \itemize{
+#'   \item Antelope Creek
+#'   \item Bear Creek
+#'   \item Big Chico Creek
+#'   \item Deer Creek
+#'   \item Elder Creek
+#'   \item Mill Creek
+#'   \item Paynes Creek
+#'   \item Stony Creek
+#'   \item Thomes Creek
+#' }
+#'
+#' @examples
+#' upper_mid_sac_region_instream
+#'
+#' @source Sadie Gill
+"upper_mid_sac_region_instream"
+
 
 #' Cow Creek Instream Flow to Habitat Area Relationship
 #'
@@ -1221,6 +1275,9 @@
 #' \item{ST_juv}{TRUE if juvenile rearing habitat modeling exists for Steelhead}
 #' \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
 #' \item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
+#' \item{UseRearRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed}
+#' \item{UseSpawnRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed}
+#' \item{UseFloodplainRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed}
 #' }
 #'
 #' @examples

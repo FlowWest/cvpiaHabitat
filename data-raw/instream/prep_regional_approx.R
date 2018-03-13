@@ -14,7 +14,12 @@ watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exi
 
 watersheds_without_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
                                                          Region == 'Upper-mid Sacramento River',
-                                                         !FR_fry), Watershed)
+                                                         !FR_juv), Watershed)
+
+watersheds_with_spawn <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                                                      Region == 'Upper-mid Sacramento River',
+                                                      FR_spawn, Watershed != 'Cottonwood Creek',
+                                                      Watershed != 'Upper-mid Sacramento River'), Watershed)
 
 # explore flow range of modeling
 model_flow_summary <- function(df) {summary(pull(df, flow_cfs))}
@@ -30,10 +35,14 @@ get_approx_spwn <- function(df) {approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 
 get_approx_fry <- function(df) {approxfun(df$flow_cfs, df$FR_fry_wua, rule = 2)}
 get_approx_juv <- function(df) {approxfun(df$flow_cfs, df$FR_juv_wua, rule = 2)}
 
+upmidsac_spwn <- list(get_approx_spwn(cvpiaHabitat::battle_creek_instream),
+                     get_approx_spwn(cvpiaHabitat::butte_creek_instream),
+                     get_approx_spwn(cvpiaHabitat::clear_creek_instream))
+
 upmidsac_juv <- list(get_approx_juv(cvpiaHabitat::battle_creek_instream),
-     get_approx_juv(cvpiaHabitat::butte_creek_instream),
-     get_approx_juv(cvpiaHabitat::clear_creek_instream),
-     get_approx_juv(cvpiaHabitat::cow_creek_instream))
+                     get_approx_juv(cvpiaHabitat::butte_creek_instream),
+                     get_approx_juv(cvpiaHabitat::clear_creek_instream),
+                     get_approx_juv(cvpiaHabitat::cow_creek_instream))
 
 upmidsac_fry <- list(get_approx_fry(cvpiaHabitat::battle_creek_instream),
                      get_approx_fry(cvpiaHabitat::butte_creek_instream),
@@ -57,12 +66,14 @@ cvpiaFlow::flows_cfs %>%
 flows <- cvpiaHabitat::clear_creek_instream$flow_cfs
 
 upper_mid_sac_region_instream <- purrr::map_df(flows, function(flow) {
+  wua_spn <- mean(purrr::map_dbl(1:length(upmidsac_spwn), function(i){upmidsac_spwn[[i]](flow)}))
   wua_fry <- mean(purrr::map_dbl(1:length(upmidsac_fry), function(i){upmidsac_fry[[i]](flow)}))
   wua_juv <- mean(purrr::map_dbl(1:length(upmidsac_juv), function(i){upmidsac_juv[[i]](flow)}))
-  tibble(flow_cfs = flow, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv, watershed = 'Upper-mid Sacramento River Region')
+  tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
+         watershed = 'Upper-mid Sacramento River Region')
 })
 
-devtools::use_data(upper_mid_sac_region_instream)
+devtools::use_data(upper_mid_sac_region_instream, overwrite = TRUE)
 
 ggplot(upper_mid_sac_region_instream, aes(x = flow, y = mean_wua)) +
   geom_line()
@@ -81,7 +92,6 @@ bind_rows(cvpiaHabitat::battle_creek_instream,
 watersheds_without_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
                                                          Region != 'Upper-mid Sacramento River',
                                                          !FR_juv), Watershed)
-
 cvpiaHabitat::modeling_exist %>%
   filter(Watershed %in% watersheds_without_modeling) %>%
   select(Watershed, Region, FR_fry, FR_juv)
@@ -112,7 +122,8 @@ cosumnes_river_instream <- purrr::map_df(flows, function(flow) {
   wua_spn <- mean(purrr::map_dbl(1:length(cal_mok_spn), function(i){cal_mok_spn[[i]](flow)}))
   wua_fry <- mean(purrr::map_dbl(1:length(cal_mok_fry), function(i){cal_mok_fry[[i]](flow)}))
   wua_juv <- mean(purrr::map_dbl(1:length(cal_mok_juv), function(i){cal_mok_juv[[i]](flow)}))
-  tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv, watershed = 'Cosumnes River')
+  tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
+         watershed = 'Cosumnes River')
 })
 
 devtools::use_data(cosumnes_river_instream)
