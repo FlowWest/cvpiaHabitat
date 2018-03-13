@@ -396,18 +396,16 @@ use_data(south_delta_percent_suitability)
 # all else is "intermediate" steps.
 
 
-american <- read_csv("data-raw/instream/american_river_instream.csv", skip =1)
+american <- read_csv("data-raw/instream/american_river_instream.csv", skip = 1)
 
 american$miles <- 2.2
 
 american_river_instream <- american %>%
-  rename(flow_cfs = Flow, species_stage = species, WUA = wua) %>%
-  group_by(species_stage, flow_cfs) %>%
-  mutate(WUA = WUA/miles/5.28, watershed = 'American River') %>%
-  spread(key = species_stage, value = WUA) %>%
-  select(flow_cfs,
-         FR_spawn_wua = FR_spawning,
-         ST_spawn_wua = ST_spawning,
+  mutate(watershed = 'American River') %>%
+  select(flow_cfs = Flow,
+         FR_spawn_wua = Spawning,
+         FR_fry_wua = `Fry Rearing`,
+         FR_juv_wua = `Juv Rearing`,
          watershed)
 
 
