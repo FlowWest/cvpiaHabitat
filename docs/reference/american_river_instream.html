@@ -86,16 +86,17 @@ as a function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 30 rows and 4 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 11 rows and 5 variables:</p><dl class='dl-horizontal'>
 <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-<dt>FR_spawn_wua</dt><dd><p>Fall Run spawning WUA in square feet per 1000 feet</p></dd>
-<dt>ST_spawn_wua</dt><dd><p>Steelhead spawning WUA in square feet per 1000 feet</p></dd>
+<dt>FR_spawn_wua</dt><dd><p>chinook spawning WUA in square feet per 1000 feet</p></dd>
+<dt>FR_fry_wua</dt><dd><p>chinook fry (up to 50 mm) WUA in square feet per 1000 feet</p></dd>
+<dt>FR_juv_wua</dt><dd><p>chinook juvenile WUA in square feet per 1000 feet</p></dd>
 <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2003_AmericanRiverPHABSIM2DFinalReport.pdf'>FWS 2003</a></p>
+    <p><a href='TODO'>FWS 1985</a></p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -104,21 +105,20 @@ applied habitat suitability model.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>american_river_instream</span></div><div class='output co'>#&gt; # A tibble: 30 x 4
-#&gt; # Groups:   flow_cfs [30]
-#&gt;    flow_cfs FR_spawn_wua ST_spawn_wua      watershed
-#&gt;  *    &lt;int&gt;        &lt;dbl&gt;        &lt;dbl&gt;          &lt;chr&gt;
-#&gt;  1     1000     65544.16     26216.51 American River
-#&gt;  2     1200     70336.69     27130.25 American River
-#&gt;  3     1400     73437.24     27809.40 American River
-#&gt;  4     1600     75065.34     28155.04 American River
-#&gt;  5     1800     75568.53     28500.69 American River
-#&gt;  6     2000     75889.12     28790.72 American River
-#&gt;  7     2200     75921.57     28850.03 American River
-#&gt;  8     2400     74587.21     28713.84 American River
-#&gt;  9     2600     72395.75     28525.74 American River
-#&gt; 10     2800     69778.93     28238.46 American River
-#&gt; # ... with 20 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>american_river_instream</span></div><div class='output co'>#&gt; # A tibble: 11 x 5
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua      watershed
+#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;chr&gt;
+#&gt;  1      300     21206.00   59897.00  112381.25 American River
+#&gt;  2      500     53339.75   54065.00  108736.25 American River
+#&gt;  3      750     78709.50   49959.25   99007.00 American River
+#&gt;  4     1000     93705.75   42334.00   93968.25 American River
+#&gt;  5     1250    100355.00   38006.00   86484.75 American River
+#&gt;  6     1500    104301.75   35099.75   82350.50 American River
+#&gt;  7     1750    107399.00   31519.50   76739.00 American River
+#&gt;  8     2000    105864.00   27976.25   75271.25 American River
+#&gt;  9     2250    102376.00   25199.00   57607.75 American River
+#&gt; 10     2500     98173.25   23179.50   51787.50 American River
+#&gt; 11     3000     84624.25   20569.50   43768.25 American River</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
