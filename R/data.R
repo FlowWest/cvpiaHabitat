@@ -850,6 +850,55 @@
 #' @source EBMUD 2016 and CDFW 1998
 "mokelumne_river_instream"
 
+#' Cosumnes River Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 14 rows and 5 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The Cosumnes River instream rearing habitat has not been modeled.
+#' The WUA values were estimated using the mean WUA at each flow from Mokelumne
+#' and Calaveras Rivers.
+#'
+#' @examples
+#' cosumnes_river_instream
+#'
+#' @source Sadie Gill
+"cosumnes_river_instream"
+
+#' San Joaqin River Instream Flow to Habitat Area Relationship
+#'
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second
+#'
+#' @format dataframe with 14 rows and 5 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
+#'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
+#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The Lower San Joaquin River instream rearing habitat has not been modeled.
+#' The WUA values were estimated using the mean WUA at each flow from the Merced, Stanislaus,
+#' and Tuolumne Rivers.
+#'
+#' @examples
+#' san_joaquin_river_instream
+#'
+#' @source Sadie Gill
+"san_joaquin_river_instream"
+
+
 #' Cow Creek Instream Flow to Habitat Area Relationship
 #'
 #' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet

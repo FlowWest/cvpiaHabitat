@@ -33,6 +33,7 @@ reference:
   - butte_creek_instream
   - calaveras_river_instream
   - clear_creek_instream
+  - cosumnes_river_instream
   - cottonwood_creek_instream
   - cow_creek_instream
   - feather_river_instream
@@ -46,6 +47,7 @@ reference:
   - stanislaus_river_instream
   - tuolumne_river_instream
   - yuba_river_instream
+  - san_joaquin_river_instream
   - sutter_bypass_instream
   - yolo_bypass_instream
 - title: Floodplain Habitat Datasets

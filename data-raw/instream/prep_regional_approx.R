@@ -26,6 +26,7 @@ model_flow_summary(cvpiaHabitat::cow_creek_instream)
 
 
 # create list of wua (sq ft/1000 ft) approximators for each watershed in region
+get_approx_spwn <- function(df) {approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)}
 get_approx_fry <- function(df) {approxfun(df$flow_cfs, df$FR_fry_wua, rule = 2)}
 get_approx_juv <- function(df) {approxfun(df$flow_cfs, df$FR_juv_wua, rule = 2)}
 
@@ -38,9 +39,6 @@ upmidsac_fry <- list(get_approx_fry(cvpiaHabitat::battle_creek_instream),
                      get_approx_fry(cvpiaHabitat::butte_creek_instream),
                      get_approx_fry(cvpiaHabitat::clear_creek_instream),
                      get_approx_fry(cvpiaHabitat::cow_creek_instream))
-
-# get mean wua for region at 100 cfs
-
 
 cvpiaFlow::flows_cfs %>%
   gather(watershed, flow, -date) %>%
@@ -64,6 +62,8 @@ upper_mid_sac_region_instream <- purrr::map_df(flows, function(flow) {
   tibble(flow_cfs = flow, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv, watershed = 'Upper-mid Sacramento River Region')
 })
 
+devtools::use_data(upper_mid_sac_region_instream)
+
 ggplot(upper_mid_sac_region_instream, aes(x = flow, y = mean_wua)) +
   geom_line()
 
@@ -86,7 +86,7 @@ cvpiaHabitat::modeling_exist %>%
   filter(Watershed %in% watersheds_without_modeling) %>%
   select(Watershed, Region, FR_fry, FR_juv)
 
-# american ----
+# american (asking mark gard)----
 cvpiaHabitat::modeling_exist %>%
   filter(Region == 'Lower Sacramento River') %>%
   select(Watershed, Region, FR_fry, FR_juv)
@@ -97,3 +97,60 @@ cvpiaHabitat::modeling_exist %>%
   select(Watershed, Region, FR_fry, FR_juv)
 
 cvpiaHabitat::calaveras_river_floodplain
+cal_mok_spn <- list(get_approx_spwn(cvpiaHabitat::calaveras_river_instream),
+                    get_approx_spwn(cvpiaHabitat::mokelumne_river_instream))
+
+cal_mok_juv <- list(get_approx_juv(cvpiaHabitat::calaveras_river_instream),
+                    get_approx_juv(cvpiaHabitat::mokelumne_river_instream))
+
+cal_mok_fry <- list(get_approx_fry(cvpiaHabitat::calaveras_river_instream),
+                    get_approx_fry(cvpiaHabitat::mokelumne_river_instream))
+
+flows <- seq(100, 1000, by = 100)
+
+cosumnes_river_instream <- purrr::map_df(flows, function(flow) {
+  wua_spn <- mean(purrr::map_dbl(1:length(cal_mok_spn), function(i){cal_mok_spn[[i]](flow)}))
+  wua_fry <- mean(purrr::map_dbl(1:length(cal_mok_fry), function(i){cal_mok_fry[[i]](flow)}))
+  wua_juv <- mean(purrr::map_dbl(1:length(cal_mok_juv), function(i){cal_mok_juv[[i]](flow)}))
+  tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv, watershed = 'Cosumnes River')
+})
+
+devtools::use_data(cosumnes_river_instream)
+
+
+# san joaq -----
+cvpiaHabitat::merced_river_instream$flow_cfs %>% range()
+cvpiaHabitat::stanislaus_river_instream$flow_cfs %>% range()
+cvpiaHabitat::tuolumne_river_instream$flow_cfs %>% range()
+
+san_joaq_spn <- list(get_approx_spwn(cvpiaHabitat::merced_river_instream),
+                     get_approx_spwn(cvpiaHabitat::stanislaus_river_instream),
+                     get_approx_spwn(cvpiaHabitat::tuolumne_river_instream))
+
+san_joaq_juv <- list(get_approx_juv(cvpiaHabitat::merced_river_instream),
+                     get_approx_juv(cvpiaHabitat::stanislaus_river_instream),
+                     get_approx_juv(cvpiaHabitat::tuolumne_river_instream))
+
+san_joaq_fry <- list(get_approx_fry(cvpiaHabitat::merced_river_instream),
+                     get_approx_fry(cvpiaHabitat::stanislaus_river_instream),
+                     get_approx_fry(cvpiaHabitat::tuolumne_river_instream))
+
+flows <- cvpiaHabitat::stanislaus_river_instream$flow_cfs
+
+san_joaquin_river_instream <- purrr::map_df(flows, function(flow) {
+  wua_spn <- mean(purrr::map_dbl(1:length(san_joaq_spn), function(i){san_joaq_spn[[i]](flow)}))
+  wua_fry <- mean(purrr::map_dbl(1:length(san_joaq_juv), function(i){san_joaq_juv[[i]](flow)}))
+  wua_juv <- mean(purrr::map_dbl(1:length(san_joaq_juv), function(i){san_joaq_juv[[i]](flow)}))
+  tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
+         watershed = 'San Joaquin River')
+})
+
+bind_rows(cvpiaHabitat::merced_river_instream,
+          cvpiaHabitat::stanislaus_river_instream,
+          cvpiaHabitat::tuolumne_river_instream,
+          san_joaquin_river_instream) %>%
+  ggplot(aes(x = flow_cfs, y= FR_spawn_wua, color = watershed)) +
+  geom_line() +
+  theme_minimal()
+
+devtools::use_data(san_joaquin_river_instream)
