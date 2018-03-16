@@ -533,17 +533,35 @@ tuolumne_river_instream <- tuolumne_river %>%
 
 devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
 
+# rearing pools-----------
+lengths_table <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
+                            sheet = 'MetaData',
+                            col_types = c('text', 'text', 'text', 'text', rep('numeric', 17),
+                                          'text', 'numeric', 'text'),
+                            na = 'na')
 
+pools_perc <- read_csv('data-raw/instream/pools.csv', col_types = 'cnc') %>%
+  select(-FW_QAQC)
 
+mean_pools_perc <- filter(pools_perc, watershed != 'Feather River') %>%
+  pull(percent_pools) %>% mean(na.rm = TRUE)
 
+pools_perc
+wss <- cvpiaData::watershed_ordering$watershed
 
+lengths_table %>%
+  filter(watershed %in% wss) %>%
+  mutate(SR_prop_length = SR_rearing_length_mi/FR_rearing_length_mi,
+         ST_prop_length = ST_rearing_length_mi/FR_rearing_length_mi,
+         FR_channel_area = FR_channel_area_of_length_modeled_acres,
+         SR_channel_area = FR_channel_area * SR_prop_length,
+         ST_channel_area = FR_channel_area * ST_prop_length) %>%
+  select(watershed, FR_channel_area, SR_channel_area, ST_channel_area) %>%
+  left_join(pools_perc) %>%
+  mutate(percent_pools = replace(percent_pools, is.na(percent_pools), mean_pools_perc),
+         SR_pools_acres = SR_channel_area * percent_pools/100,
+         ST_pools_acres = ST_channel_area * percent_pools/100) %>%
+  select(-FR_channel_area) %>%
+  View()
 
-
-
-
-
-
-
-
-
-
+# TODO what is upper sac  + upper min sac area?
