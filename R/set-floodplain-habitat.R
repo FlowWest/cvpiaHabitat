@@ -13,13 +13,12 @@
 #' @return floodplain habitat value in square meters
 #'
 #' @details The function relies on a dataframe called
-#' \code{\link{modeling_exist}} that contains data on whether the species is present in a watershed
-#' and whether habitat modeling exists.
+#' \code{\link{modeling_exist}} that contains data on whether the species is present in a watershed.
 #' If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
 #' (e.g. \code{\link{merced_river_floodplain}}) and selects the correct area for the
 #' given flow and species.
 #' When additional species modeling is not available, the fall run floodplain area
-#' values are used. [What about when extent is different between species]
+#' values were scaled to the different species' extents.
 #'
 #'
 #' \strong{Regional Approximation:}
@@ -30,62 +29,30 @@
 #' @export
 set_floodplain_habitat <- function(watershed, species, flow) {
 
-  # TODO: refactor when we have scaling and non modeled approach
-  if (species == 'sr') {
-    sr_blah <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                         Watershed == watershed),
-                SR_floodplain)
-    if (is.na(sr_blah)) {
-      return(NA)
-    } else {
-      needs_scaling = sr_blah
-    }
-  } else if (species == 'st') {
-    needs_scaling = dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                              Watershed == watershed),
-                                ST_floodplain)
-  } else {
-    needs_scaling = FALSE
+  if (species == 'sr' &
+      is.na(cvpiaHabitat::modeling_exist[cvpiaHabitat::modeling_exist$Watershed == watershed, 'SR_floodplain'])) {
+    warning("no spring run in this watershed")
+    return(NA)
   }
 
-  watershed_has_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                                      FR_floodplain), Watershed)
+  acres <- floodplain_approx(watershed, species)(flow)
 
-  scale = 1 #at some point scale should look up scaling factor based on watershed
-
-
-  if (watershed %in% watershed_has_modeling) {
-    if (needs_scaling) {
-      acres <- floodplain_approx(watershed)(flow) * scale
-      acres_to_square_meters(acres)
-    } else {
-      acres <- floodplain_approx(watershed)(flow)
-      acres_to_square_meters(acres)
-    }
-  } else {
-    stop('implement other thing')
-  }
+  return(acres_to_square_meters(acres))
 
 }
 
-floodplain_approx <- function(watershed) {
+
+floodplain_approx <- function(watershed, species) {
   # format watershed name to load flow to area relationship for floodplain
-
-  watershed_name <- tolower(gsub(pattern = " ", replacement = "_", x = watershed))
+  watershed_name <- tolower(gsub(pattern = " |-", replacement = "_", x = watershed))
   watershed_rda_name <- paste(watershed_name, "floodplain", sep = "_")
-
-  # TODO fix this hacky thing
-  if (watershed == 'Upper-mid Sacramento River') {
-    watershed_rda_name <- 'upper_mid_sacramento_river_floodplain'
-  }
-
-  if (watershed == 'Lower-mid Sacramento River') {
-    watershed_rda_name <- 'lower_mid_sacramento_river_floodplain'
-  }
 
   df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
-  approxfun(df$flow_cfs, df$floodplain_acres, yleft = 0, yright = max(df$floodplain_acres))
+  switch(species,
+         'fr' = approxfun(df$flow_cfs, df$FR_floodplain_acres, yleft = 0, yright = max(df$FR_floodplain_acres)),
+         'sr' = approxfun(df$flow_cfs, df$SR_floodplain_acres, yleft = 0, yright = max(df$SR_floodplain_acres)),
+         'st' = approxfun(df$flow_cfs, df$ST_floodplain_acres, yleft = 0, yright = max(df$ST_floodplain_acres)))
 }
 
 

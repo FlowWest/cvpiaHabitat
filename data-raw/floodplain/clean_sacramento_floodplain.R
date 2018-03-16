@@ -107,38 +107,3 @@ lower_sacramento_river_floodplain <- fp %>%
 
 devtools::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
 
-# merced river ---------
-# only lower 25.5 miles are modeled, need to scale to upper half
-# calculate area per RM and assign the product of the river miles and the weighted area rate for each segment
-# RM 25.5 - 31.2 in same "Valley Lowland" category (from CV Habitat Exchange) as RM 0 - 25.5, so use 1X area/RM from modeled reach.
-# RM 31.2 - 43.6 not in Valley Lowland category, so use 0.5X area/RM relationship from modeled reach.
-# RM 43.6 - 47.0 in same Valley Lowland category, so use 1X area/RM from modeled reach.
-# RM 47.0 - 52.0 not in Valley Lowland category and in dredge tailings, so use 0.1X area/RM from modeled reach.
-merced <- read_csv('data-raw/floodplain/merced_river_floodplain.csv')
-
-merced_river_floodplain <- merced %>%
-  filter(flow_cfs != 876) %>% # remove 876 value not modeled
-  mutate(area_per_RM = floodplain_acres / 25.5,
-         rm0_25 = floodplain_acres,
-         rm25_31 = area_per_RM * (31.2 - 25.5),
-         rm31_43 = area_per_RM * (43.6 - 31.2) * .5,
-         rm43_47 = area_per_RM * (47 - 43.6),
-         rm47_52 = area_per_RM * (52 - 47) * .1,
-         rm0_52 = rm0_25 + rm25_31 + rm31_43 + rm43_47 + rm47_52) %>%
-  select(flow_cfs, floodplain_acres = rm0_52, watershed)
-
-devtools::use_data(merced_river_floodplain, overwrite = TRUE)
-
-
-cosumnes_river_floodplain <- read_csv('data-raw/floodplain/cosumnes_river_floodplain.csv') %>%
-  select(-species)
-
-use_data(cosumnes_river_floodplain, overwrite = TRUE)
-
-tuolumne_river_floodplain <- read_csv('data-raw/floodplain/tuolumne_river_floodplain.csv')
-
-use_data(tuolumne_river_floodplain, overwrite = TRUE)
-
-butte_creek_floodplain <- read_csv('data-raw/floodplain/butte_creek_floodplain.csv')
-
-use_data(butte_creek_floodplain, overwrite = TRUE)

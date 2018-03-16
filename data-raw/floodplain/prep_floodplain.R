@@ -58,9 +58,9 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
 
     return(data.frame(
       flow_cfs = df$flow_cfs,
-      FR_floodplain_area = fp_area_FR,
-      SR_floodplain_area = fp_area_SR,
-      ST_floodplain_area = fp_area_ST,
+      FR_floodplain_acres = fp_area_FR,
+      SR_floodplain_acres = fp_area_SR,
+      ST_floodplain_acres = fp_area_ST,
       watershed = ws
     ))
   }
@@ -68,8 +68,8 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
   return(
     data.frame(
       flow_cfs = df$flow_cfs,
-      FR_floodplain_area = fp_area_FR,
-      ST_floodplain_area = fp_area_ST,
+      FR_floodplain_acres = fp_area_FR,
+      ST_floodplain_acres = fp_area_ST,
       watershed = ws
     ))
 
@@ -100,11 +100,11 @@ use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 filter(.metadata, watershed == 'Tuolumne River') %>% glimpse
 tuolumne_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'TuolumneRiver') %>%
   mutate(watershed = 'Tuolumne River',
-         SR_floodplain_area = modeled_floodplain_area_acres,
-         ST_floodplain_area = modeled_floodplain_area_acres) %>%
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
-         FR_floodplain_area = modeled_floodplain_area_acres,
-         SR_floodplain_area, ST_floodplain_area,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
 use_data(tuolumne_river_floodplain, overwrite = TRUE)
@@ -152,24 +152,25 @@ scale_fp_flow_area <- function(ws) {
 
     return(data.frame(
       flow_cfs = scaled_flow,
-      FR_floodplain_area = fp_area_FR,
-      SR_floodplain_area = fp_area_SR,
-      ST_floodplain_area = fp_area_ST,
+      FR_floodplain_acres = fp_area_FR,
+      SR_floodplain_acres = fp_area_SR,
+      ST_floodplain_acres = fp_area_ST,
       watershed = ws
     ))
   }
 
   return(data.frame(
     flow_cfs = scaled_flow,
-    FR_floodplain_area = fp_area_FR,
-    ST_floodplain_area = fp_area_ST,
+    FR_floodplain_acres = fp_area_FR,
+    ST_floodplain_acres = fp_area_ST,
     watershed = ws
   ))
 }
 
-# NO MODELING------------
+# NO MODELING, use proxy------------
 filter(.metadata, stringr::str_detect(method, "scaled_")) %>% pull(watershed)
 
+# TODO Ask mark about the difference in outcome from his sheet
 # Antelope Creek-------------------------------------
 antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
 
@@ -238,11 +239,11 @@ filter(.metadata, method == 'full_model') %>% pull(watershed)
 american_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                         sheet = 'AmericanRiver') %>%
   mutate(watershed = 'American River',
-         SR_floodplain_area = modeled_floodplain_area_acres,
-         ST_floodplain_area = modeled_floodplain_area_acres) %>%
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
-         FR_floodplain_area = modeled_floodplain_area_acres,
-         SR_floodplain_area, ST_floodplain_area,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
 use_data(american_river_floodplain, overwrite = TRUE)
@@ -251,11 +252,11 @@ use_data(american_river_floodplain, overwrite = TRUE)
 feather_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                        sheet = 'FeatherRiver') %>%
   mutate(watershed = 'Feather River',
-         SR_floodplain_area = modeled_floodplain_area_acres,
-         ST_floodplain_area = modeled_floodplain_area_acres) %>%
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
-         FR_floodplain_area = modeled_floodplain_area_acres,
-         SR_floodplain_area, ST_floodplain_area,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
 use_data(feather_river_floodplain, overwrite = TRUE)
@@ -264,11 +265,11 @@ use_data(feather_river_floodplain, overwrite = TRUE)
 san_joaquin_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                            sheet = 'SanJoaquinRiver') %>%
   mutate(watershed = 'San Joaquin River',
-         SR_floodplain_area = modeled_floodplain_area_acres,
-         ST_floodplain_area = modeled_floodplain_area_acres) %>%
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
-         FR_floodplain_area = modeled_floodplain_area_acres,
-         SR_floodplain_area, ST_floodplain_area,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
 use_data(san_joaquin_river_floodplain, overwrite = TRUE)
@@ -277,11 +278,11 @@ use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 stanislaus_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                            sheet = 'StanislausRiver') %>%
   mutate(watershed = 'Stanislaus River',
-         SR_floodplain_area = modeled_floodplain_area_acres,
-         ST_floodplain_area = modeled_floodplain_area_acres) %>%
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
-         FR_floodplain_area = modeled_floodplain_area_acres,
-         SR_floodplain_area, ST_floodplain_area,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
 use_data(stanislaus_river_floodplain, overwrite = TRUE)
@@ -290,11 +291,11 @@ use_data(stanislaus_river_floodplain, overwrite = TRUE)
 yuba_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                           sheet = 'YubaRiver') %>%
   mutate(watershed = 'Yuba River',
-         SR_floodplain_area = modeled_floodplain_area_acres,
-         ST_floodplain_area = modeled_floodplain_area_acres) %>%
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
-         FR_floodplain_area = modeled_floodplain_area_acres,
-         SR_floodplain_area, ST_floodplain_area,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
 use_data(yuba_river_floodplain, overwrite = TRUE)
