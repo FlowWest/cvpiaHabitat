@@ -565,3 +565,4 @@ lengths_table %>%
   View()
 
 # TODO what is upper sac  + upper min sac area?
+# just use 6174 acres for pools
