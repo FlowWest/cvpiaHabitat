@@ -75,6 +75,47 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
 
 }
 
+# elder creek----------------
+elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
+  mutate(watershed = 'Elder Creek')
+
+elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp)
+
+use_data(elder_creek_floodplain, overwrite = TRUE)
+
+# big chico creek----------------
+bigc_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BigChicoCreek') %>%
+  mutate(watershed = 'Big Chico Creek')
+
+big_chico_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', df = bigc_fp)
+
+use_data(big_chico_creek_floodplain, overwrite = TRUE)
+
+# butte creek----------------
+butte_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
+  mutate(watershed = 'Butte Creek')
+
+butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_fp)
+
+use_data(butte_creek_floodplain, overwrite = TRUE)
+
+# bear river----------------
+bear_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BearRiver') %>%
+  mutate(watershed = 'Bear River')
+
+bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_fp) %>%
+  select(-ST_floodplain_acres)
+
+use_data(bear_river_floodplain, overwrite = TRUE)
+
+# merced river----------------
+merced_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MercedRiver') %>%
+  mutate(watershed = 'Merced River')
+
+merced_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Merced River', df = merced_fp)
+
+use_data(merced_river_floodplain, overwrite = TRUE)
+
 # proxy watersheds for non-modeled watersheds----------------
 # Deer Creek-------------------------------------
 filter(.metadata, watershed == 'Deer Creek') %>% glimpse
