@@ -549,7 +549,7 @@ mean_pools_perc <- filter(pools_perc, watershed != 'Feather River') %>%
 pools_perc
 wss <- cvpiaData::watershed_ordering$watershed
 
-lengths_table %>%
+pools <- lengths_table %>%
   filter(watershed %in% wss) %>%
   mutate(SR_prop_length = SR_rearing_length_mi/FR_rearing_length_mi,
          ST_prop_length = ST_rearing_length_mi/FR_rearing_length_mi,
@@ -559,10 +559,19 @@ lengths_table %>%
   select(watershed, FR_channel_area, SR_channel_area, ST_channel_area) %>%
   left_join(pools_perc) %>%
   mutate(percent_pools = replace(percent_pools, is.na(percent_pools), mean_pools_perc),
-         SR_pools_acres = SR_channel_area * percent_pools/100,
-         ST_pools_acres = ST_channel_area * percent_pools/100) %>%
-  select(-FR_channel_area) %>%
-  View()
+         SR_pools_sq_meters = SR_channel_area * percent_pools/100 * 4046.86,
+         ST_pools_sq_meters = ST_channel_area * percent_pools/100 * 4046.86) %>%
+  select(watershed, SR_pools_sq_meters, ST_pools_sq_meters) %>%
+  left_join(cvpiaData::watershed_ordering) %>%
+  arrange(order) %>%
+  select(-order)
 
-# TODO what is upper sac  + upper min sac area?
-# just use 6174 acres for pools
+# put combinded values of upper sac + upper mid sac in upper sac
+# upper sac + upper mid sac 6174 acres, from mark gard
+
+pools_upper_sac <- 6174 * 7.2/100 * 4046.86
+
+pools[pools$watershed == 'Upper Sacramento River', c('SR_pools_sq_meters', 'ST_pools_sq_meters')] <- c(pools_upper_sac, pools_upper_sac)
+
+use_data(pools, overwrite = TRUE)
+View(pools)

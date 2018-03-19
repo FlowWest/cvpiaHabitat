@@ -1475,3 +1475,53 @@
 #'   \item Data Wrangling: Sadie Gill \email{sgill@@flowwest.com}
 #' }
 'delta_habitat'
+
+#' Pool Area
+#'
+#' @description A dataset containing estimated area of pools within a watershed
+#'
+#' @format dataframe with 31 rows and 3 variables
+#' \describe{
+#'   \item{watershed}{CVPIA watershed}
+#'   \item{SR_pools_sq_meters}{Spring Run pool area estimate in square meters}
+#'   \item{ST_pools_sq_meters}{Steelhead pool area estimate in square meters}
+#' }
+#'
+#' @details
+#' Estimates of percent pools were provided by Mark Gard for some watersheds.
+#' For watersheds without an estimate, the mean percent pools of the available watersheds
+#' (excluding Feather River) was used (23.1%). The total area of pools was then caluculated
+#' by multiplying the estimated percent pools by the total channel area. Channel
+#' areas were estimated using Google Earth Engine, NAIP imagery and the
+#' Normalized Difference Water Index (NDWI). The 1-metere pixels with
+#' high NDWI's were classified as water and summed to estimate the total channel
+#' area for each watershed.
+#'
+#' Watersheds With Estimated Percent Pools:
+#' \itemize{
+#'   \item Antelope Creek
+#'   \item Battle Creek
+#'   \item Butte Creek
+#'   \item Clear Creek
+#'   \item Cottonwood Creek
+#'   \item Deer Creek
+#'   \item Feather River (*80% percent pools seems high, but was confirmed by Jason Kindopp)
+#'   \item Mill Creek
+#'   \item Mokelumne River
+#'   \item Stanislaus River
+#'   \item Tuolumne River
+#'   \item Upper Sacramento River
+#'   \item Yuba River
+#' }
+#'
+#' \strong{Note:} The area of pools that covers both the Upper Sacramento and
+#' Upper-mid Sacramento DSM segments is assigned to the Upper Sacramento River.
+#'
+#' @source
+#' \itemize{
+#'   \item Percent Pool Estimates: Mark Gard \email{mark_gard@@fws.gov}
+#'   \item Channel Area Estimates: Sadie Gill \email{sgill@@flowwest.com}
+#'   \item QA/QC: Mark Tompkins \email{mtompkins@@flowwest.com}
+#' }
+#'
+'pools'

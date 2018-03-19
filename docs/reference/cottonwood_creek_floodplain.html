@@ -102,19 +102,72 @@ function of flow in cubic feet per second</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>cottonwood_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 10 x 3
-#&gt;    flow_cfs floodplain_acres        watershed
-#&gt;       &lt;int&gt;            &lt;dbl&gt;            &lt;chr&gt;
-#&gt;  1     7600             0.00 Cottonwood Creek
-#&gt;  2     7960             5.91 Cottonwood Creek
-#&gt;  3     8320            13.26 Cottonwood Creek
-#&gt;  4     8680            19.26 Cottonwood Creek
-#&gt;  5     9040            24.20 Cottonwood Creek
-#&gt;  6     9400            29.18 Cottonwood Creek
-#&gt;  7     9760            33.39 Cottonwood Creek
-#&gt;  8    10120            38.03 Cottonwood Creek
-#&gt;  9    10480            43.18 Cottonwood Creek
-#&gt; 10    10840            47.52 Cottonwood Creek</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>cottonwood_creek_floodplain</span></div><div class='output co'>#&gt;    flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
+#&gt; 1        40            0.000000            0.000000            0.000000
+#&gt; 2       400            0.000000            0.000000            0.000000
+#&gt; 3       760            0.000000            0.000000            0.000000
+#&gt; 4      1120            0.000000            0.000000            0.000000
+#&gt; 5      1480            0.000000            0.000000            0.000000
+#&gt; 6      1840            0.000000            0.000000            0.000000
+#&gt; 7      1870            0.000000            0.000000            0.000000
+#&gt; 8      2200            0.000000            0.000000            0.000000
+#&gt; 9      2560            0.000000            0.000000            0.000000
+#&gt; 10     2920            0.000000            0.000000            0.000000
+#&gt; 11     3280            0.000000            0.000000            0.000000
+#&gt; 12     3640            0.000000            0.000000            0.000000
+#&gt; 13     4000            0.000000            0.000000            0.000000
+#&gt; 14     4360            0.000000            0.000000            0.000000
+#&gt; 15     4720            0.000000            0.000000            0.000000
+#&gt; 16     5080            0.000000            0.000000            0.000000
+#&gt; 17     5440            0.000000            0.000000            0.000000
+#&gt; 18     5800            0.000000            0.000000            0.000000
+#&gt; 19     6160            0.000000            0.000000            0.000000
+#&gt; 20     6520            0.000000            0.000000            0.000000
+#&gt; 21     6880            0.000000            0.000000            0.000000
+#&gt; 22     7240            0.000000            0.000000            0.000000
+#&gt; 23     7600            0.000000            0.000000            0.000000
+#&gt; 24     7960            5.910398            8.477617            9.079739
+#&gt; 25     8320           13.261246           19.021353           20.372342
+#&gt; 26     8680           19.264434           27.632064           29.594628
+#&gt; 27     9040           24.203451           34.716375           37.182101
+#&gt; 28     9400           29.180553           41.855313           44.828082
+#&gt; 29     9760           33.393572           47.898284           51.300254
+#&gt; 30    10120           38.032135           54.551636           58.426160
+#&gt; 31    10480           43.174776           61.928017           66.326447
+#&gt; 32    10840           47.516971           68.156272           72.997063
+#&gt;           watershed
+#&gt; 1  Cottonwood Creek
+#&gt; 2  Cottonwood Creek
+#&gt; 3  Cottonwood Creek
+#&gt; 4  Cottonwood Creek
+#&gt; 5  Cottonwood Creek
+#&gt; 6  Cottonwood Creek
+#&gt; 7  Cottonwood Creek
+#&gt; 8  Cottonwood Creek
+#&gt; 9  Cottonwood Creek
+#&gt; 10 Cottonwood Creek
+#&gt; 11 Cottonwood Creek
+#&gt; 12 Cottonwood Creek
+#&gt; 13 Cottonwood Creek
+#&gt; 14 Cottonwood Creek
+#&gt; 15 Cottonwood Creek
+#&gt; 16 Cottonwood Creek
+#&gt; 17 Cottonwood Creek
+#&gt; 18 Cottonwood Creek
+#&gt; 19 Cottonwood Creek
+#&gt; 20 Cottonwood Creek
+#&gt; 21 Cottonwood Creek
+#&gt; 22 Cottonwood Creek
+#&gt; 23 Cottonwood Creek
+#&gt; 24 Cottonwood Creek
+#&gt; 25 Cottonwood Creek
+#&gt; 26 Cottonwood Creek
+#&gt; 27 Cottonwood Creek
+#&gt; 28 Cottonwood Creek
+#&gt; 29 Cottonwood Creek
+#&gt; 30 Cottonwood Creek
+#&gt; 31 Cottonwood Creek
+#&gt; 32 Cottonwood Creek</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

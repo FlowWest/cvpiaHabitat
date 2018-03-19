@@ -21,13 +21,12 @@ This function returns an estimated floodplain area based on watershed, species a
 }
 \details{
 The function relies on a dataframe called
-\code{\link{modeling_exist}} that contains data on whether the species is present in a watershed
-and whether habitat modeling exists.
+\code{\link{modeling_exist}} that contains data on whether the species is present in a watershed.
 If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
 (e.g. \code{\link{merced_river_floodplain}}) and selects the correct area for the
 given flow and species.
 When additional species modeling is not available, the fall run floodplain area
-values are used. [What about when extent is different between species]
+values were scaled to the different species' extents.
 
 
 \strong{Regional Approximation:}

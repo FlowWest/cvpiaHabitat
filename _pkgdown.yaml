@@ -51,6 +51,7 @@ reference:
   - san_joaquin_river_instream
   - sutter_bypass_instream
   - yolo_bypass_instream
+  - pools
 - title: Floodplain Habitat Datasets
   desc: Flow to floodplain area modeled relationships
   contents:

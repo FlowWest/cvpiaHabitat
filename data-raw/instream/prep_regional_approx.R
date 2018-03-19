@@ -96,11 +96,6 @@ cvpiaHabitat::modeling_exist %>%
   filter(Watershed %in% watersheds_without_modeling) %>%
   select(Watershed, Region, FR_fry, FR_juv)
 
-# american (asking mark gard)----
-cvpiaHabitat::modeling_exist %>%
-  filter(Region == 'Lower Sacramento River') %>%
-  select(Watershed, Region, FR_fry, FR_juv)
-
 # cosumnes -----
 cvpiaHabitat::modeling_exist %>%
   filter(Region == 'South Delta') %>%
