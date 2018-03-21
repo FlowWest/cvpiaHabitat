@@ -96,7 +96,7 @@
 #' @source \href{https://www.google.com}{missing}
 "lower_sacramento_river_floodplain"
 
-# TODO: MERCED ------------------------------------------
+# TODO: MERCED just do it like the rest ------------------------------------------
 #' Merced River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
