@@ -4,10 +4,12 @@
 \name{big_chico_creek_floodplain}
 \alias{big_chico_creek_floodplain}
 \title{Big Chico Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 7 rows and 3 variables:
+\format{dataframe with 31 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -20,9 +22,16 @@ big_chico_creek_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 8.7 miles. Floodplain area for the remaining 6.3 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 89 acres) and floodplain inundation area.
+\section{Fall Run Modeling}{
+
+A 8.74 mile portion of the entire mapped rearing extent of 15.05 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 15.05 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
+\section{Spring Run and Steelhead Modeling}{
+
+A 8.74 mile portion of the entire mapped rearing extent of 23.84 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 15.05 miles were classified as low gradient and 8.79 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
 \examples{
 big_chico_creek_floodplain
 

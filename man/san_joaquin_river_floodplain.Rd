@@ -4,14 +4,16 @@
 \name{san_joaquin_river_floodplain}
 \alias{san_joaquin_river_floodplain}
 \title{San Joaquin River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 29 rows and 3 variables:
+\format{dataframe with 32 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/TO25-ST8_Tech_Memo_SJR.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 }
 \usage{
 san_joaquin_river_floodplain
@@ -20,9 +22,11 @@ san_joaquin_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57\% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.
+\section{Fall Run, Spring Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 45.68 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 534.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 }
+
 \examples{
 san_joaquin_river_floodplain
 

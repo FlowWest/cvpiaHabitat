@@ -7,11 +7,12 @@
 \format{dataframe with 33 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled TUFLOW hydraulic model with 1D channel and 2D overbank components}
 }
 \usage{
 calaveras_river_floodplain
@@ -20,9 +21,11 @@ calaveras_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Calaveras River scaling factor of 20\% was calculated as the average ratio of Calaveras River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 18.5 mile mapped rearing extent in the Calaveras River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 75 acres) versus floodplain inundation areas.
+\section{Fall Run and Steelhead Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for the Tuolumne River based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.20 percent of the Tuolumne River values based on the ratio of mean flow from December to June between this watershed and the Tuolumne River. Of the entire mapped 18.48 mile rearing extent in this watershed, 18.48 miles were classifiedas low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
 \examples{
 calaveras_river_floodplain
 

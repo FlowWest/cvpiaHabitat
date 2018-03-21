@@ -4,14 +4,16 @@
 \name{clear_creek_floodplain}
 \alias{clear_creek_floodplain}
 \title{Clear Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 8 rows and 3 variables:
+\format{dataframe with 32 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-NA
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf}{Scaled USFWS / FEMA 1D HEC-RAS hydraulic model}
 }
 \usage{
 clear_creek_floodplain
@@ -19,9 +21,16 @@ clear_creek_floodplain
 \description{
 A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second
 }
-\details{
-HEC-RAS model runs to generate Cottonwood Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Clear Creek scaling factor of 21\% was calculated as the average ratio of Clear Creek monthly mean flow to Cottonwood Creek monthly mean flow between December and June. This scaling factor was applied to Cottonwood Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 8 mile mapped rearing extent in Clear Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 57.4 acres) and floodplain inundation area.
+\section{Fall Run Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.21 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 8.00 mile rearing extent in this watershed, 8.00 miles were classified as low gradient and -0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
+\section{Spring Run and Steelhead Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.21 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 17.92 mile rearing extent in this watershed, 8.00 miles were classified as low gradient and 9.92 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
 \examples{
 clear_creek_floodplain
 

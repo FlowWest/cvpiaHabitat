@@ -4,10 +4,12 @@
 \name{antelope_creek_floodplain}
 \alias{antelope_creek_floodplain}
 \title{Antelope Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 22 rows and 3 variables:
+\format{dataframe with 22 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -19,9 +21,11 @@ antelope_creek_floodplain
 \description{
 A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 }
-\details{
-HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. An Antelope scaling factor of 47\% was calculated as the average ratio of Antelope Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 10.5 mile low gradient and 21.1 mile high gradient mapped rearing extent in Antelope Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 199 acres) and floodplain inundation area.
+\section{Fall Run, Spring Run and Steelhead Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.47 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 31.62 mile rearing extent in this watershed, 10.48 miles were classified as low gradient and 21.14 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
 \examples{
 antelope_creek_floodplain
 

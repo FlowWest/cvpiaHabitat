@@ -96,6 +96,7 @@
 #' @source \href{https://www.google.com}{missing}
 "lower_sacramento_river_floodplain"
 
+# TODO: MERCED ------------------------------------------
 #' Merced River Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing the floodplain habitat area in acres as a
@@ -137,19 +138,22 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 20 rows and 3 variables:
+#' @format dataframe with 20 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the SRH2D model, Pasternack 2012.
+#' @section Fall Run and Spring Run Modeling:
+#' The entire mapped rearing extent of 23.07 miles was modeled using SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis. Active channel area of 446.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA_Annual_Progress_Report_Fiscal_Year_2014_Yuba_SRH2D_Page18.pdf}{SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis}
 #'
 #' @examples
 #' yuba_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}{SRH2D}
 "yuba_river_floodplain"
 
 #' Tuolumne River Flow to Floodplain Habitat Area Relationship
@@ -157,33 +161,40 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 37 rows and 3 variables:
+#' @format dataframe with 37 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details Model extent was from the confluence of the San Joaquin River upstream to LaGrange Dam.
+#' @section Fall Run, Spring Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 54.33 miles was modeled using TUFLOW hydraulic model with 1D channel and 2D overbank components. Active channel area of 586.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{TUFLOW hydraulic model with 1D channel and 2D overbank components}
 #'
 #' @examples
 #' tuolumne_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{TUFLOW hydraulic model with 1D channel and 2D overbank components}
 "tuolumne_river_floodplain"
 
 #' Antelope Creek Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 22 rows and 3 variables:
+#' @format dataframe with 22 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. An Antelope scaling factor of 47\% was calculated as the average ratio of Antelope Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 10.5 mile low gradient and 21.1 mile high gradient mapped rearing extent in Antelope Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 199 acres) and floodplain inundation area.
+#' @section Fall Run, Spring Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.47 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 31.62 mile rearing extent in this watershed, 10.48 miles were classified as low gradient and 21.14 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' antelope_creek_floodplain
@@ -214,33 +225,39 @@
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 22 rows and 3 variables:
+#' @format dataframe with 30 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Bear Creek scaling factor of 25\% was calculated as the average ratio of Bear Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 4.3 mile low gradient and 13.0 miles of high gradient mapped rearing extent in Bear Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 29.6 acres) and floodplain inundation area.
+#' @section Fall Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.25 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 17.30 mile rearing extent in this watershed, 4.32 miles were classified as low gradient and 12.98 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' bear_creek_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
 "bear_creek_floodplain"
 
 #' Cow Creek Flow to Floodplain Habitat Area Relationship
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 22 rows and 3 variables:
+#' @format dataframe with 30 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Cow Creek scaling factor of 216\% was calculated as the average ratio of Cow Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 8.6 mile low gradient and 55.6 miles of high gradient mapped rearing extent in Cow Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 217.5 acres) and floodplain inundation area.
+#' @section Fall Run Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 2.16 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 64.17 mile rearing extent in this watershed, 8.59 miles were classified as low gradient and 55.58 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#'
+#' @section Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 2.16 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 94.19 mile rearing extent in this watershed, 8.59 miles were classified as low gradient and 85.60 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' cow_creek_floodplain
@@ -252,14 +269,20 @@
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 22 rows and 3 variables:
+#' @format dataframe with 30 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mill Creek scaling factor of 98% was calculated as the average ratio of Mill Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 7.5 mile low gradient and 13.6 miles of high gradient mapped rearing extent in Mill Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 119.9 acres) and floodplain inundation area.
+#' @section Fall Run Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.98 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 21.10 mile rearing extent in this watershed, 7.50 miles were classified as low gradient and 13.60 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#'
+#' @section Spring Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.98 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 53.49 mile rearing extent in this watershed, 7.50 miles were classified as low gradient and 45.99 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' mill_creek_floodplain
@@ -271,15 +294,18 @@
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 22 rows and 3 variables:
+#' @format dataframe with 30 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Paynes Creek scaling factor of 22\% was calculated as the average ratio of Paynes Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 2.0 mile low gradient and 9.8 miles of high gradient mapped rearing extent in paynes Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 29.6 acres) and floodplain inundation area.
-#'
+#' @section Fall Run Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.22 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 11.81 mile rearing extent in this watershed, 2.04 miles were classified as low gradient and 9.77 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.22 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 27.81 mile rearing extent in this watershed, 2.04 miles were classified as low gradient and 25.77 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #' @examples
 #' paynes_creek_floodplain
 #'
@@ -290,14 +316,16 @@
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 8 rows and 3 variables:
+#' @format dataframe with 32 rows and 4 variables:
 #' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{flow_cfs}{flow value in cubic feet per second}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Cottonwood Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Stony Creek scaling factor of 59\% was calculated as the average ratio of Stony Creek monthly mean flow to Cottonwood Creek monthly mean flow between December and June. This scaling factor was applied to Cottonwood Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 26 mile mapped rearing extent in Stony Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 203.5 acres) and floodplain inundation area.
+#' @section Fall Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.59 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 26.12 mile rearing extent in this watershed, 26.12 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' stony_creek_floodplain
@@ -310,14 +338,19 @@
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 #'
-#' @format dataframe with 8 rows and 3 variables:
+#' @format dataframe with 32 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Cottonwood Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Thomes Creek scaling factor of 37% was calculated as the average ratio of Thomes Creek monthly mean flow to Cottonwood Creek monthly mean flow between December and June. This scaling factor was applied to Cottonwood Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 37.5 mile mapped rearing extent in Thomes Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 192.3 acres) and floodplain inundation area.
+#' @section Fall Run Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.37 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 37.47 mile rearing extent in this watershed, 37.47 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Spring Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.37 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 42.70 mile rearing extent in this watershed, 37.47 miles were classified as low gradient and 5.22 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' thomes_creek_floodplain
@@ -332,19 +365,22 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 15 rows and 3 variables:
+#' @format dataframe with 16 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details Model extent was from the confluence of the San Joaquin River upstream to Goodwin Dam.  Active channel area delineated based on geomorphic features to differentiate between instream and floodplain habitat.
+#' @section Fall Run, Spring Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 60.31 miles was modeled using SRH-2D hyraulic model developed by NewFields (now FlowWest). Active channel area of 409.10 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 #'
 #' @examples
 #' stanislaus_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf}{SRH-2D hyraulic model developed by NewFields (now FlowWest www.flowwest.com)}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf}{SRH-2D hyraulic model developed by NewFields (now FlowWest)}
 "stanislaus_river_floodplain"
 
 
@@ -353,19 +389,22 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 29 rows and 3 variables:
+#' @format dataframe with 32 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the legal Delta boundary upstream 79 miles. Floodplain area for the 45 mile reach in this mapped rearing extent was calculated by applying 57\% scaling factor to adjust the actual reach length to the modeled reach length. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 534.2 acres) and floodplain inundation area.
+#' @section Fall Run, Spring Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 45.68 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 534.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 #'
 #' @examples
 #' san_joaquin_river_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/TO25-ST8_Tech_Memo_SJR.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "san_joaquin_river_floodplain"
 
 #' North Delta Flow to Floodplain Habitat Area Relationship
@@ -380,12 +419,12 @@
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
-#'
+#' @section Fall Run Modeling:
+#' The entire mapped rearing extent of 45.65 miles was modeled using Delta Simulation Model II (DSM2) one-dimensional hydrodynamic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. Active channel area of NA acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 #' @examples
 #' north_delta_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}{Hendirx 2017 HEC-RAS 1D model}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Delta Simulation Model II (DSM2) one-dimensional hydrodynamic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "north_delta_floodplain"
 
 
@@ -394,17 +433,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 33 rows and 3 variables:
+#' @format dataframe with 37 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Mokelumne River scaling factor of 50\% was calculated as the average ratio of Mokelumne River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 58.4 mile mapped rearing extent in the Mokelumne River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 241.2 acres) versus floodplain inundation areas.
+#' @section Fall Run, Spring Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for the Tuolumne River based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.50 percent of the Tuolumne River values based on the ratio of mean flow from December to June between this watershed and the Tuolumne River. Of the entire mapped 58.40 mile rearing extent in this watershed, 58.40 miles were classifiedas low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
-#'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{TUFLOW hydraulic model with 1D channel and 2D overbank components}
 #' @examples
 #' mokelumne_river_floodplain
 "mokelumne_river_floodplain"
@@ -414,15 +455,17 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 39 rows and 3 variables:
+#' @format dataframe with 40 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 66 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 2363.2 acres) and floodplain inundation area.
-#'
+#' @section Fall Run, Spring Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 64.98 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 2363.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 #' @examples
 #' feather_river_floodplain
 #'
@@ -434,14 +477,16 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 29 rows and 3 variables:
+#' @format dataframe with 31 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 5.4 miles. Floodplain area for the remaining 1.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 24.3 acres) and floodplain inundation area.
+#' @section Fall Run and Steelhead Modeling:
+#' A 5.40 mile portion of the entire mapped rearing extent of 7.10 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 7.10 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' elder_creek_floodplain
@@ -454,14 +499,20 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 30 rows and 3 variables:
+#' @format dataframe with 30 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10\% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.
+#' @section Fall Run Modeling:
+#' A 11.76 mile portion of the entire mapped rearing extent of 18.39 miles was modeled using Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model. Of the entire mapped rearing extent, 11.76 miles were classified as low gradient and 6.63 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#'
+#' @section Spring Run and Steelhead Modeling:
+#' A 11.76 mile portion of the entire mapped rearing extent of 47.92 miles was modeled using Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model. Of the entire mapped rearing extent, 11.76 miles were classified as low gradient and 36.16 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model}
 #'
@@ -474,19 +525,25 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 10 rows and 3 variables:
+#' @format dataframe with 32 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from the FWS 2017 HEC-RAS 1D model.
-#'
+#' @section Fall Run Modeling:
+#' A 22.36 mile portion of the entire mapped rearing extent of 22.36 miles was modeled using USFWS / FEMA 1D HEC-RAS hydraulic model. Of the entire mapped rearing extent, 22.36 miles were classified as low gradient and -0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Spring Run Modeling:
+#' A 22.36 mile portion of the entire mapped rearing extent of 119.48 miles was modeled using USFWS / FEMA 1D HEC-RAS hydraulic model. Of the entire mapped rearing extent, 22.36 miles were classified as low gradient and 97.12 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Steelhead Modeling:
+#' A 22.36 mile portion of the entire mapped rearing extent of 142.26 miles was modeled using USFWS / FEMA 1D HEC-RAS hydraulic model. Of the entire mapped rearing extent, 22.36 miles were classified as low gradient and 119.90 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #' @examples
 #' cottonwood_creek_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}{FWS}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf}{USFWS / FEMA 1D HEC-RAS hydraulic model}
 "cottonwood_creek_floodplain"
 
 #' Cosumnes River Flow to Floodplain Habitat Area Relationship
@@ -494,16 +551,17 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 36 rows and 3 variables:
+#' @format dataframe with 37 rows and 4 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details NA
-#'
-#' @source NA
+#' @section Fall Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for the Tuolumne River based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.50 percent of the Tuolumne River values based on the ratio of mean flow from December to June between this watershed and the Tuolumne River. Of the entire mapped 41.34 mile rearing extent in this watershed, 41.34 miles were classifiedas low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled TUFLOW hydraulic model with 1D channel and 2D overbank components}
 #'
 #' @examples
 #' cosumnes_river_floodplain
@@ -517,16 +575,18 @@
 #' @format dataframe with 33 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details TUFLOW model runs to generate Tuolumne River CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Calaveras River scaling factor of 20\% was calculated as the average ratio of Calaveras River monthly mean flow to Tuolumne River monthly mean flow between December and June. This scaling factor was applied to Tuolumne River flows and corresponding floodplain area per river mile values, which were then multiplied by the 18.5 mile mapped rearing extent in the Calaveras River. Remote sensing analysis of aerial photography was used to confirm appropriate scale of  instream (active channel area of 75 acres) versus floodplain inundation areas.
+#' @section Fall Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for the Tuolumne River based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.20 percent of the Tuolumne River values based on the ratio of mean flow from December to June between this watershed and the Tuolumne River. Of the entire mapped 18.48 mile rearing extent in this watershed, 18.48 miles were classifiedas low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' calaveras_river_floodplain
 #'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled from Tuolumne River flow to floodplain area relationship generated with a TUFLOW 2D hydraulic model}
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled TUFLOW hydraulic model with 1D channel and 2D overbank components}
 "calaveras_river_floodplain"
 
 
@@ -535,15 +595,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 7 rows and 3 variables:
+#' @format dataframe with 31 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 8.7 miles. Floodplain area for the remaining 6.3 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 89 acres) and floodplain inundation area.
-#'
+#' @section Fall Run Modeling:
+#' A 8.74 mile portion of the entire mapped rearing extent of 15.05 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 15.05 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Spring Run and Steelhead Modeling:
+#' A 8.74 mile portion of the entire mapped rearing extent of 23.84 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 15.05 miles were classified as low gradient and 8.79 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #' @examples
 #' big_chico_creek_floodplain
 #'
@@ -556,14 +620,15 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 35 rows and 3 variables:
+#' @format dataframe with 37 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 16.4 miles. Floodplain area for the remaining 15.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 147.8 acres) and floodplain inundation area.
+#' @section Fall Run Modeling:
+#' A 16.40 mile portion of the entire mapped rearing extent of 32.05 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 32.05 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #'
 #' @examples
 #' bear_river_floodplain
@@ -576,15 +641,16 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 35 rows and 3 variables:
+#' @format dataframe with 35 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream to Nimbus Dam. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 670.2 acres) and floodplain inundation area.
-#'
+#' @section Fall Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 22.81 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 670.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 #' @examples
 #' american_river_floodplain
 #'
@@ -596,14 +662,19 @@
 #' @description A dataset containing the floodplain habitat area in acres as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 31 rows and 3 variables:
+#' @format dataframe with 31 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 16.8 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 103.4 acres) and floodplain inundation area.
+#' @section Fall Run Modeling:
+#' A 17.14 mile portion of the entire mapped rearing extent of 17.14 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 17.14 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Spring Run and Steelhead Modeling:
+#' A 17.14 mile portion of the entire mapped rearing extent of 31.67 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 17.14 miles were classified as low gradient and 14.53 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #' @examples
 #' butte_creek_floodplain
 #'
@@ -615,19 +686,23 @@
 #'
 #' @description A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second
 #'
-#' @format dataframe with 8 rows and 3 variables:
+#' @format dataframe with 32 rows and 5 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Cottonwood Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Clear Creek scaling factor of 21\% was calculated as the average ratio of Clear Creek monthly mean flow to Cottonwood Creek monthly mean flow between December and June. This scaling factor was applied to Cottonwood Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 8 mile mapped rearing extent in Clear Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 57.4 acres) and floodplain inundation area.
-#'
+#' @section Fall Run Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.21 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 8.00 mile rearing extent in this watershed, 8.00 miles were classified as low gradient and -0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+#' @section Spring Run and Steelhead Modeling:
+#' No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Cottonwood Creek  based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.21 percent of Cottonwood Creek values based on the ratio of mean flow from December to June between this watershed and Cottonwood Creek. Of the entire mapped 17.92 mile rearing extent in this watershed, 8.00 miles were classified as low gradient and 9.92 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was  applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 #' @examples
 #' clear_creek_floodplain
 #'
-#' @source NA
+#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf}{Scaled USFWS / FEMA 1D HEC-RAS hydraulic model}
 "clear_creek_floodplain"
 
 

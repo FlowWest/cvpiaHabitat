@@ -4,10 +4,12 @@
 \name{tuolumne_river_floodplain}
 \alias{tuolumne_river_floodplain}
 \title{Tuolumne River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 37 rows and 3 variables:
+\format{dataframe with 37 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -20,9 +22,11 @@ tuolumne_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-Model extent was from the confluence of the San Joaquin River upstream to LaGrange Dam.
+\section{Fall Run, Spring Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 54.33 miles was modeled using TUFLOW hydraulic model with 1D channel and 2D overbank components. Active channel area of 586.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 }
+
 \examples{
 tuolumne_river_floodplain
 

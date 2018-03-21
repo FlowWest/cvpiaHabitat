@@ -4,10 +4,11 @@
 \name{paynes_creek_floodplain}
 \alias{paynes_creek_floodplain}
 \title{Paynes Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 22 rows and 3 variables:
+\format{dataframe with 30 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -19,9 +20,16 @@ paynes_creek_floodplain
 \description{
 A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 }
-\details{
-HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Paynes Creek scaling factor of 22\% was calculated as the average ratio of Paynes Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 2.0 mile low gradient and 9.8 miles of high gradient mapped rearing extent in paynes Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 29.6 acres) and floodplain inundation area.
+\section{Fall Run Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.22 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 11.81 mile rearing extent in this watershed, 2.04 miles were classified as low gradient and 9.77 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
+\section{Steelhead Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.22 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 27.81 mile rearing extent in this watershed, 2.04 miles were classified as low gradient and 25.77 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
 \examples{
 paynes_creek_floodplain
 

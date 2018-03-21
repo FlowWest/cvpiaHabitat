@@ -4,10 +4,11 @@
 \name{american_river_floodplain}
 \alias{american_river_floodplain}
 \title{American River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 35 rows and 3 variables:
+\format{dataframe with 35 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -20,9 +21,11 @@ american_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream to Nimbus Dam. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 670.2 acres) and floodplain inundation area.
+\section{Fall Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 22.81 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 670.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 }
+
 \examples{
 american_river_floodplain
 
