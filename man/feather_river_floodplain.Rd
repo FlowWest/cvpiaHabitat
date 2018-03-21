@@ -4,10 +4,12 @@
 \name{feather_river_floodplain}
 \alias{feather_river_floodplain}
 \title{Feather River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 39 rows and 3 variables:
+\format{dataframe with 40 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -20,9 +22,11 @@ feather_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 66 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 2363.2 acres) and floodplain inundation area.
+\section{Fall Run, Spring Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 64.98 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 2363.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 }
+
 \examples{
 feather_river_floodplain
 

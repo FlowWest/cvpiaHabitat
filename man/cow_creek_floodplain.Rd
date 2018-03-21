@@ -4,10 +4,11 @@
 \name{cow_creek_floodplain}
 \alias{cow_creek_floodplain}
 \title{Cow Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 22 rows and 3 variables:
+\format{dataframe with 30 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -19,9 +20,16 @@ cow_creek_floodplain
 \description{
 A dataset containing total inundated floodplain area in acres as a function of flow in cubic feet per second.
 }
-\details{
-HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Cow Creek scaling factor of 216\% was calculated as the average ratio of Cow Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 8.6 mile low gradient and 55.6 miles of high gradient mapped rearing extent in Cow Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 217.5 acres) and floodplain inundation area.
+\section{Fall Run Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 2.16 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 64.17 mile rearing extent in this watershed, 8.59 miles were classified as low gradient and 55.58 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
+\section{Steelhead Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 2.16 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 94.19 mile rearing extent in this watershed, 8.59 miles were classified as low gradient and 85.60 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
 \examples{
 cow_creek_floodplain
 

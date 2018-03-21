@@ -4,14 +4,16 @@
 \name{cottonwood_creek_floodplain}
 \alias{cottonwood_creek_floodplain}
 \title{Cottonwood Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 10 rows and 3 variables:
+\format{dataframe with 32 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2014_CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf}{FWS}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf}{USFWS / FEMA 1D HEC-RAS hydraulic model}
 }
 \usage{
 cottonwood_creek_floodplain
@@ -20,9 +22,21 @@ cottonwood_creek_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-The habitat area was derived from the FWS 2017 HEC-RAS 1D model.
+\section{Fall Run Modeling}{
+
+A 22.36 mile portion of the entire mapped rearing extent of 22.36 miles was modeled using USFWS / FEMA 1D HEC-RAS hydraulic model. Of the entire mapped rearing extent, 22.36 miles were classified as low gradient and -0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
+\section{Spring Run Modeling}{
+
+A 22.36 mile portion of the entire mapped rearing extent of 119.48 miles was modeled using USFWS / FEMA 1D HEC-RAS hydraulic model. Of the entire mapped rearing extent, 22.36 miles were classified as low gradient and 97.12 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
+\section{Steelhead Modeling}{
+
+A 22.36 mile portion of the entire mapped rearing extent of 142.26 miles was modeled using USFWS / FEMA 1D HEC-RAS hydraulic model. Of the entire mapped rearing extent, 22.36 miles were classified as low gradient and 119.90 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
 \examples{
 cottonwood_creek_floodplain
 

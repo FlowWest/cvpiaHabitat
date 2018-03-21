@@ -4,14 +4,15 @@
 \name{yuba_river_floodplain}
 \alias{yuba_river_floodplain}
 \title{Yuba River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 20 rows and 3 variables:
+\format{dataframe with 20 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf}{SRH2D}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA_Annual_Progress_Report_Fiscal_Year_2014_Yuba_SRH2D_Page18.pdf}{SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis}
 }
 \usage{
 yuba_river_floodplain
@@ -20,9 +21,11 @@ yuba_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-The habitat area was derived from the SRH2D model, Pasternack 2012.
+\section{Fall Run and Spring Run Modeling}{
+
+The entire mapped rearing extent of 23.07 miles was modeled using SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis. Active channel area of 446.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area
 }
+
 \examples{
 yuba_river_floodplain
 

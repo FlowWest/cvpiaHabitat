@@ -4,14 +4,15 @@
 \name{cosumnes_river_floodplain}
 \alias{cosumnes_river_floodplain}
 \title{Cosumnes River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 36 rows and 3 variables:
+\format{dataframe with 37 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{FR_floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-NA
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled TUFLOW hydraulic model with 1D channel and 2D overbank components}
 }
 \usage{
 cosumnes_river_floodplain
@@ -20,9 +21,11 @@ cosumnes_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-NA
+\section{Fall Run and Steelhead Modeling}{
+
+No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for the Tuolumne River based on hydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.50 percent of the Tuolumne River values based on the ratio of mean flow from December to June between this watershed and the Tuolumne River. Of the entire mapped 41.34 mile rearing extent in this watershed, 41.34 miles were classifiedas low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
 \examples{
 cosumnes_river_floodplain
 }

@@ -4,10 +4,12 @@
 \name{deer_creek_floodplain}
 \alias{deer_creek_floodplain}
 \title{Deer Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 30 rows and 3 variables:
+\format{dataframe with 30 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when needed)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
@@ -20,9 +22,16 @@ deer_creek_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 11.8 miles to the Deer Creek Irrigation District diversion dam. Floodplain area for the remaining 6.6 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach with a reduction factor of 10\% to account for the transition from low gradient to high gradient geomorphic conditions in the upper 6.6 miles of rearing extent. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 58.7 acres) and floodplain inundation area.
+\section{Fall Run Modeling}{
+
+A 11.76 mile portion of the entire mapped rearing extent of 18.39 miles was modeled using Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model. Of the entire mapped rearing extent, 11.76 miles were classified as low gradient and 6.63 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
+\section{Spring Run and Steelhead Modeling}{
+
+A 11.76 mile portion of the entire mapped rearing extent of 47.92 miles was modeled using Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model. Of the entire mapped rearing extent, 11.76 miles were classified as low gradient and 36.16 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
+}
+
 \examples{
 deer_creek_floodplain
 }

@@ -4,14 +4,16 @@
 \name{stanislaus_river_floodplain}
 \alias{stanislaus_river_floodplain}
 \title{Stanislaus River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 15 rows and 3 variables:
+\format{dataframe with 16 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
+  \item{FR_floodplain_acres}{fall run floodplain acreage}
+  \item{SR_floodplain_acres}{spring run floodplain acreage}
+  \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf}{SRH-2D hyraulic model developed by NewFields (now FlowWest www.flowwest.com)}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf}{SRH-2D hyraulic model developed by NewFields (now FlowWest)}
 }
 \usage{
 stanislaus_river_floodplain
@@ -20,9 +22,11 @@ stanislaus_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-Model extent was from the confluence of the San Joaquin River upstream to Goodwin Dam.  Active channel area delineated based on geomorphic features to differentiate between instream and floodplain habitat.
+\section{Fall Run, Spring Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 60.31 miles was modeled using SRH-2D hyraulic model developed by NewFields (now FlowWest). Active channel area of 409.10 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 }
+
 \examples{
 stanislaus_river_floodplain
 

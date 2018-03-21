@@ -11,7 +11,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{NMFS life cycle model}{Hendirx 2017 HEC-RAS 1D model}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Delta Simulation Model II (DSM2) one-dimensional hydrodynamic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }
 \usage{
 north_delta_floodplain
@@ -20,9 +20,11 @@ north_delta_floodplain
 A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
-\details{
-The habitat area was derived from the NMFS life cycle model, Hendirx 2017 HEC-RAS 1D model.
+\section{Fall Run Modeling}{
+
+The entire mapped rearing extent of 45.65 miles was modeled using Delta Simulation Model II (DSM2) one-dimensional hydrodynamic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. Active channel area of NA acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
 }
+
 \examples{
 north_delta_floodplain
 
