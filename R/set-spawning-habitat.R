@@ -59,7 +59,30 @@
 #'   \item Cosumnes River
 #'   \item Mokelumne River*
 #' }
-set_spawning_habitat <- function(watershed, species, flow) {
+#'
+watershed = 'Tuolumne River'
+species = 'fr'
+flow = 300
+set_spawning_habitat <- function(watershed, species, flow, ...) {
+
+  no_spawning <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist, is.na(FR_spawn)), Watershed)
+  if (watershed %in% no_spawning) {
+    return(NA)
+  }
+
+  if (species == 'sr') {
+    spring_run_exists <- !is.na(dplyr::pull(
+      dplyr::filter(cvpiaHabitat::modeling_exist,
+                    Watershed == watershed), SR_spawn))
+    if (!spring_run_exists) {
+      return(NA)
+    }
+  }
+
+
+  if (watershed == 'Upper Sacramento River') {
+    return(set_upper_sac_spawn_habitat(species, flow, ...))
+  }
 
   # determine the set of watersheds that need to use the region approx curves
   upper_mid_region <- dplyr::pull(
@@ -71,48 +94,18 @@ set_spawning_habitat <- function(watershed, species, flow) {
     Watershed
   )
 
-  no_species_within_watershed <- is.na(dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                                           Watershed == watershed),
-                                             paste(toupper(species), 'spawn', sep = '_')))
-
-  if (no_species_within_watershed) {return (NA)}
-
-  # identify watersheds without modeling
-  watersheds_with_no_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                                 !FR_spawn), Watershed)
-
-  # check if watershed has no modeling, if so use regional approx
-  if (watershed %in% watersheds_with_no_modeling) {
-    region <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                        Watershed == watershed), Region)
-
-    approx_functions <- region_spawn_approx(region, species)
-    # remove NA approx functions for places without species present
-    approx_funcs <- approx_functions[!is.na(approx_functions)]
-    if (length(approx_funcs) == 0) {return(NA)}
-    if(length(approx_funcs) < 3) {warning(paste('only', length(approx_funcs), 'approx functions within the region used for estimate'))}
-
-    wuas <- purrr::map_dbl(approx_functions, function(f) {
-      f(flow)
-    })
-    wua <- mean(wuas)
-    habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "spawning", species_name = species)
-    return(habitat_area)
+  # create approx functions
+  if (watershed %in% upper_mid_region) {
+    wua_func <- spawning_approx("Upper Mid Sac Region", species)
   } else {
-    # create approx functions
     wua_func <- spawning_approx(watershed, species)
-
-    # case when species does not exist in this watershed
-    if (!is.function(wua_func) && is.na(wua_func)) {
-      return(NA)
-    }
-
-    wua <- wua_func(flow)
-    habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "spawning", species_name = species)
-    return(habitat_area)
   }
+
+  wua <- wua_func(flow)
+  habitat_area <- wua_to_area(wua = wua, watershed = watershed,
+                              life_stage = "spawning", species_name = species)
+
+  return(habitat_area)
 
 }
 
@@ -120,14 +113,10 @@ set_spawning_habitat <- function(watershed, species, flow) {
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 FR_spawn_approx <- function(relationship_df, modeling_lookup){
-  if (is.na(dplyr::pull(modeling_lookup, FR_spawn))) {
-    # no spawning in this watershed
-    return(NA)
-  } else {
-    # case when modeling exists
-    FR_approx <- approxfun(relationship_df$flow_cfs,
-                           relationship_df$FR_spawn_wua, rule = 2)
-  }
+
+  # case when modeling exists
+  FR_approx <- approxfun(relationship_df$flow_cfs,
+                         relationship_df$FR_spawn_wua, rule = 2)
 
   return(FR_approx)
 }
@@ -136,10 +125,8 @@ FR_spawn_approx <- function(relationship_df, modeling_lookup){
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 SR_spawn_approx <- function(relationship_df, modeling_lookup){
-  if (is.na(dplyr::pull(modeling_lookup, SR_spawn))){
-    # no spawning in this watershed
-    return(NA)
-  } else if (dplyr::pull(modeling_lookup, SR_spawn)) {
+
+  if (dplyr::pull(modeling_lookup, SR_spawn)) {
     # case when modeling exists
     SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_spawn_wua, rule = 2)
   } else {
@@ -154,10 +141,8 @@ SR_spawn_approx <- function(relationship_df, modeling_lookup){
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 ST_spawn_approx <- function(relationship_df, modeling_lookup){
-  if (is.na(dplyr::pull(modeling_lookup, ST_spawn))){
-    # no spawning in this watershed
-    return(NA)
-  } else if (dplyr::pull(modeling_lookup, ST_spawn)) {
+
+  if (dplyr::pull(modeling_lookup, ST_spawn)) {
     # case when modeling exists
     ST_approx <- approxfun(relationship_df$flow_cfs,
                            relationship_df$ST_spawn_wua, rule = 2)
@@ -169,19 +154,6 @@ ST_spawn_approx <- function(relationship_df, modeling_lookup){
   return(ST_approx)
 }
 
-#' function uses a region to return approx functions for watersheds within it with models
-#' @param region Region name, example "Upper-mid Sacramento River"
-#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
-#' @return a list of approx functions obtained from calliong spawning_approx()
-region_spawn_approx <- function(region, species) {
-  # list of watersheds within the specified region with modeling
-  watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                                        Region == region,
-                                                        FR_spawn), Watershed)
-
-  # return list of approx function for the watersheds in region with modeling
-  purrr::map(watersheds_with_modeling, ~spawning_approx(., species = 'fr'))
-}
 
 #' function uses an existing relationship to return a linear interpolated approx function
 #' @param watershed name of the watershed to compute approx function on
@@ -204,3 +176,44 @@ spawning_approx <- function(watershed, species = "fr") {
   )
 }
 
+set_upper_sac_spawn_habitat <- function(species, flow, month) {
+  # this is composed of two different curves, the first is the board in and second is boards out
+  # board IN months 4-10
+  # board OUT months 1-3, 11-12
+
+  # for fall run fry modeling does not exist so we use fall run juv
+  if (species == 'wr') {
+    # winter run spawning
+    upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                     cvpiaHabitat::upper_sac_ACID_boards_in$WR_spawn_WUA, rule=2)
+
+    upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                      cvpiaHabitat::upper_sac_ACID_boards_out$WR_spawn_WUA, rule=2)
+  } else if (species == 'st') {
+    # steelhead spawning
+    upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                     cvpiaHabitat::upper_sac_ACID_boards_in$ST_spawn_WUA, rule=2)
+
+    upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                      cvpiaHabitat::upper_sac_ACID_boards_out$ST_spawn_WUA, rule=2)
+  } else {
+    # fall run and spring run spawning
+    upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                     cvpiaHabitat::upper_sac_ACID_boards_in$FR_spawn_WUA, rule=2)
+
+    upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                      cvpiaHabitat::upper_sac_ACID_boards_out$FR_spawn_WUA, rule=2)
+  }
+
+
+  wua <- if (month < 4 | month > 10) {
+    upper_sac_OUT_approx(flow)
+  } else {
+    upper_sac_IN_approx(flow)
+  }
+
+  habitat_area <- wua_to_area(wua = wua, watershed = 'Upper Sacramento River',
+                              life_stage = "spawning", species_name = species)
+
+  return(habitat_area)
+}
