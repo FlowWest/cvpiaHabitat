@@ -59,11 +59,6 @@
 #' # Juvenile rearing habitat value in square meters for Fall Run in Elder Creek at 300 cfs.
 #' set_instream_habitat('Elder Creek', 'fr', 'juv', 300) # no habitat modeling exists, composite used
 #' @export
-#'
-watershed = 'Yuba River'
-species = 'sr'
-life_stage = 'fry'
-flow = 200
 set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
 
   if (species == 'sr') {

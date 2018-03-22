@@ -59,10 +59,6 @@
 #'   \item Cosumnes River
 #'   \item Mokelumne River*
 #' }
-#'
-watershed = 'Tuolumne River'
-species = 'fr'
-flow = 300
 set_spawning_habitat <- function(watershed, species, flow, ...) {
 
   no_spawning <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist, is.na(FR_spawn)), Watershed)
