@@ -81,7 +81,7 @@
     <p>This function returns an estimated instream habitat area based on watershed, species, life stage, and flow.</p>
     
 
-    <pre class="usage"><span class='fu'>set_instream_habitat</span>(<span class='no'>watershed</span>, <span class='no'>species</span>, <span class='no'>life_stage</span>, <span class='no'>flow</span>)</pre>
+    <pre class="usage"><span class='fu'>set_instream_habitat</span>(<span class='no'>watershed</span>, <span class='no'>species</span>, <span class='no'>life_stage</span>, <span class='no'>flow</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -153,7 +153,7 @@ are marked with an asterisk.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fry rearing habitat value in square meters for Fall Run in the Merced River at 425 cfs.</span>
 <span class='fu'>set_instream_habitat</span>(<span class='st'>'Merced River'</span>, <span class='st'>'fr'</span>, <span class='st'>'fry'</span>, <span class='fl'>425</span>) <span class='co'># habitat modeling exists</span></div><div class='output co'>#&gt; [1] 439269.2</div><div class='input'><span class='co'># Juvenile rearing habitat value in square meters for Fall Run in Elder Creek at 300 cfs.</span>
-<span class='fu'>set_instream_habitat</span>(<span class='st'>'Elder Creek'</span>, <span class='st'>'fr'</span>, <span class='st'>'juv'</span>, <span class='fl'>300</span>) <span class='co'># no habitat modeling exists, composite used</span></div><div class='output co'>#&gt; [1] 37462.14</div></pre>
+<span class='fu'>set_instream_habitat</span>(<span class='st'>'Elder Creek'</span>, <span class='st'>'fr'</span>, <span class='st'>'juv'</span>, <span class='fl'>300</span>) <span class='co'># no habitat modeling exists, composite used</span></div><div class='output co'>#&gt; [1] 31964.76</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

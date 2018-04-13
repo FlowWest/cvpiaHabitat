@@ -93,35 +93,38 @@
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Modeling: <a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf'>CVFPP2012</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/TO25-ST8_Tech_Memo_SJR.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-and-steelhead-modeling"><a class="anchor" href="#fall-run-and-steelhead-modeling"></a>Fall Run and Steelhead Modeling</h2>
 
-    <p>The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
-  The study only represents the lower 25.5 miles of the Merced River. The modeled results were scaled up to
-  represent the whole rearing region. We calculate area per river mile from modeled reach and assign the product of the
-  river mile distance and floodplain area per river mile for each reach defined as either in the Valley Lowland area,
-  in a higher gradient / laterally confined area between Valley Lowland areas, or in the dredge tailing area.
-  The study area is defined in the
-  <a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/Memo_Fish_30_August_2017.pdf'>CV Habitat Exchange</a>
-  as being within the Valley Lowland, all other reaches with that same category are given the full area rate.
-  River miles outside the Valley Lowland category recieve some proportion of the area rate, detailed below:</p><ul>
-<li><p>RM 0 - 25.5 use areas defined by study</p></li>
-<li><p>RM 25.5 - 31.2 "Valley Lowland" use 1X area/RM from modeled reach.</p></li>
-<li><p>RM 31.2 - 43.6 not "Valley Lowland", use 0.5X area/RM relationship from modeled reach.</p></li>
-<li><p>RM 43.6 - 47.0 "Valley Lowland", use 1X area/RM from modeled reach.</p></li>
-<li><p>RM 47.0 - 52.0 not "Valley Lowland" and in dredge tailings, use 0.1X area/RM from modeled reach.</p></li>
-</ul>
+    
+    <p>A 25.50 mile portion of the entire mapped rearing extent of 51.76 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 34.60 miles were classified as low gradient and 17.16 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>merced_river_floodplain
-
-Scaling Criteria developed by Mark Tompkins \email{mtompkins@flowwest.com}
-</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:3:9: unexpected symbol</span>
-#&gt; <span class='error'>2: </span>
-#&gt; <span class='error'>3: Scaling Criteria</span>
-#&gt; <span class='error'>           ^</span></div></pre>
+    <pre class="examples"><div class='input'><span class='no'>merced_river_floodplain</span></div><div class='output co'>#&gt;    flow_cfs FR_floodplain_acres ST_floodplain_acres    watershed
+#&gt; 1       250             0.00000             0.00000 Merced River
+#&gt; 2       500             0.00000             0.00000 Merced River
+#&gt; 3       750             0.00000             0.00000 Merced River
+#&gt; 4      1000             0.00000             0.00000 Merced River
+#&gt; 5      1250             0.00000             0.00000 Merced River
+#&gt; 6      1500            13.90466            13.90466 Merced River
+#&gt; 7      1750            50.29351            50.29351 Merced River
+#&gt; 8      2000            87.16924            87.16924 Merced River
+#&gt; 9      2500           175.95618           175.95618 Merced River
+#&gt; 10     3000           269.50750           269.50750 Merced River
+#&gt; 11     3500           366.18343           366.18343 Merced River
+#&gt; 12     4000           451.35417           451.35417 Merced River
+#&gt; 13     4500           566.18245           566.18245 Merced River
+#&gt; 14     5000           668.31956           668.31956 Merced River
+#&gt; 15     5500           820.58655           820.58655 Merced River
+#&gt; 16     6000          1077.80458          1077.80458 Merced River
+#&gt; 17     6500          1324.35164          1324.35164 Merced River
+#&gt; 18     7000          1558.20052          1558.20052 Merced River
+#&gt; 19     7500          2105.07593          2105.07593 Merced River
+#&gt; 20     8000          2609.26051          2609.26051 Merced River
+#&gt; 21     8500          3097.47511          3097.47511 Merced River
+#&gt; 22     9000          3516.89583          3516.89583 Merced River</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -131,7 +134,7 @@ Scaling Criteria developed by Mark Tompkins \email{mtompkins@flowwest.com}
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-and-steelhead-modeling">Fall Run and Steelhead Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

@@ -21,3 +21,7 @@ The modeled flow to floodplain area relationships within the package are for tot
 This function applys a suitability factor to the total area in order to estimate total suitable floodplain area
 available at a given flow.
 }
+\details{
+Do not apply a suitability factory to the floodplain areas of the
+Sacramento Reaches, the Sutter and Yolo Bypasses, and the North and South Deltas.
+}

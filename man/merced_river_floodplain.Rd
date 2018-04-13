@@ -26,7 +26,5 @@ A 25.50 mile portion of the entire mapped rearing extent of 51.76 miles was mode
 
 \examples{
 merced_river_floodplain
-
-Scaling Criteria developed by Mark Tompkins \\email{mtompkins@flowwest.com}
 }
 \keyword{datasets}

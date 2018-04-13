@@ -86,9 +86,11 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 7 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 31 rows and 5 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>SR_floodplain_acres</dt><dd><p>spring run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -96,22 +98,82 @@ function of flow in cubic feet per second</p>
 
     <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-modeling"><a class="anchor" href="#fall-run-modeling"></a>Fall Run Modeling</h2>
 
-    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 8.7 miles. Floodplain area for the remaining 6.3 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 89 acres) and floodplain inundation area.</p>
+    
+    <p>A 8.74 mile portion of the entire mapped rearing extent of 15.05 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 15.05 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
+    
+    <h2 class="hasAnchor" id="spring-run-and-steelhead-modeling"><a class="anchor" href="#spring-run-and-steelhead-modeling"></a>Spring Run and Steelhead Modeling</h2>
+
+    
+    <p>A 8.74 mile portion of the entire mapped rearing extent of 23.84 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 15.05 miles were classified as low gradient and 8.79 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>big_chico_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 7 x 3
-#&gt;   flow_cfs floodplain_acres       watershed
-#&gt;      &lt;int&gt;            &lt;dbl&gt;           &lt;chr&gt;
-#&gt; 1     1215              0.0 Big Chico Creek
-#&gt; 2     1265              1.4 Big Chico Creek
-#&gt; 3     1315              4.0 Big Chico Creek
-#&gt; 4     1365              6.6 Big Chico Creek
-#&gt; 5     1415              9.8 Big Chico Creek
-#&gt; 6     1465             12.9 Big Chico Creek
-#&gt; 7     1515             15.5 Big Chico Creek</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>big_chico_creek_floodplain</span></div><div class='output co'>#&gt;    flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
+#&gt; 1        15            0.000000            0.000000            0.000000
+#&gt; 2        65            0.000000            0.000000            0.000000
+#&gt; 3       115            0.000000            0.000000            0.000000
+#&gt; 4       165            0.000000            0.000000            0.000000
+#&gt; 5       215            0.000000            0.000000            0.000000
+#&gt; 6       265            0.000000            0.000000            0.000000
+#&gt; 7       315            0.000000            0.000000            0.000000
+#&gt; 8       365            0.000000            0.000000            0.000000
+#&gt; 9       415            0.000000            0.000000            0.000000
+#&gt; 10      465            0.000000            0.000000            0.000000
+#&gt; 11      515            0.000000            0.000000            0.000000
+#&gt; 12      565            0.000000            0.000000            0.000000
+#&gt; 13      615            0.000000            0.000000            0.000000
+#&gt; 14      665            0.000000            0.000000            0.000000
+#&gt; 15      715            0.000000            0.000000            0.000000
+#&gt; 16      765            0.000000            0.000000            0.000000
+#&gt; 17      815            0.000000            0.000000            0.000000
+#&gt; 18      865            0.000000            0.000000            0.000000
+#&gt; 19      915            0.000000            0.000000            0.000000
+#&gt; 20      965            0.000000            0.000000            0.000000
+#&gt; 21     1015            0.000000            0.000000            0.000000
+#&gt; 22     1065            0.000000            0.000000            0.000000
+#&gt; 23     1115            0.000000            0.000000            0.000000
+#&gt; 24     1165            0.000000            0.000000            0.000000
+#&gt; 25     1215            0.000000            0.000000            0.000000
+#&gt; 26     1265            1.605321            1.699004            1.699004
+#&gt; 27     1315            4.209542            4.455202            4.455202
+#&gt; 28     1365            6.788936            7.185124            7.185124
+#&gt; 29     1415           10.011005           10.595226           10.595226
+#&gt; 30     1465           13.039603           13.800567           13.800567
+#&gt; 31     1515           15.689879           16.605507           16.605507
+#&gt;          watershed
+#&gt; 1  Big Chico Creek
+#&gt; 2  Big Chico Creek
+#&gt; 3  Big Chico Creek
+#&gt; 4  Big Chico Creek
+#&gt; 5  Big Chico Creek
+#&gt; 6  Big Chico Creek
+#&gt; 7  Big Chico Creek
+#&gt; 8  Big Chico Creek
+#&gt; 9  Big Chico Creek
+#&gt; 10 Big Chico Creek
+#&gt; 11 Big Chico Creek
+#&gt; 12 Big Chico Creek
+#&gt; 13 Big Chico Creek
+#&gt; 14 Big Chico Creek
+#&gt; 15 Big Chico Creek
+#&gt; 16 Big Chico Creek
+#&gt; 17 Big Chico Creek
+#&gt; 18 Big Chico Creek
+#&gt; 19 Big Chico Creek
+#&gt; 20 Big Chico Creek
+#&gt; 21 Big Chico Creek
+#&gt; 22 Big Chico Creek
+#&gt; 23 Big Chico Creek
+#&gt; 24 Big Chico Creek
+#&gt; 25 Big Chico Creek
+#&gt; 26 Big Chico Creek
+#&gt; 27 Big Chico Creek
+#&gt; 28 Big Chico Creek
+#&gt; 29 Big Chico Creek
+#&gt; 30 Big Chico Creek
+#&gt; 31 Big Chico Creek</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -122,7 +184,9 @@ function of flow in cubic feet per second</p>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-modeling">Fall Run Modeling</a></li>
+
+      <li><a href="#spring-run-and-steelhead-modeling">Spring Run and Steelhead Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

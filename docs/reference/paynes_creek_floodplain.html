@@ -85,9 +85,10 @@
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 22 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 30 rows and 4 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -95,9 +96,15 @@
 
     <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf'>Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-modeling"><a class="anchor" href="#fall-run-modeling"></a>Fall Run Modeling</h2>
 
-    <p>HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Paynes Creek scaling factor of 22% was calculated as the average ratio of Paynes Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 2.0 mile low gradient and 9.8 miles of high gradient mapped rearing extent in paynes Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 29.6 acres) and floodplain inundation area.</p>
+    
+    <p>No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.22 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 11.81 mile rearing extent in this watershed, 2.04 miles were classified as low gradient and 9.77 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
+    
+    <h2 class="hasAnchor" id="steelhead-modeling"><a class="anchor" href="#steelhead-modeling"></a>Steelhead Modeling</h2>
+
+    
+    <p>No site-specific hydraulic modeling was available for this watershed. A flow to floodplain area relationship was generated for this watershed by scaling the flow to floodplain area relationship for Deer Creek based onhydrologic and geomorphic analyses. Flows and corresponding floodplain areas per unit length were calculated for this watershed as 0.22 percent of DeerCreek values based on the ratio of mean flow from December to June between this watershed and Deer Creek. Of the entire mapped 27.81 mile rearing extent in this watershed, 2.04 miles were classified as low gradient and 25.77 miles were classified as high gradient based on a geomorphic analysis. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -142,7 +149,9 @@
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-modeling">Fall Run Modeling</a></li>
+
+      <li><a href="#steelhead-modeling">Steelhead Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

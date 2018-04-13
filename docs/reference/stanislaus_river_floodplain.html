@@ -86,41 +86,44 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 15 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 16 rows and 5 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>SR_floodplain_acres</dt><dd><p>spring run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf'>SRH-2D hyraulic model developed by NewFields (now FlowWest www.flowwest.com)</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf'>SRH-2D hyraulic model developed by NewFields (now FlowWest)</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-spring-run-and-steelhead-modeling"><a class="anchor" href="#fall-run-spring-run-and-steelhead-modeling"></a>Fall Run, Spring Run and Steelhead Modeling</h2>
 
-    <p>Model extent was from the confluence of the San Joaquin River upstream to Goodwin Dam.  Active channel area delineated based on geomorphic features to differentiate between instream and floodplain habitat.</p>
+    
+    <p>The entire mapped rearing extent of 60.31 miles was modeled using SRH-2D hyraulic model developed by NewFields (now FlowWest). Active channel area of 409.10 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>stanislaus_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 16 x 5
-#&gt;    flow_cfs FR_floodplain_area SR_floodplain_area ST_floodplain_area
-#&gt;       &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;
-#&gt;  1        0           0.000000           0.000000           0.000000
-#&gt;  2      250           0.000000           0.000000           0.000000
-#&gt;  3      500           3.310213           3.310213           3.310213
-#&gt;  4      750           7.553739           7.553739           7.553739
-#&gt;  5     1000          12.421452          12.421452          12.421452
-#&gt;  6     1250          40.479679          40.479679          40.479679
-#&gt;  7     1500         103.884236         103.884236         103.884236
-#&gt;  8     1750         150.420448         150.420448         150.420448
-#&gt;  9     2000         183.329338         183.329338         183.329338
-#&gt; 10     2001         183.477535         183.477535         183.477535
-#&gt; 11     2500         257.427839         257.427839         257.427839
-#&gt; 12     3000         364.868652         364.868652         364.868652
-#&gt; 13     3500         419.615406         419.615406         419.615406
-#&gt; 14     4000         502.653409         502.653409         502.653409
-#&gt; 15     4500         623.298006         623.298006         623.298006
-#&gt; 16     5000         810.137711         810.137711         810.137711
+#&gt;    flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
+#&gt;       &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;
+#&gt;  1        0            0.000000            0.000000            0.000000
+#&gt;  2      250            0.000000            0.000000            0.000000
+#&gt;  3      500            3.310213            3.310213            3.310213
+#&gt;  4      750            7.553739            7.553739            7.553739
+#&gt;  5     1000           12.421452           12.421452           12.421452
+#&gt;  6     1250           40.479679           40.479679           40.479679
+#&gt;  7     1500          103.884236          103.884236          103.884236
+#&gt;  8     1750          150.420448          150.420448          150.420448
+#&gt;  9     2000          183.329338          183.329338          183.329338
+#&gt; 10     2001          183.477535          183.477535          183.477535
+#&gt; 11     2500          257.427839          257.427839          257.427839
+#&gt; 12     3000          364.868652          364.868652          364.868652
+#&gt; 13     3500          419.615406          419.615406          419.615406
+#&gt; 14     4000          502.653409          502.653409          502.653409
+#&gt; 15     4500          623.298006          623.298006          623.298006
+#&gt; 16     5000          810.137711          810.137711          810.137711
 #&gt; # ... with 1 more variables: watershed &lt;chr&gt;</div><div class='input'>
 </div></pre>
   </div>
@@ -132,7 +135,7 @@ function of flow in cubic feet per second</p>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-spring-run-and-steelhead-modeling">Fall Run, Spring Run and Steelhead Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

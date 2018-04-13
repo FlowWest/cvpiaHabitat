@@ -86,9 +86,10 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 35 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 37 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -96,26 +97,51 @@ function of flow in cubic feet per second</p>
 
     <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-modeling"><a class="anchor" href="#fall-run-modeling"></a>Fall Run Modeling</h2>
 
-    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 16.4 miles. Floodplain area for the remaining 15.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 147.8 acres) and floodplain inundation area.</p>
+    
+    <p>A 16.40 mile portion of the entire mapped rearing extent of 32.05 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 32.05 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>bear_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 35 x 3
-#&gt;    flow_cfs floodplain_acres  watershed
-#&gt;       &lt;int&gt;            &lt;dbl&gt;      &lt;chr&gt;
-#&gt;  1      310              0.0 Bear River
-#&gt;  2      460             54.0 Bear River
-#&gt;  3      610             93.5 Bear River
-#&gt;  4      760            132.9 Bear River
-#&gt;  5      910            156.5 Bear River
-#&gt;  6      927            159.1 Bear River
-#&gt;  7     1060            180.0 Bear River
-#&gt;  8     1210            198.9 Bear River
-#&gt;  9     1360            214.5 Bear River
-#&gt; 10     1510            227.3 Bear River
-#&gt; # ... with 25 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>bear_river_floodplain</span></div><div class='output co'>#&gt;    flow_cfs FR_floodplain_acres ST_floodplain_acres  watershed
+#&gt; 1        10             0.00000             0.00000 Bear River
+#&gt; 2       160             0.00000             0.00000 Bear River
+#&gt; 3       310             0.00000             0.00000 Bear River
+#&gt; 4       460            53.99320            53.99320 Bear River
+#&gt; 5       610            93.46025            93.46025 Bear River
+#&gt; 6       760           132.92730           132.92730 Bear River
+#&gt; 7       910           156.45675           156.45675 Bear River
+#&gt; 8       927           159.12342           159.12342 Bear River
+#&gt; 9      1060           179.98620           179.98620 Bear River
+#&gt; 10     1210           198.92625           198.92625 Bear River
+#&gt; 11     1360           214.54888           214.54888 Bear River
+#&gt; 12     1510           227.29767           227.29767 Bear River
+#&gt; 13     1660           240.04646           240.04646 Bear River
+#&gt; 14     1810           252.79525           252.79525 Bear River
+#&gt; 15     1960           265.47074           265.47074 Bear River
+#&gt; 16     2110           276.24298           276.24298 Bear River
+#&gt; 17     2260           287.01523           287.01523 Bear River
+#&gt; 18     2410           296.54091           296.54091 Bear River
+#&gt; 19     2560           305.32669           305.32669 Bear River
+#&gt; 20     2710           317.59032           317.59032 Bear River
+#&gt; 21     2860           327.57361           327.57361 Bear River
+#&gt; 22     3010           335.81340           335.81340 Bear River
+#&gt; 23     3160           345.73694           345.73694 Bear River
+#&gt; 24     3310           354.41635           354.41635 Bear River
+#&gt; 25     3460           363.09280           363.09280 Bear River
+#&gt; 26     3610           372.48949           372.48949 Bear River
+#&gt; 27     3760           382.62196           382.62196 Bear River
+#&gt; 28     3910           392.03032           392.03032 Bear River
+#&gt; 29     4060           406.15697           406.15697 Bear River
+#&gt; 30     4210           418.22324           418.22324 Bear River
+#&gt; 31     4360           459.49663           459.49663 Bear River
+#&gt; 32     4510           478.98101           478.98101 Bear River
+#&gt; 33     4660           497.02603           497.02603 Bear River
+#&gt; 34     4810           532.39537           532.39537 Bear River
+#&gt; 35     4960           550.73505           550.73505 Bear River
+#&gt; 36     5110           571.01362           571.01362 Bear River
+#&gt; 37     5260           593.02944           593.02944 Bear River</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -126,7 +152,7 @@ function of flow in cubic feet per second</p>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-modeling">Fall Run Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

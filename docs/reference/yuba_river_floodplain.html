@@ -86,19 +86,21 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 20 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 20 rows and 4 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Pasternack2012_LYR+Landforms+Report+(5-9-2012).pdf'>SRH2D</a></p>
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA_Annual_Progress_Report_Fiscal_Year_2014_Yuba_SRH2D_Page18.pdf'>SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-and-spring-run-modeling"><a class="anchor" href="#fall-run-and-spring-run-modeling"></a>Fall Run and Spring Run Modeling</h2>
 
-    <p>The habitat area was derived from the SRH2D model, Pasternack 2012.</p>
+    
+    <p>The entire mapped rearing extent of 23.07 miles was modeled using SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis. Active channel area of 446.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -126,7 +128,7 @@ function of flow in cubic feet per second</p>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-and-spring-run-modeling">Fall Run and Spring Run Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

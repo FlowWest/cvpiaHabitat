@@ -123,8 +123,6 @@
 #'
 #' @examples
 #' merced_river_floodplain
-#'
-#' Scaling Criteria developed by Mark Tompkins \email{mtompkins@@flowwest.com}
 "merced_river_floodplain"
 
 #' Yuba River Flow to Floodplain Habitat Area Relationship

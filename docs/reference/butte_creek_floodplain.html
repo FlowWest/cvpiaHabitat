@@ -86,9 +86,11 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 31 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 31 rows and 5 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Spring Run and Steelhead when required)</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>SR_floodplain_acres</dt><dd><p>spring run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -96,26 +98,82 @@ function of flow in cubic feet per second</p>
 
     <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-modeling"><a class="anchor" href="#fall-run-modeling"></a>Fall Run Modeling</h2>
 
-    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence with the Sacramento River upstream 16.8 miles (the entire mapped rearing extent). Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 103.4 acres) and floodplain inundation area.</p>
+    
+    <p>A 17.14 mile portion of the entire mapped rearing extent of 17.14 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 17.14 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
+    
+    <h2 class="hasAnchor" id="spring-run-and-steelhead-modeling"><a class="anchor" href="#spring-run-and-steelhead-modeling"></a>Spring Run and Steelhead Modeling</h2>
+
+    
+    <p>A 17.14 mile portion of the entire mapped rearing extent of 31.67 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 17.14 miles were classified as low gradient and 14.53 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>butte_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 28 x 3
-#&gt;    flow_cfs floodplain_acres   watershed
-#&gt;       &lt;int&gt;            &lt;dbl&gt;       &lt;chr&gt;
-#&gt;  1      310              0.0 Butte Creek
-#&gt;  2      410             19.6 Butte Creek
-#&gt;  3      450             31.3 Butte Creek
-#&gt;  4      510             48.8 Butte Creek
-#&gt;  5      610             74.5 Butte Creek
-#&gt;  6      710             91.1 Butte Creek
-#&gt;  7      810            102.2 Butte Creek
-#&gt;  8      910            109.5 Butte Creek
-#&gt;  9     1010            116.3 Butte Creek
-#&gt; 10     1110            126.8 Butte Creek
-#&gt; # ... with 18 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>butte_creek_floodplain</span></div><div class='output co'>#&gt;    flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
+#&gt; 1        10             0.00000             0.00000             0.00000
+#&gt; 2       110             0.00000             0.00000             0.00000
+#&gt; 3       210             0.00000             0.00000             0.00000
+#&gt; 4       310             0.00000             0.00000             0.00000
+#&gt; 5       410            19.60890            21.27080            21.27080
+#&gt; 6       450            31.27005            33.92025            33.92025
+#&gt; 7       510            48.76176            52.89442            52.89442
+#&gt; 8       610            74.50808            80.82280            80.82280
+#&gt; 9       710            91.07548            98.79432            98.79432
+#&gt; 10      810           102.17479           110.83431           110.83431
+#&gt; 11      910           109.53928           118.82296           118.82296
+#&gt; 12     1010           116.26445           126.11810           126.11810
+#&gt; 13     1110           126.81067           137.55813           137.55813
+#&gt; 14     1210           133.35915           144.66161           144.66161
+#&gt; 15     1310           140.57358           152.48748           152.48748
+#&gt; 16     1410           145.73412           158.08538           158.08538
+#&gt; 17     1510           150.49777           163.25277           163.25277
+#&gt; 18     1610           158.01241           171.40429           171.40429
+#&gt; 19     1710           163.12795           176.95338           176.95338
+#&gt; 20     1810           174.98117           189.81118           189.81118
+#&gt; 21     1910           180.39233           195.68096           195.68096
+#&gt; 22     2010           184.77699           200.43722           200.43722
+#&gt; 23     2110           189.18667           205.22063           205.22063
+#&gt; 24     2210           193.98334           210.42383           210.42383
+#&gt; 25     2310           200.55972           217.55756           217.55756
+#&gt; 26     2410           204.55256           221.88881           221.88881
+#&gt; 27     2510           208.56300           226.23914           226.23914
+#&gt; 28     2610           214.61182           232.80061           232.80061
+#&gt; 29     2710           218.42521           236.93719           236.93719
+#&gt; 30     2810           222.64108           241.51037           241.51037
+#&gt; 31     2910           226.41997           245.60953           245.60953
+#&gt;      watershed
+#&gt; 1  Butte Creek
+#&gt; 2  Butte Creek
+#&gt; 3  Butte Creek
+#&gt; 4  Butte Creek
+#&gt; 5  Butte Creek
+#&gt; 6  Butte Creek
+#&gt; 7  Butte Creek
+#&gt; 8  Butte Creek
+#&gt; 9  Butte Creek
+#&gt; 10 Butte Creek
+#&gt; 11 Butte Creek
+#&gt; 12 Butte Creek
+#&gt; 13 Butte Creek
+#&gt; 14 Butte Creek
+#&gt; 15 Butte Creek
+#&gt; 16 Butte Creek
+#&gt; 17 Butte Creek
+#&gt; 18 Butte Creek
+#&gt; 19 Butte Creek
+#&gt; 20 Butte Creek
+#&gt; 21 Butte Creek
+#&gt; 22 Butte Creek
+#&gt; 23 Butte Creek
+#&gt; 24 Butte Creek
+#&gt; 25 Butte Creek
+#&gt; 26 Butte Creek
+#&gt; 27 Butte Creek
+#&gt; 28 Butte Creek
+#&gt; 29 Butte Creek
+#&gt; 30 Butte Creek
+#&gt; 31 Butte Creek</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -126,7 +184,9 @@ function of flow in cubic feet per second</p>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-modeling">Fall Run Modeling</a></li>
+
+      <li><a href="#spring-run-and-steelhead-modeling">Spring Run and Steelhead Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

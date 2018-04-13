@@ -81,7 +81,7 @@
     <p>This function returns an estimated spawning area based on watershed, species, and flow.</p>
     
 
-    <pre class="usage"><span class='fu'>set_spawning_habitat</span>(<span class='no'>watershed</span>, <span class='no'>species</span>, <span class='no'>flow</span>)</pre>
+    <pre class="usage"><span class='fu'>set_spawning_habitat</span>(<span class='no'>watershed</span>, <span class='no'>species</span>, <span class='no'>flow</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -149,7 +149,7 @@ are marked with an asterisk.</p>
     <pre class="examples"><div class='input'><span class='co'># determine the spawning habitat area at Cottonwood Creek for Fall Run Chinook at flow 1567</span>
 <span class='fu'>set_spawning_habitat</span>(<span class='st'>"Cottonwood Creek"</span>, <span class='st'>"fr"</span>, <span class='fl'>1567</span>)</div><div class='output co'>#&gt; [1] 6003.183</div><div class='input'>
 <span class='co'># determine spawning habitat for a watershed with no modeling, uses region approximation</span>
-<span class='fu'>set_spawning_habitat</span>(<span class='st'>"Antelope Creek"</span>, <span class='st'>"fr"</span>, <span class='fl'>1597</span>)</div><div class='output co'>#&gt; [1] 14664.56</div><div class='input'>
+<span class='fu'>set_spawning_habitat</span>(<span class='st'>"Antelope Creek"</span>, <span class='st'>"fr"</span>, <span class='fl'>1597</span>)</div><div class='output co'>#&gt; [1] 17432.72</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

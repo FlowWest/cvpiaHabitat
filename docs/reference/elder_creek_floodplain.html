@@ -86,9 +86,10 @@ function of flow in cubic feet per second</p>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>dataframe with 29 rows and 3 variables:</p><dl class='dl-horizontal'>
+    <p>dataframe with 31 rows and 4 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>floodplain_acres</dt><dd><p>fall run floodplain acreage (use for Steelhead when needed)</p></dd>
+  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
+  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -96,26 +97,45 @@ function of flow in cubic feet per second</p>
 
     <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="fall-run-and-steelhead-modeling"><a class="anchor" href="#fall-run-and-steelhead-modeling"></a>Fall Run and Steelhead Modeling</h2>
 
-    <p>CVFED HEC-RAS model runs to generate CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. Model extent was from the confluence of the Sacramento River upstream 5.4 miles. Floodplain area for the remaining 1.7 miles in the mapped rearing extent was calculated by determing the floodplain area per river mile in the modeled reach and applying this ratio to the unmodeled reach. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 24.3 acres) and floodplain inundation area.</p>
+    
+    <p>A 5.40 mile portion of the entire mapped rearing extent of 7.10 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 7.10 miles were classified as low gradient and 0.00 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>elder_creek_floodplain</span></div><div class='output co'>#&gt; # A tibble: 29 x 3
-#&gt;    flow_cfs floodplain_acres   watershed
-#&gt;       &lt;int&gt;            &lt;dbl&gt;       &lt;chr&gt;
-#&gt;  1       90             0.00 Elder Creek
-#&gt;  2      130            12.77 Elder Creek
-#&gt;  3      170            21.56 Elder Creek
-#&gt;  4      196            24.25 Elder Creek
-#&gt;  5      210            25.70 Elder Creek
-#&gt;  6      250            29.00 Elder Creek
-#&gt;  7      290            32.11 Elder Creek
-#&gt;  8      330            34.75 Elder Creek
-#&gt;  9      370            37.11 Elder Creek
-#&gt; 10      410            38.87 Elder Creek
-#&gt; # ... with 19 more rows</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>elder_creek_floodplain</span></div><div class='output co'>#&gt;    flow_cfs FR_floodplain_acres ST_floodplain_acres   watershed
+#&gt; 1        10            0.000000            0.000000 Elder Creek
+#&gt; 2        50            0.000000            0.000000 Elder Creek
+#&gt; 3        90            0.000000            0.000000 Elder Creek
+#&gt; 4       130            5.115882            5.115882 Elder Creek
+#&gt; 5       170           13.912115           13.912115 Elder Creek
+#&gt; 6       196           16.602674           16.602674 Elder Creek
+#&gt; 7       210           18.051436           18.051436 Elder Creek
+#&gt; 8       250           21.356318           21.356318 Elder Creek
+#&gt; 9       290           24.463110           24.463110 Elder Creek
+#&gt; 10      330           27.105953           27.105953 Elder Creek
+#&gt; 11      370           29.462529           29.462529 Elder Creek
+#&gt; 12      410           31.227916           31.227916 Elder Creek
+#&gt; 13      450           32.860780           32.860780 Elder Creek
+#&gt; 14      490           34.447035           34.447035 Elder Creek
+#&gt; 15      530           35.778358           35.778358 Elder Creek
+#&gt; 16      570           37.057487           37.057487 Elder Creek
+#&gt; 17      610           38.333899           38.333899 Elder Creek
+#&gt; 18      650           39.491765           39.491765 Elder Creek
+#&gt; 19      690           40.634296           40.634296 Elder Creek
+#&gt; 20      730           41.751410           41.751410 Elder Creek
+#&gt; 21      770           42.763713           42.763713 Elder Creek
+#&gt; 22      810           43.923964           43.923964 Elder Creek
+#&gt; 23      850           44.829917           44.829917 Elder Creek
+#&gt; 24      890           45.665593           45.665593 Elder Creek
+#&gt; 25      930           46.468486           46.468486 Elder Creek
+#&gt; 26      970           47.389231           47.389231 Elder Creek
+#&gt; 27     1010           48.145183           48.145183 Elder Creek
+#&gt; 28     1050           48.967275           48.967275 Elder Creek
+#&gt; 29     1090           49.635563           49.635563 Elder Creek
+#&gt; 30     1130           50.389794           50.389794 Elder Creek
+#&gt; 31     1170           51.063666           51.063666 Elder Creek</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -126,7 +146,7 @@ function of flow in cubic feet per second</p>
 
       <li><a href="#source">Source</a></li>
 
-      <li><a href="#details">Details</a></li>
+      <li><a href="#fall-run-and-steelhead-modeling">Fall Run and Steelhead Modeling</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
