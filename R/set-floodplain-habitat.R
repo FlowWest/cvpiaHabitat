@@ -69,6 +69,10 @@ floodplain_approx <- function(watershed, species) {
 #'
 #' @return Total suitable floodplain area in square meters
 #'
+#' @details
+#' Do not apply a suitability factory to the floodplain areas of the
+#' Sacramento Reaches, the Sutter and Yolo Bypasses, and the North and South Deltas.
+#'
 #' @export
 apply_suitability <- function(fp_hab_sq_meters, suitable_factor = .27) {
   return(fp_hab_sq_meters * suitable_factor)
