@@ -12,7 +12,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-\href{#}{Scaled from a Cottonwood Creek flow to floodplain area relationship generated with a hybrid USFWS / FEMA 1D HEC-RAS hydraulic model}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf}{Scaled from a Cottonwood Creek flow to floodplain area relationship generated with a hybrid USFWS / FEMA 1D HEC-RAS hydraulic model}
 }
 \usage{
 stony_creek_floodplain
