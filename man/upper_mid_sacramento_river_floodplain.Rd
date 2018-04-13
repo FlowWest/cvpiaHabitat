@@ -28,6 +28,11 @@ The study's extent is from Battle Creek to the confluence with the Feather River
 The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
 The study results are scaled to the CVPIA extent.
 }
+\section{Fall Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
+}
+
 \examples{
 upper_mid_sacramento_river_floodplain
 

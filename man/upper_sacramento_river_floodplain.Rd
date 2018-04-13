@@ -30,6 +30,11 @@ the confluence with the Feather River (189.1 mi). To scale the study's results t
 the floodplain acerage at a given flow is the weighted average of the floodplain
 area per river mile within each study.
 }
+\section{Fall Run and Steelhead Modeling}{
+
+The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
+}
+
 \examples{
 upper_sacramento_river_floodplain
 

@@ -23,6 +23,8 @@
 #' the confluence with the Feather River (189.1 mi). To scale the study's results to CVPIA's extents,
 #' the floodplain acerage at a given flow is the weighted average of the floodplain
 #' area per river mile within each study.
+#' @section Fall Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "upper_sacramento_river_floodplain"
@@ -49,6 +51,9 @@
 #' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
 #' The study results are scaled to the CVPIA extent.
 #'
+#' @section Fall Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
+#'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "upper_mid_sacramento_river_floodplain"
 
@@ -72,6 +77,9 @@
 #' To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
 #' above (34\%) and below (66\%) the Feather River. The floodplain acerage at a given flow is the weighted average
 #' of the floodplain area per river mile within each study.
+#'
+#' @section Fall Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
 #'
 #' @examples
 #' lower_mid_sacramento_river_floodplain
@@ -97,6 +105,9 @@
 #' from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower
 #' Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
 #' The study results are scaled to the CVPIA extent.
+#'
+#' @section Fall Run and Steelhead Modeling:
+#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
 #'
 #' @examples
 #' lower_sacramento_river_floodplain
