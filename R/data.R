@@ -1124,7 +1124,7 @@
 #' @examples
 #' upper_sac_ACID_boards_in
 #'
-#' @source FWS and NMFS Life Cycle Model, Hendrix 2017
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "upper_sac_ACID_boards_in"
 
 #' Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards Out)
@@ -1172,7 +1172,7 @@
 #' @examples
 #' upper_sac_ACID_boards_out
 #'
-#' @source FWS and NMFS Life Cycle Model, Hendrix 2017
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "upper_sac_ACID_boards_out"
 
 #' Upper-Mid Sacramento River Instream Flow to Habitat Area Relationship
@@ -1194,7 +1194,7 @@
 #' @examples
 #' upper_mid_sacramento_river_instream
 #'
-#' @source NMFS Life Cycle Model, Hendrix 2017
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "upper_mid_sacramento_river_instream"
 
 #' Lower-Mid Sacramento River Instream Flow to Habitat Area Relationship
@@ -1218,7 +1218,7 @@
 #' @examples
 #' lower_mid_sacramento_river_instream
 #'
-#' @source NMFS Life Cycle Model, Hendrix 2017
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 'lower_mid_sacramento_river_instream'
 
 #' Lower Sacramento River Instream Flow to Habitat Area Relationship
@@ -1240,7 +1240,7 @@
 #' @examples
 #' lower_sacramento_river_instream
 #'
-#' @source NMFS Life Cycle Model, Hendrix 2017
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 "lower_sacramento_river_instream"
 
 #' American River Instream Flow to Habitat Area Relationship
@@ -1437,7 +1437,7 @@
 #' @examples
 #' yolo_bypass_floodplain
 #'
-#' @source \href{https://www.google.com}{TODO}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 'yolo_bypass_floodplain'
 
 #' Sutter Bypass Flow to Floodplain Habitat Area Relationship
@@ -1465,7 +1465,7 @@
 #' @examples
 #' sutter_bypass_floodplain
 #'
-#' @source \href{https://www.google.com}{TODO}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 'sutter_bypass_floodplain'
 
 #' Yolo Bypass Instream Flow to Habitat Area Relationship
@@ -1491,7 +1491,7 @@
 #' @examples
 #' yolo_bypass_instream
 #'
-#' @source \href{https://www.google.com}{TODO}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 'yolo_bypass_instream'
 
 #' Sutter Bypass Instream Flow to Habitat Area Relationship
@@ -1519,7 +1519,7 @@
 #' @examples
 #' sutter_bypass_instream
 #'
-#' @source \href{https://www.google.com}{TODO}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 'sutter_bypass_instream'
 
 #' Delta Habitat Area
@@ -1548,6 +1548,8 @@
 #' Cover Vegetated edge
 #'
 #' @source
+#' \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#'
 #' \itemize{
 #'   \item Modeling Output: Correigh Green \email{correigh.greene@@noaa.gov}
 #'   \item Delta Node Selection: Mark Tompkins \email{mtompkins@@flowwest.com}
