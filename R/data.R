@@ -24,7 +24,7 @@
 #' the floodplain acerage at a given flow is the weighted average of the floodplain
 #' area per river mile within each study.
 #'
-#' @source \href{https://www.google.com}{missing}
+#' @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
 "upper_sacramento_river_floodplain"
 
 #' Upper-mid Sacramento River Flow to Floodplain Habitat Area Relationship
@@ -49,7 +49,7 @@
 #' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
 #' The study results are scaled to the CVPIA extent.
 #'
-#' @source \href{https://www.google.com}{NMFS Life Cycle Model, Hendrix 2017 [missing url]}
+#' @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
 "upper_mid_sacramento_river_floodplain"
 
 #' Lower-mid Sacramento River Flow to Floodplain Habitat Area Relationship
@@ -76,7 +76,7 @@
 #' @examples
 #' lower_mid_sacramento_river_floodplain
 #'
-#' @source \href{https://www.google.com}{missing}
+#' @source @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
 "lower_mid_sacramento_river_floodplain"
 
 #' Lower Sacramento River Flow to Floodplain Habitat Area Relationship
@@ -101,7 +101,7 @@
 #' @examples
 #' lower_sacramento_river_floodplain
 #'
-#' @source \href{https://www.google.com}{missing}
+#' @source @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
 "lower_sacramento_river_floodplain"
 
 # TODO: MERCED just do it like the rest ------------------------------------------
