@@ -10,7 +10,7 @@
   \item{floodplain_acres}{fall run floodplain acreage (use for Steelhead when required)}
   \item{watershed}{name of watershed} }}
 \source{
-Modeling: \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVFPP2012_Att8_June.pdf}{CVFPP2012}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/TO25-ST8_Tech_Memo_SJR.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 }
 \usage{
 merced_river_floodplain
@@ -19,24 +19,11 @@ merced_river_floodplain
 A dataset containing the floodplain habitat area in acres as a
   function of flow in cubic feet per second
 }
-\details{
-The habitat area was derived from the CVFPP 2012 HEC-RAS 1D model.
-  The study only represents the lower 25.5 miles of the Merced River. The modeled results were scaled up to
-  represent the whole rearing region. We calculate area per river mile from modeled reach and assign the product of the
-  river mile distance and floodplain area per river mile for each reach defined as either in the Valley Lowland area,
-  in a higher gradient / laterally confined area between Valley Lowland areas, or in the dredge tailing area.
-  The study area is defined in the
-  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/Memo_Fish_30_August_2017.pdf}{CV Habitat Exchange}
-  as being within the Valley Lowland, all other reaches with that same category are given the full area rate.
-  River miles outside the Valley Lowland category recieve some proportion of the area rate, detailed below:
-  \itemize{
-    \item RM 0 - 25.5 use areas defined by study
-    \item RM 25.5 - 31.2 "Valley Lowland" use 1X area/RM from modeled reach.
-    \item RM 31.2 - 43.6 not "Valley Lowland", use 0.5X area/RM relationship from modeled reach.
-    \item RM 43.6 - 47.0 "Valley Lowland", use 1X area/RM from modeled reach.
-    \item RM 47.0 - 52.0 not "Valley Lowland" and in dredge tailings, use 0.1X area/RM from modeled reach.
-  }
+\section{Fall Run and Steelhead Modeling}{
+
+A 25.50 mile portion of the entire mapped rearing extent of 51.76 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Of the entire mapped rearing extent, 34.60 miles were classified as low gradient and 17.16 miles were classified as high gradient based on a geomorphic analysis. Floodplain area per unit length was determined for the modeled extent and applied to determine areas for the non-modeled extent. A scaling factor of 0.1 was applied to the area per unit length for the high gradient extent. No scaling factor was applied to the low gradient extent.
 }
+
 \examples{
 merced_river_floodplain
 
