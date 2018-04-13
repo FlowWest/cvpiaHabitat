@@ -87,7 +87,7 @@ bind_rows(cvpiaHabitat::battle_creek_instream,
   geom_line() +
   theme_minimal()
 
-# TODO
+
 # the rest-----------
 watersheds_without_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
                                                          Region != 'Upper-mid Sacramento River',

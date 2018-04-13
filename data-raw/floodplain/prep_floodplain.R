@@ -104,7 +104,7 @@ bear_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 
   mutate(watershed = 'Bear River')
 
 bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_fp) %>%
-  select(-ST_floodplain_acres)
+  mutate(ST_floodplain_acres = FR_floodplain_acres)
 
 use_data(bear_river_floodplain, overwrite = TRUE)
 

@@ -59,11 +59,13 @@ upper_sac_above_battle <- 55.5
 upper_sac_below_battle <- 59.2 - 55.5
 
 upper_sacramento_river_floodplain <- fp %>%
-  mutate(floodplain_acres =
+  mutate(FR_floodplain_acres =
            (`Keswick to Battle Creek`/miles['Keswick to Battle Creek'] * upper_sac_above_battle) +
            (`Battle Creek to Feather River`/miles['Battle Creek to Feather River'] * upper_sac_below_battle),
+         SR_floodplain_acres = FR_floodplain_acres,
+         ST_floodplain_acres = FR_floodplain_acres,
          watershed = 'Upper Sacramento River') %>%
-  select(flow_cfs, floodplain_acres, watershed)
+  select(flow_cfs, FR_floodplain_acres, SR_floodplain_acres, ST_floodplain_acres, watershed)
 
 devtools::use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
 
@@ -73,10 +75,12 @@ devtools::use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
 upper_mid_within_bat_feat <- 122.45
 
 upper_mid_sacramento_river_floodplain <- fp %>%
-  mutate(floodplain_acres =
+  mutate(FR_floodplain_acres =
            (`Battle Creek to Feather River`/miles['Battle Creek to Feather River'] * upper_mid_within_bat_feat),
+         SR_floodplain_acres = FR_floodplain_acres,
+         ST_floodplain_acres = FR_floodplain_acres,
          watershed = "Upper-mid Sacramento River") %>%
-  select(flow_cfs, floodplain_acres, watershed)
+  select(flow_cfs, FR_floodplain_acres, SR_floodplain_acres, ST_floodplain_acres, watershed)
 
 devtools::use_data(upper_mid_sacramento_river_floodplain, overwrite = TRUE)
 
@@ -87,11 +91,13 @@ lower_mid_above_feather <- 38.2
 lower_mid_below_feather <- 58 - 38.2
 
 lower_mid_sacramento_river_floodplain <- fp %>%
-  mutate(floodplain_acres =
+  mutate(FR_floodplain_acres =
            (`Battle Creek to Feather River`/miles['Battle Creek to Feather River'] * lower_mid_above_feather) +
            (`Feather River to Freeport`/miles['Feather River to Freeport'] * lower_mid_below_feather),
+         SR_floodplain_acres = FR_floodplain_acres,
+         ST_floodplain_acres = FR_floodplain_acres,
          watershed = 'Lower-mid Sacramento River') %>%
-  select(flow_cfs, floodplain_acres, watershed)
+  select(flow_cfs, FR_floodplain_acres, SR_floodplain_acres, ST_floodplain_acres, watershed)
 
 devtools::use_data(lower_mid_sacramento_river_floodplain, overwrite = TRUE)
 
@@ -100,10 +106,12 @@ devtools::use_data(lower_mid_sacramento_river_floodplain, overwrite = TRUE)
 lower_within_feat_free <-  13.7
 
 lower_sacramento_river_floodplain <- fp %>%
-  mutate(floodplain_acres =
+  mutate(FR_floodplain_acres =
            (`Feather River to Freeport`/miles['Feather River to Freeport'] * lower_within_feat_free),
+         SR_floodplain_acres = FR_floodplain_acres,
+         ST_floodplain_acres = FR_floodplain_acres,
          watershed = 'Lower Sacramento River') %>%
-  select(flow_cfs, floodplain_acres, watershed)
+  select(flow_cfs, FR_floodplain_acres, SR_floodplain_acres, ST_floodplain_acres, watershed)
 
 devtools::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
 

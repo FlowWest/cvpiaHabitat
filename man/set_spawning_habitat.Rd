@@ -5,9 +5,7 @@
 \alias{set_spawning_habitat}
 \title{Set Spawning Habitat Area}
 \usage{
-set_spawning_habitat(watershed, species, flow)
-
-set_spawning_habitat(watershed, species, flow)
+set_spawning_habitat(watershed, species, flow, ...)
 }
 \arguments{
 \item{watershed}{one of the watersheds defined for the SIT model}

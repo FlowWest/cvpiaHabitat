@@ -9,6 +9,8 @@
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -22,7 +24,11 @@
 #' the floodplain acerage at a given flow is the weighted average of the floodplain
 #' area per river mile within each study.
 #'
+<<<<<<< HEAD
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+=======
+#' @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
+>>>>>>> fcde377e7bc9486806195dad869d9c9b4ac4dad2
 "upper_sacramento_river_floodplain"
 
 #' Upper-mid Sacramento River Flow to Floodplain Habitat Area Relationship
@@ -34,6 +40,8 @@
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -45,7 +53,11 @@
 #' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
 #' The study results are scaled to the CVPIA extent.
 #'
+<<<<<<< HEAD
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+=======
+#' @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
+>>>>>>> fcde377e7bc9486806195dad869d9c9b4ac4dad2
 "upper_mid_sacramento_river_floodplain"
 
 #' Lower-mid Sacramento River Flow to Floodplain Habitat Area Relationship
@@ -57,6 +69,8 @@
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -70,7 +84,11 @@
 #' @examples
 #' lower_mid_sacramento_river_floodplain
 #'
+<<<<<<< HEAD
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+=======
+#' @source @source \href{#}{NMFS Life Cycle Model, Hendrix 2017}
+>>>>>>> fcde377e7bc9486806195dad869d9c9b4ac4dad2
 "lower_mid_sacramento_river_floodplain"
 
 #' Lower Sacramento River Flow to Floodplain Habitat Area Relationship
@@ -82,6 +100,8 @@
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -610,6 +630,7 @@
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
 #'   \item{FR_floodplain_acres}{fall run floodplain acreage}
+#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
 #'   \item{watershed}{name of watershed}
 #' }
 #'

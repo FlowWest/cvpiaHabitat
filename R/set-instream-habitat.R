@@ -59,39 +59,42 @@
 #' # Juvenile rearing habitat value in square meters for Fall Run in Elder Creek at 300 cfs.
 #' set_instream_habitat('Elder Creek', 'fr', 'juv', 300) # no habitat modeling exists, composite used
 #' @export
-set_instream_habitat <- function(watershed, species, life_stage, flow) {
+set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
 
-  # identify watersheds without modeling
-  watershed_with_no_model <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                                       !FR_juv), Watershed)
-
-  # check if watershed has no modeling, if so use regional approx
-  if (watershed %in% watershed_with_no_model) {
-    region <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                        Watershed == watershed), Region)
-
-    approx_functions <- region_rearing_approx(region, species, life_stage)
-
-    # remove NA approx functions for places without species present
-    approx_funcs <- approx_functions[!is.na(approx_functions)]
-    if (length(approx_funcs) == 0) {return(NA)}
-
-    wuas <- purrr::map_dbl(approx_funcs, function(f) {
-      f(flow)
-    })
-    wua <- mean(wuas)
-    habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "rearing", species_name = species)
-    return(habitat_area)
-  } else {
-    # create approx functions
-    wua_func <- rearing_approx(watershed, species, life_stage)
-
-    wua <- wua_func(flow)
-    habitat_area <- wua_to_area(wua = wua, watershed = watershed,
-                                life_stage = "rearing", species_name = species)
-    return(habitat_area)
+  if (species == 'sr') {
+    spring_run_exists <- !is.na(dplyr::pull(
+      dplyr::filter(cvpiaHabitat::modeling_exist,
+                    Watershed == watershed), SR_juv))
+    if (!spring_run_exists){
+      return(NA)
+    }
   }
+
+  if (watershed == 'Upper Sacramento River') {
+    return(set_upper_sac_habitat(species, life_stage, flow, ...))
+  }
+
+  if (watershed == 'Lower-mid Sacramento River') {
+    return(set_lower_mid_sac_habitat(species, life_stage, flow, ...))
+  }
+
+  # identify watersheds within upper mid that need to use region approx curve
+  upper_mid_region <- dplyr::pull(
+    dplyr::filter(cvpiaHabitat::modeling_exist,
+                  UseRearRegionApprox,
+                  Region == "Upper-mid Sacramento River"), Watershed)
+
+  # create approx functions
+  if (watershed %in% upper_mid_region) {
+    wua_func <- rearing_approx("Upper Mid Sac Region", species, life_stage)
+  } else {
+    wua_func <- rearing_approx(watershed, species, life_stage)
+  }
+
+  wua <- wua_func(flow)
+  habitat_area <- wua_to_area(wua = wua, watershed = watershed,
+                              life_stage = "rearing", species_name = species)
+  return(habitat_area)
 }
 
 #' Fall Run rearing habitat flow to area approximator
@@ -126,11 +129,7 @@ FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
 SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   # check if sr floodplain has modeling
   SR_has_modeling <- dplyr::pull(modeling_lookup, SR_juv)
-
-  if (is.na(SR_has_modeling)){
-    # no spring run in watershed
-    return(NA)
-  }
+  ST_has_modeling <- dplyr::pull(modeling_lookup, ST_juv)
 
   if (SR_has_modeling){
     if (life_stage == 'fry') {
@@ -140,6 +139,8 @@ SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
       # life stage juv modeling
       SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_juv_wua, rule = 2)
     }
+  } else if (ST_has_modeling) {
+    SR_approx <- ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
   } else {
     # no modeling use fall run modeling
     SR_approx <- FR_rearing_approx(relationship_df, modeling_lookup, life_stage)
@@ -173,21 +174,6 @@ ST_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   return(ST_approx)
 }
 
-#' Regional rearing habitat flow to area approximator
-#' @description function uses a region to return approx functions for watersheds within it with models
-#' @param region Region name, example "Upper-mid Sacramento River"
-#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
-#' @return a list of approx functions obtained from calliong spawning_approx()
-region_rearing_approx <- function(region, species, life_stage) {
-  # list of watersheds within the specified region with modeling
-  watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
-                                                        Region == region,
-                                                        FR_juv), Watershed)
-
-  # return list of approx function for the watersheds in region with modeling
-  purrr::map(watersheds_with_modeling, ~rearing_approx(., species = species, life_stage = life_stage))
-}
-
 #' function uses an existing relationship to return a linear interpolated approx function
 #' @param watershed name of the watershed to compute approx function on
 #' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
@@ -209,3 +195,66 @@ rearing_approx <- function(watershed, species, life_stage) {
   )
 }
 
+set_upper_sac_habitat <- function(species, life_stage, flow, month) {
+  # this is composed of two different curves, the first is the board in and second is boards out
+  # board IN months 4-10
+  # board OUT months 1-3, 11-12
+
+  # for fall run fry modeling does not exist so we use fall run juv
+  if (species == 'wr') {
+    if (life_stage == 'fry') {
+      # winter run fry rearing
+      upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                       cvpiaHabitat::upper_sac_ACID_boards_in$WR_fry_WUA, rule=2)
+      upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                        cvpiaHabitat::upper_sac_ACID_boards_out$WR_fry_WUA, rule=2)
+    } else {
+      # winter run juvenile rearing
+      upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                       cvpiaHabitat::upper_sac_ACID_boards_in$WR_juv_WUA, rule=2)
+
+      upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                        cvpiaHabitat::upper_sac_ACID_boards_out$WR_juv_WUA, rule=2)
+    }
+  } else {
+    if (life_stage == 'fry') {
+      # fall run, spring run, and steelhead fry rearing
+      upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                       cvpiaHabitat::upper_sac_ACID_boards_in$FR_fry_WUA, rule=2)
+      upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                        cvpiaHabitat::upper_sac_ACID_boards_out$FR_fry_WUA, rule=2)
+    } else {
+      # fall run, spring run, and steelhead juvenile rearing
+      upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
+                                       cvpiaHabitat::upper_sac_ACID_boards_in$FR_juv_WUA, rule=2)
+
+      upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
+                                        cvpiaHabitat::upper_sac_ACID_boards_out$FR_juv_WUA, rule=2)
+    }
+  }
+
+  wua <- if (month < 4 | month > 10) {
+    upper_sac_OUT_approx(flow)
+  } else {
+    upper_sac_IN_approx(flow)
+  }
+
+  habitat_area <- wua_to_area(wua = wua, watershed = 'Upper Sacramento River',
+                              life_stage = "rearing", species_name = species)
+  return(habitat_area)
+}
+
+set_lower_mid_sac_habitat <- function(species, life_stage, flow, flow2) {
+  wua_func <- rearing_approx('Lower-mid Sacramento River', species, life_stage)
+
+  wua1 <- wua_func(flow)
+  habitat_area1 <- wua_to_area(wua = wua1, watershed = 'Lower-mid Sacramento River',
+                              life_stage = "rearing", species_name = species)
+
+  wua2 <- wua_func(flow2)
+  habitat_area2 <- wua_to_area(wua = wua2, watershed = 'Lower-mid Sacramento River',
+                               life_stage = "rearing", species_name = species)
+
+  habitat_area <-  (35.6/58 * habitat_area1) + (22.4/58 * habitat_area2)
+  return(habitat_area)
+}
