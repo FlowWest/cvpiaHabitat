@@ -11,7 +11,7 @@
   \item{watershed}{name of watershed}
 }}
 \source{
-NMFS Life Cycle Model, Hendrix 2017
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }
 \usage{
 upper_mid_sacramento_river_instream

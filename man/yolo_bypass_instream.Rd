@@ -11,7 +11,7 @@
   \item{Yolo Bypass 2}{juvenile rearing habitat WUA in the Yolo Bypass below Sacramento Weir}
 }}
 \source{
-\href{https://www.google.com}{TODO}
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }
 \usage{
 yolo_bypass_instream

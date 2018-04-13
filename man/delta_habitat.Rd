@@ -11,6 +11,8 @@
   \item{South Delta}{high quality habitat area in square meters}
 }}
 \source{
+\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+
 \itemize{
   \item Modeling Output: Correigh Green \email{correigh.greene@noaa.gov}
   \item Delta Node Selection: Mark Tompkins \email{mtompkins@flowwest.com}
