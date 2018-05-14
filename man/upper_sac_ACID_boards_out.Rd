@@ -47,9 +47,6 @@ and HEC-RAS 1D (Battle Creek to Red Bluff). The A.C.I.D. boards are in April 1st
 }
 
 \emph{Generalised life history Yoshinyama et al. 1998}
-
-Use these values to compute spawning habitat for .... Use these values to compute rearing habitat
-for ....
 }
 \examples{
 upper_sac_ACID_boards_out

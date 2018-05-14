@@ -1118,8 +1118,6 @@
 #'
 #' \emph{Generalised life history Yoshinyama et al. 1998}
 #'
-#' Use these values to compute spawning habitat for Winter Run. Use these values to compute rearing habitat
-#' for ....
 #'
 #' @examples
 #' upper_sac_ACID_boards_in
@@ -1166,8 +1164,6 @@
 #'
 #' \emph{Generalised life history Yoshinyama et al. 1998}
 #'
-#' Use these values to compute spawning habitat for .... Use these values to compute rearing habitat
-#' for ....
 #'
 #' @examples
 #' upper_sac_ACID_boards_out
@@ -1454,7 +1450,9 @@
 #'   \item{Sutter Bypass 4}{floodplain acreage in the Sutter Bypass below Tisdale Weir}
 #' }
 #'
-#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+#' @details Habitat estimates are freom the Central Valley Floodplain Evaluation
+#' and Delineation (CVFED) HEC-RAS hydraulic
+#' model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model.
 #'
 #' High quality defined by:
 #'
@@ -1570,13 +1568,10 @@
 #'
 #' @details
 #' Estimates of percent pools were provided by Mark Gard for some watersheds.
-#' For watersheds without an estimate, the mean percent pools of the available watersheds
-#' (excluding Feather River) was used (23.1%). The total area of pools was then caluculated
+#' The mean percent pools, excluding Feather River, is 23.1\%. This value is used for watersheds without an estimate.
+#' The total area of pools is then caluculated
 #' by multiplying the estimated percent pools by the total channel area. Channel
-#' areas were estimated using Google Earth Engine, NAIP imagery and the
-#' Normalized Difference Water Index (NDWI). The 1-metere pixels with
-#' high NDWI's were classified as water and summed to estimate the total channel
-#' area for each watershed.
+#' areas were estimated using Google Earth Engine.
 #'
 #' Watersheds With Estimated Percent Pools:
 #' \itemize{

@@ -23,7 +23,9 @@ A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second
 }
 \details{
-Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
+Habitat estimates are freom the Central Valley Floodplain Evaluation
+and Delineation (CVFED) HEC-RAS hydraulic
+model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model.
 
 High quality defined by:
 
