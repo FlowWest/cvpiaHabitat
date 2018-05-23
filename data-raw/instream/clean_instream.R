@@ -475,10 +475,15 @@ cow_creek_instream <- cow_creek %>%
 devtools::use_data(cow_creek_instream, overwrite = TRUE)
 
 # feather river
-feather_river <- read_csv("data-raw/instream/feather_river_instream.csv", skip=1)
-feather_river_instream <- feather_river %>%
+feather_river <- read_csv("data-raw/instream/feather_river_instream.csv", skip = 1) %>%
+  select(-spawn_WUA)
+feather_river_spawn <- read_csv('data-raw/feather/feather_river_spawning.csv')
+
+feather_river_instream <- feather_river_spawn %>%
+  left_join(feather_river) %>%
+  mutate(watershed = 'Feather River') %>%
   select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
+         FR_spawn_wua,
          FR_fry_wua = fry_WUA,
          FR_juv_wua = juv_WUA,
          watershed)
