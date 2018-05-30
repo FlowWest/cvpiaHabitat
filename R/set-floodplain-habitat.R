@@ -35,9 +35,19 @@ set_floodplain_habitat <- function(watershed, species, flow) {
     return(NA)
   }
 
-  acres <- floodplain_approx(watershed, species)(flow)
+  if (watershed %in% c('Upper Sacramento River', 'Upper-mid Sacramento River',
+                       'Lower-mid Sacramento River', 'Lower Sacramento River')) {
+    watershed_name <- tolower(gsub(pattern = " |-", replacement = "_", x = watershed))
+    watershed_rda_name <- paste(watershed_name, "floodplain", sep = "_")
 
-  return(acres_to_square_meters(acres))
+    df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
+    fp_approx <- approxfun(df$flow_cfs, df$floodplain_sq_meters, yleft = 0, yright = max(df$floodplain_sq_meters))
+    return(fp_approx(flow))
+
+  } else {
+    acres <- floodplain_approx(watershed, species)(flow)
+
+    return(acres_to_square_meters(acres))}
 
 }
 
@@ -49,10 +59,12 @@ floodplain_approx <- function(watershed, species) {
 
   df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
+
   switch(species,
          'fr' = approxfun(df$flow_cfs, df$FR_floodplain_acres, yleft = 0, yright = max(df$FR_floodplain_acres)),
          'sr' = approxfun(df$flow_cfs, df$SR_floodplain_acres, yleft = 0, yright = max(df$SR_floodplain_acres)),
          'st' = approxfun(df$flow_cfs, df$ST_floodplain_acres, yleft = 0, yright = max(df$ST_floodplain_acres)))
+
 }
 
 
