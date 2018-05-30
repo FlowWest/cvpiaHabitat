@@ -2,39 +2,29 @@ library(cvpiaHabitat)
 context('Upper Sacramento Habitat')
 
 test_that('FR fry Upper Sac works', {
-  wua1 <- cvpiaHabitat::upper_sac_ACID_boards_in$FR_fry_WUA[1]
-  wua2 <- cvpiaHabitat::upper_sac_ACID_boards_out$FR_fry_WUA[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[2, 5]]
-
-  x1 <- ((stream_length/1000) * wua1)/10.7639
-  x2 <- ((stream_length/1000) * wua2)/10.7639
-  expect_equal(
-    set_instream_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', life_stage = 'fry',
-                         flow = 3250, month = 5), x1)
 
   expect_equal(
     set_instream_habitat(watershed = 'Upper Sacramento River',
                          species = 'fr', life_stage = 'fry',
-                         flow = 3250, month = 2), x2)
+                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
+
+  expect_equal(
+    set_instream_habitat(watershed = 'Upper Sacramento River',
+                         species = 'fr', life_stage = 'fry',
+                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
 })
 
 test_that('FR juv Upper Sac works', {
-  wua1 <- cvpiaHabitat::upper_sac_ACID_boards_in$FR_juv_WUA[1]
-  wua2 <- cvpiaHabitat::upper_sac_ACID_boards_out$FR_juv_WUA[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[2, 5]]
-
-  x1 <- ((stream_length/1000) * wua1)/10.7639
-  x2 <- ((stream_length/1000) * wua2)/10.7639
-  expect_equal(
-    set_instream_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', life_stage = 'juv',
-                         flow = 3250, month = 5), x1)
 
   expect_equal(
     set_instream_habitat(watershed = 'Upper Sacramento River',
                          species = 'fr', life_stage = 'juv',
-                         flow = 3250, month = 2), x2)
+                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
+
+  expect_equal(
+    set_instream_habitat(watershed = 'Upper Sacramento River',
+                         species = 'fr', life_stage = 'juv',
+                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
 })
 
 test_that('FR spawn Upper Sac works', {
@@ -44,6 +34,7 @@ test_that('FR spawn Upper Sac works', {
 
   x1 <- ((stream_length/1000) * wua1)/10.7639
   x2 <- ((stream_length/1000) * wua2)/10.7639
+
   expect_equal(
     set_spawning_habitat(watershed = 'Upper Sacramento River',
                          species = 'fr', flow = 3250, month = 5), x1)

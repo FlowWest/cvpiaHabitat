@@ -4,7 +4,7 @@
 \alias{set_instream_habitat}
 \title{Set Instream Habitat Area}
 \usage{
-set_instream_habitat(watershed, species, life_stage, flow, ...)
+set_instream_habitat(watershed, species, life_stage, flow)
 }
 \arguments{
 \item{watershed}{one of the watersheds defined for the SIT model}

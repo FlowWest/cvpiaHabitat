@@ -30,7 +30,8 @@ feat_free <- sac_floodplain %>%
 
 # look up vector for converting study reach areas into area per miles--------------
 reach_miles <- c(295.92 - 267, 267 - 80.5, 80.5 - 46.6)
-
+sum(reach_miles)
+59.28 + 122.25 + 57.96 + 13.7
 names(reach_miles) <- c('kes_bat', 'bat_feat', 'feat_free')
 reach_miles
 
@@ -108,4 +109,5 @@ lower_sacramento_river_floodplain %>%
   geom_line()
 
 devtools::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
+
 
