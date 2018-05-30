@@ -71,14 +71,14 @@ test_that('ST spawn Upper Sac works', {
 
 test_that('FR floodplain Upper Sac works', {
   expect_equal(
-    square_meters_to_acres(set_floodplain_habitat('Upper Sacramento River', 'fr', 2967.296)),
-    cvpiaHabitat::upper_sacramento_river_floodplain[[2, 2]],
+    set_floodplain_habitat('Upper Sacramento River', 'fr', 4000),
+    cvpiaHabitat::upper_sacramento_river_floodplain[[5, 2]],
     tolerance = .01)
 })
 
 test_that('SR floodplain Upper Sac works', {
   expect_equal(
-    square_meters_to_acres(set_floodplain_habitat('Upper Sacramento River', 'sr', 2967.296)),
-    cvpiaHabitat::upper_sacramento_river_floodplain[[2, 3]],
+    set_floodplain_habitat('Upper Sacramento River', 'sr', 4000),
+    cvpiaHabitat::upper_sacramento_river_floodplain[[5, 2]],
     tolerance = .01)
 })
