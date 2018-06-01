@@ -78,7 +78,7 @@
     </div>
 
     
-    <p>A dataset containing the floodplain habitat area in acres as a
+    <p>A dataset containing the floodplain habitat area in square meters as a
 function of flow in cubic feet per second</p>
     
 
@@ -88,9 +88,7 @@ function of flow in cubic feet per second</p>
 
     <p>dataframe with 240 rows and 3 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_floodplain_acres</dt><dd><p>fall run floodplain acreage</p></dd>
-  <dt>SR_floodplain_acres</dt><dd><p>spring run floodplain acreage</p></dd>
-  <dt>ST_floodplain_acres</dt><dd><p>steelhead floodplain acreage</p></dd>
+  <dt>floodplain_sq_meters</dt><dd><p>suitable floodplain area in square meters</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -101,31 +99,36 @@ function of flow in cubic feet per second</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The habitat area was derived from HEC-RAS 1D model, Hendrix 2017.
-The study's extent is from Battle Creek to the confluence with the Feather River (189.1 mi).
-The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
+The study's extent is from Battle Creek to the confluence with the Feather River (186.5 mi).
+The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.3 mi).
 The study results are scaled to the CVPIA extent.</p>
     
     <h2 class="hasAnchor" id="fall-run-and-steelhead-modeling"><a class="anchor" href="#fall-run-and-steelhead-modeling"></a>Fall Run and Steelhead Modeling</h2>
 
     
-    <p>The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.</p>
+    <p>The entire mapped rearing extent was modeled using Central Valley
+Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for
+use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality
+depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area.
+High quality velocities were assumed to be less than or equal to 0.15 meters per second,
+and high quality depths were assumed to be between 0.2 meters and 1.5 meters.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>upper_mid_sacramento_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 240 x 5
-#&gt;    flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
-#&gt;       &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;
-#&gt;  1 2637.426              0.0000              0.0000              0.0000
-#&gt;  2 2967.296            131.0353            131.0353            131.0353
-#&gt;  3 2992.467            131.2937            131.2937            131.2937
-#&gt;  4 3384.049            135.3125            135.3125            135.3125
-#&gt;  5 3479.393            137.6976            137.6976            137.6976
-#&gt;  6 3550.317            139.4718            139.4718            139.4718
-#&gt;  7 3854.895            146.0716            146.0716            146.0716
-#&gt;  8 3897.321            146.0716            146.0716            146.0716
-#&gt;  9 4144.839            146.0716            146.0716            146.0716
-#&gt; 10 4355.361            148.5812            148.5812            148.5812
-#&gt; # ... with 230 more rows, and 1 more variables: watershed &lt;chr&gt;</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>upper_mid_sacramento_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 81 x 3
+#&gt;    flow_cfs floodplain_sq_meters                  watershed
+#&gt;       &lt;int&gt;                &lt;dbl&gt;                      &lt;chr&gt;
+#&gt;  1     2000               0.0000 Upper-mid Sacramento River
+#&gt;  2     2500               0.0000 Upper-mid Sacramento River
+#&gt;  3     3000               0.0000 Upper-mid Sacramento River
+#&gt;  4     3500               0.0000 Upper-mid Sacramento River
+#&gt;  5     4000           26296.7549 Upper-mid Sacramento River
+#&gt;  6     4500           32501.6072 Upper-mid Sacramento River
+#&gt;  7     5000             531.4688 Upper-mid Sacramento River
+#&gt;  8     5500             544.9990 Upper-mid Sacramento River
+#&gt;  9     6000             557.7775 Upper-mid Sacramento River
+#&gt; 10     6500             570.5559 Upper-mid Sacramento River
+#&gt; # ... with 71 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

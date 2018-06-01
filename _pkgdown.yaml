@@ -39,11 +39,8 @@ reference:
   - feather_river_instream
   - merced_river_instream
   - mokelumne_river_instream
-  - upper_sac_ACID_boards_in
-  - upper_sac_ACID_boards_out
-  - upper_mid_sacramento_river_instream
-  - lower_mid_sacramento_river_instream
-  - lower_sacramento_river_instream
+  - up_sac_spawn
+  - sac_instream
   - upper_mid_sac_region_instream
   - stanislaus_river_instream
   - tuolumne_river_instream
@@ -68,10 +65,7 @@ reference:
   - mill_creek_floodplain
   - merced_river_floodplain
   - mokelumne_river_floodplain
-  - upper_sacramento_river_floodplain
-  - upper_mid_sacramento_river_floodplain
-  - lower_mid_sacramento_river_floodplain
-  - lower_sacramento_river_floodplain
+  - sac_floodplain
   - san_joaquin_river_floodplain
   - stanislaus_river_floodplain
   - tuolumne_river_floodplain

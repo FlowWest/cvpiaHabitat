@@ -20,6 +20,20 @@ north_delta_habitat <- north_delta %>%
          date = mdy(paste0(month, ' 1, ', year))) %>%
   select(date, `North Delta`)
 
+
+north_delta_habitat %>%
+  mutate(acres = `North Delta`* 0.000247105,
+         day = lubridate::days_in_month(date)) %>%
+  # filter(acres > 10000) %>%
+  mutate(date = ymd(paste(year(date), month(date), day))) %>%
+  left_join( select(cvpiaFlow::delta_flows, date, n_dlt_inflow_cfs)) %>%
+  ggplot(aes(x = acres, y = n_dlt_inflow_cfs, color = factor(month(date), levels = 1:12))) +
+  geom_point()
+  # ggplot(aes(x = date)) +
+  # geom_col(aes(y = acres)) +
+  # geom_point(aes(y = n_dlt_inflow_cfs)) +
+  # labs(y = 'acres')
+
 # 1 sq meter = 0.000247105 acres
 nd_year_means <- north_delta_habitat %>%
   group_by(year = year(date)) %>%

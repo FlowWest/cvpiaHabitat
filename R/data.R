@@ -1,119 +1,172 @@
-# FLOODPLAIN -------------------------------------------------------------------------------
-
-#' Upper Sacramento River Flow to Floodplain Habitat Area Relationship
+# Sacramento River Mainstem ------------------------------
+#' Mainstem Sacramento River Spawning Habitat
+#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+#' as a function of flow in cubic feet per second.
 #'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 240 rows and 3 variables:
+#' @format dataframe with 30 rows and 11 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{FR_spawn_WUA}{fall run spawning WUA in square feet per 1000 feet}
+#'   \item{LFR_spawn_WUA}{late-fall run fry spawning WUA in square feet per 1000 feet}
+#'   \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
+#'   \item{watershed}{name of watershed}
+#' }
+#'
+#' @details The spawning WUA were derived from a FWS River2D model. The study is broken into several
+#'  segments: Keswick to A.C.I.D. (3.5 mi), A.C.I.D. to Cow Creek (18.5 mi),
+#'  Cow Creek to Battle Creek (8.5 mi), Battle Creek to Red Bluff (22.5 mi), and
+#'  Red Bluff to Deer Creek (23.5 mi). The Upper Sacramento fall run
+#' spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River
+#' (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle
+#' Creek. The A.C.I.D. boards are in April 1st - October 31st
+#'
+#' \tabular{lllllll}{
+#'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
+#'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
+#'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
+#'   Spring Run \tab Mar-Sep \tab May-Jun \tab Aug-Oct \tab Mid-Sep \tab Nov-Mar \tab 3-15 mths \cr
+#'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
+#' }
+#'
+#' \emph{Generalised life history Yoshinyama et al. 1998}
+#'
+#' @examples
+#' upper_sac_ACID_boards_in
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' @name up_sac_spawn
+#' @aliases NULL
+NULL
+
+#' @rdname up_sac_spawn
+"upper_sac_ACID_boards_in"
+
+#' @rdname up_sac_spawn
+"upper_sac_ACID_boards_out"
+
+#' Mainstem Sacramento River Floodplain Rearing Habitat
+#'
+#' @description A dataset containing the floodplain habitat area in square meters as a
+#' function of flow in cubic feet per second
+#'
+#' @format dataframe with 81 rows and 3 variables:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{floodplain_sq_meters}{suitable floodplain area in square meters}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
 #' @examples
 #' upper_sacramento_river_floodplain
 #'
-#' @details The habitat area was derived from a HEC-RAS 1D model, Hendrix 2017.
-#' The CVPIA Upper Sacramento River extends from Keswick to Red Bluff (59.2 mi).
-#' This reach overlaps with two of the study's, Keswick to Battle Creek (55.5 mi) and Battle Creek to
-#' the confluence with the Feather River (189.1 mi). To scale the study's results to CVPIA's extents,
-#' the floodplain acerage at a given flow is the weighted average of the floodplain
-#' area per river mile within each study.
 #' @section Fall Run and Steelhead Modeling:
-#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
+#' The entire mapped rearing extent was modeled using Central Valley Floodplain
+#' Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter
+#' Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea"
+#' result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters
+#' per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
+#'
+#' @section  Model Scaling:
+#' The study's results were scaled using the proportion of the CVPIA reach with each study reach extent.
+#'
+#' @section Upper Sacramento River:
+#' The CVPIA Upper Sacramento River extends from Keswick to Red Bluff (59.3 mi).
+#' This reach overlaps with two of the study's, Keswick to Battle Creek (28.9 mi) and Battle Creek to
+#' the confluence with the Feather River (186.5 mi).
+#'
+#' @section Upper-mid Sacramento River:
+#' The study's extent is from Battle Creek to the confluence with the Feather River (186.5 mi).
+#' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.3 mi).
+#'
+#' @section Lower-mid Sacramento River:
+#' The CVPIA Lower-mid Sacramento River extends
+#' from Wilkins Slough to the American River (58.0 mi). This reach overlaps with two of the study's, Battle Creek to
+#' the confluence with the Feather River (186.5 mi) and the confluence with the Feather River to Freeport (33.9 mi).
+#'
+#' @section Lower Sacramento River:
+#' The study's extent is from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower
+#' Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
+#'
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' @name sac_floodplain
+#' @aliases NULL
+NULL
+
+#' @rdname sac_floodplain
 "upper_sacramento_river_floodplain"
 
-#' Upper-mid Sacramento River Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 240 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @examples
-#' upper_mid_sacramento_river_floodplain
-#'
-#' @details The habitat area was derived from HEC-RAS 1D model, Hendrix 2017.
-#' The study's extent is from Battle Creek to the confluence with the Feather River (189.1 mi).
-#' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.45 mi).
-#' The study results are scaled to the CVPIA extent.
-#'
-#' @section Fall Run and Steelhead Modeling:
-#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' @rdname sac_floodplain
 "upper_mid_sacramento_river_floodplain"
 
-#' Lower-mid Sacramento River Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 240 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The habitat area was derived from a HEC-RAS 1D model. The CVPIA Lower-mid Sacramento River extends
-#' from Wilkins Slough to the American River (58.0 mi). This reach overlaps with two of the study's, Battle Creek to
-#' the confluence with the Feather River (189.1 mi) and the confluence with the Feather River to Freeport (33.4 mi).
-#' To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
-#' above (34\%) and below (66\%) the Feather River. The floodplain acerage at a given flow is the weighted average
-#' of the floodplain area per river mile within each study.
-#'
-#' @section Fall Run and Steelhead Modeling:
-#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
-#'
-#' @examples
-#' lower_mid_sacramento_river_floodplain
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' @rdname sac_floodplain
 "lower_mid_sacramento_river_floodplain"
 
-#' Lower Sacramento River Flow to Floodplain Habitat Area Relationship
+#' @rdname sac_floodplain
+"lower_sacramento_river_floodplain"
+
+#' Mainstem Sacramento River Instream Rearing Habitat
 #'
-#' @description A dataset containing the floodplain habitat area in acres as a
+#' @description A dataset containing the instream rearing habitat area in square meters as a
 #' function of flow in cubic feet per second
 #'
-#' @format dataframe with 240 rows and 3 variables:
+#' @format dataframe with 81 rows and 3 variables:
 #' \describe{
 #'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage}
-#'   \item{SR_floodplain_acres}{spring run floodplain acreage}
-#'   \item{ST_floodplain_acres}{steelhead floodplain acreage}
+#'   \item{rearing_sq_meters}{suitable instream rearing area in square meters}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The habitat area was derived from a HEC-RAS 1D model. The study's extent is
-#' from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower
-#' Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
-#' The study results are scaled to the CVPIA extent.
+#' @examples
+#' upper_sacramento_river_instream
 #'
 #' @section Fall Run and Steelhead Modeling:
-#' The entire mapped rearing extent of 59.19 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea" result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
+#' The entire mapped rearing extent was modeled using Central Valley Floodplain
+#' Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter
+#' Run Chinook Salmon life cycle model. The high quality depth and high quality velocity ("Pref11") "BankArea"
+#' result was used as floodplain area. High quality velocities were assumed to be less than or equal to 0.15 meters
+#' per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters.
 #'
-#' @examples
-#' lower_sacramento_river_floodplain
+#' @section  Model Scaling:
+#' The study's results were scaled using the proportion of the CVPIA reach with each study reach extent.
+#'
+#' @section Upper Sacramento River:
+#' The CVPIA Upper Sacramento River extends from Keswick to Red Bluff (59.3 mi).
+#' This reach overlaps with two of the study's, Keswick to Battle Creek (28.9 mi) and Battle Creek to
+#' the confluence with the Feather River (186.5 mi).
+#'
+#' @section Upper-mid Sacramento River:
+#' The study's extent is from Battle Creek to the confluence with the Feather River (186.5 mi).
+#' The CVPIA Upper-mid Sacramento River extends from Red Blurr to Wilkins Slough (122.3 mi).
+#'
+#' @section Lower-mid Sacramento River:
+#' The CVPIA Lower-mid Sacramento River extends
+#' from Wilkins Slough to the American River (58.0 mi). This reach overlaps with two of the study's, Battle Creek to
+#' the confluence with the Feather River (186.5 mi) and the confluence with the Feather River to Freeport (33.9 mi).
+#'
+#' @section Lower Sacramento River:
+#' The study's extent is from the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower
+#' Sacramento River extends from the confluence with the American River to Freeport (13.7 mi).
+#'
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-"lower_sacramento_river_floodplain"
+#' @name sac_instream
+#' @aliases NULL
+NULL
+
+#' @rdname sac_instream
+"upper_sacramento_river_instream"
+
+#' @rdname sac_instream
+"upper_mid_sacramento_river_instream"
+
+#' @rdname sac_instream
+"lower_mid_sacramento_river_instream"
+
+#' @rdname sac_instream
+"lower_sacramento_river_instream"
+
+# FLOODPLAIN -------------------------------------------------------------------------------
 
 #' Merced River Flow to Floodplain Habitat Area Relationship
 #'
@@ -1081,165 +1134,6 @@
 #' @source FWS
 "stanislaus_river_instream"
 
-#' Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards In)
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-#' as a function of flow in cubic feet per second.
-#'
-#' @format dataframe with 30 rows and 11 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_fry_WUA}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{FR_juv_WUA}{fall run juvenile WUA in square feet per 1000 feet}
-#'   \item{FR_spawn_WUA}{fall run spawning WUA in square feet per 1000 feet}
-#'   \item{LFR_fry_WUA}{late-fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{LFR_juv_WUA}{late-fall run fry juvenile WUA in square feet per 1000 feet}
-#'   \item{LFR_spawn_WUA}{late-fall run fry spawning WUA in square feet per 1000 feet}
-#'   \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
-#'   \item{WR_fry_WUA}{winter run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{WR_juv_WUA}{winter run juvenile WUA in square feet per 1000 feet}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The spawning WUA were derived from a FWS River2D model. The study is broken into several
-#'  segments: Keswick to A.C.I.D. (3.5 mi), A.C.I.D. to Cow Creek (18.5 mi),
-#'  Cow Creek to Battle Creek (8.5 mi), Battle Creek to Red Bluff (22.5 mi), and
-#'  Red Bluff to Deer Creek (23.5 mi). The Upper Sacramento fall run
-#' spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River
-#' (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle
-#' Creek. The rearing WUA values come from two models, River2D (Keswick to Battle Creek)
-#' and HEC-RAS 1D (Battle Creek to Red Bluff). The A.C.I.D. boards are in April 1st - October 31st
-#'
-#' \tabular{lllllll}{
-#'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
-#'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
-#'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
-#'   Spring Run \tab Mar-Sep \tab May-Jun \tab Aug-Oct \tab Mid-Sep \tab Nov-Mar \tab 3-15 mths \cr
-#'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
-#' }
-#'
-#' \emph{Generalised life history Yoshinyama et al. 1998}
-#'
-#'
-#' @examples
-#' upper_sac_ACID_boards_in
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-"upper_sac_ACID_boards_in"
-
-#' Upper Sacramento River Instream Flow to Habitat Area Relationship (A.C.I.D. Boards Out)
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-#' as a function of flow in cubic feet per second.
-#'
-#' @format dataframe with 30 rows and 11 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_fry_WUA}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{FR_juv_WUA}{fall run juvenile WUA in square feet per 1000 feet}
-#'   \item{FR_spawn_WUA}{fall run spawning WUA in square feet per 1000 feet}
-#'   \item{LFR_fry_WUA}{late-fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{LFR_juv_WUA}{late-fall run fry juvenile WUA in square feet per 1000 feet}
-#'   \item{LFR_spawn_WUA}{late-fall run fry spawning WUA in square feet per 1000 feet}
-#'   \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
-#'   \item{WR_fry_WUA}{winter run fry (up to 50 mm) WUA in square feet per 1000 feet}
-#'   \item{WR_juv_WUA}{winter run juvenile WUA in square feet per 1000 feet}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The spawning WUA were derived from a FWS River2D model. The study is broken into several
-#'  segments: Keswick to A.C.I.D. (3.5 mi), A.C.I.D. to Cow Creek (18.5 mi),
-#'  Cow Creek to Battle Creek (8.5 mi), Battle Creek to Red Bluff (22.5 mi), and
-#'  Red Bluff to Deer Creek (23.5 mi). The Upper Sacramento fall run
-#' spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River
-#' (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle
-#' Creek. The rearing WUA values come from two models, River2D (Keswick to Battle Creek)
-#' and HEC-RAS 1D (Battle Creek to Red Bluff). The A.C.I.D. boards are in April 1st - October 31st
-#'
-#' \tabular{lllllll}{
-#'   \strong{Species} \tab \strong{Migration} \tab \strong{Peak Migration} \tab \strong{Spawning} \tab \strong{Peak Spawning} \tab \strong{Juvenile Emergence} \tab \strong{Juvenile Rearing} \cr
-#'   Late-Fall Run \tab Oct-Apr \tab Dec \tab Jan-Apr \tab Feb-Mar \tab Apr-Jun \tab 7-13 mths \cr
-#'   Winter Run \tab Dec-Jul \tab Mar \tab Apr-Aug \tab May-Jun \tab Jul-Oct \tab 5-10 mths \cr
-#'   Spring Run \tab Mar-Sep \tab May-Jun \tab Aug-Oct \tab Mid-Sep \tab Nov-Mar \tab 3-15 mths \cr
-#'   Fall Run \tab Jun-Dec \tab Sep-Oct \tab Sep-Dec \tab Oct-Nov \tab Dec-Mar \tab 1-7 mths \cr
-#' }
-#'
-#' \emph{Generalised life history Yoshinyama et al. 1998}
-#'
-#'
-#' @examples
-#' upper_sac_ACID_boards_out
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-"upper_sac_ACID_boards_out"
-
-#' Upper-Mid Sacramento River Instream Flow to Habitat Area Relationship
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-#' as a function of flow in cubic feet per second
-#'
-#' @format dataframe with 45 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from Battle Creek to
-#' the confluence with the Feather River (189.1 mi). The CVPIA Upper-mid Sacramento River extends
-#' from Red Blurr to Wilkins Slough (122.45 mi).
-#'
-#' @examples
-#' upper_mid_sacramento_river_instream
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-"upper_mid_sacramento_river_instream"
-
-#' Lower-Mid Sacramento River Instream Flow to Habitat Area Relationship
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-#' as a function of flow in cubic feet per second
-#'
-#' @format dataframe with 45 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The rearing WUA was derived from a HEC-RAS 1D model. The CVPIA Lower-mid Sacramento River extends
-#' from Wilkins Slough to the American River (58.0 mi). This reach overlaps with two of the study's, Battle Creek to
-#' the confluence with the Feather River (189.1 mi) and the confluence with the Feather River to Freeport (33.4 mi).
-#' To scale the study's results to CVPIA's extents, we calculate the proportion of the Lower-mid Sacramento River
-#' above (34\%) and below (66\%) the Feather River. Using these values we calculate a weighted average WUA from both of the studies.
-#'
-#' @examples
-#' lower_mid_sacramento_river_instream
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-'lower_mid_sacramento_river_instream'
-
-#' Lower Sacramento River Instream Flow to Habitat Area Relationship
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
-#' as a function of flow in cubic feet per second
-#'
-#' @format dataframe with 45 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @details The rearing WUA was derived from a HEC-RAS 1D model. The study's extent is from
-#' the confluence with the Feather River to Freeport (33.4 mi). The CVPIA Lower Sacramento River extends
-#' from the confluence with the American River to Freeport (13.7 mi).
-#'
-#' @examples
-#' lower_sacramento_river_instream
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-"lower_sacramento_river_instream"
 
 #' American River Instream Flow to Habitat Area Relationship
 #' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
