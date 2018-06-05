@@ -4,7 +4,7 @@
 \alias{set_floodplain_habitat}
 \title{Set Floodplain Habitat Area}
 \usage{
-set_floodplain_habitat(watershed, species, flow)
+set_floodplain_habitat(watershed, species, flow, flow2 = NULL)
 }
 \arguments{
 \item{watershed}{a watershed defined for the SIT model}
@@ -19,20 +19,20 @@ floodplain habitat value in square meters
 \description{
 This function returns an estimated floodplain area based on watershed, species and flow.
 }
-\details{
-The function relies on a dataframe called
-\code{\link{modeling_exist}} that contains data on whether the species is present in a watershed.
-If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
-(e.g. \code{\link{merced_river_floodplain}}) and selects the correct area for the
-given flow and species.
-When additional species modeling is not available, the fall run floodplain area
-values were scaled to the different species' extents.
+\section{Lower-mid Sacramento River}{
+
+The Lower-mid Sacramento River has two nodes, one above Fremont Weir (C134) and one below (C160).
+When calculating habitat for the Lower-Mid Sacramento river, calculate the habitat at
+each flow node and sum them proportion to the length of stream above and below the weir:
+
+35.6/58 * (habitat at C134) + 22.4/58 * (habitat at C160)
 
 
 \strong{Regional Approximation:}
 When a watershed has no associated floodplain modeling, an approximation is made.
 [insert method description]
 }
+
 \examples{
 # floodplain habitat value in square meters for Fall Run in the American River
 set_floodplain_habitat("American River", "fr", 34652)

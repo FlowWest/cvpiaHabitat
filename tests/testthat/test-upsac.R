@@ -11,7 +11,7 @@ test_that('FR fry Upper Sac works', {
   expect_equal(
     set_instream_habitat(watershed = 'Upper Sacramento River',
                          species = 'fr', life_stage = 'fry',
-                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
+                         flow = 200000), cvpiaHabitat::upper_sacramento_river_instream[[81, 2]])
 })
 
 test_that('FR juv Upper Sac works', {
@@ -24,7 +24,7 @@ test_that('FR juv Upper Sac works', {
   expect_equal(
     set_instream_habitat(watershed = 'Upper Sacramento River',
                          species = 'fr', life_stage = 'juv',
-                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
+                         flow = 6000), cvpiaHabitat::upper_sacramento_river_instream[[9, 2]])
 })
 
 test_that('FR spawn Upper Sac works', {

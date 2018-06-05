@@ -19,6 +19,13 @@
 #' values are used (lengths are modified if the habitat extent varies across species).
 #' Also, if there is no modeling specifically for fry, then the juvenile value is used.
 #'
+#' @section Lower-mid Sacramento River:
+#' The Lower-mid Sacramento River has two nodes, one above Fremont Weir (C134) and one below (C160).
+#' When calculating habitat for the Lower-Mid Sacramento river, calculate the habitat at
+#' each flow node and sum them proportion to the length of stream above and below the weir:
+#'
+#' 35.6/58 * (habitat at C134) + 22.4/58 * (habitat at C160)
+#'
 #'
 #' \strong{Regional Approximation:}
 #' When a watershed has no associated flow to WUA reltionship, a regional approximation is made.
@@ -59,7 +66,7 @@
 #' # Juvenile rearing habitat value in square meters for Fall Run in Elder Creek at 300 cfs.
 #' set_instream_habitat('Elder Creek', 'fr', 'juv', 300) # no habitat modeling exists, composite used
 #' @export
-set_instream_habitat <- function(watershed, species, life_stage, flow) {
+set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
 
   if (species == 'sr') {
     spring_run_exists <- !is.na(dplyr::pull(
@@ -72,7 +79,7 @@ set_instream_habitat <- function(watershed, species, life_stage, flow) {
 
   if (watershed %in% c('Upper Sacramento River', 'Upper-mid Sacramento River',
                        'Lower-mid Sacramento River', 'Lower Sacramento River')) {
-    return(set_sac_habitat(watershed, flow))
+    return(set_sac_habitat(watershed, flow, ...))
   }
 
   # identify watersheds within upper mid that need to use region approx curve
@@ -192,10 +199,7 @@ rearing_approx <- function(watershed, species, life_stage) {
   )
 }
 
-set_sac_habitat <- function(watershed, flow) {
-  if (watershed == 'Lower-mid Sacramento River' & length(flow) != 2) {
-    warning('Lower-mid Sacramento River requires two flow values, one above weir')
-  }
+set_sac_habitat <- function(watershed, flow, flow2 = NULL) {
 
   watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
   watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
@@ -204,9 +208,15 @@ set_sac_habitat <- function(watershed, flow) {
   rear_approx <- approxfun(df$flow_cfs, df$rearing_sq_meters, rule = 2)
 
   if (watershed == 'Lower-mid Sacramento River') {
-    return(35.6/58 * rear_approx(flow[1]) + 22.4/58 * rear_approx(flow[2]))
+    if (is.null(flow2)) {
+      warning('For CVPIA purposes: Lower-mid Sacramento River requires two flow values, one above and below Fremont Weir. Running with one flow value...')
+      return(fp_approx(flow))
+      } else {
+        return(35.6/58 * rear_approx(flow) + 22.4/58 * rear_approx(flow2))
+      }
   } else {
     return(rear_approx(flow))
   }
 
 }
+

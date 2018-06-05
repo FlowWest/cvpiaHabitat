@@ -4,7 +4,7 @@
 \alias{set_instream_habitat}
 \title{Set Instream Habitat Area}
 \usage{
-set_instream_habitat(watershed, species, life_stage, flow)
+set_instream_habitat(watershed, species, life_stage, flow, ...)
 }
 \arguments{
 \item{watershed}{one of the watersheds defined for the SIT model}
@@ -33,6 +33,14 @@ to return an estimate of suitable rearing habitat within the watershed.
 When additional species modeling is not available, the fall run WUA
 values are used (lengths are modified if the habitat extent varies across species).
 Also, if there is no modeling specifically for fry, then the juvenile value is used.
+}
+\section{Lower-mid Sacramento River}{
+
+The Lower-mid Sacramento River has two nodes, one above Fremont Weir (C134) and one below (C160).
+When calculating habitat for the Lower-Mid Sacramento river, calculate the habitat at
+each flow node and sum them proportion to the length of stream above and below the weir:
+
+35.6/58 * (habitat at C134) + 22.4/58 * (habitat at C160)
 
 
 \strong{Regional Approximation:}
@@ -69,6 +77,7 @@ are marked with an asterisk.
   \item Mokelumne River*
 }
 }
+
 \examples{
 # Fry rearing habitat value in square meters for Fall Run in the Merced River at 425 cfs.
 set_instream_habitat('Merced River', 'fr', 'fry', 425) # habitat modeling exists

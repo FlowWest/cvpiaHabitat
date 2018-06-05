@@ -12,13 +12,12 @@
 #' set_floodplain_habitat("American River", "st", 34652)
 #' @return floodplain habitat value in square meters
 #'
-#' @details The function relies on a dataframe called
-#' \code{\link{modeling_exist}} that contains data on whether the species is present in a watershed.
-#' If a model for the watershed does exist, the function looks up the flow to floodplain area relationship
-#' (e.g. \code{\link{merced_river_floodplain}}) and selects the correct area for the
-#' given flow and species.
-#' When additional species modeling is not available, the fall run floodplain area
-#' values were scaled to the different species' extents.
+#' @section Lower-mid Sacramento River:
+#' The Lower-mid Sacramento River has two nodes, one above Fremont Weir (C134) and one below (C160).
+#' When calculating habitat for the Lower-Mid Sacramento river, calculate the habitat at
+#' each flow node and sum them proportion to the length of stream above and below the weir:
+#'
+#' 35.6/58 * (habitat at C134) + 22.4/58 * (habitat at C160)
 #'
 #'
 #' \strong{Regional Approximation:}
@@ -27,7 +26,7 @@
 #'
 #'
 #' @export
-set_floodplain_habitat <- function(watershed, species, flow) {
+set_floodplain_habitat <- function(watershed, species, flow, flow2 = NULL) {
 
   if (species == 'sr' &
       is.na(cvpiaHabitat::modeling_exist[cvpiaHabitat::modeling_exist$Watershed == watershed, 'SR_floodplain'])) {
@@ -42,7 +41,17 @@ set_floodplain_habitat <- function(watershed, species, flow) {
 
     df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
     fp_approx <- approxfun(df$flow_cfs, df$floodplain_sq_meters, yleft = 0, yright = max(df$floodplain_sq_meters))
-    return(fp_approx(flow))
+
+    if (watershed == 'Lower-mid Sacramento River') {
+      if (is.null(flow2)) {
+        warning('For CVPIA purposes: Lower-mid Sacramento River requires two flow values, one above and below Fremont Weir. Running with one flow value...')
+        return(fp_approx(flow))
+      } else {
+        return(35.6/58 * fp_approx(flow) + 22.4/58 * fp_approx(flow2))
+        }
+    } else {
+      return(fp_approx(flow))
+    }
 
   } else {
     acres <- floodplain_approx(watershed, species)(flow)
