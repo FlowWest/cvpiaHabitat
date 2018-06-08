@@ -27,7 +27,7 @@ A dataset containing the area of highly suitable habitat within the
 North and South Deltas
 }
 \details{
-Habitat estimates from Correigh Greene's Winter Run Life Cycle Model. The model
+Habitat estimates from NOAA NMFS Winter Run Life Cycle Model. The model
 outputs habitat area estimates for months December-May. Habitat for months
 June-Novemeber are represented by the yearly average habitat.
 

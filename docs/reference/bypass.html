@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set Floodplain Habitat Area — set_floodplain_habitat • cvpiaHabitat</title>
+<title>Bypass Flow to Habitat Area Relationships — bypass • cvpiaHabitat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -74,62 +74,79 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set Floodplain Habitat Area</h1>
+    <h1>Bypass Flow to Habitat Area Relationships</h1>
     </div>
 
     
-    <p>This function returns an estimated floodplain area based on watershed, species and flow.</p>
+    <p>A dataset containing the suitable habitat area in square meters as a
+function of flow in cubic feet per second for both instream and floodplain.</p>
     
 
-    <pre class="usage"><span class='fu'>set_floodplain_habitat</span>(<span class='no'>watershed</span>, <span class='no'>species</span>, <span class='no'>flow</span>, <span class='kw'>flow2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>watershed</th>
-      <td><p>a watershed defined for the SIT model</p></td>
-    </tr>
-    <tr>
-      <th>species</th>
-      <td><p>one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)</p></td>
-    </tr>
-    <tr>
-      <th>flow</th>
-      <td><p>a flow value in cubic feet per second</p></td>
-    </tr>
-    </table>
-    
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <pre class="usage"><span class='no'>yolo_bypass_floodplain</span>
 
-    <p>floodplain habitat value in square meters</p>
+<span class='no'>yolo_bypass_instream</span>
+
+<span class='no'>sutter_bypass_floodplain</span>
+
+<span class='no'>sutter_bypass_instream</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>4 dataframes, one for each bypass and floodplain or instream habitat type</p>
     
-    <h2 class="hasAnchor" id="lower-mid-sacramento-river"><a class="anchor" href="#lower-mid-sacramento-river"></a>Lower-mid Sacramento River</h2>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf'>Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model</a></p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Habitat estimates from NOAA NMFS Winter Run Life Cycle Model</p>
+<p>High quality defined by:</p>
+<p>Channel depth &gt; 0.2 m and &lt; 1.5 m</p>
+<p>Velocity &lt;= 0.15 m/s</p>
+    
+    <h2 class="hasAnchor" id="yolo-bypass"><a class="anchor" href="#yolo-bypass"></a>Yolo Bypass</h2>
 
     
-    <p>The Lower-mid Sacramento River has two nodes, one above Fremont Weir (C134) and one below (C160).
-When calculating habitat for the Lower-Mid Sacramento river, calculate the habitat at
-each flow node and sum them proportion to the length of stream above and below the weir:</p>
-<p>35.6/58 * (habitat at C134) + 22.4/58 * (habitat at C160)</p>
-<p><strong>Regional Approximation:</strong>
-When a watershed has no associated floodplain modeling, an approximation is made.
-[insert method description]</p>
+    <dl class='dl-horizontal'>
+  <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
+  <dt>Yolo Bypass 1</dt><dd><p>suitable floodplain area in square meters in the Yolo Bypass, Fremont Weir to Sacramento Weir</p></dd>
+  <dt>Yolo Bypass 2</dt><dd><p>suitable floodplain area in square meters in the Yolo Bypass below Sacramento Weir</p></dd>
+</dl>
+    
+    <h2 class="hasAnchor" id="sutter-bypass"><a class="anchor" href="#sutter-bypass"></a>Sutter Bypass</h2>
+
+    
+    <dl class='dl-horizontal'>
+  <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
+  <dt>Sutter Bypass 1</dt><dd><p>suitable floodplain area in square meters in the Sutter Bypass, to Moulton Weir</p></dd>
+  <dt>Sutter Bypass 2</dt><dd><p>suitable floodplain area in square meters in the Sutter Bypass, to Colusa Weir</p></dd>
+  <dt>Sutter Bypass 3</dt><dd><p>suitable floodplain area in square meters in the Sutter Bypass, to Tisdale Weir</p></dd>
+  <dt>Sutter Bypass 4</dt><dd><p>suitable floodplain area in square meters in the Sutter Bypass below Tisdale Weir</p></dd>
+</dl>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># floodplain habitat value in square meters for Fall Run in the American River</span>
-<span class='fu'>set_floodplain_habitat</span>(<span class='st'>"American River"</span>, <span class='st'>"fr"</span>, <span class='fl'>34652</span>)</div><div class='output co'>#&gt; [1] 4177973</div><div class='input'>
-<span class='co'># floodplain habitat value in square meters for Steelhead in the American River</span>
-<span class='fu'>set_floodplain_habitat</span>(<span class='st'>"American River"</span>, <span class='st'>"st"</span>, <span class='fl'>34652</span>)</div><div class='output co'>#&gt; [1] 4177973</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>yolo_bypass_floodplain</span></div><div class='output co'>#&gt; # A tibble: 2 x 3
+#&gt;   flow_cfs `Yolo Bypass 1` `Yolo Bypass 2`
+#&gt;      &lt;dbl&gt;           &lt;dbl&gt;           &lt;dbl&gt;
+#&gt; 1   175000             0.0               0
+#&gt; 2   200000        132551.8               0</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
+      <li><a href="#format">Format</a></li>
 
-      <li><a href="#lower-mid-sacramento-river">Lower-mid Sacramento River</a></li>
+      <li><a href="#source">Source</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#yolo-bypass">Yolo Bypass</a></li>
+
+      <li><a href="#sutter-bypass">Sutter Bypass</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

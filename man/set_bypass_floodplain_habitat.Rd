@@ -15,7 +15,7 @@ set_bypass_floodplain_habitat(bypass, flow)
 habitat area in square meters
 }
 \description{
-This function returns an estimated total floodplain habitat area based on bypass and flow.
+This function returns an estimated total of suitable floodplain habitat area based on bypass and flow.
 }
 \examples{
 # habitat area in square meters for section 1 of the yolo bypass at 200 cfs

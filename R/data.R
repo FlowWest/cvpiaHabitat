@@ -166,6 +166,58 @@ NULL
 #' @rdname sac_instream
 "lower_sacramento_river_instream"
 
+#' Bypass Flow to Habitat Area Relationships
+#'
+#' @description A dataset containing the suitable habitat area in square meters as a
+#' function of flow in cubic feet per second for both instream and floodplain.
+#'
+#' @format 4 dataframes, one for each bypass and floodplain or instream habitat type
+#'
+#' @section Yolo Bypass:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{Yolo Bypass 1}{suitable floodplain area in square meters in the Yolo Bypass, Fremont Weir to Sacramento Weir}
+#'   \item{Yolo Bypass 2}{suitable floodplain area in square meters in the Yolo Bypass below Sacramento Weir}
+#' }
+#'
+#' @section Sutter Bypass:
+#' \describe{
+#'   \item{flow_cfs}{integer flow value in cubic feet per second}
+#'   \item{Sutter Bypass 1}{suitable floodplain area in square meters in the Sutter Bypass, to Moulton Weir}
+#'   \item{Sutter Bypass 2}{suitable floodplain area in square meters in the Sutter Bypass, to Colusa Weir}
+#'   \item{Sutter Bypass 3}{suitable floodplain area in square meters in the Sutter Bypass, to Tisdale Weir}
+#'   \item{Sutter Bypass 4}{suitable floodplain area in square meters in the Sutter Bypass below Tisdale Weir}
+#' }
+#'
+#' @details Habitat estimates from NOAA NMFS Winter Run Life Cycle Model
+#'
+#' High quality defined by:
+#'
+#' Channel depth > 0.2 m and < 1.5 m
+#'
+#' Velocity <= 0.15 m/s
+#'
+#' @examples
+#' yolo_bypass_floodplain
+#'
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' @name bypass
+#' @aliases NULL
+NULL
+
+#' @rdname bypass
+'yolo_bypass_floodplain'
+
+#' @rdname bypass
+'yolo_bypass_instream'
+
+#' @rdname bypass
+'sutter_bypass_floodplain'
+
+#' @rdname bypass
+'sutter_bypass_instream'
+
+
 # FLOODPLAIN -------------------------------------------------------------------------------
 
 #' Merced River Flow to Floodplain Habitat Area Relationship
@@ -462,27 +514,6 @@ NULL
 #'
 #' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/TO25-ST8_Tech_Memo_SJR.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 "san_joaquin_river_floodplain"
-
-#' North Delta Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 73 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{FR_floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
-#'   \item{watershed}{name of watershed}
-#' }
-#'
-#' @section Fall Run Modeling:
-#' The entire mapped rearing extent of 45.65 miles was modeled using Delta Simulation Model II (DSM2) one-dimensional hydrodynamic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model. Active channel area of NA acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
-#' @examples
-#' north_delta_floodplain
-#'
-#' @source  \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Delta Simulation Model II (DSM2) one-dimensional hydrodynamic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-"north_delta_floodplain"
-
 
 #' Mokelumne River to Floodplain Habitat Area Relationship
 #'
@@ -1306,116 +1337,6 @@ NULL
 #' @source Sadie Gill  \email{sgill@@flowwest.com}
 'weeks_inundated'
 
-#' Yolo Bypass Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 2 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{Yolo Bypass 1}{floodplain acreage in the Yolo Bypass, Fremont Weir to Sacramento Weir}
-#'   \item{Yolo Bypass 2}{floodplain acreage in the Yolo Bypass below Sacramento Weir}
-#' }
-#'
-#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
-#'
-#' High quality defined by:
-#'
-#' Channel depth > 0.2 m and < 1.5 m
-#'
-#' Velocity <= 0.15 m/s
-#'
-#' @examples
-#' yolo_bypass_floodplain
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-'yolo_bypass_floodplain'
-
-#' Sutter Bypass Flow to Floodplain Habitat Area Relationship
-#'
-#' @description A dataset containing the floodplain habitat area in acres as a
-#' function of flow in cubic feet per second
-#'
-#' @format dataframe with 41 rows and 5 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{Sutter Bypass 1}{floodplain acreage in the Sutter Bypass, to Moulton Weir}
-#'   \item{Sutter Bypass 2}{floodplain acreage in the Sutter Bypass, to Colusa Weir}
-#'   \item{Sutter Bypass 3}{floodplain acreage in the Sutter Bypass, to Tisdale Weir}
-#'   \item{Sutter Bypass 4}{floodplain acreage in the Sutter Bypass below Tisdale Weir}
-#' }
-#'
-#' @details Habitat estimates are freom the Central Valley Floodplain Evaluation
-#' and Delineation (CVFED) HEC-RAS hydraulic
-#' model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model.
-#'
-#' High quality defined by:
-#'
-#' Channel depth > 0.2 m and < 1.5 m
-#'
-#' Velocity <= 0.15 m/s
-#'
-#' @examples
-#' sutter_bypass_floodplain
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-'sutter_bypass_floodplain'
-
-#' Yolo Bypass Instream Flow to Habitat Area Relationship
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet
-#' as a function of flow in cubic feet per second
-#'
-#' @format dataframe with 41 rows and 3 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{Yolo Bypass 1}{juvenile rearing habitat WUA in the Yolo Bypass, Fremont Weir to Sacramento Weir}
-#'   \item{Yolo Bypass 2}{juvenile rearing habitat WUA in the Yolo Bypass below Sacramento Weir}
-#' }
-#'
-#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
-#'
-#' High quality defined by:
-#'
-#' Channel depth > 0.2 m and < 1.5 m
-#'
-#' Velocity <= 0.15 m/s
-#'
-#' @examples
-#' yolo_bypass_instream
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-'yolo_bypass_instream'
-
-#' Sutter Bypass Instream Flow to Habitat Area Relationship
-#'
-#' @description A dataset containing the Weighted Usable Area (WUA) in square feet
-#' as a function of flow in cubic feet per second
-#'
-#' @format dataframe with 41 rows and 5 variables:
-#' \describe{
-#'   \item{flow_cfs}{integer flow value in cubic feet per second}
-#'   \item{Sutter Bypass 1}{juvenile rearing habitat WUA in the Sutter Bypass, to Moulton Weir}
-#'   \item{Sutter Bypass 2}{juvenile rearing habitat WUA in the Sutter Bypass, to Colusa Weir}
-#'   \item{Sutter Bypass 3}{juvenile rearing habitat WUA in the Sutter Bypass, to Tisdale Weir}
-#'   \item{Sutter Bypass 4}{juvenile rearing habitat WUA in the Sutter Bypass below Tisdale Weir}
-#' }
-#'
-#' @details Habitat estimates from Correigh Greene's Winter Run Life Cycle Model
-#'
-#' High quality defined by:
-#'
-#' Channel depth > 0.2 m and < 1.5 m
-#'
-#' Velocity <= 0.15 m/s
-#'
-#' @examples
-#' sutter_bypass_instream
-#'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
-'sutter_bypass_instream'
-
 #' Delta Habitat Area
 #'
 #' @description A dataset containing the area of highly suitable habitat within the
@@ -1429,7 +1350,7 @@ NULL
 #' }
 #'
 #' @details
-#' Habitat estimates from Correigh Greene's Winter Run Life Cycle Model. The model
+#' Habitat estimates from NOAA NMFS Winter Run Life Cycle Model. The model
 #' outputs habitat area estimates for months December-May. Habitat for months
 #' June-Novemeber are represented by the yearly average habitat.
 #'

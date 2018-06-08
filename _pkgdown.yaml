@@ -19,6 +19,7 @@ reference:
   - set_instream_habitat
   - set_floodplain_habitat
   - set_bypass_instream_habitat
+  - set_bypass_floodplain_habitat
   - wua_to_area
   - weeks_flooded
   - apply_suitability
@@ -46,8 +47,6 @@ reference:
   - tuolumne_river_instream
   - yuba_river_instream
   - san_joaquin_river_instream
-  - sutter_bypass_instream
-  - yolo_bypass_instream
   - pools
 - title: Floodplain Habitat Datasets
   desc: Flow to floodplain area modeled relationships
@@ -70,8 +69,6 @@ reference:
   - stanislaus_river_floodplain
   - tuolumne_river_floodplain
   - yuba_river_floodplain
-  - sutter_bypass_floodplain
-  - yolo_bypass_floodplain
   - antelope_creek_floodplain
   - battle_creek_floodplain
   - bear_creek_floodplain
@@ -80,6 +77,10 @@ reference:
   - paynes_creek_floodplain
   - stony_creek_floodplain
   - thomes_creek_floodplain
+- title: Bypasses
+  desc: Sutter and Yolo Bypass Habitat Values
+  contents:
+  - bypass
 - title: Delta
   desc: Delta Habitat Values
   contents:

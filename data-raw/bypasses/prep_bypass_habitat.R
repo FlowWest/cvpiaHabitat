@@ -3,51 +3,55 @@ library(lubridate)
 library(readxl)
 
 # read in data--------------------------------
+# 1 sq ft = 0.092903 sq meters
 sutter1 <- read_excel('data-raw/correigh_greene_data/River Rearing_Habitat vs flow.xls', sheet = 2) %>%
-  select(flow_cfs = Flow_cfs,
-         inchannel_sqft = Sutter_Bypass_1_Pref11_ChanArea_Sq_ft,
-         floodplain_sqft = Sutter_Bypass_1_Pref11_BankArea_Sq_ft) %>%
-  mutate(watershed = 'Sutter Bypass 1')
+  mutate(flow_cfs = Flow_cfs,
+         inchannel_sq_meters = Sutter_Bypass_1_Pref11_ChanArea_Sq_ft * 0.092903,
+         floodplain_sq_meters = Sutter_Bypass_1_Pref11_BankArea_Sq_ft * 0.092903,
+         watershed = 'Sutter Bypass 1') %>%
+  select(flow_cfs:watershed)
 
 sutter2 <- read_excel('data-raw/correigh_greene_data/River Rearing_Habitat vs flow.xls', sheet = 3) %>%
-  select(flow_cfs = Flow_cfs,
-         inchannel_sqft = Sutter_Bypass_2_Pref11_ChanArea_Sq_ft,
-         floodplain_sqft = Sutter_Bypass_2_Pref11_BankArea_Sq_ft) %>%
-  mutate(watershed = 'Sutter Bypass 2')
+  mutate(flow_cfs = Flow_cfs,
+         inchannel_sq_meters = Sutter_Bypass_2_Pref11_ChanArea_Sq_ft * 0.092903,
+         floodplain_sq_meters = Sutter_Bypass_2_Pref11_BankArea_Sq_ft * 0.092903,
+         watershed = 'Sutter Bypass 2') %>%
+  select(flow_cfs:watershed)
 
 sutter3 <- read_excel('data-raw/correigh_greene_data/River Rearing_Habitat vs flow.xls', sheet = 4) %>%
-  select(flow_cfs = Flow_cfs,
-         inchannel_sqft = Sutter_Bypass_3_Pref11_ChanArea_Sq_ft,
-         floodplain_sqft = Sutter_Bypass_3_Pref11_BankArea_Sq_ft) %>%
-  mutate(watershed = 'Sutter Bypass 3')
+  mutate(flow_cfs = Flow_cfs,
+         inchannel_sq_meters = Sutter_Bypass_3_Pref11_ChanArea_Sq_ft * 0.092903,
+         floodplain_sq_meters = Sutter_Bypass_3_Pref11_BankArea_Sq_ft * 0.092903,
+         watershed = 'Sutter Bypass 3') %>%
+  select(flow_cfs:watershed)
 
 sutter4 <- read_excel('data-raw/correigh_greene_data/River Rearing_Habitat vs flow.xls', sheet = 5) %>%
-  select(flow_cfs = Flow_cfs,
-         inchannel_sqft = Sutter_Bypass_4_Pref11_ChanArea_Sq_ft,
-         floodplain_sqft = Sutter_Bypass_4_Pref11_BankArea_Sq_ft) %>%
-  mutate(watershed = 'Sutter Bypass 4')
+  mutate(flow_cfs = Flow_cfs,
+         inchannel_sq_meters = Sutter_Bypass_4_Pref11_ChanArea_Sq_ft * 0.092903,
+         floodplain_sq_meters = Sutter_Bypass_4_Pref11_BankArea_Sq_ft * 0.092903,
+         watershed = 'Sutter Bypass 4') %>%
+  select(flow_cfs:watershed)
 
 yolo1 <- read_excel('data-raw/correigh_greene_data/River Rearing_Habitat vs flow.xls', sheet = 6) %>%
-  select(flow_cfs = Flow_cfs,
-         inchannel_sqft = Yolo_Bypass_1_Pref11_ChanArea_Sq_ft,
-         floodplain_sqft = Yolo_Bypass_1_Pref11_BankArea_Sq_ft) %>%
-  mutate(watershed = 'Yolo Bypass 1')
+  mutate(flow_cfs = Flow_cfs,
+         inchannel_sq_meters = Yolo_Bypass_1_Pref11_ChanArea_Sq_ft * 0.092903,
+         floodplain_sq_meters = Yolo_Bypass_1_Pref11_BankArea_Sq_ft * 0.092903,
+         watershed = 'Yolo Bypass 1') %>%
+  select(flow_cfs:watershed)
 
 yolo2 <- read_excel('data-raw/correigh_greene_data/River Rearing_Habitat vs flow.xls', sheet = 7) %>%
-  select(flow_cfs = Flow_cfs,
-         inchannel_sqft = Yolo_Bypass_2_Pref11_ChanArea_Sq_ft,
-         floodplain_sqft = Yolo_Bypass_2_Pref11_BankArea_Sq_ft) %>%
-  mutate(watershed = 'Yolo Bypass 2')
+  mutate(flow_cfs = Flow_cfs,
+         inchannel_sq_meters = Yolo_Bypass_2_Pref11_ChanArea_Sq_ft * 0.092903,
+         floodplain_sq_meters = Yolo_Bypass_2_Pref11_BankArea_Sq_ft * 0.092903,
+         watershed = 'Yolo Bypass 2') %>%
+  select(flow_cfs:watershed)
 
 
 # floodplain--------------------------
-# 1 sqft = 2.29568e-5 acres
 
 yolo_bypass_floodplain <- bind_rows(yolo1, yolo2) %>%
-  select(-inchannel_sqft) %>%
-  mutate(floodplain_acres = floodplain_sqft * 2.29568e-5) %>%
-  select(flow_cfs, floodplain_acres, watershed) %>%
-  spread(watershed, floodplain_acres) %>%
+  select(-inchannel_sq_meters) %>%
+  spread(watershed, floodplain_sq_meters) %>%
   tail(2)
 # no floodplain in yolo2
 
@@ -55,24 +59,20 @@ devtools::use_data(yolo_bypass_floodplain, overwrite = TRUE)
 
 
 sutter_bypass_floodplain <- bind_rows(sutter1, sutter2, sutter3, sutter4) %>%
-  select(-inchannel_sqft) %>%
-  mutate(floodplain_acres = floodplain_sqft * 2.29568e-5) %>%
-  select(flow_cfs, floodplain_acres, watershed) %>%
-  spread(watershed, floodplain_acres)
+  select(-inchannel_sq_meters) %>%
+  spread(watershed, floodplain_sq_meters)
 
 devtools::use_data(sutter_bypass_floodplain, overwrite = TRUE)
 
 # inchannel-----------------------------------
 yolo_bypass_instream <- bind_rows(yolo1, yolo2) %>%
-  select(-floodplain_sqft) %>%
-  rename(juv_wua = inchannel_sqft) %>%
-  spread(watershed, juv_wua)
+  select(-floodplain_sq_meters) %>%
+  spread(watershed, inchannel_sq_meters)
 
 devtools::use_data(yolo_bypass_instream, overwrite = TRUE)
 
 sutter_bypass_instream <- bind_rows(sutter1, sutter2, sutter3, sutter4) %>%
-  select(-floodplain_sqft) %>%
-  rename(juv_wua = inchannel_sqft) %>%
-  spread(watershed, juv_wua)
+  select(-floodplain_sq_meters) %>%
+  spread(watershed, inchannel_sq_meters)
 
 devtools::use_data(sutter_bypass_instream, overwrite = TRUE)
