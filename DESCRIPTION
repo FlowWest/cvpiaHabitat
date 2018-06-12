@@ -1,7 +1,7 @@
 Package: cvpiaHabitat
 Type: Package
 Title: Estimate Spawning and Rearing Habitat
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: c(
     person("Sadie", "Gill", email = "sgill@flowwest.com", role = c("aut", "cre")), 
     person("Emanuel", "Rodriguez", email = "erodriguez@flowwest.com", role = "aut"),
