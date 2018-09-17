@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Mainstem Sacramento River Spawning Habitat — up_sac_spawn" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second." />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Mainstem Sacramento River Spawning Habitat</h1>
+    
+    <div class="hidden name"><code>up_sac_spawn.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second.</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>upper_sac_ACID_boards_in</span>
 
@@ -111,64 +133,33 @@ as a function of flow in cubic feet per second.</p>
  Red Bluff to Deer Creek (23.5 mi). The Upper Sacramento fall run
 spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River
 (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle
-Creek. The A.C.I.D. boards are in April 1st - October 31st</p><table><tr><td>
-  <strong>Species</strong> </td>
-<td> <strong>Migration</strong> </td>
-<td> <strong>Peak Migration</strong> </td>
-<td> <strong>Spawning</strong> </td>
-<td> <strong>Peak Spawning</strong> </td>
-<td> <strong>Juvenile Emergence</strong> </td>
-<td> <strong>Juvenile Rearing</strong> </td>
-</tr><tr><td>
-  Late-Fall Run </td>
-<td> Oct-Apr </td>
-<td> Dec </td>
-<td> Jan-Apr </td>
-<td> Feb-Mar </td>
-<td> Apr-Jun </td>
-<td> 7-13 mths </td>
-</tr><tr><td>
-  Winter Run </td>
-<td> Dec-Jul </td>
-<td> Mar </td>
-<td> Apr-Aug </td>
-<td> May-Jun </td>
-<td> Jul-Oct </td>
-<td> 5-10 mths </td>
-</tr><tr><td>
-  Spring Run </td>
-<td> Mar-Sep </td>
-<td> May-Jun </td>
-<td> Aug-Oct </td>
-<td> Mid-Sep </td>
-<td> Nov-Mar </td>
-<td> 3-15 mths </td>
-</tr><tr><td>
-  Fall Run </td>
-<td> Jun-Dec </td>
-<td> Sep-Oct </td>
-<td> Sep-Dec </td>
-<td> Oct-Nov </td>
-<td> Dec-Mar </td>
-<td> 1-7 mths </td>
-</tr></table><p><em>Generalised life history Yoshinyama et al. 1998</em></p>
+Creek. The A.C.I.D. boards are in April 1st - October 31st</p>
+<table class='table'>
+<tr><td><strong>Species</strong></td><td><strong>Migration</strong></td><td><strong>Peak Migration</strong></td><td><strong>Spawning</strong></td><td><strong>Peak Spawning</strong></td><td><strong>Juvenile Emergence</strong></td><td><strong>Juvenile Rearing</strong></td></tr>
+<tr><td>Late-Fall Run</td><td>Oct-Apr</td><td>Dec</td><td>Jan-Apr</td><td>Feb-Mar</td><td>Apr-Jun</td><td>7-13 mths</td></tr>
+<tr><td>Winter Run</td><td>Dec-Jul</td><td>Mar</td><td>Apr-Aug</td><td>May-Jun</td><td>Jul-Oct</td><td>5-10 mths</td></tr>
+<tr><td>Spring Run</td><td>Mar-Sep</td><td>May-Jun</td><td>Aug-Oct</td><td>Mid-Sep</td><td>Nov-Mar</td><td>3-15 mths</td></tr>
+<tr><td>Fall Run</td><td>Jun-Dec</td><td>Sep-Oct</td><td>Sep-Dec</td><td>Oct-Nov</td><td>Dec-Mar</td><td>1-7 mths</td></tr>
+<tr><td></td><td><strong>Species</strong></td><td><strong>Migration</strong></td><td><strong>Peak Migration</strong></td><td><strong>Spawning</strong></td><td><strong>Peak Spawning</strong></td><td><strong>Juvenile Emergence</strong></td></tr>
+</table>
+    <p><em>Generalised life history Yoshinyama et al. 1998</em></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>upper_sac_ACID_boards_in</span></div><div class='output co'>#&gt; # A tibble: 30 x 6
-#&gt;    flow_cfs FR_spawn_WUA LFR_spawn_WUA ST_spawn_WUA WR_spawn_WUA
-#&gt;       &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-#&gt;  1     3250     8553.719      7945.461     1998.007     5321.020
-#&gt;  2     3500     8756.922      8204.024     2034.904     5627.105
-#&gt;  3     3750     8939.986      8329.719     2041.319     5880.905
-#&gt;  4     4000     9069.236      8394.523     2025.323     6111.320
-#&gt;  5     4250     9082.162      8429.446     2009.004     6350.286
-#&gt;  6     4500     9192.716      8422.957     2004.800     6580.079
-#&gt;  7     4750     9311.547      8375.137     1998.802     6795.659
-#&gt;  8     5000     9282.365      8309.960     1997.398     6981.632
-#&gt;  9     5250     9299.413      8228.626     2002.956     7126.329
-#&gt; 10     5500     9254.085      8119.629     2007.923     7278.099
-#&gt; # ... with 20 more rows, and 1 more variables: watershed &lt;chr&gt;</div><div class='input'>
+#&gt;    flow_cfs FR_spawn_WUA LFR_spawn_WUA ST_spawn_WUA WR_spawn_WUA watershed     
+#&gt;       &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         
+#&gt;  1     3250        8554.         7945.        1998.        5321. Upper Sacrame…
+#&gt;  2     3500        8757.         8204.        2035.        5627. Upper Sacrame…
+#&gt;  3     3750        8940.         8330.        2041.        5881. Upper Sacrame…
+#&gt;  4     4000        9069.         8395.        2025.        6111. Upper Sacrame…
+#&gt;  5     4250        9082.         8429.        2009.        6350. Upper Sacrame…
+#&gt;  6     4500        9193.         8423.        2005.        6580. Upper Sacrame…
+#&gt;  7     4750        9312.         8375.        1999.        6796. Upper Sacrame…
+#&gt;  8     5000        9282.         8310.        1997.        6982. Upper Sacrame…
+#&gt;  9     5250        9299.         8229.        2003.        7126. Upper Sacrame…
+#&gt; 10     5500        9254.         8120.        2008.        7278. Upper Sacrame…
+#&gt; # ... with 20 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -193,11 +184,14 @@ Creek. The A.C.I.D. boards are in April 1st - October 31st</p><table><tr><td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Tuolumne River Flow to Floodplain Habitat Area Relationship — tuolumne_river_floodplain" />
+
+<meta property="og:description" content="A dataset containing the floodplain habitat area in acres as a
+function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Tuolumne River Flow to Floodplain Habitat Area Relationship</h1>
+    
+    <div class="hidden name"><code>tuolumne_river_floodplain.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the floodplain habitat area in acres as a
 function of flow in cubic feet per second</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>tuolumne_river_floodplain</span></pre>
         
@@ -104,24 +126,24 @@ function of flow in cubic feet per second</p>
     <h2 class="hasAnchor" id="fall-run-spring-run-and-steelhead-modeling"><a class="anchor" href="#fall-run-spring-run-and-steelhead-modeling"></a>Fall Run, Spring Run and Steelhead Modeling</h2>
 
     
-    <p>The entire mapped rearing extent of 54.33 miles was modeled using TUFLOW hydraulic model with 1D channel and 2D overbank components. Active channel area of 586.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.</p>
+    <p>The entire mapped rearing extent of 54.33 miles was modeled by TID and MID using a TUFLOW hydraulic model with 1D channel and 2D overbank components. This approach directly modeled  inundated floodplain area.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>tuolumne_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 37 x 5
-#&gt;    flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
-#&gt;       &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;               &lt;dbl&gt;
-#&gt;  1      100             0.00000             0.00000             0.00000
-#&gt;  2      250             0.00000             0.00000             0.00000
-#&gt;  3      500             0.00000             0.00000             0.00000
-#&gt;  4      750             0.00000             0.00000             0.00000
-#&gt;  5     1000             0.00000             0.00000             0.00000
-#&gt;  6     1250            35.96074            35.96074            35.96074
-#&gt;  7     1500            76.67872            76.67872            76.67872
-#&gt;  8     1750           116.87500           116.87500           116.87500
-#&gt;  9     2000           156.85950           156.85950           156.85950
-#&gt; 10     2250           196.84917           196.84917           196.84917
-#&gt; # ... with 27 more rows, and 1 more variables: watershed &lt;chr&gt;</div><div class='input'>
+#&gt;    flow_cfs FR_floodplain_acr… SR_floodplain_acr… ST_floodplain_ac… watershed  
+#&gt;       &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;      
+#&gt;  1      100                0                  0                 0   Tuolumne R…
+#&gt;  2      250                0                  0                 0   Tuolumne R…
+#&gt;  3      500                0                  0                 0   Tuolumne R…
+#&gt;  4      750                0                  0                 0   Tuolumne R…
+#&gt;  5     1000                0                  0                 0   Tuolumne R…
+#&gt;  6     1250               36.0               36.0              36.0 Tuolumne R…
+#&gt;  7     1500               76.7               76.7              76.7 Tuolumne R…
+#&gt;  8     1750              117.               117.              117.  Tuolumne R…
+#&gt;  9     2000              157.               157.              157.  Tuolumne R…
+#&gt; 10     2250              197.               197.              197.  Tuolumne R…
+#&gt; # ... with 27 more rows</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -146,11 +168,14 @@ function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

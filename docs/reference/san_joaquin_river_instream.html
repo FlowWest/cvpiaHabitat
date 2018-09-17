@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="San Joaqin River Instream Flow to Habitat Area Relationship — san_joaquin_river_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>San Joaqin River Instream Flow to Habitat Area Relationship</h1>
+    
+    <div class="hidden name"><code>san_joaquin_river_instream.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>san_joaquin_river_instream</span></pre>
         
@@ -110,18 +132,18 @@ and Tuolumne Rivers.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>san_joaquin_river_instream</span></div><div class='output co'>#&gt; # A tibble: 47 x 5
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua         watershed
-#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;             &lt;chr&gt;
-#&gt;  1       25     3064.559   28359.27   28359.27 San Joaquin River
-#&gt;  2       50     3289.612   28359.27   28359.27 San Joaquin River
-#&gt;  3      100     6481.759   29605.21   29605.21 San Joaquin River
-#&gt;  4      150     9668.076   29752.65   29752.65 San Joaquin River
-#&gt;  5      200    11340.041   28765.61   28765.61 San Joaquin River
-#&gt;  6      250    11977.774   27499.19   27499.19 San Joaquin River
-#&gt;  7      300    12192.079   26287.65   26287.65 San Joaquin River
-#&gt;  8      350    11534.828   25069.58   25069.58 San Joaquin River
-#&gt;  9      400    10652.446   23933.09   23933.09 San Joaquin River
-#&gt; 10      450     9739.564   22928.94   22928.94 San Joaquin River
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed        
+#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;            
+#&gt;  1       25        3065.     28359.     28359. San Joaquin River
+#&gt;  2       50        3290.     28359.     28359. San Joaquin River
+#&gt;  3      100        6482.     29605.     29605. San Joaquin River
+#&gt;  4      150        9668.     29753.     29753. San Joaquin River
+#&gt;  5      200       11340.     28766.     28766. San Joaquin River
+#&gt;  6      250       11978.     27499.     27499. San Joaquin River
+#&gt;  7      300       12192.     26288.     26288. San Joaquin River
+#&gt;  8      350       11535.     25070.     25070. San Joaquin River
+#&gt;  9      400       10652.     23933.     23933. San Joaquin River
+#&gt; 10      450        9740.     22929.     22929. San Joaquin River
 #&gt; # ... with 37 more rows</div><div class='input'>
 </div></pre>
   </div>
@@ -147,11 +169,14 @@ and Tuolumne Rivers.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

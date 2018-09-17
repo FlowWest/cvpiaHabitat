@@ -18,13 +18,25 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Habitat Modeling Status — modeling_exist" />
+
+<meta property="og:description" content="A table lifestage, species, and watershed" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +59,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +83,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,15 +91,19 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Habitat Modeling Status</h1>
+    
+    <div class="hidden name"><code>modeling_exist.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A table lifestage, species, and watershed</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>modeling_exist</span></pre>
         
@@ -122,22 +143,22 @@ Used as look up table for <code><a href='set_spawning_habitat.html'>set_spawning
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>modeling_exist</span></div><div class='output co'>#&gt; # A tibble: 32 x 18
-#&gt;    Order              Watershed FR_spawn FR_fry FR_juv FR_floodplain SR_spawn
-#&gt;    &lt;int&gt;                  &lt;chr&gt;    &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;         &lt;lgl&gt;    &lt;lgl&gt;
-#&gt;  1     1 Upper Sacramento River     TRUE  FALSE   TRUE          TRUE    FALSE
-#&gt;  2     2         Antelope Creek    FALSE  FALSE  FALSE         FALSE    FALSE
-#&gt;  3     3           Battle Creek     TRUE   TRUE   TRUE         FALSE    FALSE
-#&gt;  4     4             Bear Creek    FALSE  FALSE  FALSE         FALSE       NA
-#&gt;  5     5        Big Chico Creek    FALSE  FALSE  FALSE          TRUE    FALSE
-#&gt;  6     6            Butte Creek     TRUE   TRUE   TRUE          TRUE    FALSE
-#&gt;  7     7            Clear Creek     TRUE   TRUE   TRUE         FALSE     TRUE
-#&gt;  8     8       Cottonwood Creek     TRUE   TRUE   TRUE          TRUE    FALSE
-#&gt;  9     9              Cow Creek    FALSE   TRUE   TRUE         FALSE       NA
-#&gt; 10    10             Deer Creek    FALSE  FALSE  FALSE          TRUE    FALSE
-#&gt; # ... with 22 more rows, and 11 more variables: SR_fry &lt;lgl&gt;, SR_juv &lt;lgl&gt;,
-#&gt; #   SR_floodplain &lt;lgl&gt;, ST_spawn &lt;lgl&gt;, ST_fry &lt;lgl&gt;, ST_juv &lt;lgl&gt;,
-#&gt; #   ST_floodplain &lt;lgl&gt;, Region &lt;chr&gt;, UseRearRegionApprox &lt;lgl&gt;,
-#&gt; #   UseSpawnRegionApprox &lt;lgl&gt;, UseFloodplainRegionApprox &lt;lgl&gt;</div><div class='input'>
+#&gt;    Order Watershed FR_spawn FR_fry FR_juv FR_floodplain SR_spawn SR_fry SR_juv
+#&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;         &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt; 
+#&gt;  1     1 Upper Sa… TRUE     FALSE  TRUE   TRUE          FALSE    FALSE  FALSE 
+#&gt;  2     2 Antelope… FALSE    FALSE  FALSE  FALSE         FALSE    FALSE  FALSE 
+#&gt;  3     3 Battle C… TRUE     TRUE   TRUE   FALSE         FALSE    FALSE  FALSE 
+#&gt;  4     4 Bear Cre… FALSE    FALSE  FALSE  FALSE         NA       NA     NA    
+#&gt;  5     5 Big Chic… FALSE    FALSE  FALSE  TRUE          FALSE    FALSE  FALSE 
+#&gt;  6     6 Butte Cr… TRUE     TRUE   TRUE   TRUE          FALSE    FALSE  FALSE 
+#&gt;  7     7 Clear Cr… TRUE     TRUE   TRUE   FALSE         TRUE     TRUE   TRUE  
+#&gt;  8     8 Cottonwo… TRUE     TRUE   TRUE   TRUE          FALSE    FALSE  FALSE 
+#&gt;  9     9 Cow Creek FALSE    TRUE   TRUE   FALSE         NA       NA     NA    
+#&gt; 10    10 Deer Cre… FALSE    FALSE  FALSE  TRUE          FALSE    FALSE  FALSE 
+#&gt; # ... with 22 more rows, and 9 more variables: SR_floodplain &lt;lgl&gt;,
+#&gt; #   ST_spawn &lt;lgl&gt;, ST_fry &lt;lgl&gt;, ST_juv &lt;lgl&gt;, ST_floodplain &lt;lgl&gt;,
+#&gt; #   Region &lt;chr&gt;, UseRearRegionApprox &lt;lgl&gt;, UseSpawnRegionApprox &lt;lgl&gt;,
+#&gt; #   UseFloodplainRegionApprox &lt;lgl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -162,11 +183,14 @@ Used as look up table for <code><a href='set_spawning_habitat.html'>set_spawning
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

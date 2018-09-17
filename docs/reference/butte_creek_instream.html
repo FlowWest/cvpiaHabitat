@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Butte Creek Instream Flow to Habitat Area Relationship — butte_creek_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Butte Creek Instream Flow to Habitat Area Relationship</h1>
+    
+    <div class="hidden name"><code>butte_creek_instream.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>butte_creek_instream</span></pre>
         
@@ -112,18 +134,18 @@ The spawning results are for Spring Run Chinook. The rearing results are for Fal
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>butte_creek_instream</span></div><div class='output co'>#&gt; # A tibble: 41 x 6
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua adult_trout_WUA   watershed
-#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;int&gt;      &lt;int&gt;           &lt;int&gt;       &lt;chr&gt;
-#&gt;  1       20     1074.007         NA         NA              NA Butte Creek
-#&gt;  2       25     1185.892         NA         NA              NA Butte Creek
-#&gt;  3       30     1290.848         NA         NA              NA Butte Creek
-#&gt;  4       35     1370.322         NA         NA              NA Butte Creek
-#&gt;  5       40     1450.073         NA         NA              NA Butte Creek
-#&gt;  6       45     1527.920         NA         NA              NA Butte Creek
-#&gt;  7       50     1584.255         NA         NA              NA Butte Creek
-#&gt;  8       60     1644.887      17549      18472           14399 Butte Creek
-#&gt;  9       70     1690.406      16339      19560           15950 Butte Creek
-#&gt; 10       80     1721.314      15208      20259           17296 Butte Creek
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua adult_trout_WUA watershed  
+#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;int&gt;      &lt;int&gt;           &lt;int&gt; &lt;chr&gt;      
+#&gt;  1       20        1074.         NA         NA              NA Butte Creek
+#&gt;  2       25        1186.         NA         NA              NA Butte Creek
+#&gt;  3       30        1291.         NA         NA              NA Butte Creek
+#&gt;  4       35        1370.         NA         NA              NA Butte Creek
+#&gt;  5       40        1450.         NA         NA              NA Butte Creek
+#&gt;  6       45        1528.         NA         NA              NA Butte Creek
+#&gt;  7       50        1584.         NA         NA              NA Butte Creek
+#&gt;  8       60        1645.      17549      18472           14399 Butte Creek
+#&gt;  9       70        1690.      16339      19560           15950 Butte Creek
+#&gt; 10       80        1721.      15208      20259           17296 Butte Creek
 #&gt; # ... with 31 more rows</div><div class='input'>
 </div></pre>
   </div>
@@ -149,11 +171,14 @@ The spawning results are for Spring Run Chinook. The rearing results are for Fal
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

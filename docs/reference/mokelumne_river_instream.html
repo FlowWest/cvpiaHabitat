@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Mokelumne River Instream Flow to Habitat Area Relationship — mokelumne_river_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Mokelumne River Instream Flow to Habitat Area Relationship</h1>
+    
+    <div class="hidden name"><code>mokelumne_river_instream.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>mokelumne_river_instream</span></pre>
         
@@ -109,22 +131,22 @@ the CDFW 1998 PHABSIM.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>mokelumne_river_instream</span></div><div class='output co'>#&gt; # A tibble: 14 x 5
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua       watershed
-#&gt;       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;           &lt;chr&gt;
-#&gt;  1      105     1349.433         NA         NA Mokelumne River
-#&gt;  2      140     1672.185         NA         NA Mokelumne River
-#&gt;  3      180     1963.746         NA         NA Mokelumne River
-#&gt;  4      480     2709.373         NA         NA Mokelumne River
-#&gt;  5      100           NA   23324.25   22646.50 Mokelumne River
-#&gt;  6      200           NA   17657.25   18613.00 Mokelumne River
-#&gt;  7      300           NA   13015.25   17362.50 Mokelumne River
-#&gt;  8      400           NA   10001.00   14150.00 Mokelumne River
-#&gt;  9      500           NA    7086.50   10423.50 Mokelumne River
-#&gt; 10      600           NA    6103.25    8522.00 Mokelumne River
-#&gt; 11      700           NA    5643.00    6543.25 Mokelumne River
-#&gt; 12      800           NA    5298.50    6300.50 Mokelumne River
-#&gt; 13      900           NA    5051.75    5548.25 Mokelumne River
-#&gt; 14     1000           NA    4441.25    4864.00 Mokelumne River</div><div class='input'>
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed      
+#&gt;       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;          
+#&gt;  1      105        1349.        NA         NA  Mokelumne River
+#&gt;  2      140        1672.        NA         NA  Mokelumne River
+#&gt;  3      180        1964.        NA         NA  Mokelumne River
+#&gt;  4      480        2709.        NA         NA  Mokelumne River
+#&gt;  5      100          NA      23324.     22646. Mokelumne River
+#&gt;  6      200          NA      17657.     18613  Mokelumne River
+#&gt;  7      300          NA      13015.     17362. Mokelumne River
+#&gt;  8      400          NA      10001.     14150  Mokelumne River
+#&gt;  9      500          NA       7087.     10424. Mokelumne River
+#&gt; 10      600          NA       6103.      8522  Mokelumne River
+#&gt; 11      700          NA       5643       6543. Mokelumne River
+#&gt; 12      800          NA       5298.      6300. Mokelumne River
+#&gt; 13      900          NA       5052.      5548. Mokelumne River
+#&gt; 14     1000          NA       4441.      4864  Mokelumne River</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -149,11 +171,14 @@ the CDFW 1998 PHABSIM.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

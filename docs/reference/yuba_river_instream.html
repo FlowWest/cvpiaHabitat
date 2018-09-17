@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Yuba River Instream Flow to Habitat Area Relationship — yuba_river_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Yuba River Instream Flow to Habitat Area Relationship</h1>
+    
+    <div class="hidden name"><code>yuba_river_instream.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>yuba_river_instream</span></pre>
         
@@ -110,16 +132,16 @@ as a function of flow in cubic feet per second</p>
     <pre class="examples"><div class='input'><span class='no'>yuba_river_instream</span></div><div class='output co'>#&gt; # A tibble: 34 x 9
 #&gt;    flow_cfs FR_spawn_wua SR_spawn_wua ST_spawn_wua FR_fry_wua ST_fry_wua
 #&gt;       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-#&gt;  1      150    392417.11   199289.775    49085.073 161111.985 318434.345
-#&gt;  2      250    393209.20   199970.957    49183.967 160956.250 318680.518
-#&gt;  3      300    393420.09   200207.424    49244.549 160988.643 318807.836
-#&gt;  4      350    393588.50   200393.423    49307.890 160957.264 318841.966
-#&gt;  5      400     10191.30     5399.731     1079.349   4080.976   7674.502
-#&gt;  6      500     10794.02     6037.761     1472.927   3991.874   7570.162
-#&gt;  7      600     11259.36     6461.327     1838.434   3968.911   7430.349
-#&gt;  8      700     11685.40     6766.252     2205.300   3954.986   7279.336
-#&gt;  9      800     12011.97     7013.651     2555.797   3947.229   7094.273
-#&gt; 10      900     12230.32     7207.241     2859.015   3956.267   6923.708
+#&gt;  1      150      392417.      199290.       49085.    161112.    318434.
+#&gt;  2      250      393209.      199971.       49184.    160956.    318681.
+#&gt;  3      300      393420.      200207.       49245.    160989.    318808.
+#&gt;  4      350      393588.      200393.       49308.    160957.    318842.
+#&gt;  5      400       10191.        5400.        1079.      4081.      7675.
+#&gt;  6      500       10794.        6038.        1473.      3992.      7570.
+#&gt;  7      600       11259.        6461.        1838.      3969.      7430.
+#&gt;  8      700       11685.        6766.        2205.      3955.      7279.
+#&gt;  9      800       12012.        7014.        2556.      3947.      7094.
+#&gt; 10      900       12230.        7207.        2859.      3956.      6924.
 #&gt; # ... with 24 more rows, and 3 more variables: FR_juv_wua &lt;dbl&gt;,
 #&gt; #   ST_juv_wua &lt;dbl&gt;, watershed &lt;chr&gt;</div><div class='input'>
 </div></pre>
@@ -144,11 +166,14 @@ as a function of flow in cubic feet per second</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

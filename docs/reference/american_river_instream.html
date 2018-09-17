@@ -18,13 +18,26 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="American River Instream Flow to Habitat Area Relationship — american_river_instream" />
+
+<meta property="og:description" content="A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
+as a function of flow in cubic feet per second" />
+<meta name="twitter:card" content="summary" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,8 +60,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">cvpiaHabitat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -67,6 +84,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -74,16 +92,20 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>American River Instream Flow to Habitat Area Relationship</h1>
+    
+    <div class="hidden name"><code>american_river_instream.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second</p>
     
+    </div>
 
     <pre class="usage"><span class='no'>american_river_instream</span></pre>
         
@@ -109,19 +131,19 @@ applied habitat suitability model.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>american_river_instream</span></div><div class='output co'>#&gt; # A tibble: 11 x 5
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua      watershed
-#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;          &lt;chr&gt;
-#&gt;  1      300     21206.00   59897.00  112381.25 American River
-#&gt;  2      500     53339.75   54065.00  108736.25 American River
-#&gt;  3      750     78709.50   49959.25   99007.00 American River
-#&gt;  4     1000     93705.75   42334.00   93968.25 American River
-#&gt;  5     1250    100355.00   38006.00   86484.75 American River
-#&gt;  6     1500    104301.75   35099.75   82350.50 American River
-#&gt;  7     1750    107399.00   31519.50   76739.00 American River
-#&gt;  8     2000    105864.00   27976.25   75271.25 American River
-#&gt;  9     2250    102376.00   25199.00   57607.75 American River
-#&gt; 10     2500     98173.25   23179.50   51787.50 American River
-#&gt; 11     3000     84624.25   20569.50   43768.25 American River</div><div class='input'>
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed     
+#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;         
+#&gt;  1      300       21206      59897     112381. American River
+#&gt;  2      500       53340.     54065     108736. American River
+#&gt;  3      750       78710.     49959.     99007  American River
+#&gt;  4     1000       93706.     42334      93968. American River
+#&gt;  5     1250      100355      38006      86485. American River
+#&gt;  6     1500      104302.     35100.     82350. American River
+#&gt;  7     1750      107399      31520.     76739  American River
+#&gt;  8     2000      105864      27976.     75271. American River
+#&gt;  9     2250      102376      25199      57608. American River
+#&gt; 10     2500       98173.     23180.     51788. American River
+#&gt; 11     3000       84624.     20570.     43768. American River</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -146,11 +168,14 @@ applied habitat suitability model.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

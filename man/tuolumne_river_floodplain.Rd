@@ -24,7 +24,7 @@ function of flow in cubic feet per second
 }
 \section{Fall Run, Spring Run and Steelhead Modeling}{
 
-The entire mapped rearing extent of 54.33 miles was modeled using TUFLOW hydraulic model with 1D channel and 2D overbank components. Active channel area of 586.20 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.
+The entire mapped rearing extent of 54.33 miles was modeled by TID and MID using a TUFLOW hydraulic model with 1D channel and 2D overbank components. This approach directly modeled  inundated floodplain area.
 }
 
 \examples{
