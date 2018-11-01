@@ -399,6 +399,11 @@ robin_rearing <- readxl::read_excel('data-raw/mark_gard_data/Mokelumne CS fry an
          FR_juv_wua = `Fall-run juvenile (ft2)` / (24.7 * 5280 / 1000)) %>%
   select(flow_cfs, FR_fry_wua, FR_juv_wua)
 
+# modified the mark gard data, he created the wua curve using the areas provided by EBMUD
+# and dividing by the entire reach length instead of just the spawning area
+# i took the ebmud data and divided by our spawning extent length so our areas would match
+# ebmud's
+
 mokelumne_river <- read_csv("data-raw/instream/mokelumne_river_instream.csv", skip = 1)
 mokelumne_river_instream <- mokelumne_river %>%
   select(flow_cfs,
