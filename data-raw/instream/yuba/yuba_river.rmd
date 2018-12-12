@@ -19,9 +19,20 @@ fixing the yuba instream based on Mark Gard Input
 according to mark gard, on engle to daguerre segment use 400cfs as the min cfs
 then on the dag to feather use linear interpolation to fill in gaps
 
+Englebright to Daguerre Segment (12.7 miles) cells A4:H33
+Daguerre to Feather Segment (11.4 miles) cells A39:H68  
+units in square feet
+
 ```{r}
 
-yuba <- read_csv("data-raw/instream/yuba_river_instream.csv", skip=1)
+eng_dag <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', sheet = 'Yuba', range = 'A4:H33',
+                      col_names = c('flow', 'SR_spawn', 'FR_spawn', 'ST_spawn', 'FR_fry', 'ST_fry', 'FR_juv', 'ST_juv'))
+
+dag_fea <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', sheet = 'Yuba', range = 'A39:H68',
+                      col_names = c('flow', 'SR_spawn', 'FR_spawn', 'ST_spawn', 'FR_fry', 'ST_fry', 'FR_juv', 'ST_juv'))
+
+
+yuba <- read_csv("data-raw/instream/yuba/yuba_river_instream.csv", skip=1)
 
 engle_to_dag <- yuba %>% filter(segment == "Englebright to Daguerre Segment")
 dag_to_feather <- yuba %>% filter(segment == "Daguerre to Feather Segment")
