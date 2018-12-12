@@ -1,7 +1,7 @@
 ---
 title: "Mokelumne River"
-author: "sadie"
-date: "December 11, 2018"
+author: "Sadie Gill, Mark Tompkins"
+date: "December 12, 2018"
 output: html_document
 ---
 
@@ -21,21 +21,12 @@ library(scales)
 
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** EBMUD 2016 and [CDFW 1998](www.replace_this_with_url_from_markgard.com)
-Instream spawning and rearing habitat for Fall Run Chinook in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River.   
-
-### EBMUD Raw Data
-
-description of data TODO
-
-* 'LMR_habitat__s_v2mw_to_MT.xlsx'
-* spawning: 'Spawning WUA' tab A4:C8 
-* rearing: 'Instream WUA' tab A2:C8 and A12:C14 and A18:c27 weighted average, check F6 and H6 to compare outcome at 300 cfs
-* floodplain: 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres
+**Data Sources:** EBMUD 2016 and [CDFW 1998](www.replace_this_with_url_from_markgard.com)
+Instream spawning and rearing habitat for Fall Run Chinook in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
 
 ### Spawning WUA
 
-EBMUD mapped all spawning, to make wua rate we divided by our modeling spawning reach length TODO
+EBMUD provided a spawning habitat flow:area relationship covering the entire river. For each flow, the area was converted to an area per unit length by dividing the total spawning area by the length of the spawning reach mapped by the SIT.  
 
 ```{r, echo=FALSE}
 # spawning reach length
@@ -56,6 +47,8 @@ spawning
 ```
 #### Spawning WUA Plot
 
+TODO narrate plot or remove it.
+
 ```{r, echo=FALSE}
 spawning %>% 
   gather(species, wua, -flow_cfs) %>% 
@@ -67,10 +60,10 @@ spawning %>%
 ```
 
 ### Rearing WUA
+The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation so that the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow by weighting each area in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the SIT.   
 
-describe rearing dataset TODO
 ```{r}
-# spawning reach length
+# rearing reach length
 moke_rear_len <- cvpiaHabitat::watershed_lengths %>% 
   filter(watershed == 'Mokelumne River', lifestage == 'rearing') %>% 
   pull(feet)
@@ -88,13 +81,6 @@ rearing3 <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xl
 
 Flow <- unique(sort(c(rearing1$Flow, rearing2$Flow, rearing3$Flow)))
 ```
-
-## Expand Modeling
-
-The three reaches combined as weighted average TODO
-The flow values differ between reaches, used unique set of flows between all
-linear extrapolated square footage for flows not originally modeled
-
 ```{r}
 # reach 1 ------------
 r1 <- tibble(
@@ -136,11 +122,9 @@ rearing <- r1 %>%
   rename(flow_cfs = Flow, FR_fry_wua = `Fall-run fry (ft2)`, FR_juv_wua = `Fall-run juvenile (ft2)`)
 
 ```
+### Rearing WUA Plots
 
-
-## Plots
-
-Compare original modeling to linearly extrapolated values at each flow TODO
+TODO narrate plots or remove them.
 
 ```{r}
 
@@ -178,7 +162,6 @@ r3 %>%
 
 ```
 
-
 ## Combine Spawning and Rearing
 
 Prepare data in proper form to be used in habitat setting functions.
@@ -193,4 +176,9 @@ mokelumne_river_instream <- spawning %>%
 
 # devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
+```
+
+## Floodplain
+```{r}
+# floodplain: 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres
 ```
