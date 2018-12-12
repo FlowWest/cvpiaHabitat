@@ -280,25 +280,8 @@ use_data(south_delta_percent_suitability)
 
 
 
-# American river
-# from MG call, all we have to look at are rows 1-32 that specify spawning
-# all else is "intermediate" steps.
+# American River see 'data-raw/instream/american'
 
-
-american <- read_csv("data-raw/instream/american_river_instream.csv", skip = 1)
-
-american$miles <- 2.2
-
-american_river_instream <- american %>%
-  mutate(watershed = 'American River') %>%
-  select(flow_cfs = Flow,
-         FR_spawn_wua = Spawning,
-         FR_fry_wua = `Fry Rearing`,
-         FR_juv_wua = `Juv Rearing`,
-         watershed)
-
-
-devtools::use_data(american_river_instream, overwrite = TRUE)
 
 # this portion cleans up the naming conventions -------------------------------------
 # naming convention: SPECIES_LIFESTAGE_UNITS for each column

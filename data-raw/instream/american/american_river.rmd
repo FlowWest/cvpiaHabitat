@@ -1,0 +1,106 @@
+---
+title: "American River"
+author: "sadie"
+date: "December 11, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(scales)
+
+```
+
+## Instream Spawning and Rearing Habiat
+**Data Source:** FWS 1985 Mark Gard IFIM study + Lower American River Biological Rationale,
+Development and Performance of the Modified Flow Management Standard 2017 study
+
+Need link to 1985 FWS study
+
+
+Mark Gard instructed us to use A35:D46 of the 'American' tab within his 'IFIMWUA.xlsx'
+These cells represent the sums of the reaches Sailor Bar, Ancil Hoffman, Watt, 
+and H Street divided by 4. The units are sqft/1000ft. 
+
+#### mark gard raw data
+```{r}
+american_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A35:D46", sheet = 'American')
+american_raw 
+
+```
+
+Chris Hammersmark has provided updated spawning WUA
+
+## Chris Hammersmark New Data
+Attachment B, Table B-4 and Figure B-8 on pdf page 91 and 92
+<https://www.waterboards.ca.gov/waterrights/water_issues/programs/bay_delta/california_waterfix/exhibits/docs/PCWA/part2/ARWA-702.pdf>
+saved here:
+<https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf>
+
+pg 89 table b-3 contains the study reach lengths
+
+WUA curves old and new
+
+```{r, echo=FALSE}
+spawn <- read_csv('data-raw/instream/american/american_river_spawning_wua.csv')
+
+study_len <- 800+377+1553+522+3142+3103+1000+754+3442+1500
+
+cs <- spawn %>%
+  mutate(sqft_per_1000ft = wua_ft2/(study_len/1000)) %>% 
+  select(Flow = flow_cfs, Spawning = sqft_per_1000ft) %>% 
+  mutate(source = 'Chris')
+
+american_raw %>% 
+  select(Flow, Spawning) %>% 
+  mutate(source = 'Mark') %>% 
+  bind_rows(cs) %>% 
+  # group_by(source) %>% mutate(max = max(Spawning)) %>% filter(max == Spawning)
+  ggplot(aes(Flow, Spawning, color = source)) +
+  geom_line()
+
+```
+
+Chris data converted to acres
+
+```{r, echo=FALSE}
+amer_len <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'American River', lifestage == 'spawning') %>% 
+  pull(feet)
+
+cs %>% 
+  mutate(acres = Spawning * amer_len / 1000 / 43560) %>% 
+  ggplot(aes(Flow, acres)) +
+  geom_line()
+
+```
+
+## Combine Mark Gard and Chris Hammersmark data
+
+```{r, echo=FALSE}
+rearing <- american_raw %>% 
+  select(-Spawning) %>% 
+  gather(lifestage, WUA, -Flow)
+  
+
+spawning <- cs %>% 
+  select(-source) %>% 
+  rename(WUA = Spawning) %>% 
+  mutate(lifestage = 'Spawning')
+
+american_river_instream <- rearing %>% 
+  bind_rows(spawning) %>% 
+  spread(lifestage, WUA) %>% 
+  select(flow_cfs = Flow,
+         FR_spawn_wua = Spawning,
+         FR_fry_wua = `Fry Rearing`,
+         FR_juv_wua = `Juv Rearing`) %>% 
+  mutate(watershed = 'American River')
+
+american_river_instream
+# devtools::use_data(american_river_instream, overwrite = TRUE)
+```

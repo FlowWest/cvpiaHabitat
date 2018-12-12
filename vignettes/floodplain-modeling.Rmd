@@ -1,0 +1,25 @@
+---
+title: "Floodplain Modeling"
+author: "Sadie Gill"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The CVPIA life cycle models for Fall Run Chinook salmon, Spring Run Chinook salmon, and steelhead require an area of existing suitable floodplain rearing habitat as an input for each watershed. We developed these inputs as follows:    
+    
+1. In watersheds where a hydraulic model covering the entire rearing extent was available, the flow to inundation area relationship from the model was used to develop the suitable floodplain rearing habitat area input for a given monthly flow. The active channel (or instream) component of inundated area was subtracted from total inundated area for a given flow. Unless floodplain rearing habitat suitability criteria had already been applied in the hydraulic model, it was assumed that 27% [(SJRRP 2012)](http://www.restoresjr.net/?wpfb_dl=408") of total inundated area would be suitable.    
+2. In watersheds where a hydraulic model covering a portion of the rearing extent was available, the flow to inundation area relationship from the model was used for the modeled area, and the average area per river mile from the modeled area was used to estimate inundation area in the unmodeled portion of the rearing extent. As in the modeled portion of the watershed, the active channel component of the inundated area was subtracted and a suitability of 27% was applied to estimate the existing floodplain rearing habitat area.     
+3. In watersheds with no hydraulic model, the flow to inundation area relationship from a nearby, geomorphically similar watershed with a hydraulic model was scaled by the ratio of the average monthly mean flow in the modeled versus the unmodeled watershed. As in the modeled watersheds, the active channel component of the inundated area was subtracted and a suitability of 27% was applied to estimate the existing floodplain rearing habitat area.    
+4. In unmodeled and partially modeled watersheds with rearing extents spanning low and high gradient portions of the watershed, suitable floodplain areas were scaled down further to account for the significant difference between the floodable river corridor width in low and high gradient regions. The low and high gradient extents in each watershed are shown <a href="">here</a>. These extents were developed based on delineations conducted for the Central Valley Habitat Exchange Habitat Quantification Tool [(2018)](http://cvhe.org/tools) and systematic evaluations of geomorphic conditions in each watershed. Suitable floodplain rearing habitat area at a given flow in unmodeled, high gradient regions was scaled down to 10% of the area of low gradient regions.
+

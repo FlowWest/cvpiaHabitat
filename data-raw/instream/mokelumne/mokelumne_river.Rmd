@@ -1,0 +1,154 @@
+---
+title: "Mokelumne River"
+author: "sadie"
+date: "December 11, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(scales)
+```
+
+
+
+robyn steelhead rearing coming mid-January 
+
+## Instream Spawning and Rearing Habiat
+**Data Source:** EBMUD 2016 and CDFW 1998
+<https://flowwest.github.io/cvpiaHabitat/reference/mokelumne_river_instream.html>
+
+### EBMUD Raw Data
+
+'LMR_habitat__s_v2mw_to_MT.xlsx'
+spawning: 'Spawning WUA' tab A4:C8 
+rearing: 'Instream WUA' tab A2:C8 and A12:C14 and A18:c27 weighted average, check F6 and H6 to compare outcome at 300 cfs
+floodplain: 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres
+
+#### Spawning WUA
+```{r, echo=FALSE}
+# spawning reach length
+moke_spawn_len <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'Mokelumne River', lifestage == 'spawning') %>% 
+  pull(feet)
+
+# 'LMR_habitat__s_v2mw_to_MT.xlsx'
+# spawning: 'Spawning WUA' tab A4:C8 
+spawning <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Spawning WUA', range = 'A4:C8', 
+                       col_names = c('flow_cfs', 'FR_spawn_sqft', 'ST_spawn_sqft')) %>% 
+  mutate(FR_spawn_wua = FR_spawn_sqft/(moke_spawn_len / 1000), #sqft_per_1000ft
+         ST_spawn_wua = ST_spawn_sqft/(moke_spawn_len / 1000)) %>% 
+  select(flow_cfs, FR_spawn_wua, ST_spawn_wua)
+
+spawning
+```
+### Spawning WUA
+
+```{r, echo=FALSE}
+spawning %>% 
+  gather(species, wua, -flow_cfs) %>% 
+  ggplot(aes(flow_cfs, wua, color = species)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma)
+
+# devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
+```
+
+### Rearing WUA
+```{r}
+# spawning reach length
+moke_rear_len <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'Mokelumne River', lifestage == 'rearing') %>% 
+  pull(feet)
+
+# 'LMR_habitat__s_v2mw_to_MT.xlsx'
+# rearing: 'Instream WUA' tab A2:C8 and A11:C14 and A17:C27 weighted average, check F6 and H6 to compare outcome at 300 cfs
+total_modeled_len <- 1.1 + 9.4 + 24.7
+
+rearing1 <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Instream WUA', range = 'A2:C8') 
+rearing2 <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Instream WUA', range = 'A11:C14')
+rearing3 <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Instream WUA', range = 'A17:C27')
+
+Flow <- unique(sort(c(rearing1$Flow, rearing2$Flow, rearing3$Flow)))
+
+# reach 1 ------------
+r1 <- tibble(
+  Flow = Flow,
+  `Fall-run fry (ft2)` = approx(rearing1$Flow, rearing1$`Fall-run fry (ft2)`, 
+                                xout = flow_out, rule = 2)$y,
+  `Fall-run juvenile (ft2)` = approx(rearing1$Flow, rearing1$`Fall-run juvenile (ft2)`, 
+                                     xout = flow_out, rule = 2)$y,
+  rm = 1.1
+)
+
+rearing1 %>% 
+  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
+  geom_point()
+
+r1 %>% 
+  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
+  geom_point()
+
+# reach 2 ----------
+r2 <- tibble(
+  Flow = Flow,
+  `Fall-run fry (ft2)` = approx(rearing2$Flow, rearing2$`Fall-run fry (ft2)`, 
+                                xout = Flow, rule = 2)$y,
+  `Fall-run juvenile (ft2)` = approx(rearing2$Flow, rearing2$`Fall-run juvenile (ft2)`, 
+                                     xout = Flow, rule = 2)$y,
+  rm = 9.4
+)
+
+rearing2 %>% 
+  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
+  geom_point()
+
+r2 %>% 
+  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
+  geom_point()
+
+# reach 3 ----------
+  # mutate(FR_spawn_wua = FR_spawn_sqft/(moke_spawn_len / 1000), #sqft_per_1000ft
+  #        ST_spawn_wua = ST_spawn_sqft/(moke_spawn_len / 1000)) %>% 
+  # select(flow_cfs, FR_spawn_wua, ST_spawn_wua)
+r3 <- tibble(
+  Flow = Flow,
+  `Fall-run fry (ft2)` = approx(rearing3$Flow, rearing3$`Fall-run fry (ft2)`, 
+                                xout = Flow, rule = 2)$y,
+  `Fall-run juvenile (ft2)` = approx(rearing3$Flow, rearing3$`Fall-run juvenile (ft2)`, 
+                                     xout = Flow, rule = 2)$y,
+  rm = 24.7
+)
+
+rearing3 %>% 
+  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
+  geom_point()
+
+r3 %>% 
+  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
+  geom_point()
+
+# combine reaches
+rearing <- r1 %>% 
+  bind_rows(r2, r3) %>% 
+  gather(lifestage, sq_ft, -Flow, -rm) %>%
+  group_by(lifestage, Flow) %>% 
+  summarise(wua = sum(sq_ft/rm/5.28 * rm/total_modeled_len)) %>% 
+  spread(lifestage, wua) %>% 
+  rename(flow_cfs = Flow, FR_fry_wua = `Fall-run fry (ft2)`, FR_juv_wua = `Fall-run juvenile (ft2)`)
+
+# 300 cfs fry, double check calculation
+(203823/1.1/5.28 * 1.1/35.2 + 1718536/9.4/5.28 * 9.4/35.2 + 1697397/24.7/5.28 * 24.7/35.2) -
+(rearing %>% 
+  filter(flow_cfs == 300) %>% 
+  pull(FR_fry_wua))
+```

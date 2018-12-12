@@ -97,6 +97,8 @@ navbar:
   left:
   - text: 'Reference'
     href: reference/index.html
+  - text: 'Articles'
+    href: articles/floodplain-modeling.html
   - text: 'News'
     href: news/index.html
   right:

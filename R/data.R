@@ -1170,7 +1170,7 @@ NULL
 #' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 #' as a function of flow in cubic feet per second
 #'
-#' @format dataframe with 11 rows and 5 variables:
+#' @format dataframe with 61 rows and 5 variables:
 #' \describe{
 #' \item{flow_cfs}{integer flow value in cubic feet per second}
 #' \item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
@@ -1179,13 +1179,12 @@ NULL
 #' \item{watershed}{name of watershed}
 #' }
 #'
-#' @details The spawning WUA was derived from a River2D,
-#' applied habitat suitability model.
+#' @details TODO
 #'
 #' @examples
 #' american_river_instream
 #'
-#' @source \href{TODO}{FWS 1985}
+#' @source \href{TODO}{FWS 1985} and \href{https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf}{ARWA-702}
 "american_river_instream"
 
 #' Yuba River Instream Flow to Habitat Area Relationship
