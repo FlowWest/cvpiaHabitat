@@ -14,15 +14,15 @@ library(cvpiaHabitat)
 library(scales)
 ```
 
-## Upcoming News
+## Future Data Improvements
 
-* EBMUD developing steelhead rearing, should arrive mid-January 2019
-* EBMUD developing new floodplain habitat relationship with Mark Gard
+* EBMUD developing new steelhead rearing habitat flow:area relationships (expected January 2019)
+* EBMUD developing new Fall Run floodplain rearing habitat flow:area relationships with Mark Gard (expected late 2019)
 
 
-## Instream Spawning and Rearing Habiat
-**Data Source:** EBMUD 2016 and CDFW 1998 TODO
-<https://flowwest.github.io/cvpiaHabitat/reference/mokelumne_river_instream.html>
+## Instream Spawning and Rearing Habitat
+**Data Source:** EBMUD 2016 and [CDFW 1998](www.replace_this_with_url_from_markgard.com)
+Instream spawning and rearing habitat for Fall Run Chinook in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River.   
 
 ### EBMUD Raw Data
 
