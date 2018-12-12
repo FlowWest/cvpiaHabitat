@@ -43,21 +43,6 @@ cottonwood_creek_instream <- cottonwood %>%
 
 devtools::use_data(cottonwood_creek_instream, overwrite = TRUE)
 
-stan <- read_csv('data-raw/instream/stanislaus_river_instream.csv', skip = 1)
-
-stanislaus_river_instream <- stan %>%
-  gather(species_stage, WUA, -flow_cfs, -watershed) %>%
-  filter(!is.na(WUA)) %>%
-  spread(species_stage, WUA) %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_fry_wua = fr_fry_WUA,
-         FR_juv_wua = fr_juv_WUA,
-         ST_fry_wua = st_fry_WUA,
-         ST_juv_wua = st_juv_WUA,
-         watershed)
-
-devtools::use_data(stanislaus_river_instream, overwrite = TRUE)
 
 #yuba
 
@@ -281,6 +266,8 @@ use_data(south_delta_percent_suitability)
 
 
 # American River see 'data-raw/instream/american'
+# Stanislaus River see 'data-raw/instream/stanislaus'
+# Feather River see 'data-raw/instream/feather'
 
 
 # this portion cleans up the naming conventions -------------------------------------
@@ -346,21 +333,8 @@ cow_creek_instream <- cow_creek %>%
 
 devtools::use_data(cow_creek_instream, overwrite = TRUE)
 
-# feather river
-feather_river <- read_csv("data-raw/instream/feather_river_instream.csv", skip = 1) %>%
-  select(-spawn_WUA)
-feather_river_spawn <- read_csv('data-raw/feather/feather_river_spawning.csv')
 
-feather_river_instream <- feather_river_spawn %>%
-  left_join(feather_river) %>%
-  mutate(watershed = 'Feather River') %>%
-  select(flow_cfs,
-         FR_spawn_wua,
-         FR_fry_wua = fry_WUA,
-         FR_juv_wua = juv_WUA,
-         watershed)
 
-devtools::use_data(feather_river_instream, overwrite = TRUE)
 
 # merced
 merced_river <- read_csv("data-raw/instream/merced_river_instream.csv", skip = 1)
@@ -397,7 +371,7 @@ mokelumne_river_instream <- mokelumne_river %>%
 
 devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
-# stanislaus done above
+# see
 
 # tuo
 tuolumne_river <- read_csv("data-raw/instream/tuolumne_river_instream.csv", skip = 1)

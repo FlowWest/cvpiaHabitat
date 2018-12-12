@@ -1,10 +1,10 @@
 library(tidyverse)
 
 # digitized from FERC 2004 report https://automeris.io/WebPlotDigitizer/
-upper <- read_csv('data-raw/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
+upper <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'upper')
 
-lower <- read_csv('data-raw/feather/alt_lower_feather_spawn_wua_rsi.csv') %>%
+lower <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'lower')
 
 upper_approx <- approxfun(upper$flow, upper$wua_rsi, rule = 2)
@@ -27,7 +27,7 @@ tibble(
   lower_wua = lower_approx(flow_cfs)) %>%
   mutate(FR_spawn_wua = upper_wua * (9.75/18) + lower_wua * (8.25/18)) %>%
   select(flow_cfs, FR_spawn_wua) %>%
-  write_csv('data-raw/feather/feather_river_spawning.csv')
+  write_csv('data-raw/instream/feather/feather_river_spawning.csv')
 
 cvpiaHabitat::watershed_lengths %>%
   filter(watershed == 'Feather River')

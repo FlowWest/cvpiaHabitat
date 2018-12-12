@@ -21,18 +21,18 @@ test_that('FR juv American River works', {
   x <- ((stream_length/1000) * wua)/10.7639
 
   expect_equal(
-    set_instream_habitat('American River', 'fr', 'fry', 300), x)
+    set_instream_habitat('American River', 'fr', 'juv', 300), x)
 
 })
 
 test_that('FR spawn American River works', {
   # flow 300
-  wua <- cvpiaHabitat::american_river_instream$FR_juv_wua[6]
-  stream_length <- cvpiaHabitat::watershed_lengths[[40, 5]]
+  wua <- cvpiaHabitat::american_river_instream$FR_spawn_wua[6]
+  stream_length <- cvpiaHabitat::watershed_lengths[[39, 5]]
 
   x <- ((stream_length/1000) * wua)/10.7639
 
   expect_equal(
-    set_instream_habitat('American River', 'fr', 'fry', 300), x)
+    set_spawning_habitat('American River', 'fr', 300), x)
 
 })

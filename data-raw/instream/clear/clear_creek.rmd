@@ -1,0 +1,168 @@
+---
+title: "Clear Creek"
+author: "sadie"
+date: "December 12, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(scales)
+```
+
+## Instream Spawning and Rearing Habiat
+
+> **Data Source:** FWS 2007-2013
+> <https://flowwest.github.io/cvpiaHabitat/reference/clear_creek_instream.html>
+
+Mark Gard instructed us to use A3:G26, A30:G53, and A58:G81 of the 'Clear' tab
+within his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower
+alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments.
+Fall run are only in the lower alluvial segment.
+
+
+
+#### WUA data in cvpiaHabitat package compared to mark gard raw data
+```{r, echo=FALSE}
+cvpiaHabitat::clear_creek_instream
+clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A3:G26", sheet = 'Clear', 
+                           col_names = c('Flow', 'SR Spawning', 'ST Spawning', 'SR fry', 'ST fry', 'SR juv', 'ST juv'))
+clear_raw_c <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A30:G53", sheet = 'Clear',
+                          col_names = c('Flow', 'SR Spawning', 'ST Spawning', 'SR fry', 'ST fry', 'SR juv', 'ST juv'))
+clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A58:I81", sheet = 'Clear',
+                           col_names = c('Flow', 'FR Spawning', 'ST Spawning', 'SR fry', 'ST fry',
+                                         'FR fry', 'SR juv', 'STjuv', 'FR juv'))
+
+clear <- mutate(clear_raw_la, miles = 8.81) %>%
+  bind_rows(
+    mutate(clear_raw_c, miles = 7.33),
+    mutate(clear_raw_ua, miles = 2.27)
+  )
+total <- 8.81 + 7.33 + 2.27
+prop_ua <- 2.27 / total
+prop_c <- 7.33 / total
+prop_la <- 8.81 / total
+
+clear_wua <- clear %>%
+  gather(species_lifestage, sqft, -Flow, -miles) %>%
+  mutate(sqft_per_1000ft = sqft/miles/5.28, species_lifestage = paste (species_lifestage, miles)) %>%
+  select(Flow, species_lifestage, sqft_per_1000ft) %>%
+  spread(species_lifestage, sqft_per_1000ft) %>%
+  mutate(SR_juv = prop_ua * `SR juv 2.27` + prop_c * `SR juv 7.33` + prop_la * `SR juv 8.81`,
+         ST_juv = prop_ua * `ST juv 2.27` + prop_c * `ST juv 7.33` + prop_la * `ST juv 8.81`,
+         SR_fry = prop_ua * `SR fry 2.27` + prop_c * `SR fry 7.33` + prop_la * `SR fry 8.81`,
+         ST_fry = prop_ua * `ST fry 2.27` + prop_c * `ST fry 7.33` + prop_la * `ST fry 8.81`,
+         SR_spawning = (2.27 / (7.33 + 2.27)) * `SR Spawning 2.27` + (7.33 / (7.33 + 2.27)) * `SR Spawning 7.33`,
+         ST_spawning = prop_ua * `ST Spawning 2.27` + prop_c * `ST Spawning 7.33` + prop_la * `ST Spawning 8.81`) %>%
+  select(Flow, FR_spawning = `FR Spawning 8.81`, SR_spawning, ST_spawning,
+         FR_fry = `FR fry 8.81`, SR_fry, ST_fry, FR_juv = `FR juv 8.81`, SR_juv, ST_juv)
+
+clear_wua
+```
+where is the spring run spawning in the lower alluvial segment?
+
+  ### Spawning WUA from raw data
+
+  ```{r, echo=FALSE}
+clear_wua %>%
+  select(Flow, FR_spawning:ST_spawning) %>%
+  gather(species, wua, -Flow) %>%
+  ggplot(aes(Flow, wua, color = species)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma)
+```
+
+### Spawning WUA from cvpiaHabitat package
+
+```{r, echo=FALSE}
+cvpiaHabitat::clear_creek_instream %>%
+  select(flow_cfs, FR_spawn_wua, SR_spawn_wua, ST_spawn_wua) %>%
+  gather(species, wua, -flow_cfs) %>%
+  ggplot(aes(flow_cfs, wua, color = species)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma)
+```
+
+
+### Spawning Habitat in Acres
+Using the habitat package `cvpiaHabitat::set_spawning_habitat`
+
+```{r, echo=FALSE}
+spawn_calc <- tibble(
+  Flow = seq(25, 1000, length.out = 100),
+  FR_acres = square_meters_to_acres(cvpiaHabitat::set_spawning_habitat('Clear Creek', 'fr', Flow)),
+  SR_acres = square_meters_to_acres(cvpiaHabitat::set_spawning_habitat('Clear Creek', 'sr', Flow)),
+  ST_acres = square_meters_to_acres(cvpiaHabitat::set_spawning_habitat('Clear Creek', 'st', Flow)))
+
+spawn_calc %>%
+  gather(species, acres, -Flow) %>%
+  ggplot(aes(Flow, acres, color = species)) +
+  geom_line()
+
+```
+
+These results are excessively low compared to measured spawning habitat used
+
+### Spawning habitat used
+```{r, echo=FALSE}
+used <- read_csv('clear_creek_mapped_spawning.csv', skip = 1)
+
+used %>%
+  ggplot(aes(x = as.character(Year), y = acres)) +
+  geom_col() +
+  labs(x = 'year')
+```
+
+examine emails from mark gard and charile chamberline to try scaling exercise of spawning habitat
+
+
+### Rearing WUA from raw data
+```{r, echo=FALSE}
+clear_wua %>%
+  select(-FR_spawning, -SR_spawning, -ST_spawning) %>%
+  gather(species, wua, -Flow) %>%
+  ggplot(aes(Flow, wua, color = species)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma)
+```
+
+Steelhead and spring run juv rearing habitat is the same, why?
+  ASK MARK GARD- is criteria the same?
+  small sample size for both steelhead and spring run, criteria is the same so lumped the data together
+
+
+### Rearing Habitat in Acres
+Using the habitat package `cvpiaHabitat::set_instream_habitat`
+
+```{r, echo=FALSE}
+rear_calc <- tibble(
+  Flow = seq(100, 1000, length.out = 100),
+  fr_fry = cvpiaHabitat::square_meters_to_acres(
+    cvpiaHabitat::set_instream_habitat('Clear Creek', 'fr', 'fry', Flow)),
+  fr_juv = cvpiaHabitat::square_meters_to_acres(
+    cvpiaHabitat::set_instream_habitat('Clear Creek', 'fr', 'juv', Flow)),
+  sr_fry = cvpiaHabitat::square_meters_to_acres(
+    cvpiaHabitat::set_instream_habitat('Clear Creek', 'sr', 'fry', Flow)),
+  sr_juv = cvpiaHabitat::square_meters_to_acres(
+    cvpiaHabitat::set_instream_habitat('Clear Creek', 'sr', 'juv', Flow)),
+  st_fry = cvpiaHabitat::square_meters_to_acres(
+    cvpiaHabitat::set_instream_habitat('Clear Creek', 'st', 'fry', Flow)),
+  st_juv = cvpiaHabitat::square_meters_to_acres(
+    cvpiaHabitat::set_instream_habitat('Clear Creek', 'st', 'juv', Flow))) %>%
+  gather(species, acres, -Flow)
+
+rear_calc %>%
+  ggplot(aes(Flow, acres, color = species)) +
+  geom_line()
+
+```
+
+# mark gard scaling
+

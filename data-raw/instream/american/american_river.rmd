@@ -21,7 +21,6 @@ Development and Performance of the Modified Flow Management Standard 2017 study
 
 Need link to 1985 FWS study
 
-
 Mark Gard instructed us to use A35:D46 of the 'American' tab within his 'IFIMWUA.xlsx'
 These cells represent the sums of the reaches Sailor Bar, Ancil Hoffman, Watt, 
 and H Street divided by 4. The units are sqft/1000ft. 
