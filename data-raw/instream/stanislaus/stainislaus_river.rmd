@@ -16,9 +16,11 @@ library(scales)
 
 ## Instream Spawning and Rearing Habiat
 
-> **Data Source:** Spawning Aceituno 1993 (FWS) PHABSIM model and the rearing from the FWS River2D model.
-> Need to add links to souce documents
+> **Data Source:** Spawning Aceituno 1993 (FWS) PHABSIM model and the rearing from the FWS River2D model. TODO
+> Need to add links to souce documents TODO
 > <https://flowwest.github.io/cvpiaHabitat/reference/stanislaus_river_instream.html>
+
+Description of modeling TODO
 
 Mark Gard instructed us to use I4:N60 of the 'Stanislaus' tab within his 'IFIMWUA.xlsx'
 These cells represent the sums of the rearing habitat in the canyon segment,
@@ -26,11 +28,8 @@ knights ferry to orange blossom, orange blossom to jacomb myers, and jacob myers
 to san joaquin and then converted from sqft to sqft/1000ft. Spawning is modeled
 as one 50 mi segment.
 
-I saved this tab as 'stanislaus_IFIM.xlsx' to explore here.
-
-#### WUA data in cvpiaHabitat package compared to mark gard raw data
-```{r, echo=FALSE}
-cvpiaHabitat::stanislaus_river_instream
+## Mark Gard WUA data 
+```{r}
 stanislaus_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "I4:N60", sheet = 'Stanislaus',
                              col_names = c('flow_cfs', 'FR_fry_wua', 'ST_fry_wua', 'FR_juv_wua', 'ST_juv_wua', 'FR_spawn_wua'))
 stanislaus_raw
@@ -38,7 +37,7 @@ stanislaus_raw
 ```
 
 
-### Spawning WUA from raw data
+### Spawning WUA Plot
 
 ```{r, echo=FALSE}
 stanislaus_raw %>%
@@ -49,8 +48,8 @@ stanislaus_raw %>%
   scale_y_continuous(labels = comma)
 ```
 
-### Rearing WUA from raw data
-```{r, echo=FALSE}
+### Rearing WUA Plot
+```{r}
 stanislaus_raw %>%
   filter(is.na(FR_spawn_wua)) %>%
   select(-FR_spawn_wua) %>%
@@ -61,15 +60,16 @@ stanislaus_raw %>%
   scale_y_continuous(labels = comma)
 ```
 
-### Rearing Habitat in Acres
-Using the habitat package `cvpiaHabitat::set_instream_habitat`
+## Format Data
+Prepare data in proper form to be used in habitat setting functions.
+
 
 ```{r, echo=FALSE}
 stanislaus_river_instream <- stanislaus_raw %>% 
   mutate(watershed = 'Stanislaus River') %>% 
   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, ST_fry_wua, ST_juv_wua, watershed)
 
-devtools::use_data(stanislaus_river_instream, overwrite = TRUE)
+# devtools::use_data(stanislaus_river_instream, overwrite = TRUE)
 
 ```
 
