@@ -62,7 +62,7 @@ spawning %>%
 ### Rearing WUA
 The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation so that the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow by weighting each area in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the SIT.   
 
-```{r}
+```{r, echo=FALSE, results='hide'}
 # rearing reach length
 moke_rear_len <- cvpiaHabitat::watershed_lengths %>% 
   filter(watershed == 'Mokelumne River', lifestage == 'rearing') %>% 
@@ -80,8 +80,7 @@ rearing3 <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xl
                        sheet = 'Instream WUA', range = 'A17:C27')
 
 Flow <- unique(sort(c(rearing1$Flow, rearing2$Flow, rearing3$Flow)))
-```
-```{r}
+
 # reach 1 ------------
 r1 <- tibble(
   Flow = Flow,
@@ -121,46 +120,35 @@ rearing <- r1 %>%
   spread(lifestage, wua) %>% 
   rename(flow_cfs = Flow, FR_fry_wua = `Fall-run fry (ft2)`, FR_juv_wua = `Fall-run juvenile (ft2)`)
 
-```
-### Rearing WUA Plots
-
-TODO narrate plots or remove them.
-
-```{r}
 
 # 300 cfs fry, double check calculation
 (203823/1.1/5.28 * 1.1/35.2 + 1718536/9.4/5.28 * 9.4/35.2 + 1697397/24.7/5.28 * 24.7/35.2) -
 (rearing %>% 
   filter(flow_cfs == 300) %>% 
   pull(FR_fry_wua))
+```
+### Rearing WUA Plots
 
-# original
+TODO narrate plots or remove them.
+
+Rearing segment 1
+
+original
+
+```{r, echo=FALSE}
 rearing1 %>% 
   ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
   geom_point()
+```
 
-# extrapolated
+extrapolated
+
+```{r, echo=FALSE}
 r1 %>% 
   ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
   geom_point()
-
-rearing2 %>% 
-  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
-  geom_point()
-
-r2 %>% 
-  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
-  geom_point()
-
-rearing3 %>% 
-  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
-  geom_point()
-
-r3 %>% 
-  ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
-  geom_point()
-
 ```
+
 
 ## Combine Spawning and Rearing
 
