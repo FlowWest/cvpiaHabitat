@@ -14,10 +14,15 @@ library(cvpiaHabitat)
 library(scales)
 ```
 
+## Upcoming:
+* Scale spawning wua, examine emails from mark gard and charile chamberline to try scaling exercise of spawning habitat
+
 ## Instream Spawning and Rearing Habiat
 
-> **Data Source:** FWS 2007-2013
+> **Data Source:** FWS 2007-2013 TODO
 > <https://flowwest.github.io/cvpiaHabitat/reference/clear_creek_instream.html>
+
+describe modeling TODO
 
 Mark Gard instructed us to use A3:G26, A30:G53, and A58:G81 of the 'Clear' tab
 within his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower
@@ -25,8 +30,10 @@ alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments.
 Fall run are only in the lower alluvial segment.
 
 
+### WUA raw data
+Combined the data from three reaches TODO
+where is the spring run spawning in the lower alluvial segment?
 
-#### WUA data in cvpiaHabitat package compared to mark gard raw data
 ```{r, echo=FALSE}
 cvpiaHabitat::clear_creek_instream
 clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A3:G26", sheet = 'Clear', 
@@ -63,11 +70,11 @@ clear_wua <- clear %>%
 
 clear_wua
 ```
-where is the spring run spawning in the lower alluvial segment?
 
-  ### Spawning WUA from raw data
 
-  ```{r, echo=FALSE}
+### Spawning WUA from raw data
+
+```{r, echo=FALSE}
 clear_wua %>%
   select(Flow, FR_spawning:ST_spawning) %>%
   gather(species, wua, -Flow) %>%
@@ -119,10 +126,9 @@ used %>%
   labs(x = 'year')
 ```
 
-examine emails from mark gard and charile chamberline to try scaling exercise of spawning habitat
 
 
-### Rearing WUA from raw data
+### Rearing WUA Plot
 ```{r, echo=FALSE}
 clear_wua %>%
   select(-FR_spawning, -SR_spawning, -ST_spawning) %>%
@@ -134,35 +140,39 @@ clear_wua %>%
 ```
 
 Steelhead and spring run juv rearing habitat is the same, why?
-  ASK MARK GARD- is criteria the same?
-  small sample size for both steelhead and spring run, criteria is the same so lumped the data together
+ASK MARK GARD- is criteria the same?
+small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO
 
+```{r}
+# Old code
+# clear creek instream cleaning-----------------------------------
+# in units sqft want in units sqft/1000ft
+clear_creek <- read_csv('data-raw/instream/clear_creek_instream.csv')
+glimpse(clear_creek)
+View(clear_creek)
 
-### Rearing Habitat in Acres
-Using the habitat package `cvpiaHabitat::set_instream_habitat`
+clear_creek_instream <- clear_creek %>%
+  gather(species_stage, WUA, -flow_cfs, -Reach:-WUA_units) %>%
+  filter(!is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_reach_length = sum(Reach_length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_reach_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Clear Creek') %>%
+  select(flow_cfs,
+         FR_fry_wua = FR_fry,
+         FR_juv_wua = FR_juv,
+         FR_spawn_wua = FR_spawning,
+         SR_fry_wua = SR_fry,
+         SR_juv_wua = SR_juvenile,
+         SR_spawn_wua = SR_spawning,
+         ST_fry_wua = ST_fry,
+         ST_juv_wua = ST_juvenile,
+         ST_spawn_wua = ST_spawning,
+         watershed) # add new naming convention to cols
 
-```{r, echo=FALSE}
-rear_calc <- tibble(
-  Flow = seq(100, 1000, length.out = 100),
-  fr_fry = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Clear Creek', 'fr', 'fry', Flow)),
-  fr_juv = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Clear Creek', 'fr', 'juv', Flow)),
-  sr_fry = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Clear Creek', 'sr', 'fry', Flow)),
-  sr_juv = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Clear Creek', 'sr', 'juv', Flow)),
-  st_fry = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Clear Creek', 'st', 'fry', Flow)),
-  st_juv = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Clear Creek', 'st', 'juv', Flow))) %>%
-  gather(species, acres, -Flow)
-
-rear_calc %>%
-  ggplot(aes(Flow, acres, color = species)) +
-  geom_line()
-
+# devtools::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
-# mark gard scaling
 
