@@ -263,11 +263,10 @@ south_delta_percent_suitability <- delta %>%
 
 use_data(south_delta_percent_suitability)
 
-
-
 # American River see 'data-raw/instream/american'
 # Stanislaus River see 'data-raw/instream/stanislaus'
 # Feather River see 'data-raw/instream/feather'
+# Mokelumne River see 'data-raw/instream/mokelumne'
 
 
 # this portion cleans up the naming conventions -------------------------------------
@@ -347,29 +346,6 @@ merced_river_instream <- merced_river  %>%
          watershed)
 
 devtools::use_data(merced_river_instream, overwrite = TRUE)
-
-# moke
-# 24.7 reach length
-robin_rearing <- readxl::read_excel('data-raw/mark_gard_data/Mokelumne CS fry and juvenile WUA Results.xlsx', sheet = 1, skip = 16) %>%
-  select(flow_cfs = Flow, `Fall-run fry (ft2)`, `Fall-run juvenile (ft2)`) %>%
-  mutate(FR_fry_wua = `Fall-run fry (ft2)` / (24.7 * 5280 / 1000),
-         FR_juv_wua = `Fall-run juvenile (ft2)` / (24.7 * 5280 / 1000)) %>%
-  select(flow_cfs, FR_fry_wua, FR_juv_wua)
-
-# modified the mark gard data, he created the wua curve using the areas provided by EBMUD
-# and dividing by the entire reach length instead of just the spawning area
-# i took the ebmud data and divided by our spawning extent length so our areas would match
-# ebmud's
-
-mokelumne_river <- read_csv("data-raw/instream/mokelumne_river_instream.csv", skip = 1)
-mokelumne_river_instream <- mokelumne_river %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA) %>%
-  filter(!is.na(FR_spawn_wua)) %>%
-  full_join(robin_rearing) %>%
-  mutate(watershed = 'Mokelumne River')
-
-devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
 # see
 

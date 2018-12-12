@@ -16,23 +16,31 @@ library(scales)
 
 ## Instream Spawning and Rearing Habiat
 
-> **Data Source:** The spawning and rearing WUA values were derived from a PHABSIM model.
+> **Data Source:** The spawning and rearing WUA values were derived from a PHABSIM model. TODO
 > <https://flowwest.github.io/cvpiaHabitat/reference/feather_river_instream.html>
 
-Mark Gard instructed us to use A1:D8 of the 'Feather' tab within his 'IFIMWUA.xlsx'
 
-Flow in cfs, WUA in square feet per 1000 feet
+## Rearin Raw Data
+Describe data TODO
+Mark Gard instructed us to use A1:D8 of the 'Feather' tab within his 'IFIMWUA.xlsx' 
 
-#### Mark Gard Raw Data
-```{r, echo=FALSE}
+The data units are flow in cfs, WUA in square feet per 1000 feet.
+
+```{r}
 feather_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A1:D8", sheet = 'Feather')
 feather_raw
 ```
 
-## Spawning Data
-We went to the FERC 2004 report and hand digitized the spawning relationship using <https://automeris.io/WebPlotDigitizer/>
+## Spawning WUA
+We noticed that more data was avaliable for spawning and went to the FERC 2004 report and hand digitized the spawning relationship using <https://automeris.io/WebPlotDigitizer/>
 
-```{r, echo=FALSE}
+
+The modeling was broken into lower and upper we used linear exptrapolation to have
+wua value at unique set of flow values for the two models. We scaled the modeling by length
+TODO
+
+
+```{r}
 upper <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'upper')
 
@@ -42,10 +50,6 @@ lower <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi.csv
 upper_approx <- approxfun(upper$flow, upper$wua_rsi, rule = 2)
 lower_approx <- approxfun(lower$flow, lower$wua_rsi, rule = 2)
 
-# modeled lengths????
-upper_length <- 8.25 * 5280
-lower_length <- 15 * 5280
-
 spawning <- tibble(
   flow_cfs = c(200, 500, 750, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000),
   upper_wua = upper_approx(flow_cfs),
@@ -53,23 +57,9 @@ spawning <- tibble(
   mutate(FR_spawn_wua = upper_wua * (9.75/18) + lower_wua * (8.25/18)) %>%
   select(flow_cfs, FR_spawn_wua)
 
-write_csv(spawning, 'data-raw/instream/feather/feather_river_spawning.csv')
-
-cvpiaHabitat::watershed_lengths %>%
-  filter(watershed == 'Feather River')
-
-# 18 miles for our mapped spawning
-(8.25 + 15) - 18
-18 - 8.25
-med_spawn_flow <- 2241.379
-
-((upper_approx(med_spawn_flow) * 8.5*5280/1000) + (lower_approx(med_spawn_flow) * 9.75*5280/1000))/43560
-wua_lower <- 32796.83
-wua_upper <- 7277.629
-(wua_lower * (8.25/18) + wua_upper * (9.75/18))* 18*5280/1000/43560
 ```
 
-### Spawning WUA
+### Spawning WUA Plot
 
 ```{r, echo=FALSE}
 spawning %>% 
@@ -79,7 +69,7 @@ spawning %>%
   scale_y_continuous(labels = comma)
 ```
 
-### Rearing WUA from raw data
+### Rearing WUA Plot
 ```{r, echo=FALSE}
 feather_raw %>%
   filter(!is.na(`Fry Rearing`)) %>%
@@ -91,23 +81,9 @@ feather_raw %>%
   scale_y_continuous(labels = comma)
 ```
 
-### Rearing Habitat in Acres
-Using the habitat package `cvpiaHabitat::set_instream_habitat`
 
-```{r, echo=FALSE}
-rear_calc <- tibble(
-  Flow = seq(100, 3000, length.out = 100),
-  fr_fry = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Feather River', 'fr', 'fry', Flow)),
-  fr_juv = cvpiaHabitat::square_meters_to_acres(
-    cvpiaHabitat::set_instream_habitat('Feather River', 'fr', 'juv', Flow))) %>%
-  gather(species, acres, -Flow)
-
-rear_calc %>%
-  ggplot(aes(Flow, acres, color = species)) +
-  geom_line()
-
-```
+## Combine Spawning and Rearing Data
+Prepare data in proper form to be used in habitat setting functions.
 
 ```{r}
 feather_river_instream <- feather_raw %>% 
