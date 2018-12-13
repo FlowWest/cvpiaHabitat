@@ -141,12 +141,12 @@ $(document).ready(function () {
 
 calaveras_river_instream &lt;- calaveras %&gt;% 
   mutate(watershed = 'Calaveras River') %&gt;% 
-  rename(flow_cfs = Flow, FR_spawn_wua = 'Spawning', FR_fry_wua = `Fry Rearing`,
-         FR_juv_wua = `Juv Rearing`)
+  rename(flow_cfs = Flow, ST_spawn_wua = 'Spawning', ST_fry_wua = `Fry Rearing`,
+         ST_juv_wua = `Juv Rearing`)
 
 calaveras_river_instream</code></pre>
 <pre><code>## # A tibble: 10 x 5
-##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed      
+##    flow_cfs ST_spawn_wua ST_fry_wua ST_juv_wua watershed      
 ##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;          
 ##  1       12         1800       5800       4200 Calaveras River
 ##  2       35         3200       4300       4300 Calaveras River

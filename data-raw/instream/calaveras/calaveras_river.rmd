@@ -29,8 +29,8 @@ calaveras <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
 
 calaveras_river_instream <- calaveras %>% 
   mutate(watershed = 'Calaveras River') %>% 
-  rename(flow_cfs = Flow, FR_spawn_wua = 'Spawning', FR_fry_wua = `Fry Rearing`,
-         FR_juv_wua = `Juv Rearing`)
+  rename(flow_cfs = Flow, ST_spawn_wua = 'Spawning', ST_fry_wua = `Fry Rearing`,
+         ST_juv_wua = `Juv Rearing`)
 
 calaveras_river_instream
 # devtools::use_data(calaveras_river_instream, overwrite = TRUE)
