@@ -15,6 +15,7 @@ library(readxl)
 # Butte Creek see 'data-raw/instream/butte'
 # Calaveras River see 'data-raw/instream/calaveras'
 # Cow Creek see 'data-raw/instream/cow'
+# Merced River see 'data-raw/instream/merced'
 
 # delta
 delta <- read_csv('data-raw/instream/north_delta_instream.csv', skip = 1)
@@ -43,18 +44,6 @@ south_delta_percent_suitability <- delta %>%
 
 use_data(south_delta_percent_suitability)
 
-
-# merced
-merced_river <- read_csv("data-raw/instream/merced_river_instream.csv", skip = 1)
-merced_river_instream <- merced_river  %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_fry_wua = fry_WUA,
-         FR_juv_wua = juv_WUA,
-         adult_steelhead_WUA,
-         watershed)
-
-devtools::use_data(merced_river_instream, overwrite = TRUE)
 
 # tuolmne
 tuolumne_river <- read_csv("data-raw/instream/tuolumne_river_instream.csv", skip = 1)
