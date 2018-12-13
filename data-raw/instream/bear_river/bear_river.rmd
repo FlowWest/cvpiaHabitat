@@ -1,0 +1,40 @@
+---
+title: "Bear River"
+author: "sadie"
+date: "December 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Instream Spawning and Rearing Habiat
+
+> **Data Source:**   TODO
+> [Holton 1985](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF)
+> <https://flowwest.github.io/cvpiaHabitat/reference/bear_river_instream.html>
+
+Mark Gard instructed us to use A1:D5 of the 'BearR' tab within his 'IFIMWUA.xlsx'.
+Modeling for spawning and juvenile rearing.
+Units are in square feet per 1000 feet.
+
+
+```{r}
+bear <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                           range = "A1:D5", sheet = 'BearR')
+
+bear_river_instream <- bear %>% 
+  mutate(FR_fry_wua = `Juv Rearing`) %>% 
+  select(flow_cfs = Flow, FR_spawn_wua = Spawning,
+         FR_fry_wua, FR_juv_wua = `Juv Rearing`) %>% 
+  mutate(watershed = 'Bear River')
+
+bear_river_instream
+# devtools::use_data(bear_river_instream, overwrite = TRUE)
+```
+

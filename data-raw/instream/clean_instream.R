@@ -10,6 +10,8 @@ library(readxl)
 # Yuba River see 'data-raw/instream/yuba'
 # Clear Creek see 'data-raw/instream/clear'
 # Cottonwood Creek see 'data-raw/instream/cottonwood'
+# Battle Creek see 'data-raw/instream/battle'
+# Bear River see 'data-raw/instream/bear_river'
 
 # delta
 delta <- read_csv('data-raw/instream/north_delta_instream.csv', skip = 1)
@@ -43,29 +45,6 @@ use_data(south_delta_percent_suitability)
 
 # this portion cleans up the naming conventions -------------------------------------
 # naming convention: SPECIES_LIFESTAGE_UNITS for each column
-
-# battle creek
-battle_creek <- read_csv("data-raw/instream/battle_creek_instream.csv", skip=2)
-battle_creek_instream <- battle_creek %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_fry_wua = fry_WUA,
-         FR_juv_wua = juv_WUA,
-         adult_trout_wua = adult_trout_WUA,
-         watershed)
-
-devtools::use_data(battle_creek_instream, overwrite = TRUE)
-
-# bear river
-bear_river <- read_csv("data-raw/instream/bear_river_instream.csv", skip = 2)
-bear_river_instream <- bear_river %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_juv_wua = juv_WUA,
-         watershed)
-
-devtools::use_data(bear_river_instream, overwrite = TRUE)
-
 
 # butte creek
 butte_creek <- read_csv("data-raw/instream/butte_creek_instream.csv", skip=1)

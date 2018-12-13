@@ -35,6 +35,6 @@ battle_creek_instream <- battle %>%
 
 battle_creek_instream
 
-# devtools::use_data(cottonwood_creek_instream, overwrite = TRUE)
+# devtools::use_data(battle_creek_instream, overwrite = TRUE)
 ```
 
