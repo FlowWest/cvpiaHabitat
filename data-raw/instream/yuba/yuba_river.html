@@ -136,8 +136,8 @@ $(document).ready(function () {
 </blockquote>
 <p>TODO modeling description</p>
 <p>on engle to daguerre segment use 400cfs as the min cfs then use linear interpolation to fill in gaps</p>
-<p>Englebright to Daguerre Segment (12.7 miles) cells A4:H33 Daguerre to Feather Segment (11.4 miles) cells A39:H68<br />
-units in square feet</p>
+<p>Mark Gard instructed us to use cells A4:H33 and A39:H68 of the ‘Yuba’ tab within his ‘IFIMWUA.xlsx’, representing Englebright to Daguerre Segment (12.7 miles) and Daguerre to Feather Segment (11.4 miles) respectively.</p>
+<p>units in square feet</p>
 <p>TODO check with mark about what to do for flows under 400 cfs</p>
 <pre class="r"><code>eng_dag &lt;- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                       sheet = 'Yuba', range = 'A4:H33', 
@@ -179,18 +179,52 @@ dag_fea_approx &lt;- tibble(
 )
 
 # combine two reaches
-yuba_river_instream &lt;- eng_dag_approx %&gt;% 
+rearing &lt;- eng_dag_approx %&gt;% 
   bind_rows(dag_fea_approx) %&gt;% 
   gather(lifestage, sq_ft, -flow_cfs, -mi) %&gt;% 
   group_by(lifestage, flow_cfs) %&gt;% 
   summarise(wua = sum(sq_ft/mi/5.28 * mi/tot_study_len, na.rm = TRUE)) %&gt;% 
   ungroup() %&gt;% 
   spread(lifestage, wua) %&gt;% 
-  mutate(watershed = 'Yuba River') %&gt;% 
   select(flow_cfs, FR_spawn_wua, SR_spawn_wua, ST_spawn_wua,
-         FR_fry_wua, ST_fry_wua, FR_juv_wua, ST_juv_wua, watershed)
+         FR_fry_wua, ST_fry_wua, FR_juv_wua, ST_juv_wua)</code></pre>
+</div>
+<div id="adult-trout" class="section level2">
+<h2>Adult Trout</h2>
+<p>Mark Gard instructed us to use cells A73:B100 of the ‘Yuba’ tab within his ‘IFIMWUA.xlsx’.</p>
+<p>Units in square feet.</p>
+<p>TODO confirm with mark tompkins its okay to call trout steelhead in pkg</p>
+<pre class="r"><code>rear_len &lt;- cvpiaHabitat::watershed_lengths %&gt;% 
+  filter(watershed == 'Yuba River', lifestage == 'rearing') %&gt;% 
+  pull(miles)
 
-# devtools::use_data(yuba_river_instream, overwrite = TRUE)</code></pre>
+adult_trout &lt;- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                      sheet = 'Yuba', range = 'A73:B100',
+                      col_names = c('flow_cfs', 'sq_ft')) %&gt;% 
+  mutate(ST_adult_wua = sq_ft/rear_len/5.28) %&gt;% 
+  select(-sq_ft)
+
+yuba_river_instream &lt;- rearing %&gt;% 
+  full_join(adult_trout) %&gt;% 
+  mutate(watershed = 'Yuba River') 
+
+yuba_river_instream</code></pre>
+<pre><code>## # A tibble: 50 x 10
+##    flow_cfs FR_spawn_wua SR_spawn_wua ST_spawn_wua FR_fry_wua ST_fry_wua
+##       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+##  1      150        3087.        1211.         63.6      1902.      2473.
+##  2      250        3879.        1893.        162.       1746.      2719.
+##  3      300        4090.        2129.        223.       1779.      2846.
+##  4      350        4258.        2315.        286.       1747.      2880.
+##  5      400       10191.        5400.       1079.       4081.      7675.
+##  6      500       10794.        6038.       1473.       3992.      7570.
+##  7      600       11259.        6461.       1838.       3969.      7430.
+##  8      700       11685.        6766.       2205.       3955.      7279.
+##  9      800       12012.        7014.       2556.       3947.      7094.
+## 10      900       12230.        7207.       2859.       3956.      6924.
+## # ... with 40 more rows, and 4 more variables: FR_juv_wua &lt;dbl&gt;,
+## #   ST_juv_wua &lt;dbl&gt;, ST_adult_wua &lt;dbl&gt;, watershed &lt;chr&gt;</code></pre>
+<pre class="r"><code># devtools::use_data(yuba_river_instream, overwrite = TRUE)</code></pre>
 </div>
 
 

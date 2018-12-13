@@ -73,18 +73,16 @@ dag_fea_approx <- tibble(
 )
 
 # combine two reaches
-yuba_river_instream <- eng_dag_approx %>% 
+rearing <- eng_dag_approx %>% 
   bind_rows(dag_fea_approx) %>% 
   gather(lifestage, sq_ft, -flow_cfs, -mi) %>% 
   group_by(lifestage, flow_cfs) %>% 
   summarise(wua = sum(sq_ft/mi/5.28 * mi/tot_study_len, na.rm = TRUE)) %>% 
   ungroup() %>% 
   spread(lifestage, wua) %>% 
-  mutate(watershed = 'Yuba River') %>% 
   select(flow_cfs, FR_spawn_wua, SR_spawn_wua, ST_spawn_wua,
-         FR_fry_wua, ST_fry_wua, FR_juv_wua, ST_juv_wua, watershed)
+         FR_fry_wua, ST_fry_wua, FR_juv_wua, ST_juv_wua)
 
-# devtools::use_data(yuba_river_instream, overwrite = TRUE)
 ```
 
 ## Adult Trout
@@ -93,7 +91,7 @@ within his 'IFIMWUA.xlsx'.
 
 Units in square feet.
 
-TODO confirm with mark tompkins
+TODO confirm with mark tompkins its okay to call trout steelhead in pkg
 ```{r}
 rear_len <- cvpiaHabitat::watershed_lengths %>% 
   filter(watershed == 'Yuba River', lifestage == 'rearing') %>% 
@@ -102,7 +100,14 @@ rear_len <- cvpiaHabitat::watershed_lengths %>%
 adult_trout <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                       sheet = 'Yuba', range = 'A73:B100',
                       col_names = c('flow_cfs', 'sq_ft')) %>% 
-  mutate(ST_adult_wua = sq_ft/rear_len/5.28)
+  mutate(ST_adult_wua = sq_ft/rear_len/5.28) %>% 
+  select(-sq_ft)
 
+yuba_river_instream <- rearing %>% 
+  full_join(adult_trout) %>% 
+  mutate(watershed = 'Yuba River') 
 
+yuba_river_instream
+
+# devtools::use_data(yuba_river_instream, overwrite = TRUE)
 ```

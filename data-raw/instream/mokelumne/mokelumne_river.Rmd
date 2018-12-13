@@ -5,8 +5,8 @@ date: "December 12, 2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
