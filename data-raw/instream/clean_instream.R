@@ -3,16 +3,13 @@ library(devtools)
 library(scales)
 library(readxl)
 
-cottonwood <- read_csv('data-raw/instream/cottonwood_creek_instream.csv', skip = 1)
-cottonwood_creek_instream <- cottonwood %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_fry_wua = fry_WUA,
-         FR_juv_wua = juv_WUA,
-         watershed) %>%
-  arrange(flow_cfs)
-
-devtools::use_data(cottonwood_creek_instream, overwrite = TRUE)
+# American River see 'data-raw/instream/american'
+# Stanislaus River see 'data-raw/instream/stanislaus'
+# Feather River see 'data-raw/instream/feather'
+# Mokelumne River see 'data-raw/instream/mokelumne'
+# Yuba River see 'data-raw/instream/yuba'
+# Clear Creek see 'data-raw/instream/clear'
+# Cottonwood Creek see 'data-raw/instream/cottonwood'
 
 # delta
 delta <- read_csv('data-raw/instream/north_delta_instream.csv', skip = 1)
@@ -41,12 +38,7 @@ south_delta_percent_suitability <- delta %>%
 
 use_data(south_delta_percent_suitability)
 
-# American River see 'data-raw/instream/american'
-# Stanislaus River see 'data-raw/instream/stanislaus'
-# Feather River see 'data-raw/instream/feather'
-# Mokelumne River see 'data-raw/instream/mokelumne'
-# Yuba River see 'data-raw/instream/yuba'
-# Clear Creek see 'data-raw/instream/clear'
+
 
 
 # this portion cleans up the naming conventions -------------------------------------

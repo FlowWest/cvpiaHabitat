@@ -35,14 +35,19 @@ Combined the data from three reaches TODO
 where is the spring run spawning in the lower alluvial segment?
 
 ```{r, echo=FALSE}
-cvpiaHabitat::clear_creek_instream
-clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A3:G26", sheet = 'Clear', 
-                           col_names = c('Flow', 'SR Spawning', 'ST Spawning', 'SR fry', 'ST fry', 'SR juv', 'ST juv'))
-clear_raw_c <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A30:G53", sheet = 'Clear',
-                          col_names = c('Flow', 'SR Spawning', 'ST Spawning', 'SR fry', 'ST fry', 'SR juv', 'ST juv'))
-clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A58:I81", sheet = 'Clear',
-                           col_names = c('Flow', 'FR Spawning', 'ST Spawning', 'SR fry', 'ST fry',
-                                         'FR fry', 'SR juv', 'STjuv', 'FR juv'))
+clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                           range = "A3:G26", sheet = 'Clear', 
+                           col_names = c('Flow', 'SR Spawning', 'ST Spawning', 
+                                         'SR fry', 'ST fry', 'SR juv', 'ST juv'))
+clear_raw_c <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                          range = "A30:G53", sheet = 'Clear',
+                          col_names = c('Flow', 'SR Spawning', 'ST Spawning', 
+                                        'SR fry', 'ST fry', 'SR juv', 'ST juv'))
+clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                           range = "A58:I81", sheet = 'Clear',
+                           col_names = c('Flow', 'FR Spawning', 'ST Spawning', 
+                                         'SR fry', 'ST fry','FR fry', 'SR juv', 
+                                         'STjuv', 'FR juv'))
 
 clear <- mutate(clear_raw_la, miles = 8.81) %>%
   bind_rows(

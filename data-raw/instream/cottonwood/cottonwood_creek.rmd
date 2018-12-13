@@ -1,0 +1,45 @@
+---
+title: "Cottonwood Creek"
+author: "sadie"
+date: "December 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Instream Spawning and Rearing Habiat
+
+> **Data Source:**   TODO
+> [CDFW 1979 and FWS 2014](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CDFW1979_CottonwoodSpawningIFIM.PDF)
+> <https://flowwest.github.io/cvpiaHabitat/reference/cottonwood_creek_instream.html>
+
+Mark Gard instructed us to use A2:B8 for spawning, and A10:C40 for rearing of the 'Cottonwood' tab
+within his 'IFIMWUA.xlsx'. Units are in square feet and study length is 10.76 miles.
+
+```{r}
+mi <- 10.76
+cotton_spawn <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                           range = "A2:B8", sheet = 'Cottonwood') %>% 
+  mutate(FR_spawn_wua = Spawning/mi/5.28) %>% 
+  select(flow_cfs = Flow, FR_spawn_wua)
+
+cotton_rear <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                          range = "A10:C40", sheet = 'Cottonwood') %>% 
+  mutate(FR_fry_wua = `Fry Rearing`/mi/5.28, FR_juv_wua = `Juv Rearing`/mi/5.28) %>% 
+  select(flow_cfs = Flow, FR_fry_wua, FR_juv_wua)
+
+cottonwood_creek_instream <- cotton_spawn %>% 
+  full_join(cotton_rear) %>% 
+  arrange(flow_cfs) %>% 
+  mutate(watershed = 'Cottonwood Creek')
+
+cottonwood_creek_instream
+# devtools::use_data(cottonwood_creek_instream, overwrite = TRUE)
+```
+
