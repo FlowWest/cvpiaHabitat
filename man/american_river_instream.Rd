@@ -4,7 +4,7 @@
 \name{american_river_instream}
 \alias{american_river_instream}
 \title{American River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 11 rows and 5 variables:
+\format{dataframe with 61 rows and 5 variables:
 \describe{
 \item{flow_cfs}{integer flow value in cubic feet per second}
 \item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
@@ -13,7 +13,7 @@
 \item{watershed}{name of watershed}
 }}
 \source{
-\href{TODO}{FWS 1985}
+\href{TODO}{FWS 1985} and \href{https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf}{ARWA-702}
 }
 \usage{
 american_river_instream
@@ -23,8 +23,7 @@ A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 as a function of flow in cubic feet per second
 }
 \details{
-The spawning WUA was derived from a River2D,
-applied habitat suitability model.
+TODO
 }
 \examples{
 american_river_instream

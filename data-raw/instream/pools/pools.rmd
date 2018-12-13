@@ -1,58 +1,27 @@
+---
+title: "Pools"
+author: "sadie"
+date: "December 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
-library(devtools)
-library(scales)
 library(readxl)
+library(cvpiaHabitat)
+```
 
-# American River see 'data-raw/instream/american'
-# Stanislaus River see 'data-raw/instream/stanislaus'
-# Feather River see 'data-raw/instream/feather'
-# Mokelumne River see 'data-raw/instream/mokelumne'
-# Yuba River see 'data-raw/instream/yuba'
-# Clear Creek see 'data-raw/instream/clear'
-# Cottonwood Creek see 'data-raw/instream/cottonwood'
-# Battle Creek see 'data-raw/instream/battle'
-# Bear River see 'data-raw/instream/bear_river'
-# Butte Creek see 'data-raw/instream/butte'
-# Calaveras River see 'data-raw/instream/calaveras'
-# Cow Creek see 'data-raw/instream/cow'
-# Merced River see 'data-raw/instream/merced'
-# Tuolumne River see 'data-raw/instream/tuolumne'
-
-# delta
-delta <- read_csv('data-raw/instream/north_delta_instream.csv', skip = 1)
-
-# simple aggregation to remove 'duplicate' flow values
-north_delta_instream <- delta %>%
-  select(flow_cfs, area_acres) %>%
-  mutate(flow_cfs = signif(flow_cfs, 2)) %>%
-  group_by(flow_cfs) %>%
-  summarise(area_acres = mean(area_acres)) %>%
-  mutate(watershed = 'North Delta')
-
-north_delta_instream %>%
-  ggplot(aes(x = flow_cfs, y = area_acres)) +
-  geom_point() +
-  scale_x_continuous(label = comma) +
-  theme_minimal() +
-  geom_smooth(method = 'glm', formula = y~log(x))
-
-use_data(north_delta_instream)
-
-# south delta, use average % suitatbility from north delta applied to south delta area for habitat value
-south_delta_percent_suitability <- delta %>%
-  summarise(mean_percent_suitability = mean(percent_suitable)) %>%
-  pull(mean_percent_suitability)
-
-use_data(south_delta_percent_suitability)
-
-# rearing pools-----------
+## Rearing Pools
+```{r}
 lengths_table <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                             sheet = 'MetaData',
                             col_types = c('text', 'text', 'text', 'text', rep('numeric', 17),
                                           'text', 'numeric', 'text'),
                             na = 'na')
 
-pools_perc <- read_csv('data-raw/instream/pools.csv', col_types = 'cnc') %>%
+pools_perc <- read_csv('data-raw/instream/pools/pools.csv', col_types = 'cnc') %>%
   select(-FW_QAQC)
 
 mean_pools_perc <- filter(pools_perc, watershed != 'Feather River') %>%
@@ -85,5 +54,6 @@ pools_upper_sac <- 6174 * 7.2/100 * 4046.86
 
 pools[pools$watershed == 'Upper Sacramento River', c('SR_pools_sq_meters', 'ST_pools_sq_meters')] <- c(pools_upper_sac, pools_upper_sac)
 
-use_data(pools, overwrite = TRUE)
-View(pools)
+# use_data(pools, overwrite = TRUE)
+pools
+```
