@@ -14,40 +14,54 @@ library(cvpiaHabitat)
 library(scales)
 ```
 
+## Instream Spawning and Rearing Habiat
 
-fixing the yuba instream based on Mark Gard Input
-according to mark gard, on engle to daguerre segment use 400cfs as the min cfs
-then on the dag to feather use linear interpolation to fill in gaps
+> **Data Source:**  TODO
+> <https://flowwest.github.io/cvpiaHabitat/reference/yuba_river_instream.html>
 
-Englebright to Daguerre Segment (12.7 miles) cells A4:H33
-Daguerre to Feather Segment (11.4 miles) cells A39:H68  
+TODO modeling description
+
+on engle to daguerre segment use 400cfs as the min cfs
+then use linear interpolation to fill in gaps
+
+Mark Gard instructed us to use cells A4:H33 and A39:H68 of the 'Yuba' tab
+within his 'IFIMWUA.xlsx', representing Englebright to Daguerre Segment (12.7 miles) 
+and Daguerre to Feather Segment (11.4 miles) respectively.
+
 units in square feet
 
+TODO check with mark about what to do for flows under 400 cfs
 ```{r}
 
-eng_dag <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', sheet = 'Yuba', range = 'A4:H33',
-                      col_names = c('flow', 'SR_spawn', 'FR_spawn', 'ST_spawn', 'FR_fry', 'ST_fry', 'FR_juv', 'ST_juv'))
+eng_dag <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                      sheet = 'Yuba', range = 'A4:H33', 
+                      col_names = c('flow', 'SR_spawn', 'FR_spawn', 'ST_spawn', 
+                                    'FR_fry', 'ST_fry', 'FR_juv', 'ST_juv'))
 
-dag_fea <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', sheet = 'Yuba', range = 'A39:H68',
-                      col_names = c('flow', 'SR_spawn', 'FR_spawn', 'ST_spawn', 'FR_fry', 'ST_fry', 'FR_juv', 'ST_juv'))
+dag_fea <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                      sheet = 'Yuba', range = 'A39:H68',
+                      col_names = c('flow', 'SR_spawn', 'FR_spawn', 'ST_spawn', 
+                                    'FR_fry', 'ST_fry', 'FR_juv', 'ST_juv'))
 
 Flow <- sort(unique(c(eng_dag$flow, dag_fea$flow)))
 
+tot_study_len = 12.7 + 11.4
 
 eng_dag_approx <- tibble(
-  flow = Flow,
-  SR_spawn_wua = approx(eng_dag$flow, eng_dag$SR_spawn, xout = Flow, rule = 2)$y,
-  FR_spawn_wua = approx(eng_dag$flow, eng_dag$FR_spawn, xout = Flow, rule = 2)$y,
-  ST_spawn_wua = approx(eng_dag$flow, eng_dag$ST_spawn, xout = Flow, rule = 2)$y,
-  FR_fry_wua = approx(eng_dag$flow, eng_dag$FR_fry, xout = Flow, rule = 2)$y,
-  ST_fry_wua = approx(eng_dag$flow, eng_dag$ST_fry, xout = Flow, rule = 2)$y,
-  FR_juv_wua = approx(eng_dag$flow, eng_dag$FR_juv, xout = Flow, rule = 2)$y,
-  ST_juv_wua = approx(eng_dag$flow, eng_dag$ST_juv, xout = Flow, rule = 2)$y,
+  flow_cfs = Flow,
+  SR_spawn_wua = approx(eng_dag$flow, eng_dag$SR_spawn, xout = Flow, rule = 1:2)$y,
+  FR_spawn_wua = approx(eng_dag$flow, eng_dag$FR_spawn, xout = Flow, rule = 1:2)$y,
+  ST_spawn_wua = approx(eng_dag$flow, eng_dag$ST_spawn, xout = Flow, rule = 1:2)$y,
+  FR_fry_wua = approx(eng_dag$flow, eng_dag$FR_fry, xout = Flow, rule = 1:2)$y,
+  ST_fry_wua = approx(eng_dag$flow, eng_dag$ST_fry, xout = Flow, rule = 1:2)$y,
+  FR_juv_wua = approx(eng_dag$flow, eng_dag$FR_juv, xout = Flow, rule = 1:2)$y,
+  ST_juv_wua = approx(eng_dag$flow, eng_dag$ST_juv, xout = Flow, rule = 1:2)$y,
   mi = 12.7
 )
 
+# convert from sqft to sqft/1000ft
 dag_fea_approx <- tibble(
-  flow = Flow,
+  flow_cfs = Flow,
   SR_spawn_wua = approx(dag_fea$flow, dag_fea$SR_spawn, xout = Flow, rule = 2)$y,
   FR_spawn_wua = approx(dag_fea$flow, dag_fea$FR_spawn, xout = Flow, rule = 2)$y,
   ST_spawn_wua = approx(dag_fea$flow, dag_fea$ST_spawn, xout = Flow, rule = 2)$y,
@@ -58,22 +72,37 @@ dag_fea_approx <- tibble(
   mi = 11.4
 )
 
-tot_study_len = 12.7 + 11.4
-
-eng_dag_approx %>% 
+# combine two reaches
+yuba_river_instream <- eng_dag_approx %>% 
   bind_rows(dag_fea_approx) %>% 
-  gather(lifestage, sq_ft, -flow, -mi) %>% 
-  group_by(lifestage, flow) %>% 
-  summarise(wua = sum(sq_ft/mi/5.28 * mi/tot_study_len)) %>% 
+  gather(lifestage, sq_ft, -flow_cfs, -mi) %>% 
+  group_by(lifestage, flow_cfs) %>% 
+  summarise(wua = sum(sq_ft/mi/5.28 * mi/tot_study_len, na.rm = TRUE)) %>% 
+  ungroup() %>% 
   spread(lifestage, wua) %>% 
-  mutate(watershed = 'Yuba River') 
-  
-```
-
-```{r}
-
-
-
+  mutate(watershed = 'Yuba River') %>% 
+  select(flow_cfs, FR_spawn_wua, SR_spawn_wua, ST_spawn_wua,
+         FR_fry_wua, ST_fry_wua, FR_juv_wua, ST_juv_wua, watershed)
 
 # devtools::use_data(yuba_river_instream, overwrite = TRUE)
+```
+
+## Adult Trout
+Mark Gard instructed us to use cells A73:B100 of the 'Yuba' tab
+within his 'IFIMWUA.xlsx'.
+
+Units in square feet.
+
+TODO confirm with mark tompkins
+```{r}
+rear_len <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'Yuba River', lifestage == 'rearing') %>% 
+  pull(miles)
+
+adult_trout <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                      sheet = 'Yuba', range = 'A73:B100',
+                      col_names = c('flow_cfs', 'sq_ft')) %>% 
+  mutate(ST_adult_wua = sq_ft/rear_len/5.28)
+
+
 ```
