@@ -158,8 +158,10 @@ american_raw </code></pre>
 </div>
 <div id="chris-hammersmark-new-data" class="section level2">
 <h2>Chris Hammersmark New Data</h2>
-<p>Attachment B, Table B-4 and Figure B-8 on pdf page 91 and 92 <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf">ARWA-702</a></p>
-<p>pg 89 table b-3 contains the study reach lengths</p>
+<p><a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf">ARWA-702</a><br />
+Fall Run Chinook Spawning: Attachment B, Table B-4 and Figure B-8 on pdf page 91 and 92<br />
+Steelhead Spawning: Attachment B, Table B-9 and Figure B-26 on pdf page 107<br />
+pg 89 table b-3 contains the study reach lengths</p>
 <div id="compare-wua-curves-old-and-new" class="section level3">
 <h3>Compare WUA curves old and new</h3>
 <pre class="r"><code>spawn &lt;- read_csv('data-raw/instream/american/american_river_spawning_wua.csv')
@@ -167,7 +169,7 @@ american_raw </code></pre>
 study_len &lt;- 800+377+1553+522+3142+3103+1000+754+3442+1500
 
 cs &lt;- spawn %&gt;%
-  mutate(sqft_per_1000ft = wua_ft2/(study_len/1000)) %&gt;% 
+  mutate(sqft_per_1000ft = FR_wua_ft2/(study_len/1000)) %&gt;% 
   select(Flow = flow_cfs, Spawning = sqft_per_1000ft) %&gt;% 
   mutate(source = 'Chris')
 
@@ -185,36 +187,36 @@ american_raw %&gt;%
 <p>heading title change TODO</p>
 <pre class="r"><code>rearing &lt;- american_raw %&gt;% 
   select(-Spawning) %&gt;% 
-  gather(lifestage, WUA, -Flow)
+  gather(lifestage, WUA, -Flow) %&gt;% 
+  rename(flow_cfs = Flow)
 
-spawning &lt;- cs %&gt;% 
-  select(-source) %&gt;% 
-  rename(WUA = Spawning) %&gt;% 
-  mutate(lifestage = 'Spawning')
+spawning &lt;- spawn %&gt;%
+  mutate(FR_spawn_wua = FR_wua_ft2/(study_len/1000),
+         ST_spawn_wua = ST_wua_ft2/(study_len/1000)) %&gt;% 
+  select(flow_cfs, FR_spawn_wua, ST_spawn_wua) %&gt;% 
+  gather(lifestage, WUA, -flow_cfs)
 
 american_river_instream &lt;- rearing %&gt;% 
   bind_rows(spawning) %&gt;% 
   spread(lifestage, WUA) %&gt;% 
-  select(flow_cfs = Flow,
-         FR_spawn_wua = Spawning,
-         FR_fry_wua = `Fry Rearing`,
-         FR_juv_wua = `Juv Rearing`) %&gt;% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua = `Fry Rearing`, 
+         FR_juv_wua = `Juv Rearing`, ST_spawn_wua) %&gt;% 
   mutate(watershed = 'American River')
 
 american_river_instream</code></pre>
-<pre><code>## # A tibble: 61 x 5
-##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed     
-##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;         
-##  1        0           0         NA         NA  American River
-##  2       50       13209.        NA         NA  American River
-##  3      100       25142.        NA         NA  American River
-##  4      150       35891.        NA         NA  American River
-##  5      200       45542.        NA         NA  American River
-##  6      300       61891.     59897     112381. American River
-##  7      400       74822.        NA         NA  American River
-##  8      500       85255.     54065     108736. American River
-##  9      750          NA      49959.     99007  American River
-## 10     1000      107844.     42334      93968. American River
+<pre><code>## # A tibble: 61 x 6
+##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua ST_spawn_wua watershed     
+##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;         
+##  1        0           0         NA         NA            0  American River
+##  2       50       13209.        NA         NA        11332. American River
+##  3      100       25142.        NA         NA        21601. American River
+##  4      150       35891.        NA         NA        30880. American River
+##  5      200       45542.        NA         NA        39239. American River
+##  6      300       61891.     59897     112381.       53466. American River
+##  7      400       74822.        NA         NA        64789. American River
+##  8      500       85255.     54065     108736.       73943. American River
+##  9      750          NA      49959.     99007           NA  American River
+## 10     1000      107844.     42334      93968.       93782. American River
 ## # ... with 51 more rows</code></pre>
 <pre class="r"><code># devtools::use_data(american_river_instream, overwrite = TRUE)</code></pre>
 </div>
