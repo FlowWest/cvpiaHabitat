@@ -38,7 +38,7 @@ Chris Hammersmark has provided updated spawning WUA TODO
 
 ## Chris Hammersmark New Data
 Attachment B, Table B-4 and Figure B-8 on pdf page 91 and 92
-[ARWA-702](https://www.waterboards.ca.gov/waterrights/water_issues/programs/bay_delta/california_waterfix/exhibits/docs/PCWA/part2/ARWA-702.pdf)
+[ARWA-702](https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf)
 
 pg 89 table b-3 contains the study reach lengths
 
