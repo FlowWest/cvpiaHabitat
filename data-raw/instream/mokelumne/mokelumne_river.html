@@ -184,7 +184,29 @@ $(document).ready(function () {
 </div>
 <div id="floodplain" class="section level2">
 <h2>Floodplain</h2>
-<pre class="r"><code># floodplain: 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres</code></pre>
+<p>Description of model TODO 400 cfs = 0 acres TODO Using same flow to area relation for all runs. TODO Prepare data in proper form to be used in habitat setting functions.</p>
+<pre class="r"><code># floodplain: 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres
+mokelumne_river_floodplain &lt;- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Floodplain (new flows)', range = 'C21:D26',
+                       col_names = c('flow_cfs', 'FR_floodplain_acres')) %&gt;% 
+  bind_rows(tibble(flow_cfs = 400, FR_floodplain_acres = 0)) %&gt;% 
+  arrange(flow_cfs) %&gt;% 
+  mutate(SR_floodplain_acres = FR_floodplain_acres,
+         ST_floodplain_acres = FR_floodplain_acres,
+         watershed = &quot;Mokelumne River&quot;)
+
+mokelumne_river_floodplain</code></pre>
+<pre><code>## # A tibble: 7 x 5
+##   flow_cfs FR_floodplain_ac… SR_floodplain_ac… ST_floodplain_a… watershed 
+##      &lt;dbl&gt;             &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt; &lt;chr&gt;     
+## 1      400                0                 0                0  Mokelumne…
+## 2      800              135.              135.             135. Mokelumne…
+## 3      900              161.              161.             161. Mokelumne…
+## 4     1100              204.              204.             204. Mokelumne…
+## 5     1300              239.              239.             239. Mokelumne…
+## 6     1500              270.              270.             270. Mokelumne…
+## 7     1700              297.              297.             297. Mokelumne…</code></pre>
+<pre class="r"><code># devtools::use_data(mokelumne_river_floodplain, overwrite = TRUE)</code></pre>
 </div>
 
 
