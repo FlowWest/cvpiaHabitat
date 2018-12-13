@@ -16,6 +16,7 @@ library(readxl)
 # Calaveras River see 'data-raw/instream/calaveras'
 # Cow Creek see 'data-raw/instream/cow'
 # Merced River see 'data-raw/instream/merced'
+# Tuolumne River see 'data-raw/instream/tuolumne'
 
 # delta
 delta <- read_csv('data-raw/instream/north_delta_instream.csv', skip = 1)
@@ -43,23 +44,6 @@ south_delta_percent_suitability <- delta %>%
   pull(mean_percent_suitability)
 
 use_data(south_delta_percent_suitability)
-
-
-# tuolmne
-tuolumne_river <- read_csv("data-raw/instream/tuolumne_river_instream.csv", skip = 1)
-
-tuolumne_river_instream <- tuolumne_river %>%
-  select(flow_cfs,
-         FR_spawn_wua = spawn_WUA,
-         FR_fry_wua = fry_WUA,
-         FR_juv_wua = juv_WUA,
-         ST_spawn_wua = ST_spawn_WUA,
-         ST_fry_wua = ST_fry_WUA,
-         ST_juv_wua = ST_juv_WUA,
-         adult_ST_WUA,
-         watershed)
-
-devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
 
 # rearing pools-----------
 lengths_table <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
