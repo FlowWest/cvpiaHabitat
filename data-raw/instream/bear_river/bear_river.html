@@ -139,19 +139,17 @@ $(document).ready(function () {
                            range = &quot;A1:D5&quot;, sheet = 'BearR')
 
 bear_river_instream &lt;- bear %&gt;% 
-  mutate(FR_fry_wua = `Juv Rearing`) %&gt;% 
-  select(flow_cfs = Flow, FR_spawn_wua = Spawning,
-         FR_fry_wua, FR_juv_wua = `Juv Rearing`) %&gt;% 
+  select(flow_cfs = Flow, FR_spawn_wua = Spawning, FR_juv_wua = `Juv Rearing`) %&gt;% 
   mutate(watershed = 'Bear River')
 
 bear_river_instream</code></pre>
-<pre><code>## # A tibble: 4 x 5
-##   flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed 
-##      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;     
-## 1       30         2000         30         30 Bear River
-## 2       70         6500         70         70 Bear River
-## 3      140        15000        150        150 Bear River
-## 4      180        21000        170        170 Bear River</code></pre>
+<pre><code>## # A tibble: 4 x 4
+##   flow_cfs FR_spawn_wua FR_juv_wua watershed 
+##      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;     
+## 1       30         2000         30 Bear River
+## 2       70         6500         70 Bear River
+## 3      140        15000        150 Bear River
+## 4      180        21000        170 Bear River</code></pre>
 <pre class="r"><code># devtools::use_data(bear_river_instream, overwrite = TRUE)</code></pre>
 </div>
 
