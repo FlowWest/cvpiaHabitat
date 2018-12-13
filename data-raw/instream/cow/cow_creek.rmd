@@ -1,0 +1,51 @@
+---
+title: "Cow Creek"
+author: "sadie"
+date: "December 13, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Instream Spawning and Rearing Habiat
+
+> **Data Source:**   TODO
+> [FWS 2011](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf)
+> <https://flowwest.github.io/cvpiaHabitat/reference/cow_creek_instream.html>
+
+Mark Gard instructed us to the 'SouthCow' tab within his 'IFIMWUA.xlsx'.
+The cells A2:C32 represent the Valley Floor Reach (5.11 miles) and cells A36:C66
+represent the Boero Reach (1.68 miles). Units are in square feet per mile.
+
+
+```{r}
+valley <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                     range = "A2:C32", sheet = 'SouthCow') %>% 
+  mutate(mi = 5.11)
+
+boero <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                     range = "A36:C66", sheet = 'SouthCow') %>% 
+  mutate(mi = 1.68)
+
+tot_len <- 5.11 + 1.68
+
+cow_creek_instream <- bind_rows(valley, boero) %>% 
+  gather(lifestage, sqft_per_mile, -Flows, -mi) %>% 
+  group_by(Flows, lifestage) %>% 
+  summarise(wua = sum(sqft_per_mile * mi/tot_len)/5.28) %>% 
+  spread(lifestage, wua) %>% 
+  ungroup() %>% 
+  rename(flow_cfs = Flows, FR_fry_wua = `fall-run fry`, 
+         FR_juv_wua = `fall-run juvenile`) %>% 
+  mutate(watershed = 'Cow Creek')
+
+cow_creek_instream
+# devtools::use_data(cow_creek_instream, overwrite = TRUE)
+```
+
