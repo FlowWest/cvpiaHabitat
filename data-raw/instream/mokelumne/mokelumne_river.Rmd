@@ -147,7 +147,7 @@ r1 %>%
 
 ## Combine Instream Spawning and Rearing Habitat Data
 
-The instream spawning and rearing habitat data described above is combined for use in the DSM using the following code. 
+The instream spawning and rearing habitat data described above is combined for use in the DSM in the following format. 
 
 ```{r, message=FALSE, echo=FALSE}
 
@@ -164,7 +164,7 @@ mokelumne_river_instream
 
 ## Floodplain
 
-The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River.
+The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River. The following table contains the flow : floowplain area relationships used in the DSM.
 
 ```{r, echo=FALSE}
 # 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate
