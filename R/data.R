@@ -808,7 +808,7 @@ NULL
 #'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
 #'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
 #'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
-#'   \item{adult_trout_WUA}{adult trout WUA in square feet per 1000 feet}
+#'   \item{ST_adult_WUA}{adult trout WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -1276,6 +1276,7 @@ NULL
 #' \item{ST_fry}{TRUE if fry rearing habitat modeling exists for Steelhead}
 #' \item{ST_juv}{TRUE if juvenile rearing habitat modeling exists for Steelhead}
 #' \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
+#' \item{ST_adult}{TRUE if adult rearing habitat modeling exists for Steelhead}
 #' \item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
 #' \item{UseRearRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed}
 #' \item{UseSpawnRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed}
