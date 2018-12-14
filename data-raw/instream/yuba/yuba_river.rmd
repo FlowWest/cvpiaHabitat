@@ -105,7 +105,9 @@ adult_trout <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
 
 yuba_river_instream <- rearing %>% 
   full_join(adult_trout) %>% 
-  mutate(watershed = 'Yuba River') 
+  mutate(watershed = 'Yuba River') %>% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua,
+         ST_spawn_wua, ST_fry_wua, ST_juv_wua, ST_adult_wua, watershed)
 
 yuba_river_instream
 

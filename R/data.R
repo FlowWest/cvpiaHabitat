@@ -1003,6 +1003,7 @@ NULL
 #'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
 #'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
 #'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
+#'   \item{ST_spawn_wua}{steelhead spawning WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
@@ -1170,12 +1171,13 @@ NULL
 #' @description A dataset containing the Weighted Usable Area (WUA) in square feet per 1000 feet
 #' as a function of flow in cubic feet per second
 #'
-#' @format dataframe with 61 rows and 5 variables:
+#' @format dataframe with 61 rows and 6 variables:
 #' \describe{
 #' \item{flow_cfs}{integer flow value in cubic feet per second}
 #' \item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
 #' \item{FR_fry_wua}{chinook fry (up to 50 mm) WUA in square feet per 1000 feet}
 #' \item{FR_juv_wua}{chinook juvenile WUA in square feet per 1000 feet}
+#' \item{ST_spawn_wua}{steelhead spawning WUA in square feet per 1000 feet}
 #' \item{watershed}{name of watershed}
 #' }
 #'
@@ -1195,12 +1197,13 @@ NULL
 #' \describe{
 #' \item{flow_cfs}{numeric flow value in cubic feet per second}
 #' \item{FR_spawn_wua}{Fall Run spawning WUA in square feet per 1000 feet}
-#' \item{FR_SR_fry}{Fall and Spring Run fry WUA in square feet per 1000 feet}
-#' \item{FR_SR_juv}{Fall and Spring Run juvenile WUA in square feet per 1000 feet}
+#' \item{FR_fry}{Fall and Spring Run fry WUA in square feet per 1000 feet}
+#' \item{FR_juv}{Fall and Spring Run juvenile WUA in square feet per 1000 feet}
 #' \item{SR_spawn_wua}{Spring Run spawning WUA in square feet per 1000 feet}
+#' \item{ST_spawn_wua}{Steelhead spawning WUA in square feet per 1000 feet}
 #' \item{ST_fry_wua}{Steelhead fry WUA in square feet per 1000 feet}
 #' \item{ST_juv_wua}{Steelhead juvenile WUA in square feet per 1000 feet}
-#' \item{ST_spawn_wua}{Steelhead spawning WUA in square feet per 1000 feet}
+#' \item{ST_adult_wua}{Steelhead adult WUA in square feet per 1000 feet}
 #' \item{watershed}{name of watershed}
 #' }
 #'

@@ -206,23 +206,25 @@ adult_trout &lt;- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
 
 yuba_river_instream &lt;- rearing %&gt;% 
   full_join(adult_trout) %&gt;% 
-  mutate(watershed = 'Yuba River') 
+  mutate(watershed = 'Yuba River') %&gt;% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua,
+         ST_spawn_wua, ST_fry_wua, ST_juv_wua, ST_adult_wua, watershed)
 
 yuba_river_instream</code></pre>
 <pre><code>## # A tibble: 50 x 10
-##    flow_cfs FR_spawn_wua SR_spawn_wua ST_spawn_wua FR_fry_wua ST_fry_wua
-##       &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-##  1      150        3087.        1211.         63.6      1902.      2473.
-##  2      250        3879.        1893.        162.       1746.      2719.
-##  3      300        4090.        2129.        223.       1779.      2846.
-##  4      350        4258.        2315.        286.       1747.      2880.
-##  5      400       10191.        5400.       1079.       4081.      7675.
-##  6      500       10794.        6038.       1473.       3992.      7570.
-##  7      600       11259.        6461.       1838.       3969.      7430.
-##  8      700       11685.        6766.       2205.       3955.      7279.
-##  9      800       12012.        7014.       2556.       3947.      7094.
-## 10      900       12230.        7207.       2859.       3956.      6924.
-## # ... with 40 more rows, and 4 more variables: FR_juv_wua &lt;dbl&gt;,
+##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua SR_spawn_wua ST_spawn_wua
+##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+##  1      150        3087.      1902.       42.9        1211.         63.6
+##  2      250        3879.      1746.       61.6        1893.        162. 
+##  3      300        4090.      1779.       71.3        2129.        223. 
+##  4      350        4258.      1747.       80.2        2315.        286. 
+##  5      400       10191.      4081.     1050.         5400.       1079. 
+##  6      500       10794.      3992.     1199.         6038.       1473. 
+##  7      600       11259.      3969.     1319.         6461.       1838. 
+##  8      700       11685.      3955.     1434.         6766.       2205. 
+##  9      800       12012.      3947.     1536.         7014.       2556. 
+## 10      900       12230.      3956.     1606.         7207.       2859. 
+## # ... with 40 more rows, and 4 more variables: ST_fry_wua &lt;dbl&gt;,
 ## #   ST_juv_wua &lt;dbl&gt;, ST_adult_wua &lt;dbl&gt;, watershed &lt;chr&gt;</code></pre>
 <pre class="r"><code># devtools::use_data(yuba_river_instream, overwrite = TRUE)</code></pre>
 </div>
