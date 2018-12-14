@@ -22,7 +22,7 @@ library(scales)
 
 ## Instream Spawning and Rearing Habitat
 **Data Sources:** EBMUD 2016 and [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf)    
-Instream spawning and rearing habitat for Fall Run Chinook in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
 
 ### Spawning WUA
 
