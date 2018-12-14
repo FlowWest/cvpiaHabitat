@@ -1,7 +1,7 @@
 ---
 title: "Feather River"
-author: "sadie"
-date: "December 12, 2018"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "December 14, 2018"
 output: html_document
 ---
 
@@ -14,13 +14,13 @@ library(cvpiaHabitat)
 library(scales)
 ```
 
-## Instream Spawning and Rearing Habiat
+## Future Data Improvements
 
-> **Data Source:** The spawning and rearing WUA values were derived from a PHABSIM model. TODO
-> <https://flowwest.github.io/cvpiaHabitat/reference/feather_river_instream.html>
+## Instream Spawning and Rearing Habitat
 
+> **Data Source:** [California Department of Water Resources](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) and [Thomas R. Payne & Associates](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf
 
-## Rearin Raw Data
+## Rearing Raw Data
 Describe data TODO
 Mark Gard instructed us to use A1:D8 of the 'Feather' tab within his 'IFIMWUA.xlsx' 
 
