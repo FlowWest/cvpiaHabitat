@@ -21,7 +21,7 @@ library(scales)
 
 
 ## Instream Spawning and Rearing Habitat
-**Data Sources:** EBMUD 2016 and [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower_Mokelumne_River_Fisheries_Study_Draft%2C_June_1988-In_Dox.pdf)
+**Data Sources:** EBMUD 2016 and [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower_Mokelumne_River_Fisheries_Study_Draft%2C_June_1988-In_Dox.pdf)    
 Instream spawning and rearing habitat for Fall Run Chinook in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
 
 ### Spawning WUA
@@ -60,6 +60,7 @@ spawning %>%
 ```
 
 ### Rearing WUA
+
 The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation so that the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow by weighting each area in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the SIT.   
 
 ```{r, echo=FALSE, results='hide'}
@@ -148,7 +149,7 @@ r1 %>%
 
 The instream spawning and rearing habitat data described above is combined for use in the DSM using the following code. 
 
-```{r, message=FALSE}
+```{r, message=FALSE, echo=FALSE}
 
 mokelumne_river_instream <- spawning %>% 
   full_join(rearing) %>% 
@@ -156,7 +157,7 @@ mokelumne_river_instream <- spawning %>%
   mutate(watershed = 'Mokelumne River') %>% 
   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, ST_spawn_wua, watershed)
   
-
+mokelumne_river_instream
 # devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
 ```
@@ -165,8 +166,10 @@ mokelumne_river_instream <- spawning %>%
 
 The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River.
 
-```{r}
-# floodplain: 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres
+```{r, echo=FALSE}
+# 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate
+# 400 cfs = 0 acres 
+
 mokelumne_river_floodplain <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
                        sheet = 'Floodplain (new flows)', range = 'C21:D26',
                        col_names = c('flow_cfs', 'FR_floodplain_acres')) %>% 
