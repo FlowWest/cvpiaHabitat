@@ -101,28 +101,38 @@ set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
   return(habitat_area)
 }
 
+
 #' Fall Run rearing habitat flow to area approximator
 #' @description function creates the approx function for fall run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 #' @param life_stage one of 'spawn', 'juv' or 'fry'
 FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
-  # check to see if lifestage is fry
-  if (life_stage == "fry") {
-    fry_has_modeling <- dplyr::pull(modeling_lookup, FR_fry)
-    if (fry_has_modeling) {
-      # if modeling exists for fry use
-      FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_fry_wua, rule = 2)
+  # check if sr floodplain has modeling
+  FR_has_modeling <- dplyr::pull(modeling_lookup, FR_juv)
+  # SR_has_modeling <- dplyr::pull(modeling_lookup, SR_juv)
+  ST_has_modeling <- dplyr::pull(modeling_lookup, ST_juv)
+
+  if (FR_has_modeling) {
+    # check to see if lifestage is fry
+    if (life_stage == "fry") {
+      fry_has_modeling <- dplyr::pull(modeling_lookup, FR_fry)
+      if (fry_has_modeling) {
+        # if modeling exists for fry use
+        FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_fry_wua, rule = 2)
+      } else {
+        # no fry modeling use juv modeling
+        FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_juv_wua, rule = 2)
+      }
     } else {
-      # no fry modeling use juv modeling
+      # for juvs use juv modeling
       FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_juv_wua, rule = 2)
     }
-  } else {
-    # for juvs use juv modeling
-    FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_juv_wua, rule = 2)
-  }
 
-  return(FR_approx)
+  } else if (ST_has_modeling) {
+    FR_approx <- ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
+  }
+    return(FR_approx)
 }
 
 #' Spring Run rearing habitat flow to area approximator
