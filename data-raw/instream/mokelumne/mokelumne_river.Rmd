@@ -1,12 +1,12 @@
 ---
 title: "Mokelumne River"
-author: "Sadie Gill, Mark Tompkins"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
 date: "December 12, 2018"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -21,7 +21,7 @@ library(scales)
 
 
 ## Instream Spawning and Rearing Habitat
-**Data Sources:** EBMUD 2016 and [CDFW 1988](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower_Mokelumne_River_Fisheries_Study_Draft%2C_June_1988-In_Dox.pdf)
+**Data Sources:** EBMUD 2016 and [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower_Mokelumne_River_Fisheries_Study_Draft%2C_June_1988-In_Dox.pdf)
 Instream spawning and rearing habitat for Fall Run Chinook in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
 
 ### Spawning WUA
@@ -47,7 +47,7 @@ spawning
 ```
 #### Spawning WUA Plot
 
-TODO narrate plot or remove it.
+The following plot shows the weighted usable spawning area rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR_spawn_wua) and Steelhead (ST_spawn_wua). These rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
 
 ```{r, echo=FALSE}
 spawning %>% 
@@ -129,19 +129,13 @@ rearing <- r1 %>%
 ```
 ### Rearing WUA Plots
 
-TODO narrate plots or remove them.
-
-Rearing segment 1
-
-original
+The following plots show the raw instream rearing area data for Fall Run Chinook Salmon fry in one of the three rearing reaches of the Mokelumne River. The first plot is the original evaluation data for one of the rearing reaches. The second plot is the rearing habitat data expanded by linear interpolation to generate values for all flows from all three evaluations.    
 
 ```{r, echo=FALSE}
 rearing1 %>% 
   ggplot(aes(Flow, `Fall-run fry (ft2)`)) +
   geom_point()
 ```
-
-extrapolated
 
 ```{r, echo=FALSE}
 r1 %>% 
@@ -150,9 +144,10 @@ r1 %>%
 ```
 
 
-## Combine Spawning and Rearing
+## Combine Instream Spawning and Rearing Habitat Data
 
-Prepare data in proper form to be used in habitat setting functions.
+The instream spawning and rearing habitat data described above is combined for use in the DSM using the following code. 
+
 ```{r, message=FALSE}
 
 mokelumne_river_instream <- spawning %>% 
@@ -167,11 +162,8 @@ mokelumne_river_instream <- spawning %>%
 ```
 
 ## Floodplain
-Description of model TODO
-400 cfs = 0 acres TODO
-Using same flow to area relation for all runs. TODO
-Prepare data in proper form to be used in habitat setting functions. 
 
+The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River.
 
 ```{r}
 # floodplain: 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate, 400 cfs = 0 total acres
