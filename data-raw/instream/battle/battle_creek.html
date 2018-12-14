@@ -135,29 +135,30 @@ $(document).ready(function () {
 <p><strong>Data Source:</strong> TODO <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf">Payne 1995</a> <a href="https://flowwest.github.io/cvpiaHabitat/reference/battle_creek_instream.html" class="uri">https://flowwest.github.io/cvpiaHabitat/reference/battle_creek_instream.html</a></p>
 </blockquote>
 <p>Mark Gard instructed us to use A1:E36 of the ‘Battle’ tab within his ‘IFIMWUA.xlsx’. Units are in square feet per 1000 feet.</p>
+<p>Adult trout used for steelhead</p>
 <pre class="r"><code>battle &lt;- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                            range = &quot;A1:E36&quot;, sheet = 'Battle')
 
 battle_creek_instream &lt;- battle %&gt;% 
   select(flow_cfs = Flow, FR_spawn_wua = Spawning,
          FR_fry_wua = `Fry Rearing`, FR_juv_wua = `Juv Rearing`,
-         adult_trout_wua = `adult trout`) %&gt;% 
+         ST_adult_wua = `adult trout`) %&gt;% 
   mutate(watershed = 'Battle Creek')
 
 battle_creek_instream</code></pre>
 <pre><code>## # A tibble: 35 x 6
-##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua adult_trout_wua watershed   
-##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;       
-##  1        8         130.     15577.      4952.           9123. Battle Creek
-##  2       10         200.     15411.      5858            9728  Battle Creek
-##  3       12         276.     15181.      6705.          10253. Battle Creek
-##  4       14         359.     14929.      7488.          10711. Battle Creek
-##  5       16         435.     14661.      8212.          11114. Battle Creek
-##  6       18         514.     14371.      8880.          11459. Battle Creek
-##  7       20         598.     14083.      9490.          11758. Battle Creek
-##  8       22         685.     13801.     10052.          12017. Battle Creek
-##  9       24         770.     13523.     10573.          12252. Battle Creek
-## 10       26         846.     13115.     11205.          12439. Battle Creek
+##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua ST_adult_wua watershed   
+##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt; &lt;chr&gt;       
+##  1        8         130.     15577.      4952.        9123. Battle Creek
+##  2       10         200.     15411.      5858         9728  Battle Creek
+##  3       12         276.     15181.      6705.       10253. Battle Creek
+##  4       14         359.     14929.      7488.       10711. Battle Creek
+##  5       16         435.     14661.      8212.       11114. Battle Creek
+##  6       18         514.     14371.      8880.       11459. Battle Creek
+##  7       20         598.     14083.      9490.       11758. Battle Creek
+##  8       22         685.     13801.     10052.       12017. Battle Creek
+##  9       24         770.     13523.     10573.       12252. Battle Creek
+## 10       26         846.     13115.     11205.       12439. Battle Creek
 ## # ... with 25 more rows</code></pre>
 <pre class="r"><code># devtools::use_data(battle_creek_instream, overwrite = TRUE)</code></pre>
 </div>

@@ -23,6 +23,8 @@ Mark Gard instructed us to use A1:E36 of the 'Battle' tab
 within his 'IFIMWUA.xlsx'.
 Units are in square feet per 1000 feet.
 
+Adult trout used for steelhead
+
 ```{r}
 battle <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                            range = "A1:E36", sheet = 'Battle')
@@ -30,7 +32,7 @@ battle <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
 battle_creek_instream <- battle %>% 
   select(flow_cfs = Flow, FR_spawn_wua = Spawning,
          FR_fry_wua = `Fry Rearing`, FR_juv_wua = `Juv Rearing`,
-         adult_trout_wua = `adult trout`) %>% 
+         ST_adult_wua = `adult trout`) %>% 
   mutate(watershed = 'Battle Creek')
 
 battle_creek_instream

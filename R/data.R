@@ -834,7 +834,7 @@ NULL
 #'   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
 #'   \item{FR_fry_wua}{fry (up to 50 mm) WUA in square feet per 1000 feet}
 #'   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
-#'   \item{adult_trout_WUA}{adult trout WUA in square feet per 1000 feet}
+#'   \item{ST_adult_WUA}{adult trout WUA in square feet per 1000 feet}
 #'   \item{watershed}{name of watershed}
 #' }
 #'
