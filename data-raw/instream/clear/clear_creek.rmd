@@ -29,97 +29,105 @@ within his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower
 alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments.
 Fall run are only in the lower alluvial segment.
 
-
 ### WUA raw data
 Combined the data from three reaches TODO
 where is the spring run spawning in the lower alluvial segment?
 
 ```{r, echo=FALSE}
 clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                           range = "A3:G26", sheet = 'Clear', 
-                           col_names = c('Flow', 'SR Spawning', 'ST Spawning', 
-                                         'SR fry', 'ST fry', 'SR juv', 'ST juv'))
+                           range = "A4:G26", sheet = 'Clear', 
+                           col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
+                                         'SR_fry_wua', 'ST_fry_wua', 'SR_juv_wua', 
+                                         'ST_juv_wua')) %>% 
+  mutate(miles = 2.27)
+
 clear_raw_c <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                          range = "A30:G53", sheet = 'Clear',
-                          col_names = c('Flow', 'SR Spawning', 'ST Spawning', 
-                                        'SR fry', 'ST fry', 'SR juv', 'ST juv'))
+                          range = "A31:G53", sheet = 'Clear',
+                          col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
+                                        'SR_fry_wua', 'ST_fry_wua', 'SR_juv_wua', 
+                                        'ST_juv_wua')) %>% 
+  mutate(miles = 7.33)
+
 clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                           range = "A58:I81", sheet = 'Clear',
-                           col_names = c('Flow', 'FR Spawning', 'ST Spawning', 
-                                         'SR fry', 'ST fry','FR fry', 'SR juv', 
-                                         'STjuv', 'FR juv'))
+                           range = "A59:I81", sheet = 'Clear',
+                           col_names = c('flow_cfs', 'FR_spawn_wua', 'ST_spawn_wua', 
+                                         'SR_fry_wua', 'ST_fry_wua','FR_fry_wua', 
+                                         'SR_juv_wua', 'ST_juv_wua', 'FR_juv_wua')) %>% 
+  mutate(miles = 8.81)
 
-clear <- mutate(clear_raw_la, miles = 8.81) %>%
-  bind_rows(
-    mutate(clear_raw_c, miles = 7.33),
-    mutate(clear_raw_ua, miles = 2.27)
-  )
 total <- 8.81 + 7.33 + 2.27
-prop_ua <- 2.27 / total
-prop_c <- 7.33 / total
-prop_la <- 8.81 / total
 
-clear_wua <- clear %>%
-  gather(species_lifestage, sqft, -Flow, -miles) %>%
-  mutate(sqft_per_1000ft = sqft/miles/5.28, species_lifestage = paste (species_lifestage, miles)) %>%
-  select(Flow, species_lifestage, sqft_per_1000ft) %>%
-  spread(species_lifestage, sqft_per_1000ft) %>%
-  mutate(SR_juv = prop_ua * `SR juv 2.27` + prop_c * `SR juv 7.33` + prop_la * `SR juv 8.81`,
-         ST_juv = prop_ua * `ST juv 2.27` + prop_c * `ST juv 7.33` + prop_la * `ST juv 8.81`,
-         SR_fry = prop_ua * `SR fry 2.27` + prop_c * `SR fry 7.33` + prop_la * `SR fry 8.81`,
-         ST_fry = prop_ua * `ST fry 2.27` + prop_c * `ST fry 7.33` + prop_la * `ST fry 8.81`,
-         SR_spawning = (2.27 / (7.33 + 2.27)) * `SR Spawning 2.27` + (7.33 / (7.33 + 2.27)) * `SR Spawning 7.33`,
-         ST_spawning = prop_ua * `ST Spawning 2.27` + prop_c * `ST Spawning 7.33` + prop_la * `ST Spawning 8.81`) %>%
-  select(Flow, FR_spawning = `FR Spawning 8.81`, SR_spawning, ST_spawning,
-         FR_fry = `FR fry 8.81`, SR_fry, ST_fry, FR_juv = `FR juv 8.81`, SR_juv, ST_juv)
+clear_wua <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+  group_by(lifestage, flow_cfs) %>% 
+  summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+  spread(lifestage, wua) %>% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua, SR_fry_wua, 
+         SR_juv_wua, ST_spawn_wua, ST_fry_wua, ST_juv_wua)
 
-clear_wua
+fr <- clear_raw_la %>% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, miles) %>% 
+  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+  group_by(lifestage, flow_cfs) %>% 
+  summarise(wua = sum(sq_ft/miles/5.28, na.rm = TRUE)) %>% 
+  spread(lifestage, wua) %>% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua) %>% 
+  mutate(FR_spawn_wua = 13000)
+
+st <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua, miles) %>% 
+  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+  group_by(lifestage, flow_cfs) %>% 
+  summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+  spread(lifestage, wua) %>% 
+  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua) 
+
+sr_juv <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+  select(flow_cfs, SR_fry_wua, SR_juv_wua, miles) %>% 
+  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+  group_by(lifestage, flow_cfs) %>% 
+  summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+  spread(lifestage, wua) %>% 
+  select(flow_cfs, SR_fry_wua, SR_juv_wua) 
+
+sr_spawn <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+  select(flow_cfs, SR_spawn_wua, miles) %>% 
+  gather(lifestage, sq_ft, -flow_cfs, -miles) %>%
+  group_by(lifestage, flow_cfs) %>%
+  summarise(wua = sum(sq_ft/miles/5.28 * miles/(total-8.81), na.rm = TRUE)) %>% 
+  spread(lifestage, wua) %>% 
+  select(flow_cfs, SR_spawn_wua) 
+
+sr <- full_join(sr_spawn, sr_juv)
+
+clear_creek_instream <- bind_cols(fr, sr, st) %>% 
+  select(-flow_cfs1, -flow_cfs2)
+
+clear_creek_instream
+devtools::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
 
 ### Spawning WUA from raw data
 
 ```{r, echo=FALSE}
-clear_wua %>%
-  select(Flow, FR_spawning:ST_spawning) %>%
-  gather(species, wua, -Flow) %>%
-  ggplot(aes(Flow, wua, color = species)) +
-  geom_line() +
-  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma)
-```
+feet <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'Clear Creek', lifestage == 'spawning') %>% 
+  pull(feet)
 
-### Spawning WUA from cvpiaHabitat package
+names(feet) <- c('FR_spawn_wua', 'SR_spawn_wua', 'ST_spawn_wua')
 
-```{r, echo=FALSE}
-cvpiaHabitat::clear_creek_instream %>%
+clear_creek_instream %>%
   select(flow_cfs, FR_spawn_wua, SR_spawn_wua, ST_spawn_wua) %>%
-  gather(species, wua, -flow_cfs) %>%
-  ggplot(aes(flow_cfs, wua, color = species)) +
+  gather(species, wua, -flow_cfs) %>% 
+  mutate(feet = feet[species], acres = wua* feet/1000/43560) %>% 
+  ggplot(aes(flow_cfs, acres, color = species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  labs(x = 'flow (cfs)', y = 'spawning (acres)') +
   scale_y_continuous(labels = comma)
 ```
 
 
-### Spawning Habitat in Acres
-Using the habitat package `cvpiaHabitat::set_spawning_habitat`
-
-```{r, echo=FALSE}
-spawn_calc <- tibble(
-  Flow = seq(25, 1000, length.out = 100),
-  FR_acres = square_meters_to_acres(cvpiaHabitat::set_spawning_habitat('Clear Creek', 'fr', Flow)),
-  SR_acres = square_meters_to_acres(cvpiaHabitat::set_spawning_habitat('Clear Creek', 'sr', Flow)),
-  ST_acres = square_meters_to_acres(cvpiaHabitat::set_spawning_habitat('Clear Creek', 'st', Flow)))
-
-spawn_calc %>%
-  gather(species, acres, -Flow) %>%
-  ggplot(aes(Flow, acres, color = species)) +
-  geom_line()
-
-```
-
-These results are excessively low compared to measured spawning habitat used
 
 ### Spawning habitat used
 ```{r, echo=FALSE}
@@ -131,7 +139,8 @@ used %>%
   labs(x = 'year')
 ```
 
-
+The spawning wua are excessively low compared to measured spawning habitat used
+Will look into scaling
 
 ### Rearing WUA Plot
 ```{r, echo=FALSE}
