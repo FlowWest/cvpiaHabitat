@@ -5,7 +5,8 @@ test_that('FR fry Clear Creek works', {
 
   wua1 <- cvpiaHabitat::clear_creek_instream$FR_fry_wua[1]
   wua2 <- cvpiaHabitat::clear_creek_instream$FR_juv_wua[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[13, 5]]
+  stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                          watershed == 'Clear Creek' & species == 'fr' & lifestage == 'rearing')$feet
 
   x1 <- ((stream_length/1000) * wua1)/10.7639
   x2 <- ((stream_length/1000) * wua2)/10.7639

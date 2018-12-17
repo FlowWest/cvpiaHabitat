@@ -23,7 +23,7 @@ test_that('ST fry Calaveras River works', {
   x <- ((stream_length/1000) * wua)/10.7639
 
   expect_equal(
-    set_instream_habitat('Calaveras River', 'fr', 'fry', 100), x)
+    set_instream_habitat('Calaveras River', 'st', 'fry', 100), x)
 
 })
 
@@ -36,7 +36,7 @@ test_that('ST juv Calaveras River works', {
   x <- ((stream_length/1000) * wua)/10.7639
 
   expect_equal(
-    set_instream_habitat('Calaveras River', 'fr', 'juv', 100), x)
+    set_instream_habitat('Calaveras River', 'st', 'juv', 100), x)
 
 })
 
@@ -49,6 +49,18 @@ test_that('ST spawn Calaveras River works', {
 
   expect_equal(
     set_spawning_habitat('Calaveras River', 'st', 100), x)
+
+})
+
+test_that('FR spawn Calaveras River works', {
+  # flow 100
+  wua <- cvpiaHabitat::calaveras_river_instream$ST_spawn_wua[4]
+  stream_length <- cvpiaHabitat::watershed_lengths[[43, 5]]
+
+  x <- ((stream_length/1000) * wua)/10.7639
+
+  expect_equal(
+    set_spawning_habitat('Calaveras River', 'fr', 100), x)
 
 })
 
