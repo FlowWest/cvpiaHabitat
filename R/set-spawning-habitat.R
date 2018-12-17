@@ -109,10 +109,15 @@ set_spawning_habitat <- function(watershed, species, flow, ...) {
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 FR_spawn_approx <- function(relationship_df, modeling_lookup){
-
-  # case when modeling exists
-  FR_approx <- approxfun(relationship_df$flow_cfs,
-                         relationship_df$FR_spawn_wua, rule = 2)
+  if (dplyr::pull(modeling_lookup, FR_spawn)) {
+    # case when modeling exists
+    FR_approx <- approxfun(relationship_df$flow_cfs,
+                           relationship_df$FR_spawn_wua, rule = 2)
+  } else {
+    #for calaveras
+    FR_approx <- approxfun(relationship_df$flow_cfs,
+                           relationship_df$ST_spawn_wua, rule = 2)
+  }
 
   return(FR_approx)
 }

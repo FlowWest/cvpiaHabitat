@@ -108,10 +108,8 @@ set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
 #' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
 #' @param life_stage one of 'spawn', 'juv' or 'fry'
 FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
-  # check if sr floodplain has modeling
+  # check if fr floodplain has modeling
   FR_has_modeling <- dplyr::pull(modeling_lookup, FR_juv)
-  # SR_has_modeling <- dplyr::pull(modeling_lookup, SR_juv)
-  ST_has_modeling <- dplyr::pull(modeling_lookup, ST_juv)
 
   if (FR_has_modeling) {
     # check to see if lifestage is fry
@@ -129,7 +127,8 @@ FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
       FR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$FR_juv_wua, rule = 2)
     }
 
-  } else if (ST_has_modeling) {
+  } else {
+    # for calaveras
     FR_approx <- ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
   }
     return(FR_approx)
