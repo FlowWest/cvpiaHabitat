@@ -1,0 +1,72 @@
+---
+title: "Cosumnes River"
+author: "sadie"
+date: "December 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(scales)
+
+```
+
+
+## Instream Spawning and Rearing Habiat
+
+There is no habitat modeling, using mokelumne and calaveras
+```{r}
+# cosumnes -----
+region <- cvpiaHabitat::modeling_exist %>%
+  filter(Region == 'South Delta') %>%
+  select(Watershed, Region, FR_fry, FR_juv)
+
+flows <- seq(100, 1000, by = 100)
+
+# spawn
+cal_st_spwn <- approx(calaveras_river_instream$flow_cfs, 
+                      calaveras_river_instream$ST_spawn_wua, 
+                      rule = 2, xout = flows)$y
+
+mok_fr_spwn <- approx(mokelumne_river_instream$flow_cfs, 
+                      mokelumne_river_instream$FR_spawn_wua, 
+                      rule = 2, xout = flows)$y
+
+cos_spwn <- (cal_st_spwn + mok_fr_spwn) / 2
+
+# fry
+cal_st_fry <- approx(calaveras_river_instream$flow_cfs, 
+                      calaveras_river_instream$ST_fry_wua, 
+                      rule = 2, xout = flows)$y
+
+mok_fr_fry <- approx(mokelumne_river_instream$flow_cfs, 
+                      mokelumne_river_instream$FR_fry_wua, 
+                      rule = 2, xout = flows)$y
+
+cos_fry <- (cal_st_fry + mok_fr_fry) / 2
+
+# juv
+cal_st_juv <- approx(calaveras_river_instream$flow_cfs, 
+                      calaveras_river_instream$ST_juv_wua, 
+                      rule = 2, xout = flows)$y
+
+mok_fr_juv <- approx(mokelumne_river_instream$flow_cfs, 
+                      mokelumne_river_instream$FR_juv_wua, 
+                      rule = 2, xout = flows)$y
+
+cos_juv <- (cal_st_juv + mok_fr_juv) / 2
+
+
+
+cosumnes_river_instream <- tibble(flow_cfs = flows, FR_spawn_wua = cos_spwn, 
+                                  FR_fry_wua = cos_fry, FR_juv_wua = cos_juv,
+                                  watershed = 'Cosumnes River')
+
+cosumnes_river_instream
+# devtools::use_data(cosumnes_river_instream, overwrite = TRUE)
+```
+

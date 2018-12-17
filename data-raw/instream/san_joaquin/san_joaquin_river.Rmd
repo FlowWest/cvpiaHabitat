@@ -1,0 +1,69 @@
+---
+title: "San Joaquin River"
+author: "sadie"
+date: "December 17, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(scales)
+
+```
+
+
+## Instream Spawning and Rearing Habiat
+
+There is no habitat modeling, using san joaquin tribs
+
+
+```{r}
+get_approx_fry <- function(df) {approxfun(df$flow_cfs, df$FR_fry_wua, rule = 2)}
+get_approx_juv <- function(df) {approxfun(df$flow_cfs, df$FR_juv_wua, rule = 2)}
+
+# san joaq -----
+cvpiaHabitat::merced_river_instream$flow_cfs %>% range()
+cvpiaHabitat::stanislaus_river_instream$flow_cfs %>% range()
+cvpiaHabitat::tuolumne_river_instream$flow_cfs %>% range()
+
+san_joaq_juv <- list(get_approx_juv(cvpiaHabitat::merced_river_instream),
+                     get_approx_juv(cvpiaHabitat::stanislaus_river_instream),
+                     get_approx_juv(cvpiaHabitat::tuolumne_river_instream))
+
+san_joaq_fry <- list(get_approx_fry(cvpiaHabitat::merced_river_instream),
+                     get_approx_fry(cvpiaHabitat::stanislaus_river_instream),
+                     get_approx_fry(cvpiaHabitat::tuolumne_river_instream))
+
+flows <- cvpiaHabitat::stanislaus_river_instream$flow_cfs
+
+san_joaquin_river_instream <- purrr::map_df(flows, function(flow) {
+  wua_fry <- mean(purrr::map_dbl(1:length(san_joaq_juv), function(i){san_joaq_fry[[i]](flow)}))
+  wua_juv <- mean(purrr::map_dbl(1:length(san_joaq_juv), function(i){san_joaq_juv[[i]](flow)}))
+  tibble(flow_cfs = flow, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
+         watershed = 'San Joaquin River')
+})
+
+bind_rows(cvpiaHabitat::merced_river_instream,
+          cvpiaHabitat::stanislaus_river_instream,
+          cvpiaHabitat::tuolumne_river_instream,
+          san_joaquin_river_instream) %>%
+  ggplot(aes(x = flow_cfs, y= FR_fry_wua, color = watershed)) +
+  geom_line() +
+  theme_minimal()
+
+bind_rows(cvpiaHabitat::merced_river_instream,
+          cvpiaHabitat::stanislaus_river_instream,
+          cvpiaHabitat::tuolumne_river_instream,
+          san_joaquin_river_instream) %>%
+  ggplot(aes(x = flow_cfs, y= FR_juv_wua, color = watershed)) +
+  geom_line() +
+  theme_minimal()
+
+
+san_joaquin_river_instream
+# devtools::use_data(san_joaquin_river_instream, overwrite = TRUE)
+```
