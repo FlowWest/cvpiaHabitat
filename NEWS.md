@@ -8,4 +8,5 @@ Add vignette describing floodplain habitat scaling
 Mokelumne update instream and floodplain rearing habitat
 American spawning WUA update
 Clear creek spawning update
+Add Feather steelhead spawning
 

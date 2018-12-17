@@ -21,27 +21,35 @@ library(scales)
 
 **Data Source:** [California Department of Water Resources 2004](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) and [Thomas R. Payne & Associates 2002](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf)
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Feather River is based on data from California Department of Water Resources and Thomas R. Payne & Associates iinstream flow evaluations for the relicensing of Oroville facilities. These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data was provided by Mark Gard from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Feather River is based on data from California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data was provided by Mark Gard from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').
 
 ### Spawning WUA
-The Fall Run Chinook Salmon spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow : area curves in the FERC evaluation reports using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow : area curves for "upper" and "lower" reaches. These values were combined into a single area weigthed by study reach length for each flow value. The following table summarizes the flow and spawning area used in the DSM. [Check figures on pages 35-36 with Sadie to confirm methods.](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf)
+The Fall Run Chinook Salmon spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow : area curves in the [FERC evaluation reports (pages 35-36)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow : area curves for "upper" and "lower" reaches. These values were combined into a single area weigthed by study reach length for each flow value. The following table summarizes the flow and spawning area used in the DSM. 
 
 ```{r}
-upper <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
+upper_fr <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'upper')
 
-lower <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi.csv') %>%
+lower_fr <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'lower')
 
-upper_approx <- approxfun(upper$flow, upper$wua_rsi, rule = 2)
-lower_approx <- approxfun(lower$flow, lower$wua_rsi, rule = 2)
+upper_st <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi_steelhead.csv') %>%
+  mutate(location = 'upper')
+
+lower_st <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi_steelhead.csv') %>%
+  mutate(location = 'lower')
+
 
 spawning <- tibble(
-  flow_cfs = c(200, 500, 750, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 4000, 4500, 5000, 5500, 6000, 6500, 7000),
-  upper_wua = upper_approx(flow_cfs),
-  lower_wua = lower_approx(flow_cfs)) %>%
-  mutate(FR_spawn_wua = upper_wua * (9.75/18) + lower_wua * (8.25/18)) %>%
-  select(flow_cfs, FR_spawn_wua)
+  flow_cfs = c(200, 500, 750, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 
+               4000, 4500, 5000, 5500, 6000, 6500, 7000),
+  upper_wua_fr = approx(upper_fr$flow, upper_fr$wua_rsi, xout = flow_cfs, rule = 2)$y,
+  lower_wua_fr = approx(lower_fr$flow, lower_fr$wua_rsi, xout = flow_cfs, rule = 2)$y,
+  upper_wua_st = approx(upper_st$flow, upper_st$wua_rsi, xout = flow_cfs, rule = 2)$y,
+  lower_wua_st = approx(lower_st$flow, lower_st$wua_rsi, xout = flow_cfs, rule = 2)$y) %>% 
+  mutate(FR_spawn_wua = upper_wua_fr * (9.75/18) + lower_wua_fr * (8.25/18),
+         ST_spawn_wua = upper_wua_st * (9.75/18) + lower_wua_st * (8.25/18)) %>%
+  select(flow_cfs, FR_spawn_wua, ST_spawn_wua)
 
 ```
 
@@ -51,8 +59,9 @@ The following plot shows the weighted usable spawning area rate in square feet p
 
 ```{r, echo=FALSE}
 spawning %>% 
-  ggplot(aes(flow_cfs, FR_spawn_wua)) +
-  geom_point() +
+  gather(species, wua, -flow_cfs) %>% 
+  ggplot(aes(flow_cfs, wua, color = species)) +
+  geom_line() +
   labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
   scale_y_continuous(labels = comma)
 ```
@@ -67,7 +76,7 @@ feather_raw
 
 #### Rearing WUA Plot
 
-The following plot shows the weighted usable rearing area rates in square feet per thousand feet of river for Fall Run Chinook Salmon (FR_spawn_wua) and Steelhead (ST_spawn_wua). These rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+The following plot shows the weighted usable rearing area rates in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile (FR_fry_wua and FR_juv_wua). These rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
 
 ```{r, echo=FALSE}
 feather_raw %>%
@@ -76,7 +85,7 @@ feather_raw %>%
   gather(species, wua, - Flow) %>%
   ggplot(aes(Flow, wua, color = species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  labs(x = 'flow (cfs)', y = 'rearing WUA (sqft/1000ft)') +
   scale_y_continuous(labels = comma)
 ```
 
@@ -94,7 +103,9 @@ feather_river_instream <- feather_raw %>%
          FR_spawn_wua,
          FR_fry_wua,
          FR_juv_wua,
+         ST_spawn_wua,
          watershed)
-  
+
+feather_river_instream  
 # devtools::use_data(feather_river_instream, overwrite = TRUE)
 ```

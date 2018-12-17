@@ -43,11 +43,27 @@ test_that('FR spawn Feather River works', {
 
 })
 
-test_that('ST and SR are same as FR', {
+test_that('ST spawn Feather River works', {
+
+  wua <- cvpiaHabitat::feather_river_instream$ST_spawn_wua[9]
+  stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                          watershed == 'Feather River' & lifestage == 'spawning'
+                          & species == 'fr')$feet
+
+  x <- ((stream_length/1000) * wua)/10.7639
+
   expect_equal(
-    set_instream_habitat('Feather River', 'fr', 'fry', 2500),
-    set_instream_habitat('Feather River', 'sr', 'fry', 2500),
-    set_instream_habitat('Feather River', 'st', 'fry', 2500))
+    set_spawning_habitat('Feather River', 'st', 2500), x)
+
+})
+
+test_that('SR and FR are same for spawning', {
+  expect_equal(
+    set_spawning_habitat('Feather River', 'fr', 2500),
+    set_spawning_habitat('Feather River', 'sr', 2500))
+})
+
+test_that('ST and SR rearing are same as FR', {
 
   expect_equal(
     set_instream_habitat('Feather River', 'fr', 'juv', 2500),
