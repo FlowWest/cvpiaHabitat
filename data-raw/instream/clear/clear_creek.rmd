@@ -104,7 +104,7 @@ clear_creek_instream <- bind_cols(fr, sr, st) %>%
   select(-flow_cfs1, -flow_cfs2)
 
 clear_creek_instream
-devtools::use_data(clear_creek_instream, overwrite = TRUE)
+# devtools::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
 
@@ -131,7 +131,7 @@ clear_creek_instream %>%
 
 ### Spawning habitat used
 ```{r, echo=FALSE}
-used <- read_csv('clear_creek_mapped_spawning.csv', skip = 1)
+used <- read_csv('data-raw/instream/clear/clear_creek_mapped_spawning.csv', skip = 1)
 
 used %>%
   ggplot(aes(x = as.character(Year), y = acres)) +
@@ -140,53 +140,17 @@ used %>%
 ```
 
 The spawning wua are excessively low compared to measured spawning habitat used
-Will look into scaling
+Will look into scaling modeling, for now fixing spawning habitat value.
 
 ### Rearing WUA Plot
 ```{r, echo=FALSE}
-clear_wua %>%
-  select(-FR_spawning, -SR_spawning, -ST_spawning) %>%
-  gather(species, wua, -Flow) %>%
-  ggplot(aes(Flow, wua, color = species)) +
+clear_creek_instream %>% 
+  select(-FR_spawn_wua, -SR_spawn_wua, -ST_spawn_wua) %>%
+  gather(species, wua, -flow_cfs) %>%
+  ggplot(aes(flow_cfs, wua, color = species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
+  labs(x = 'flow (cfs)', y = 'rearing WUA (sqft/1000ft)') +
   scale_y_continuous(labels = comma)
 ```
 
-Steelhead and spring run juv rearing habitat is the same, why?
-ASK MARK GARD- is criteria the same?
-small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO
-
-```{r}
-# Old code
-# clear creek instream cleaning-----------------------------------
-# in units sqft want in units sqft/1000ft
-clear_creek <- read_csv('data-raw/instream/clear_creek_instream.csv')
-glimpse(clear_creek)
-View(clear_creek)
-
-clear_creek_instream <- clear_creek %>%
-  gather(species_stage, WUA, -flow_cfs, -Reach:-WUA_units) %>%
-  filter(!is.na(WUA)) %>%
-  group_by(species_stage, flow_cfs) %>%
-  mutate(total_reach_length = sum(Reach_length)) %>%
-  summarise(WUA = sum(WUA)/ max(total_reach_length) / 5.28) %>%
-  ungroup() %>%
-  spread(species_stage, WUA) %>%
-  mutate(watershed = 'Clear Creek') %>%
-  select(flow_cfs,
-         FR_fry_wua = FR_fry,
-         FR_juv_wua = FR_juv,
-         FR_spawn_wua = FR_spawning,
-         SR_fry_wua = SR_fry,
-         SR_juv_wua = SR_juvenile,
-         SR_spawn_wua = SR_spawning,
-         ST_fry_wua = ST_fry,
-         ST_juv_wua = ST_juvenile,
-         ST_spawn_wua = ST_spawning,
-         watershed) # add new naming convention to cols
-
-# devtools::use_data(clear_creek_instream, overwrite = TRUE)
-```
-
-
+Steelhead and spring run juv rearing habitat are the same, because small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO
