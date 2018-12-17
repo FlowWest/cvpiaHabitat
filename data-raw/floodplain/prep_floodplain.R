@@ -273,9 +273,7 @@ mill_creek_floodplain <- scale_fp_flow_area('Mill Creek')
 use_data(mill_creek_floodplain, overwrite = TRUE)
 
 # Mokelumne River -------------------------------------
-mokelumne_river_floodplain <- scale_fp_flow_area('Mokelumne River')
-
-use_data(mokelumne_river_floodplain, overwrite = TRUE)
+# see data-raw/instream/mokelumne/mokelumne_river.Rmd
 
 # Paynes Creek-------------------------------------
 paynes_creek_floodplain <- scale_fp_flow_area('Paynes Creek')
