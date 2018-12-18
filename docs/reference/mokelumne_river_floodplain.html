@@ -62,7 +62,7 @@ function of flow in cubic feet per second" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
       </span>
     </div>
 
@@ -70,6 +70,9 @@ function of flow in cubic feet per second" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/floodplain-modeling.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -96,7 +99,7 @@ function of flow in cubic feet per second" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Mokelumne River to Floodplain Habitat Area Relationship</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>mokelumne_river_floodplain.Rd</code></div>
     </div>
 
@@ -130,82 +133,16 @@ function of flow in cubic feet per second</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>mokelumne_river_floodplain</span></div><div class='output co'>#&gt;     flow_cfs FR_floodplain_acres SR_floodplain_acres ST_floodplain_acres
-#&gt; 1    50.2672             0.00000             0.00000             0.00000
-#&gt; 2   125.6680             0.00000             0.00000             0.00000
-#&gt; 3   251.3360             0.00000             0.00000             0.00000
-#&gt; 4   377.0040             0.00000             0.00000             0.00000
-#&gt; 5   502.6720             0.00000             0.00000             0.00000
-#&gt; 6   628.3400            19.42940            19.42940            19.42940
-#&gt; 7   754.0081            41.42912            41.42912            41.42912
-#&gt; 8   879.6761            63.14696            63.14696            63.14696
-#&gt; 9  1005.3441            84.75038            84.75038            84.75038
-#&gt; 10 1131.0121           106.35659           106.35659           106.35659
-#&gt; 11 1256.6801           133.68948           133.68948           133.68948
-#&gt; 12 1382.3481           160.34701           160.34701           160.34701
-#&gt; 13 1508.0161           183.58582           183.58582           183.58582
-#&gt; 14 1633.6841           210.42614           210.42614           210.42614
-#&gt; 15 1759.3521           237.26646           237.26646           237.26646
-#&gt; 16 1885.0201           263.80119           263.80119           263.80119
-#&gt; 17 2010.6881           290.33592           290.33592           290.33592
-#&gt; 18 2136.3562           316.55947           316.55947           316.55947
-#&gt; 19 2262.0242           342.78303           342.78303           342.78303
-#&gt; 20 2387.6922           367.34328           367.34328           367.34328
-#&gt; 21 2513.3602           391.90353           391.90353           391.90353
-#&gt; 22 2639.0282           420.94856           420.94856           420.94856
-#&gt; 23 2764.6962           449.99360           449.99360           449.99360
-#&gt; 24 2890.3642           477.54696           477.54696           477.54696
-#&gt; 25 3016.0322           505.10032           505.10032           505.10032
-#&gt; 26 3141.7002           533.72813           533.72813           533.72813
-#&gt; 27 3267.3682           562.35595           562.35595           562.35595
-#&gt; 28 3393.0362           586.35525           586.35525           586.35525
-#&gt; 29 3518.7043           610.35456           610.35456           610.35456
-#&gt; 30 3644.3723           635.87484           635.87484           635.87484
-#&gt; 31 3770.0403           661.39512           661.39512           661.39512
-#&gt; 32 3895.7083           688.35683           688.35683           688.35683
-#&gt; 33 4021.3763           715.31855           715.31855           715.31855
-#&gt; 34 4147.0443           807.06262           807.06262           807.06262
-#&gt; 35 4272.7123           898.80670           898.80670           898.80670
-#&gt; 36 4398.3803           937.48550           937.48550           937.48550
-#&gt; 37 4524.0483           976.16430           976.16430           976.16430
-#&gt;          watershed
-#&gt; 1  Mokelumne River
-#&gt; 2  Mokelumne River
-#&gt; 3  Mokelumne River
-#&gt; 4  Mokelumne River
-#&gt; 5  Mokelumne River
-#&gt; 6  Mokelumne River
-#&gt; 7  Mokelumne River
-#&gt; 8  Mokelumne River
-#&gt; 9  Mokelumne River
-#&gt; 10 Mokelumne River
-#&gt; 11 Mokelumne River
-#&gt; 12 Mokelumne River
-#&gt; 13 Mokelumne River
-#&gt; 14 Mokelumne River
-#&gt; 15 Mokelumne River
-#&gt; 16 Mokelumne River
-#&gt; 17 Mokelumne River
-#&gt; 18 Mokelumne River
-#&gt; 19 Mokelumne River
-#&gt; 20 Mokelumne River
-#&gt; 21 Mokelumne River
-#&gt; 22 Mokelumne River
-#&gt; 23 Mokelumne River
-#&gt; 24 Mokelumne River
-#&gt; 25 Mokelumne River
-#&gt; 26 Mokelumne River
-#&gt; 27 Mokelumne River
-#&gt; 28 Mokelumne River
-#&gt; 29 Mokelumne River
-#&gt; 30 Mokelumne River
-#&gt; 31 Mokelumne River
-#&gt; 32 Mokelumne River
-#&gt; 33 Mokelumne River
-#&gt; 34 Mokelumne River
-#&gt; 35 Mokelumne River
-#&gt; 36 Mokelumne River
-#&gt; 37 Mokelumne River</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>mokelumne_river_floodplain</span></div><div class='output co'>#&gt; # A tibble: 7 x 5
+#&gt;   flow_cfs FR_floodplain_acr… SR_floodplain_acr… ST_floodplain_ac… watershed   
+#&gt;      &lt;dbl&gt;              &lt;dbl&gt;              &lt;dbl&gt;             &lt;dbl&gt; &lt;chr&gt;       
+#&gt; 1      400                 0                  0                 0  Mokelumne R…
+#&gt; 2      800               135.               135.              135. Mokelumne R…
+#&gt; 3      900               161.               161.              161. Mokelumne R…
+#&gt; 4     1100               204.               204.              204. Mokelumne R…
+#&gt; 5     1300               239.               239.              239. Mokelumne R…
+#&gt; 6     1500               270.               270.              270. Mokelumne R…
+#&gt; 7     1700               297.               297.              297. Mokelumne R…</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

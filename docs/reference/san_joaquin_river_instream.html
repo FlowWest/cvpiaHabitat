@@ -62,7 +62,7 @@ as a function of flow in cubic feet per second" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
       </span>
     </div>
 
@@ -70,6 +70,9 @@ as a function of flow in cubic feet per second" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/floodplain-modeling.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -96,7 +99,7 @@ as a function of flow in cubic feet per second" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>San Joaqin River Instream Flow to Habitat Area Relationship</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>san_joaquin_river_instream.Rd</code></div>
     </div>
 
@@ -131,19 +134,19 @@ and Tuolumne Rivers.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>san_joaquin_river_instream</span></div><div class='output co'>#&gt; # A tibble: 47 x 5
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed        
-#&gt;       &lt;int&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;            
-#&gt;  1       25        3065.     28359.     28359. San Joaquin River
-#&gt;  2       50        3290.     28359.     28359. San Joaquin River
-#&gt;  3      100        6482.     29605.     29605. San Joaquin River
-#&gt;  4      150        9668.     29753.     29753. San Joaquin River
-#&gt;  5      200       11340.     28766.     28766. San Joaquin River
-#&gt;  6      250       11978.     27499.     27499. San Joaquin River
-#&gt;  7      300       12192.     26288.     26288. San Joaquin River
-#&gt;  8      350       11535.     25070.     25070. San Joaquin River
-#&gt;  9      400       10652.     23933.     23933. San Joaquin River
-#&gt; 10      450        9740.     22929.     22929. San Joaquin River
+    <pre class="examples"><div class='input'><span class='no'>san_joaquin_river_instream</span></div><div class='output co'>#&gt; # A tibble: 47 x 4
+#&gt;    flow_cfs FR_fry_wua FR_juv_wua watershed        
+#&gt;       &lt;int&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;            
+#&gt;  1       25     21336.     28359. San Joaquin River
+#&gt;  2       50     21336.     28359. San Joaquin River
+#&gt;  3      100     19510.     29605. San Joaquin River
+#&gt;  4      150     17522.     29753. San Joaquin River
+#&gt;  5      200     16077.     28766. San Joaquin River
+#&gt;  6      250     14969.     27499. San Joaquin River
+#&gt;  7      300     14023.     26288. San Joaquin River
+#&gt;  8      350     13331.     25070. San Joaquin River
+#&gt;  9      400     12782.     23933. San Joaquin River
+#&gt; 10      450     12362.     22929. San Joaquin River
 #&gt; # ... with 37 more rows</div><div class='input'>
 </div></pre>
   </div>

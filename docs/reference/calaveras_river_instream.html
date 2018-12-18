@@ -62,7 +62,7 @@ as a function of flow in cubic feet per second" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
       </span>
     </div>
 
@@ -70,6 +70,9 @@ as a function of flow in cubic feet per second" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/floodplain-modeling.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -96,7 +99,7 @@ as a function of flow in cubic feet per second" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calaveras River Instream Flow to Habitat Area Relationship</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>calaveras_river_instream.Rd</code></div>
     </div>
 
@@ -113,9 +116,9 @@ as a function of flow in cubic feet per second</p>
 
     <p>dataframe with 10 rows and 5 variables:</p><dl class='dl-horizontal'>
   <dt>flow_cfs</dt><dd><p>integer flow value in cubic feet per second</p></dd>
-  <dt>FR_spawn_wua</dt><dd><p>spawning WUA in square feet per 1000 feet</p></dd>
-  <dt>FR_fry_wua</dt><dd><p>fry (up to 50 mm) WUA in square feet per 1000 feet</p></dd>
-  <dt>FR_juv_wua</dt><dd><p>juvenile WUA in square feet per 1000 feet</p></dd>
+  <dt>ST_spawn_wua</dt><dd><p>spawning WUA in square feet per 1000 feet</p></dd>
+  <dt>ST_fry_wua</dt><dd><p>fry (up to 50 mm) WUA in square feet per 1000 feet</p></dd>
+  <dt>ST_juv_wua</dt><dd><p>juvenile WUA in square feet per 1000 feet</p></dd>
   <dt>watershed</dt><dd><p>name of watershed</p></dd>
 </dl>
     
@@ -130,8 +133,8 @@ as a function of flow in cubic feet per second</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>calaveras_river_instream</span></div><div class='output co'>#&gt; # A tibble: 10 x 5
-#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua watershed      
-#&gt;       &lt;int&gt;        &lt;int&gt;      &lt;int&gt;      &lt;int&gt; &lt;chr&gt;          
+#&gt;    flow_cfs ST_spawn_wua ST_fry_wua ST_juv_wua watershed      
+#&gt;       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt; &lt;chr&gt;          
 #&gt;  1       12         1800       5800       4200 Calaveras River
 #&gt;  2       35         3200       4300       4300 Calaveras River
 #&gt;  3       50         3000       3200       4000 Calaveras River

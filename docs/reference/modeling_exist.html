@@ -61,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
       </span>
     </div>
 
@@ -69,6 +69,9 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/floodplain-modeling.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -95,7 +98,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Habitat Modeling Status</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>modeling_exist.Rd</code></div>
     </div>
 
@@ -124,10 +127,12 @@
 <dt>ST_fry</dt><dd><p>TRUE if fry rearing habitat modeling exists for Steelhead</p></dd>
 <dt>ST_juv</dt><dd><p>TRUE if juvenile rearing habitat modeling exists for Steelhead</p></dd>
 <dt>ST_floodplain</dt><dd><p>TRUE if floodplain rearing modeling exists for Steelhead</p></dd>
+<dt>ST_adult</dt><dd><p>TRUE if adult rearing habitat modeling exists for Steelhead</p></dd>
 <dt>Region</dt><dd><p>Regional grouping of watersheds used for estimating values for watersheds without modeling</p></dd>
 <dt>UseRearRegionApprox</dt><dd><p>boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed</p></dd>
 <dt>UseSpawnRegionApprox</dt><dd><p>boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed</p></dd>
 <dt>UseFloodplainRegionApprox</dt><dd><p>boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed</p></dd>
+<dt>Note</dt><dd><p>misc notes</p></dd>
 </dl>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
@@ -142,7 +147,7 @@ Used as look up table for <code><a href='set_spawning_habitat.html'>set_spawning
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>modeling_exist</span></div><div class='output co'>#&gt; # A tibble: 32 x 18
+    <pre class="examples"><div class='input'><span class='no'>modeling_exist</span></div><div class='output co'>#&gt; # A tibble: 32 x 20
 #&gt;    Order Watershed FR_spawn FR_fry FR_juv FR_floodplain SR_spawn SR_fry SR_juv
 #&gt;    &lt;int&gt; &lt;chr&gt;     &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt;  &lt;lgl&gt;         &lt;lgl&gt;    &lt;lgl&gt;  &lt;lgl&gt; 
 #&gt;  1     1 Upper Sa… TRUE     FALSE  TRUE   TRUE          FALSE    FALSE  FALSE 
@@ -155,10 +160,10 @@ Used as look up table for <code><a href='set_spawning_habitat.html'>set_spawning
 #&gt;  8     8 Cottonwo… TRUE     TRUE   TRUE   TRUE          FALSE    FALSE  FALSE 
 #&gt;  9     9 Cow Creek FALSE    TRUE   TRUE   FALSE         NA       NA     NA    
 #&gt; 10    10 Deer Cre… FALSE    FALSE  FALSE  TRUE          FALSE    FALSE  FALSE 
-#&gt; # ... with 22 more rows, and 9 more variables: SR_floodplain &lt;lgl&gt;,
+#&gt; # ... with 22 more rows, and 11 more variables: SR_floodplain &lt;lgl&gt;,
 #&gt; #   ST_spawn &lt;lgl&gt;, ST_fry &lt;lgl&gt;, ST_juv &lt;lgl&gt;, ST_floodplain &lt;lgl&gt;,
-#&gt; #   Region &lt;chr&gt;, UseRearRegionApprox &lt;lgl&gt;, UseSpawnRegionApprox &lt;lgl&gt;,
-#&gt; #   UseFloodplainRegionApprox &lt;lgl&gt;</div><div class='input'>
+#&gt; #   ST_adult &lt;lgl&gt;, Region &lt;chr&gt;, UseRearRegionApprox &lt;lgl&gt;,
+#&gt; #   UseSpawnRegionApprox &lt;lgl&gt;, UseFloodplainRegionApprox &lt;lgl&gt;, Note &lt;chr&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

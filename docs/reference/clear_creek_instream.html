@@ -62,7 +62,7 @@ as a function of flow in cubic feet per second" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">cvpiaHabitat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.0.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">1.1.0</span>
       </span>
     </div>
 
@@ -70,6 +70,9 @@ as a function of flow in cubic feet per second" />
       <ul class="nav navbar-nav">
         <li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li>
+  <a href="../articles/floodplain-modeling.html">Articles</a>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -96,7 +99,7 @@ as a function of flow in cubic feet per second" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Clear Creek Instream Flow to Habitat Area Relationship</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/data.R'><code>R/data.R</code></a></small>
     <div class="hidden name"><code>clear_creek_instream.Rd</code></div>
     </div>
 
@@ -138,21 +141,21 @@ Spring Run from spawning in the Lower Alluvial Segment.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>clear_creek_instream</span></div><div class='output co'>#&gt; # A tibble: 23 x 11
-#&gt;    flow_cfs FR_fry_wua FR_juv_wua FR_spawn_wua SR_fry_wua SR_juv_wua
-#&gt;       &lt;int&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
-#&gt;  1       50     11526.      4835.        1680.      3139.      1863.
-#&gt;  2       75     11367.      5341.        2300.      3094.      2379.
-#&gt;  3      100     11082.      5753.        2799.      3116.      2843.
-#&gt;  4      125     10788.      6090.        3248.      3179.      3259.
-#&gt;  5      150     10549.      6382.        3632.      3192.      3639.
-#&gt;  6      175     10280.      6642.        3996.      3237.      4026.
-#&gt;  7      200     10114.      6841.        4250.      3280.      4335.
-#&gt;  8      225      9967.      6996.        4437.      3399.      4609.
-#&gt;  9      250      9847.      7099.        4566.      3482.      4869.
-#&gt; 10      275      9769.      7197.        4644.      3659.      5092.
-#&gt; # ... with 13 more rows, and 5 more variables: SR_spawn_wua &lt;dbl&gt;,
-#&gt; #   ST_fry_wua &lt;dbl&gt;, ST_juv_wua &lt;dbl&gt;, ST_spawn_wua &lt;dbl&gt;, watershed &lt;chr&gt;</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>clear_creek_instream</span></div><div class='output co'>#&gt; # A tibble: 23 x 10
+#&gt;    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua SR_spawn_wua SR_fry_wua
+#&gt;       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;
+#&gt;  1       50        13000     11526.      4835.         34.3      3139.
+#&gt;  2       75        13000     11367.      5341.         65.5      3094.
+#&gt;  3      100        13000     11082.      5753.         98.4      3116.
+#&gt;  4      125        13000     10788.      6090.        128.       3179.
+#&gt;  5      150        13000     10549.      6382.        157.       3192.
+#&gt;  6      175        13000     10280.      6642.        187.       3237.
+#&gt;  7      200        13000     10114.      6841.        212.       3280.
+#&gt;  8      225        13000      9967.      6996.        235.       3399.
+#&gt;  9      250        13000      9847.      7099.        257.       3482.
+#&gt; 10      275        13000      9769.      7197.        278.       3659.
+#&gt; # ... with 13 more rows, and 4 more variables: SR_juv_wua &lt;dbl&gt;,
+#&gt; #   ST_spawn_wua &lt;dbl&gt;, ST_fry_wua &lt;dbl&gt;, ST_juv_wua &lt;dbl&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
