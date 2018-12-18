@@ -138,13 +138,14 @@ $(document).ready(function () {
 <pre class="r"><code># merced_river_instream &lt;-
 tuolumne_river_instream &lt;- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                                       range = &quot;A2:H32&quot;, sheet = 'Tuolumne') %&gt;% 
+  mutate(watershed = 'Tuolumne River') %&gt;% 
   select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
          FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`, 
          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`, 
-         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`)
+         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
 
 tuolumne_river_instream</code></pre>
-<pre><code>## # A tibble: 30 x 8
+<pre><code>## # A tibble: 30 x 9
 ##    flow_cfs FR_spawn_wua FR_fry_wua FR_juv_wua ST_spawn_wua ST_fry_wua
 ##       &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;
 ##  1       50        2116.     32897.     48648.       11648.     54751.
@@ -157,8 +158,8 @@ tuolumne_river_instream</code></pre>
 ##  8      225       17532.     21821.     50618.       33877.     37709.
 ##  9      250       18117.     20908.     49513.       35297.     36641.
 ## 10      275       18788.     20117.     48371.       36498.     35539.
-## # ... with 20 more rows, and 2 more variables: ST_juv_wua &lt;dbl&gt;,
-## #   ST_adult_wua &lt;dbl&gt;</code></pre>
+## # ... with 20 more rows, and 3 more variables: ST_juv_wua &lt;dbl&gt;,
+## #   ST_adult_wua &lt;dbl&gt;, watershed &lt;chr&gt;</code></pre>
 <pre class="r"><code># devtools::use_data(tuolumne_river_instream, overwrite = TRUE)</code></pre>
 </div>
 

@@ -27,10 +27,11 @@ Units are in square feet per 1000 feet.
 # merced_river_instream <-
 tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                                       range = "A2:H32", sheet = 'Tuolumne') %>% 
+  mutate(watershed = 'Tuolumne River') %>% 
   select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
          FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`, 
          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`, 
-         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`)
+         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
 
 tuolumne_river_instream
 # devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
