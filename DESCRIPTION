@@ -1,7 +1,7 @@
 Package: cvpiaHabitat
 Type: Package
 Title: Estimate Spawning and Rearing Habitat
-Version: 1.0.2
+Version: 1.1.0
 Authors@R: c(
     person("Sadie", "Gill", email = "sgill@flowwest.com", role = c("aut", "cre")), 
     person("Emanuel", "Rodriguez", email = "erodriguez@flowwest.com", role = "aut"),
@@ -17,3 +17,5 @@ Suggests: testthat,
     rmarkdown
 RoxygenNote: 6.1.0
 VignetteBuilder: knitr
+URL: https://github.com/FlowWest/cvpiaHabitat
+BugReports: https://github.com/FlowWest/cvpiaHabitat/issues
