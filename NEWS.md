@@ -9,4 +9,6 @@ Mokelumne update instream and floodplain rearing habitat
 American spawning WUA update
 Clear creek spawning update
 Add Feather steelhead spawning
+Improved documentation of data wrangling for instream datasets
+Improved testing coverage
 
