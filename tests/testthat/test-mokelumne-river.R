@@ -68,3 +68,10 @@ test_that('ST and SR rearing is same as FR', {
     set_instream_habitat('Mokelumne River', 'sr', 'juv', 1000),
     set_instream_habitat('Mokelumne River', 'st', 'juv', 1000))
 })
+
+test_that('FR floodplain works', {
+  expect_equal(
+    mokelumne_river_floodplain$FR_floodplain_acres[2] / 0.000247105,
+    set_floodplain_habitat('Mokelumne River', 'fr', 800)
+  )
+})
