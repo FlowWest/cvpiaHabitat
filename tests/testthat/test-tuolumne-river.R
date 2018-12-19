@@ -90,7 +90,7 @@ test_that('ST spawn Tuolumne River works', {
 test_that('SR and ST are the same Tuolumne River', {
 
   expect_equal(
-    set_spawning_habitat('Tuolumne River', 'fr', 275),
+    set_spawning_habitat('Tuolumne River', 'st', 275),
     set_spawning_habitat('Tuolumne River', 'sr', 275))
 
   expect_equal(

@@ -57,9 +57,9 @@ test_that('ST spawn Feather River works', {
 
 })
 
-test_that('SR and FR are same for spawning', {
+test_that('SR and ST are same for spawning', {
   expect_equal(
-    set_spawning_habitat('Feather River', 'fr', 2500),
+    set_spawning_habitat('Feather River', 'st', 2500),
     set_spawning_habitat('Feather River', 'sr', 2500))
 })
 
