@@ -110,8 +110,6 @@ merced <- mean_flows %>%
 prop_merced_flows <- mean_flows %>%
   mutate(prop_merced = mean_flow/merced)
 
-devtools::use_data(prop_merced_flows)
-
 prop_merced_flows %>%
   ggplot(aes(watershed, prop_merced)) +
   geom_col() +
@@ -119,16 +117,8 @@ prop_merced_flows %>%
   coord_flip()
 ```
 
-```{r}
-  if (life_stage == 'adult') {
-    if (dplyr::pull(modeling_lookup, ST_adult)) {
-      adult_col <- paste(toupper(species), life_stage, 'wua', sep = '_')
-      return(approxfun(relationship_df$flow_cfs, relationship_df[adult_col], rule = 2))
-    } else {
-      subset(prop_merced_flows, watershed = 'Yuba River')$prop_merced
-      return()
-    }
-  }
+Below is the esitmated adult steelhead habitat in acres for 1980
+```{r, echo=FALSE}
 
 others <- approxfun(merced_river_instream$flow_cfs, merced_river_instream$ST_adult_wua, rule = 2)
 other_st_adult <- prop_merced_flows %>% 
@@ -150,5 +140,53 @@ IChab.adult <- array(NA, dim = c(31, 12, 20))
 for (i in 1:dim(other_st_adult)[1]) {
   IChab.adult[other_st_adult$order[i], , ] <- other_st_adult$sq_meters[i]
 }
-  
+
+flows <- cvpiaFlow::flows_cfs %>%
+  select(date, `Tuolumne River`, `Yuba River`, `Merced River`, `Battle Creek`, `Butte Creek`) %>% 
+  filter(between(year(date), 1980, 1999))
+
+fts <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed %in% c('Tuolumne River', 'Yuba River', 'Merced River', 
+                          'Butte Creek', 'Battle Creek'), lifestage == 'rearing') %>% 
+  group_by(watershed) %>% 
+  summarise(feet = max(feet))
+
+feet <- fts$feet
+names(feet) <- fts$watershed
+
+
+IChab.adult[30,,] <- approx(x = tuolumne_river_instream$flow_cfs, 
+                            y = tuolumne_river_instream$ST_adult_wua,
+                            xout = flows$`Tuolumne River`, rule = 2)$y * feet[['Tuolumne River']] / 1000 / 10.7639
+
+IChab.adult[28,,] <- approx(x = merced_river_instream$flow_cfs, 
+                            y = merced_river_instream$ST_adult_wua,
+                            xout = flows$`Merced River`, rule = 2)$y * feet[['Merced River']] / 1000 / 10.7639
+
+IChab.adult[20,,] <- approx(x = yuba_river_instream$flow_cfs, 
+                            y = yuba_river_instream$ST_adult_wua,
+                            xout = flows$`Yuba River`, rule = 2)$y * feet[['Yuba River']] / 1000 / 10.7639
+
+IChab.adult[3,,] <- approx(x = battle_creek_instream$flow_cfs, 
+                            y = battle_creek_instream$ST_adult_wua,
+                            xout = flows$`Battle Creek`, rule = 2)$y * feet[['Battle Creek']] / 1000 / 10.7639
+
+IChab.adult[6,,] <- approx(x = butte_creek_instream$flow_cfs, 
+                            y = butte_creek_instream$ST_adult_wua,
+                            xout = flows$`Butte Creek`, rule = 2)$y * feet[['Butte Creek']] / 1000 / 10.7639
+
+#lower-mid sacramento scale wua using two flows
+low_mid_flows <- cvpiaFlow::flows_cfs %>% 
+  select(date, `Lower-mid Sacramento River1`, `Lower-mid Sacramento River2`) %>% 
+  filter(between(year(date), 1980, 1999)) %>% 
+  summarise_all(mean)
+
+low_mid_ft <- watershed_lengths %>% 
+  filter(watershed == 'Lower-mid Sacramento River') %>% pull(feet)
+
+IChab.adult[21,,] <- (35.6/58 * others(low_mid_flows$`Lower-mid Sacramento River1`) + 
+  22.4/58 * others(low_mid_flows$`Lower-mid Sacramento River2`)) * low_mid_ft / 1000 / 10.7639 
+
+# devtools::use_data(IChab.adult)
+IChab.adult[,,1]  %>% square_meters_to_acres()
 ```

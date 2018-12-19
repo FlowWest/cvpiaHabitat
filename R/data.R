@@ -1425,19 +1425,29 @@ NULL
 'pools'
 
 
-#' Proportion of Mean Merced Flows
+#' Steelhead Adult Rearing Habitat
 #'
-#' @description A dataset containing the calsim mean flows for the years 1980-1999
-#' during months December through May for each watershed. These values are then divided
-#' by the mean flow value of Merced to be used as a scaling factor for setting
-#' adult steelhead habitat amounts.
+#' @description A dataset containing adult rearing habitat quanities in square meters
 #'
-#' @format dataframe with 30 rows and 3 variables
-#' \describe{
-#'   \item{watershed}{CVPIA watershed}
-#'   \item{mean_flow}{CalSim mean flow in cfs}
-#'   \item{prop_merced}{ratio of watershed's mean_flow and merced's}
-#' }
+#'
+#' @format array[watersheds, months, years]
+#'
+#' @details
+#' Only 5 of the watersheds have wua relationships:
+#' **Adult Trout**
+#' 1. Battle Creek
+#' 2. Butte Creek
+#'
+#' **Steelhead**
+#' 3. Merced River
+#' 4. Tuolumne River
+#' 5. Yuba River
+#'
+#' These watershed's habitat values vary by month.
+#'
+#' For the other watersheds, we created one habitat value using the calsim mean flows for the years 1980-1999.
+#' We used Merced's adult steelhead wua curve and scaled it by the ratio of mean flow December through May
+#' between itself and Merced.
 #'
 #' @source
 #' \itemize{
@@ -1445,4 +1455,4 @@ NULL
 #'   \item Method: Mark Tompkins \email{mtompkins@@flowwest.com}
 #' }
 #'
-'prop_merced_flows'
+'IChab.adult'

@@ -91,7 +91,7 @@ reference:
   - modeling_exist
   - watershed_lengths
   - weeks_inundated
-  - prop_merced_flows
+  - IChab.adult
 
 navbar:
   type: default
