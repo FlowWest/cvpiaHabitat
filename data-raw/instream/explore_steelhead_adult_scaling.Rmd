@@ -1,0 +1,154 @@
+---
+title: "Steelhead Adult Habitat Scaling"
+author: "sadie"
+date: "December 18, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(lubridate)
+library(cvpiaFlow)
+```
+
+
+This document develops a method for scaling the available adult steelhead wua data
+to the other watersheds
+
+## Adult Trout and Steelhead WUAs
+
+There is habitat modeling for adult trout or steelhead on 5 watersheds:    
+
+**Adult Trout**
+
+1. Battle Creek    
+2. Butte Creek    
+
+**Steelhead**
+
+3. Merced River   
+4. Tuolumne River   
+5. Yuba River   
+
+
+## Modeled WUA Exploration
+
+```{r, echo=FALSE}
+bac <- cvpiaHabitat::battle_creek_instream %>%
+  select(flow_cfs, ST_adult_wua, watershed)
+buc <- cvpiaHabitat::butte_creek_instream %>%
+  select(flow_cfs, ST_adult_wua, watershed)
+mr <- cvpiaHabitat::merced_river_instream %>%
+  select(flow_cfs, ST_adult_wua, watershed)
+tr <- cvpiaHabitat::tuolumne_river_instream %>%
+  select(flow_cfs, ST_adult_wua, watershed)
+yr <- cvpiaHabitat::yuba_river_instream %>%
+  select(flow_cfs, ST_adult_wua, watershed)
+
+bind_rows(bac, buc, mr, tr, yr) %>%
+  filter(flow_cfs < 10000) %>%
+  ggplot(aes(flow_cfs, ST_adult_wua, color = watershed)) +
+  geom_line()
+
+```
+
+
+Yuba and Tuolumne WUA values are much higher than the other watersheds, they
+appear to be proporitonately higher based on watershed size. 
+
+Below are the mean values of flow in the monthes December through May. Tuolumne 
+is about twice that of Merced and Yuba is about four times Merced. This is 
+similar to the differences between these watershed's WUA curves.
+
+```{r, echo=FALSE}
+cvpiaFlow::flows_cfs %>%
+  select(date, `Tuolumne River`, `Yuba River`, `Merced River`) %>%
+  gather(watershed, flow, -date) %>%
+  filter(month(date) %in% c(1:5, 12), year(date) >= 1980) %>%
+  group_by(watershed) %>%
+  summarise(mean = mean(flow, na.rm = TRUE)) %>%
+  ungroup() %>% 
+  knitr::kable(col.names = c('Watershed', 'Mean Flow (cfs)'))
+```
+
+In the following plot, the black line represents the ratio of Yuba/Merced mean flows 
+and the red line represents the ration of Tuolumne/Merced mean flows. 
+
+```{r, echo=FALSE}
+bind_rows(bac, buc, mr, tr, yr) %>%
+  filter(flow_cfs < 10000) %>%
+  ggplot(aes(flow_cfs, ST_adult_wua, color = watershed)) +
+  geom_line() +
+  geom_line(data = mr, aes(flow_cfs, ST_adult_wua * 4.19), color = 'black') +
+  geom_line(data = mr, aes(flow_cfs, ST_adult_wua * 1.78), color = 'red')
+
+```
+
+## Method
+
+For unmodeled watersheds, we will take the annual mean flow for the watershed
+and calculate the wua value using Merced's modeled relationship. We will then
+scale the wua by the ratio of mean flow between the watershed and Merced.
+
+Here is a plot of the ratios (the black verticle line is at 1)
+
+```{r, echo=FALSE}
+mean_flows <- cvpiaFlow::flows_cfs %>%
+  filter(month(date) %in% c(1:5, 12), between(year(date), 1980, 1999)) %>%
+  summarise_all(mean, na.rm=TRUE) %>%
+  select(-date) %>%
+  gather(watershed, mean_flow)
+
+merced <- mean_flows %>%
+  filter(watershed == 'Merced River') %>%
+  pull(mean_flow)
+
+prop_merced_flows <- mean_flows %>%
+  mutate(prop_merced = mean_flow/merced)
+
+devtools::use_data(prop_merced_flows)
+
+prop_merced_flows %>%
+  ggplot(aes(watershed, prop_merced)) +
+  geom_col() +
+  geom_hline(yintercept = 1) +
+  coord_flip()
+```
+
+```{r}
+  if (life_stage == 'adult') {
+    if (dplyr::pull(modeling_lookup, ST_adult)) {
+      adult_col <- paste(toupper(species), life_stage, 'wua', sep = '_')
+      return(approxfun(relationship_df$flow_cfs, relationship_df[adult_col], rule = 2))
+    } else {
+      subset(prop_merced_flows, watershed = 'Yuba River')$prop_merced
+      return()
+    }
+  }
+
+others <- approxfun(merced_river_instream$flow_cfs, merced_river_instream$ST_adult_wua, rule = 2)
+other_st_adult <- prop_merced_flows %>% 
+  mutate(ST_adult_wua = others(mean_flow) * prop_merced) %>% 
+  full_join(cvpiaHabitat::watershed_lengths) %>% 
+  filter(lifestage == 'rearing', species != 'sr') %>% 
+  select(-source, -lifestage) %>% 
+  group_by(watershed) %>% 
+  filter(max(feet) == feet) %>% 
+  ungroup() %>% 
+  mutate(sq_meters = feet/1000 * ST_adult_wua / 10.7639,
+         acres = square_meters_to_acres(sq_meters)) %>% 
+  filter(!(watershed %in% c("Lower-mid Sacramento River", "North Delta", "South Delta",
+                            "Tuolumne River", "Merced River", "Yuba River",
+                            "Butte Creek", "Battle Creek"))) %>%
+  select(watershed, sq_meters, order)
+
+IChab.adult <- array(NA, dim = c(31, 12, 20))
+for (i in 1:dim(other_st_adult)[1]) {
+  IChab.adult[other_st_adult$order[i], , ] <- other_st_adult$sq_meters[i]
+}
+  
+```

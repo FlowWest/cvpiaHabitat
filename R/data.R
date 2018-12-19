@@ -1423,3 +1423,26 @@ NULL
 #' }
 #'
 'pools'
+
+
+#' Proportion of Mean Merced Flows
+#'
+#' @description A dataset containing the calsim mean flows for the years 1980-1999
+#' during months December through May for each watershed. These values are then divided
+#' by the mean flow value of Merced to be used as a scaling factor for setting
+#' adult steelhead habitat amounts.
+#'
+#' @format dataframe with 30 rows and 3 variables
+#' \describe{
+#'   \item{watershed}{CVPIA watershed}
+#'   \item{mean_flow}{CalSim mean flow in cfs}
+#'   \item{prop_merced}{ratio of watershed's mean_flow and merced's}
+#' }
+#'
+#' @source
+#' \itemize{
+#'   \item Wrangling: Sadie Gill \email{sgill@@flowwest.com}
+#'   \item Method: Mark Tompkins \email{mtompkins@@flowwest.com}
+#' }
+#'
+'prop_merced_flows'
