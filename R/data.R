@@ -1187,7 +1187,7 @@ NULL
 #' @examples
 #' american_river_instream
 #'
-#' @source \href{TODO}{FWS 1985} and \href{https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf}{ARWA-702}
+#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/AmericanRiver1985IFIM.PDF}{FWS 1985} and \href{https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf}{ARWA-702}
 "american_river_instream"
 
 #' Yuba River Instream Flow to Habitat Area Relationship
