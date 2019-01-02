@@ -19,7 +19,7 @@ library(scales)
 **Data Source:** FWS 1985 Mark Gard IFIM study + Lower American River Biological Rationale,
 Development and Performance of the Modified Flow Management Standard 2017 study TODO
 
-Need link to 1985 FWS study TODO
+https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/AmericanRiver1985IFIM.PDF
 
 Modeling description TODO
 
