@@ -102,14 +102,14 @@ test_that('ST spawn Yuba River works', {
 })
 
 
-test_that('SR rearing are same as ST', {
+test_that('SR rearing are same as FR', {
 
   expect_equal(
-    set_instream_habitat('Yuba River', 'st', 'fry', 2500),
+    set_instream_habitat('Yuba River', 'fr', 'fry', 2500),
     set_instream_habitat('Yuba River', 'sr', 'fry', 2500))
 
   expect_equal(
-    set_instream_habitat('Yuba River', 'st', 'juv', 2500),
+    set_instream_habitat('Yuba River', 'fr', 'juv', 2500),
     set_instream_habitat('Yuba River', 'sr', 'juv', 2500))
 
 })

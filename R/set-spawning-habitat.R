@@ -131,8 +131,8 @@ SR_spawn_approx <- function(relationship_df, modeling_lookup){
     # case when modeling exists
     SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_spawn_wua, rule = 2)
   } else {
-    # use steelhead if availble, defaults to fall if not
-    SR_approx <- ST_spawn_approx(relationship_df, modeling_lookup)
+    # use fall run if availble, defaults to fall if not
+    SR_approx <- FR_spawn_approx(relationship_df, modeling_lookup)
   }
 
   return(SR_approx)
