@@ -142,7 +142,7 @@ FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
 SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
   # check if sr floodplain has modeling
   SR_has_modeling <- dplyr::pull(modeling_lookup, SR_juv)
-  ST_has_modeling <- dplyr::pull(modeling_lookup, ST_juv)
+  FR_has_modeling <- dplyr::pull(modeling_lookup, FR_juv)
 
   if (SR_has_modeling){
     if (life_stage == 'fry') {
@@ -152,11 +152,11 @@ SR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage) {
       # life stage juv modeling
       SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_juv_wua, rule = 2)
     }
-  } else if (ST_has_modeling) {
-    SR_approx <- ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
-  } else {
+  } else if (FR_has_modeling) {
     # no modeling use fall run modeling
     SR_approx <- FR_rearing_approx(relationship_df, modeling_lookup, life_stage)
+  } else {
+    SR_approx <- ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
   }
 
   return(SR_approx)
