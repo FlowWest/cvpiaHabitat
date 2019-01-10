@@ -1,7 +1,7 @@
 ---
 title: "American River"
-author: "sadie"
-date: "December 11, 2018"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "December 19, 2018"
 output: html_document
 ---
 
@@ -14,36 +14,39 @@ library(cvpiaHabitat)
 library(scales)
 
 ```
+## Future Data Improvements
+* None planned
 
-## Instream Spawning and Rearing Habiat
-**Data Source:** FWS 1985 Mark Gard IFIM study + Lower American River Biological Rationale,
-Development and Performance of the Modified Flow Management Standard 2017 study TODO
+## Instream Spawning and Rearing Habitat
+**Data Source:** [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf) and [USFWS 1985](www.SADIE_TO_INSERT_AWS_LINK_HERE). 
 
-Need link to 1985 FWS study TODO
+Instream spawning habitat for Fall Run Chinook Salmon and Steelhead in the American River is based on the spawning habitat suitability and availability analysis in the Lower American River Biological Rationale Development and Performance of the Modified Flow Standard (ARWA 2017). Instream juvenile rearing habitat for Fall Run Chinook Salmon is based on instream flow studies condicted by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. Both evaluations developed relationships between flow and suitable spawning and rearing habitat for the Lower American River.      
 
-Modeling description TODO
+### Spawning WUA 
+The Fall Run Chinook Salmon and Steelhead spawning habitat data from [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf) is contained in Attachment B, Table B-4 on page 91 and Figure B-8 on page 92 (Fall Run Chinook Salmon) and Attachment B, Table B-9 and Figure B-26 on page 107 (Steelhead). 
 
-Mark Gard instructed us to use A35:D46 of the 'American' tab within his 'IFIMWUA.xlsx'
-These cells represent the sums of the reaches Sailor Bar, Ancil Hoffman, Watt, 
-and H Street divided by 4. The units are sqft/1000ft. 
+#### Spawning WUA Plot
 
-## Mark Gard Raw Data
+The following plot shows the composite weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon (LEGENDNAMEHERE) and Steelhead (LEGENDNAMEHERE) developed in the AWRA evaluation by combining the results for all evaluation reaches. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+
+SADIE INSERT PLOT OF FALL RUN AND STEELHEAD FLOW:SPAWNING WUA
+
+## Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the American River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). The values contained in cells A35:D46 of the 'American' spreadhseet tab are the sums of the values from the instream flow evaluation reaches called Sailor Bar, Ancil Hoffman, Watt, and H Street. These values were divided by four to get composite instream rearing weighted usable area values in square feet per 1000 feet of river. 
+
 ```{r}
 american_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A35:D46", sheet = 'American')
 american_raw 
 
 ```
 
-Chris Hammersmark has provided updated spawning WUA TODO
+#### Rearing WUA Plot
 
-## Chris Hammersmark New Data
-[ARWA-702](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf)    
-Fall Run Chinook Spawning: Attachment B, Table B-4 and Figure B-8 on pdf page 91 and 92     
-Steelhead Spawning: Attachment B, Table B-9 and Figure B-26 on pdf page 107     
-pg 89 table b-3 contains the study reach lengths
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile (LEGENDNAMESHERE). These rates are multiplied by the total rearing reach length mapped by the SIT and applied for the flow in each month in the DSM.
 
+SADIE INSERT PLOT OF FALL RUN AND STEELHEAD FLOW:REARING WUA
 
-### Compare WUA curves old and new
+### MT SUGGESTS DELETING THIS - Compare WUA curves old and new
 ```{r}
 spawn <- read_csv('data-raw/instream/american/american_river_spawning_wua.csv')
 
@@ -63,9 +66,9 @@ american_raw %>%
 
 ```
 
-## Combine Mark Gard and Chris Hammersmark data
+### Combine Spawning and Rearing Data
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon and Steelhead is combined for use in the DSM in the following format. SADIE TURN OFF CODE BELOW AND ADD SUMMARY TABLE.
 
-heading title change TODO
 ```{r}
 rearing <- american_raw %>% 
   select(-Spawning) %>% 
