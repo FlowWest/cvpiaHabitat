@@ -23,7 +23,7 @@ library(scales)
 Instream spawning habitat for Fall Run Chinook Salmon and Steelhead in the American River is based on the spawning habitat suitability and availability analysis in the Lower American River Biological Rationale Development and Performance of the Modified Flow Standard (ARWA 2017). Instream juvenile rearing habitat for Fall Run Chinook Salmon is based on instream flow studies condicted by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. Both evaluations developed relationships between flow and suitable spawning and rearing habitat for the Lower American River.      
 
 ### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described below for Fall Run Chinook Salmon and Steelhead is combined for use in the DSM in the following format. 
+The instream spawning and rearing habitat data described below for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format. 
 
 ```{r, echo=FALSE}
 american_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A35:D46", sheet = 'American')

@@ -91,7 +91,7 @@ feather_raw %>%
 ```
 
 ### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon and Steelhead is combined for use in the DSM in the following format.
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
 
 ```{r, echo=FALSE}
 feather_river_instream <- feather_raw %>% 
