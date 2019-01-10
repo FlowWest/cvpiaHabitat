@@ -1,5 +1,5 @@
 Order,Watershed,FR_spawn,FR_fry,FR_juv,FR_floodplain,SR_spawn,SR_fry,SR_juv,SR_floodplain,ST_spawn,ST_fry,ST_juv,ST_floodplain,ST_adult,Region,UseRearRegionApprox,UseSpawnRegionApprox,UseFloodplainRegionApprox,Note
-1,Upper Sacramento River,TRUE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Upper Sacramento River,FALSE,FALSE,FALSE,
+1,Upper Sacramento River,TRUE,FALSE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,FALSE,FALSE,FALSE,FALSE,Upper Sacramento River,FALSE,FALSE,FALSE,
 2,Antelope Creek,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Upper-mid Sacramento River,TRUE,TRUE,TRUE,
 3,Battle Creek,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,TRUE,Upper-mid Sacramento River,FALSE,FALSE,TRUE,
 4,Bear Creek,FALSE,FALSE,FALSE,FALSE,NA,NA,NA,NA,FALSE,FALSE,FALSE,FALSE,FALSE,Upper-mid Sacramento River,TRUE,TRUE,TRUE,

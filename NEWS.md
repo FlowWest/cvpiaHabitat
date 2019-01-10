@@ -24,6 +24,9 @@ _12/18/2018_
 * Improve documentation of data wrangling for instream datasets
 * Improve testing coverage for instream functions
 
+## cvpiaHabitat 1.1.1
+* Sets Fall Run as Spring Run WUA surrogate for spawning and rearing
+
 #### Upcoming Changes
 * Improve documentation of data wrangling for floodplain datasets
 * Improve testing coverage for floodplain functions
