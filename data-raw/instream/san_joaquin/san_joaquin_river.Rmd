@@ -1,6 +1,6 @@
 ---
 title: "San Joaquin River"
-author: "sadie"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
 date: "December 17, 2018"
 output: html_document
 ---
@@ -14,14 +14,19 @@ library(cvpiaHabitat)
 library(scales)
 
 ```
-
+## Future Data Improvements
+[Future data improvements bullets]
 
 ## Instream Spawning and Rearing Habiat
+
+**Data Sources:** 
+[add data sources]
+
 
 There is no habitat modeling, using san joaquin tribs
 
 
-```{r}
+```{r,echo=FALSE}
 get_approx_fry <- function(df) {approxfun(df$flow_cfs, df$FR_fry_wua, rule = 2)}
 get_approx_juv <- function(df) {approxfun(df$flow_cfs, df$FR_juv_wua, rule = 2)}
 
@@ -46,7 +51,9 @@ san_joaquin_river_instream <- purrr::map_df(flows, function(flow) {
   tibble(flow_cfs = flow, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
          watershed = 'San Joaquin River')
 })
+```
 
+``` {r,echo=FALSE}
 bind_rows(cvpiaHabitat::merced_river_instream,
           cvpiaHabitat::stanislaus_river_instream,
           cvpiaHabitat::tuolumne_river_instream,
@@ -54,7 +61,9 @@ bind_rows(cvpiaHabitat::merced_river_instream,
   ggplot(aes(x = flow_cfs, y= FR_fry_wua, color = watershed)) +
   geom_line() +
   theme_minimal()
+```
 
+``` {r,echo=FALSE}
 bind_rows(cvpiaHabitat::merced_river_instream,
           cvpiaHabitat::stanislaus_river_instream,
           cvpiaHabitat::tuolumne_river_instream,
