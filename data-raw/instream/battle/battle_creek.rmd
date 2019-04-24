@@ -1,7 +1,7 @@
 ---
 title: "Battle Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "December 13, 2018"
+date: "April 24, 2019"
 output: html_document
 ---
 
@@ -13,23 +13,28 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-[Future data improvement bullets]
+None
 
 ## Instream Spawning and Rearing Habiat
 
 **Data Sources:**   
-[add more sources?]
 [Payne 1995](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf) and <https://flowwest.github.io/cvpiaHabitat/reference/battle_creek_instream.html>
 
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Battle Creek is based on data from California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. [These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').Mark Gard instructed us to use A1:E36 of the 'Battle' tab within his 'IFIMWUA.xlsx'.
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in Battle Creek is based on data from Thomas R. Payne & Associates instream flow evaluations conducted for the California Department of Fish and Wildlife. These evaluations developed relationships between flow and suitable spawning and rearing habitat for Battle Creek from seven study reaches in Battle Creek. [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service consolidated the reach-scale date to the entire Battle Creek watershed, provided the consolidated data in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'), and instructed us to use A1:E36 of the 'Battle' tab within his 'IFIMWUA.xlsx'. The units for WUA in the raw data are in square feet per 1000 feet, and adult trout data are used for steelhead.
 
-Units are in square feet per 1000 feet.
+### Spawning WUA
+The following plot shows the weighted usable spawning area rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR_spawn_wua) and Steelhead (ST_spawn_wua). These rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
 
-Adult trout are used for steelhead. 
+ADD SPAWNING GRAPH HERE
+
+### Rearing WUA
+The following plot shows the weighted usable rearing area rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR_spawn_wua) and Steelhead (ST_spawn_wua) fry and juveniles. These rates are multiplied by the total rearing reach length mapped by the SIT and applied for the flow in each month in the DSM. 
+
+ADD REARING GRAPH HERE
 
 ### Combine Spawning and Rearing Data
-[The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.]
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
 
 ```{r,echo=FALSE}
 battle <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
