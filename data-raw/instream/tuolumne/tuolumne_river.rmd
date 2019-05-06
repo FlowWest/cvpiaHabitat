@@ -18,29 +18,62 @@ library(cvpiaHabitat)
 
 ## Instream Spawning and Rearing Habiat
 
-**Data Sources:**
-[add more sources?] 
-[Flo2D model by Stillwater 2014](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf) and <https://flowwest.github.io/cvpiaHabitat/reference/tuolumne_river_instream.html>
+**Data Source:**
+[Flo2D model by Stillwater 2014](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf)
 
-
-Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Tuolumne River is based on data from California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. [These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:H32 in the 'Tuolumne' tab within his 'IFIMWUA.xlsx'.
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Tuolumne River is based on data from [data source description]. The [DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:H32 in the 'Tuolumne' tab within his 'IFIMWUA.xlsx'.
 
 Units are in square feet per 1000 feet.
 
-### Combine Spawning and Rearing Data
-[The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.]
 
 ```{r, echo=FALSE}
-# merced_river_instream <-
-tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                                      range = "A2:H32", sheet = 'Tuolumne') %>% 
-  mutate(watershed = 'Tuolumne River') %>% 
-  select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
-         FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`, 
-         ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`, 
-         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
-
-tuolumne_river_instream
+# # merced_river_instream <-
+# tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+#                                       range = "A2:H32", sheet = 'Tuolumne') %>% 
+#   mutate(watershed = 'Tuolumne River') %>% 
+#   select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
+#          FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`, 
+#          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`, 
+#          ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
+# 
+# tuolumne_river_instream
 # devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
+```
+
+### Spawning WUA 
+[description]
+
+#### Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+
+``` {r,echo=FALSE}
+tuolumne_river_instream %>% 
+    #filter(!is.na(FR_spawn_wua)) %>%
+    ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
+    geom_line() +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
+
+```
+
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Tuolumne River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
+
+#### Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT and applied for the flow in each month in the DSM.
+``` {r,echo=FALSE}
+tuolumne_river_instream %>% 
+  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != 'ST_adult_wua') %>%
+  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  geom_point() +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
+```
+
+### Combine Spawning and Rearing Data
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is for use in the DSM in the following format.
+```{r,echo=FALSE}
+tuolumne_river_instream
 ```
 

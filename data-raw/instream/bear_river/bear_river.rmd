@@ -20,7 +20,7 @@ library(cvpiaHabitat)
 **Data Source:**
 [Holton 1985](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF) 
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Bear River is based on data from California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. [These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').Mark Gard instructed us to use A1:D5 of the 'BearR' tab within his 'IFIMWUA.xlsx'.
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Bear River is based on data from California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. [These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Bear River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').Mark Gard instructed us to use A1:D5 of the 'BearR' tab within his 'IFIMWUA.xlsx'.
 
 Modeling for spawning and juvenile rearing.
 
@@ -56,7 +56,7 @@ bear_river_instream %>%
 
 
 ### Rearing WUA
-The juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Feather River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
+The juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Bear River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
 
 #### Rearing WUA Plot
 
@@ -74,7 +74,7 @@ bear_river_instream %>%
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is for use in the DSM in the following format. 
 
-``` {r}
+``` {r,echo=FALSE}
 bear_river_instream
 ```
 

@@ -88,7 +88,7 @@ butte_creek_instream %>%
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
-```{r}
+```{r,echo=FALSE}
 butte_creek_instream
 ```
 

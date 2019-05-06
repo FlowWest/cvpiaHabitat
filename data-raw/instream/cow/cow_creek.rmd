@@ -49,7 +49,7 @@ Units are in square feet per mile.
 ```
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Feather River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cow River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
 
 #### Rearing WUA Plot
 
@@ -67,6 +67,7 @@ cow_creek_instream %>%
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is for use in the DSM in the following format.
-```{r}
+```{r,echo=FALSE}
 cow_creek_instream
 ```
+
