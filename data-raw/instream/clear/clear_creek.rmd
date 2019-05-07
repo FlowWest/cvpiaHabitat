@@ -164,9 +164,5 @@ clear_creek_instream %>%
 
 [Steelhead and spring run juv rearing habitat are the same, because small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO]
 
-### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Spring Run Chinook Salmon (SR), and Steelhead (ST) is cobmined for use in the DSM in the following format.
-```{r,echo=FALSE}
-clear_creek_instream
-```
+
 

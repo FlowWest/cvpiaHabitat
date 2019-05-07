@@ -75,8 +75,3 @@ cottonwood_creek_instream %>%
   labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
 ```
 
-### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is for use in the DSM in the following format.
-```{r,echo=FALSE}
-cottonwood_creek_instream
-```

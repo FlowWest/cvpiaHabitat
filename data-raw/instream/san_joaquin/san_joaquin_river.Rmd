@@ -96,8 +96,3 @@ san_joaquin_river_instream %>%
   labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
 ```
 
-### Rearing Data
-The rearing habitat data described above for Fall Run Chinook Salmon (FR) is for use in the DSM in the following format.
-```{r,echo=FALSE}
-san_joaquin_river_instream
-```

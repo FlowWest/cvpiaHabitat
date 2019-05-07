@@ -146,9 +146,3 @@ yuba_river_instream %>%
   geom_point() +
   labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
 ```
-
-### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is for use in the DSM in the following format.
-```{r,echo=FALSE}
-yuba_river_instream
-```
