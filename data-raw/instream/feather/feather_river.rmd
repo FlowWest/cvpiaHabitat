@@ -62,9 +62,10 @@ spawning %>%
   rename(`fall run` = FR_spawn_wua, steelhead = ST_spawn_wua) %>% 
   gather(species, wua, -flow_cfs) %>% 
   ggplot(aes(flow_cfs, wua, color = species)) +
-  geom_line() +
+  geom_line(color='light blue') +
   labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma)
+  scale_y_continuous(labels = comma) + 
+
 ```
 
 ### Rearing WUA
