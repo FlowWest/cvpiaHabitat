@@ -1,6 +1,6 @@
 ---
 title: "Clear Creek"
-author: "sadie"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
 date: "December 12, 2018"
 output: html_document
 ---
@@ -14,101 +14,105 @@ library(cvpiaHabitat)
 library(scales)
 ```
 
-## Upcoming:
-* Scale spawning wua, examine emails from mark gard and charile chamberline to try scaling exercise of spawning habitat
+## Future Data Improvements:
+* Scale spawning wua, examine emails from Mark Gard and Charile Chamberline to try scaling exercise of spawning habitat
 
 ## Instream Spawning and Rearing Habiat
 
-> **Data Source:** FWS 2007-2013 TODO
-> <https://flowwest.github.io/cvpiaHabitat/reference/clear_creek_instream.html>
+[????]
+**Data Source:** FWS 2007-2013 TODO
+<https://flowwest.github.io/cvpiaHabitat/reference/clear_creek_instream.html>
 
-describe modeling TODO
+[describe modeling TODO] 
 
-Mark Gard instructed us to use A3:G26, A30:G53, and A58:G81 of the 'Clear' tab
-within his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower
-alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments.
-Fall run are only in the lower alluvial segment.
 
-### WUA raw data
+Instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in the Clear Creek is based on data from [data source description]
+The [DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use A3:G26, A30:G53, and A58:G81 of the 'Clear' tabwithin his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments. Fall run are only in the lower alluvial segment.
+
+[### WUA raw data
 Combined the data from three reaches TODO
-where is the spring run spawning in the lower alluvial segment?
+where is the spring run spawning in the lower alluvial segment?] 
 
 ```{r, echo=FALSE}
-clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                           range = "A4:G26", sheet = 'Clear', 
-                           col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
-                                         'SR_fry_wua', 'ST_fry_wua', 'SR_juv_wua', 
-                                         'ST_juv_wua')) %>% 
-  mutate(miles = 2.27)
-
-clear_raw_c <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                          range = "A31:G53", sheet = 'Clear',
-                          col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
-                                        'SR_fry_wua', 'ST_fry_wua', 'SR_juv_wua', 
-                                        'ST_juv_wua')) %>% 
-  mutate(miles = 7.33)
-
-clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                           range = "A59:I81", sheet = 'Clear',
-                           col_names = c('flow_cfs', 'FR_spawn_wua', 'ST_spawn_wua', 
-                                         'SR_fry_wua', 'ST_fry_wua','FR_fry_wua', 
-                                         'SR_juv_wua', 'ST_juv_wua', 'FR_juv_wua')) %>% 
-  mutate(miles = 8.81)
-
-total <- 8.81 + 7.33 + 2.27
-
-clear_wua <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
-  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
-  group_by(lifestage, flow_cfs) %>% 
-  summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
-  spread(lifestage, wua) %>% 
-  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua, SR_fry_wua, 
-         SR_juv_wua, ST_spawn_wua, ST_fry_wua, ST_juv_wua)
-
-fr <- clear_raw_la %>% 
-  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, miles) %>% 
-  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
-  group_by(lifestage, flow_cfs) %>% 
-  summarise(wua = sum(sq_ft/miles/5.28, na.rm = TRUE)) %>% 
-  spread(lifestage, wua) %>% 
-  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua) %>% 
-  mutate(FR_spawn_wua = 13000)
-
-st <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
-  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua, miles) %>% 
-  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
-  group_by(lifestage, flow_cfs) %>% 
-  summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
-  spread(lifestage, wua) %>% 
-  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua) 
-
-sr_juv <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
-  select(flow_cfs, SR_fry_wua, SR_juv_wua, miles) %>% 
-  gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
-  group_by(lifestage, flow_cfs) %>% 
-  summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
-  spread(lifestage, wua) %>% 
-  select(flow_cfs, SR_fry_wua, SR_juv_wua) 
-
-sr_spawn <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
-  select(flow_cfs, SR_spawn_wua, miles) %>% 
-  gather(lifestage, sq_ft, -flow_cfs, -miles) %>%
-  group_by(lifestage, flow_cfs) %>%
-  summarise(wua = sum(sq_ft/miles/5.28 * miles/(total-8.81), na.rm = TRUE)) %>% 
-  spread(lifestage, wua) %>% 
-  select(flow_cfs, SR_spawn_wua) 
-
-sr <- full_join(sr_spawn, sr_juv)
-
-clear_creek_instream <- bind_cols(fr, sr, st) %>% 
-  select(-flow_cfs1, -flow_cfs2)
-
-clear_creek_instream
+# clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+#                            range = "A4:G26", sheet = 'Clear', 
+#                            col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
+#                                          'SR_fry_wua', 'ST_fry_wua', 'SR_juv_wua', 
+#                                          'ST_juv_wua')) %>% 
+#   mutate(miles = 2.27)
+# 
+# clear_raw_c <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+#                           range = "A31:G53", sheet = 'Clear',
+#                           col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
+#                                         'SR_fry_wua', 'ST_fry_wua', 'SR_juv_wua', 
+#                                         'ST_juv_wua')) %>% 
+#   mutate(miles = 7.33)
+# 
+# clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+#                            range = "A59:I81", sheet = 'Clear',
+#                            col_names = c('flow_cfs', 'FR_spawn_wua', 'ST_spawn_wua', 
+#                                          'SR_fry_wua', 'ST_fry_wua','FR_fry_wua', 
+#                                          'SR_juv_wua', 'ST_juv_wua', 'FR_juv_wua')) %>% 
+#   mutate(miles = 8.81)
+# 
+# total <- 8.81 + 7.33 + 2.27
+# 
+# clear_wua <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+#   gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+#   group_by(lifestage, flow_cfs) %>% 
+#   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+#   spread(lifestage, wua) %>% 
+#   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua, SR_fry_wua, 
+#          SR_juv_wua, ST_spawn_wua, ST_fry_wua, ST_juv_wua)
+# 
+# fr <- clear_raw_la %>% 
+#   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, miles) %>% 
+#   gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+#   group_by(lifestage, flow_cfs) %>% 
+#   summarise(wua = sum(sq_ft/miles/5.28, na.rm = TRUE)) %>% 
+#   spread(lifestage, wua) %>% 
+#   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua) %>% 
+#   mutate(FR_spawn_wua = 13000)
+# 
+# st <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+#   select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua, miles) %>% 
+#   gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+#   group_by(lifestage, flow_cfs) %>% 
+#   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+#   spread(lifestage, wua) %>% 
+#   select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua) 
+# 
+# sr_juv <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+#   select(flow_cfs, SR_fry_wua, SR_juv_wua, miles) %>% 
+#   gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
+#   group_by(lifestage, flow_cfs) %>% 
+#   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+#   spread(lifestage, wua) %>% 
+#   select(flow_cfs, SR_fry_wua, SR_juv_wua) 
+# 
+# sr_spawn <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
+#   select(flow_cfs, SR_spawn_wua, miles) %>% 
+#   gather(lifestage, sq_ft, -flow_cfs, -miles) %>%
+#   group_by(lifestage, flow_cfs) %>%
+#   summarise(wua = sum(sq_ft/miles/5.28 * miles/(total-8.81), na.rm = TRUE)) %>% 
+#   spread(lifestage, wua) %>% 
+#   select(flow_cfs, SR_spawn_wua) 
+# 
+# sr <- full_join(sr_spawn, sr_juv)
+# 
+# clear_creek_instream <- bind_cols(fr, sr, st) %>% 
+#   select(-flow_cfs1, -flow_cfs2)
+# 
+# clear_creek_instream
 # devtools::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
 
-### Spawning WUA from raw data
+### Spawning WUA 
+[description]
+
+#### Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
 
 ```{r, echo=FALSE}
 feet <- cvpiaHabitat::watershed_lengths %>% 
@@ -123,34 +127,42 @@ clear_creek_instream %>%
   mutate(feet = feet[species], acres = wua* feet/1000/43560) %>% 
   ggplot(aes(flow_cfs, acres, color = species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'spawning (acres)') +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') +
   scale_y_continuous(labels = comma)
 ```
 
 
-
-### Spawning habitat used
+### Spawning Habitat Used
 ```{r, echo=FALSE}
-used <- read_csv('data-raw/instream/clear/clear_creek_mapped_spawning.csv', skip = 1)
-
+used <- read_csv('clear/clear_creek_mapped_spawning.csv', skip = 1)
+# before was: used <- read_csv('data-raw/instream/clear/clear_creek_mapped_spawning.csv', skip = 1)
 used %>%
   ggplot(aes(x = as.character(Year), y = acres)) +
   geom_col() +
   labs(x = 'year')
 ```
 
-The spawning wua are excessively low compared to measured spawning habitat used
-Will look into scaling modeling, for now fixing spawning habitat value.
+[The spawning wua are excessively low compared to measured spawning habitat used
+Will look into scaling modeling, for now fixing spawning habitat value.]
 
-### Rearing WUA Plot
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Clear Creek provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
+
+#### Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT and applied for the flow in each month in the DSM.
+
 ```{r, echo=FALSE}
 clear_creek_instream %>% 
   select(-FR_spawn_wua, -SR_spawn_wua, -ST_spawn_wua) %>%
   gather(species, wua, -flow_cfs) %>%
   ggplot(aes(flow_cfs, wua, color = species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'rearing WUA (sqft/1000ft)') +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') +
   scale_y_continuous(labels = comma)
 ```
 
-Steelhead and spring run juv rearing habitat are the same, because small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO
+[Steelhead and spring run juv rearing habitat are the same, because small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO]
+
+
+
