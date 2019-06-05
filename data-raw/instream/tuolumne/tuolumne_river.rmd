@@ -37,9 +37,9 @@ tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
          FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`,
          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`,
          ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
-tuolumne_river_instream #%>% 
-  #print(n= 10, width = Inf)
-#Do we need full tibble in documentation?
+
+knitr::kable(head(tuolumne_river_instream, 5))
+
 ```
 
 ### Spawning WUA 
