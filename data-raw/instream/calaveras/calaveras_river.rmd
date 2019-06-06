@@ -1,7 +1,7 @@
 ---
 title: "Calaveras River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "December 13, 2018"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "June 6, 2019"
 output: html_document
 ---
 
@@ -13,34 +13,38 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-[future data improvements bullets]
+None
 
-## Instream Spawning and Rearing Habiat
+## Instream Spawning and Rearing Habitat
 
 **Data Source:** 
-[FishBio and Payne 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf) 
+[FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf) (pgs. 18-19)
 
-Instream spawning and rearing habitat for Steelhead in the Calveras River is based on data from [California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities.] [more details] The [source] instream spawning and rearing habitat data was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').
+Instream spawning and rearing habitat for Steelhead in the Calaveras River is based on data prepared by FISHBIO and Thomas Payne for the Stockton East Water District. FISHBIO and Payne conducted an instream flow study using a Physical Habitat Simulation model on four reaches of the Calaveras River to find a relationship between streamflow and Steelhead habitat. Graphs showing the original data are on pgs. 18-19 of the assessment linked above. The Steelhead instream spawning and rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:D12 for steelhead rearing in the 'Calaveras' tab within his 'IFIMWUA.xlsx'. 
 
-Mark Gard instructed us to use cells A2:D12 for steelhead rearing in the 'Calaveras' tab within his 'IFIMWUA.xlsx'. Units are square feet per 1000 ft.
+###Combine Spawning and Rearing Data 
+The instream spawning and rearing habitat data described above for Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
 
 ```{r, echo=FALSE}
 
-# calaveras <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-#                         range = "A2:D12", sheet = 'Calaveras') 
-# 
-# 
-# calaveras_river_instream <- calaveras %>% 
-#   mutate(watershed = 'Calaveras River') %>% 
-#   rename(flow_cfs = Flow, ST_spawn_wua = 'Spawning', ST_fry_wua = `Fry Rearing`,
-#          ST_juv_wua = `Juv Rearing`)
-# 
-# calaveras_river_instream
-# devtools::use_data(calaveras_river_instream, overwrite = TRUE)
+ calaveras <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                         range = "A2:D12", sheet = 'Calaveras') 
+ 
+ 
+ calaveras_river_instream <- calaveras %>% 
+   mutate(watershed = 'Calaveras River') %>% 
+   rename(flow_cfs = Flow, ST_spawn_wua = 'Spawning', ST_fry_wua = `Fry Rearing`,
+          ST_juv_wua = `Juv Rearing`)
+ 
+ knitr::kable(head(calaveras_river_instream, 5), align = "c")
+ 
+ #devtools::use_data(calaveras_river_instream, overwrite = TRUE)
 ```
 
+###### ...with 5 more rows. 
+
 ### Spawning WUA 
-[description]
+The instream spawning habitat weighted usable areas for Steelhead in the Calaveras River.
 
 #### Spawning WUA Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
@@ -54,7 +58,7 @@ calaveras_river_instream %>%
 ```
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Steelhead in the Calaveras River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').  
+The fry and juvenile instream rearing habitat weighted usable areas for Steelhead in the Calaveras River.  
 
 #### Rearing WUA Plot
 
