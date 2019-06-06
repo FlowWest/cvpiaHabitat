@@ -16,7 +16,7 @@ library(cvpiaHabitat)
 ## Future Data Improvement
 Instream habitat suitability relationships provided for the Voluntary Agreement process. 
 
-## Instream Spawning and Rearing Habiat
+## Instream Spawning and Rearing Habitat
 
 **Data Source:**
 [Final Lower Tuolumne Instream Flow Study Report](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf) (pg. 108-109)
