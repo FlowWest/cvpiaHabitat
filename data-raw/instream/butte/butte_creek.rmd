@@ -65,7 +65,8 @@ butte_creek_instream %>%
     filter(!is.na(FR_spawn_wua)) %>%
     ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
     geom_line(color = '#7570b3') +
-    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)')
+    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
+    theme_minimal()
 
 ```
 
