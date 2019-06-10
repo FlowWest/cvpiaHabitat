@@ -14,66 +14,88 @@ library(cvpiaHabitat)
 ```
 
 ## Future Data Improvements
-[Future data improvement bullets]
+none 
 
 ## Instream Spawning and Rearing Habiat
 
 **Data Source:**
 [Flo2D model by Stillwater 2014](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf)
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Tuolumne River is based on data from [data source description]. The [DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:H32 in the 'Tuolumne' tab within his 'IFIMWUA.xlsx'.
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Tuolumne River is based on data from a California Department of Fish and Game site specific study. This data consists of 10 sites spread over 9.2 miles of the dominant spawning reach of the Lower Tuolumne River and was reviewed by Stillwater Sciences for use in their 2014 Flo2D model. The instream spawning and rearing habitat data was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:H32 in the 'Tuolumne' tab within his 'IFIMWUA.xlsx'.
 
 Units are in square feet per 1000 feet.
 
+###Combine Spawning and Rearing Data 
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
+
 
 ```{r, echo=FALSE}
-# # merced_river_instream <-
-# tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-#                                       range = "A2:H32", sheet = 'Tuolumne') %>% 
-#   mutate(watershed = 'Tuolumne River') %>% 
-#   select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
-#          FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`, 
-#          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`, 
-#          ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
-# 
-# tuolumne_river_instream
-# devtools::use_data(tuolumne_river_instream, overwrite = TRUE)
+tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
+                                      range = "A2:H32", sheet = 'Tuolumne') %>%
+  mutate(watershed = 'Tuolumne River') %>%
+  select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
+         FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`,
+         ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`,
+         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
+tuolumne_river_instream #%>% 
+  #print(n= 10, width = Inf)
+#Do we need full tibble in documentation?
 ```
 
 ### Spawning WUA 
-[description]
+The spawning habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in the Tuolumne River provided by Mark Gard (see ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’).
 
-#### Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+
+#### Chinook Salmon Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
 
 ``` {r,echo=FALSE}
 tuolumne_river_instream %>% 
-    gather(Species, wua, -flow_cfs, -watershed)  %>% 
-    filter(!is.na(wua), Species != 'FR_fry_wua',Species != 'FR_juv_wua',Species != 'ST_adult_wua',Species != 'ST_juv_wua',Species != 'ST_fry_wua') %>% 
-    ggplot(aes(x = flow_cfs , y = wua, color = Species)) +
-    geom_line() +
-    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
-    theme_minimal() + 
-    scale_color_manual(values = c('#d95f02','#7570b3'))
+    ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() 
 
+```
+
+#### Steelhead Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+
+``` {r,echo=FALSE}
+tuolumne_river_instream %>% 
+    ggplot(aes(x = flow_cfs , y = ST_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() 
 ```
 
 ### Rearing WUA
 The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in the Tuolumne River are provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
 
-#### Rearing WUA Plot
+#### Chinook Salmon Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.
+``` {r,echo=FALSE}
+tuolumne_river_instream %>% 
+  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != 'ST_adult_wua', lifestage != "ST_spawn_wua", lifestage != "ST_juv_wua", lifestage != "ST_fry_wua") %>%
+  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
+#### Steelhead Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.
 
 ``` {r,echo=FALSE}
 tuolumne_river_instream %>% 
-  rename(`Fall Run (Fry)` = FR_fry_wua, `Fall Run (Juvenile)` = FR_juv_wua, `Steelhead (Fry)` = ST_fry_wua, `Steelhead (Juvenile)` = ST_juv_wua) %>% 
-  gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
-  filter(!is.na(wua), Lifestage != 'FR_spawn_wua', Lifestage != 'ST_spawn_wua', Lifestage != 'ST_adult_wua') %>%
-  #mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
-  ggplot(aes(x = flow_cfs , y = wua, color = Lifestage)) +
+  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != 'ST_adult_wua',  lifestage != "FR_juv_wua", lifestage != "FR_fry_wua", lifestage != "ST_spawn_wua") %>%
+  mutate(lifestage = ifelse(lifestage == 'ST_fry_wua', 'fry', 'juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
   geom_line() +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
-  theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3','#56B4E9','#009E73'))
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
 ```
-
 

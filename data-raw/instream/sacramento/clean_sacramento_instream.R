@@ -1,7 +1,7 @@
 library(tidyverse)
 library(devtools)
 
-sac_instream <- read_csv(file = 'data-raw/instream/sacramento_instream.csv',
+sac_instream <- read_csv(file = 'data-raw/instream/sacramento/sacramento_instream.csv',
                          col_names = c('flow_cfs', 'kes_bat', 'bat_feat', 'feat_free'), skip = 1) %>%
   gather(reach, sq_ft, -flow_cfs) %>%
   mutate(sq_meters = sq_ft * 0.092903)
