@@ -36,6 +36,7 @@ tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`,
          ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
 knitr::kable(align = 'c', head(tuolumne_river_instream, 5))
+
 ```
 
 ###### ... with 25 more rows. 
