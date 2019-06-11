@@ -1,7 +1,7 @@
 ---
 title: "Battle Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto: ecain@flowwest.com)"
-date: "June 6, 2019"
+date: "June 11, 2019"
 output: html_document
 ---
 
@@ -30,10 +30,13 @@ The instream spawning and rearing habitat data described above for Fall Run Chin
 ```{r}
 battle <- readxl::read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
                            range = "A1:E36", sheet = 'Battle')
-battle_creek_instream <- battle %>% 
+battle_ST <- read.csv('data-raw/Weighted_composite_Battle.csv') 
+
+
+battle_creek_instream <- battle_ST %>% 
   select(flow_cfs = Flow, FR_spawn_wua = Spawning,
-         FR_fry_wua = `Fry Rearing`, FR_juv_wua = `Juv Rearing`,
-         ST_adult_wua = `adult trout`) %>%
+         FR_fry_wua = 'Fry.Rearing', FR_juv_wua = 'Juv.Rearing',
+         ST_adult_wua = 'adult.trout', ST_spawn_wua = 'spawning.trout.ST',ST_fry_wua = 'fry.rearing.ST', ST_juv_wua = 'juv.rearing.ST') %>%
   mutate(watershed = 'Battle Creek')
 
 knitr:: kable(head(battle_creek_instream, 5), align = 'c') 
@@ -42,10 +45,10 @@ knitr:: kable(head(battle_creek_instream, 5), align = 'c')
 
 ###### ...with 35 more rows. 
 
-### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in Battle Creek.
+### Salmon Spawning WUA 
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in Battle Creek.
 
-#### Spawning WUA Plot
+#### Salmon Spawning WUA Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 
 ``` {r,echo=FALSE}
@@ -58,16 +61,30 @@ battle_creek_instream %>%
 
 ```
 
-### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in Battle Creek. 
 
-#### Rearing WUA Plot
+#### Steelhead Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+
+``` {r,echo=FALSE}
+battle_creek_instream %>% 
+    filter(!is.na(ST_spawn_wua)) %>%
+    ggplot(aes(x = flow_cfs , y = ST_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
+  theme_minimal()
+
+```
+
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in Battle Creek. 
+
+#### Salmon Rearing WUA Plot
 
 The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
 ``` {r,echo=FALSE}
 battle_creek_instream %>% 
   gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
-  filter(!is.na(wua), Lifestage != 'FR_spawn_wua', Lifestage != 'ST_adult_wua') %>%
+  filter(!is.na(wua), Lifestage != 'FR_spawn_wua', Lifestage != 'ST_adult_wua', Lifestage != "ST_fry_wua", Lifestage != "ST_juv_wua", Lifestage != "ST_spawn_wua") %>%
   mutate(Lifestage = ifelse(Lifestage == 'FR_fry_wua', 'Fry', 'Juvenile')) %>% 
   ggplot(aes(x = flow_cfs , y = wua, color = Lifestage)) +
   geom_line() +
@@ -76,4 +93,17 @@ battle_creek_instream %>%
   scale_color_manual(values = c('#d95f02','#7570b3'))
 ```
 
+#### Rearing WUA Plot
 
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+``` {r,echo=FALSE}
+battle_creek_instream %>% 
+  gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
+   filter(!is.na(wua), Lifestage != 'FR_spawn_wua', Lifestage != 'ST_adult_wua', Lifestage != "FR_fry_wua", Lifestage != "FR_juv_wua", Lifestage != 'ST_spawn_wua' ) %>%
+  mutate(Lifestage = ifelse(Lifestage == 'ST_fry_wua', 'Fry', 'Juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = Lifestage)) +
+  geom_line() +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme_minimal() + 
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
