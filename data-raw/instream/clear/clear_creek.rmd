@@ -112,7 +112,7 @@ where is the spring run spawning in the lower alluvial segment?]
 [description]
 
 #### Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 
 ```{r, echo=FALSE}
 feet <- cvpiaHabitat::watershed_lengths %>% 
@@ -123,12 +123,14 @@ names(feet) <- c('FR_spawn_wua', 'SR_spawn_wua', 'ST_spawn_wua')
 
 clear_creek_instream %>%
   select(flow_cfs, FR_spawn_wua, SR_spawn_wua, ST_spawn_wua) %>%
-  gather(species, wua, -flow_cfs) %>% 
-  mutate(feet = feet[species], acres = wua* feet/1000/43560) %>% 
-  ggplot(aes(flow_cfs, acres, color = species)) +
+  gather(Species, wua, -flow_cfs) %>% 
+  mutate(feet = feet[Species], acres = wua* feet/1000/43560) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma)
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma) + 
+  theme_minimal() + 
+  scale_color_manual(values = c('#d95f02','#7570b3','#56B4E9'))
 ```
 
 
@@ -146,20 +148,21 @@ used %>%
 Will look into scaling modeling, for now fixing spawning habitat value.]
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Clear Creek provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Clear Creek are provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
 
 #### Rearing WUA Plot
 
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT and applied for the flow in each month in the DSM.
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.
 
 ```{r, echo=FALSE}
 clear_creek_instream %>% 
   select(-FR_spawn_wua, -SR_spawn_wua, -ST_spawn_wua) %>%
-  gather(species, wua, -flow_cfs) %>%
-  ggplot(aes(flow_cfs, wua, color = species)) +
+  gather(Species, wua, -flow_cfs) %>%
+  ggplot(aes(flow_cfs, wua, color = Species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma)
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma) +
+  theme_minimal()
 ```
 
 [Steelhead and spring run juv rearing habitat are the same, because small sample size for both steelhead and spring run, criteria is the same so lumped the data together TODO]

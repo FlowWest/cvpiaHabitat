@@ -49,29 +49,32 @@ Units are in square feet and study length is 10.76 miles.
 [description]
 
 #### Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 
 ``` {r,echo=FALSE}
 cottonwood_creek_instream %>% 
     filter(!is.na(FR_spawn_wua)) %>%
     ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
-    geom_line() +
-    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
+    geom_line(color = '#7570b3') +
+    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+    theme_minimal()
 ```
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cottonwood River provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx') are used directly in the DSM. 
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cottonwood River are provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
 
 #### Rearing WUA Plot
 
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT and applied for the flow in each month in the DSM.
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
 ``` {r,echo=FALSE}
 cottonwood_creek_instream %>% 
-  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
-  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != 'ST_adult_wua') %>%
-  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
-  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), Lifestage != 'FR_spawn_wua') %>%
+  mutate(Lifestage = ifelse(Lifestage == 'FR_fry_wua', 'Fry', 'Juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = Lifestage)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)')
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme_minimal() + 
+  scale_color_manual(values = c('#d95f02','#7570b3'))
 ```
 

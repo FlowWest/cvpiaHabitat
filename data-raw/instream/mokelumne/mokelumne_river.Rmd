@@ -54,8 +54,9 @@ spawning %>%
   gather(species, wua, -flow_cfs) %>% 
   ggplot(aes(flow_cfs, wua, color = species)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma)
+  labs(x = 'Flow (cfs)', y = 'Spawning WUA (sqft/1000ft)') +
+  scale_y_continuous(labels = comma) + 
+  theme_minimal()
 
 ```
 
