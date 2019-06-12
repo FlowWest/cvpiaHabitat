@@ -15,7 +15,7 @@ library(cvpiaHabitat)
 ## Future Data Improvements
 none
 
-## Instream Rearing Habiat
+## Instream Rearing Habitat
 
 **Data Source:**
 [FWS 2011](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf) (pg 19)
