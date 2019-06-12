@@ -25,6 +25,15 @@ Instream rearing habitat for Fall Run Chinook Salmon in South Cow Creek is based
 ### Rearing WUA
 The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cow Creek. Units are in square feet per 1000 feet.
 
+
+## Future Data Improvement
+Instream habitat suitability relationships provided for the Voluntary Agreement process.
+
+## Instream Rearing Habiat
+
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cow River.Units are in square feet per 1000 feet.
+
 ```{r,echo=FALSE}
 valley <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                       range = "A2:C32", sheet = 'SouthCow') %>% 
@@ -44,8 +53,8 @@ cow_creek_instream <- bind_rows(valley, boero) %>%
    ungroup() %>% 
    rename(flow_cfs = Flows, FR_fry_wua = `fall-run fry`, 
           FR_juv_wua = `fall-run juvenile`) %>% 
-   mutate(watershed = 'Cow Creek') 
-knitr::kable( align = 'c', head(cow_creek_instream, 5)) 
+   mutate(watershed = 'Cow Creek')
+knitr::kable(align = 'c', head(cow_creek_instream, 5))
 
 # devtools::use_data(cow_creek_instream, overwrite = TRUE)
 ```
