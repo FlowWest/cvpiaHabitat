@@ -1,7 +1,7 @@
 ---
 title: "Calaveras River"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "June 6, 2019"
+date: "June 17, 2019"
 output: html_document
 ---
 
@@ -13,30 +13,43 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-None
+None planned 
 
 ## Instream Spawning and Rearing Habitat
 
 **Data Source:** 
 [FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf) (pgs. 18-19)
 
-Instream spawning and rearing habitat for Steelhead in the Calaveras River is based on data prepared by FISHBIO and Thomas Payne for the Stockton East Water District. FISHBIO and Payne conducted an instream flow study using a Physical Habitat Simulation model on four reaches of the Calaveras River to find a relationship between streamflow and Steelhead habitat. Graphs showing the original data are on pgs. 18-19 of the assessment linked above. The Steelhead instream spawning and rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:D12 for steelhead rearing in the 'Calaveras' tab within his 'IFIMWUA.xlsx'. 
+No habitat modeling is available for Chinook on the Calaveras River. Instream spawning and rearing habitat for Steelhead in the Calaveras River is used as a proxy for Chinook. This data is based on an instream flow study conducted by FISHBIO and Thomas Payne for the Stockton East Water District. They used a Physical Habitat Simulation model on four reaches to find a relationship between streamflow and suitable Steelhead habitat. Graphs showing the original data are on pgs. 18-19 of the study report linked above. Values from the four reaches were converted to an average weighted by the length of each study reach provide on page 13 of the FISHBIO and Payne report. This approach was developed in coordination with [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service and completed in a spreadsheet (see '~/cvpiaHabitat/data-raw/Calaveras_all_reaches.xlsx'). We used cells H2:K12 which give the average weighted WUA for spawning and rearing of Steelhead in the four study reaches.
 
 ###Combine Spawning and Rearing Data 
 The instream spawning and rearing habitat data described above for Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
+```{r, echo =FALSE}
+calaveras <- read_excel('data-raw/Calaveras_all_reaches.xlsx', range = "H2:K12") 
 
-```{r, echo=FALSE}
-
- calaveras <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                         range = "A2:D12", sheet = 'Calaveras') 
- 
- 
- calaveras_river_instream <- calaveras %>% 
+calaveras_river_instream <- calaveras %>% 
    mutate(watershed = 'Calaveras River') %>% 
-   rename(flow_cfs = Flow, ST_spawn_wua = 'Spawning', ST_fry_wua = `Fry Rearing`,
-          ST_juv_wua = `Juv Rearing`)
+   rename(flow_cfs = Flow, ST_spawn_wua = 'W Spawning', ST_fry_wua = 'W Fry Rearing',
+          ST_juv_wua = 'W Juv Rearing')
  
  knitr::kable(head(calaveras_river_instream, 5), align = "c")
+ 
+ #devtools::use_data(calaveras_river_instream, overwrite = TRUE)
+```
+
+
+```{r, echo=FALSE}
+ #comented out because this was the original mark gard data that only included reaches 1 and 2 of the river. I left this in for now because it is the original data that the model is run on and I wanted to make sure we updated it for future use.  
+
+ #calaveras <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+ #                        range = "A2:D12", sheet = 'Calaveras') 
+ 
+ #calaveras_river_instream <- calaveras %>% 
+ #  mutate(watershed = 'Calaveras River') %>% 
+ #  rename(flow_cfs = Flow, ST_spawn_wua = 'Spawning', ST_fry_wua = `Fry Rearing`,
+ #         ST_juv_wua = `Juv Rearing`)
+ 
+ #knitr::kable(head(calaveras_river_instream, 5), align = "c")
  
  #devtools::use_data(calaveras_river_instream, overwrite = TRUE)
 ```
