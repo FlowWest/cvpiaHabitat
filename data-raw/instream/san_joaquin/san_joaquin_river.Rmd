@@ -1,6 +1,6 @@
 ---
 title: "San Joaquin River"
-author: "sadie"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
 date: "December 17, 2018"
 output: html_document
 ---
@@ -14,14 +14,21 @@ library(cvpiaHabitat)
 library(scales)
 
 ```
-
+## Future Data Improvements
+[Future data improvements bullets]
 
 ## Instream Spawning and Rearing Habiat
 
-There is no habitat modeling, using san joaquin tribs
+**Data Source:** 
+[add data source]
+
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in the San Joaquin River is based on data from [data source description]. The [DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
 
 
-```{r}
+[There is no habitat modeling, using san joaquin tribs]
+
+
+```{r,echo=FALSE}
 get_approx_fry <- function(df) {approxfun(df$flow_cfs, df$FR_fry_wua, rule = 2)}
 get_approx_juv <- function(df) {approxfun(df$flow_cfs, df$FR_juv_wua, rule = 2)}
 
@@ -46,7 +53,9 @@ san_joaquin_river_instream <- purrr::map_df(flows, function(flow) {
   tibble(flow_cfs = flow, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
          watershed = 'San Joaquin River')
 })
+```
 
+``` {r,echo=FALSE}
 bind_rows(cvpiaHabitat::merced_river_instream,
           cvpiaHabitat::stanislaus_river_instream,
           cvpiaHabitat::tuolumne_river_instream,
@@ -54,7 +63,9 @@ bind_rows(cvpiaHabitat::merced_river_instream,
   ggplot(aes(x = flow_cfs, y= FR_fry_wua, color = watershed)) +
   geom_line() +
   theme_minimal()
+```
 
+``` {r,echo=FALSE}
 bind_rows(cvpiaHabitat::merced_river_instream,
           cvpiaHabitat::stanislaus_river_instream,
           cvpiaHabitat::tuolumne_river_instream,
@@ -64,6 +75,27 @@ bind_rows(cvpiaHabitat::merced_river_instream,
   theme_minimal()
 
 
-san_joaquin_river_instream
+# san_joaquin_river_instream
 # devtools::use_data(san_joaquin_river_instream, overwrite = TRUE)
 ```
+
+
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the San Joaquin River are provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
+
+#### Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+
+``` {r,echo=FALSE}
+san_joaquin_river_instream %>% 
+  gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), Lifestage != 'FR_spawn_wua', Lifestage != 'ST_adult_wua') %>%
+  mutate(Lifestage = ifelse(Lifestage == 'FR_fry_wua', 'Fry', 'Juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = Lifestage)) +
+  geom_line() +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme_minimal() + 
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
