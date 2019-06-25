@@ -1,7 +1,7 @@
 ---
 title: "Feather River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "December 14, 2018"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
+date: "June 25, 2019"
 output: html_document
 ---
 
@@ -15,31 +15,29 @@ library(scales)
 ```
 
 ## Future Data Improvements
-* None planned
+None planned
 
 ## Instream Spawning and Rearing Habitat
 
-**Data Source:** [California Department of Water Resources 2004](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) and [Thomas R. Payne & Associates 2002](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf)
+**Data Source:** [California Department of Water Resources 2004](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) (pgs 35-36 ) and [Thomas R. Payne & Associates 2002](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf) (pgs 35-37)
 
 Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Feather River is based on data from California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').
 
-### Spawning WUA
-The Fall Run Chinook Salmon and Steelhead spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow : area curves in the [FERC evaluation reports (pages 35-36)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow : area curves for "upper" and "lower" reaches. These values were combined into a single area weighted by study reach length for each flow value.
-
-```{r, echo=FALSE}
+### Combine Spawning and Rearing Data
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
+```{r, include=FALSE}
+feather_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A1:D8", sheet = 'Feather')
+# feather_raw
+```
+```{r, include=FALSE}
 upper_fr <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'upper')
-
 lower_fr <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'lower')
-
 upper_st <- read_csv('data-raw/instream/feather/alt_upper_feather_spawn_wua_rsi_steelhead.csv') %>%
   mutate(location = 'upper')
-
 lower_st <- read_csv('data-raw/instream/feather/alt_lower_feather_spawn_wua_rsi_steelhead.csv') %>%
   mutate(location = 'lower')
-
-
 spawning <- tibble(
   flow_cfs = c(200, 500, 750, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 
                4000, 4500, 5000, 5500, 6000, 6500, 7000),
@@ -50,50 +48,7 @@ spawning <- tibble(
   mutate(FR_spawn_wua = upper_wua_fr * (9.75/18) + lower_wua_fr * (8.25/18),
          ST_spawn_wua = upper_wua_st * (9.75/18) + lower_wua_st * (8.25/18)) %>%
   select(flow_cfs, FR_spawn_wua, ST_spawn_wua)
-
 ```
-
-#### Spawning WUA Plot
-
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM. 
-
-```{r, echo=FALSE}
-spawning %>%
-  rename(`fall run` = FR_spawn_wua, steelhead = ST_spawn_wua) %>% 
-  gather(species, wua, -flow_cfs) %>% 
-  ggplot(aes(flow_cfs, wua, color = species)) +
-  geom_line(color='light blue') +
-  labs(x = 'flow (cfs)', y = 'spawning WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) + 
-theme_minimal()
-```
-
-### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Feather River are provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
-
-```{r, echo=FALSE}
-feather_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A1:D8", sheet = 'Feather')
-# feather_raw
-```
-
-#### Rearing WUA Plot
-
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
-
-```{r, echo=FALSE}
-feather_raw %>% 
-  filter(!is.na(`Fry Rearing`)) %>%
-  select(Flow, fry = `Fry Rearing`, juvenile = `Juv Rearing`) %>%
-  gather(lifestage, wua, - Flow) %>%
-  ggplot(aes(Flow, wua, color = lifestage)) +
-  geom_line() +
-  labs(x = 'flow (cfs)', y = 'rearing WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma)
-```
-
-### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
-
 ```{r, echo=FALSE}
 feather_river_instream <- feather_raw %>% 
   select(-Spawning) %>% 
@@ -108,6 +63,53 @@ feather_river_instream <- feather_raw %>%
          ST_spawn_wua,
          watershed)
 
-feather_river_instream  
+knitr::kable(align ="c", head(feather_river_instream, 5))
+
 # devtools::use_data(feather_river_instream, overwrite = TRUE)
 ```
+
+*...with 13 more rows.*
+
+### Spawning WUA
+The Fall Run Chinook Salmon and Steelhead spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow : area curves in the [FERC evaluation reports (pages 35-36)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow : area curves for "upper" and "lower" reaches. These values were combined into a single area weighted by study reach length for each flow value.
+
+#### Fall Run Chinook Salmon Spawning WUA Plot
+
+ The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM. 
+
+```{r, echo = FALSE}
+feather_river_instream %>% 
+    ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() 
+```
+
+#### Steelhead Spawning WUA Plot
+
+ The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM. 
+```{r, echo = FALSE}
+feather_river_instream %>% 
+    ggplot(aes(x = flow_cfs , y = ST_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() 
+```
+ 
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Feather River. 
+
+#### Fall Run Chinook Salmon Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.  
+
+```{r, echo=FALSE}
+feather_river_instream %>% 
+  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != 'ST_adult_wua', lifestage != "ST_spawn_wua", lifestage != "ST_juv_wua", lifestage != "ST_fry_wua") %>%
+  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
+
