@@ -25,7 +25,7 @@ None Planned
 
 No watershed specific salmonid habitat data was available for Consumnes River. A regional weighted usable area (WUA) relationship with flow was derived for Consumnes River by averaging the WUA values on Calaveras River and Mokelumne River. The geomorphic and hydrologic conditions in Consumnes River (watershed area = X; active channel width = Y; 2-year flow = Z) are similar to those on Calaveras River (watershed area = X; active channel width = Y; 2-year flow = Z), Mokelumne River (watershed area = X; active channel width = Y; 2-year flow = Z). The regional WUA relationships for Calaveras River were multiplied by the length of spawning and rearing extents mapped by the Science Integration Team (SIT). 
 
-###Combine Spawning and Rearing Data 
+### Combine Spawning and Rearing Data 
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
 
 ```{r,echo=FALSE}
@@ -79,7 +79,7 @@ knitr::kable(align = 'c', head(cosumnes_river_instream, 5))
 # devtools::use_data(cosumnes_river_instream, overwrite = TRUE)
 ```
 
-###### ...with 5 more rows. 
+*...with 5 more rows.* 
 
 ### Spawning WUA 
 The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in the Cosumnes River.

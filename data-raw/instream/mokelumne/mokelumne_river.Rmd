@@ -1,6 +1,6 @@
 ---
 title: "Mokelumne River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
 date: "June 18, 2019"
 output: html_document
 ---
@@ -120,7 +120,7 @@ mokelumne_river_instream <- spawning %>%
   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, ST_spawn_wua, watershed)
   
 knitr::kable(align = 'c' , head(mokelumne_river_instream, 5))
-# devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
+#devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
 
 
 ```
@@ -130,7 +130,7 @@ knitr::kable(align = 'c' , head(mokelumne_river_instream, 5))
 ```
 
 
-###### ...with 47 more rows.
+*...with 47 more rows.*
 
 ### Spawning WUA
 
@@ -180,25 +180,23 @@ mokelumne_river_instream %>%
   scale_color_manual(values = c('#d95f02','#7570b3'))
 ```
 
+## Floodplain 
+The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River. The following table contains the flow : floowplain area relationships used in the DSM.
+```{r, echo=FALSE}
+#'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal #low estimate
+#400 cfs = 0 acres 
 
+mokelumne_river_floodplain <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                      sheet = 'Floodplain (new flows)', range = 'C21:D26',
+                      col_names = c('flow_cfs', 'FR_floodplain_acres')) %>% 
+ bind_rows(tibble(flow_cfs = 400, FR_floodplain_acres = 0)) %>% 
+ arrange(flow_cfs) %>% 
+ mutate(SR_floodplain_acres = FR_floodplain_acres,
+        ST_floodplain_acres = FR_floodplain_acres,
+        watershed = "Mokelumne River")
 
-```{r, include = FALSE, echo=FALSE}
-## Floodplain
-
-#The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River. The following table contains the flow : floowplain area relationships used in the DSM.
-
-# 'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal low estimate
-# 400 cfs = 0 acres 
-
-#mokelumne_river_floodplain <- read_excel('data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
- #                      sheet = 'Floodplain (new flows)', range = 'C21:D26',
- #                      col_names = c('flow_cfs', 'FR_floodplain_acres')) %>% 
- # bind_rows(tibble(flow_cfs = 400, FR_floodplain_acres = 0)) %>% 
- # arrange(flow_cfs) %>% 
- # mutate(SR_floodplain_acres = FR_floodplain_acres,
- #        ST_floodplain_acres = FR_floodplain_acres,
- #        watershed = "Mokelumne River")
-
-#mokelumne_river_floodplain
+knitr::kable(align ='c', head(mokelumne_river_floodplain, 5))
 # devtools::use_data(mokelumne_river_floodplain, overwrite = TRUE)
 ```
+
+*...with 2 more rows.*
