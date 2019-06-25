@@ -1,7 +1,7 @@
 ---
 title: "Cosumnes River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "December 17, 2018"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
+date: "June 18, 2019"
 output: html_document
 ---
 
@@ -15,70 +15,74 @@ library(scales)
 
 ```
 ## Future Data Improvements
-[Future data improvement bullets]
+None Planned 
 
-## Instream Spawning and Rearing Habiat
+## Instream Spawning and Rearing Habitat
 
 **Data Source:**   
-[???--combo of mokelunme and calaveras]
+[Calaveras, FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf)    
+[Mokelumne, CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf)
 
-There is no habitat modeling, using mokelumne and calaveras
+No watershed specific salmonid habitat data was available for Consumnes River. A regional weighted usable area (WUA) relationship with flow was derived for Consumnes River by averaging the WUA values on Calaveras River and Mokelumne River. The geomorphic and hydrologic conditions in Consumnes River (watershed area = X; active channel width = Y; 2-year flow = Z) are similar to those on Calaveras River (watershed area = X; active channel width = Y; 2-year flow = Z), Mokelumne River (watershed area = X; active channel width = Y; 2-year flow = Z). The regional WUA relationships for Calaveras River were multiplied by the length of spawning and rearing extents mapped by the Science Integration Team (SIT). 
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Cosumnes River is based on data from [data source description]. The [DWR FERC instream spawning and rearing habitat data] was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx').
+### Combine Spawning and Rearing Data 
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
 
-```{r,include=FALSE}
-# # cosumnes -----
-# region <- cvpiaHabitat::modeling_exist %>%
-#   filter(Region == 'South Delta') %>%
-#   select(Watershed, Region, FR_fry, FR_juv)
-# 
-# flows <- seq(100, 1000, by = 100)
-# 
-# # spawn
-# cal_st_spwn <- approx(calaveras_river_instream$flow_cfs, 
-#                       calaveras_river_instream$ST_spawn_wua, 
-#                       rule = 2, xout = flows)$y
-# 
-# mok_fr_spwn <- approx(mokelumne_river_instream$flow_cfs, 
-#                       mokelumne_river_instream$FR_spawn_wua, 
-#                       rule = 2, xout = flows)$y
-# 
-# cos_spwn <- (cal_st_spwn + mok_fr_spwn) / 2
-# 
-# # fry
-# cal_st_fry <- approx(calaveras_river_instream$flow_cfs, 
-#                       calaveras_river_instream$ST_fry_wua, 
-#                       rule = 2, xout = flows)$y
-# 
-# mok_fr_fry <- approx(mokelumne_river_instream$flow_cfs, 
-#                       mokelumne_river_instream$FR_fry_wua, 
-#                       rule = 2, xout = flows)$y
-# 
-# cos_fry <- (cal_st_fry + mok_fr_fry) / 2
-# 
-# # juv
-# cal_st_juv <- approx(calaveras_river_instream$flow_cfs, 
-#                       calaveras_river_instream$ST_juv_wua, 
-#                       rule = 2, xout = flows)$y
-# 
-# mok_fr_juv <- approx(mokelumne_river_instream$flow_cfs, 
-#                       mokelumne_river_instream$FR_juv_wua, 
-#                       rule = 2, xout = flows)$y
-# 
-# cos_juv <- (cal_st_juv + mok_fr_juv) / 2
-# 
-# 
-# 
-# cosumnes_river_instream <- tibble(flow_cfs = flows, FR_spawn_wua = cos_spwn, 
-#                                   FR_fry_wua = cos_fry, FR_juv_wua = cos_juv,
-#                                   watershed = 'Cosumnes River')
-# 
-# cosumnes_river_instream
+```{r,echo=FALSE}
+ #cosumnes -----
+ region <- cvpiaHabitat::modeling_exist %>%
+   filter(Region == 'South Delta') %>%
+   select(Watershed, Region, FR_fry, FR_juv)
+ 
+ flows <- seq(100, 1000, by = 100)
+ 
+ #spawn
+ cal_st_spwn <- approx(calaveras_river_instream$flow_cfs, 
+                       calaveras_river_instream$ST_spawn_wua, 
+                       rule = 2, xout = flows)$y
+
+ mok_fr_spwn <- approx(mokelumne_river_instream$flow_cfs, 
+                       mokelumne_river_instream$FR_spawn_wua, 
+                       rule = 2, xout = flows)$y
+ 
+ cos_spwn <- (cal_st_spwn + mok_fr_spwn) / 2
+ 
+ # fry
+ cal_st_fry <- approx(calaveras_river_instream$flow_cfs, 
+                       calaveras_river_instream$ST_fry_wua, 
+                       rule = 2, xout = flows)$y
+ 
+ mok_fr_fry <- approx(mokelumne_river_instream$flow_cfs, 
+                       mokelumne_river_instream$FR_fry_wua, 
+                       rule = 2, xout = flows)$y
+ 
+ cos_fry <- (cal_st_fry + mok_fr_fry) / 2
+ 
+ # juv
+ cal_st_juv <- approx(calaveras_river_instream$flow_cfs, 
+                       calaveras_river_instream$ST_juv_wua, 
+                       rule = 2, xout = flows)$y
+ 
+ mok_fr_juv <- approx(mokelumne_river_instream$flow_cfs, 
+                       mokelumne_river_instream$FR_juv_wua, 
+                       rule = 2, xout = flows)$y
+ 
+ cos_juv <- (cal_st_juv + mok_fr_juv) / 2
+ 
+ 
+ 
+ cosumnes_river_instream <- tibble(flow_cfs = flows, FR_spawn_wua = cos_spwn, 
+                                   FR_fry_wua = cos_fry, FR_juv_wua = cos_juv,
+                                   watershed = 'Cosumnes River')
+ 
+knitr::kable(align = 'c', head(cosumnes_river_instream, 5))
 # devtools::use_data(cosumnes_river_instream, overwrite = TRUE)
 ```
 
+*...with 5 more rows.* 
+
 ### Spawning WUA 
-[description]
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in the Cosumnes River.
 
 #### Spawning WUA Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
@@ -94,7 +98,7 @@ cosumnes_river_instream %>%
 ```
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Consumnes River are provided by Mark Gard (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). 
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Consumnes River.
 
 #### Rearing WUA Plot
 
