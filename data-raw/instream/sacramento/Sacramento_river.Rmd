@@ -1,0 +1,171 @@
+---
+title: "Sacramento River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "June 18, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Future Data Improvement
+None Planned
+
+## Instream Spawning and Rearing Habitat
+
+**Data Source:**
+[FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf) (pg 29-31)
+
+Spawning habitat area for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead is based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. Spawning habitat is only used in the Upper Sacramento River and Upper Mid-Sacramento River reaches of the life cycle model. The spawning WUA source data was developed for three study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (ACID) diversion dam. This source data is provided on pages 29 - 31 of FWS 2003. The Upper Sacramento fall run spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. The A.C.I.D. boards are assumed to be in April 1st - October 31st. Mark Gard from the U.S. Fish and Wildlife Service combined the habitat data from these four studies and provided them for the entire Clear Creek watershed in a spreadsheet (see ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). CONSULT WITH SADIE ON HOW THIS DATA WAS MANIPULATED TO SERVE AS INPUTS TO THE TWO SIT LIFE CYCLE MODEL REACHES.  
+
+Instream rearing habitat area is based on habitat modeling conducted by NOAA NMFS for their Winter Run Chinook Salmon life cycle model. The entire mapped rearing extent of the Sacramento River was modeled using the Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in their Winter Run Chinook Salmon life cycle model. NOAA NMFS provided tabular suitable rearing habitat area data for four reaches of the Sacramento River (Keswick to Battle Creek, Battle Creek to Feather River, and Feather River to Freeport) in the CVPIA life cycle model. The high quality depth and high quality velocity criteria ("Pref11") "ChanArea" value was used for instream habitat. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters. The NMFS habitat areas were scaled using the proportion of the CVPIA life cycle model reach within each NMFS study reach. The CVPIA life cycle model Upper Sacramento River reach extends from Keswick to Red Bluff (59.3 mi). This reach overlaps with two of the NMFS reaches, Keswick to Battle Creek (28.9 mi) and Battle Creek to the confluence with the Feather River (186.5 mi). The CVPIA life cycle model Upper-mid Sacramento River reach extends from Red Bluff to Wilkins Slough (122.3 mi) and is entirely within the Battle Creek to the Feather River reach of the NMFS model. The CVPIA life cycle model Lower-mid Sacramento River extends from Wilkins Slough to the American River (58.0 mi) and is represented by two of the NMFS model reaches, Battle Creek to the confluence with the Feather River (186.5 mi) and the confluence with the Feather River to Freeport (33.9 mi). Finally, the CVPIA life cycle model Lower Sacramento River reach extends from the confluence with the American River to Freeport (13.7 mi). This reach is entirely represented by the NMFS model reach that extends from the confluence with the Feather River to Freeport (33.4 mi). 
+
+
+### Spawning WUA 
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, Winter Run Chinook Salmon, and Steelhead in the Tuolumne River.Units are in square feet per 1000 feet.
+
+```{r, echo = FALSE}
+sac_spawn_in <- upper_sac_ACID_boards_in %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) %>%
+  rename(FR_spawn_WUA_in = FR_spawn_WUA, LFR_spawn_WUA_in=LFR_spawn_WUA, WR_spawn_WUA_in = WR_spawn_WUA, ST_spawn_WUA_in = ST_spawn_WUA)
+
+sac_spawn_out <- upper_sac_ACID_boards_out %>% 
+  select(FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) %>%
+  rename(FR_spawn_WUA_out = FR_spawn_WUA, LFR_spawn_WUA_out=LFR_spawn_WUA, WR_spawn_WUA_out = WR_spawn_WUA, ST_spawn_WUA_out = ST_spawn_WUA)
+
+sac_spawn <- sac_spawn_in %>% bind_cols(sac_spawn_out)
+
+knitr::kable(align = 'c', head(sac_spawn, 5))
+```
+
+
+#### Fall Run Chinook Salmon Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+
+``` {r,echo=FALSE}
+sac_spawn_in <- upper_sac_ACID_boards_in %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
+sac_spawn_out <- upper_sac_ACID_boards_out %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
+sac_spawn_FR_plot <- sac_spawn_in %>% 
+  mutate(Type = 'FR_spawn_WUA_in') %>% 
+  bind_rows(sac_spawn_out %>% mutate(Type = 'FR_spawn_WUA_out'))
+ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = FR_spawn_WUA, color = Type))+
+  geom_line()+
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
+#### Late Fall Run Chinook Salmon Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+```{r, echo=FALSE}
+sac_spawn_in <- upper_sac_ACID_boards_in %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
+sac_spawn_out <- upper_sac_ACID_boards_out %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
+sac_spawn_FR_plot <- sac_spawn_in %>% 
+  mutate(Type = 'LFR_spawn_WUA_in') %>% 
+  bind_rows(sac_spawn_out %>% mutate(Type = 'LFR_spawn_WUA_out'))
+ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = LFR_spawn_WUA, color = Type))+
+  geom_line()+
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
+#### Winter Run Chinook Salmon Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+```{r, echo=FALSE}
+sac_spawn_in <- upper_sac_ACID_boards_in %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
+sac_spawn_out <- upper_sac_ACID_boards_out %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
+sac_spawn_FR_plot <- sac_spawn_in %>% 
+  mutate(Type = 'WR_spawn_WUA_in') %>% 
+  bind_rows(sac_spawn_out %>% mutate(Type = 'WR_spawn_WUA_out'))
+ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = WR_spawn_WUA, color = Type))+
+  geom_line()+
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
+#### Steelhead Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+
+``` {r, echo=FALSE}
+sac_spawn_in <- upper_sac_ACID_boards_in %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
+sac_spawn_out <- upper_sac_ACID_boards_out %>% 
+  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
+sac_spawn_FR_plot <- sac_spawn_in %>% 
+  mutate(Type = 'ST_spawn_WUA_in') %>% 
+  bind_rows(sac_spawn_out %>% mutate(Type = 'ST_spawn_WUA_out'))
+ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = ST_spawn_WUA, color = Type))+
+  geom_line()+
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal()+
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+
+```
+
+### Rearing WUA
+
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon and Steelhead in the Tuolumne River. Units are in square feet per 1000 feet.
+```{r, echo=FALSE}
+upper <- upper_sacramento_river_instream %>%
+  mutate(mi = 59.28, WUA_rear = rearing_sq_meters *10.76/1000) %>%
+  select(flow_cfs, WUA_rear)
+upper_mid <- upper_mid_sacramento_river_instream %>%
+  mutate(mi = 122.25, WUA_rear = rearing_sq_meters *10.76/1000)%>%
+  select( WUA_rear)
+lower_mid <- lower_mid_sacramento_river_instream %>%
+  mutate(mi = 57.96, WUA_rear = rearing_sq_meters *10.76/1000)%>%
+  select( WUA_rear)
+lower <- lower_sacramento_river_instream %>%
+  mutate(mi = 13.7, WUA_rear = rearing_sq_meters *10.76/1000)%>%
+  select( WUA_rear)
+
+tot_len <- 253.19
+
+sac <- upper %>% bind_cols(upper_mid, lower_mid, lower) %>%
+  rename(FR_upper_rear_WUA = WUA_rear, FR_upper_mid_rear_WUA = WUA_rear1, FR_lower_mid_rear_WUA = WUA_rear2, FR_low_rear_WUA = WUA_rear3)%>%
+  mutate(watershed = "Sacramento River")
+
+knitr::kable(align = 'c', head(sac, 5))
+
+```
+
+*... with X more rows.*
+
+#### Chinook Salmon Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.
+
+```{r, echo = FALSE}
+upper <- upper_sacramento_river_instream %>%
+  mutate(mi = 59.28, WUA_rear = rearing_sq_meters *10.76/1000) %>%
+  select(flow_cfs, WUA_rear)
+upper_mid <- upper_mid_sacramento_river_instream %>%
+  mutate(mi = 122.25, WUA_rear = rearing_sq_meters *10.76/1000)%>%
+  select(flow_cfs, WUA_rear)
+lower_mid <- lower_mid_sacramento_river_instream %>%
+  mutate(mi = 57.96, WUA_rear = rearing_sq_meters *10.76/1000)%>%
+  select(flow_cfs, WUA_rear)
+lower <- lower_sacramento_river_instream %>%
+  mutate(mi = 13.7, WUA_rear = rearing_sq_meters *10.76/1000)%>%
+  select(flow_cfs, WUA_rear)
+
+sac_plot <- upper %>% mutate(Type = 'FR_Upper_WUA') %>% 
+  bind_rows(upper_mid %>% mutate(Type = 'FR_upper_mid_WUA')) %>% 
+  bind_rows(lower_mid %>% mutate(Type = 'FR_lower_mid_WUA')) %>% 
+  bind_rows(lower %>% mutate(Type = 'FR_lower_WUA')) 
+
+ggplot(data= sac_plot, aes(x = flow_cfs, y = WUA_rear, color = Type))+
+  geom_line()+
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal()
+
+```
+
