@@ -346,15 +346,4 @@ stanislaus_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainA
 
 use_data(stanislaus_river_floodplain, overwrite = TRUE)
 
-# yuba river -------
-yuba_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
-                                    sheet = 'YubaRiver') %>%
-  mutate(watershed = 'Yuba River',
-         SR_floodplain_acres = modeled_floodplain_area_acres,
-         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-  select(flow_cfs,
-         FR_floodplain_acres = modeled_floodplain_area_acres,
-         SR_floodplain_acres, ST_floodplain_acres,
-         watershed)
 
-use_data(yuba_river_floodplain, overwrite = TRUE)
