@@ -13,14 +13,44 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 
+
 ```{r}
 source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+
+### Fall Run
+`r print_model_details('Cottonwood Creek', 'fr')`
+
+### Spring Run and Steelhead
+`r print_model_details('Cottonwood Creek', 'sr')`
+
+## Floodplain Data
+
+```{r}
 deer_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek') %>%
   mutate(watershed = 'Deer Creek')
 
 deer_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Deer Creek', df = deer_fp)
 
-deer_creek_floodplain
-
-# use_data(deer_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(deer_creek_floodplain, 5))
+# devtools::use_data(deer_creek_floodplain, overwrite = TRUE)
 ```
+
+*...with 17 more rows*
+
+## Floodplain Plot
+```{r}
+deer_creek_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Spring Run Chinook` = SR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+```
+
