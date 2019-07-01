@@ -1,0 +1,27 @@
+---
+title: "Bear River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 1, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+```{r}
+source('data-raw/floodplain/floodplain_utils.R')
+bear_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BearRiver') %>%
+  mutate(watershed = 'Bear River')
+
+bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_fp) %>%
+  mutate(ST_floodplain_acres = FR_floodplain_acres)
+
+bear_river_floodplain
+
+# use_data(bear_river_floodplain, overwrite = TRUE)
+```
