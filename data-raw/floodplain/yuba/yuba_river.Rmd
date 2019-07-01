@@ -13,8 +13,17 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 
+
 ```{r}
-yuba_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
+source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+`r print_model_details('Yuba River', 'fr')`
+
+## Floodplain Data
+```{r}
+yuba_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                     sheet = 'YubaRiver') %>%
   mutate(watershed = 'Yuba River',
          SR_floodplain_acres = modeled_floodplain_area_acres,
@@ -24,6 +33,31 @@ yuba_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.x
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
-yuba_river_floodplain
-# use_data(yuba_river_floodplain, overwrite = TRUE)
+threshold <- yuba_fp %>% 
+  filter(FR_floodplain_acres == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+yuba_river_floodplain <- yuba_fp %>% 
+  filter(flow_cfs >= threshold)
+
+knitr::kable(align = 'c', head(yuba_river_floodplain, 5))
+# devtools::use_data(yuba_river_floodplain, overwrite = TRUE)
+```
+
+*...with 15 more rows*
+
+
+## Floodplain Plot
+```{r}
+yuba_river_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Spring Run Chinook` = SR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
 ```
