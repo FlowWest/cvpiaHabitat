@@ -17,14 +17,23 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
   # remove channel area from total wetted area to obtain floodplain area
   watershed_channel_area <- watershed_metadata$FR_channel_area_of_length_modeled_acres # get channel area
 
-  if (any(is.na(df$modeled_area_acres))) {
-    # if there is no total area modeled use value supplied from Mark Gard
-    fp_area <- df$modeled_floodplain_area_acres
-  } else {
-    # subtract channel area from total wetted area, no values less than 0
-    fp_area <- ifelse(df$modeled_area_acres - watershed_channel_area >= 0,
-                      df$modeled_area_acres - watershed_channel_area, 0)
-  }
+  threshold <- df %>%
+    filter(modeled_floodplain_area_acres == 0) %>%
+    summarise(max = max(flow_cfs)) %>%
+    pull(max)
+
+  df <- df %>%
+    filter(flow_cfs >= threshold)
+  # if (any(is.na(df$modeled_area_acres))) {
+  #   # if there is no total area modeled use value supplied from Mark Gard
+  #   fp_area <- df$modeled_floodplain_area_acres
+  # } else {
+  #   # subtract channel area from total wetted area, no values less than 0
+  #   fp_area <- ifelse(df$modeled_area_acres - watershed_channel_area >= 0,
+  #                     df$modeled_area_acres - watershed_channel_area, 0)
+  # }
+
+  fp_area <- df$modeled_floodplain_area_acres
 
   fp_area_per_mile_modeled <- fp_area/watershed_metadata$FR_length_modeled_mi
 

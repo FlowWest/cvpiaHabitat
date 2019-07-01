@@ -35,15 +35,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 cotton_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek') %>%
   mutate(watershed = 'Cottonwood Creek')
 
-threshold <- cotton_fp %>% 
-  filter(modeled_floodplain_area_acres == 0) %>% 
-  summarise(max = max(flow_cfs)) %>% 
-  pull(max)
-
-cotton_df <- cotton_fp %>% 
-  filter(flow_cfs >= threshold)
-
-cottonwood_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Cottonwood Creek', df = cotton_df)
+cottonwood_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Cottonwood Creek', df = cotton_fp)
 
 knitr::kable(align = 'c', head(cottonwood_creek_floodplain, 5))
 # devtools::use_data(cottonwood_creek_floodplain, overwrite = TRUE)

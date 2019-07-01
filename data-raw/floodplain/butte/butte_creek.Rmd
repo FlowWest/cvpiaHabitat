@@ -32,15 +32,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 butte_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
   mutate(watershed = 'Butte Creek')
 
-threshold <- butte_fp %>% 
-  filter(modeled_floodplain_area_acres == 0) %>% 
-  summarise(max = max(flow_cfs)) %>% 
-  pull(max)
-
-butte_df <- butte_fp %>% 
-  filter(flow_cfs >= threshold)
-
-butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_df)
+butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_fp)
 
 knitr::kable(align = 'c', head(butte_creek_floodplain, 5)) 
 # devtools::use_data(butte_creek_floodplain, overwrite = TRUE)
