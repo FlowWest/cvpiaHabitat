@@ -1,0 +1,29 @@
+---
+title: "American River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 1, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+```{r}
+tuolumne_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'TuolumneRiver') %>%
+  mutate(watershed = 'Tuolumne River',
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
+  select(flow_cfs,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
+         watershed)
+
+tuolumne_river_floodplain
+
+# use_data(tuolumne_river_floodplain, overwrite = TRUE)
+```

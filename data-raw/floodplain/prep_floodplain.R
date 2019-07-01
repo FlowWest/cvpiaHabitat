@@ -137,19 +137,6 @@ cottonwood_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Cottonwood
 
 use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 
-# Tuolumne River -------------
-filter(.metadata, watershed == 'Tuolumne River') %>% glimpse
-tuolumne_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'TuolumneRiver') %>%
-  mutate(watershed = 'Tuolumne River',
-         SR_floodplain_acres = modeled_floodplain_area_acres,
-         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-  select(flow_cfs,
-         FR_floodplain_acres = modeled_floodplain_area_acres,
-         SR_floodplain_acres, ST_floodplain_acres,
-         watershed)
-
-use_data(tuolumne_river_floodplain, overwrite = TRUE)
-
 # no modeling exists method for creating flow to fp area-------------
 scale_fp_flow_area <- function(ws) {
 
