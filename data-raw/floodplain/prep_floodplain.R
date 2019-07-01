@@ -40,12 +40,6 @@ use_data(cosumnes_river_floodplain, overwrite = TRUE)
 # Mokelumne River -------------------------------------
 # see data-raw/instream/mokelumne/mokelumne_river.Rmd
 
-# Thomes Creek-------------------------------------
-thomes_creek_floodplain <- scale_fp_flow_area('Thomes Creek')
-
-use_data(thomes_creek_floodplain, overwrite = TRUE)
-
-
 # FULLY MODELED ----------
 filter(.metadata, method == 'full_model') %>% pull(watershed)
 
