@@ -15,12 +15,51 @@ library(cvpiaHabitat)
 
 ```{r}
 source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+
+### Fall Run
+`r print_model_details('Butte Creek', 'fr')`
+
+### Spring Run and Steelhead
+`r print_model_details('Butte Creek', 'sr')`
+
+## Floodplain Data
+
+
+```{r}
 butte_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
   mutate(watershed = 'Butte Creek')
 
-butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_fp)
+threshold <- butte_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
 
-butte_creek_floodplain
+butte_df <- butte_fp %>% 
+  filter(flow_cfs >= threshold)
 
-# use_data(butte_creek_floodplain, overwrite = TRUE)
+butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_df)
+
+knitr::kable(align = 'c', head(butte_creek_floodplain, 5)) 
+# devtools::use_data(butte_creek_floodplain, overwrite = TRUE)
 ```
+
+
+*...with 23 more rows*
+
+## Floodplain Plot
+```{r}
+butte_creek_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Spring Run Chinook` = SR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+```
+
