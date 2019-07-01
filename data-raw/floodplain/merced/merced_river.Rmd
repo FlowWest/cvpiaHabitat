@@ -18,7 +18,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 ```
 
 ## Floodplain Modeling Details
-`r print_model_details('Elder Creek', 'fr')`
+`r print_model_details('Merced River', 'fr')`
 
 ## Floodplain Data
 
