@@ -294,18 +294,7 @@ use_data(thomes_creek_floodplain, overwrite = TRUE)
 # FULLY MODELED ----------
 filter(.metadata, method == 'full_model') %>% pull(watershed)
 
-# american river -------
-american_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
-                                        sheet = 'AmericanRiver') %>%
-  mutate(watershed = 'American River',
-         SR_floodplain_acres = modeled_floodplain_area_acres,
-         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-  select(flow_cfs,
-         FR_floodplain_acres = modeled_floodplain_area_acres,
-         SR_floodplain_acres, ST_floodplain_acres,
-         watershed)
 
-use_data(american_river_floodplain, overwrite = TRUE)
 
 
 
