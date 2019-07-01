@@ -32,11 +32,6 @@ calaveras_river_floodplain <- scale_fp_flow_area('Calaveras River')
 
 use_data(calaveras_river_floodplain, overwrite = TRUE)
 
-# Clear Creek-------------------------------------
-clear_creek_floodplain <- scale_fp_flow_area('Clear Creek')
-
-use_data(clear_creek_floodplain, overwrite = TRUE)
-
 # Cosumnes River -------------------------------------
 cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
 
