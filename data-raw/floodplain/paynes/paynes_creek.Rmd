@@ -32,10 +32,10 @@ source('data-raw/floodplain/floodplain_utils.R')
 paynes_creek_floodplain <- scale_fp_flow_area('Paynes Creek')
 
 knitr::kable(align = 'c', head(paynes_creek_floodplain, 5)) 
-# use_data(paynes_creek_floodplain, overwrite = TRUE)
+# devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*...with 17 more rows*
 
 ## Floodplain Plot
 ```{r}
