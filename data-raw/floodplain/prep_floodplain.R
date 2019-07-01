@@ -27,13 +27,6 @@ use_data(merced_river_floodplain, overwrite = TRUE)
 # NO MODELING, use proxy------------
 filter(.metadata, stringr::str_detect(method, "scaled_")) %>% pull(watershed)
 
-# TODO Ask mark about the difference in outcome from his sheet
-
-# Battle Creek-------------------------------------
-battle_creek_floodplain <- scale_fp_flow_area('Battle Creek')
-
-use_data(battle_creek_floodplain, overwrite = TRUE)
-
 # Bear Creek-------------------------------------
 bear_creek_floodplain <- scale_fp_flow_area('Bear Creek')
 
