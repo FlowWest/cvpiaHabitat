@@ -3,14 +3,6 @@ library(readxl)
 library(devtools)
 
 
-# elder creek----------------
-elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
-  mutate(watershed = 'Elder Creek')
-
-elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp)
-
-use_data(elder_creek_floodplain, overwrite = TRUE)
-
 # big chico creek----------------
 bigc_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BigChicoCreek') %>%
   mutate(watershed = 'Big Chico Creek')
