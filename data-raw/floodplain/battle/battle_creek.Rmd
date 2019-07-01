@@ -30,11 +30,11 @@ source('data-raw/floodplain/floodplain_utils.R')
 # TODO Ask mark about the difference in outcome from his sheet
 battle_creek_floodplain <- scale_fp_flow_area('Battle Creek')
 
-knitr::kable(align = 'c', head(battle_creek_floodplain, 5)) 
-# use_data(battle_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(battle_creek_floodplain, 5))
+# devtools::use_data(battle_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*...with 17 more rows*
 
 ## Floodplain Plot
 ```{r}
