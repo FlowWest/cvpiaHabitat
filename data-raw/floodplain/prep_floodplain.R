@@ -2,15 +2,6 @@ library(tidyverse)
 library(readxl)
 library(devtools)
 
-
-# butte creek----------------
-butte_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
-  mutate(watershed = 'Butte Creek')
-
-butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_fp)
-
-use_data(butte_creek_floodplain, overwrite = TRUE)
-
 # bear river----------------
 bear_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BearRiver') %>%
   mutate(watershed = 'Bear River')
