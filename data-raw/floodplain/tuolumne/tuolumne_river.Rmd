@@ -14,7 +14,16 @@ library(cvpiaHabitat)
 ```
 
 ```{r}
-tuolumne_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'TuolumneRiver') %>%
+source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+`r print_model_details('Tuolumne River', 'fr')`
+
+## Floodplain Data
+```{r}
+tuolumne_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', 
+                                        sheet = 'TuolumneRiver') %>%
   mutate(watershed = 'Tuolumne River',
          SR_floodplain_acres = modeled_floodplain_area_acres,
          ST_floodplain_acres = modeled_floodplain_area_acres) %>%
@@ -23,7 +32,31 @@ tuolumne_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAre
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
-tuolumne_river_floodplain
+threshold <- tuolumne_fp %>% 
+  filter(FR_floodplain_acres == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
 
-# use_data(tuolumne_river_floodplain, overwrite = TRUE)
+tuolumne_river_floodplain <- tuolumne_fp %>% 
+  filter(flow_cfs >= threshold)
+
+knitr::kable(align = 'c', head(tuolumne_river_floodplain, 5))
+# devtools::use_data(tuolumne_river_floodplain, overwrite = TRUE)
 ```
+
+*...with 28 more rows*
+
+## Floodplain Plot
+```{r}
+tuolumne_river_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Spring Run Chinook` = SR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+```
+
