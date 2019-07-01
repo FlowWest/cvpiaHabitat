@@ -307,18 +307,7 @@ american_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAre
 
 use_data(american_river_floodplain, overwrite = TRUE)
 
-# feather river -------
-feather_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
-                                       sheet = 'FeatherRiver') %>%
-  mutate(watershed = 'Feather River',
-         SR_floodplain_acres = modeled_floodplain_area_acres,
-         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-  select(flow_cfs,
-         FR_floodplain_acres = modeled_floodplain_area_acres,
-         SR_floodplain_acres, ST_floodplain_acres,
-         watershed)
 
-use_data(feather_river_floodplain, overwrite = TRUE)
 
 
 
