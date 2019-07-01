@@ -82,27 +82,23 @@ scale_fp_flow_area <- function(ws) {
   proxy_watershed <- stringr::str_to_title(stringr::str_replace(watershed_metadata$scaling_watershed, '_', ' '))
 
   if (proxy_watershed == 'Deer Creek') {
-    df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek') %>%
-      mutate(watershed = 'Deer Creek',
-             SR_floodplain_acres = modeled_floodplain_area_acres,
-             ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-      select(flow_cfs,
-             FR_floodplain_acres = modeled_floodplain_area_acres,
-             SR_floodplain_acres, ST_floodplain_acres,
-             watershed)
+    temp_df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek')
+
   } else if (proxy_watershed == 'Cottonwood Creek') {
-    df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek') %>%
-      mutate(watershed = 'Cottonwood Creek',
-             SR_floodplain_acres = modeled_floodplain_area_acres,
-             ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-      select(flow_cfs,
-             FR_floodplain_acres = modeled_floodplain_area_acres,
-             SR_floodplain_acres, ST_floodplain_acres,
-             watershed)
+    temp_df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek')
   } else {
+    ## TODO what is this else condition for?
     watershed_rda_name <- paste0(watershed_metadata$scaling_watershed, '_floodplain')
     df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
   }
+
+  bank_full_flow <- temp_df %>%
+    filter(modeled_floodplain_area_acres == 0) %>%
+    summarise(max = max(flow_cfs)) %>%
+    pull(max)
+
+  df <- temp_df %>%
+    filter(flow_cfs >=  bank_full_flow)
 
   proxy_watershed_metadata <- filter(.metadata, watershed == proxy_watershed)
 
@@ -110,28 +106,28 @@ scale_fp_flow_area <- function(ws) {
   scaled_flow <- df$flow_cfs * watershed_metadata$dec_jun_mean_flow_scaling
 
   # fall run area
-  #divide floodplain area by watershed length of proxy watershed to get area/mile, scale to hydrology
-  scaled_area_per_mile <- (df$FR_floodplain_acres / proxy_watershed_metadata$FR_length_modeled_mi) *
+  # divide floodplain area by watershed length of proxy watershed to get area/mile, scale to hydrology
+  scaled_area_per_mile_FR <- (df$modeled_floodplain_area_acres / proxy_watershed_metadata$FR_length_modeled_mi) *
     watershed_metadata$dec_jun_mean_flow_scaling
 
   # apportion area by high gradient/low gradient, .1 is downscaling for high gradient
-  fp_area_FR <- (scaled_area_per_mile * watershed_metadata$FR_low_gradient_length_mi) +
-    (scaled_area_per_mile * watershed_metadata$FR_high_gradient_length_mi * 0.1)
+  fp_area_FR <- (scaled_area_per_mile_FR * watershed_metadata$FR_low_gradient_length_mi) +
+    (scaled_area_per_mile_FR * watershed_metadata$FR_high_gradient_length_mi * 0.1)
 
   # steelhead area
-  scaled_area_per_mile <- (df$ST_floodplain_acres / proxy_watershed_metadata$FR_length_modeled_mi) *
+  scaled_area_per_mile_ST <- (df$modeled_floodplain_area_acres / proxy_watershed_metadata$ST_length_modeled_mi) *
     watershed_metadata$dec_jun_mean_flow_scaling
 
-  fp_area_ST <- (scaled_area_per_mile * watershed_metadata$ST_low_gradient_length_mi) +
-    (scaled_area_per_mile * watershed_metadata$ST_high_gradient_length_mi * 0.1)
+  fp_area_ST <- (scaled_area_per_mile_ST * watershed_metadata$ST_low_gradient_length_mi) +
+    (scaled_area_per_mile_ST * watershed_metadata$ST_high_gradient_length_mi * 0.1)
 
   if (spring_run_present) {
     # spring run floodplain area
-    scaled_area_per_mile <- (df$SR_floodplain_acres / proxy_watershed_metadata$FR_length_modeled_mi) *
+    scaled_area_per_mile_SR <- (df$modeled_floodplain_area_acres / proxy_watershed_metadata$SR_length_modeled_mi) *
       watershed_metadata$dec_jun_mean_flow_scaling
 
-    fp_area_SR <- (scaled_area_per_mile * watershed_metadata$SR_low_gradient_length_mi) +
-      (scaled_area_per_mile * watershed_metadata$SR_high_gradient_length_mi * 0.1)
+    fp_area_SR <- (scaled_area_per_mile_SR * watershed_metadata$SR_low_gradient_length_mi) +
+      (scaled_area_per_mile_SR * watershed_metadata$SR_high_gradient_length_mi * 0.1)
 
     return(data.frame(
       flow_cfs = scaled_flow,
