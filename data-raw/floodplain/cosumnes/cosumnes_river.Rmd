@@ -1,0 +1,22 @@
+---
+title: "Cosumnes River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 1, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+```{r}
+# TODO Ask mark about the difference in outcome from his sheet
+source('data-raw/floodplain/floodplain_utils.R')
+cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
+cosumnes_river_floodplain
+# use_data(cosumnes_river_floodplain, overwrite = TRUE)
+```

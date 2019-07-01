@@ -32,11 +32,6 @@ calaveras_river_floodplain <- scale_fp_flow_area('Calaveras River')
 
 use_data(calaveras_river_floodplain, overwrite = TRUE)
 
-# Cosumnes River -------------------------------------
-cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
-
-use_data(cosumnes_river_floodplain, overwrite = TRUE)
-
 # Mokelumne River -------------------------------------
 # see data-raw/instream/mokelumne/mokelumne_river.Rmd
 
