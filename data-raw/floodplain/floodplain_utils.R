@@ -24,6 +24,8 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
 
   df <- df %>%
     filter(flow_cfs >= threshold)
+
+  # TODO what is this for???
   # if (any(is.na(df$modeled_area_acres))) {
   #   # if there is no total area modeled use value supplied from Mark Gard
   #   fp_area <- df$modeled_floodplain_area_acres
@@ -118,6 +120,9 @@ scale_fp_flow_area <- function(ws) {
   # divide floodplain area by watershed length of proxy watershed to get area/mile, scale to hydrology
   scaled_area_per_mile_FR <- (df$modeled_floodplain_area_acres / proxy_watershed_metadata$FR_length_modeled_mi) *
     watershed_metadata$dec_jun_mean_flow_scaling
+
+  # TODO Deer Creek and Cottonwood Creek have the same values for lengths for all 3 species, why?
+  # if this is fine, we can refactor and simplify this code
 
   # apportion area by high gradient/low gradient, .1 is downscaling for high gradient
   fp_area_FR <- (scaled_area_per_mile_FR * watershed_metadata$FR_low_gradient_length_mi) +
