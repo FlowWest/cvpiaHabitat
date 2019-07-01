@@ -21,16 +21,6 @@ use_data(merced_river_floodplain, overwrite = TRUE)
 
 # proxy watersheds for non-modeled watersheds----------------
 
-# Cottonwood Creek -------------
-filter(.metadata, watershed == 'Cottonwood Creek') %>% glimpse
-
-cotton_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek') %>%
-  mutate(watershed = 'Cottonwood Creek')
-
-cottonwood_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Cottonwood Creek', df = cotton_fp)
-
-use_data(cottonwood_creek_floodplain, overwrite = TRUE)
-
 # no modeling exists method for creating flow to fp area-------------
 
 
