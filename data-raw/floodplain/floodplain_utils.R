@@ -1,3 +1,4 @@
+# TODO check that metadata sheet is up to date
 .metadata <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MetaData',
                         col_types = c('text', 'text', 'text', 'text',
                                       rep('numeric', 17), 'text', 'numeric', 'text'), na = 'na')
