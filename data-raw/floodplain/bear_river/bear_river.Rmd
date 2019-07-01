@@ -26,16 +26,23 @@ source('data-raw/floodplain/floodplain_utils.R')
 bear_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BearRiver') %>%
   mutate(watershed = 'Bear River')
 
-bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_fp) %>%
+threshold <- bear_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+bear_df <- bear_fp %>% 
+  filter(flow_cfs >= threshold)
+
+bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_df) %>%
   mutate(ST_floodplain_acres = FR_floodplain_acres)
 
 knitr::kable(align = 'c', head(bear_river_floodplain, 5)) 
-
-# use_data(bear_river_floodplain, overwrite = TRUE)
+# devtools::use_data(bear_river_floodplain, overwrite = TRUE)
 ```
 
 
-*...with 33 more rows*
+*...with 30 more rows*
 
 ## Floodplain Plot
 ```{r}
