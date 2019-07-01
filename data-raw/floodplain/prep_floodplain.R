@@ -20,15 +20,6 @@ merced_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Merced River',
 use_data(merced_river_floodplain, overwrite = TRUE)
 
 # proxy watersheds for non-modeled watersheds----------------
-# Deer Creek-------------------------------------
-filter(.metadata, watershed == 'Deer Creek') %>% glimpse
-
-deer_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek') %>%
-  mutate(watershed = 'Deer Creek')
-
-deer_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Deer Creek', df = deer_fp)
-
-use_data(deer_creek_floodplain, overwrite = TRUE)
 
 # Cottonwood Creek -------------
 filter(.metadata, watershed == 'Cottonwood Creek') %>% glimpse
