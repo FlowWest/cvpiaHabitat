@@ -30,7 +30,7 @@ knitr::kable(align = 'c', head(stony_creek_floodplain, 5))
 # use_data(stony_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*...with 27 more rows*
 
 ## Floodplain Plot
 ```{r}
