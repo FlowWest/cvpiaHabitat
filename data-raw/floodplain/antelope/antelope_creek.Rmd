@@ -25,12 +25,11 @@ source('data-raw/floodplain/floodplain_utils.R')
 ```{r}
 # TODO Ask mark about the difference in outcome from his sheet
 antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
-
-knitr::kable(align = 'c', head(antelope_creek_floodplain, 5)) 
-# use_data(antelope_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(antelope_creek_floodplain, 5))
+# devtools::use_data(antelope_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*...with 17 more rows*
 
 ## Floodplain Plot
 ```{r}
