@@ -37,11 +37,6 @@ cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
 
 use_data(cosumnes_river_floodplain, overwrite = TRUE)
 
-# Cow Creek-------------------------------------
-cow_creek_floodplain <- scale_fp_flow_area('Cow Creek')
-
-use_data(cow_creek_floodplain, overwrite = TRUE)
-
 # Mill Creek-------------------------------------
 mill_creek_floodplain <- scale_fp_flow_area('Mill Creek')
 
