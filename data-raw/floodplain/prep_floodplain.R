@@ -40,11 +40,6 @@ use_data(cosumnes_river_floodplain, overwrite = TRUE)
 # Mokelumne River -------------------------------------
 # see data-raw/instream/mokelumne/mokelumne_river.Rmd
 
-# Stony Creek-------------------------------------
-stony_creek_floodplain <- scale_fp_flow_area('Stony Creek')
-
-use_data(stony_creek_floodplain, overwrite = TRUE)
-
 # Thomes Creek-------------------------------------
 thomes_creek_floodplain <- scale_fp_flow_area('Thomes Creek')
 
