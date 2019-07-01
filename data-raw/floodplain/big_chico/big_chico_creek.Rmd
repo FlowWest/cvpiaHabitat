@@ -1,0 +1,26 @@
+---
+title: "Big Chico Creek"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 1, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+```{r}
+source('data-raw/floodplain/floodplain_utils.R')
+bigc_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BigChicoCreek') %>%
+  mutate(watershed = 'Big Chico Creek')
+
+big_chico_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', df = bigc_fp)
+
+big_chico_creek_floodplain
+
+# use_data(big_chico_creek_floodplain, overwrite = TRUE)
+```
