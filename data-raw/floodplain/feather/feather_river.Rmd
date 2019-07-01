@@ -14,6 +14,15 @@ library(cvpiaHabitat)
 ```
 
 ```{r}
+source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+`r print_model_details('Feather River', 'fr')`
+
+## Floodplain Data
+
+```{r}
 feather_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
                                        sheet = 'FeatherRiver') %>%
   mutate(watershed = 'Feather River',
@@ -24,7 +33,21 @@ feather_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainArea
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
-feather_river_floodplain
-
+knitr::kable(align = 'c', head(feather_river_floodplain, 5))
 # use_data(feather_river_floodplain, overwrite = TRUE)
+```
+
+*...with 35 more rows*
+
+## Floodplain Plot
+```{r}
+feather_river_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
 ```
