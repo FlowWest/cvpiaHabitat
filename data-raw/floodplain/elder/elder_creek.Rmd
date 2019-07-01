@@ -15,11 +15,36 @@ library(cvpiaHabitat)
 
 ```{r}
 source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+`r print_model_details('Elder Creek', 'fr')`
+
+## Floodplain Data
+
+```{r}
 elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
   mutate(watershed = 'Elder Creek')
 
 elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp)
 
-elder_creek_floodplain
-# use_data(elder_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(elder_creek_floodplain, 5))
+# devtools::use_data(elder_creek_floodplain, overwrite = TRUE)
 ```
+
+*...with 24 more rows*
+
+## Floodplain Plot
+```{r}
+elder_creek_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+```
+
+
