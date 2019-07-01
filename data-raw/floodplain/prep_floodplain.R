@@ -28,10 +28,6 @@ use_data(merced_river_floodplain, overwrite = TRUE)
 filter(.metadata, stringr::str_detect(method, "scaled_")) %>% pull(watershed)
 
 # TODO Ask mark about the difference in outcome from his sheet
-# Antelope Creek-------------------------------------
-antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
-
-use_data(antelope_creek_floodplain, overwrite = TRUE)
 
 # Battle Creek-------------------------------------
 battle_creek_floodplain <- scale_fp_flow_area('Battle Creek')
