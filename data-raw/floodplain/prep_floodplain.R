@@ -27,11 +27,6 @@ use_data(merced_river_floodplain, overwrite = TRUE)
 # NO MODELING, use proxy------------
 filter(.metadata, stringr::str_detect(method, "scaled_")) %>% pull(watershed)
 
-# Calaveras River -------------------------------------
-calaveras_river_floodplain <- scale_fp_flow_area('Calaveras River')
-
-use_data(calaveras_river_floodplain, overwrite = TRUE)
-
 # Mokelumne River -------------------------------------
 # see data-raw/instream/mokelumne/mokelumne_river.Rmd
 
