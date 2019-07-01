@@ -15,13 +15,37 @@ library(cvpiaHabitat)
 
 ```{r}
 source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+`r print_model_details('Bear River', 'fr')`
+
+## Floodplain Data
+
+```{r}
 bear_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BearRiver') %>%
   mutate(watershed = 'Bear River')
 
 bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_fp) %>%
   mutate(ST_floodplain_acres = FR_floodplain_acres)
 
-bear_river_floodplain
+knitr::kable(align = 'c', head(bear_river_floodplain, 5)) 
 
 # use_data(bear_river_floodplain, overwrite = TRUE)
+```
+
+
+*...with 33 more rows*
+
+## Floodplain Plot
+```{r}
+bear_river_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres, 
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
 ```
