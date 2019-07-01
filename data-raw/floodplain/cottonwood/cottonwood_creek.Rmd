@@ -31,7 +31,6 @@ source('data-raw/floodplain/floodplain_utils.R')
 ## Floodplain Data
 
 ```{r}
-source('data-raw/floodplain/floodplain_utils.R')
 cotton_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek') %>%
   mutate(watershed = 'Cottonwood Creek')
 
