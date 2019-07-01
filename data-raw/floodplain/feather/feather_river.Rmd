@@ -43,6 +43,7 @@ knitr::kable(align = 'c', head(feather_river_floodplain, 5))
 ```{r}
 feather_river_floodplain %>% 
   rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Spring Run Chinook` = SR_floodplain_acres,
          `Steelhead` = ST_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
