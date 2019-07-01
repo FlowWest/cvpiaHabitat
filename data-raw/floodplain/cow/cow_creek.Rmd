@@ -33,10 +33,10 @@ source('data-raw/floodplain/floodplain_utils.R')
 cow_creek_floodplain <- scale_fp_flow_area('Cow Creek')
 
 knitr::kable(align = 'c', head(cow_creek_floodplain, 5)) 
-# use_data(cow_creek_floodplain, overwrite = TRUE)
+# devtools::use_data(cow_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*...with 17 more rows*
 
 ## Floodplain Plot
 ```{r}
