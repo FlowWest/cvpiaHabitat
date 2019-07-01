@@ -320,18 +320,7 @@ feather_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainArea
 
 use_data(feather_river_floodplain, overwrite = TRUE)
 
-# san joaquin river -------
-san_joaquin_river_floodplain <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx',
-                                           sheet = 'SanJoaquinRiver') %>%
-  mutate(watershed = 'San Joaquin River',
-         SR_floodplain_acres = modeled_floodplain_area_acres,
-         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
-  select(flow_cfs,
-         FR_floodplain_acres = modeled_floodplain_area_acres,
-         SR_floodplain_acres, ST_floodplain_acres,
-         watershed)
 
-use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 
 
 
