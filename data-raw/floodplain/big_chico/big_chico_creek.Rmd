@@ -15,12 +15,44 @@ library(cvpiaHabitat)
 
 ```{r}
 source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+
+### Fall Run
+`r print_model_details('Big Chico Creek', 'fr')`
+
+### Spring Run and Steelhead
+`r print_model_details('Big Chico Creek', 'sr')`
+
+## Floodplain Data
+
+```{r}
 bigc_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BigChicoCreek') %>%
   mutate(watershed = 'Big Chico Creek')
 
-big_chico_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', df = bigc_fp)
+threshold_flow <- bigc_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  summarise(max_flow = max(flow_cfs)) %>% 
+  pull(max_flow)
 
-big_chico_creek_floodplain
+big_chico_creek_floodplain <- 
+  scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', 
+                                   df = filter(bigc_fp, flow_cfs >= threshold_flow))
 
+knitr::kable(align = 'c', big_chico_creek_floodplain) 
 # use_data(big_chico_creek_floodplain, overwrite = TRUE)
+```
+
+## Floodplain Plot
+```{r}
+big_chico_creek_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres, `Spring Run Chinook` = SR_floodplain_acres, 
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
 ```
