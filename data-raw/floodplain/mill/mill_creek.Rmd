@@ -19,6 +19,10 @@ source('data-raw/floodplain/floodplain_utils.R')
 
 ## Floodplain Modeling Details
 
+**Data Source:**
+
+[Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
+
 ### Fall Run
 `r print_model_details('Mill Creek', 'fr')`
 
