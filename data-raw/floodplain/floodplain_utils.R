@@ -2,38 +2,20 @@ library(tidyverse)
 library(readxl)
 
 # TODO check that metadata sheet is up to date
-.metadata <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MetaData',
-                        col_types = c('text', 'text', 'text', 'text',
-                                      rep('numeric', 17), 'text', 'numeric', 'text'), na = 'na')
+metadata <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MetaData',
+                       col_types = c('text', 'text', 'text', 'text',
+                                     rep('numeric', 17), 'text', 'numeric', 'text'), na = 'na')
+ws = 'Bear River'
+df = bear_df
 
 # function for partially modeled watersheds---------------------------------
 # ws = watershed
 # df = flow to area relationship dataframe for watershed
 scale_fp_flow_area_partial_model <- function(ws, df) {
 
-  watershed_metadata <- filter(.metadata, watershed == ws)
+  watershed_metadata <- filter(metadata, watershed == ws)
+  steelhead_present <- !is.na(watershed_metadata$ST_rearing_length_mi)
   spring_run_present <- !is.na(watershed_metadata$SR_rearing_length_mi)
-
-  # remove channel area from total wetted area to obtain floodplain area
-  watershed_channel_area <- watershed_metadata$FR_channel_area_of_length_modeled_acres # get channel area
-
-  threshold <- df %>%
-    filter(modeled_floodplain_area_acres == 0) %>%
-    summarise(max = max(flow_cfs)) %>%
-    pull(max)
-
-  df <- df %>%
-    filter(flow_cfs >= threshold)
-
-  # TODO what is this for???
-  # if (any(is.na(df$modeled_area_acres))) {
-  #   # if there is no total area modeled use value supplied from Mark Gard
-  #   fp_area <- df$modeled_floodplain_area_acres
-  # } else {
-  #   # subtract channel area from total wetted area, no values less than 0
-  #   fp_area <- ifelse(df$modeled_area_acres - watershed_channel_area >= 0,
-  #                     df$modeled_area_acres - watershed_channel_area, 0)
-  # }
 
   fp_area <- df$modeled_floodplain_area_acres
 
@@ -47,12 +29,10 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
   fp_area_FR <- (fp_area_per_mile_modeled * low_grad_len_FR) +
     (fp_area_per_mile_modeled * high_grad_len_FR * 0.1)
 
-  # steel head floodplain area
-  low_grad_len_ST <- watershed_metadata$ST_low_gradient_length_mi
-  high_grad_len_ST <- watershed_metadata$ST_high_gradient_length_mi
-
-  fp_area_ST <- (fp_area_per_mile_modeled * low_grad_len_ST) +
-    (fp_area_per_mile_modeled * high_grad_len_ST * 0.1)
+  result <- data.frame(
+    flow_cfs = df$flow_cfs,
+    FR_floodplain_acres = fp_area_FR
+  )
 
   if (spring_run_present) {
     # spring run floodplain area
@@ -62,22 +42,23 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
     fp_area_SR <- (fp_area_per_mile_modeled * low_grad_len_SR) +
       (fp_area_per_mile_modeled * high_grad_len_SR * 0.1)
 
-    return(data.frame(
-      flow_cfs = df$flow_cfs,
-      FR_floodplain_acres = fp_area_FR,
-      SR_floodplain_acres = fp_area_SR,
-      ST_floodplain_acres = fp_area_ST,
-      watershed = ws
-    ))
+    result <- bind_cols(result, SR_floodplain_acres = fp_area_SR)
+  }
+
+  # steel head floodplain area
+  if (steelhead_present) {
+    low_grad_len_ST <- watershed_metadata$ST_low_gradient_length_mi
+    high_grad_len_ST <- watershed_metadata$ST_high_gradient_length_mi
+
+    fp_area_ST <- (fp_area_per_mile_modeled * low_grad_len_ST) +
+      (fp_area_per_mile_modeled * high_grad_len_ST * 0.1)
+
+    result <- bind_cols(result, ST_floodplain_acres = fp_area_ST)
   }
 
   return(
-    data.frame(
-      flow_cfs = df$flow_cfs,
-      FR_floodplain_acres = fp_area_FR,
-      ST_floodplain_acres = fp_area_ST,
-      watershed = ws
-    ))
+    mutate(result, watershed = ws)
+  )
 
 }
 
@@ -86,7 +67,7 @@ scale_fp_flow_area_partial_model <- function(ws, df) {
 
 scale_fp_flow_area <- function(ws) {
 
-  watershed_metadata <- filter(.metadata, watershed == ws)
+  watershed_metadata <- filter(metadata, watershed == ws)
   spring_run_present <- !is.na(watershed_metadata$SR_rearing_length_mi)
 
   # appropriate proxy from watershed, df has flow to area curve
@@ -111,7 +92,7 @@ scale_fp_flow_area <- function(ws) {
   df <- temp_df %>%
     filter(flow_cfs >=  bank_full_flow)
 
-  proxy_watershed_metadata <- filter(.metadata, watershed == proxy_watershed)
+  proxy_watershed_metadata <- filter(metadata, watershed == proxy_watershed)
 
   # scale flow
   scaled_flow <- df$flow_cfs * watershed_metadata$dec_jun_mean_flow_scaling
@@ -163,7 +144,7 @@ scale_fp_flow_area <- function(ws) {
 # modeling details------------------------------------
 print_model_details <- function(ws, species) {
 
-  watershed_doc_vars <- filter(.metadata, watershed == ws)
+  watershed_doc_vars <- filter(metadata, watershed == ws)
 
   if (species == 'sr' & is.na(watershed_doc_vars$SR_length_modeled_mi)) {
     warning(sprintf('There are no spring run in %s.', ws))
