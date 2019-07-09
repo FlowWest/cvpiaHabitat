@@ -19,6 +19,9 @@ source('data-raw/floodplain/floodplain_utils.R')
 
 ## Floodplain Modeling Details
 
+**Data Source:**
+[USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf)
+
 ### Fall Run
 `r print_model_details('Cottonwood Creek', 'fr')`
 
