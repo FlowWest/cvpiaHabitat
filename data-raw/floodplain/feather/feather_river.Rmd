@@ -18,6 +18,10 @@ source('data-raw/floodplain/floodplain_utils.R')
 ```
 
 ## Floodplain Modeling Details
+
+**Data Source:**
+[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
+
 `r print_model_details('Feather River', 'fr')`
 
 ## Floodplain Data
