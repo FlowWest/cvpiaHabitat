@@ -20,6 +20,9 @@ source('data-raw/floodplain/floodplain_utils.R')
 
 ## Floodplain Modeling Details
 
+**Data Source:**
+[Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
+
 ### Fall Run
 `r print_model_details('Cottonwood Creek', 'fr')`
 
