@@ -14,9 +14,37 @@ library(cvpiaHabitat)
 ```
 
 ```{r}
-# TODO Ask mark about the difference in outcome from his sheet
 source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+
+**Data Source:**
+
+[TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf)
+
+`r print_model_details('Calaveras River', 'fr')`
+
+## Floodplain Data
+
+```{r}
 calaveras_river_floodplain <- scale_fp_flow_area('Calaveras River')
-calaveras_river_floodplain
+
+knitr::kable(align = 'c', head(calaveras_river_floodplain, 5))
 # use_data(calaveras_river_floodplain, overwrite = TRUE)
+```
+
+*...with 28 more rows*
+
+## Floodplain Plot
+```{r}
+calaveras_river_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres, 
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
 ```
