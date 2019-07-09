@@ -160,6 +160,7 @@ print_model_details <- function(ws, species) {
     channel_area_modeled <- watershed_doc_vars$FR_channel_area_of_length_modeled_acres
     low_grad <- round(watershed_doc_vars$FR_low_gradient_length_mi, 1)
     high_grad <- round(watershed_doc_vars$FR_high_gradient_length_mi, 1)
+    modeled_length <- round(watershed_doc_vars$FR_length_modeled_mi, 1)
   }
 
   if (species == 'sr') {
@@ -167,6 +168,7 @@ print_model_details <- function(ws, species) {
     channel_area_modeled <- watershed_doc_vars$SR_channel_area_of_length_modeled_acres
     low_grad <- round(watershed_doc_vars$SR_low_gradient_length_mi, 1)
     high_grad <- round(watershed_doc_vars$SR_high_gradient_length_mi, 1)
+    modeled_length <- round(watershed_doc_vars$SR_length_modeled_mi, 1)
   }
 
   if (species == 'st') {
@@ -174,6 +176,7 @@ print_model_details <- function(ws, species) {
     channel_area_modeled <- watershed_doc_vars$ST_channel_area_of_length_modeled_acres
     low_grad <- round(watershed_doc_vars$ST_low_gradient_length_mi, 1)
     high_grad <- round(watershed_doc_vars$ST_high_gradient_length_mi, 1)
+    modeled_length <- round(watershed_doc_vars$ST_length_modeled_mi, 1)
   }
 
   if (watershed_method == 'full_model_nmfs') {
