@@ -19,6 +19,10 @@ source('data-raw/floodplain/floodplain_utils.R')
 ```
 
 ## Floodplain Modeling Details
+
+**Data Source:**
+[SRH-2D hydraulic model developed by Dr. Greg Pasternack at the University of California, Davis](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA_Annual_Progress_Report_Fiscal_Year_2014_Yuba_SRH2D_Page18.pdf)
+
 `r print_model_details('Yuba River', 'fr')`
 
 ## Floodplain Data
