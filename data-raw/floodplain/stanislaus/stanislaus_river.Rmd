@@ -19,6 +19,10 @@ source('data-raw/floodplain/floodplain_utils.R')
 ```
 
 ## Floodplain Modeling Details
+
+**Data Source:**
+[SRH-2D hyraulic model developed by NewFields (now FlowWest)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/NewFields+Stanislaus+Model+Documentation.pdf)
+
 `r print_model_details('Stanislaus River', 'fr')`
 
 ## Floodplain Data
