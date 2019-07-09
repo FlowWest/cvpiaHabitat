@@ -18,7 +18,11 @@ source('data-raw/floodplain/floodplain_utils.R')
 ```
 
 ## Floodplain Modeling Details
-`r print_model_details('Tuolumne River', 'fr')`
+
+**Data Source:**
+[TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf)
+
+The entire mapped rearing extent of 54.33 miles was modeled by TID and MID using a TUFLOW hydraulic model with 1D channel and 2D overbank components. This approach directly modeled inundated floodplain area.
 
 ## Floodplain Data
 ```{r}
