@@ -15,7 +15,7 @@ library(scales)
 ```
 
 ## Future Data Improvements
-Scale spawning wua, examine emails from Mark Gard and Charile Chamberline to try scaling exercise of spawning habitat
+None Planned
 
 ## Instream Spawning and Rearing Habiat
 
