@@ -1,0 +1,51 @@
+---
+title: "Merced River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 1, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+```{r}
+source('data-raw/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Modeling Details
+
+**Data Source:**
+[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/TO25-ST8_Tech_Memo_SJR.pdf)
+
+`r print_model_details('Merced River', 'fr')`
+
+## Floodplain Data
+
+```{r}
+merced_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MercedRiver') %>%
+  mutate(watershed = 'Merced River')
+
+merced_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Merced River', df = merced_fp)
+knitr::kable(align = 'c', head(merced_river_floodplain, 5))
+# devtools::use_data(merced_river_floodplain, overwrite = TRUE)
+```
+
+*...with 13 more rows*
+
+## Floodplain Plot
+```{r}
+merced_river_floodplain %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres,
+         `Steelhead` = ST_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+```
