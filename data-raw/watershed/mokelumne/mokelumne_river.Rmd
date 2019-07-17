@@ -1,0 +1,216 @@
+---
+title: "Mokelumne River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
+date: "June 18, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(scales)
+```
+
+## Future Data Improvements
+
+* EBMUD developing new steelhead rearing habitat flow:area relationships (expected January 2019)
+* EBMUD developing new Fall Run floodplain rearing habitat flow:area relationships with Mark Gard (expected late 2019)
+
+
+## Instream Spawning and Rearing Habitat
+**Data Sources:** EBMUD 2016 and [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf)    
+
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
+
+### Combine Instream Spawning and Rearing Habitat Data
+
+The instream spawning and rearing habitat data described above is combined for use in the DSM in the following format. 
+```{r,include=FALSE}
+# spawning reach length
+moke_spawn_len <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'Mokelumne River', lifestage == 'spawning') %>% 
+  pull(feet)
+
+# 'LMR_habitat__s_v2mw_to_MT.xlsx'
+# spawning: 'Spawning WUA' tab A4:C8 
+spawning <- read_excel('data-raw/watershed/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Spawning WUA', range = 'A4:C8', 
+                       col_names = c('flow_cfs', 'FR_spawn_sqft', 'ST_spawn_sqft')) %>% 
+  mutate(FR_spawn_wua = FR_spawn_sqft/(moke_spawn_len / 1000), #sqft_per_1000ft
+         ST_spawn_wua = ST_spawn_sqft/(moke_spawn_len / 1000)) %>% 
+  select(flow_cfs, FR_spawn_wua, ST_spawn_wua)
+
+spawning
+```
+
+```{r, include=FALSE}
+# rearing reach length
+moke_rear_len <- cvpiaHabitat::watershed_lengths %>% 
+  filter(watershed == 'Mokelumne River', lifestage == 'rearing') %>% 
+  pull(feet)
+
+# 'LMR_habitat__s_v2mw_to_MT.xlsx'
+# rearing: 'Instream WUA' tab A2:C8 and A11:C14 and A17:C27 weighted average
+total_modeled_len <- 1.1 + 9.4 + 24.7
+
+rearing1 <- read_excel('data-raw/watershed/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Instream WUA', range = 'A2:C8') 
+rearing2 <- read_excel('data-raw/watershed/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Instream WUA', range = 'A11:C14')
+rearing3 <- read_excel('data-raw/watershed/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                       sheet = 'Instream WUA', range = 'A17:C27')
+
+Flow <- unique(sort(c(rearing1$Flow, rearing2$Flow, rearing3$Flow)))
+
+# reach 1 ------------
+r1 <- tibble(
+  Flow = Flow,
+  `Fall-run fry (ft2)` = approx(rearing1$Flow, rearing1$`Fall-run fry (ft2)`, 
+                                xout = Flow, rule = 2)$y,
+  `Fall-run juvenile (ft2)` = approx(rearing1$Flow, rearing1$`Fall-run juvenile (ft2)`, 
+                                     xout = Flow, rule = 2)$y,
+  rm = 1.1
+)
+
+# reach 2 ----------
+r2 <- tibble(
+  Flow = Flow,
+  `Fall-run fry (ft2)` = approx(rearing2$Flow, rearing2$`Fall-run fry (ft2)`, 
+                                xout = Flow, rule = 2)$y,
+  `Fall-run juvenile (ft2)` = approx(rearing2$Flow, rearing2$`Fall-run juvenile (ft2)`, 
+                                     xout = Flow, rule = 2)$y,
+  rm = 9.4
+)
+
+# reach 3 ----------
+r3 <- tibble(
+  Flow = Flow,
+  `Fall-run fry (ft2)` = approx(rearing3$Flow, rearing3$`Fall-run fry (ft2)`, 
+                                xout = Flow, rule = 2)$y,
+  `Fall-run juvenile (ft2)` = approx(rearing3$Flow, rearing3$`Fall-run juvenile (ft2)`, 
+                                     xout = Flow, rule = 2)$y,
+  rm = 24.7
+)
+
+# combine reaches
+rearing <- r1 %>% 
+  bind_rows(r2, r3) %>% 
+  gather(lifestage, sq_ft, -Flow, -rm) %>%
+  group_by(lifestage, Flow) %>% 
+  summarise(wua = sum(sq_ft/rm/5.28 * rm/total_modeled_len)) %>% 
+  spread(lifestage, wua) %>% 
+  rename(flow_cfs = Flow, FR_fry_wua = `Fall-run fry (ft2)`, FR_juv_wua = `Fall-run juvenile (ft2)`)
+
+
+# 300 cfs fry, double check calculation
+(203823/1.1/5.28 * 1.1/35.2 + 1718536/9.4/5.28 * 9.4/35.2 + 1697397/24.7/5.28 * 24.7/35.2) -
+(rearing %>% 
+  filter(flow_cfs == 300) %>% 
+  pull(FR_fry_wua))
+```
+
+```{r, include=FALSE}
+mokelumne_river_instream <- spawning %>% 
+  full_join(rearing) %>% 
+  arrange(flow_cfs) %>% 
+  mutate(watershed = 'Mokelumne River') %>% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, ST_spawn_wua, watershed)
+  
+knitr::kable(align = 'c' , head(mokelumne_river_instream, 5))
+#devtools::use_data(mokelumne_river_instream, overwrite = TRUE)
+
+
+```
+
+```{r, echo = FALSE}
+knitr::kable(align = 'c' , head(mokelumne_river_instream, 5))
+```
+
+
+*...with 47 more rows.*
+
+### Spawning WUA
+
+EBMUD provided a spawning habitat flow:area relationship covering the entire river. For each flow, the area was converted to an area per unit length by dividing the total spawning area by the length of the spawning reach mapped by the SIT.  
+
+#### Salmon Spawning WUA Plot
+
+The following plot shows the weighted usable spawning area rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR). These rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+
+```{r, echo=FALSE}
+spawning %>% 
+    ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() 
+
+```
+
+#### Steelhead Spawning WUA Plot
+
+The following plot shows the weighted usable spawning area rate in square feet per thousand feet of river for Steelhead (ST). These rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM.
+
+```{r, echo=FALSE}
+spawning %>% 
+    ggplot(aes(x = flow_cfs , y = ST_spawn_wua)) +
+    geom_line(color='#7570b3') +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() 
+
+```
+
+### Rearing WUA
+
+The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation so that the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow by weighting each area in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the SIT.   
+
+
+### Rearing WUA Plots
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+
+``` {r,echo=FALSE}
+mokelumne_river_instream %>% 
+  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != 'ST_adult_wua', lifestage != "ST_spawn_wua", lifestage != "ST_juv_wua", lifestage != "ST_fry_wua") %>%
+  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
+
+## Floodplain Modeling Details
+
+The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River. The following table contains the flow : floowplain area relationships used in the DSM.
+```{r, echo=FALSE}
+#'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal #low estimate
+#400 cfs = 0 acres 
+
+mokelumne_river_floodplain <- read_excel('data-raw/watershed/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx', 
+                      sheet = 'Floodplain (new flows)', range = 'C21:D26',
+                      col_names = c('flow_cfs', 'FR_floodplain_acres')) %>% 
+ bind_rows(tibble(flow_cfs = 400, FR_floodplain_acres = 0)) %>% 
+ arrange(flow_cfs) %>% 
+ mutate(SR_floodplain_acres = FR_floodplain_acres,
+        ST_floodplain_acres = FR_floodplain_acres,
+        watershed = "Mokelumne River")
+
+knitr::kable(align ='c', head(mokelumne_river_floodplain, 5))
+# devtools::use_data(mokelumne_river_floodplain, overwrite = TRUE)
+```
+
+*...with 2 more rows.*
+
+## Floodplain Plot
+```{r, echo = FALSE}
+mokelumne_river_floodplain %>% 
+  select(FR_floodplain_acres, flow_cfs, watershed) %>%
+  rename(`Fall Run Chinook, Spring Run Chinook, and Steelhead` = FR_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+```
