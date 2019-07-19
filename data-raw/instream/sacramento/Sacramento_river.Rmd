@@ -6,8 +6,8 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
-knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+# knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -21,26 +21,53 @@ None Planned
 **Data Source:**
 [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf) (pg 29-31)
 
-Spawning habitat area for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead is based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. Spawning habitat is only used in the Upper Sacramento River and Upper Mid-Sacramento River reaches of the life cycle model. The spawning WUA source data was developed for three study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (ACID) diversion dam. This source data is provided on pages 29 - 31 of FWS 2003. The Upper Sacramento fall run spawning WUA values include the spawning that occurs in the Upper and Upper-mid Sacramento River (Keswick to Deer Creek). The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. The A.C.I.D. boards are assumed to be in April 1st - October 31st. Mark Gard from the U.S. Fish and Wildlife Service combined the habitat data from these four studies and provided them for the entire Clear Creek watershed in a spreadsheet (see ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). 
+Spawning habitat area for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead are based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. The spawning WUA source data was developed in six study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (A.C.I.D.) diversion dam. The A.C.I.D. boards are in April 1st - October 31st. The Upper Sacramento fall run spawning WUA values include the spawning that occurs Keswick to Deer Creek. The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. Within the lifecycle model, spawning only occurs on the Sacramento River in the Upper Sacramento River reach, this habitat area includes the area of both the Upper Sacramento River and Upper Mid-Sacramento River reaches combined. Mark Gard from the U.S. Fish and Wildlife Service provided the data (see 'Sacramento' tab in ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). The data has been reorganized for clarity see (‘~/cvpiaHabitat/data-raw/instream/sacramento/upper_sacramento_river_instream’).
 
 Instream rearing habitat area is based on habitat modeling conducted by NOAA NMFS for their Winter Run Chinook Salmon life cycle model. The entire mapped rearing extent of the Sacramento River was modeled using the Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in their Winter Run Chinook Salmon life cycle model. NOAA NMFS provided tabular suitable rearing habitat area data for four reaches of the Sacramento River (Keswick to Battle Creek, Battle Creek to Feather River, and Feather River to Freeport) in the CVPIA life cycle model. The high quality depth and high quality velocity criteria ("Pref11") "ChanArea" value was used for instream habitat. High quality velocities were assumed to be less than or equal to 0.15 meters per second, and high quality depths were assumed to be between 0.2 meters and 1.5 meters. The NMFS habitat areas were scaled using the proportion of the CVPIA life cycle model reach within each NMFS study reach. The CVPIA life cycle model Upper Sacramento River reach extends from Keswick to Red Bluff (59.3 mi). This reach overlaps with two of the NMFS reaches, Keswick to Battle Creek (28.9 mi) and Battle Creek to the confluence with the Feather River (186.5 mi). The CVPIA life cycle model Upper-mid Sacramento River reach extends from Red Bluff to Wilkins Slough (122.3 mi) and is entirely within the Battle Creek to the Feather River reach of the NMFS model. The CVPIA life cycle model Lower-mid Sacramento River extends from Wilkins Slough to the American River (58.0 mi) and is represented by two of the NMFS model reaches, Battle Creek to the confluence with the Feather River (186.5 mi) and the confluence with the Feather River to Freeport (33.9 mi). Finally, the CVPIA life cycle model Lower Sacramento River reach extends from the confluence with the American River to Freeport (13.7 mi). This reach is entirely represented by the NMFS model reach that extends from the confluence with the Feather River to Freeport (33.4 mi). 
 
 
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, Winter Run Chinook Salmon, and Steelhead in the Tuolumne River.Units are in square feet per 1000 feet.
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, Winter Run Chinook Salmon, and Steelhead in the Tuolumne River. Units are in square feet per 1000 feet.
 
 ```{r, echo = FALSE}
-sac_spawn_in <- upper_sac_ACID_boards_in %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) %>%
-  rename(FR_spawn_WUA_in = FR_spawn_WUA, LFR_spawn_WUA_in=LFR_spawn_WUA, WR_spawn_WUA_in = WR_spawn_WUA, ST_spawn_WUA_in = ST_spawn_WUA)
+up_sac <- read_csv('upper_sacramento_river_instream.csv', skip = 1)
 
-sac_spawn_out <- upper_sac_ACID_boards_out %>% 
-  select(FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) %>%
-  rename(FR_spawn_WUA_out = FR_spawn_WUA, LFR_spawn_WUA_out=LFR_spawn_WUA, WR_spawn_WUA_out = WR_spawn_WUA, ST_spawn_WUA_out = ST_spawn_WUA)
+#6-2 upper sac spawning, 6-4 upper sac rearing
+upper_sac_ACID_boards_out <- up_sac %>%
+  select(flow_cfs:ST_spawn_WUA, Segment:length_unit) %>%
+  gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
+  filter(Segment != '6 ACID Boards In', !is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_length = sum(length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Upper Sacramento River')
 
-sac_spawn <- sac_spawn_in %>% bind_cols(sac_spawn_out)
+upper_sac_ACID_boards_in <- up_sac %>%
+  select(flow_cfs:ST_spawn_WUA, Segment:length_unit) %>%
+  gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
+  filter(Segment != '6 ACID Boards Out', !is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_length = sum(length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Upper Sacramento River')
+```
 
-knitr::kable(align = 'c', head(sac_spawn, 5))
+#### Spawning Habitat (A.C.I.D boards in)
+
+```{r}
+knitr::kable(align = 'c', head(upper_sac_ACID_boards_in, 5))
+```
+
+*...with 25 more rows.*
+
+#### Spawning Habitat (A.C.I.D boards out)
+
+```{r}
+knitr::kable(align = 'c', head(upper_sac_ACID_boards_out, 5))
 ```
 
 *...with 25 more rows.*
