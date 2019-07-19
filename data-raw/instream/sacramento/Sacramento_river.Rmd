@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = '100%')
 # knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -72,76 +72,26 @@ knitr::kable(align = 'c', head(upper_sac_ACID_boards_out, 5))
 
 *...with 25 more rows.*
 
-#### Fall Run Chinook Salmon Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+#### Spawning WUAs Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook, Late-fall Run Chinook, Winter Run Chinook, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
 
 ``` {r,echo=FALSE}
-sac_spawn_in <- upper_sac_ACID_boards_in %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
-sac_spawn_out <- upper_sac_ACID_boards_out %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
-sac_spawn_FR_plot <- sac_spawn_in %>% 
-  mutate(Type = 'FR_spawn_WUA_in') %>% 
-  bind_rows(sac_spawn_out %>% mutate(Type = 'FR_spawn_WUA_out'))
-ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = FR_spawn_WUA, color = Type))+
-  geom_line()+
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
-  scale_color_manual(values = c('#d95f02','#7570b3'))
-```
-
-#### Late Fall Run Chinook Salmon Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
-```{r, echo=FALSE}
-sac_spawn_in <- upper_sac_ACID_boards_in %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
-sac_spawn_out <- upper_sac_ACID_boards_out %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
-sac_spawn_FR_plot <- sac_spawn_in %>% 
-  mutate(Type = 'LFR_spawn_WUA_in') %>% 
-  bind_rows(sac_spawn_out %>% mutate(Type = 'LFR_spawn_WUA_out'))
-ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = LFR_spawn_WUA, color = Type))+
-  geom_line()+
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
-  scale_color_manual(values = c('#d95f02','#7570b3'))
-```
-
-#### Winter Run Chinook Salmon Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
-```{r, echo=FALSE}
-sac_spawn_in <- upper_sac_ACID_boards_in %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
-
-sac_spawn_out <- upper_sac_ACID_boards_out %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
-
-sac_spawn_FR_plot <- sac_spawn_in %>% 
-  mutate(Type = 'WR_spawn_WUA_in') %>% 
-  bind_rows(sac_spawn_out %>% mutate(Type = 'WR_spawn_WUA_out'))
-ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = WR_spawn_WUA, color = Type))+
-  geom_line()+
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
-  scale_color_manual(values = c('#d95f02','#7570b3'))
-```
-
-#### Steelhead Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
-
-``` {r, echo=FALSE}
-sac_spawn_in <- upper_sac_ACID_boards_in %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA)
-
-sac_spawn_out <- upper_sac_ACID_boards_out %>% 
-  select(flow_cfs, FR_spawn_WUA, LFR_spawn_WUA, WR_spawn_WUA, ST_spawn_WUA) 
-
-sac_spawn_FR_plot <- sac_spawn_in %>% 
-  mutate(Type = 'ST_spawn_WUA_in') %>% 
-  bind_rows(sac_spawn_out %>% mutate(Type = 'ST_spawn_WUA_out'))
-
-ggplot(data= sac_spawn_FR_plot, aes(x = flow_cfs, y = ST_spawn_WUA, color = Type))+
-  geom_line()+
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal()+
-  scale_color_manual(values = c('#d95f02','#7570b3'))
-
+upper_sac_ACID_boards_in %>% 
+  mutate(boards = 'A.C.I.D Boards In') %>% 
+  bind_rows(mutate(upper_sac_ACID_boards_out, boards = 'A.C.I.D Boards Out')) %>%
+  gather(species, wua, -flow_cfs, -watershed, -boards) %>% 
+  mutate(species = case_when(
+    species == 'FR_spawn_WUA' ~ 'Fall Run Chinook',
+    species == 'LFR_spawn_WUA'~ 'Late-fall Run Chinook',
+    species == 'ST_spawn_WUA' ~ 'Steelhead',
+    species == 'WR_spawn_WUA'~ 'Winter Run Chinook'
+  )) %>% 
+  ggplot(aes(x = flow_cfs, y = wua, color = species)) +
+  geom_line() +
+  facet_wrap(~boards, nrow = 2) +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2')
 ```
 
 ### Rearing WUA
