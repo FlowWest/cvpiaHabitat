@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -35,6 +35,52 @@ merced_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
  
 knitr::kable(align = 'c', head(merced_river_instream, 5))
 # devtools::use_data(merced_river_instream, overwrite = TRUE)
+```
+
+```{r}
+total <- 19.2
+flows = c(75, 100, 125, 150, 175, 200, 250, 300, 350, 400, 500, 600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 5000, 6000)
+
+spawn <- function(df) {approxfun(df$flow, df$ST_spawn_wua, rule = 2)}(flows)
+fry <- function(df) {approxfun(df$flow, df$ST_fry_wua, rule = 2)}(flows)
+juv <- function(df) {approxfun(df$flow, df$ST_juv_wua, rule = 2)}(flows)
+
+steelhead_reach_1 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A1:E31" ) 
+steelhead_reach_2 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A35:E65" ) 
+steelhead_reach_3 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A68:E98" )
+
+ST_spawn_WUA <- ((spawn(steelhead_reach_1) * 9.2) + (spawn(steelhead_reach_2) * 4.4) + (spawn(steelhead_reach_3)*5.6))/total
+ST_fry_WUA <- ((fry(steelhead_reach_1)*9.2)+(fry(steelhead_reach_2)*4.4)+(fry(steelhead_reach_3)*5.6))/total
+ST_juv_WUA <- ((juv(steelhead_reach_1)*9.2)+(juv(steelhead_reach_2)*4.4)+(juv(steelhead_reach_3)*5.6))/total
+
+merced_ST <- data.frame(flows, ST_spawn_WUA, ST_fry_WUA, ST_juv_WUA) %>%
+  mutate(Watershed = "Merced")
+
+knitr::kable(align = 'c', head(merced_ST, 5))
+steelhead_reach_1
+```
+
+
+
+```{r, include = FALSE}
+total <- 19.2
+flows = c(75, 100, 125, 150, 175, 200, 250, 300, 350,400, 500,600, 700, 800, 900, 1000, 1500, 2000, 2500, 3000, 3500, 4000, 5000, 6000)
+
+steelhead_reach_1 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A1:E31" ) %>%
+  mutate(length = 9.2)  
+steelhead_reach_2 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A35:E65" ) %>%
+  mutate(length = 4.4)
+steelhead_reach_3 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A68:E98" ) %>%
+  mutate(length = 5.6)
+merced_river_instream_steel <- bind_rows(steelhead_reach_1, steelhead_reach_2, steelhead_reach_3) %>% 
+   gather(lifestage, sq_ft, -flow, -length) %>% 
+   group_by(lifestage, flow ) %>% 
+   summarise(wua = sum(sq_ft * length/total, na.rm = TRUE)) %>% 
+   spread(lifestage, wua) %>% 
+   select(flow, ST_spawn_wua, ST_fry_wua, ST_juv_wua) %>%
+   mutate(watershed = 'Merced River') 
+
+knitr::kable(align = 'c', head(merced_river_instream_steel, 5))
 ```
 
 *...with 25 more rows.* 
