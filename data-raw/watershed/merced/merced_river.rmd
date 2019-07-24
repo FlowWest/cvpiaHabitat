@@ -27,6 +27,66 @@ The instream spawning and rearing habitat data described above for Fall Run Chin
 
 
 ```{r,echo=FALSE}
+reach_miles <- c(9.2, 4.4, 5.6)
+names(reach_miles) <- 1:3
+
+# fall run data
+fr_reach_1 <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                         range = "A51:D81", sheet = 'Merced') %>% 
+  mutate(reach = 1, miles = reach_miles[reach])
+
+fr_reach_2 <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                         range = "A84:D114", sheet = 'Merced') %>% 
+  mutate(reach = 2, miles = reach_miles[reach])
+
+fr_reach_3 <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+                         range = "A117:D147", sheet = 'Merced') %>% 
+  mutate(reach = 3, miles = reach_miles[reach])
+
+fr <- bind_rows(fr_reach_1, fr_reach_2, fr_reach_3) %>% 
+    rename(flow_cfs = Flow, spawn = Spawning, fry = `Fry Rearing`, 
+           juv = `Juv Rearing`) %>% 
+  gather(life_stage, wua, -flow_cfs, -reach, -miles) %>% 
+  mutate(species = 'FR')
+
+make_approx_funs <- function(df, col_names) {
+  
+  flow <- df[[col_names[1]]]
+  spawn <- approxfun(flow, df[[col_names[2]]], rule = 2)
+  fry <- approxfun(flow, df[[col_names[3]]], rule = 2)
+  juv <- approxfun(flow, df[[col_names[4]]], rule = 2)
+  
+  result <- list(spawn = spawn, fry = fry, juv = juv)
+  
+  if (col_names[5] == 'adult') {
+    adult <- approxfun(flow, df[[col_names[5]]], rule = 2)
+    result$adult = adult
+  }
+  
+  return(result)
+}
+
+fr_approx_1 <- make_approx_funs(fr_reach_1, names(fr_reach_1))
+fr_approx_2 <- make_approx_funs(fr_reach_2, names(fr_reach_2))
+fr_approx_3 <- make_approx_funs(fr_reach_3, names(fr_reach_3))
+
+# steelhead data
+st <- read_csv('data-raw/watershed/merced/data/merced_steelhead.csv', 
+               skip = 1) %>% 
+  rename(spawn = ST_spawn_wua, fry = ST_fry_wua, juv = ST_juv_wua, 
+         adult = ST_adult_wua) %>% 
+  gather(life_stage, wua, -flow_cfs, -reach, -miles) %>% 
+  mutate(species = 'ST')
+View(st)
+
+# combined 
+merced_wua <- bind_rows(fr, st)
+
+merced_wua %>% 
+  mutate(col_names = paste(species, life_stage, 'wua', sep = '_'))
+  # select(flow_cfs, col_names, wua) %>% 
+  # spread(col_names, wua)
+
 merced_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
             range = "A18:E48", sheet = 'Merced') %>% 
    rename(flow_cfs = Flow, FR_spawn_wua = Spawning, FR_fry_wua = `Fry Rearing`, 
@@ -45,9 +105,7 @@ spawn <- function(df) {approxfun(df$flow, df$ST_spawn_wua, rule = 2)}(flows)
 fry <- function(df) {approxfun(df$flow, df$ST_fry_wua, rule = 2)}(flows)
 juv <- function(df) {approxfun(df$flow, df$ST_juv_wua, rule = 2)}(flows)
 
-steelhead_reach_1 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A1:E31" ) 
-steelhead_reach_2 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A35:E65" ) 
-steelhead_reach_3 <- read_excel('data-raw/watershed/merced/data/merced_steelhead.xlsx', range = "A68:E98" )
+
 
 ST_spawn_WUA <- ((spawn(steelhead_reach_1) * 9.2) + (spawn(steelhead_reach_2) * 4.4) + (spawn(steelhead_reach_3)*5.6))/total
 ST_fry_WUA <- ((fry(steelhead_reach_1)*9.2)+(fry(steelhead_reach_2)*4.4)+(fry(steelhead_reach_3)*5.6))/total
