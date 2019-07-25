@@ -251,9 +251,16 @@ source('data-raw/floodplain/floodplain_utils.R')
 merced_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MercedRiver') %>%
   mutate(watershed = 'Merced River')
 
-merced_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Merced River', df = merced_fp)
+threshold <- merced_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  pull(flow_cfs) %>% 
+  max()
+
+merced_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Merced River', 
+                                                            df = filter(merced_fp, flow_cfs >= threshold))
+
 knitr::kable(align = 'c', head(merced_river_floodplain, 5))
-# devtools::use_data(merced_river_floodplain, overwrite = TRUE)
+# usethis::use_data(merced_river_floodplain, overwrite = TRUE)
 ```
 
 *...with 13 more rows*
