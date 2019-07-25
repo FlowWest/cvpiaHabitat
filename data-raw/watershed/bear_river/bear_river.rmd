@@ -19,6 +19,7 @@ None Planned
 
 **Data Source:**
 [Holton 1985](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF) (pg 21-22)
+[SSWD 2019](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/cvpia-sit-model-inputs/SSWD_Bear_River_2019.pdf) (pg E3.3.3-78 to 82)
 
 Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Bear River is based on data from an instream flow study led by Booker Holton (Holton Associates) in partnership with the California Department of Fish and Game. Holton used the Instream Flow Incremental Methodology (IFIM) and collected data from two representative stations below the diversion dam on Bear River. The WUA graphs for Chinook Salmon spawning and juvenile rearing are provided on pages 21 and 22. The instream spawning and rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use A1:D5 of the 'BearR' tab within his 'IFIMWUA.xlsx'.
 
