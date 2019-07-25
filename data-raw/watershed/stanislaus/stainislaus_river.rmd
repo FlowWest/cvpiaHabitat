@@ -67,7 +67,7 @@ stanislaus_raw <- stan_rearing_1 %>%
   bind_rows(stan_rearing_2, stan_rearing_3, stan_rearing_4) %>% 
   gather(lifestage, sq_ft, -flow_cfs, -km) %>%
   group_by(lifestage, flow_cfs) %>%
-  summarise(wua = sum((((sq_ft/total) * .3048) * (km/total)), na.rm = TRUE)) %>%
+  summarise(wua = sum((((sq_ft/km) * .3048) * (km/total)), na.rm = TRUE)) %>%
   spread(lifestage, wua) 
 
 
