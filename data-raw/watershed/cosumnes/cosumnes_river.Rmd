@@ -122,6 +122,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 ## Floodplain Modeling Details
 
 **Data Source:**
+Mark Gard New Data source TODO 
 [TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf)
 
 `r print_model_details('Cosumnes River', 'fr')`
@@ -129,7 +130,19 @@ source('data-raw/floodplain/floodplain_utils.R')
 ## Floodplain Data
 
 ```{r, echo=FALSE}
-cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
+floodplain <- read_excel('data-raw/mark_gard_data/Floodplainarea.xlsx', 
+                         range = "B2:E37", sheet = "Cosumnes") %>%
+  rename(flow_cfs = cfs, FR_floodplain_acres = "floodplain area acres") 
+
+
+cosumnes_river_floodplain <- floodplain %>%
+  mutate(watershed = "Consumnes") %>%
+  select(flow_cfs, FR_floodplain_acres, watershed) %>% 
+  filter(flow_cfs > 1000)
+  
+
+
+#cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
 
 knitr::kable(align = 'c', head(cosumnes_river_floodplain, 5))
 # use_data(cosumnes_river_floodplain, overwrite = TRUE)
@@ -141,7 +154,7 @@ knitr::kable(align = 'c', head(cosumnes_river_floodplain, 5))
 ```{r, echo = FALSE}
 cosumnes_river_floodplain %>% 
   select(FR_floodplain_acres, flow_cfs, watershed) %>%
-  rename(`Fall Run Chinook and Steelhead` = FR_floodplain_acres) %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
