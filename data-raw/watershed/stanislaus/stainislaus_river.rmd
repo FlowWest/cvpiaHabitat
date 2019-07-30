@@ -86,8 +86,7 @@ stanislaus_river_instream <- stanislaus_raw %>% bind_rows(stan_spawn) %>%
    select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, ST_fry_wua, ST_juv_wua, watershed)
  
 knitr::kable( align = 'c', head(stanislaus_river_instream, 5))
- # devtools::use_data(stanislaus_river_instream, overwrite = TRUE)
- 
+# usethis::use_data(stanislaus_river_instream, overwrite = TRUE)
 ```
 
 *...with 52 more rows.*
