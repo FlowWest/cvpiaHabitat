@@ -74,7 +74,7 @@ butte_creek_instream <- butte_creek_spawning %>%
 
 
 knitr::kable(align = 'c', head(butte_creek_instream, 5))
-# devtools::use_data(butte_creek_instream, overwrite = TRUE)
+usethis::use_data(butte_creek_instream, overwrite = TRUE)
 ```
 
 ### Spawning WUA 
