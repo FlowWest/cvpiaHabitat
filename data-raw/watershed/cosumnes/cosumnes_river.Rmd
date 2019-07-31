@@ -140,12 +140,10 @@ cosumnes_river_floodplain <- floodplain %>%
   select(flow_cfs, FR_floodplain_acres, watershed) %>% 
   filter(flow_cfs > 1000)
   
-
-
 #cosumnes_river_floodplain <- scale_fp_flow_area('Cosumnes River')
 
 knitr::kable(align = 'c', head(cosumnes_river_floodplain, 5))
-# use_data(cosumnes_river_floodplain, overwrite = TRUE)
+# usethis::use_data(cosumnes_river_floodplain, overwrite = TRUE)
 ```
 
 *...with 28 more rows*
