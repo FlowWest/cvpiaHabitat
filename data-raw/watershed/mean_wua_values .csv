@@ -1,32 +1,31 @@
-"Watershed areas and active channel width, watershed area in sqkm ",,,,,
-watershed,channel_area,channel_area,length ,channel_width ,watershed_area
-,sq_meters,sq_km,,sq_meter ,sq_km 
-American_River,2712208,2712.21,,,5581
-Antelope Creek,803591,803.59,,,508
-Battle Creek,212251,212.25,,,957
-Bear Creek,119882,119.88,,,649
-Bear River,598300,598.3,,,1228
-Big Chico Creek,359656,359.66,77.28,649,930
-Butte Creek,418629,418.63,,,2123
-Calaveras River,303456,303.46,,,1369
-Clear Creek,232299,232.3,,,645
-Cosumnes River,1813435,1813.44,,,2124
-Cottonwood Creek,1016356,1016.36,,,2444
-Cow Creek,880088,880.09,,,1107
-Deer Creek,285614,285.61,,,575
-Elder Creek,98433,98.43,,,358
-Feather River,9563536,9563.54,,,11338
-Lower Sacramento River,2532238,2532.24,,,
-Lower-mid Sacramento River,9505349,9505.35,,,
-Merced River,1648290,1648.29,,,3288
-Mill Creek,485254,485.25,,,334
-Mokelumne River,976108,976.11,,,3070
-Paynes Creek,119613,119.61,,,243
-San Joaquin River,2161877,2161.88,,,
-Stanislaus River,1655516,1655.52,,,3100
-Stony Creek,823541,823.54,,,2021
-Thomes Creek,778213,778.21,,,758
-Tuolumne River,2372096,2372.1,,,4851
-Upper Sacramento River,10217664,10217.66,,,
-Upper-mid Sacramento River,23061332,23061.33,,,
-Yuba River,1805663,1805.66,,,3483
+"Watershed areas and active channel width, watershed area in sqkm ",,
+watershed,channel_area_sqm,watershed_area_sqkm
+American_River,2712208,5581
+Antelope Creek,803591,508
+Battle Creek,212251,957
+Bear Creek,119882,649
+Bear River,598300,1228
+Big Chico Creek,359656,930
+Butte Creek,418629,2123
+Calaveras River,303456,1369
+Clear Creek,232299,645
+Cosumnes River,1813435,2124
+Cottonwood Creek,1016356,2444
+Cow Creek,880088,1107
+Deer Creek,285614,575
+Elder Creek,98433,358
+Feather River,9563536,11338
+Lower Sacramento River,2532238,
+Lower-mid Sacramento River,9505349,
+Merced River,1648290,3288
+Mill Creek,485254,334
+Mokelumne River,976108,3070
+Paynes Creek,119613,243
+San Joaquin River,2161877,
+Stanislaus River,1655516,3100
+Stony Creek,823541,2021
+Thomes Creek,778213,758
+Tuolumne River,2372096,4851
+Upper Sacramento River,10217664,
+Upper-mid Sacramento River,23061332,
+Yuba River,1805663,3483
