@@ -98,7 +98,7 @@ big_chico_creek_floodplain <-
   scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', 
                                    df = filter(bigc_fp, flow_cfs >= threshold_flow))
 
-knitr::kable(align = 'c', big_chico_creek_floodplain) 
+knitr::kable(align = 'c', head(big_chico_creek_floodplain, 5)) 
 # use_data(big_chico_creek_floodplain, overwrite = TRUE)
 ```
 
