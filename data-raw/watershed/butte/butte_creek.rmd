@@ -74,11 +74,13 @@ butte_creek_instream <- butte_creek_spawning %>%
 
 
 knitr::kable(align = 'c', head(butte_creek_instream, 5))
-usethis::use_data(butte_creek_instream, overwrite = TRUE)
+#usethis::use_data(butte_creek_instream, overwrite = TRUE)
 ```
 
+*...with 46 more rows.*
+
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in the Butte Creek. 
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in Butte Creek. 
 
 #### Spawning WUA Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
