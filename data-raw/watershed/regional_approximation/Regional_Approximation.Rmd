@@ -1,5 +1,5 @@
 ---
-title: "Regional Aproximation"
+title: "Regional Approximation"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
 date: "Aug 8, 2019"
 output: html_document
