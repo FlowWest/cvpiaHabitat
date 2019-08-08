@@ -1,0 +1,169 @@
+---
+title: "Regional Aproximation"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "Aug 8, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+library(purrr)
+library(lubridate)
+```
+
+
+## Upper-mid Sacramento Region 
+
+### Instream Spawning and Rearing Habitat
+
+**Details:**    
+A mean regional weighted usable area (WUA) was developed for watersheds without instream spawning and rearing habitat modeling. 
+
+For unmodeled tributaries of the Upper Sacramento River, the rearing WUA values were estimated using the mean WUA at each flow from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. The spawning WUA values were estimated using the mean WUA at each flow from Battle Creek, Butte Creek, and Clear Creek.
+
+**Spawning Not Modeled:** 
+
+* Antelope Creek
+* Bear Creek
+* Big Chico Creek
+* Cow Creek
+* Deer Creek
+* Elder Creek
+* Mill Creek
+* Paynes Creek
+* Stony Creek
+* Thomes Creek
+
+**Rearing Not Modeled:**    
+
+* Antelope Creek
+* Bear Creek
+* Big Chico Creek
+* Deer Creek
+* Elder Creek
+* Mill Creek
+* Paynes Creek
+* Stony Creek
+* Thomes Creek
+
+### Combine Spawning and Rearing Data 
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format.
+
+```{r, include = FALSE}
+# Find where modeling exists in upper_mid_sac_region(see ~cvpiaHabitat/data-raw/modeling_exists )
+cvpiaHabitat::modeling_exist %>%
+  group_by(Region) %>%
+  summarise(n())
+
+# create cache for Upper-mid Sacramento River --------
+watersheds_with_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                            Region == 'Upper-mid Sacramento River',
+                            FR_fry, Watershed != 'Cottonwood Creek',
+                            Watershed != 'Upper-mid Sacramento River'), Watershed)
+
+watersheds_without_modeling <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                               Region == 'Upper-mid Sacramento River',
+                               !FR_juv), Watershed)
+
+watersheds_with_spawn <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist,
+                         Region == 'Upper-mid Sacramento River',
+                         FR_spawn, Watershed != 'Cottonwood Creek',
+                         Watershed != 'Upper-mid Sacramento River'), Watershed)
+
+# explore flow range of modeling
+model_flow_summary <- function(df) {summary(pull(df, flow_cfs))}
+
+model_flow_summary(cvpiaHabitat::battle_creek_instream)
+model_flow_summary(cvpiaHabitat::butte_creek_instream)
+model_flow_summary(cvpiaHabitat::clear_creek_instream)
+model_flow_summary(cvpiaHabitat::cow_creek_instream)
+
+
+# create list of wua (sq ft/1000 ft) approximators for each watershed in region
+get_approx_spwn <- function(df) {approxfun(df$flow_cfs, df$FR_spawn_wua, rule = 2)}
+get_approx_fry <- function(df) {approxfun(df$flow_cfs, df$FR_fry_wua, rule = 2)}
+get_approx_juv <- function(df) {approxfun(df$flow_cfs, df$FR_juv_wua, rule = 2)}
+
+upmidsac_spwn <- list(get_approx_spwn(cvpiaHabitat::battle_creek_instream),
+                     get_approx_spwn(cvpiaHabitat::butte_creek_instream),
+                     get_approx_spwn(cvpiaHabitat::clear_creek_instream))
+
+upmidsac_juv <- list(get_approx_juv(cvpiaHabitat::battle_creek_instream),
+                     get_approx_juv(cvpiaHabitat::butte_creek_instream),
+                     get_approx_juv(cvpiaHabitat::clear_creek_instream),
+                     get_approx_juv(cvpiaHabitat::cow_creek_instream))
+
+upmidsac_fry <- list(get_approx_fry(cvpiaHabitat::battle_creek_instream),
+                     get_approx_fry(cvpiaHabitat::butte_creek_instream),
+                     get_approx_fry(cvpiaHabitat::clear_creek_instream),
+                     get_approx_fry(cvpiaHabitat::cow_creek_instream))
+
+cvpiaFlow::flows_cfs %>%
+  gather(watershed, flow, -date) %>%
+  filter(watershed %in% watersheds_without_modeling, month(date) %in% 1:8) %>%
+  group_by(watershed) %>%
+  summarise(min = min(flow), median = median(flow), mean = mean(flow),
+            q90 = quantile(flow, .9), max = max(flow))
+
+cvpiaFlow::flows_cfs %>%
+  gather(watershed, flow, -date) %>%
+  filter(watershed %in% watersheds_with_modeling, month(date) %in% 1:8) %>%
+  group_by(watershed) %>%
+  summarise(min = min(flow), median = median(flow), mean = mean(flow),
+            q90 = quantile(flow, .9), max = max(flow))
+
+flows <- cvpiaHabitat::clear_creek_instream$flow_cfs
+
+upper_mid_sac_region_instream <- purrr::map_df(flows, function(flow) {
+  wua_spn <- mean(purrr::map_dbl(1:length(upmidsac_spwn), function(i){upmidsac_spwn[[i]](flow)}))
+  wua_fry <- mean(purrr::map_dbl(1:length(upmidsac_fry), function(i){upmidsac_fry[[i]](flow)}))
+  wua_juv <- mean(purrr::map_dbl(1:length(upmidsac_juv), function(i){upmidsac_juv[[i]](flow)}))
+  tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
+         watershed = 'Upper-mid Sacramento River Region')
+})
+
+```
+
+```{r, echo = FALSE}
+knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5))
+#usethis::use_data(upper_mid_sac_region_instream, overwrite = TRUE)
+```
+
+*...with 18 more rows.*
+
+### Spawning WUA 
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in the Upper-mid Sacramento River Region.
+
+#### Spawning WUA Plot
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+
+```{r, echo=FALSE}
+  upper_mid_sac_region_instream %>%
+  filter(!is.na(FR_spawn_wua)) %>%
+  ggplot(aes(flow_cfs, FR_spawn_wua)) +
+  geom_line(color = '#7570b3' ) +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
+  theme_minimal() 
+```
+
+### Rearing WUA
+The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Upper-mid Sacramento River Region. 
+
+#### Rearing WUA Plot
+
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+
+``` {r,echo=FALSE}
+upper_mid_sac_region_instream %>% 
+  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
+  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != "ST_fry_wua", lifestage != "ST_juv_wua") %>%
+  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  geom_line() +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  scale_color_manual(values = c('#d95f02','#7570b3'))
+```
