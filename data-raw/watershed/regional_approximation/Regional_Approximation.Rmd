@@ -51,7 +51,7 @@ For unmodeled tributaries of the Upper Sacramento River, the rearing WUA values 
 * Thomes Creek
 
 ### Combine Spawning and Rearing Data 
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format.
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format.Units are in square feet per 1000 feet. 
 
 ```{r, include = FALSE}
 # Find where modeling exists in upper_mid_sac_region(see ~cvpiaHabitat/data-raw/modeling_exists )
@@ -125,18 +125,17 @@ upper_mid_sac_region_instream <- purrr::map_df(flows, function(flow) {
   tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
          watershed = 'Upper-mid Sacramento River Region')
 })
-
+#usethis::use_data(upper_mid_sac_region_instream, overwrite = TRUE)
 ```
 
 ```{r, echo = FALSE}
 knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5))
-#usethis::use_data(upper_mid_sac_region_instream, overwrite = TRUE)
 ```
 
 *...with 18 more rows.*
 
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in the Upper-mid Sacramento River Region.
+The instream spawning habitat weighted usable areas for un-modeled watersheds in the Upper-mid Sacramento River Region.
 
 #### Spawning WUA Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
@@ -151,7 +150,7 @@ The following plot shows the weighted usable spawning area in square feet per th
 ```
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Upper-mid Sacramento River Region. 
+The instream rearing habitat weighted usable areas for un-modeled watersheds in the Upper-mid Sacramento River Region.  
 
 #### Rearing WUA Plot
 
