@@ -51,7 +51,7 @@ For unmodeled tributaries of the Upper Sacramento River, the rearing WUA values 
 * Thomes Creek
 
 ### Combine Spawning and Rearing Data 
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format.Units are in square feet per 1000 feet. 
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet. 
 
 ```{r, include = FALSE}
 # Find where modeling exists in upper_mid_sac_region(see ~cvpiaHabitat/data-raw/modeling_exists )
