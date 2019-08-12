@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -54,7 +54,8 @@ knitr::kable(align = 'c', head(antelope_creek_floodplain, 5))
 ```{r, echo = FALSE}
 antelope_creek_floodplain %>% 
   select(FR_floodplain_acres, watershed, flow_cfs) %>%
-  rename(`Fall Run Chinook, Spring Run Chinook, and Steelhead` = FR_floodplain_acres) %>% 
+  rename(`Fall Run Chinook, Spring Run Chinook,
+          and Steelhead` = FR_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
