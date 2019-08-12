@@ -42,7 +42,8 @@ source('data-raw/floodplain/floodplain_utils.R')
 
 ```{r}
 elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
-  mutate(watershed = 'Elder Creek')
+  mutate(watershed = 'Elder Creek') %>% 
+  filter(flow_cfs >= 90)
 
 elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp) 
 
