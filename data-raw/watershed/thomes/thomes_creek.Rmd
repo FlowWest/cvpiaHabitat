@@ -24,9 +24,9 @@ source('data-raw/watershed/regional_approximation/mean_wua_description.R')
 
 `r print_mean_wua_details('Thomes Creek')`
 
-### Modeling Details 
+### Spawning and Rearing Modeling Details 
 
-The spawning and rearing data used for Thomes Creek is the regional approximation for the Upper-mid Sacramento River Region. This regional approximation can he found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html). 
+The spawning and rearing data used for Thomes Creek is the regional approximation for the Upper-mid Sacramento River Region. More information about this methodology can be found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html). 
 
 
 ```{r}
