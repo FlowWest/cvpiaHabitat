@@ -1,7 +1,7 @@
 ---
 title: "Butte Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "December 13, 2018"
+date: "July 30, 2019"
 output: html_document
 ---
 
@@ -18,44 +18,69 @@ None Planned
 ## Instream Spawning and Rearing Habiat
 
 **Data Source:**
-[FWS and 2008 FERC relicensing of DeSabla](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf) 
+[FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Butte%20Creek%20Spring-run%20chinook%20salmon%20spawning%208-29-2003.pdf)(77-78)
 
-Instream spawning and rearing habitat for [Fall Run Chinook Salmon and Steelhead] in the Butte Creek is based on data from [data source description]. The [data source] instream spawning and rearing habitat data was provided in a spreadsheet (see '.xlsx link to spreadsheet'). Mark Gard instructed us to use cells A3:B33 for spring run spawning Above Centerville Powerhouse Segment (6.5 mi) and cells A38:B68 for the reach Below Centerville Powerhouse Segment.
+[FERC relicensing of DeSabla](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf) (APPENDIX E6.3.2.6-J1)
 
-Units are in square feet.   
 
-Adult trout data used for steelhead
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in Butte Creek are based on data from the FWS instream 2003 study and the FERC relicensing of DeSabla 2008 study. The spawning habitat data is from the FWS study and was collected using a RIVER2D 2-dimensional hydraulic and habitat model and can be found on pages 77-78 of the study. The rearing data came from DeSabla 2008 in the lower butte section of the appendix (APPENDIX E6.3.2.6-J1). Instream rearing habitat data was provided in a spreadsheet (see '~cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A71:C101 for Fall Run Chinook rearing data. The spawning data was compiled in a spreadsheet (see '~cvpiaHabitat/data-raw/watershed/butte/data/butte_creek_data.csv). The spawning data was then scaled by reach length. No Fall Fun Chinook Salmon Spawning data was collected so Spring Run Chinook Salmon Spawning is used as a proxy for Fall Run Chinook Salmon Spawning.
 
-Rearing habitat is inn the same sheet in cells A71:D101. Units are square feet per 1000 ft.
-
+### Combine Spawning and Rearing Data
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
 ```{r, echo=FALSE}
+# Spring run spawning data 
+butte_raw <- read.csv('data-raw/watershed/butte/data/butte_creek_data.csv', 
+                     skip = 1) 
 
-above_centerville <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                                 range = "A3:B33", sheet = 'Butte') 
-below_centerville <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                                range = "A38:B68", sheet = 'Butte') 
+# Combine two reaches of spawning data with different flow values using aproxfun   
+flow <- butte_raw %>% 
+  pull(flow_cfs) %>%
+  unique() %>%
+  sort()
 
-spawn <- bind_rows(above_centerville, below_centerville) %>% 
-  group_by(Flow) %>% 
-  summarise(SR_spawn_wua = sum(Spawning)/(6.5 + 9)/5.28) %>% 
-  ungroup()
+make_approx_fun <- function(df) {
+  flow <- df$flow_cfs
+  return(approxfun(flow, df$SR_spawn, rule = 2))
+}
+reach_miles <- c(6.5, 9)
+names(reach_miles) <- 1:2
+total <- sum(reach_miles)
 
+Reach_1 <- butte_raw %>%
+  filter(length == 6.5) 
+
+Reach_2 <- butte_raw %>%
+  filter(length == 9)
+
+butte_creek_spawning <- tibble(
+  flow_cfs = flow, 
+  SR_spawn_wua =
+    make_approx_fun(Reach_1)(flow) * reach_miles[1]/total +
+    make_approx_fun(Reach_1)(flow) * reach_miles[2]/total
+  )
+
+# Rearing Data 
 rear <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                   range = "A71:D101", sheet = 'Butte') 
- 
-butte_creek_instream <- spawn %>% 
-  full_join(rear) %>% 
+                   range = "A71:C101", sheet = 'Butte') %>% 
+  rename(flow_cfs = Flow)
+  
+# Combine spawning and rearing data 
+butte_creek_instream <- butte_creek_spawning %>% 
+  full_join(rear) %>%
   mutate(FR_spawn_wua = SR_spawn_wua, watershed = 'Butte Creek') %>% 
-  select(flow_cfs = Flow, FR_spawn_wua, FR_fry_wua = `Fry Rearing`, 
-         FR_juv_wua = `Juv Rearing`, ST_adult_wua = `adult trout`, 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua = `Fry Rearing`, 
+         FR_juv_wua = `Juv Rearing`, 
          watershed)
 
+
 knitr::kable(align = 'c', head(butte_creek_instream, 5))
-# devtools::use_data(butte_creek_instream, overwrite = TRUE)
+#usethis::use_data(butte_creek_instream, overwrite = TRUE)
 ```
 
+*...with 46 more rows.*
+
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in the Butte Creek. 
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in Butte Creek. 
 
 #### Spawning WUA Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
