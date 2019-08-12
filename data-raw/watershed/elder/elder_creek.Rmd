@@ -12,18 +12,20 @@ library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
 ```
-
 ## Future Data Improvements
 None Planned 
 
 ## Instream Spawning and Rearing Habiat
-
+```{r}
+source('data-raw/watershed/regional_approximation/mean_wua_description.R')
+```
 **Data Source:** 
-No watershed specific salmonid habitat data was available for Antelope Creek. A regional weighted usable area (WUA) relationship with flow was derived for Antelope Creek by averaging the WUA values on Battle Creek, Butte Creek, Clear Creek, Cottonwood Creek and Cow Creek. The geomorphic and hydrologic conditions in Antelope Creek (watershed area = X; active channel width = Y; 2-year flow = Z) are similar to those on Battle Creek (watershed area = X; active channel width = Y; 2-year flow = Z), Butte Creek (watershed area = X; active channel width = Y; 2-year flow = Z); Clear Creek (watershed area = X; active channel width = Y; 2-year flow = Z), Cottonwood Creek (watershed area = X; active channel width = Y; 2-year flow = Z), and Cow Creek (watershed area = X; active channel width = Y; 2-year flow = Z). The regional WUA relationships for Antelope Creek were multiplied by the length of spawning and rearing extents mapped by the Science Integration Team (SIT).  
 
-### Mean WUA plot 
+`r print_mean_wua_details('Elder Creek')`
 
-include plot that shows mean WUA for all these watersheds 
+### Spawning and Rearing Modeling Details 
+
+The spawning and rearing data used for Elder Creek is the regional approximation for the Upper-mid Sacramento River Region. More information about this methodology can be found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html). 
 
 ```{r}
 source('data-raw/floodplain/floodplain_utils.R')
@@ -42,7 +44,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
   mutate(watershed = 'Elder Creek')
 
-elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp)
+elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp) 
 
 knitr::kable(align = 'c', head(elder_creek_floodplain, 5))
 # devtools::use_data(elder_creek_floodplain, overwrite = TRUE)
