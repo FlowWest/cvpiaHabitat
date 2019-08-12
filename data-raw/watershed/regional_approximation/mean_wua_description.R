@@ -9,15 +9,15 @@ mean_wua_details <- mean_wua_area %>%
   select(watershed, channel_area_sqm, watershed_area_sqkm) %>%
   left_join(cvpiaHabitat::watershed_lengths) %>%
   filter(species == 'fr', lifestage == 'rearing') %>%
-  mutate(meters = miles * 1609.34, width = channel_area_sqm/meters) %>%
-  select(watershed, watershed_area_sqkm, width) %>%
+  mutate(meters = miles * 1609.34, width_meters = channel_area_sqm / meters) %>%
+  select(watershed, watershed_area_sqkm, width_meters) %>%
   unique()
 
 print_mean_wua_details <- function(ws) {
   watershed_doc_vars <- filter(mean_wua_details, watershed == ws)
 
   area <- watershed_doc_vars$watershed_area_sqkm
-  channel_width <- round(watershed_doc_vars$width, digits = 1)
+  channel_width_m <- round(watershed_doc_vars$width_meters, digits = 1)
   name <- ws
   return(
     glue("No watershed specific salmonid habitat data was available for {name}.",
@@ -25,7 +25,7 @@ print_mean_wua_details <- function(ws) {
          " was derived for {name} by averaging the WUA values on Battle Creek,",
          " Butte Creek, Clear Creek, Cottonwood Creek and Cow Creek. The ",
          "geomorphic and hydrologic conditions in {name} (watershed area =",
-         " {area} sqkm, active channel width = {channel_width} meters)",
+         " {area} sqkm, active channel width = {channel_width_m} meters)",
          " are similar to those on ",
          "Battle Creek (watershed area = 957 sqkm; active channel width = 22.5 m",
          "), Butte Creek (watershed area = 2123 sqkm; active channel width = 15.2 m",
