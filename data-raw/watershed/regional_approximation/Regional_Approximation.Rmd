@@ -31,7 +31,6 @@ For unmodeled tributaries of the Upper Sacramento River, the rearing WUA values 
 * Bear Creek
 * Big Chico Creek
 * Cow Creek
-* Deer Creek
 * Elder Creek
 * Mill Creek
 * Paynes Creek
@@ -43,7 +42,6 @@ For unmodeled tributaries of the Upper Sacramento River, the rearing WUA values 
 * Antelope Creek
 * Bear Creek
 * Big Chico Creek
-* Deer Creek
 * Elder Creek
 * Mill Creek
 * Paynes Creek
@@ -138,7 +136,7 @@ knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5))
 The instream spawning habitat weighted usable areas for un-modeled watersheds in the Upper-mid Sacramento River Region.
 
 #### Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for for un-modeled Upper Sacramento River tributaries Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 
 ```{r, echo=FALSE}
   upper_mid_sac_region_instream %>%
@@ -154,7 +152,7 @@ The instream rearing habitat weighted usable areas for un-modeled watersheds in 
 
 #### Rearing WUA Plot
 
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for un-modeled Upper Sacramento River tributaries Chinook Salmon. These rates are multiplied by the total rearing reach length mapped by the SIT. 
 
 ``` {r,echo=FALSE}
 upper_mid_sac_region_instream %>% 
