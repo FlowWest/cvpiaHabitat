@@ -1,0 +1,103 @@
+---
+title: "Deltas"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 2, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(scales)
+library(lubridate)
+```
+
+## Modeling Details
+**Data Source:**
+Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf)
+
+The NOAA NMFS model outputs habitat area estimates for months December-May. Habitat for months June-Novemeber are represented by the yearly average habitat. Units are in square meters.
+
+High quality habitat defined by:
+
+* Channel depth > 0.2 m and < 1.5 m
+* Velocity <= 0.15 m/s
+* Cover Vegetated edge
+
+## North and South Deltas Rearing Habitat
+
+```{r}
+south_yolo <- read_excel('data-raw/correigh_greene_data/delta habitat By Region.xlsx', sheet = 3, skip = 1) %>%
+  select(X__1, south_yolo = ppp)
+
+north_delta <- read_excel('data-raw/correigh_greene_data/delta habitat By Region.xlsx', sheet = 4, skip = 1)  %>%
+  select(X__1, north_delta = ppp)
+
+south_delta <- read_excel('data-raw/correigh_greene_data/delta habitat By Region.xlsx', sheet = 5, skip = 1) %>%
+  select(X__1, south_delta = ppp)
+
+north_delta_habitat <- north_delta %>%
+  left_join(south_yolo) %>%
+  separate(col = X__1, into = c('year', 'month'), sep = ' ') %>%
+  mutate(`North Delta` = north_delta + south_yolo,
+         date = mdy(paste0(month, ' 1, ', year))) %>%
+  select(date, `North Delta`)
+
+nd_year_means <- north_delta_habitat %>%
+  group_by(year = year(date)) %>%
+  summarise(mean_area = mean(`North Delta`))
+
+nd_means <- tibble(
+  date = seq(as.Date('1980-06-01'), as.Date('2010-11-01'), by = 'month')) %>%
+  mutate(year = year(date)) %>%
+  filter(between(month(date), 6, 11)) %>%
+  left_join(nd_year_means) %>%
+  select(date, `North Delta` = mean_area)
+
+nd_hab <- north_delta_habitat %>%
+  bind_rows(nd_means) %>%
+  arrange(date)
+
+south_delta_habitat <- south_delta %>%
+  separate(col = X__1, into = c('year', 'month'), sep = ' ') %>%
+  mutate(date = mdy(paste0(month, ' 1, ', year))) %>%
+  select(date, `South Delta` = south_delta)
+
+sd_year_means <- south_delta_habitat %>%
+  group_by(year = year(date)) %>%
+  summarise(mean_area = mean(`South Delta`))
+
+sd_means <- tibble(
+  date = seq(as.Date('1980-06-01'), as.Date('2010-11-01'), by = 'month')) %>%
+  mutate(year = year(date)) %>%
+  filter(between(month(date), 6, 11)) %>%
+  left_join(sd_year_means) %>%
+  select(date, `South Delta` = mean_area)
+
+sd_hab <- south_delta_habitat %>%
+  bind_rows(sd_means) %>%
+  arrange(date)
+
+delta_habitat <- left_join(nd_hab, sd_hab)
+
+# use_data(delta_habitat, overwrite = TRUE)
+
+knitr::kable(align = 'c', head(delta_habitat, 5))
+```
+
+*... with 357 more rows*
+
+## North and South Deltas Rearing Habitat Plot
+
+```{r}
+
+delta_habitat %>% 
+  gather(region, square_meters, -date) %>% 
+  ggplot(aes(date, square_meters / 4046.86, color = region)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(y = 'highly suitable habitat area (acres)')
+```
