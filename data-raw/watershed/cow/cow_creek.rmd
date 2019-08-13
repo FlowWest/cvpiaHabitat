@@ -6,33 +6,25 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-none
+Instream habitat suitability relationships provided for the Voluntary Agreement process.
 
-## Instream Rearing Habitat
-
+## Instream Spawning and Rearing Habitat
 **Data Source:**
 [FWS 2011](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf) (pg 19)
 
-Instream rearing habitat for Fall Run Chinook Salmon in South Cow Creek is based on data from the Fish and Wildlidfe Service South Cow Creek habitat asessment. This study gathered rearing data from the Valley Floor Segment and the Boero Segment of South Cow Creek. The rearing data from both stretches is provided in figures 9 and 10 on page 19. The rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to the 'SouthCow' tab within his 'IFIMWUA.xlsx'.The cells A2:C32 represent the Valley Floor Reach (5.11 miles) and cells A36:C66 represent the Boero Reach (1.68 miles). 
+Instream rearing habitat for Fall Run Chinook Salmon in South Cow Creek is based on data from the Fish and Wildlife Service South Cow Creek habitat assessment. This study gathered rearing data from the Valley Floor Segment and the Boero Segment of South Cow Creek. The rearing data from both stretches is provided in figures 9 and 10 on page 19. The rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to the 'SouthCow' tab within his 'IFIMWUA.xlsx'.The cells A2:C32 represent the Valley Floor Reach (5.11 miles) and cells A36:C66 represent the Boero Reach (1.68 miles). 
+
+The instream spawning data used for Cow Creek is the regional approximation for the Upper-mid Sacramento River Region. More information about this methodology can be found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html).
 
 ### Rearing WUA
 The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cow Creek. Units are in square feet per 1000 feet.
-
-
-## Future Data Improvement
-Instream habitat suitability relationships provided for the Voluntary Agreement process.
-
-## Instream Rearing Habiat
-
-### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Cow River.Units are in square feet per 1000 feet.
 
 ```{r,echo=FALSE}
 valley <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
