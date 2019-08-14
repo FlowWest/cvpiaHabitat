@@ -4,7 +4,6 @@ author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompki
 date: "August 14, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
@@ -46,7 +45,7 @@ american_river_instream <- rearing %>%
          FR_juv_wua = `Juv Rearing`, ST_spawn_wua) %>% 
   mutate(watershed = 'American River')
 
-# devtools::use_data(american_river_instream, overwrite = TRUE)
+# usethis::use_data(american_river_instream, overwrite = TRUE)
 ```
 
 ### Spawning Data 
@@ -109,7 +108,7 @@ american_river_instream %>%
 
 ```
 ```{r, include=FALSE}
-source('data-raw/watershed/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
 ## Floodplain Rearing Habitat
@@ -120,7 +119,7 @@ source('data-raw/watershed/floodplain/floodplain_utils.R')
 
 ## Floodplain Data
 ```{r, echo=FALSE}
-american_river <- read_excel('data-raw/watershed/floodplain/CVPIA_FloodplainAreas.xlsx',
+american_river <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
                                         sheet = 'AmericanRiver') 
 
 threshold_flow <- american_river %>% 
@@ -138,8 +137,8 @@ american_river_floodplain <- american_river %>%
          watershed) %>% 
   filter(flow_cfs >= threshold_flow)
 
-knitr::kable(align = 'c', head(american_river_floodplain, 5))
-# devtools::use_data(american_river_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(american_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+# usethis::use_data(american_river_floodplain, overwrite = TRUE)
 ```
 
 *...with 29 more rows*
