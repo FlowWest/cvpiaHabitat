@@ -1,10 +1,9 @@
 ---
 title: "Antelope Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "July 17, 2019"
+date: "August 14, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
@@ -16,36 +15,28 @@ library(cvpiaHabitat)
 ## Future Data Improvements
 None Planned 
 
-## Instream Spawning and Rearing Habiat
-```{r}
-source('data-raw/watershed/regional_approximation/mean_wua_description.R')
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html)
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
-**Data Source:** 
 
-`r print_mean_wua_details('Antelope Creek')`
-
-### Spawning and Rearing Modeling Details 
-
-The spawning and rearing data used for Antelope Creek is the regional approximation for the Upper-mid Sacramento River Region. More information about this methodology can be found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html).  
+`r print_regional_approx('Antelope Creek')`
 
 ```{r, include=FALSE}
-source('data-raw/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
-## Floodplain Modeling Details
-
-**Data Source:**
-
-[Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
+## Floodplain Rearing Habitat 
+**Data Source:** [Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
 
 `r print_model_details('Antelope Creek', 'fr')`
 
 ## Floodplain Data
-
 ```{r, echo = FALSE}
 antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
-knitr::kable(align = 'c', head(antelope_creek_floodplain, 5))
-# devtools::use_data(antelope_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(antelope_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+# usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
 ```
 
 *...with 17 more rows*
@@ -54,12 +45,14 @@ knitr::kable(align = 'c', head(antelope_creek_floodplain, 5))
 ```{r, echo = FALSE}
 antelope_creek_floodplain %>% 
   select(FR_floodplain_acres, watershed, flow_cfs) %>%
-  rename(`Fall Run Chinook, Spring Run Chinook,
-          and Steelhead` = FR_floodplain_acres) %>% 
+  rename(`Fall Run Chinook, 
+Spring Run Chinook,
+and Steelhead` = FR_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
 ```
