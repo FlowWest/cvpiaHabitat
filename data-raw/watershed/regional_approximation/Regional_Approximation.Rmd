@@ -20,10 +20,25 @@ library(lubridate)
 
 ### Instream Spawning and Rearing Habitat
 
+
+
 **Details:**    
 A mean regional weighted usable area (WUA) was developed for watersheds without instream spawning and rearing habitat modeling. 
 
 For unmodeled tributaries of the Upper Sacramento River, the rearing WUA values were estimated using the mean WUA at each flow from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. The spawning WUA values were estimated using the mean WUA at each flow from Battle Creek, Butte Creek, and Clear Creek.
+
+
+```{r}
+tibble(
+  Watershed = c("Battle Creek", "Butte Creek", "Clear Creek", "Cottonwood Creek", 
+                "Cow Creek*"), 
+  `Area (sqkm)` = c(957, 2123, 645, 2444, 1107), 
+  `Width (m)` = c(22.5, 15.2, 18, 28.25, 8.5)
+) %>% 
+  knitr::kable(align = 'c')
+```
+*Cow Creek is not included in regional approximation for spawning. 
+
 
 **Spawning Not Modeled:** 
 
