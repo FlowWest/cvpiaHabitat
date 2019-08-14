@@ -1,0 +1,71 @@
+---
+title: "Big Chico Creek"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "August 14, 2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+## Future Data Improvements
+None Planned 
+
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html)
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
+```
+
+`r print_regional_approx('Big Chico Creek')`
+ 
+```{r}
+source('data-raw/watershed/floodplain/floodplain_utils.R')
+```
+
+## Floodplain Rearing Habitat
+**Data Source:**
+[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
+
+### Fall Run
+`r print_model_details('Big Chico Creek', 'fr')`
+
+### Spring Run and Steelhead
+`r print_model_details('Big Chico Creek', 'sr')`
+
+## Floodplain Data
+```{r}
+bigc_fp <- read_excel('data-raw/watershed/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'BigChicoCreek') %>%
+  mutate(watershed = 'Big Chico Creek')
+
+threshold_flow <- bigc_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  summarise(max_flow = max(flow_cfs)) %>% 
+  pull(max_flow)
+
+big_chico_creek_floodplain <- 
+  scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', 
+                                   df = filter(bigc_fp, flow_cfs >= threshold_flow))
+
+knitr::kable(align = 'c', head(big_chico_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")  
+# use_data(big_chico_creek_floodplain, overwrite = TRUE)
+```
+
+*...with 2 more rows.*
+
+## Floodplain Plot
+```{r}
+big_chico_creek_floodplain %>% 
+  select(FR_floodplain_acres, SR_floodplain_acres, watershed, flow_cfs) %>%
+  rename(`Fall Run Chinook` = FR_floodplain_acres, `Spring Run Chinook and Steelhead` = SR_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+```
