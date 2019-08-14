@@ -3,7 +3,7 @@ library(readxl)
 library(glue)
 
 # TODO check that metadata sheet is up to date
-metadata <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'MetaData',
+metadata <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'MetaData',
                        col_types = c('text', 'text', 'text', 'text',
                                      rep('numeric', 17), 'text', 'numeric', 'text'), na = 'na')
 
@@ -74,17 +74,17 @@ scale_fp_flow_area <- function(ws) {
   proxy_watershed <- watershed_metadata$scaling_watershed
 
   if (proxy_watershed == 'deer_creek') {
-    temp_df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek')
+    temp_df <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek')
     proxy_watershed_metadata <- filter(metadata, watershed == 'Deer Creek')
   }
 
   if (proxy_watershed == 'cottonwood_creek') {
-    temp_df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek')
+    temp_df <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'CottonwoodCreek')
     proxy_watershed_metadata <- filter(metadata, watershed == 'Cottonwood Creek')
   }
 
   if (proxy_watershed == 'tuolumne_river') {
-    temp_df <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'TuolumneRiver')
+    temp_df <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'TuolumneRiver')
     proxy_watershed_metadata <- filter(metadata, watershed == 'Tuolumne River')
   }
 
@@ -219,19 +219,20 @@ print_model_details <- function(ws, species) {
     proxy_ws <- proxies[str_remove(watershed_method, 'scaled_')]
 
     return(
-      glue("No watershed specific hydraulic modeling was available for {watershed_name}.",
-           " A flow to inundated floodplain area relationship was generated for {watershed_name}",
-           " by scaling the flow to inundated floodplain area relationship for {proxy_ws}.",
-           " This scaling used the ratio of mean flow from December to June between the modeled",
-           " and unmodeled watershed. Flows and corresponding inundated floodplain areas per unit length ",
-           " were calculated for {watershed_name} as {flow_scale}% of {proxy_ws}. ",
-           " Of the entire mapped {rearing_length} mile rearing",
-           " extent in {watershed_name}, {low_grad} miles were classified as low gradient and",
-           " {high_grad} miles were classified as high gradient based on a geomorphic analysis ",
-           " of long profile slopes and valley widths. ",
-           " A scaling factor of {high_grad_factor} was applied to the area per unit length for the",
-           " high gradient extent. No scaling factor was applied to the low gradient extent.")
+      glue(' No watershed specific hydraulic modeling was available for {watershed_name}.',
+           ' A flow to inundated floodplain area relationship was generated for {watershed_name}',
+           ' by scaling the flow to inundated floodplain area relationship for {proxy_ws}.',
+           ' This scaling used the ratio of mean flow from December to June between the modeled',
+           ' and unmodeled watershed. Flows and corresponding inundated floodplain areas per unit length' ,
+           ' were calculated for {watershed_name} as {flow_scale}% of {proxy_ws}.' ,
+           ' Of the entire mapped {rearing_length} miles rearing',
+           ' extent in {watershed_name}, {low_grad} miles were classified as low gradient and',
+           ' {high_grad} miles were classified as high gradient based on a geomorphic analysis' ,
+           ' of long profile slopes and valley widths.' ,
+           ' A scaling factor of {high_grad_factor} was applied to the area per unit length for the',
+           ' high gradient extent. No scaling factor was applied to the low gradient extent.')
     )
   }
 
 }
+
