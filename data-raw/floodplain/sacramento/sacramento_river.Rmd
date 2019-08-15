@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -40,7 +40,7 @@ CVPIA Sacramento Rearing Segments:
 ```{r}
 # sac <- read_csv('data-raw/floodplain/sacramento/sacramento_floodplain.csv')
 
-sac_floodplain <- read_csv(file = 'cvpiaHabitat/data-raw/watershed/sacramento/data/sacramento_floodplain.csv',
+sac_floodplain <- read_csv(file = 'data-raw/floodplain/sacramento/sacramento_floodplain.csv',
                            col_names = c('flow_cfs', 'kes_bat', 'bat_feat', 'feat_free'), skip = 1) %>%
   gather(reach, sq_ft, -flow_cfs) %>%
   mutate(sq_meters = sq_ft * 0.092903)
