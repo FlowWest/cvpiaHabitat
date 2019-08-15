@@ -44,7 +44,7 @@ calaveras_river_instream <- bind_rows(calaveras_reach_1and2, calaveras_reach_3, 
  
 knitr::kable(head(calaveras_river_instream, 5), align = "c", caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, ST_spawn_wua = Steelhead spawning wua, ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua")
  
-#usethis::use_data(calaveras_river_instream, overwrite = TRUE)
+# usethis::use_data(calaveras_river_instream, overwrite = TRUE)
 ```
 
 *...with 5 more rows.* 
@@ -89,7 +89,7 @@ source('data-raw/watershed/floodplain_utils.R')
 calaveras_river_floodplain <- scale_fp_flow_area('Calaveras River')
 
 knitr::kable(align = 'c', head(calaveras_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
-# use_data(calaveras_river_floodplain, overwrite = TRUE)
+# usethis::use_data(calaveras_river_floodplain, overwrite = TRUE)
 ```
 
 *...with 28 more rows*
