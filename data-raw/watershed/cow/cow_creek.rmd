@@ -66,7 +66,7 @@ cow_creek_instream %>%
 ```
 
 ```{r, include = FALSE}
-source('data-raw/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
 ## Floodplain Rearing Habitat

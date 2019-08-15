@@ -119,7 +119,7 @@ butte_creek_instream %>%
 ```
 
 ```{r, include =FALSE}
-source('data-raw/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
 ## Floodplain Rearing Habitat
@@ -133,7 +133,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 
 ## Floodplain Data
 ```{r, echo=FALSE}
-butte_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
+butte_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
   mutate(watershed = 'Butte Creek')
 
 threshold_flow <- butte_fp %>% 

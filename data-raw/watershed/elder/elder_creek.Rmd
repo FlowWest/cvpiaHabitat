@@ -34,7 +34,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Data
 ```{r}
-elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
+elder_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
   mutate(watershed = 'Elder Creek') %>% 
   filter(flow_cfs >= 90)
 
