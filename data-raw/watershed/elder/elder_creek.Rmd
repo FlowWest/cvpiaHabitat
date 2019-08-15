@@ -1,10 +1,9 @@
 ---
 title: "Elder Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "July 17, 2019"
+date: "August 15, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
@@ -15,31 +14,25 @@ library(cvpiaHabitat)
 ## Future Data Improvements
 None Planned 
 
-## Instream Spawning and Rearing Habiat
-```{r}
-source('data-raw/watershed/regional_approximation/mean_wua_description.R')
-```
-**Data Source:** 
-
-`r print_mean_wua_details('Elder Creek')`
-
-### Spawning and Rearing Modeling Details 
-
-The spawning and rearing data used for Elder Creek is the regional approximation for the Upper-mid Sacramento River Region. More information about this methodology can be found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html). 
-
-```{r}
-source('data-raw/floodplain/floodplain_utils.R')
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html)
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-## Floodplain Modeling Details
+`r print_regional_approx('Elder Creek')`
 
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
+
+## Floodplain Rearing Habitat
 **Data Source:**
 [Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
 
 `r print_model_details('Elder Creek', 'fr')`
 
 ## Floodplain Data
-
 ```{r}
 elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ElderCreek') %>%
   mutate(watershed = 'Elder Creek') %>% 
@@ -47,11 +40,11 @@ elder_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet =
 
 elder_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Elder Creek', df = elder_fp) 
 
-knitr::kable(align = 'c', head(elder_creek_floodplain, 5))
-# devtools::use_data(elder_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(elder_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+# usethis::use_data(elder_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 24 more rows*
+*...with 26 more rows*
 
 ## Floodplain Plot
 ```{r}
@@ -63,7 +56,6 @@ elder_creek_floodplain %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
 ```
-
-
