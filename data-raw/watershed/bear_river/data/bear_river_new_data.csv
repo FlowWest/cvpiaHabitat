@@ -1,5 +1,5 @@
 "From source SSWD 2019, reach length in kilometers, FR = Fall Run, ST = steelhead, reach one is USFWS, reach 2 is upstream reach, reach 3 is downstream reach ",,,,,,,,
-flow_cfs,FR_spawn_sqft,FR_fry_sqft,FR_juv_sqft,ST_spawn_sqft,ST_fry_sqft,ST_juv_sqft,reach_km ,reach
+flow_cfs,FR_spawn_sqft,FR_juv_sqft,FR_fry_sqft,ST_spawn_sqft,ST_fry_sqft,ST_juv_sqft,reach_km ,reach
 10,1048.244925,35984.299,40542.63566,1114.87688,28082.15678,33354.27758,1.15,1
 15,1461.747919,36411.92905,39457.36434,2358.312935,27182.04701,34575.75903,1.15,1
 20,2052.154789,36695.95397,38372.09302,3352.685203,26356.8833,35390.50634,1.15,1
