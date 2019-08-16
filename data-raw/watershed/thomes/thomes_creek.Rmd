@@ -1,43 +1,33 @@
 ---
 title: "Thomes Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "July 17, 2019"
+date: "August 16, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
 ```
-
 ## Future Data Improvements
 None Planned 
 
-## Instream Spawning and Rearing Habiat
-```{r}
-source('data-raw/watershed/regional_approximation/mean_wua_description.R')
-```
-**Data Source:** 
-
-`r print_mean_wua_details('Thomes Creek')`
-
-### Spawning and Rearing Modeling Details 
-
-The spawning and rearing data used for Thomes Creek is the regional approximation for the Upper-mid Sacramento River Region. More information about this methodology can be found [here](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html). 
-
-
-```{r}
-source('data-raw/floodplain/floodplain_utils.R')
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"} 
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-## Floodplain Modeling Details
+`r print_regional_approx('Antelope Creek')`
 
-**Data Source:** 
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
 
-[Scaled USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf)
+## Floodplain Rearing Habitat 
+**Data Source:** [Scaled USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf){target="_blank"}
 
 ### Fall Run
 `r print_model_details('Thomes Creek', 'fr')`
@@ -51,11 +41,11 @@ source('data-raw/floodplain/floodplain_utils.R')
 # TODO Ask mark about the difference in outcome from his sheet
 thomes_creek_floodplain <- scale_fp_flow_area('Thomes Creek')
 
-knitr::kable(align = 'c', head(thomes_creek_floodplain, 5)) 
-# devtools::use_data(thomes_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(thomes_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
+# usethis::use_data(thomes_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 5 more rows*
+*...with 27 more rows*
 
 ## Floodplain Plot
 ```{r}
@@ -67,5 +57,6 @@ thomes_creek_floodplain %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(.9,.15))
 ```
