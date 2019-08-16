@@ -51,6 +51,8 @@ upper_sac_ACID_boards_in <- up_sac %>%
   ungroup() %>%
   spread(species_stage, WUA) %>%
   mutate(watershed = 'Upper Sacramento River')
+# usethis::use_data(upper_sac_ACID_boards_out, overwrite = TRUE)
+# usethis::use_data(upper_sac_ACID_boards_in, overwrite = TRUE)
 ```
 
 #### Spawning Habitat (A.C.I.D boards in)
@@ -402,5 +404,3 @@ upper_sacramento_river_floodplain %>%
   scale_color_brewer(palette = 'Dark2') +
   theme(legend.justification = c(1,0), legend.position = c(.4,.6))
 ```
-
-
