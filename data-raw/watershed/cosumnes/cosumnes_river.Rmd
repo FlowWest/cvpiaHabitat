@@ -19,7 +19,7 @@ None Planned
 
 ## Instream Spawning and Rearing Habitat
 
-**Data Source:** [Calaveras, FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf) and [Mokelumne, CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf)
+**Data Source:** [Calaveras, FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf){target="_blank"} and [Mokelumne, CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf){target="_blank"}
 
 No watershed specific salmonid habitat data was available for the Consumnes River. A regional weighted usable area (WUA) relationship with flow was derived for the Consumnes River by averaging the WUA values on the Calaveras River and the Mokelumne River. The geomorphic and hydrologic conditions in Consumnes River (watershed area = 2124 sqkm; active channel width = 27.25 meters) are similar to those on Calaveras River (watershed area = 1369 sqkm; active channel width = 10.2), Mokelumne River (watershed area = 3070 sqkm; active channel width = 10.4 m). The regional WUA relationships for Consumnes River were multiplied by the length of spawning and rearing extents mapped by the Science Integration Team (SIT).  
 
@@ -111,9 +111,9 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Rearing Habitat 
 
-**Data Source:** [Mark Gard](mailto:mark_gard@fws.gov)
+**Data Source:** [Mark Gard, US Fish and Wildlife Service](mailto:mark_gard@fws.gov){target="_blank"}
 
-Mark Gard developed a flow-floodplain area relationship for the Cosumnes based on a UC Davis 1-D HEC-RAS model. 
+Mark Gard at the US Fish and Wildlife Service developed a flow-floodplain area relationship for the Cosumnes River based on a 1-D HEC-RAS hydraulic model created by UC Davis.
 
 ## Floodplain Data
 ```{r, echo=FALSE}

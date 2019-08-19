@@ -16,7 +16,7 @@ library(cvpiaHabitat)
 None planned 
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** [FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf) (pgs. 18-19)
+**Data Source:** [FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf){target="_blank"} (pgs. 18-19)
 
 No habitat modeling is available for Chinook on the Calaveras River. Instream spawning and rearing habitat for Steelhead in the Calaveras River are used as a proxy for Chinook. This data is based on an instream flow study conducted by FISHBIO and Thomas Payne for the Stockton East Water District. They used a Physical Habitat Simulation model on four reaches to find a relationship between stream flow and suitable Steelhead habitat. Graphs showing the original data are on pgs. 18-19 of the study report linked above. The  Steelhead spawning habitat data from [Mark Gard](mailto:mark_gard@fws.gov) was cross-referenced with the original FISHBIO data and amended to include all of the original data in the FISHBIO reports by adding values digitized from the flow : area curves in the using <https://automeris.io/WebPlotDigitizer/>. Values from the four reaches were compiled into a spreadsheet (see '~/cvpiaHabitat/data-raw/Calaveras_all_reaches.xlsx') and then the data from each reach was weighted by the length of the reach to find the weighted average of the Steelhead spawning and rearing WUA in Calaveras River. This approach was developed in coordination with [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. We used cells A16:D26 with a reach length of 18,282 ft, A30:D40 with a reach length of 25,438 ft, and A43:D43 with a reach length of 27,867 ft. 
 
@@ -80,7 +80,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Rearing Habitat 
 
-**Data Source:** [TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf)
+**Data Source:** [TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf){target="_blank"}
 
 `r print_model_details('Calaveras River', 'fr')`
 

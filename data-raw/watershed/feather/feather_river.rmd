@@ -16,7 +16,7 @@ library(scales)
 None planned
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** [California Department of Water Resources 2004](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) (pgs 35-36 ) and [Thomas R. Payne & Associates 2002](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf) (pgs 35-37)
+**Data Source:** [California Department of Water Resources 2004](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf){target="_blank"} (pgs 35-36 ) and [Thomas R. Payne & Associates 2002](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf){target="_blank"} (pgs 35-37)
 
 Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Feather River are based on data from the California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). The Fall Run Chinook Salmon and Steelhead spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow area curves in the [FERC evaluation reports (pages 35-36)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow area curves for "upper" and "lower" reaches. These values were combined into a single area weighted by study reach length for each flow value.
 
@@ -60,7 +60,7 @@ feather_river_instream <- feather_raw %>%
          ST_spawn_wua,
          watershed)
 
-knitr::kable(align ="c", head(feather_river_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Spawning wua, ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua, ST_spawn_wua = Steelhead Spawning wua")
+knitr::kable(align ="c", head(feather_river_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Spawning wua, FR_fry_wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, ST_spawn_wua = Steelhead Spawning wua")
 
 # usethis::use_data(feather_river_instream, overwrite = TRUE)
 ```
@@ -100,7 +100,7 @@ source('data-raw/watershed/floodplain_utils.R')
 ```
 
 ## Floodplain Rearing Habitat
-**Data Source:** [Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
+**Data Source:** [Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf){target="_blank"}
 
 `r print_model_details('Feather River', 'fr')`
 

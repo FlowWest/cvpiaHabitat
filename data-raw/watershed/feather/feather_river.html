@@ -388,13 +388,13 @@ $(document).ready(function () {
 </div>
 <div id="instream-spawning-and-rearing-habitat" class="section level2">
 <h2>Instream Spawning and Rearing Habitat</h2>
-<p><strong>Data Source:</strong> <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf">California Department of Water Resources 2004</a> (pgs 35-36 ) and <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf">Thomas R. Payne &amp; Associates 2002</a> (pgs 35-37)</p>
+<p><strong>Data Source:</strong> <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf" target="_blank">California Department of Water Resources 2004</a> (pgs 35-36 ) and <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf" target="_blank">Thomas R. Payne &amp; Associates 2002</a> (pgs 35-37)</p>
 <p>Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Feather River are based on data from the California Department of Water Resources and Thomas R. Payne &amp; Associates instream flow evaluations for the relicensing of Oroville facilities. These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data was provided by <a href="mailto:mark_gard@fws.gov">Mark Gard</a> from the U.S. Fish and Wildlife Service in a spreadsheet (see ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). The Fall Run Chinook Salmon and Steelhead spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow area curves in the <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf">FERC evaluation reports (pages 35-36)</a> using <a href="https://automeris.io/WebPlotDigitizer/" class="uri">https://automeris.io/WebPlotDigitizer/</a>. The FERC instream flow evaluation produced flow area curves for “upper” and “lower” reaches. These values were combined into a single area weighted by study reach length for each flow value.</p>
 <div id="combine-spawning-and-rearing-data" class="section level3">
 <h3>Combine Spawning and Rearing Data</h3>
 <p>The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.</p>
 <table>
-<caption>Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Spawning wua, ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua, ST_spawn_wua = Steelhead Spawning wua</caption>
+<caption>Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Spawning wua, FR_fry_wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, ST_spawn_wua = Steelhead Spawning wua</caption>
 <thead>
 <tr class="header">
 <th align="center">flow_cfs</th>
@@ -462,7 +462,7 @@ $(document).ready(function () {
 </div>
 <div id="floodplain-rearing-habitat" class="section level2">
 <h2>Floodplain Rearing Habitat</h2>
-<p><strong>Data Source:</strong> <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf">Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
+<p><strong>Data Source:</strong> <a href="https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf" target="_blank">Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model</a></p>
 <p>The entire mapped rearing extent of 65 miles was modeled using Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model. Active channel area of 2363.2 acres estimated through remote sensing analysis was subtracted from total inundated area to get inundated floodplain area.</p>
 </div>
 <div id="floodplain-data" class="section level2">
