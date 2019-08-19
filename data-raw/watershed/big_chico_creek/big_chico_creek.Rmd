@@ -15,7 +15,7 @@ library(cvpiaHabitat)
 None Planned 
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html)
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
 ```{r, include=FALSE}
 source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
@@ -28,7 +28,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Rearing Habitat
 **Data Source:**
-[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
+[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf){target="_blank"}
 
 ### Fall Run
 `r print_model_details('Big Chico Creek', 'fr')`

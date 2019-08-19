@@ -1,12 +1,12 @@
 ---
 title: "Butte Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "July 30, 2019"
+date: "August 15, 2019"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message=FALSE)
+knitr::opts_chunk$set(echo = TRUE, message=FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -17,16 +17,10 @@ None Planned
 
 ## Instream Spawning and Rearing Habiat
 
-**Data Source:**
-[FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Butte%20Creek%20Spring-run%20chinook%20salmon%20spawning%208-29-2003.pdf)(77-78)
+**Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Butte%20Creek%20Spring-run%20chinook%20salmon%20spawning%208-29-2003.pdf){target="_blank"} (77-78) and [FERC relicensing of DeSabla](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf){target="_blank"} (APPENDIX E6.3.2.6-J1)
 
-[FERC relicensing of DeSabla](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf) (APPENDIX E6.3.2.6-J1)
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in Butte Creek are based on data from the FWS instream 2003 study and the FERC relicensing of DeSabla 2008 study. The spawning habitat data is from the FWS study and was collected using a RIVER2D 2-dimensional hydraulic and habitat model and can be found on pages 77-78 of the study. The rearing data came from DeSabla 2008 in the lower butte section of the appendix (APPENDIX E6.3.2.6-J1). Instream rearing habitat data was provided in a spreadsheet (see '~cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A71:C101 for Fall Run Chinook rearing data. The spawning data was compiled in a spreadsheet (see '~cvpiaHabitat/data-raw/watershed/butte/data/butte_creek_data.csv). The spawning data was then scaled by reach length. No Fall Fun Chinook Salmon or Steelhead Spawning data was collected, Spring Run Chinook Salmon Spawning is used as a proxy for Fall Run Chinook Salmon Spawning. Units are in square feet per 1000 feet.
 
-
-Instream spawning and rearing habitat for Fall Run Chinook Salmon in Butte Creek are based on data from the FWS instream 2003 study and the FERC relicensing of DeSabla 2008 study. The spawning habitat data is from the FWS study and was collected using a RIVER2D 2-dimensional hydraulic and habitat model and can be found on pages 77-78 of the study. The rearing data came from DeSabla 2008 in the lower butte section of the appendix (APPENDIX E6.3.2.6-J1). Instream rearing habitat data was provided in a spreadsheet (see '~cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A71:C101 for Fall Run Chinook rearing data. The spawning data was compiled in a spreadsheet (see '~cvpiaHabitat/data-raw/watershed/butte/data/butte_creek_data.csv). The spawning data was then scaled by reach length. No Fall Fun Chinook Salmon Spawning data was collected so Spring Run Chinook Salmon Spawning is used as a proxy for Fall Run Chinook Salmon Spawning.
-
-### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
 ```{r, echo=FALSE}
 # Spring run spawning data 
 butte_raw <- read.csv('data-raw/watershed/butte/data/butte_creek_data.csv', 
@@ -60,31 +54,46 @@ butte_creek_spawning <- tibble(
   )
 
 # Rearing Data 
-rear <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
+butte_creek_rearing <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                    range = "A71:C101", sheet = 'Butte') %>% 
   rename(flow_cfs = Flow)
   
 # Combine spawning and rearing data 
 butte_creek_instream <- butte_creek_spawning %>% 
-  full_join(rear) %>%
+  full_join(butte_creek_rearing) %>%
   mutate(FR_spawn_wua = SR_spawn_wua, watershed = 'Butte Creek') %>% 
   select(flow_cfs, FR_spawn_wua, FR_fry_wua = `Fry Rearing`, 
          FR_juv_wua = `Juv Rearing`, 
          watershed)
 
-
-knitr::kable(align = 'c', head(butte_creek_instream, 5))
 #usethis::use_data(butte_creek_instream, overwrite = TRUE)
 ```
 
-*...with 46 more rows.*
+### Spawning Data
+```{r, echo = FALSE}
+knitr::kable(align = 'c', head(butte_creek_spawning %>% 
+                                 mutate(watershed = 'Butte Creek'), 5), caption = 
+                                "Header Descriptions: flow_cfs = flow in cubic feet per second, 
+                                SR_spawn_wua = Spring Run Chinook Spawning wua")
+```
+
+*...with 36 more rows* 
+
+### Rearing Data 
+```{r, echo = FALSE}
+knitr::kable(align = 'c', head(butte_creek_rearing %>% 
+                                 mutate(watershed = 'Butte Creek') %>% 
+                                  rename(SR_fry_wua = 'Fry Rearing', SR_juv_wua = 
+                                          'Juv Rearing'), 5), caption = 
+                                  "Header Descriptions: flow_cfs = flow in cubic feet per second, 
+                                  SR_juv_wua = Spring Run Chinook Juvenile wua,  
+                                  SR_fry_wua = Spring Run Chinook Fry wua")
+```
+
+*...with 25 more rows*
 
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon in Butte Creek. 
-
-#### Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
-
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 ``` {r,echo=FALSE}
 butte_creek_instream %>% 
     filter(!is.na(FR_spawn_wua)) %>%
@@ -92,15 +101,10 @@ butte_creek_instream %>%
     geom_line(color = '#7570b3') +
     labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
     theme_minimal()
-
 ```
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Butte Creek. 
-
-#### Rearing WUA Plot
-
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Spring Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
 ``` {r,echo=FALSE}
 butte_creek_instream %>% 
   gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
@@ -110,17 +114,16 @@ butte_creek_instream %>%
   geom_line() +
   labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
   theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3'))
+  scale_color_manual(values = c('#d95f02','#7570b3')) +
+  theme(legend.justification = c(1,0), legend.position = c(.9,.75))
 ```
 
 ```{r, include =FALSE}
-source('data-raw/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
-## Floodplain Modeling Details
-
-**Data Source:**
-[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
+## Floodplain Rearing Habitat
+**Data Source:** [Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf){target="_blank"}
 
 ### Fall Run
 `r print_model_details('Butte Creek', 'fr')`
@@ -129,20 +132,23 @@ source('data-raw/floodplain/floodplain_utils.R')
 `r print_model_details('Butte Creek', 'sr')`
 
 ## Floodplain Data
-
-
 ```{r, echo=FALSE}
-butte_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
+butte_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'ButteCreek') %>%
   mutate(watershed = 'Butte Creek')
 
-butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', df = butte_fp)
+threshold_flow <- butte_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  summarise(max_flow = max(flow_cfs)) %>% 
+  pull(max_flow)
 
-knitr::kable(align = 'c', head(butte_creek_floodplain, 5)) 
-# devtools::use_data(butte_creek_floodplain, overwrite = TRUE)
+butte_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Butte Creek', 
+                                                           df = filter(butte_fp, flow_cfs >= threshold_flow))
+
+knitr::kable(align = 'c', head(butte_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
+# usethis::use_data(butte_creek_floodplain, overwrite = TRUE)
 ```
 
-
-*...with 23 more rows*
+*...with 26 more rows*
 
 ## Floodplain Plot
 ```{r, echo = FALSE}
@@ -155,8 +161,7 @@ butte_creek_floodplain %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+
 ```
-
-
-
