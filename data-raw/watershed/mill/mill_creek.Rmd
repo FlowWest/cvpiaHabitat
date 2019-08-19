@@ -16,7 +16,7 @@ library(cvpiaHabitat)
 None Planned 
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html)
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}    
 ```{r, include=FALSE}
 source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
@@ -28,7 +28,7 @@ source('data-raw/watershed/floodplain_utils.R')
 ```
 
 ## Floodplain Rearing Habitat
-**Data Source:** [Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
+**Data Source:** [Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf){target="_blank"}
 
 ### Fall Run
 `r print_model_details('Mill Creek', 'fr')`
