@@ -1,12 +1,11 @@
 ---
 title: "Paynes Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "July 17, 2019"
+date: "August 15, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
@@ -16,24 +15,21 @@ library(cvpiaHabitat)
 ## Future Data Improvements
 None Planned 
 
-## Instream Spawning and Rearing Habiat
-
-**Data Source:** 
-No watershed specific salmonid habitat data was available for Antelope Creek. A regional weighted usable area (WUA) relationship with flow was derived for Antelope Creek by averaging the WUA values on Battle Creek, Butte Creek, Clear Creek, Cottonwood Creek and Cow Creek. The geomorphic and hydrologic conditions in Antelope Creek (watershed area = X; active channel width = Y; 2-year flow = Z) are similar to those on Battle Creek (watershed area = X; active channel width = Y; 2-year flow = Z), Butte Creek (watershed area = X; active channel width = Y; 2-year flow = Z); Clear Creek (watershed area = X; active channel width = Y; 2-year flow = Z), Cottonwood Creek (watershed area = X; active channel width = Y; 2-year flow = Z), and Cow Creek (watershed area = X; active channel width = Y; 2-year flow = Z). The regional WUA relationships for Antelope Creek were multiplied by the length of spawning and rearing extents mapped by the Science Integration Team (SIT).  
-
-### Mean WUA plot 
-
-include plot that shows mean WUA for all these watersheds 
-
-```{r}
-source('data-raw/floodplain/floodplain_utils.R')
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-## Floodplain Modeling Details
+`r print_regional_approx('paynes Creek')`
 
-**Data Source:**
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
 
-[Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
+## Floodplain Rearing Habitat
+
+**Data Source:** [Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf){target="_blank"}
 
 ### Fall Run
 `r print_model_details('Paynes Creek', 'fr')`
@@ -47,7 +43,7 @@ source('data-raw/floodplain/floodplain_utils.R')
 # TODO Ask mark about the difference in outcome from his sheet
 paynes_creek_floodplain <- scale_fp_flow_area('Paynes Creek')
 
-knitr::kable(align = 'c', head(paynes_creek_floodplain, 5)) 
+knitr::kable(align = 'c', head(paynes_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
 # devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
 ```
 
@@ -63,5 +59,6 @@ paynes_creek_floodplain %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
 ```
