@@ -17,7 +17,7 @@ library(scales)
 None planned
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf) (pgs. 91-107) and [USFWS 1985](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/AmericanRiver1985IFIM.PDF) (pgs. 10-11) 
+**Data Source:** [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf){target="_blank"} (pgs. 91-107) and [USFWS 1985](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/AmericanRiver1985IFIM.PDF){target="_blank"} (pgs. 10-11) 
 
 Instream spawning habitat for Fall Run Chinook Salmon and Steelhead in the American River is based on the spawning habitat suitability and availability analysis in the Lower American River Biological Rationale Development and Performance of the Modified Flow Standard (ARWA 2017). Instream juvenile rearing habitat for Fall Run Chinook Salmon is based on instream flow studies conducted by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. Both evaluations developed relationships between flow and suitable spawning and rearing habitat for the Lower American River. The values contained in cells A35:D46 of the 'American' spreadsheet tab are the sums of the values from the instream flow evaluation reaches called Sailor Bar, Ancil Hoffman, Watt, and H Street. These values were divided by four to get composite instream rearing weighted usable area values in square feet per 1000 feet of river.       
 ```{r, echo=FALSE}
@@ -113,7 +113,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Rearing Habitat
 **Data Source:**
-[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf)
+[Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf){target="_blank"}
 
 `r print_model_details('American River', 'fr')`
 
