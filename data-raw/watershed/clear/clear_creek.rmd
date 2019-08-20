@@ -4,7 +4,6 @@ author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompki
 date: "August 16, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
@@ -95,7 +94,14 @@ clear_creek_instream <- bind_cols(fr, sr, st) %>%
    select(-flow_cfs1, -flow_cfs2) %>% 
   mutate(watershed = 'Clear Creek')
 
-knitr::kable(align = 'c', head(clear_creek_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua, FR_fry-wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, SR_spawn_wua = Spring Run Chinook Spawning wua, SR_fry-wua = Spring Run Chinook Fry wua, SR_juv_wua = Spring Run Chinook Juvenile wua, ST_spawn_wua = Steelhead Spawning wua, ST_fry-wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua") 
+knitr::kable(align = 'c', head(clear_creek_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning wua, 
+             FR_fry-wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua,
+             SR_spawn_wua = Spring Run Chinook Spawning wua, SR_fry-wua = 
+             Spring Run Chinook Fry wua, SR_juv_wua = Spring Run Chinook Juvenile wua,
+             ST_spawn_wua = Steelhead Spawning wua, ST_fry-wua = Steelhead Fry wua, 
+             ST_juv_wua = Steelhead Juvenile wua") 
 # usethis::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
@@ -104,11 +110,6 @@ knitr::kable(align = 'c', head(clear_creek_instream, 5), caption = "Header Descr
 ### Spawning WUA 
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 ```{r, echo=FALSE}
-feet <- cvpiaHabitat::watershed_lengths %>% 
-  filter(watershed == 'Clear Creek', lifestage == 'spawning') %>% 
-  pull(feet)
-
-names(feet) <- c('FR_spawn_wua', 'SR_spawn_wua', 'ST_spawn_wua')
 
 clear_creek_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua,
@@ -122,17 +123,6 @@ clear_creek_instream %>%
   scale_color_manual(values = c('#d95f02','#7570b3', '#56B4E9')) +
   theme(legend.justification = c(1,0), legend.position = c(.9,.55))
 
-
-
-```
-
-```{r, include=FALSE}
-used <- read_csv('data-raw/watershed/clear/clear_creek_mapped_spawning.csv', skip = 1)
-# before was: used <- read_csv('data-raw/instream/clear/clear_creek_mapped_spawning.csv', skip = 1)
-used %>%
-  ggplot(aes(x = as.character(Year), y = acres)) +
-  geom_col() +
-  labs(x = 'year')
 ```
 
 ### Rearing WUA
@@ -175,7 +165,11 @@ source('data-raw/watershed/floodplain_utils.R')
 ```{r, echo=FALSE}
 clear_creek_floodplain <- scale_fp_flow_area('Clear Creek')
 
-knitr::kable(align = 'c', head(clear_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
+knitr::kable(align = 'c', head(clear_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres") 
 # usethis::use_data(clear_creek_floodplain, overwrite = TRUE)
 ```
 
@@ -195,8 +189,3 @@ clear_creek_floodplain %>%
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
   theme(legend.justification = c(1,0), legend.position = c(.9,.1))
 ```
-
-
-
-
-
