@@ -1,52 +1,47 @@
 ---
 title: "Stony Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "July 17, 2019"
+date: "August 16, 2019"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
 ```
-
 ## Future Data Improvements
 None Planned 
 
-## Instream Spawning and Rearing Habiat
-
-**Data Source:** 
-No watershed specific salmonid habitat data was available for Antelope Creek. A regional weighted usable area (WUA) relationship with flow was derived for Antelope Creek by averaging the WUA values on Battle Creek, Butte Creek, Clear Creek, Cottonwood Creek and Cow Creek. The geomorphic and hydrologic conditions in Antelope Creek (watershed area = X; active channel width = Y; 2-year flow = Z) are similar to those on Battle Creek (watershed area = X; active channel width = Y; 2-year flow = Z), Butte Creek (watershed area = X; active channel width = Y; 2-year flow = Z); Clear Creek (watershed area = X; active channel width = Y; 2-year flow = Z), Cottonwood Creek (watershed area = X; active channel width = Y; 2-year flow = Z), and Cow Creek (watershed area = X; active channel width = Y; 2-year flow = Z). The regional WUA relationships for Antelope Creek were multiplied by the length of spawning and rearing extents mapped by the Science Integration Team (SIT).  
-
-### Mean WUA plot 
-
-include plot that shows mean WUA for all these watersheds
-
-```{r}
-source('data-raw/floodplain/floodplain_utils.R')
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-## Floodplain Modeling Details
+`r print_regional_approx('Stoney Creek')`
 
-**Data Source:** 
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
 
-[Scaled USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf)
+## Floodplain Rearing Habitat 
+
+**Data Source:** [Scaled USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf){target="_blank"}
 
 `r print_model_details('Stony Creek', 'fr')`
 
-## Floodplain Data
-
+## Floodplain Data   
 ```{r}
 stony_creek_floodplain <- scale_fp_flow_area('Stony Creek')
 
-knitr::kable(align = 'c', head(stony_creek_floodplain, 5)) 
-# devtools::use_data(stony_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(stony_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
+# usethis::use_data(stony_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 5 more rows*
+*...with 27 more rows*
 
 ## Floodplain Plot
 ```{r}
@@ -58,6 +53,7 @@ stony_creek_floodplain %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(.9,.1))
 ```
 
