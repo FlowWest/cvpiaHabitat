@@ -63,7 +63,9 @@ pools[pools$watershed == 'Upper Sacramento River', c('SR_pools_sq_meters', 'ST_p
 ### Spring Run Chinook and Steelhead Pools 
 ```{r}
 # use_data(pools, overwrite = TRUE)
-knitr::kable(align = 'c', head(pools, 5), caption = 'SR_pools_sq_meters = Spring Run Chinook Pools in square meters, ST_pools_sq_meters = Steelhead Pools in square meters')
+knitr::kable(align = 'c', head(pools, 5), 
+             caption = 'SR_pools_sq_meters = Spring Run Chinook Pools in square meters,
+             ST_pools_sq_meters = Steelhead Pools in square meters')
 ```
 
 *...with 26 more rows.*
