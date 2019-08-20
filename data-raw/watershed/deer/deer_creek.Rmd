@@ -50,7 +50,11 @@ threshold_flow <- deer_fp %>%
 
 deer_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Deer Creek', df = filter(deer_fp, flow_cfs >= threshold_flow))
 
-knitr::kable(align = 'c', head(deer_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(deer_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres 
+             = Spring Run Chinook floodplain acres, ST_floodplain_acres = 
+             Steelhead floodplain acres")
 # usethis::use_data(deer_creek_floodplain, overwrite = TRUE)
 ```
 
