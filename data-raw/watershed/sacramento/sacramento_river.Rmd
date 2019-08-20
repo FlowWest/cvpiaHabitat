@@ -16,7 +16,7 @@ None Planned
 
 ## Instream Spawning and Rearing Habitat
 
-**Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf) (pg 29-31)
+**Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf){target="_blank"} (pg 29-31)
 
 Spawning habitat area for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead is based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. The spawning WUA source data was developed in six study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (A.C.I.D.) diversion dam. The A.C.I.D. boards are in April 1st - October 31st. The Upper Sacramento fall run spawning WUA values include the spawning that occurs Keswick to Deer Creek. The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. Within the life cycle model, spawning only occurs on the Sacramento River in the Upper Sacramento River reach, this habitat area includes the area of both the Upper Sacramento River and Upper Mid-Sacramento River reaches combined. Mark Gard from the U.S. Fish and Wildlife Service provided the data (see 'Sacramento' tab in ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). The data has been reorganized for clarity see (‘~/cvpiaHabitat/data-raw/instream/sacramento/upper_sacramento_river_instream’).
 
@@ -70,9 +70,7 @@ knitr::kable(align = 'c', head(upper_sac_ACID_boards_out, 5), caption = "Header 
 
 *...with 25 more rows.*
 
-#### Spawning WUAs Plot
 The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook, Late-fall Run Chinook, Winter Run Chinook, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
-
 ``` {r}
 upper_sac_ACID_boards_in %>% 
   mutate(boards = 'A.C.I.D Boards In') %>% 
@@ -227,7 +225,7 @@ upper_sacramento_river_instream %>%
 ```
 
 ## Floodplain Rearing Habitat
-**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf)
+**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf){target="_blank"}
 
 High quality habitat defined by:
 
