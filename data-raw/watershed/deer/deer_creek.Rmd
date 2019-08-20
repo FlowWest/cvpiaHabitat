@@ -1,158 +1,75 @@
 ---
 title: "Deer Creek"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "July 17, 2019"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:erincain@berkeley.edu)"
+date: "August 19, 2019"
 output: html_document
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-library(tidyverse)
-library(readxl)
-library(cvpiaHabitat)
-```
-## Future Data Improvements
-None planned
-
-## Instream Spawning and Rearing Habitat
-**Data Source:** [FlowWest 2019](TODO)
-
-### Combine Spawning and Rearing Data 
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Late Fall Run Chinook Salmon (LFR), and Spring Run Chinook Salmon (SR) is combined for use in the DSM in the following format. Units are in usable acres.
-```{r}
-deer <- read_csv('data/deer_creek_chinook_data.csv')
-deer_spawn <- deer %>%
-  filter(scenario == 'Existing', life_stage == 'spawn') %>% 
-  select(flow, suit_acres, species) %>% 
-  spread(species, suit_acres)
-# do we convert to wua or change the habitat setting function to work with suitable acres?
-```
-```{r}
-deer_rear <- deer %>%
-  filter(scenario == 'Existing', life_stage %in% c('fry', 'juv'), suit_type == 'instream') %>% 
-  mutate(species_lifestage = paste(species, '-', life_stage)) %>%
-  select(flow, suit_acres, species_lifestage) %>%
-  spread(species_lifestage, suit_acres)
-# do we convert to wua or change the habitat setting function to work with suitable acres?
-```
-
-```{r}
-deer_creek_instream <- deer_spawn %>%
-  full_join(deer_rear) %>%
-  arrange(flow) %>% 
-  rename('FR_spawn' = `Fall run Chinook`, 'LFR_spawn'= `Late-Fall run Chinook`, 'SR_spawn'= `Spring run Chinook`, 'FR_fry'= `Fall run Chinook - fry`, 'FR_juv'= `Fall run Chinook - juv`, 'LFR_fry'= `Late-Fall run Chinook - fry`, 'LFR_juv'= `Late-Fall run Chinook - juv`, 'SR_fry' = `Spring run Chinook - fry`, 'SR_juv'= `Spring run Chinook - juv`) %>%
-  mutate (watershed = 'Deer Creek')
-
-knitr::kable(align = 'c', head(deer_creek_instream, 5))
-```
-
-### Spawning
-```{r, include=FALSE}
-deer <- read_csv('data/deer_creek_chinook_data.csv')
-deer %>% 
-  filter(scenario == 'Existing', life_stage == 'spawn') %>% 
-  select(flow, suit_acres, species) %>% 
-  spread(species, suit_acres)
-# do we convert to wua or change the habitat setting function to work with suitable acres?
-```
-#### Chinook Salmon Spawning Plot 
-The following plot shows the usable spawning area in acres of river for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, and Spring Run Chinook Salmon. 
-
-``` {r,echo=FALSE}
-deer_creek_instream %>% 
-  select(FR_spawn, LFR_spawn, SR_spawn, flow, watershed) %>%
-  rename(`Fall Run Chinook` = FR_spawn, `Late Fall Run Chinook` = LFR_spawn, `Spring Run Chinook` = SR_spawn) %>%
-  gather(Species, acres, -flow, -watershed) %>% 
-  ggplot(aes(flow, acres, color = Species)) +
-  geom_line() +
-  theme_minimal() +
-  scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres')
-```
-
-### Rearing 
-
-```{r, include=FALSE}
-deer %>% 
-  filter(scenario == 'Existing', life_stage %in% c('fry', 'juv'), suit_type == 'instream') %>% 
-  mutate(species_lifestage = paste(species, '-', life_stage)) %>%
-  select(flow, suit_acres, species_lifestage) %>%
-  spread(species_lifestage, suit_acres)
-# do we convert to wua or change the habitat setting function to work with suitable acres?
-```
-
-#### Chinook Salmon Rearing Plot 
-The following plot shows the usable rearing areain acres of river for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, and Spring Run Chinook Salmon fry and juvenile. 
-
-``` {r,echo=FALSE}
-deer_creek_instream %>% 
-  select(FR_juv, FR_fry, LFR_juv, LFR_fry, SR_juv, SR_fry, flow, watershed) %>%
-  rename(`Fall Run Juvenile` = FR_juv, `Fall Run Fry` = FR_fry, `Late Fall Run Juvenile` = LFR_juv, `Late Fall Run Fry` = LFR_fry, `Spring Run Juvenile` = SR_juv, `Spring Run Fry` = SR_fry) %>%
-  gather(Species, acres, -flow, -watershed) %>% 
-  ggplot(aes(flow, acres, color = Species)) +
-  geom_line() +
-  theme_minimal() +
-  scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres')
-```
-
-### Floodplain
-```{r, include = FALSE}
-deer %>% 
-  filter(scenario == 'Existing', life_stage %in% c('fry', 'juv'), suit_type == 'floodplain') %>% 
-  mutate(species_lifestage = paste(species, '-', life_stage)) %>%
-  select(flow, suit_acres, species_lifestage) %>%
-  spread(species_lifestage, suit_acres)
-# do we convert to wua or change the habitat setting function to work with suitable acres? what about fry and juv for floodplain (not available in most places, model doesn't accept as input)?
-```
-
-```{r, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
-```
-
+```    
 ```{r}
-source('data-raw/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
+```
+## Future Data Improvements
+Update with new Flowwest 2019 data 
+
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-## Floodplain Modeling Details
+`r print_regional_approx('Deer Creek')`
 
-**Data Source:**
-[Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf)
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
+
+## Floodplain Rearing Habitat 
+**Data Source:** [Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf){target="_blank"}
 
 ### Fall Run
-`r print_model_details('Cottonwood Creek', 'fr')`
+`r print_model_details('Deer Creek', 'fr')`
 
 ### Spring Run and Steelhead
-`r print_model_details('Cottonwood Creek', 'sr')`
+`r print_model_details('Deer Creek', 'sr')`
 
 ## Floodplain Data
-
 ```{r}
-deer_fp <- read_excel('data-raw/floodplain/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek') %>%
+deer_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'DeerCreek') %>%
   mutate(watershed = 'Deer Creek')
 
-deer_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Deer Creek', df = deer_fp)
+threshold_flow <- deer_fp %>% 
+  filter(modeled_floodplain_area_acres == 0) %>% 
+  summarise(max_flow = max(flow_cfs)) %>% 
+  pull(max_flow)
 
-knitr::kable(align = 'c', head(deer_creek_floodplain, 5))
-# devtools::use_data(deer_creek_floodplain, overwrite = TRUE)
+deer_creek_floodplain <- scale_fp_flow_area_partial_model(ws = 'Deer Creek', df = filter(deer_fp, flow_cfs >= threshold_flow))
+
+knitr::kable(align = 'c', head(deer_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres 
+             = Spring Run Chinook floodplain acres, ST_floodplain_acres = 
+             Steelhead floodplain acres")
+# usethis::use_data(deer_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 17 more rows*
+*...with 17 more rows.*
 
 ## Floodplain Plot
 ```{r}
 deer_creek_floodplain %>% 
-  rename(`Fall Run Chinook` = FR_floodplain_acres,
-         `Spring Run Chinook` = SR_floodplain_acres,
-         `Steelhead` = ST_floodplain_acres) %>% 
+  select(FR_floodplain_acres, SR_floodplain_acres, watershed, flow_cfs) %>%
+  rename(`Fall Run Chinook` = FR_floodplain_acres, `Spring Run Chinook and Steelhead` = SR_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
 ```
-
