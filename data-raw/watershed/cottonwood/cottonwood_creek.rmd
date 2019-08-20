@@ -33,11 +33,11 @@ cotton_spawn <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
 
 tot_len <- 31.25
   
-cotton_reach_1 <- read_excel('data-raw/cottonwood_combined.xlsx', range = "G4:K17")%>%
+cotton_reach_1 <- read_excel('data-raw/watershed/cottonwood/data/cottonwood_combined.xlsx', range = "G4:K17")%>%
   mutate(mi = 8.99)
-cotton_reach_2 <- read_excel('data-raw/cottonwood_combined.xlsx', range = "G21:K34")%>%
+cotton_reach_2 <- read_excel('data-raw/watershed/cottonwood/data/cottonwood_combined.xlsx', range = "G21:K34")%>%
   mutate(mi = 13.42)
-cotton_reach_3 <- read_excel('data-raw/cottonwood_combined.xlsx', range = "G38:K47")%>%
+cotton_reach_3 <- read_excel('data-raw/watershed/cottonwood/data/cottonwood_combined.xlsx', range = "G38:K47")%>%
   mutate(mi = 8.84)
 new_cottonwood_creek_instream <- bind_rows(cotton_reach_1,cotton_reach_2, cotton_reach_3) %>% 
    gather(lifestage, sqft_per_mile, -Flow, -mi) %>% 
