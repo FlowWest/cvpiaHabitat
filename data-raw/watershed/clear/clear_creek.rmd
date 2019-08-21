@@ -154,6 +154,7 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Clear Creek', 'sr')`
 
 ## Floodplain Data    
+The areas represent total inundated area in acres.    
 ```{r, echo=FALSE}
 clear_creek_floodplain <- scale_fp_flow_area('Clear Creek')
 
