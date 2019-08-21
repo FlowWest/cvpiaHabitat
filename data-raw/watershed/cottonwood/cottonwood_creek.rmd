@@ -115,7 +115,8 @@ source('data-raw/watershed/floodplain_utils.R')
 ### Steelhead
 `r print_model_details('Cottonwood Creek', 'st')`
 
-## Floodplain Data    
+## Floodplain Data   
+The areas represent total inundated area in acres.    
 ```{r}
 cotton_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', 
                         sheet = 'CottonwoodCreek') %>%
