@@ -155,6 +155,7 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Yuba River', 'fr')`
 
 ## Floodplain Data
+The areas represent total inundated area in acres.    
 ```{r, echo= FALSE}
 yuba_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
                                     sheet = 'YubaRiver') %>%
