@@ -114,8 +114,12 @@ threshold <- bear_fp %>%
 bear_df <- bear_fp %>% 
   filter(flow_cfs >= threshold)
 
-bear_river_floodplain <- 
+bear_river_floodplain_fr <- 
   scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_df) 
+
+bear_river_floodplain <- bear_river_floodplain_fr %>% 
+  mutate(ST_floodplain_acres = FR_floodplain_acres) %>% 
+  select(flow_cfs, FR_floodplain_acres, ST_floodplain_acres, watershed)
 
 knitr::kable(align = 'c', head(bear_river_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
