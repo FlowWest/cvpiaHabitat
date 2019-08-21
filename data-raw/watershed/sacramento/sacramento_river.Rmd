@@ -241,7 +241,9 @@ upper_sacramento_river_instream %>%
 ```
 
 ## Floodplain Data
-The areas represent highly suitable rearing area in square meters.    
+The areas represent highly suitable rearing area in square meters.  
+
+#### Upper, Upper-mid, and Lower-mid Sacramento River Floodplain Rearing Data     
 ```{r}
 # sac <- read_csv('data-raw/floodplain/sacramento/sacramento_floodplain.csv')
 
@@ -341,25 +343,25 @@ lower_mid_sacramento_river_floodplain <- lower_mid_sac_fp %>%
 
 ```{r}
 combined_floodplain_rearing <- (upper_sacramento_river_floodplain %>% 
-                       rename(upper_floodplain_sqm = floodplain_sq_meters)) %>% 
+                       rename(upper_sqm = floodplain_sq_meters)) %>% 
   bind_cols((upper_mid_sacramento_river_floodplain %>% 
-                       rename(upper_mid_floodplain_sqm = floodplain_sq_meters)), 
+                       rename(upper_mid_sqm = floodplain_sq_meters)), 
             (lower_mid_sacramento_river_floodplain %>% 
-                       rename(lower_mid_floodplain_sqm = floodplain_sq_meters))) %>% 
+                       rename(lower_mid_sqm = floodplain_sq_meters))) %>% 
   mutate(watershed = 'Sacramento River') %>% 
-  select(flow_cfs, upper_floodplain_sqm, upper_mid_floodplain_sqm, 
-         lower_mid_floodplain_sqm, watershed)
+  select(flow_cfs, upper_sqm, upper_mid_sqm, 
+         lower_mid_sqm, watershed)
 
 knitr::kable(align = 'c', head(combined_floodplain_rearing, 5), 
 caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
-upper_rearing_sqm = Upper Sacramento River Rearing Square Meters,
-upper_mid_rearing_sqm = Upper-Mid Sacramento River Rearing Square Meters,
-lower_mid_rearing_sqm = Lower-Mid Sacramento River Rearing Square Meters")
+upper_sqm = Upper Sacramento River Floodplain Square Meters,
+upper_mid_sqm = Upper-Mid Sacramento River Floodplain Square Meters,
+lower_mid_sqm = Lower-Mid Sacramento River Floodplain Square Meters")
 ```
 
 *... with 73 more rows*    
 
-### Lower Sacramento River Floodplain Rearing Data        
+#### Lower Sacramento River Floodplain Rearing Data            
 The data colected in the Lower Sacramento is shown below in a seperate table because flow cfs values do not begin until 27500 cfs. 
 ```{r}
 amer_free_mi <- reach_miles['feat_free'] - feat_amer_mi
@@ -378,7 +380,10 @@ threshold <- lower_sac_fp %>%
 lower_sacramento_river_floodplain <- lower_sac_fp %>% 
   filter(flow_cfs >= threshold)
 
-knitr::kable(align = 'c', head(lower_sacramento_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, floodplain_sq_meters = Floodplain Square Meters")
+knitr::kable(head(rename(lower_sacramento_river_floodplain, lower_sqm = floodplain_sq_meters), 5),
+             align = 'c', 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             lower_sqm = Lower Sacramento Floodplain Square Meters")
 
 # usethis::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
 ```
