@@ -46,14 +46,6 @@ clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
    mutate(miles = 8.81)
  
 total <- 8.81 + 7.33 + 2.27
-
-clear_wua <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
-   gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
-   group_by(lifestage, flow_cfs) %>% 
-   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
-   spread(lifestage, wua) %>% 
-   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua, SR_fry_wua, 
-          SR_juv_wua, ST_spawn_wua, ST_fry_wua, ST_juv_wua)
  
 fr <- clear_raw_la %>% 
    select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, miles) %>% 
