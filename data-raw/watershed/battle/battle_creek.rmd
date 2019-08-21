@@ -17,7 +17,7 @@ None Planned
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Thomas R. Payne & Associates 1995](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf){target="_blank"} (pg C-1)
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in Battle Creek are based on data from Thomas R. Payne & Associates instream flow evaluations conducted for the California Department of Fish and Wildlife. These evaluations developed relationships between flow and suitable spawning and rearing habitat for Battle Creek from seven study reaches. We used the consolidated WUA for all mainstem reaches for Fall Run Chinook and Steelhead data from Thomas Payne and Associates 1995 located in this spreadsheet (see'~cvpiaHabitat/data-raw/watershed/battle/data/weighted_composite_Battle.csv).   
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in Battle Creek are based on data from Thomas R. Payne & Associates instream flow evaluations conducted for the California Department of Fish and Wildlife. These evaluations developed relationships between flow and suitable spawning and rearing habitat for Battle Creek from seven study reaches. We used the consolidated WUA for all mainstem reaches for Fall Run Chinook and Steelhead data from Thomas Payne and Associates 1995 located in this spreadsheet (see'~cvpiaHabitat/data-raw/watershed/battle/data/Weighted_composite_Battle.csv).   
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet. 
