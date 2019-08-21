@@ -12,8 +12,7 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 
-## Rearing Pools
-
+## Rearing Pools   
 Estimates of percent pools were provided by [Mark Gard](mark_gard@@fws.gov) for some watersheds.The mean percent pools, excluding Feather River, is 23.1%. This value is used for watersheds without an estimate.The total area of pools is then caluculated by multiplying the estimated percent pools by the total channel area. Channel areas were estimated using Google Earth Engine.
 
 ### Watersheds With Estimated Percent Pools 
@@ -24,7 +23,7 @@ lengths_table <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
                                           'text', 'numeric', 'text'),
                             na = 'na')
 
-pools_perc <- read_csv('data-raw/watershed/pools/pools.csv', col_types = 'cnc') %>%
+pools_perc <- read_csv('data-raw/watershed/pools/data/pools.csv', col_types = 'cnc') %>%
   select(-FW_QAQC)
 
 mean_pools_perc <- filter(pools_perc, watershed != 'Feather River') %>%
