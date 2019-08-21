@@ -4,7 +4,6 @@ author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompki
 date: "August 16, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, message=FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
@@ -102,6 +101,7 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Bear River', 'fr')`
 
 ## Floodplain Data
+The areas represent total inundated area in acres.
 ```{r, echo= FALSE}
 bear_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'BearRiver') %>%
   mutate(watershed = 'Bear River')
@@ -114,9 +114,8 @@ threshold <- bear_fp %>%
 bear_df <- bear_fp %>% 
   filter(flow_cfs >= threshold)
 
-bear_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_df) %>% 
-  mutate(ST_floodplain_acres = FR_floodplain_acres) %>% 
-  select(flow_cfs, FR_floodplain_acres, ST_floodplain_acres, watershed)
+bear_river_floodplain <- 
+  scale_fp_flow_area_partial_model(ws = 'Bear River', df = bear_df) 
 
 knitr::kable(align = 'c', head(bear_river_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
