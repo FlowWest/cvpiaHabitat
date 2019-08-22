@@ -156,7 +156,11 @@ stanislaus_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAr
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
-knitr::kable(align = 'c', head(stanislaus_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(stanislaus_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 ```
 
