@@ -23,7 +23,7 @@ Instream spawning habitat for Fall Run Chinook Salmon and Steelhead in the Ameri
 ```{r, echo=FALSE}
 american_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A35:D46", sheet = 'American')
 
-spawn <- read_csv('data-raw/watershed/american/american_river_spawning_wua.csv')
+spawn <- read_csv('data-raw/watershed/american/data/american_river_spawning_wua.csv')
  
 study_len <- 800+377+1553+522+3142+3103+1000+754+3442+1500
  
