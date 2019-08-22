@@ -99,7 +99,7 @@ rearing <- r1 %>%
   spread(lifestage, wua) %>% 
   rename(flow_cfs = Flow, FR_fry_wua = `Fall-run fry (ft2)`, FR_juv_wua = `Fall-run juvenile (ft2)`)
 ```
-```{r, include = FALSE}
+```{r, echo = FALSE}
 #combine spawning and rearing 
 mokelumne_river_instream <- spawning_moke %>% 
   full_join(rearing) %>% 
