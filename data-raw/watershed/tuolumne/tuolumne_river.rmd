@@ -32,7 +32,15 @@ tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
          ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
 # usethis::use_data(tuolumne_river_instream, overwrite = TRUE)
 
-knitr::kable(align = 'c', head(tuolumne_river_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua, FR_fry_wua = Fall Run Chinook fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, ST_spawn_wua = Steelhead Spawning wua, ST_fry_wua = Steelhead fry wua, ST_juv_wua = Steelhead Juvenile wua, ST_adult_wua = Steelhead Adult wua")
+knitr::kable(align = 'c', head(tuolumne_river_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, 
+             FR_fry_wua = Fall Run Chinook fry WUA, 
+             FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+             ST_spawn_wua = Steelhead Spawning WUA, 
+             ST_fry_wua = Steelhead fry WUA, 
+             ST_juv_wua = Steelhead Juvenile WUA, 
+             ST_adult_wua = Steelhead Adult WUA")
 ```
 
 *... with 25 more rows.* 
@@ -67,7 +75,7 @@ tuolumne_river_instream %>%
   theme_minimal() +
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres') + 
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme(legend.justification = c(1,0), legend.position = c(.95,.25))
 ```
 
@@ -80,7 +88,8 @@ source('data-raw/watershed/floodplain_utils.R')
 
 The entire mapped rearing extent of 54.33 miles was modeled by TID and MID using a TUFLOW hydraulic model with 1D channel and 2D overbank components. This approach directly modeled inundated floodplain area.
 
-## Floodplain Data
+## Floodplain Data    
+The areas represent total inundated area in acres.    
 ```{r, echo=FALSE}
 tuolumne_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', 
                                         sheet = 'TuolumneRiver') %>%
@@ -100,7 +109,11 @@ threshold <- tuolumne_fp %>%
 tuolumne_river_floodplain <- tuolumne_fp %>% 
   filter(flow_cfs >= threshold)
 
-knitr::kable(align = 'c', head(tuolumne_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(tuolumne_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(tuolumne_river_floodplain, overwrite = TRUE)
 ```
 
