@@ -22,18 +22,18 @@ Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead 
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
-```{r, include=FALSE}
+```{r, echo=FALSE}
 feather_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A1:D8", sheet = 'Feather')
 # feather_raw
 ```
-```{r, include=FALSE}
-upper_fr <- read_csv('data-raw/watershed/feather/alt_upper_feather_spawn_wua_rsi.csv') %>%
+```{r, echo=FALSE}
+upper_fr <- read_csv('data-raw/watershed/feather/data/alt_upper_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'upper')
-lower_fr <- read_csv('data-raw/watershed/feather/alt_lower_feather_spawn_wua_rsi.csv') %>%
+lower_fr <- read_csv('data-raw/watershed/feather/data/alt_lower_feather_spawn_wua_rsi.csv') %>%
   mutate(location = 'lower')
-upper_st <- read_csv('data-raw/watershed/feather/alt_upper_feather_spawn_wua_rsi_steelhead.csv') %>%
+upper_st <- read_csv('data-raw/watershed/feather/data/alt_upper_feather_spawn_wua_rsi_steelhead.csv') %>%
   mutate(location = 'upper')
-lower_st <- read_csv('data-raw/watershed/feather/alt_lower_feather_spawn_wua_rsi_steelhead.csv') %>%
+lower_st <- read_csv('data-raw/watershed/feather/data/alt_lower_feather_spawn_wua_rsi_steelhead.csv') %>%
   mutate(location = 'lower')
 spawning <- tibble(
   flow_cfs = c(200, 500, 750, 1000, 1250, 1500, 1750, 2000, 2500, 3000, 3500, 
@@ -60,7 +60,12 @@ feather_river_instream <- feather_raw %>%
          ST_spawn_wua,
          watershed)
 
-knitr::kable(align ="c", head(feather_river_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Spawning wua, FR_fry_wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, ST_spawn_wua = Steelhead Spawning wua")
+knitr::kable(align ="c", head(feather_river_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, 
+             FR_fry_wua = Fall Run Chinook Fry WUA, 
+             FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+             ST_spawn_wua = Steelhead Spawning WUA")
 
 # usethis::use_data(feather_river_instream, overwrite = TRUE)
 ```
@@ -105,6 +110,7 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Feather River', 'fr')`
 
 ## Floodplain Data
+The areas represent total inundated area in acres.    
 ```{r, echo=FALSE}
 feather_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
                                        sheet = 'FeatherRiver') %>%
@@ -116,7 +122,11 @@ feather_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
-knitr::kable(align = 'c', head(feather_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(feather_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(feather_river_floodplain, overwrite = TRUE)
 ```
 
