@@ -61,9 +61,9 @@ cottonwood_creek_instream <- cotton_spawn %>%
 ```{r}
 knitr::kable(align = 'c', head(cottonwood_creek_instream, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
-             FR_spawn_wua = Fall Run Chinook Spawning wua, FR_fry_wua = 
-             Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, 
-             ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua")
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, FR_fry_wua = 
+             Fall Run Chinook Fry WUA, FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA")
 ```
 
 *...with 31 more rows.*
@@ -95,7 +95,7 @@ cottonwood_creek_instream %>%
   theme_minimal() +
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres') + 
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme(legend.justification = c(1,0), legend.position = c(.95,.7))
 ```
 

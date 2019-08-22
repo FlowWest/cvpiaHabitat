@@ -138,7 +138,15 @@ merced_river_instream <- tibble(
   watershed = 'Merced River'
 )
 
-knitr::kable(align = 'c', head(merced_river_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua, FR_fry_wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, ST_spawn_wua = Steelhead Spawning wua, ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua, ST_adult_wua = Steelhead Adult wua")
+knitr::kable(align = 'c', head(merced_river_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, 
+             FR_fry_wua = Fall Run Chinook Fry WUA, 
+             FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+             ST_spawn_wua = Steelhead Spawning WUA,
+             ST_fry_wua = Steelhead Fry WUA, 
+             ST_juv_wua = Steelhead Juvenile WUA, 
+             ST_adult_wua = Steelhead Adult WUA")
 # usethis::use_data(merced_river_instream, overwrite = TRUE)
 ```
 
@@ -160,7 +168,6 @@ merced_river_instream %>%
 
 ```
 
-
 ### Rearing WUA
 The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.   
 ``` {r,echo=FALSE}
@@ -177,7 +184,7 @@ merced_river_instream %>%
   theme_minimal() +
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres') + 
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme(legend.justification = c(1,0), legend.position = c(.95,.05))
 ```
 
@@ -203,6 +210,7 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Merced River', 'fr')`
 
 ## Floodplain Data
+The areas represent total inundated area in acres.    
 ```{r, echo=FALSE}
 merced_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'MercedRiver') %>%
   mutate(watershed = 'Merced River')
@@ -215,7 +223,10 @@ threshold <- merced_fp %>%
 merced_river_floodplain <- scale_fp_flow_area_partial_model(ws = 'Merced River', 
                                                             df = filter(merced_fp, flow_cfs >= threshold))
 
-knitr::kable(align = 'c', head(merced_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(merced_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(merced_river_floodplain, overwrite = TRUE)
 ```
 
