@@ -48,9 +48,12 @@ bear_river_instream <- bear_reach_1 %>% bind_rows(bear_reach_2, bear_reach_3) %>
 
 knitr::kable(align = 'c', head(bear_river_instream, 5), 
 caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
-FR_spawn_wua = Fall Run Chinook Spawning wua, FR_juv_wua = Fall Run Chinook Juvenile wua, FR_fry_wua = Fall Run Chinook Fry wua, ST_spawn_wua = Steelhead Spawning wua, 
-ST_juv_wua = Steelhead Juvenile wua, ST_fry_wua = Steelhead Fry wua
-             ")
+FR_spawn_wua = Fall Run Chinook Spawning WUA, 
+FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+FR_fry_wua = Fall Run Chinook Fry WUA, 
+ST_spawn_wua = Steelhead Spawning WUA, 
+ST_juv_wua = Steelhead Juvenile WUA, 
+ST_fry_wua = Steelhead Fry WUA")
 #usethis::use_data(bear_river_instream, overwrite = TRUE)
 ```
 
@@ -87,7 +90,7 @@ bear_river_instream %>%
   theme_minimal() +
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres') + 
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme(legend.justification = c(1,0), legend.position = c(.95,.8))
 ```
 
