@@ -1,36 +1,28 @@
 ---
 title: "Clear Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
-date: "June 11, 2019"
+date: "August 16, 2019"
 output: html_document
 ---
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
 library(scales)
 ```
-
 ## Future Data Improvements
 None Planned 
 
 ## Instream Spawning and Rearing Habiat
-
-**Data Source:**     
-[FWS 2007](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Whiskeytown%20to%20Clear%20Creek%20Br%20spawning%20final%20report.pdf) (pgs 113-117)    
-[FWS Rearing 2011](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Whiskeytown%20to%20Clear%20Creek%20Br%20rearing%20final%20report.pdf) (pgs 144-157)    
-[FWS Spawning 2011](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Lower%20Spawning%20Final%20Report.pdf) (pgs 107-109)    
-[FWS 2013](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Lower%20Rearing%20Final%20Report-1.pdf) (pgs 150-160)    
+**Data Source:** [FWS 2007](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Whiskeytown%20to%20Clear%20Creek%20Br%20spawning%20final%20report.pdf){target="_blank"} (pgs 113-117) and [FWS Rearing 2011](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Whiskeytown%20to%20Clear%20Creek%20Br%20rearing%20final%20report.pdf){target="_blank"} (pgs 144-157) and [FWS Spawning 2011](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Lower%20Spawning%20Final%20Report.pdf){target="_blank"} (pgs 107-109) and [FWS 2013](https://www.fws.gov/lodi/instream-flow/Documents/Clear%20Creek%20Lower%20Rearing%20Final%20Report-1.pdf){target="_blank"}(pgs 150-160)    
 
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead / Rainbow Trout in Clear Creek is based on data from four U.S. Fish and Wildlife Service (USFWS) instream flow evaluations conducted between 2007 and 2013 for the Central Valley Project Improvement Act (CVPIA). These evaluations developed relationships between flow and suitable spawning and rearing habitat area for Clear Creek for "upper" (Whiskeytown Dam to Clear Creek Road) and "lower" (Clear Creek Road to the Sacramento River) Clear Creek. The original data can be found on pages 113 - 117 of FWS 2007 (Upper Clear Creek spawning), pages 144 - 157 of FWS Rearing 2011 (Upper Clear Creek rearing, pages 107 - 109 of FWS Spawning 2011 (Lower Clear Creek spawning), and pages 150 - 160 of FWS 2013 (Lower Clear Creek rearing). [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service combined the habitat data from these four studies and provided them for the entire Clear Creek watershed in a spreadsheet (see ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). Mark Gard instructed us to use A3:G26, A30:G53, and A58:G81 of the 'Clear' tabwithin his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments. Fall run are only in the lower alluvial segment.
+Instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in Clear Creek are based on data from four U.S. Fish and Wildlife Service (USFWS) instream flow evaluations conducted between 2007 and 2013 for the Central Valley Project Improvement Act (CVPIA). These evaluations developed relationships between flow and suitable spawning and rearing habitat area for Clear Creek for "upper" (Whiskeytown Dam to Clear Creek Road) and "lower" (Clear Creek Road to the Sacramento River) Clear Creek. The original data can be found on pages 113 - 117 of FWS 2007 (Upper Clear Creek spawning), pages 144 - 157 of FWS Rearing 2011 (Upper Clear Creek rearing, pages 107 - 109 of FWS Spawning 2011 (Lower Clear Creek spawning), and pages 150 - 160 of FWS 2013 (Lower Clear Creek rearing). [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service combined the habitat data from these four studies and provided them for the entire Clear Creek watershed in a spreadsheet (see ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). Mark Gard instructed us to use A3:G26, A30:G53, and A58:G81 of the 'Clear' tab within his 'IFIMWUA.xlsx'. These cells represent the WUA in sqft for the lower alluvial (8.81 mi), canyon (7.33 mi), and upper alluvial (2.27 mi) segments. Fall run are only in the lower alluvial segment. Fall Run spawning is an estimate provided by Clear Creek watershed experts after receiving feedback that the FWS estimates were too low.
 
 ### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Spring Run Chinook Salmon (SR), and Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
-
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Spring Run Chinook Salmon (SR), and Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.   
 ```{r, echo=FALSE}
 clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                            range = "A4:G26", sheet = 'Clear', 
@@ -54,14 +46,6 @@ clear_raw_la <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
    mutate(miles = 8.81)
  
 total <- 8.81 + 7.33 + 2.27
-
-clear_wua <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
-   gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
-   group_by(lifestage, flow_cfs) %>% 
-   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
-   spread(lifestage, wua) %>% 
-   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua, SR_fry_wua, 
-          SR_juv_wua, ST_spawn_wua, ST_fry_wua, ST_juv_wua)
  
 fr <- clear_raw_la %>% 
    select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, miles) %>% 
@@ -99,153 +83,69 @@ sr_spawn <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>%
 sr <- full_join(sr_spawn, sr_juv)
  
 clear_creek_instream <- bind_cols(fr, sr, st) %>% 
-   select(-flow_cfs1, -flow_cfs2)
+   select(-flow_cfs1, -flow_cfs2) %>% 
+  mutate(watershed = 'Clear Creek')
 
-knitr::kable(align = 'c', head(clear_creek_instream, 5)) 
-# devtools::use_data(clear_creek_instream, overwrite = TRUE)
+knitr::kable(align = 'c', head(clear_creek_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning wua, 
+             FR_fry-wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua,
+             SR_spawn_wua = Spring Run Chinook Spawning wua, SR_fry-wua = 
+             Spring Run Chinook Fry wua, SR_juv_wua = Spring Run Chinook Juvenile wua,
+             ST_spawn_wua = Steelhead Spawning wua, ST_fry-wua = Steelhead Fry wua, 
+             ST_juv_wua = Steelhead Juvenile wua") 
+# usethis::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
+*...with 18 more rows.* 
 
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in Clear Creek.
-
-#### Fall Run Salmon Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. The WUA results for Fall Run Chinook Salmon given in the table above and the graph below are estimated at 13,000 based on expert feedback that the original WUA for FR Salmon in Clear Creek is underestimating the actual habitat.  
-
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
 ```{r, echo=FALSE}
-feet <- cvpiaHabitat::watershed_lengths %>% 
-  filter(watershed == 'Clear Creek', lifestage == 'spawning') %>% 
-  pull(feet)
 
-names(feet) <- c('FR_spawn_wua', 'SR_spawn_wua', 'ST_spawn_wua')
-
-clear_creek_instream %>%
-  select(flow_cfs, FR_spawn_wua) %>%
-  gather(Species, wua, -flow_cfs) %>% 
-  mutate(feet = feet[Species], acres = wua* feet/1000/43560) %>% 
-  ggplot(aes(flow_cfs, acres)) +
-  geom_line(color= '#7570b3') +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) + 
+clear_creek_instream %>% 
+  select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua,
+         `Spring Run Chinook` = SR_spawn_wua) %>% 
+  gather(Species, WUA, -flow_cfs) %>% 
+  filter(!is.na(WUA)) %>% 
+  ggplot(aes(flow_cfs, WUA, color = Species)) +
+  geom_line() +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3','#56B4E9'))
+  scale_color_manual(values = c('#d95f02','#7570b3', '#56B4E9')) +
+  theme(legend.justification = c(1,0), legend.position = c(.9,.55))
+
 ```
-
-#### Spring Run Salmon Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
-
-```{r, echo=FALSE}
-feet <- cvpiaHabitat::watershed_lengths %>% 
-  filter(watershed == 'Clear Creek', lifestage == 'spawning') %>% 
-  pull(feet)
-
-names(feet) <- c('FR_spawn_wua', 'SR_spawn_wua', 'ST_spawn_wua')
-
-clear_creek_instream %>%
-  select(flow_cfs, SR_spawn_wua) %>%
-  gather(Species, wua, -flow_cfs) %>% 
-  mutate(feet = feet[Species], acres = wua* feet/1000/43560) %>% 
-  ggplot(aes(flow_cfs, acres)) +
-  geom_line(color= '#7570b3') +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) + 
-  theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3','#56B4E9'))
-```
-
-#### Steelhead Spawning WUA Plot
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
-
-```{r, echo=FALSE}
-feet <- cvpiaHabitat::watershed_lengths %>% 
-  filter(watershed == 'Clear Creek', lifestage == 'spawning') %>% 
-  pull(feet)
-
-names(feet) <- c('FR_spawn_wua', 'SR_spawn_wua', 'ST_spawn_wua')
-
-clear_creek_instream %>%
-  select(flow_cfs,  ST_spawn_wua) %>%
-  gather(Species, wua, -flow_cfs) %>% 
-  mutate(feet = feet[Species], acres = wua* feet/1000/43560) %>% 
-  ggplot(aes(flow_cfs, acres)) +
-  geom_line(color= '#7570b3') +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) + 
-  theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3','#56B4E9'))
-```
-
-
-```{r, include=FALSE}
-used <- read_csv('data-raw/watershed/clear/clear_creek_mapped_spawning.csv', skip = 1)
-# before was: used <- read_csv('data-raw/instream/clear/clear_creek_mapped_spawning.csv', skip = 1)
-used %>%
-  ggplot(aes(x = as.character(Year), y = acres)) +
-  geom_col() +
-  labs(x = 'year')
-```
-
 
 ### Rearing WUA
-The fry and juvenile instream rearing habitat weighted usable areas for Fall Run Chinook Salmon in the Clear Creek. 
-
-#### Fall Run Rearing WUA Plot
-
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.
-
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead fry and juvenile. The juvenile rearing data is the same for Spring Run and Steelhead. These rates are multiplied by the total rearing reach length mapped by the SIT.
 ```{r, echo=FALSE}
 clear_creek_instream %>% 
-  select(-FR_spawn_wua, -SR_spawn_wua, -ST_spawn_wua, -SR_fry_wua, -SR_juv_wua, -ST_fry_wua, -ST_juv_wua) %>%
-  gather(Species, wua, -flow_cfs) %>%
-  ggplot(aes(flow_cfs, wua, color = Species)) +
+  select(FR_juv_wua, FR_fry_wua, ST_juv_wua, ST_fry_wua, SR_juv_wua, SR_fry_wua, 
+         flow_cfs, watershed) %>%
+  gather(species_lifestage, acres, -flow_cfs, -watershed) %>% 
+  mutate(
+    species = case_when( 
+      str_detect(species_lifestage, 'ST') ~ 'Steelhead', 
+      str_detect(species_lifestage, 'FR') ~ 'Fall Run Chinook',
+      str_detect(species_lifestage, 'SR') ~ 'Spring Run Chinook'),
+      lifestage = ifelse(str_detect(species_lifestage, 'juv'), 'Juvenile', 'Fry')) %>% 
+  ggplot(aes(flow_cfs, acres, color = species)) +
   geom_line() +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) +
-  theme_minimal()+
-  scale_color_manual(values = c('#d95f02','#7570b3'))
-```
-
-#### Spring Run Rearing WUA Plot
-
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Spring Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. Spring run juvenile and Steelhead rearing habitat are the same. The data is lumped together because Steelhead and Spring Run Salmon have the same criteria and there is a small sample size for both steelhead and spring run.
-
-```{r, echo=FALSE}
-clear_creek_instream %>% 
-  select(-FR_spawn_wua, -SR_spawn_wua, -ST_spawn_wua, -FR_fry_wua, -FR_juv_wua, -ST_fry_wua, -ST_juv_wua) %>%
-  gather(Species, wua, -flow_cfs) %>%
-  ggplot(aes(flow_cfs, wua, color = Species)) +
-  geom_line() +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) +
-  theme_minimal()+
-  scale_color_manual(values = c('#d95f02','#7570b3'))
-```
-
-#### Steelhead Rearing WUA Plot
-
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. Steelhead and Spring run juvenile rearing habitat are the same. The data is lumped together because Steelhead and Spring Run Salmon have the same criteria and there is a small sample size for both steelhead and spring run.
-
-```{r, echo=FALSE}
-clear_creek_instream %>% 
-  select(-FR_spawn_wua, -SR_spawn_wua, -ST_spawn_wua, -FR_fry_wua, -FR_juv_wua, -SR_juv_wua, -SR_fry_wua) %>%
-  gather(Species, wua, -flow_cfs) %>%
-  ggplot(aes(flow_cfs, wua, color = Species)) +
-  geom_line() +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-  scale_y_continuous(labels = comma) +
-  theme_minimal()+
-  scale_color_manual(values = c('#d95f02','#7570b3'))
+  theme_minimal() +
+  facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme(legend.justification = c(1,0), legend.position = c(.95,.05))
 ```
 
 ```{r, include = FALSE}
-source('data-raw/floodplain/floodplain_utils.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
-## Floodplain Modeling Details
+## Floodplain Rearing Habitat
 
-**Data Source:** 
-
-[Scaled USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf)
+**Data Source:** [Scaled USFWS / FEMA 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf){target="_blank"}
 
 ### Fall Run
 `r print_model_details('Clear Creek', 'fr')`
@@ -253,16 +153,20 @@ source('data-raw/floodplain/floodplain_utils.R')
 ### Spring Run and Steelhead
 `r print_model_details('Clear Creek', 'sr')`
 
-## Floodplain Data
-
+## Floodplain Data    
+The areas represent total inundated area in acres.    
 ```{r, echo=FALSE}
 clear_creek_floodplain <- scale_fp_flow_area('Clear Creek')
 
-knitr::kable(align = 'c', head(clear_creek_floodplain, 5)) 
-# devtools::use_data(clear_creek_floodplain, overwrite = TRUE)
+knitr::kable(align = 'c', head(clear_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres") 
+# usethis::use_data(clear_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 5 more rows*
+*...with 27 more rows*
 
 ## Floodplain Plot
 ```{r, echo = FALSE}
@@ -275,10 +179,6 @@ clear_creek_floodplain %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(.9,.1))
 ```
-
-
-
-
-
