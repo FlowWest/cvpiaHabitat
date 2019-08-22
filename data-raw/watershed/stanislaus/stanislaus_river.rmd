@@ -84,14 +84,19 @@ stanislaus_river_instream <- stanislaus_raw %>% bind_rows(stan_spawn) %>%
 
 ### Spawning Plot 
 ```{r, echo = FALSE}
-knitr::kable(align = 'c', head((stan_spawn %>% mutate(watershed = 'Stanislaus River')) , 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua")
+knitr::kable(align = 'c', head((stan_spawn %>% mutate(watershed = 'Stanislaus River')) , 5),
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning WUA")
 ```
 
 *...with 22 more rows.*
 
 ### Rearing Plot 
 ```{r, echo = FALSE}
-knitr::kable(align = 'c', head((stanislaus_raw %>% mutate(watershed = 'Stanislaus River')) , 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_fry_wua = Fall Run Chinook Fry wua, FR_juv_wua = Fall Run Chinook Juvenile wua, ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua")
+knitr::kable(align = 'c', head((stanislaus_raw %>% mutate(watershed = 'Stanislaus River')) , 5),
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
+             FR_fry_wua = Fall Run Chinook Fry WUA, FR_juv_wua = Fall Run Chinook Juvenile WUA,
+             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA")
 ```
 
 *...with 25 more rows.*
@@ -124,10 +129,9 @@ stanislaus_raw %>%
   theme_minimal() +
   facet_wrap(~lifestage, nrow = 2, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Rearing wua') + 
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme(legend.justification = c(1,0), legend.position = c(.9,.4))
 ```
-
 
 ```{r, include=FALSE}
 source('data-raw/watershed/floodplain_utils.R')
@@ -140,6 +144,7 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Stanislaus River', 'fr')`
 
 ## Floodplain Data
+The areas represent total inundated area in acres.    
 ```{r, echo = FALSE}
 stanislaus_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
                                           sheet = 'StanislausRiver') %>%
@@ -151,7 +156,11 @@ stanislaus_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAr
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
-knitr::kable(align = 'c', head(stanislaus_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(stanislaus_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 ```
 

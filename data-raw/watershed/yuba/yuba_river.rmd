@@ -96,10 +96,10 @@ yuba_river_instream <- rearing %>%
 
 knitr::kable(align = 'c', head(yuba_river_instream, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
-             FR_spawn_wua = Fall Run Chinook Spawning WUA, FR_fry_wua = Fall Run Chinook Fry wua,
-             FR_juv_wua = Fall Run Chinook Juvenile wua, SR_spawn_wua = 
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, FR_fry_wua = Fall Run Chinook Fry WUA,
+             FR_juv_wua = Fall Run Chinook Juvenile WUA, SR_spawn_wua = 
              Spring Run Chinook Spawning WUA, ST_spawn_wua = Steelhead Spawning WUA, 
-             ST_fry_wua = Steelhead Fry wua, ST_juv_wua = Steelhead Juvenile wua")
+             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA")
 
 # usethis::use_data(yuba_river_instream, overwrite = TRUE)
 ```
@@ -141,7 +141,7 @@ yuba_river_instream %>%
   theme_minimal() +
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Suitable Acres') + 
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme(legend.justification = c(1,0), legend.position = c(.95,.45))
 ```
 
