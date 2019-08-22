@@ -72,8 +72,11 @@ The instream spawning and rearing habitat data described above for Fall Run Chin
                                    FR_fry_wua = cos_fry, FR_juv_wua = cos_juv,
                                    watershed = 'Cosumnes River')
  
-knitr::kable(align = 'c', head(cosumnes_river_instream, 5), caption = 
-                                  "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua, FR_juv_wua = Fall Run Chinook Juvenile wua, FR_fry_wua = Fall Run Chinook Fry wua")
+knitr::kable(align = 'c', head(cosumnes_river_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, 
+             FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+             FR_fry_wua = Fall Run Chinook Fry WUA")
 # usethis::use_data(cosumnes_river_instream, overwrite = TRUE)
 ```
 
@@ -116,6 +119,7 @@ source('data-raw/watershed/floodplain_utils.R')
 Mark Gard at the US Fish and Wildlife Service developed a flow-floodplain area relationship for the Cosumnes River based on a 1-D HEC-RAS hydraulic model created by UC Davis.
 
 ## Floodplain Data
+The areas represent total inundated area in acres.    
 ```{r, echo=FALSE}
 floodplain <- read_excel('data-raw/mark_gard_data/Floodplainarea.xlsx', 
                          range = "B2:E37", sheet = "Cosumnes") %>%
@@ -127,7 +131,9 @@ cosumnes_river_floodplain <- floodplain %>%
   select(flow_cfs, FR_floodplain_acres, watershed) %>% 
   filter(flow_cfs > 1000)
 
-knitr::kable(align = 'c', head(cosumnes_river_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook Floodplain Acres")
+knitr::kable(align = 'c', head(cosumnes_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook Floodplain Acres")
 # usethis::use_data(cosumnes_river_floodplain, overwrite = TRUE)
 ```
 
