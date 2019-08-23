@@ -36,12 +36,17 @@ source('data-raw/watershed/floodplain_utils.R')
 ### Spring Run and Steelhead
 `r print_model_details('Mill Creek', 'st')`
 
-## Floodplain Data
+## Floodplain Data    
+The areas represent total inundated area in acres.    
 ```{r}
 # TODO Ask mark about the difference in outcome from his sheet
 mill_creek_floodplain <- scale_fp_flow_area('Mill Creek')
 
-knitr::kable(align = 'c', head(mill_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
+knitr::kable(align = 'c', head(mill_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres") 
 # usethis::use_data(mill_creek_floodplain, overwrite = TRUE)
 ```
 
