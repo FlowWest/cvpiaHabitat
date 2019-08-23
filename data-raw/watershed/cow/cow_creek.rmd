@@ -43,7 +43,10 @@ cow_creek_instream <- bind_rows(valley, boero) %>%
    rename(flow_cfs = Flows, FR_fry_wua = `fall-run fry`, 
           FR_juv_wua = `fall-run juvenile`) %>% 
    mutate(watershed = 'Cow Creek')
-knitr::kable(align = 'c', head(cow_creek_instream, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_juv_wua = Fall Run Chinook Juvenile wua,  FR_fry_wua = Fall Run Chinook Fry wua")
+knitr::kable(align = 'c', head(cow_creek_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
+             FR_juv_wua = Fall Run Chinook Juvenile WUA,  
+             FR_fry_wua = Fall Run Chinook Fry WUA")
 
 # usethis::use_data(cow_creek_instream, overwrite = TRUE)
 ```
@@ -78,13 +81,16 @@ source('data-raw/watershed/floodplain_utils.R')
 ### Steelhead
 `r print_model_details('Cow Creek', 'st')`
 
-
-## Floodplain Data
+## Floodplain Data    
+The areas represent total inundated area in acres.    
 ```{r, echo = FALSE}
 # TODO Ask mark about the difference in outcome from his sheet
 cow_creek_floodplain <- scale_fp_flow_area('Cow Creek')
 
-knitr::kable(align = 'c', head(cow_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres") 
+knitr::kable(align = 'c', head(cow_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres") 
 # usethis::use_data(cow_creek_floodplain, overwrite = TRUE)
 ```
 
