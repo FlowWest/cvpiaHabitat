@@ -33,9 +33,14 @@ source('data-raw/watershed/floodplain_utils.R')
 `r print_model_details('Antelope Creek', 'fr')`
 
 ## Floodplain Data
+The areas represent total inundated area in acres.   
 ```{r, echo = FALSE}
 antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
-knitr::kable(align = 'c', head(antelope_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")
+knitr::kable(align = 'c', head(antelope_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
 ```
 

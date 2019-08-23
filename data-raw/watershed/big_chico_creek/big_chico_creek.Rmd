@@ -36,7 +36,8 @@ source('data-raw/watershed/floodplain_utils.R')
 ### Spring Run and Steelhead
 `r print_model_details('Big Chico Creek', 'sr')`
 
-## Floodplain Data
+## Floodplain Data    
+The areas represent total inundated area in acres.    
 ```{r}
 bigc_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', sheet = 'BigChicoCreek') %>%
   mutate(watershed = 'Big Chico Creek')
@@ -50,7 +51,11 @@ big_chico_creek_floodplain <-
   scale_fp_flow_area_partial_model(ws = 'Big Chico Creek', 
                                    df = filter(bigc_fp, flow_cfs >= threshold_flow))
 
-knitr::kable(align = 'c', head(big_chico_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, SR_floodplain_acres = Spring Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres")  
+knitr::kable(align = 'c', head(big_chico_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")  
 # usethis::use_data(big_chico_creek_floodplain, overwrite = TRUE)
 ```
 
