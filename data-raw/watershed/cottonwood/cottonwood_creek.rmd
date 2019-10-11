@@ -13,15 +13,15 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-None planned
+None planned. 
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [CDFW 1979](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CDFW1979_CottonwoodSpawningIFIM.PDF){target="_blank"} (pgs 11-15) and [UFWS 2013](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/cvpia-sit-model-inputs/CVPIA_Annual_Progress_Report_Fiscal_Year_2013.pdf){target="_blank"} (pgs 46-47)
 
-The instream spawning area for Fall Run Chinook Salmon in Cottonwood Creek is based on data from a collaborative study by the U.S. Army Corps of Engineers and the California Department of Fish and Game from 1979. The traditional Department of Fish and Game method was used to quantify spawning habitat. The federal instream flow method was used to measure rearing habitat at 3 reaches, making up a 10.76 mile stretch of Cottonwood Creek. Spawning habitat data is provided on pages 11-15 of the CDFW 1979 report. Instream rearing habitat for Fall Run Chinook Salmon and Steelhead instream rearing habitat data is based on the UFWS 2013 study that included 26 habitat transects on lower Cottonwood Creek. The habitat data from this study is on pages 46 and 47 of the USFWS 2014 report. The instream spawning and rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use A2:B8 for spawning, and A10:C40 for rearing of the 'Cottonwood' tab within his 'IFIMWUA.xlsx' file.
+The instream spawning area for Fall Run Chinook Salmon in Cottonwood Creek is based on data from a collaborative study by the U.S. Army Corps of Engineers and the California Department of Fish and Game from 1979. The traditional Department of Fish and Game method was used to quantify the spawning habitat. The federal instream flow method was used to measure the rearing habitat at 3 reaches, making up a 10.76 mile stretch of Cottonwood Creek. Spawning habitat data were provided on pages 11-15 of the CDFW 1979 report. Instream rearing habitat for Fall Run Chinook Salmon and Steelhead instream rearing habitat data are based on the UFWS 2013 study that included 26 habitat transects on lower Cottonwood Creek. The habitat data from this study are on pages 46 and 47 of the USFWS 2014 report. The instream spawning and rearing habitat data were provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use A2:B8 for spawning, and A10:C40 for rearing of the 'Cottonwood' tab within the 'IFIMWUA.xlsx' file.
 
 ### Combine Spawning and Rearing Data    
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.
 ```{r}
 mi <- 10.76
 cotton_spawn <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
@@ -69,7 +69,7 @@ knitr::kable(align = 'c', head(cottonwood_creek_instream, 5),
 *...with 31 more rows.*
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
 ``` {r}
 cottonwood_creek_instream %>% 
     filter(!is.na(FR_spawn_wua)) %>%
