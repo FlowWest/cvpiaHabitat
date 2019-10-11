@@ -15,16 +15,16 @@ library(scales)
 
 ## Future Data Improvements
 
-* EBMUD developing new steelhead rearing habitat flow:area relationships (expected January 2019)
-* EBMUD developing new Fall Run floodplain rearing habitat flow:area relationships with Mark Gard (expected late 2019)
+* EBMUD is developing new steelhead rearing habitat flow:area relationships (expected January 2019)
+* EBMUD is developing new Fall Run floodplain rearing habitat flow:area relationships with Mark Gard (expected late 2019)
 
 ## Instream Spawning and Rearing Habitat
 **Data Sources:** [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf){target="_blank"} (pg. 105 - 107) 
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The EBMUD instream spawning and rearing habitat data was provided in a spreadsheet (see '~/cvpiaHabitat/data-raw/instream/mokelumne/LMR_habitat__s_v2mw_to_MT.xlsx') Together, these evaluations developed relationships between flow and suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
+Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The East Bay Municipal Utility Distract (EBMUD) instream spawning and rearing habitat data were provided in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/LMR_habitat__s_v2mw_to_MT.xlsx). Together, these evaluations determined relationships between flow and both suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
 
 ### Combine Instream Spawning and Rearing Habitat Data
-The instream spawning and rearing habitat data described above is combined for use in the DSM in the following format. Units are in square feet per 1000 feet of river.
+The instream spawning and rearing habitat data described above are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet of river.
 ```{r}
 # spawning reach length
 moke_spawn_len <- cvpiaHabitat::watershed_lengths %>% 
@@ -123,7 +123,7 @@ knitr::kable(align = 'c' , head(mokelumne_river_instream, 5),
 *...with 47 more rows.*
 
 ### Spawning WUA   
-The following plot shows the weighted usable spawning area rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR). 
+The following plot shows the weighted usable spawning area (WUA) rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR). 
 ```{r, echo=FALSE}
 spawning_moke %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>% 
@@ -138,7 +138,7 @@ spawning_moke %>%
 ```
 
 ### Rearing WUA
-The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation so that the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow by weighting each area in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the SIT.   
+The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation to ensure the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow by. Each area was weighted in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the Scince Integration Team (SIT).   
 
 The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile.
 ``` {r,echo=FALSE}
@@ -155,7 +155,7 @@ mokelumne_river_instream %>%
 
 ## Floodplain Rearing Habitat
 
-The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River. The following table contains the flow : floodplain area relationships used in the DSM.
+The flow : floodplain area relationship for the Mokelumne River is based on high resolution (4 square foot cell size) two-dimensional hydraulic modeling completed by EBMUD in 2017 (Technical Memorandum in preparation by Robyn Bilski at EBMUD). The extent of this modeling is from River Mile 62.8 to River Mile 64. All area inundated by flows less than or equal to 400 cfs were considered as instream.  The inundated area per length from this modeled reach was extrapolated to the entire rearing reach in the Mokelumne River from Camanche Dam downstream to the point of tidal influence. This flow : floodplain area relationship was used for all salmon and steelhead runs in the Mokelumne River. The following table contains the flow : floodplain area relationships used in the Decision Support Model (DSM).
 ```{r, echo=FALSE}
 #'LMR_habitat__s_v2mw_to_MT.xlsx', 'Floodplain (new flows)' tab C21:D26 Camanche to tidal #low estimate
 #400 cfs = 0 acres 
