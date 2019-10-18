@@ -18,7 +18,7 @@ library(lubridate)
 **Data Source:**
 Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf)
 
-The NOAA NMFS model outputs habitat area estimates for months December-May. Habitat for months June-Novemeber are represented by the yearly average habitat. Units are in square meters.
+The National Oceanographic and Atmospheric Administration (NOAA) NMFS model outputs habitat area estimates for the months of December-May. Habitat area estimates for the months of June-Novemeber are represented by the yearly average habitat. Units are in square meters.
 
 High quality habitat defined by:
 
