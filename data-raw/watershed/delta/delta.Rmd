@@ -16,7 +16,7 @@ library(lubridate)
 
 ## Modeling Details
 **Data Source:**
-Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/2017Hendrix.pdf)
+Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/2017Hendrix.pdf). The ESRI [shapefile](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/delta_bypass_extents.zip) and Google Earth [kmz file](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/Sutter+Yolo+Delta+Habitat+Extents.kmz) show the delineation of the bypass and Delta regions used to generate habitat inputs. 
 
 The National Oceanographic and Atmospheric Administration (NOAA) NMFS model outputs habitat area estimates for the months of December-May. Habitat area estimates for the months of June-Novemeber are represented by the yearly average habitat. Units are in square meters.
 
