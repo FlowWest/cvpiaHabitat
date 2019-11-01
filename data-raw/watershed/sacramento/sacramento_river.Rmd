@@ -16,7 +16,7 @@ None planned.
 
 ## Instream Spawning Habitat     
 **Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf){target="_blank"} (pg 29-31)
-
+ 
 Spawning habitat areas for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead are based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. The spawning weighted usable area (WUA) source data were developed in six study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (A.C.I.D.) diversion dam. The A.C.I.D. boards are in April 1st - October 31st. The Upper Sacramento Fall Run spawning WUA values include the spawning that occurs in the river section from Keswick to Deer Creek. The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. Within the life cycle model, spawning only occurs on the Sacramento River in the Upper Sacramento River reach. This habitat area includes the area of both the Upper Sacramento River and Upper Mid-Sacramento River reaches combined. Mark Gard from the U.S. Fish and Wildlife Service provided the data in the 'Sacramento' tab of this [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). The data have been reorganized for clarity into a different [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/upper_sacramento_river_instream.csv).
 
 ### Spawning WUA 
@@ -86,7 +86,7 @@ upper_sac_ACID_boards_in %>%
 ```
 
 ## Instream and Floodplain Rearing Habitat  
-**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf){target="_blank"}
+**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/2017Hendrix.pdf){target="_blank"}
 
 Instream and floodplain rearing habitat areas are based on habitat modeling conducted by NOAA NMFS for their Winter Run Chinook Salmon life cycle model. The entire mapped rearing extent of the Sacramento River was modeled using the Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in their Winter Run Chinook Salmon life cycle model. NOAA NMFS provided tabular suitable rearing habitat area data for three reaches of the Sacramento River (Keswick to Battle Creek, Battle Creek to Feather River, and Feather River to Freeport). The high quality depth and high quality velocity criteria ("Pref11") "ChanArea" value was used for instream habitat and "BankArea" result was used as floodplain area.
 
