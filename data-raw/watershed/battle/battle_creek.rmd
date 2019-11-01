@@ -102,7 +102,6 @@ battle_creek_floodplain <- scale_fp_flow_area('Battle Creek')
 knitr::kable(align = 'c', head(battle_creek_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
-             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(battle_creek_floodplain, overwrite = TRUE)
 ```
@@ -114,7 +113,7 @@ knitr::kable(align = 'c', head(battle_creek_floodplain, 5),
 battle_creek_floodplain %>% 
   select(flow_cfs, FR_floodplain_acres, ST_floodplain_acres, watershed) %>%
   rename(`Fall Run Chinook` = FR_floodplain_acres, 
-         `Steelhead and Spring Run Chinook` = ST_floodplain_acres) %>% 
+         `Steelhead` = ST_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) %>% +
   geom_line() +
