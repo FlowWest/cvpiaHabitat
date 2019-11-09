@@ -136,7 +136,6 @@ threshold_flow <- american_river %>%
   
 american_river_floodplain <- american_river %>% 
   mutate(watershed = 'American River',
-         SR_floodplain_acres = modeled_floodplain_area_acres,
          ST_floodplain_acres = modeled_floodplain_area_acres) %>%
   select(flow_cfs,
          FR_floodplain_acres = modeled_floodplain_area_acres,
