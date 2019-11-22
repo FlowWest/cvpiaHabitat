@@ -85,7 +85,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 **Data Source:** [TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf){target="_blank"}
 
-`r print_model_details('Calaveras River', 'fr')`
+`r print_model_details('the Calaveras River', 'fr')`
 
 ## Floodplain Data
 The areas represent total inundated area in acres.
