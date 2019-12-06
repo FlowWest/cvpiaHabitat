@@ -1,0 +1,138 @@
+---
+title: "Tuolumne River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "August 16, 2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Future Data Improvement
+Instream habitat suitability relationships provided for the Voluntary Agreement process. 
+
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Final Lower Tuolumne Instream Flow Study Report](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf){target="_blank"} (pg. 108-109)
+
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Tuolumne River are based on data from a California Department of Fish and Game site specific study. This data consists of 10 sites spread over 9.2 miles of the dominant spawning reach of the Lower Tuolumne River and was reviewed by Stillwater Sciences for use in their 2014 Flo2D model. The WUA results for Salmon and Steelhead are provided in tables H-1 and H-2 on pgs 108-109 of Final Lower Tuolumne Instream Flow Study Report. The instream spawning and rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use cells A2:H32 in the 'Tuolumne' tab within his 'IFIMWUA.xlsx'.
+
+### Combine Spawning and Rearing Data 
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.    
+```{r, echo=FALSE}
+tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
+                                      range = "A2:H32", sheet = 'Tuolumne') %>%
+  mutate(watershed = 'Tuolumne River') %>%
+  select(flow_cfs = `Simulated\nDischarge\n(cfs)`, FR_spawn_wua = `Chinook\nSpawning`,
+         FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`,
+         ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`,
+         ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
+# usethis::use_data(tuolumne_river_instream, overwrite = TRUE)
+
+knitr::kable(align = 'c', head(tuolumne_river_instream, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_spawn_wua = Fall Run Chinook Spawning WUA, 
+             FR_fry_wua = Fall Run Chinook fry WUA, 
+             FR_juv_wua = Fall Run Chinook Juvenile WUA, 
+             ST_spawn_wua = Steelhead Spawning WUA, 
+             ST_fry_wua = Steelhead fry WUA, 
+             ST_juv_wua = Steelhead Juvenile WUA, 
+             ST_adult_wua = Steelhead Adult WUA")
+```
+
+*... with 25 more rows.* 
+
+### Spawning WUA 
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+``` {r,echo=FALSE}
+tuolumne_river_instream %>% 
+    select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>%
+    gather(species, WUA, -flow_cfs) %>% 
+    filter(!is.na(WUA)) %>%
+    ggplot(aes(flow_cfs, WUA, color = species)) +
+    geom_line() +
+    labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal()  +
+    scale_color_manual(values = c('#d95f02','#7570b3')) +
+    theme(legend.justification = c(1,0), legend.position = c(1,.5))
+```
+
+### Rearing WUA
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT.
+``` {r,echo=FALSE}
+tuolumne_river_instream %>% 
+  select(FR_juv_wua, FR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>%
+  gather(species_lifestage, acres, -flow_cfs, -watershed) %>% 
+  mutate(
+    species = case_when( 
+      str_detect(species_lifestage, 'ST') ~ 'Steelhead', 
+      str_detect(species_lifestage, 'FR') ~ 'Fall Run'),
+      lifestage = ifelse(str_detect(species_lifestage, 'juv'), 'Juvenile', 'Fry')) %>% 
+  ggplot(aes(flow_cfs, acres, color = species)) +
+  geom_line() +
+  theme_minimal() +
+  facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme(legend.justification = c(1,0), legend.position = c(.95,.25))
+```
+
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
+
+## Floodplain Rearing Habitat    
+**Data Source:** [TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf){target="_blank"}
+
+The entire mapped rearing extent of 54.33 miles was modeled by TID and MID using a TUFLOW hydraulic model with 1D channel and 2D overbank components. This approach directly modeled inundated floodplain area.
+
+## Floodplain Data    
+The areas represent total inundated area in acres.    
+```{r, echo=FALSE}
+tuolumne_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', 
+                                        sheet = 'TuolumneRiver') %>%
+  mutate(watershed = 'Tuolumne River',
+         SR_floodplain_acres = modeled_floodplain_area_acres,
+         ST_floodplain_acres = modeled_floodplain_area_acres) %>%
+  select(flow_cfs,
+         FR_floodplain_acres = modeled_floodplain_area_acres,
+         SR_floodplain_acres, ST_floodplain_acres,
+         watershed)
+
+threshold <- tuolumne_fp %>% 
+  filter(FR_floodplain_acres == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+tuolumne_river_floodplain <- tuolumne_fp %>% 
+  filter(flow_cfs >= threshold)
+
+knitr::kable(align = 'c', head(tuolumne_river_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
+# usethis::use_data(tuolumne_river_floodplain, overwrite = TRUE)
+```
+
+*...with 32 more rows*
+
+## Floodplain Plot
+```{r, echo=FALSE}
+tuolumne_river_floodplain %>% 
+  select(FR_floodplain_acres, flow_cfs, watershed) %>%
+  rename(`Fall Run Chinook,
+Spring Run chinook, 
+and Steelhead` = FR_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+```
+
+

@@ -1,0 +1,407 @@
+---
+title: "Sacramento River"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "August 15, 2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = '100%')
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Future Data Improvement
+None Planned
+
+## Instream Spawning Habitat     
+**Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf){target="_blank"} (pg 29-31)
+
+Spawning habitat area for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead is based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. The spawning WUA source data was developed in six study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (A.C.I.D.) diversion dam. The A.C.I.D. boards are in April 1st - October 31st. The Upper Sacramento fall run spawning WUA values include the spawning that occurs Keswick to Deer Creek. The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. Within the life cycle model, spawning only occurs on the Sacramento River in the Upper Sacramento River reach, this habitat area includes the area of both the Upper Sacramento River and Upper Mid-Sacramento River reaches combined. Mark Gard from the U.S. Fish and Wildlife Service provided the data (see 'Sacramento' tab in ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). The data has been reorganized for clarity see (‘~/cvpiaHabitat/data-raw/instream/sacramento/upper_sacramento_river_instream’).
+
+### Spawning WUA 
+The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, Winter Run Chinook Salmon, and Steelhead in the Tuolumne River. Units are in square feet per 1000 feet.
+```{r}
+up_sac <- read_csv('data/upper_sacramento_river_instream.csv', skip = 1)
+
+#6-2 upper sac spawning, 6-4 upper sac rearing
+upper_sac_ACID_boards_out <- up_sac %>%
+  select(flow_cfs:ST_spawn_WUA, Segment:length_unit) %>%
+  gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
+  filter(Segment != '6 ACID Boards In', !is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_length = sum(length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Upper Sacramento River')
+
+upper_sac_ACID_boards_in <- up_sac %>%
+  select(flow_cfs:ST_spawn_WUA, Segment:length_unit) %>%
+  gather(species_stage, WUA, -flow_cfs, -Segment:-length_unit) %>%
+  filter(Segment != '6 ACID Boards Out', !is.na(WUA)) %>%
+  group_by(species_stage, flow_cfs) %>%
+  mutate(total_length = sum(length)) %>%
+  summarise(WUA = sum(WUA)/ max(total_length) / 5.28) %>%
+  ungroup() %>%
+  spread(species_stage, WUA) %>%
+  mutate(watershed = 'Upper Sacramento River')
+# usethis::use_data(upper_sac_ACID_boards_out, overwrite = TRUE)
+# usethis::use_data(upper_sac_ACID_boards_in, overwrite = TRUE)
+```
+
+#### Spawning Habitat (A.C.I.D boards in)
+```{r}
+knitr::kable(align = 'c', head(upper_sac_ACID_boards_in, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua, LFR_spawning_wua = Late Fall Run Chinook Spawning wua, ST_spawn_wua = Steelhead Spawning wua, WR_spawn_wua = Winter Run Chinook Spawning wua")
+```
+
+*...with 25 more rows.*
+
+#### Spawning Habitat (A.C.I.D boards out)    
+```{r}
+knitr::kable(align = 'c', head(upper_sac_ACID_boards_out, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_spawn_wua = Fall Run Chinook Spawning wua, LFR_spawning_wua = Late Fall Run Chinook Spawning wua, ST_spawn_wua = Steelhead Spawning wua, WR_spawn_wua = Winter Run Chinook Spawning wua")
+```
+
+*...with 25 more rows.*
+
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook, Late-fall Run Chinook, Winter Run Chinook, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+``` {r}
+upper_sac_ACID_boards_in %>% 
+  mutate(boards = 'A.C.I.D Boards In') %>% 
+  bind_rows(mutate(upper_sac_ACID_boards_out, boards = 'A.C.I.D Boards Out')) %>%
+  gather(species, wua, -flow_cfs, -watershed, -boards) %>% 
+  mutate(species = case_when(
+    species == 'FR_spawn_WUA' ~ 'Fall Run Chinook',
+    species == 'LFR_spawn_WUA'~ 'Late-fall Run Chinook',
+    species == 'ST_spawn_WUA' ~ 'Steelhead',
+    species == 'WR_spawn_WUA'~ 'Winter Run Chinook'
+  )) %>% 
+  ggplot(aes(x = flow_cfs, y = wua, color = species)) +
+  geom_line() +
+  facet_wrap(~boards, nrow = 2) +
+  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.7))
+```
+
+## Instream and Floodplain Rearing Habitat  
+**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf){target="_blank"}
+
+Instream and floodplain rearing habitat areas are based on habitat modeling conducted by NOAA NMFS for their Winter Run Chinook Salmon life cycle model. The entire mapped rearing extent of the Sacramento River was modeled using the Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in their Winter Run Chinook Salmon life cycle model. NOAA NMFS provided tabular suitable rearing habitat area data for three reaches of the Sacramento River (Keswick to Battle Creek, Battle Creek to Feather River, and Feather River to Freeport). The high quality depth and high quality velocity criteria ("Pref11") "ChanArea" value was used for instream habitat and "BankArea" result was used as floodplain area.
+
+High quality habitat defined by:
+
+* Channel depth > 0.2 m and < 1.5 m
+* Velocity <= 0.15 m/s
+
+The habitat areas are suitable and do not require futher suitability scaling.
+
+NOAA NMFS Winter Run Chinook Salmon Life Cycle Model Segments:
+
+* Section 1 - Keswick to Battle Creek (28.92 mi)
+* Section 2 - Battle Creek to Feather River (186.50 mi)
+* Section 3 - Feather River to Freeport (33.90 mi)
+
+CVPIA Sacramento Rearing Segments:
+
+* Upper Sacramento River - Keswick to Red Bluff (59.28 mi) falls within Section 1 and Section 2 of NOAA NMFS modeling
+* Upper-mid Sacramento River - Red Bluff to Wilkins Slough (122.25 mi) falls within Section 2 of NOAA NMFS modeling)
+* Lower-mid Sacramento River - Wilkins Slough to American (57.96 mi) falls within Section 2 and Section 3 of NOAA NMFS modeling)
+* Lower Sacramento River - American to Freeport (13.70 mi) falls within Section 3 of NOAA NMFS modeling
+
+### Rearing WUA    
+The juvenile instream high quality rearing habitat for Winter Run Chinook Salmon in the Sacramento River is used as a surrogate for the other present Chinook runs. Units are in square meters.    
+```{r}
+sac_instream <- read_csv(file = 'data/sacramento_instream.csv',
+                         col_names = c('flow_cfs', 'kes_bat', 'bat_feat', 'feat_free'), skip = 1) %>%
+  gather(reach, sq_ft, -flow_cfs) %>%
+  mutate(sq_meters = sq_ft * 0.092903)
+
+# linear interpolation functions for each study reach --------------
+kes_bat <- sac_instream %>%
+  filter(reach == 'kes_bat')
+
+bat_feat <- sac_instream %>%
+  filter(reach == 'bat_feat')
+
+feat_free <- sac_instream %>%
+  filter(reach == 'feat_free')
+
+# look up vector for converting study reach areas into area per miles--------------
+reach_miles <- c(295.92 - 267, 267 - 80.5, 80.5 - 46.6)
+
+names(reach_miles) <- c('kes_bat', 'bat_feat', 'feat_free')
+
+# upper sacramento river-------------------------------------------
+# upper sac is 59.28 miles, 28.92 of those miles are in the study's first reach
+# and the rest are in the second reach. Sum propotion of area by length in second reach to total in first.
+# areas are already suitable, don't scale down
+upper_sac_above_battle <- 28.92
+upper_sac_below_battle <- 59.28 - upper_sac_above_battle
+
+prop_bat_rbdd <- upper_sac_below_battle / reach_miles['bat_feat']
+
+upper_sacramento_river_instream <- bat_feat %>%
+  mutate(sq_meter_scaled = sq_meters * prop_bat_rbdd) %>%
+  bind_cols(kes_bat) %>%
+  mutate(rearing_sq_meters = sq_meter_scaled + sq_meters1,
+         watershed = 'Upper Sacramento River') %>%
+  select(flow_cfs, rearing_sq_meters, watershed)
+
+# usethis::use_data(upper_sacramento_river_instream, overwrite = TRUE)
+```
+
+```{r}
+# Upper-mid Sacramento River ------------------------------------
+# red-bluff to wilkins slough 122.25 mi (battle to feather study)
+rbdd_wilk_mi <- 122.25
+prop_rbdd_wilkins <- rbdd_wilk_mi / reach_miles['bat_feat']
+
+upper_mid_sacramento_river_instream <- bat_feat %>%
+  mutate(rearing_sq_meters = sq_meters * prop_rbdd_wilkins,
+         watershed = 'Upper-mid Sacramento River') %>%
+  select(flow_cfs, rearing_sq_meters, watershed)
+
+# usethis::use_data(upper_mid_sacramento_river_instream, overwrite = TRUE)
+```
+
+```{r}
+# Lower-mid Sacramento River ------------
+# wilkins slough to American 57.96 mi (battle to feather 33.89 miles and feather to freeport 57.96 - 33.89)
+wilk_amer_mi <- 57.96
+wilk_feather_mi <- reach_miles['bat_feat'] - rbdd_wilk_mi - upper_sac_below_battle
+prop_wilkins_feather <- wilk_feather_mi / reach_miles['bat_feat']
+feat_amer_mi <- wilk_amer_mi - wilk_feather_mi
+prop_feat_amer <- feat_amer_mi/reach_miles['feat_free']
+
+lower_mid_sacramento_river_instream <- bat_feat %>%
+  bind_cols(feat_free) %>%
+  mutate(sq_meter_scaled1 = sq_meters * prop_wilkins_feather,
+         sq_meter_scaled2 = sq_meters1 * prop_feat_amer) %>%
+  mutate(rearing_sq_meters = sq_meter_scaled1 + sq_meter_scaled2,
+         watershed = 'Lower-mid Sacramento River') %>%
+  select(flow_cfs, rearing_sq_meters, watershed)
+
+# usethis::use_data(lower_mid_sacramento_river_instream, overwrite = TRUE)
+```
+
+```{r}
+amer_free_mi <- reach_miles['feat_free'] - feat_amer_mi
+prop_amer_free <- amer_free_mi / reach_miles['feat_free']
+
+lower_sacramento_river_instream <- feat_free %>%
+  mutate(rearing_sq_meters = sq_meters * prop_amer_free,
+         watershed = 'Lower Sacramento River') %>%
+  select(flow_cfs, rearing_sq_meters, watershed)
+
+# usethis::use_data(lower_sacramento_river_instream, overwrite = TRUE)
+
+```
+
+```{r}
+combined_instream_rearing <- (upper_sacramento_river_instream %>% 
+                       rename(upper_rearing_sqm = rearing_sq_meters)) %>% 
+  bind_cols((upper_mid_sacramento_river_instream %>% 
+                       rename(upper_mid_rearing_sqm = rearing_sq_meters)), 
+            (lower_mid_sacramento_river_instream %>% 
+                       rename(lower_mid_rearing_sqm = rearing_sq_meters)), 
+            (lower_sacramento_river_instream %>% 
+                       rename(lower_rearing_sqm = rearing_sq_meters))) %>% 
+  mutate(watershed = 'Sacramento River') %>% 
+  select(flow_cfs, upper_rearing_sqm, upper_mid_rearing_sqm, 
+         lower_mid_rearing_sqm, lower_rearing_sqm, watershed)
+
+knitr::kable(align = 'c', head(combined_instream_rearing, 5), 
+caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
+upper_rearing_sqm = Upper Sacramento River Rearing Square Meters,
+upper_mid_rearing_sqm = Upper-Mid Sacramento River Rearing Square Meters,
+lower_mid_rearing_sqm = Lower-Mid Sacramento River Rearing Square Meters,
+lower_rearing_sqm = Lower Sacramento River Rearing Square Meters")
+```
+
+*...with 76 more rows.*
+
+#### Chinook Salmon Instream Rearing Area Plot    
+The following plot shows the flow to highly suitable area in acres for Chinook Salmon Juveniles.
+```{r}
+upper_sacramento_river_instream %>% 
+  bind_rows(upper_mid_sacramento_river_instream, 
+            lower_mid_sacramento_river_instream, 
+            lower_sacramento_river_instream) %>% 
+  mutate(watershed = factor(watershed, 
+                            levels = c('Upper Sacramento River', 'Upper-mid Sacramento River',
+                                       'Lower-mid Sacramento River', 'Lower Sacramento River'))) %>% 
+  ggplot(aes(flow_cfs, rearing_sq_meters / 4046.86, color = watershed)) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = 'flow (cfs)', y = 'highly suitable rearing area (acres)', color = 'Reach') +
+  scale_color_brewer(palette = 'Dark2') +
+  theme(legend.justification = c(1,0), legend.position = c(.9,.5))
+```
+
+## Floodplain Data
+The areas represent highly suitable rearing area in square meters.  
+
+#### Upper, Upper-mid, and Lower-mid Sacramento River Floodplain Rearing Data     
+```{r}
+# sac <- read_csv('data-raw/floodplain/sacramento/sacramento_floodplain.csv')
+
+sac_floodplain <- read_csv(file = 'data/sacramento_floodplain.csv',
+                           col_names = c('flow_cfs', 'kes_bat', 'bat_feat', 'feat_free'), skip = 1) %>%
+  gather(reach, sq_ft, -flow_cfs) %>%
+  mutate(sq_meters = sq_ft * 0.092903)
+
+# NOAA study reaches
+kes_bat_mi <- 295.92 - 267 #keswick to battle
+bat_feat_mi <- 267 - 80.5 # battle to feather
+feat_free_mi <- 80.5 - 46.6 # feather to freeport
+
+# linear interpolation functions for each study reach --------------
+kes_bat <- sac_floodplain %>%
+  filter(reach == 'kes_bat')
+
+bat_feat <- sac_floodplain %>%
+  filter(reach == 'bat_feat')
+
+feat_free <- sac_floodplain %>%
+  filter(reach == 'feat_free')
+
+# look up vector for converting study reach areas into area per miles--------------
+reach_miles <- c(kes_bat_mi, bat_feat_mi, feat_free_mi)
+names(reach_miles) <- c('kes_bat', 'bat_feat', 'feat_free')
+```
+
+```{r}
+upper_sac_above_battle <- 28.92
+upper_sac_below_battle <- 59.28 - upper_sac_above_battle
+prop_bat_rbdd <- upper_sac_below_battle / reach_miles['bat_feat']
+
+upper_sac_fp <- bat_feat %>%
+  mutate(sq_meter_scaled = sq_meters * prop_bat_rbdd) %>%
+  bind_cols(kes_bat) %>%
+  mutate(floodplain_sq_meters = sq_meter_scaled + sq_meters1,
+         watershed = 'Upper Sacramento River') %>%
+  select(flow_cfs, floodplain_sq_meters, watershed)
+
+threshold <- upper_sac_fp %>%
+  filter(floodplain_sq_meters == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+upper_sacramento_river_floodplain <- upper_sac_fp %>% 
+  filter(flow_cfs >= threshold)
+
+# usethis::use_data(upper_sacramento_river_floodplain, overwrite = TRUE)
+```
+
+```{r}
+rbdd_wilk_mi <- 122.25
+prop_rbdd_wilkins <- rbdd_wilk_mi / reach_miles['bat_feat']
+
+upper_mid_sac_fp <- bat_feat %>%
+  mutate(floodplain_sq_meters = sq_meters * prop_rbdd_wilkins,
+         watershed = 'Upper-mid Sacramento River') %>%
+  select(flow_cfs, floodplain_sq_meters, watershed)
+
+threshold <- upper_mid_sac_fp %>%
+  filter(floodplain_sq_meters == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+upper_mid_sacramento_river_floodplain <- upper_mid_sac_fp %>% 
+  filter(flow_cfs >= threshold)
+
+# usethis::use_data(upper_mid_sacramento_river_floodplain, overwrite = TRUE)
+```
+
+```{r}
+wilk_amer_mi <- 57.96
+wilk_feather_mi <- reach_miles['bat_feat'] - rbdd_wilk_mi - upper_sac_below_battle
+prop_wilkins_feather <- wilk_feather_mi / reach_miles['bat_feat']
+feat_amer_mi <- wilk_amer_mi - wilk_feather_mi
+prop_feat_amer <- feat_amer_mi/reach_miles['feat_free']
+
+lower_mid_sac_fp<- bat_feat %>%
+  bind_cols(feat_free) %>%
+  mutate(sq_meter_scaled1 = sq_meters * prop_wilkins_feather,
+         sq_meter_scaled2 = sq_meters1 * prop_feat_amer) %>%
+  mutate(floodplain_sq_meters = sq_meter_scaled1 + sq_meter_scaled2,
+         watershed = 'Lower-mid Sacramento River') %>%
+  select(flow_cfs, floodplain_sq_meters, watershed)
+
+threshold <- lower_mid_sac_fp %>%
+  filter(floodplain_sq_meters == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+lower_mid_sacramento_river_floodplain <- lower_mid_sac_fp %>% 
+  filter(flow_cfs >= threshold)
+
+# usethis::use_data(lower_mid_sacramento_river_floodplain, overwrite = TRUE)
+```
+
+```{r}
+combined_floodplain_rearing <- (upper_sacramento_river_floodplain %>% 
+                       rename(upper_sqm = floodplain_sq_meters)) %>% 
+  bind_cols((upper_mid_sacramento_river_floodplain %>% 
+                       rename(upper_mid_sqm = floodplain_sq_meters)), 
+            (lower_mid_sacramento_river_floodplain %>% 
+                       rename(lower_mid_sqm = floodplain_sq_meters))) %>% 
+  mutate(watershed = 'Sacramento River') %>% 
+  select(flow_cfs, upper_sqm, upper_mid_sqm, 
+         lower_mid_sqm, watershed)
+
+knitr::kable(align = 'c', head(combined_floodplain_rearing, 5), 
+caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
+upper_sqm = Upper Sacramento River Floodplain Square Meters,
+upper_mid_sqm = Upper-Mid Sacramento River Floodplain Square Meters,
+lower_mid_sqm = Lower-Mid Sacramento River Floodplain Square Meters")
+```
+
+*... with 73 more rows*    
+
+#### Lower Sacramento River Floodplain Rearing Data            
+The data colected in the Lower Sacramento is shown below in a seperate table because flow cfs values do not begin until 27500 cfs. 
+```{r}
+amer_free_mi <- reach_miles['feat_free'] - feat_amer_mi
+prop_amer_free <- amer_free_mi / reach_miles['feat_free']
+
+lower_sac_fp <- feat_free %>%
+  mutate(floodplain_sq_meters = sq_meters * prop_amer_free,
+         watershed = 'Lower Sacramento River') %>%
+  select(flow_cfs, floodplain_sq_meters, watershed)
+
+threshold <- lower_sac_fp %>%
+  filter(floodplain_sq_meters == 0) %>% 
+  summarise(max = max(flow_cfs)) %>% 
+  pull(max)
+
+lower_sacramento_river_floodplain <- lower_sac_fp %>% 
+  filter(flow_cfs >= threshold)
+
+knitr::kable(head(rename(lower_sacramento_river_floodplain, lower_sqm = floodplain_sq_meters), 5),
+             align = 'c', 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             lower_sqm = Lower Sacramento Floodplain Square Meters")
+
+# usethis::use_data(lower_sacramento_river_floodplain, overwrite = TRUE)
+```
+
+*...with 25 more rows*
+
+```{r}
+upper_sacramento_river_floodplain %>% 
+  bind_rows(upper_mid_sacramento_river_floodplain, 
+            lower_mid_sacramento_river_floodplain, 
+            lower_sacramento_river_floodplain) %>% 
+  mutate(watershed = factor(watershed, 
+                            levels = c('Upper Sacramento River', 'Upper-mid Sacramento River',
+                                       'Lower-mid Sacramento River', 'Lower Sacramento River'))) %>% 
+  ggplot(aes(flow_cfs, floodplain_sq_meters / 4046.86, color = watershed)) +
+  geom_line() +
+  theme_minimal() +
+  labs(x = 'flow (cfs)', y = 'highly suitable rearing area (acres)', color = 'Reach') +
+  scale_color_brewer(palette = 'Dark2') +
+  theme(legend.justification = c(1,0), legend.position = c(.4,.6))
+```

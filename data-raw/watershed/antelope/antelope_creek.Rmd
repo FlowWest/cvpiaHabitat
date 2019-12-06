@@ -1,0 +1,63 @@
+---
+title: "Antelope Creek"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
+date: "August 14, 2019"
+output: html_document
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+library(tidyverse)
+library(readxl)
+library(cvpiaHabitat)
+```
+
+## Future Data Improvements
+None Planned 
+
+## Instream Spawning and Rearing Habitat
+**Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
+```{r, include=FALSE}
+source('data-raw/watershed/regional_approximation/description_regional_approx.R')
+```
+
+`r print_regional_approx('Antelope Creek')`
+
+```{r, include=FALSE}
+source('data-raw/watershed/floodplain_utils.R')
+```
+
+## Floodplain Rearing Habitat 
+**Data Source:** [Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf){target="_blank"}
+
+`r print_model_details('Antelope Creek', 'fr')`
+
+## Floodplain Data
+The areas represent total inundated area in acres.   
+```{r, echo = FALSE}
+antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
+knitr::kable(align = 'c', head(antelope_creek_floodplain, 5), 
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+             FR_floodplain_acres = Fall Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             ST_floodplain_acres = Steelhead floodplain acres")
+# usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
+```
+
+*...with 17 more rows*
+
+## Floodplain Plot
+```{r, echo = FALSE}
+antelope_creek_floodplain %>% 
+  select(FR_floodplain_acres, watershed, flow_cfs) %>%
+  rename(`Fall Run Chinook, 
+Spring Run Chinook,
+and Steelhead` = FR_floodplain_acres) %>% 
+  gather(Species, acres, -flow_cfs, -watershed) %>% 
+  ggplot(aes(flow_cfs, acres, color = Species)) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_brewer(palette = 'Dark2') +
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
+  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+```
