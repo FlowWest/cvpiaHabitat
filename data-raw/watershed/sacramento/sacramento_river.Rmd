@@ -12,15 +12,15 @@ library(cvpiaHabitat)
 ```
 
 ## Future Data Improvement
-None Planned
+None planned. 
 
 ## Instream Spawning Habitat     
 **Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Sacramento%20River%20Spawning%20Final%20Report%20Feb%204,%202003.pdf){target="_blank"} (pg 29-31)
-
-Spawning habitat area for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead is based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. The spawning WUA source data was developed in six study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (A.C.I.D.) diversion dam. The A.C.I.D. boards are in April 1st - October 31st. The Upper Sacramento fall run spawning WUA values include the spawning that occurs Keswick to Deer Creek. The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. Within the life cycle model, spawning only occurs on the Sacramento River in the Upper Sacramento River reach, this habitat area includes the area of both the Upper Sacramento River and Upper Mid-Sacramento River reaches combined. Mark Gard from the U.S. Fish and Wildlife Service provided the data (see 'Sacramento' tab in ‘~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx’). The data has been reorganized for clarity see (‘~/cvpiaHabitat/data-raw/instream/sacramento/upper_sacramento_river_instream’).
+ 
+Spawning habitat areas for Chinook Salmon (Fall Run, Late Fall Run, Winter Run) and Steelhead are based on data from a US Fish and Wildlife Service 2003 study of spawning habitat in the Sacramento River between Keswick Dam and the confluence with Battle Creek. The spawning weighted usable area (WUA) source data were developed in six study segments. One of the study segments considers conditions with and without the Anderson Cottonwood Irrigation District (A.C.I.D.) diversion dam. The A.C.I.D. boards are in April 1st - October 31st. The Upper Sacramento Fall Run spawning WUA values include the spawning that occurs in the river section from Keswick to Deer Creek. The Late-Fall Run, Winter Run, and Steelhead spawn from Keswick to Battle Creek. Within the life cycle model, spawning only occurs on the Sacramento River in the Upper Sacramento River reach. This habitat area includes the area of both the Upper Sacramento River and Upper Mid-Sacramento River reaches combined. Mark Gard from the U.S. Fish and Wildlife Service provided the data in the 'Sacramento' tab of this [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). The data have been reorganized for clarity into a different [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/upper_sacramento_river_instream.csv).
 
 ### Spawning WUA 
-The instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, Winter Run Chinook Salmon, and Steelhead in the Tuolumne River. Units are in square feet per 1000 feet.
+Below are the instream spawning habitat weighted usable areas for Fall Run Chinook Salmon, Late Fall Run Chinook Salmon, Winter Run Chinook Salmon, and Steelhead in the Tuolumne River. Units are in square feet per 1000 feet.
 ```{r}
 up_sac <- read_csv('data/upper_sacramento_river_instream.csv', skip = 1)
 
@@ -64,7 +64,7 @@ knitr::kable(align = 'c', head(upper_sac_ACID_boards_out, 5), caption = "Header 
 
 *...with 25 more rows.*
 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook, Late-fall Run Chinook, Winter Run Chinook, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook, Late-fall Run Chinook, Winter Run Chinook, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT).
 ``` {r}
 upper_sac_ACID_boards_in %>% 
   mutate(boards = 'A.C.I.D Boards In') %>% 
@@ -86,7 +86,7 @@ upper_sac_ACID_boards_in %>%
 ```
 
 ## Instream and Floodplain Rearing Habitat  
-**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf){target="_blank"}
+**Data Source:** Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/2017Hendrix.pdf){target="_blank"}
 
 Instream and floodplain rearing habitat areas are based on habitat modeling conducted by NOAA NMFS for their Winter Run Chinook Salmon life cycle model. The entire mapped rearing extent of the Sacramento River was modeled using the Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in their Winter Run Chinook Salmon life cycle model. NOAA NMFS provided tabular suitable rearing habitat area data for three reaches of the Sacramento River (Keswick to Battle Creek, Battle Creek to Feather River, and Feather River to Freeport). The high quality depth and high quality velocity criteria ("Pref11") "ChanArea" value was used for instream habitat and "BankArea" result was used as floodplain area.
 
@@ -106,8 +106,8 @@ NOAA NMFS Winter Run Chinook Salmon Life Cycle Model Segments:
 CVPIA Sacramento Rearing Segments:
 
 * Upper Sacramento River - Keswick to Red Bluff (59.28 mi) falls within Section 1 and Section 2 of NOAA NMFS modeling
-* Upper-mid Sacramento River - Red Bluff to Wilkins Slough (122.25 mi) falls within Section 2 of NOAA NMFS modeling)
-* Lower-mid Sacramento River - Wilkins Slough to American (57.96 mi) falls within Section 2 and Section 3 of NOAA NMFS modeling)
+* Upper-mid Sacramento River - Red Bluff to Wilkins Slough (122.25 mi) falls within Section 2 of NOAA NMFS modeling
+* Lower-mid Sacramento River - Wilkins Slough to American (57.96 mi) falls within Section 2 and Section 3 of NOAA NMFS modeling
 * Lower Sacramento River - American to Freeport (13.70 mi) falls within Section 3 of NOAA NMFS modeling
 
 ### Rearing WUA    
@@ -362,7 +362,7 @@ lower_mid_sqm = Lower-Mid Sacramento River Floodplain Square Meters")
 *... with 73 more rows*    
 
 #### Lower Sacramento River Floodplain Rearing Data            
-The data colected in the Lower Sacramento is shown below in a seperate table because flow cfs values do not begin until 27500 cfs. 
+The data colected in the Lower Sacramento are shown below in a seperate table flow cfs are missing prior to 27500 cfs. 
 ```{r}
 amer_free_mi <- reach_miles['feat_free'] - feat_amer_mi
 prop_amer_free <- amer_free_mi / reach_miles['feat_free']
