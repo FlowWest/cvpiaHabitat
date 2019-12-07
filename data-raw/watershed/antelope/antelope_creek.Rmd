@@ -13,7 +13,7 @@ library(cvpiaHabitat)
 ```
 
 ## Future Data Improvements
-None Planned 
+None planned.  
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
@@ -39,10 +39,11 @@ antelope_creek_floodplain <- scale_fp_flow_area('Antelope Creek')
 knitr::kable(align = 'c', head(antelope_creek_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
-             SR_floodplain_acres = Spring Run Chinook floodplain acres, 
+             SR_floodplain_acres = Spring Run Chinook floodplain acres,
              ST_floodplain_acres = Steelhead floodplain acres")
 # usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
 ```
+
 
 *...with 17 more rows*
 
@@ -50,9 +51,7 @@ knitr::kable(align = 'c', head(antelope_creek_floodplain, 5),
 ```{r, echo = FALSE}
 antelope_creek_floodplain %>% 
   select(FR_floodplain_acres, watershed, flow_cfs) %>%
-  rename(`Fall Run Chinook, 
-Spring Run Chinook,
-and Steelhead` = FR_floodplain_acres) %>% 
+  rename(`Fall Run Chinook, Spring Run Chinook, and Steelhead` = FR_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
