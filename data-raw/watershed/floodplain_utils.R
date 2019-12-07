@@ -185,7 +185,7 @@ print_model_details <- function(ws, species) {
     return(
       glue('The entire mapped rearing extent of {rearing_length} miles was modeled',
            ' using {model_name}. The high quality depth and high quality velocity',
-           ' ("Pref11") "BankArea" result was used as floodplain area. High quality',
+           ' ("Pref11") "BankArea" result was used as the floodplain area. High quality',
            ' velocities were assumed to be less than or equal to 0.15 meters per second,',
            ' and high quality depths were assumed to be between 0.2 meters and 1.5 meters.')
     )
@@ -194,8 +194,8 @@ print_model_details <- function(ws, species) {
   if (watershed_method == 'full_model') {
     return(
       glue("The entire mapped rearing extent of {rearing_length} miles was modeled using {model_name}.",
-           " Active channel area of {channel_area_modeled} acres estimated through remote",
-           " sensing analysis was subtracted from total inundated area to get inundated floodplain area.")
+           " An active channel area of {channel_area_modeled} acres estimated through remote",
+           " sensing analysis was subtracted from total inundated area to obtain inundated floodplain area.")
     )
   }
 
@@ -205,10 +205,10 @@ print_model_details <- function(ws, species) {
            ' miles was modeled using {model_name}. Of the entire mapped rearing extent,',
            ' {low_grad} miles were classified as low gradient and {high_grad} miles were classified',
            ' as high gradient based on a geomorphic analysis of long profile slopes and valley widths.',
-           ' Floodplain area per unit length was determined for the modeled extent and applied to',
-           ' determine areas for the non-modeled extent. A scaling factor of {high_grad_factor} was',
-           ' applied to the area per unit length for the high gradient extent. No',
-           ' scaling factor was applied to the low gradient extent.')
+           ' The floodplain area per unit length was determined for the modeled extent and used to',
+           ' approximate areas for the non-modeled extent. The area per unit length was scaled by a ',
+           ' factor of {high_grad_factor} for the high gradient extent.',
+           ' There was no scaling factor applied to the low gradient extent.')
     )
   }
 
@@ -219,7 +219,7 @@ print_model_details <- function(ws, species) {
     proxy_ws <- proxies[str_remove(watershed_method, 'scaled_')]
 
     return(
-      glue(' No watershed specific hydraulic modeling was available for {watershed_name}.',
+      glue(' There was no watershed specific hydraulic modeling available for {watershed_name}.',
            ' A flow to inundated floodplain area relationship was generated for {watershed_name}',
            ' by scaling the flow to inundated floodplain area relationship for {proxy_ws}.',
            ' This scaling used the ratio of mean flow from December to June between the modeled',
@@ -228,9 +228,9 @@ print_model_details <- function(ws, species) {
            ' Of the entire mapped {rearing_length} miles rearing',
            ' extent in {watershed_name}, {low_grad} miles were classified as low gradient and',
            ' {high_grad} miles were classified as high gradient based on a geomorphic analysis' ,
-           ' of long profile slopes and valley widths.' ,
-           ' A scaling factor of {high_grad_factor} was applied to the area per unit length for the',
-           ' high gradient extent. No scaling factor was applied to the low gradient extent.')
+           ' of long profile slopes and valley widths. The area per unit length was scaled by a ',
+           ' factor of {high_grad_factor} for the high gradient extent.',
+           ' There was no scaling factor applied to the low gradient extent.')
     )
   }
 
