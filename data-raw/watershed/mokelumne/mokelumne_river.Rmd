@@ -21,7 +21,7 @@ library(scales)
 ## Instream Spawning and Rearing Habitat
 **Data Sources:** [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf){target="_blank"} (pg. 105 - 107) 
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The East Bay Municipal Utility Distract (EBMUD) instream spawning and rearing habitat data were provided in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/LMR_habitat__s_v2mw_to_MT.xlsx). Together, these evaluations determined relationships between flow and both suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Mokelumne River is based on data from USFWS's 1998 instream flow evaluation and EBMUD's 2016 instream habitat evaluation. The East Bay Municipal Utility Distract (EBMUD) instream spawning and rearing habitat data were provided in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/LMR_habitat__s_v2mw_to_MT.xlsx). Together, these evaluations determined relationships between flow and both suitable spawning and rearing habitat for reaches spanning approximately 35 miles of the Mokelumne River. 
 
 ### Combine Instream Spawning and Rearing Habitat Data
 The instream spawning and rearing habitat data described above are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet of river.
