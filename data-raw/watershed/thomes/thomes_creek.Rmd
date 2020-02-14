@@ -20,7 +20,7 @@ None planned.
 source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-`r print_regional_approx('Antelope Creek')`
+`r print_regional_approx('Thomes Creek')`
 
 ```{r, include=FALSE}
 source('data-raw/watershed/floodplain_utils.R')
