@@ -125,7 +125,6 @@ floodplain <- read_excel('data-raw/mark_gard_data/Floodplainarea.xlsx',
                          range = "B2:E37", sheet = "Cosumnes") %>%
   rename(flow_cfs = cfs, FR_floodplain_acres = "floodplain area acres") 
 
-
 cosumnes_river_floodplain <- floodplain %>%
   mutate(watershed = "Consumnes") %>%
   select(flow_cfs, FR_floodplain_acres, watershed) %>% 
@@ -134,6 +133,7 @@ cosumnes_river_floodplain <- floodplain %>%
 knitr::kable(align = 'c', head(cosumnes_river_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook Floodplain Acres")
+
 # usethis::use_data(cosumnes_river_floodplain, overwrite = TRUE)
 ```
 
