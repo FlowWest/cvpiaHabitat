@@ -13,7 +13,7 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-None Planned 
+None planned.  
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}

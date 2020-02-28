@@ -16,7 +16,7 @@ library(scales)
 
 ## Modeling Details
 **Data Source:**
-Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf)
+Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the [NOAA-NMFS Winter Run Chinook Salmon life cycle model](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/2017Hendrix.pdf). The ESRI [shapefile](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/delta_bypass_extents.zip) and Google Earth [kmz file](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/Sutter+Yolo+Delta+Habitat+Extents.kmz) show the delineation of the bypass and Delta regions used to generate habitat inputs.
 
 High quality habitat defined by:
 
@@ -27,10 +27,10 @@ High quality habitat defined by:
 
 The Sutter Bypass is divided into four sections:
 
-* Section 1 - To Moulton Weir
-* Section 2 - To Colusa Weir
-* Section 3 - To Tisdale Weir
-* Section 4 - Below Tisdale Weir
+* Section 1 - Butte Sink from Rotavele to Moulton Weir
+* Section 2 - Butte Sink from Moulton Weir to Colusa Weir
+* Section 3 - Sutter Bypass from Colusa Weir to Tisdale Weir
+* Section 4 - Sutter Bypass from Tisdale Weir to the Sacramento River
 
 Area is in square meters.
 

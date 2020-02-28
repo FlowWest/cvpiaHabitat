@@ -12,15 +12,15 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-None planned
+None planned. 
  
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Merced Irrigation District 2013](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/cvpia-sit-model-inputs/MID2013_MercedIFIMStudy.pdf) (pg 67-75)
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Merced River are based on data from a 2011 and 2012 Merced Irrigation District flow-habitat study in the 19.2 mile-long section of the Merced River from Crocker-Huffman Diversion Dam at river mile (RM) 52.01 downstream to Shaffer Bridge at RM 32.8. Habitat data from this study is summarized on pages 67 - 75 of the MID 2013 study. The instream Fall Run Chinook Salmon spawning and rearing habitat data was provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). Mark Gard instructed us to use A51:D81, A84:D114, and A117:D147 of the 'Merced' tab within his 'IFIMWUA.xlsx'. Steelhead data was also compiled from the Merced Irrigation District 2013 study in a spreadsheet (~/cvpiaHabitat/data-raw/watershed/merced/data/merced-steelhead.csv). The three study reaches for both Fall Run Chinook Salmon and Steelhead were combined and weighted by reach length. 
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Merced River are based on data from a 2011 and 2012 Merced Irrigation District flow-habitat study. The study took place along the 19.2 mile-long section of the Merced River from the Crocker-Huffman Diversion Dam at river mile (RM) 52.01, downstream to the Shaffer Bridge at river mile 32.8. Habitat data from this study are summarized on pages 67 - 75 of the MID 2013 study. The instream Fall Run Chinook Salmon spawning and rearing habitat data were provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use A51:D81, A84:D114, and A117:D147 of the 'Merced' tab within the spreadsheet. Steelhead data were also compiled from the Merced Irrigation District 2013 study in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/merced_steelhead.csv). The three study reaches for both Fall Run Chinook Salmon and Steelhead were combined and weighted by reach length. 
 
 ### Combine Spawning and Rearing Data 
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.    
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.    
 ```{r,echo=FALSE}
 reach_miles <- c(9.2, 4.4, 5.6)
 names(reach_miles) <- 1:3
@@ -153,7 +153,7 @@ knitr::kable(align = 'c', head(merced_river_instream, 5),
 *...with 50 more rows.* 
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.    
+The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT).    
 ``` {r,echo=FALSE}
 merced_river_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>% 
