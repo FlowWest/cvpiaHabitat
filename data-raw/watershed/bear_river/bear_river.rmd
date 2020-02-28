@@ -60,7 +60,9 @@ ST_fry_wua = Steelhead Fry WUA")
 *...with 15 more rows.* 
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT.
+
+The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
+
 ``` {r,echo=FALSE}
 bear_river_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>% 
