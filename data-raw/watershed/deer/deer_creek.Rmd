@@ -15,7 +15,7 @@ library(cvpiaHabitat)
 source('data-raw/watershed/floodplain_utils.R')
 ```
 ## Future Data Improvements
-Update with new Flowwest 2019 data 
+Update with new Flowwest 2019 data. 
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
