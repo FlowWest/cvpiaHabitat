@@ -13,15 +13,15 @@ library(cvpiaHabitat)
 library(scales)
 ```
 ## Future Data Improvements
-None planned
+None planned. 
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [California Department of Water Resources 2004](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf){target="_blank"} (pgs 35-36 ) and [Thomas R. Payne & Associates 2002](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne2002_FeatherRiverIFIM+7-22-02.pdf){target="_blank"} (pgs 35-37)
 
-Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Feather River are based on data from the California Department of Water Resources and Thomas R. Payne & Associates instream flow evaluations for the relicensing of Oroville facilities. These evaluations developed relationships between flow and suitable spawning and rearing habitat for 23.25 miles of the Feather River between the Fish Barrier Dam and Honcut Creek, consisting of two river segments. The DWR FERC instream spawning and rearing habitat data was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a spreadsheet (see '~/cvpiaHabitat/data-raw/mark_gard_data/IFIMWUA.xlsx'). The Fall Run Chinook Salmon and Steelhead spawning habitat data from Gard was cross-referenced with the original FERC data and amended to include all of the original data in the FERC reports by adding values digitized from the flow area curves in the [FERC evaluation reports (pages 35-36)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow area curves for "upper" and "lower" reaches. These values were combined into a single area weighted by study reach length for each flow value.
+Instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Feather River are based on data from the California Department of Water Resources (DWR) and from Thomas R. Payne & Associates' instream flow evaluations for the relicensing of the Oroville facilities. These evaluations determined relationships between flow and both suitable spawning and rearing habitat for 23.25 miles of the Feather River. This segment of the Feather River is between the Fish Barrier Dam and Honcut Creek and consists of two river segments. The DWR Federal Energy Regulatory Commission (FERC) instream spawning and rearing habitat data was provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). The Fall Run Chinook Salmon and Steelhead spawning habitat data from Mark Gard were cross-referenced with the original FERC data and amended. The data now include the original data from the FERC reports, which was added by digitizing the flow area curves in the [FERC evaluation reports (pages 35-36)](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Feather_FERC_IFIM_Phase_2.pdf) using <https://automeris.io/WebPlotDigitizer/>. The FERC instream flow evaluation produced flow area curves for the "upper" and "lower" reaches. These values were combined into a single area and weighted by study reach length for each flow value.
 
 ### Combine Spawning and Rearing Data
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the DSM in the following format.
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) is combined for use in the Decision Support Model (DSM) in the following format.
 ```{r, echo=FALSE}
 feather_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A1:D8", sheet = 'Feather')
 # feather_raw
@@ -73,7 +73,7 @@ knitr::kable(align ="c", head(feather_river_instream, 5),
 *...with 13 more rows.*
 
 ### Spawning WUA
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT and applied for the flow in each month in the DSM. 
+The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) and applied for the flow in each month in the DSM. 
 ```{r, echo = FALSE}
 feather_river_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>% 

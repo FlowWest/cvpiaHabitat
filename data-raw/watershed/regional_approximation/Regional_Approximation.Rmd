@@ -15,15 +15,12 @@ library(purrr)
 library(lubridate)
 ```
 
-
-
 ### Instream Spawning and Rearing Habitat
-
 
 
 **Details:** 
 
-Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:mark_gard@fws.gov) at the US Fish and Wildlife Service, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean WUA at each flow from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at each flow from Battle Creek, Butte Creek, and Clear Creek.
+Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:mark_gard@fws.gov) at the US Fish and Wildlife Service, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at each flow from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at each flow from Battle Creek, Butte Creek, and Clear Creek. 
 
 **The following table shows watershed areas and channel widths for all of the watersheds used to create regional approximations.**
 
@@ -40,8 +37,6 @@ tibble(
 *Cow Creek is not included in regional approximation for spawning. 
 
 **The following table shows watershed areas and channel widths for watersheds without spawning and/or rearing habitat modeling.** 
-
-
 ```{r}
 tibble(
   Watershed = c("Antelope Creek", "Bear Creek", "Big Chico Creek", "Cow Creek*", 
@@ -56,7 +51,7 @@ tibble(
 *Cow Creek does not have modeled spawning habitat. 
 
 ### Combine Spawning and Rearing Data 
-The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet. 
+The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet. 
 
 ```{r, include = FALSE}
 # Find where modeling exists in upper_mid_sac_region(see ~cvpiaHabitat/data-raw/modeling_exists )
@@ -141,7 +136,7 @@ knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5))
 
 ### Spawning WUA 
 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for un-modeled Upper Sacramento River tributaries Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Chinook Salmon in the un-modeled Upper Sacramento River tributaries. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT).  
 
 ```{r, echo=FALSE}
   upper_mid_sac_region_instream %>%
@@ -154,7 +149,7 @@ The following plot shows the weighted usable spawning area in square feet per th
 
 ### Rearing WUA
 
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for un-modeled Upper Sacramento River tributaries Chinook Salmon. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Chinook Salmon in the un-modeled Upper Sacramento River tributaries. These rates are multiplied by the total rearing reach length mapped by the SIT. 
 
 ``` {r,echo=FALSE}
 upper_mid_sac_region_instream %>% 
