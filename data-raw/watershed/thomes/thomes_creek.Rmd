@@ -12,7 +12,7 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-None Planned 
+None planned.  
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"} 
@@ -20,7 +20,7 @@ None Planned
 source('data-raw/watershed/regional_approximation/description_regional_approx.R')
 ```
 
-`r print_regional_approx('Antelope Creek')`
+`r print_regional_approx('Thomes Creek')`
 
 ```{r, include=FALSE}
 source('data-raw/watershed/floodplain_utils.R')

@@ -13,15 +13,15 @@ library(readxl)
 library(cvpiaHabitat)
 ```
 ## Future Data Improvements
-None planned 
+None planned. 
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [FISHBIO Environmental and Thomas R. Payne & Associates 2009](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FishBio_Payne2009_CalaverasInstreamFlowStudy.pdf){target="_blank"} (pgs. 18-19)
 
-No habitat modeling is available for Chinook on the Calaveras River. Instream spawning and rearing habitat for Steelhead in the Calaveras River are used as a proxy for Chinook. This data is based on an instream flow study conducted by FISHBIO and Thomas Payne for the Stockton East Water District. They used a Physical Habitat Simulation model on four reaches to find a relationship between stream flow and suitable Steelhead habitat. Graphs showing the original data are on pgs. 18-19 of the study report linked above. The  Steelhead spawning habitat data from [Mark Gard](mailto:mark_gard@fws.gov) was cross-referenced with the original FISHBIO data and amended to include all of the original data in the FISHBIO reports by adding values digitized from the flow : area curves in the using <https://automeris.io/WebPlotDigitizer/>. Values from the four reaches were compiled into a spreadsheet (see '~/cvpiaHabitat/data-raw/Calaveras_all_reaches.xlsx') and then the data from each reach was weighted by the length of the reach to find the weighted average of the Steelhead spawning and rearing WUA in Calaveras River. This approach was developed in coordination with [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. We used cells A16:D26 with a reach length of 18,282 ft, A30:D40 with a reach length of 25,438 ft, and A43:D43 with a reach length of 27,867 ft. 
+There is no habitat modeling available for Fall Run Chinook Salmon on the Calaveras River. Instream spawning and rearing habitat for Steelhead in the Calaveras River are used as a proxy for Chinook. The data are based on an instream flow study conducted by FISHBIO and Thomas Payne for the Stockton East Water District. They used a Physical Habitat Simulation model on four reaches to find a relationship between stream flow and suitable Steelhead habitat. Graphs showing the original data are on pgs. 18-19 of the study report linked above. The  Steelhead spawning habitat data from [Mark Gard](mailto:mark_gard@fws.gov) were cross-referenced with the original FISHBIO data and amended to include the original data from the FISHBIO reports. The data were digitized from the flow : area curves using this [website](https://automeris.io/WebPlotDigitizer/). Values from the four reaches were first compiled into a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/Calaveras_all_reaches.csv). The data from each reach were then weighted by reach length to find the weighted average of the Steelhead spawning and rearing weighted usable area (WUA) in Calaveras River. This approach was developed in coordination with [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. We used cells A16:D26 with a reach length of 18,282 ft, A30:D40 with a reach length of 25,438 ft, and A43:D43 with a reach length of 27,867 ft. 
 
 ### Combine Spawning and Rearing Data 
-The instream spawning and rearing habitat data described above for Steelhead (ST) is combined for use in the DSM in the following format. Units are in square feet per 1000 feet.
+The instream spawning and rearing habitat data described above for Steelhead (ST) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.
 ```{r, echo =FALSE}
 total <- 71632
 calaveras_reach_1and2 <- read_excel('data-raw/watershed/calaveras/data/Calaveras_all_reaches.xlsx', range = "A16:D26") %>%
@@ -53,7 +53,7 @@ knitr::kable(head(calaveras_river_instream, 5), align = "c",
 *...with 5 more rows.* 
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
 ``` {r,echo=FALSE}
 calaveras_river_instream %>% 
     filter(!is.na(ST_spawn_wua)) %>%
@@ -85,7 +85,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 **Data Source:** [TUFLOW hydraulic model with 1D channel and 2D overbank components](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf){target="_blank"}
 
-`r print_model_details('Calaveras River', 'fr')`
+`r print_model_details('the Calaveras River', 'fr')`
 
 ## Floodplain Data
 The areas represent total inundated area in acres.
