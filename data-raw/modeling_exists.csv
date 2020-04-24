@@ -31,3 +31,4 @@ Order,Watershed,FR_spawn,FR_fry,FR_juv,FR_floodplain,SR_spawn,SR_fry,SR_juv,SR_f
 30,Tuolumne River,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,TRUE,TRUE,TRUE,FALSE,TRUE,San Joaquin River,FALSE,FALSE,FALSE,
 31,San Joaquin River,FALSE,FALSE,FALSE,TRUE,NA,FALSE,FALSE,FALSE,NA,FALSE,FALSE,FALSE,FALSE,San Joaquin River,TRUE,TRUE,FALSE,"created composite habitat values from merced, tuolumne, and stanislaus"
 0,Upper Mid Sac Region,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,FALSE,Upper Mid Sac Region,NA,NA,NA,
+
