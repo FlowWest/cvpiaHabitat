@@ -147,5 +147,5 @@ bear_river_floodplain %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(.9,.05))
+  theme(legend.justification = c(1,0), legend.position = c(.9,.05)) 
 ```
