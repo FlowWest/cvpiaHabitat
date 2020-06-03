@@ -102,21 +102,23 @@ knitr::kable(align = 'c', head(butte_creek_rearing %>%
 
 ### Spawning WUA 
 The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
-``` {r,echo=FALSE}
+``` {r,echo=FALSE,warning = FALSE}
 butte_creek_instream %>% 
     filter(!is.na(FR_spawn_wua)) %>%
     ggplot(aes(x = flow_cfs)) +
-    geom_line(aes(y = FR_spawn_wua,color = '#d95f02',Lifestage = 'Fall and Spring Run')) +
-    geom_line(aes(y = ST_spawn_wua,color = '#7570b3',Lifestage = 'Steelhead')) +
-    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
-    theme_minimal() 
+    geom_line(aes(y = FR_spawn_wua,color = '#d95f02')) +
+    geom_line(aes(y = ST_spawn_wua,color = '#7570b3')) +
+    labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)',color = 'Species') +
+    theme_minimal() +
+    scale_color_manual(labels = c('Fall and Spring Run','Steelhead'),values = c('#d95f02','#7570b3')) +
+    theme(legend.justification = c(1,0), legend.position = c(.9,.75))
    
 ```
 
 ### Rearing WUA
 The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Spring Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
 
-``` {r,echo=FALSE}
+``` {r,echo=FALSE,warning = FALSE}
 butte_creek_rearing %>% 
   ggplot(aes(x = flow_cfs)) +
   geom_line(aes(y = `Fry Rearing`,color = '#d95f02',Lifestage = 'Fry Rearing')) +
