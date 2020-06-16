@@ -114,7 +114,7 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Rearing Habitat 
 
-**Data Source:** [Mark Gard, US Fish and Wildlife Service](mailto:mark_gard@fws.gov){target="_blank"}
+**Data Source:** [CVPIA Annual Progress Report Fiscal Year 2019](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/CVPIA+Annual+Progress+Report+Fiscal+Year+2019.pdf){target="_blank"}
 
 Mark Gard at the US Fish and Wildlife Service developed a flow-floodplain area relationship for the Cosumnes River based on a 1-D HEC-RAS hydraulic model created by UC Davis.
 
@@ -152,3 +152,4 @@ cosumnes_river_floodplain %>%
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
   theme(legend.justification = c(1,0), legend.position = c(.9,.1))
 ```
+
