@@ -1,7 +1,7 @@
 ---
 title: "American River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "August 14, 2019"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)" 
+date:  "July 2020" 
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ None planned.
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf){target="_blank"} (pgs. 91-107) and [USFWS 1985](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/AmericanRiver1985IFIM.PDF){target="_blank"} (pgs. 10-11) 
 
-The instream spawning habitat for Fall Run Chinook Salmon and Steelhead in the American River is based on a spawning habitat suitability and availability analysis performed by the Sacramento Water Forum. The Water Forum conducted the analysis as part of the Lower American River Biological Rationale Development and Performance of the Modified Flow Standard (ARWA 2017). The instream juvenile rearing habitat for Fall Run Chinook Salmon is from instream flow studies conducted by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. These analyses uncovered relationships between flow and both suitable spawning habitat and suitable rearing habitat for the Lower American River. Cells A35:D46 in the 'American' tab of the IFIMWUA [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx) contain sums of the instream flow evaluation values from reaches Sailor Bar, Ancil Hoffman, Watt, and H Street. These values were divided by four to obtain composite instream rearing weighted usable area (wua) values in square feet per 1000 feet of river.       
+The instream spawning habitat for Fall Run Chinook Salmon and Steelhead in the American River is based on a spawning habitat suitability and availability analysis performed by the Sacramento Water Forum. The Water Forum conducted the analysis as part of the Lower American River Biological Rationale Development and Performance of the Modified Flow Standard (ARWA 2017). The instream juvenile rearing habitat for Fall Run Chinook Salmon is from instream flow studies conducted by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service. These analyses uncovered relationships between flow and both suitable spawning habitat and suitable rearing habitat for the Lower American River. Cells A35:D46 in the 'American' tab of the IFIMWUA [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx) contain sums of the instream flow evaluation values from reaches Sailor Bar, Ancil Hoffman, Watt, and H Street. These values were equally weighted to obtain composite instream rearing weighted usable area (WUA) values in square feet per 1000 feet of river.     
 ```{r, echo=FALSE}
 american_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A35:D46", sheet = 'American')
 
@@ -59,7 +59,8 @@ american_spawning <- spawn %>%
 knitr::kable(align = 'c', head(american_spawning, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_spawn_wua = Fall Run Chinook Spawning WUA,  
-             ST_spawn_wua = Steelhead Spawning WUA")
+             ST_spawn_wua = Steelhead Spawning WUA, 
+             watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 40 more rows.*
@@ -72,18 +73,20 @@ american_rearing <- american_raw %>%
   mutate(watershed = 'American River') 
 
 knitr::kable(align = 'c', head(american_rearing, 5), 
-             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
-             FR_juv_wua = Fall Run Chinook Juvenile WUA,  
-             FR_fry_wua = Fall Run Chinook Fry WUA")
+             caption = "Header Descriptions:
+              flow_cfs = flow in cubic feet per second,
+              FR_fry_wua = Fall Run Chinook Fry WUA,
+              FR_juv_wua = Fall Run Chinook Juvenile WUA,
+              watershed = section of stream modeled for CVPIA SDM")
   
 ```
 
 *...with 6 more rows.*
 
 ### Spawning WUA 
-The Fall Run Chinook Salmon and Steelhead spawning habitat data from [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf) is contained in Attachment B, Table B-4 on page 91 and Figure B-8 on page 92 (Fall Run Chinook Salmon) and Attachment B, Table B-9 and Figure B-26 on page 107 (Steelhead). 
+The Fall Run Chinook Salmon and Steelhead spawning habitat data from [ARWA 2017](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/ARWA-702.pdf) is located in Attachment B. Fall Run Chinook Salmon data are in Table B-4 on page 91 and Figure B-8 on page 92. Steelhead data are in Table B-9 and Figure B-26 on page 107. 
 
-The following plot shows the composite weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead. The weighted usable area values combine data from all evaluation reaches. These area per length rates are multiplied by the total spawning reach length mapped by the SIT. 
+The following plot shows the composite WUA in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead. The WUA values combine data from all evaluation reaches. These area per length rates are multiplied by the total spawning reach length mapped by the SIT to estimate areas of habitat. 
 ```{r, echo=FALSE}
 american_river_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>% 
@@ -99,7 +102,7 @@ american_river_instream %>%
 ```
 
 ### Rearing WUA
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the rearing WUA in square feet per thousand feet for fry and juvenile Fall Run Chinook Salmon. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate habitat area. 
 ```{r, echo=FALSE}
 american_river_instream %>% 
   select(flow_cfs, Fry = FR_fry_wua, Juvenile = FR_juv_wua) %>% 
@@ -146,7 +149,8 @@ american_river_floodplain <- american_river %>%
 knitr::kable(align = 'c', head(american_river_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
-             ST_floodplain_acres = Steelhead floodplain acres")
+             ST_floodplain_acres = Steelhead floodplain acres,
+             watershed = section of stream modeled for CVPIA SDM")
 # usethis::use_data(american_river_floodplain, overwrite = TRUE)
 ```
 

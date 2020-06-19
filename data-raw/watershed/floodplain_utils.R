@@ -193,9 +193,9 @@ print_model_details <- function(ws, species) {
 
   if (watershed_method == 'full_model') {
     return(
-      glue("The entire mapped rearing extent of {rearing_length} miles was modeled using {model_name}.",
-           " An active channel area of {channel_area_modeled} acres estimated through remote",
-           " sensing analysis was subtracted from total inundated area to obtain inundated floodplain area.")
+      glue("The entire mapped rearing extent of {rearing_length} miles was modeled using {model_name}.
+           An active channel area of {channel_area_modeled} acres, estimated through remote
+           sensing analysis, was subtracted from total inundated area to obtain inundated floodplain area.")
     )
   }
 
