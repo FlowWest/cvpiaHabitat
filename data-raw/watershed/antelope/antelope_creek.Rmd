@@ -40,7 +40,8 @@ knitr::kable(align = 'c', head(antelope_creek_floodplain, 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              SR_floodplain_acres = Spring Run Chinook floodplain acres,
-             ST_floodplain_acres = Steelhead floodplain acres")
+             ST_floodplain_acres = Steelhead floodplain acres,
+             watershed = section of stream modeled for CVPIA SDM")
 # usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
 ```
 
