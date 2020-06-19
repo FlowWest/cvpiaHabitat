@@ -1,8 +1,8 @@
 ---
 title: "Upper-Mid Sacramento Regional Approximation"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "Aug 8, 2019"
-output: html_document
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 2020"
+output: html_document 
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +20,7 @@ library(lubridate)
 
 **Details:** 
 
-Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:mark_gard@fws.gov) at the US Fish and Wildlife Service, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at each flow from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at each flow from Battle Creek, Butte Creek, and Clear Creek. 
+Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:mark_gard@fws.gov) at the US Fish and Wildlife Service, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at a subset of flow values from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at flows from Battle Creek, Butte Creek, and Clear Creek. 
 
 **The following table shows watershed areas and channel widths for all of the watersheds used to create regional approximations.**
 
@@ -48,7 +48,6 @@ tibble(
   knitr::kable(align = 'c')
 ```
 
-*Cow Creek does not have modeled spawning habitat. 
 
 ### Combine Spawning and Rearing Data 
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet. 
@@ -129,14 +128,19 @@ upper_mid_sac_region_instream <- purrr::map_df(flows, function(flow) {
 ```
 
 ```{r, echo = FALSE}
-knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5))
+knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5), caption = "Header Descriptions:
+              flow_cfs = flow in cubic feet per second,
+              FR_spawn_wua = Fall Run Chinook Spawning WUA,
+              FR_fry_wua = Fall Run Chinook Fry WUA,
+              FR_juv_wua = Fall Run Chinook Juvenile WUA,
+              watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 18 more rows.*
 
 ### Spawning WUA 
 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Chinook Salmon in the un-modeled Upper Sacramento River tributaries. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT).  
+The following plot shows the WUA in square feet per thousand feet for Chinook Salmon used for Upper Sacramento River tributaries without adequate habitat modeling. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate habitat area.  
 
 ```{r, echo=FALSE}
   upper_mid_sac_region_instream %>%
@@ -149,15 +153,15 @@ The following plot shows the weighted usable spawning area in square feet per th
 
 ### Rearing WUA
 
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Chinook Salmon in the un-modeled Upper Sacramento River tributaries. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the rearing WUA in square feet per thousand feet for Chinook Salmon used for Upper Sacramento River tributaries without adequate habitat modeling. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate habitat area. 
 
 ``` {r,echo=FALSE}
 upper_mid_sac_region_instream %>% 
   gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
   filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != "ST_fry_wua", lifestage != "ST_juv_wua") %>%
-  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'fry', 'juvenile')) %>% 
+  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'Fry', 'Juvenile')) %>% 
   ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
   geom_line() +
-  labs(x = 'flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
   scale_color_manual(values = c('#d95f02','#7570b3'))
 ```
