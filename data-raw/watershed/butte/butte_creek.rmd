@@ -1,7 +1,7 @@
 ---
 title: "Butte Creek"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "August 15, 2019"
+date: "July 2020"
 output: html_document
 ---
 
@@ -19,7 +19,7 @@ None planned.
 
 **Data Source:** [FWS 2003](https://www.fws.gov/lodi/instream-flow/Documents/Butte%20Creek%20Spring-run%20chinook%20salmon%20spawning%208-29-2003.pdf){target="_blank"} (77-78) and [FERC relicensing of DeSabla](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf){target="_blank"} (APPENDIX E6.3.2.6-J1)
 
-Instream spawning and rearing habitat in Butte Creek is based on data from the FWS instream 2003 study and the FERC relicensing of DeSabla 2008 study. Spawning habitat data are from the FWS study (p. 77-78). Spawning data were generated using a RIVER2D 2-dimensional hydraulic and habitat model for Spring Run only. The spawning data were compiled in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/butte_creek_data.csv) and scaled by reach length. Spring Run Chinook Salmon Spawning data are used as a proxy for Fall Run Chinook Salmon Spawning. The rearing data come from DeSabla 2008 in the lower butte section of the appendix (APPENDIX E6.3.2.6-J1). Instream rearing habitat data were provided in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use cells A71:C101 for the Fall Run Chinook rearing data.  Units are in square feet per 1000 feet.
+Instream spawning and rearing habitat in Butte Creek is based on data from the FWS instream 2003 study and the FERC relicensing of DeSabla 2008 study. Spawning habitat data are from the FWS study (p. 77-78). For Spring Run only, spawning data were generated using a RIVER2D 2-dimensional hydraulic and habitat model. The spawning data were compiled in a spreadsheet (accessible through GitHub or this cvpiaHabitat R package) and scaled by reach length. Spring Run Chinook Salmon Spawning data are used as a proxy for Fall Run Chinook Salmon Spawning. The rearing data come from DeSabla 2008 in the lower butte section of the appendix (APPENDIX E6.3.2.6-J1). Instream rearing habitat data were provided in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use cells A71:C101 for the Fall Run Chinook rearing data.  Units are in square feet per 1000 feet.
 
 ```{r, echo=FALSE}
 # Spring run spawning data 
@@ -82,7 +82,7 @@ butte_creek_instream <- butte_creek_spawning %>%
 knitr::kable(align = 'c', head(butte_creek_instream %>% select(flow_cfs,ST_spawn_wua,SR_spawn_wua) %>% 
                                  mutate(watershed = 'Butte Creek'), 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,ST_spawn_wua = Steelhead Spawning WUA
-             SR_spawn_wua = Spring Run Chinook Spawning WUA")
+             SR_spawn_wua = Spring Run Chinook Spawning WUA, watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 36 more rows* 
@@ -95,13 +95,14 @@ knitr::kable(align = 'c', head(butte_creek_rearing %>%
                                           'Juv Rearing'), 5), caption = 
                                   "Header Descriptions: flow_cfs = flow in cubic feet per second, 
                                   SR_juv_wua = Spring Run Chinook Juvenile WUA,  
-                                  SR_fry_wua = Spring Run Chinook Fry WUA")
+                                  SR_fry_wua = Spring Run Chinook Fry WUA, 
+                                  watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 25 more rows*
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
+The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet for Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
 ``` {r,echo=FALSE,warning = FALSE}
 butte_creek_instream %>% 
     filter(!is.na(FR_spawn_wua)) %>%
@@ -116,7 +117,7 @@ butte_creek_instream %>%
 ```
 
 ### Rearing WUA
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Spring Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the rearing WUA in square feet per thousand feet for Spring Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 
 ``` {r,echo=FALSE,warning = FALSE}
 butte_creek_rearing %>% 
@@ -160,7 +161,8 @@ knitr::kable(align = 'c', head(butte_creek_floodplain, 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
-             ST_floodplain_acres = Steelhead floodplain acres") 
+             ST_floodplain_acres = Steelhead floodplain acres,
+             watershed = section of stream modeled for CVPIA SDM") 
 # usethis::use_data(butte_creek_floodplain, overwrite = TRUE)
 ```
 

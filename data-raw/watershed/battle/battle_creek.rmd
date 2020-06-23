@@ -48,7 +48,7 @@ knitr:: kable(head(battle_creek_instream, 5), align = 'c',
 *...with 30 more rows.* 
 
 ### Spawning WUA    
-The following plot shows the spawning WUA in square feet per thousand feet of river for Fall Run Chinook Salmon, Steelhead, and Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.    
+The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon, Steelhead, and Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.    
 ```{r, echo=FALSE}
 battle_creek_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua, `Spring Run Chinook` = SR_spawn_wua) %>% 
@@ -64,7 +64,7 @@ battle_creek_instream %>%
 ```
 
 ### Rearing WUA
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
+The following plot shows the weighted usable rearing area in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 ``` {r}
 battle_creek_instream %>% 
   select(SR_juv_wua, SR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>%
