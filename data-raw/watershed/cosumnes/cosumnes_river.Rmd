@@ -95,7 +95,7 @@ cosumnes_river_instream %>%
 ```
 
 ### Rearing WUA
-The following plot shows the rearing WUA in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
+The following plot shows the rearing WUA in square feet per thousand feet for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 ``` {r,echo=FALSE}
 cosumnes_river_instream %>% 
   gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
