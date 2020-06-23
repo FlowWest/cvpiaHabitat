@@ -1,7 +1,7 @@
 ---
 title: "San Joaquin River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
-date: "August 16, 2019"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -56,13 +56,14 @@ knitr::kable(align ='c', head(san_joaquin_river_instream, 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_spawn_wua = Fall Run Chinook Spawning WUA, 
              FR_fry_wua = Fall Run Chinook Fry WUA, 
-             FR_juv_wua = Fall Run Chinook Juvenile WUA")
+             FR_juv_wua = Fall Run Chinook Juvenile WUA,
+             watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 42 more rows.*
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT).
+The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.
 ``` {r,echo=FALSE}
 san_joaquin_river_instream %>% 
   ggplot(aes(x = flow_cfs , y = FR_spawn_wua)) +
@@ -72,7 +73,7 @@ san_joaquin_river_instream %>%
 ```
 
 ### Rearing WUA
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the rearing WUA in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 ``` {r,echo=FALSE}
 san_joaquin_river_instream %>% 
   gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
@@ -113,7 +114,8 @@ knitr::kable(align = 'c', head(san_joaquin_river_floodplain, 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
-             ST_floodplain_acres = Steelhead floodplain acres")
+             ST_floodplain_acres = Steelhead floodplain acres, 
+             watershed = section of stream modeled for CVPIA SDM")
 # usethis::use_data(san_joaquin_river_floodplain, overwrite = TRUE)
 ```
 
