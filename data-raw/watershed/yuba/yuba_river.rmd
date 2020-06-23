@@ -1,7 +1,7 @@
 ---
 title: "Yuba River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "August 19, 2019"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ Update with new VA data.
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Spawning FWS 2010](https://www.fws.gov/lodi/instream-flow/Documents/Yuba%20River%20Spawning%20Final%20Report.pdf){target="_blank"} (pgs 59-61) and  [Rearing FWS 2010](https://www.fws.gov/lodi/instream-flow/Documents/Yuba%20River%20Rearing%20Final%20Report.pdf){target="_blank"} (pgs 74-76)
 
-The instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in the Yuba River are based on data from the Fish and Wildlife Service (FWS) flow-habitat relationship final reports for spawning and rearing. A 2-dimensional hydraulic and habitat model called River2D was used to model available spawning and rearing habitat. The FWS instream spawning and rearing data were provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use cells A4:H33 and A39:H68 of the 'Yuba' tab within the spreadsheet, representing the Englebright to Daguerre Segment (12.7 miles) and the Daguerre to Feather Segment (11.4 miles) respectively. For adult Steelhead, Mark Gard instructed us to use cells A73:B100 of the 'Yuba' tab within the spreadsheet. 
+The instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in the Yuba River are based on data from the Fish and Wildlife Service (FWS) flow-habitat relationship final reports. A 2-dimensional hydraulic and habitat model called River2D was used to model available spawning and rearing habitat. The FWS instream spawning and rearing data were provided by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use cells A4:H33 and A39:H68 of the 'Yuba' tab within the spreadsheet, representing the Englebright to Daguerre Segment (12.7 miles) and the Daguerre to Feather Segment (11.4 miles), respectively. For adult Steelhead, Mark Gard instructed us to use cells A73:B100 of the 'Yuba' tab within the spreadsheet. 
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Spring Run Chinook Salmon (SR), and Steelhead (ST) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.
@@ -98,7 +98,8 @@ knitr::kable(align = 'c', head(yuba_river_instream, 5),
              FR_spawn_wua = Fall Run Chinook Spawning WUA, FR_fry_wua = Fall Run Chinook Fry WUA,
              FR_juv_wua = Fall Run Chinook Juvenile WUA, SR_spawn_wua = 
              Spring Run Chinook Spawning WUA, ST_spawn_wua = Steelhead Spawning WUA, 
-             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA")
+             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA,
+             watershed = section of stream modeled for CVPIA SDM")
 
 # usethis::use_data(yuba_river_instream, overwrite = TRUE)
 ```
@@ -106,7 +107,7 @@ knitr::kable(align = 'c', head(yuba_river_instream, 5),
 *...with 29 more rows.* 
 
 ### Spawning WUA    
-The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet of river for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
+The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
 ``` {r,echo=FALSE}
 yuba_river_instream %>% 
     rename(`Fall Run` = FR_spawn_wua,  `Steelhead` = ST_spawn_wua, 
@@ -124,18 +125,18 @@ yuba_river_instream %>%
 ```
 
 ### Rearing WUA   
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the rearing WUA in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 ``` {r,echo=FALSE}
 yuba_river_instream %>% 
   filter(flow_cfs < 5000) %>% 
   select(FR_juv_wua, FR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>%
   gather(species_lifestage, acres, -flow_cfs, -watershed) %>% 
   mutate(
-    species = case_when( 
+    Species = case_when( 
       str_detect(species_lifestage, 'ST') ~ 'Steelhead', 
       str_detect(species_lifestage, 'FR') ~ 'Fall Run'),
       lifestage = ifelse(str_detect(species_lifestage, 'juv'), 'Juvenile', 'Fry')) %>% 
-  ggplot(aes(flow_cfs, acres, color = species)) +
+  ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
   theme_minimal() +
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
@@ -178,7 +179,8 @@ knitr::kable(align = 'c', head(yuba_river_floodplain, 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
-             ST_floodplain_acres = Steelhead floodplain acres")
+             ST_floodplain_acres = Steelhead floodplain acres,
+             watershed = section of stream modeled for CVPIA SDM")
 # usethis::use_data(yuba_river_floodplain, overwrite = TRUE)
 ```
 

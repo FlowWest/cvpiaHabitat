@@ -124,7 +124,7 @@ knitr::kable(align = 'c' , head(mokelumne_river_instream, 5),
 *...with 47 more rows.*
 
 ### Spawning WUA   
-The following plot shows the weighted usable spawning area (WUA) rate in square feet per thousand feet of river for Fall Run Chinook Salmon (FR). 
+The following plot shows the weighted usable spawning area (WUA) rate in square feet per thousand feet for Fall Run Chinook Salmon (FR). 
 ```{r, echo=FALSE}
 spawning_moke %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>% 
@@ -141,7 +141,7 @@ spawning_moke %>%
 ### Rearing WUA
 The flow:area relationships from USFWS and EBMUD were first expanded using linear interpolation to ensure the relationships for each evaluation reach included the same flows. A single rearing habitat area representing the entire river was then estimated for each flow. Each area was weighted in proportion to the length of the evaluation reach from which the area was originally estimated. The resulting areas were then converted to an area per unit length by dividing the area by the length of the rearing reach mapped by the Scince Integration Team (SIT).
 
-The following plot shows the rearing WUA in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile.
+The following plot shows the rearing WUA in square feet per thousand feet for Fall Run Chinook Salmon fry and juvenile.
 ``` {r,echo=FALSE}
 mokelumne_river_instream %>% 
   gather(Lifestage, wua, -flow_cfs, -watershed)  %>% 
