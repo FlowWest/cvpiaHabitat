@@ -5,7 +5,7 @@ date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE, message=FALSE}
-knitr::opts_chunk$set(echo = FALSE, out.width = '100%')
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
 library(tidyverse)
 library(readxl)
