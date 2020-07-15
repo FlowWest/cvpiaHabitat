@@ -15,8 +15,8 @@ library(scales)
 
 ## Future Data Improvements
 
-* EBMUD is developing new steelhead rearing habitat flow:area relationships (expected January 2019)
-* EBMUD is developing new Fall Run floodplain rearing habitat flow:area relationships with Mark Gard (expected late 2019)
+* EBMUD is developing new steelhead rearing habitat flow:area relationships (expected 2020)
+* EBMUD is developing new Fall Run floodplain rearing habitat flow:area relationships with Mark Gard (expected 2020)
 
 ## Instream Spawning and Rearing Habitat
 **Data Sources:** [CDFW 1991](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Lower+Mokelumne+RIver+Fisheries+Management+Plan%2C+CDFG+1991.pdf){target="_blank"} (pg. 105 - 107) 
