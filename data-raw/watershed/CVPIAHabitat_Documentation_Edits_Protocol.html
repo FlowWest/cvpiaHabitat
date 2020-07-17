@@ -11,7 +11,7 @@
 
 <meta name="author" content="Isabelle Kavanagh" />
 
-<meta name="date" content="2020-07-16" />
+<meta name="date" content="2020-07-17" />
 
 <title>CVPIA Habitat Documentation Edits Protocol</title>
 
@@ -378,7 +378,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">CVPIA Habitat Documentation Edits Protocol</h1>
 <h3 class="subtitle">Instructions for updating Rmd files</h3>
 <h4 class="author"><a href="mailto:isabellekavanagh@berkeley.edu">Isabelle Kavanagh</a></h4>
-<h4 class="date">July 16, 2020</h4>
+<h4 class="date">July 17, 2020</h4>
 
 </div>
 
@@ -416,7 +416,7 @@ $(document).ready(function () {
 <h2>Instructions for when the data <em>source</em> is changed or updated</h2>
 <p>For example, the CVPIA Annual Progress Report is updated annually, and hence the link in the “Data Source” section of the Rmd file must be updated.</p>
 <ol style="list-style-type: decimal">
-<li>Upload the data source pdf to Amazon AWS in the s3 bucket named <a href="https://s3.console.aws.amazon.com/s3/buckets/cvpiahabitat-r-package/cvpia-sit-model-inputs/?region=us-west-2&amp;tab=overview">“cvpiahabitat-r-package/cvpia-sit-model-inputs”</a></li>
+<li>Upload the data source pdf to AWS in the s3 bucket named <a href="https://s3.console.aws.amazon.com/s3/buckets/cvpiahabitat-r-package/cvpia-sit-model-inputs/?region=us-west-2&amp;tab=overview">“cvpiahabitat-r-package/cvpia-sit-model-inputs”</a></li>
 <li>Click “Next” to set permissions for the document &gt; under “Manage Public Permissions” select “Grant public read access to this object(s)”</li>
 <li>Click “Next” to set properties for the document &gt; under “Storage class” select “Standard-IA” for long-lived, infrequently accessed data<br />
 </li>
@@ -425,8 +425,8 @@ $(document).ready(function () {
 <li>Change wording of data source in description if necessary</li>
 </ol>
 </div>
-<div id="instructions-for-when-the-raw-data-habitat-modeling-output-is-changed-or-updated" class="section level2">
-<h2>Instructions for when the <em>raw data</em> (habitat modeling output) is changed or updated</h2>
+<div id="instructions-for-when-the-data-itself-habitat-modeling-output-is-changed-or-updated" class="section level2">
+<h2>Instructions for when the data <em>itself</em> (habitat modeling output) is changed or updated</h2>
 <p>For example, if new data are presented for a certain species/lifestage or the previous data are edited.</p>
 <ol style="list-style-type: decimal">
 <li>Download new data as a csv file and move file to appropriate location:</li>
@@ -450,12 +450,13 @@ $(document).ready(function () {
 <li>Build the plots and check that they look accurate: the species names/lifestages in the plots are correct, units are correct, axis titles are correct, color coding is correct, data visualization looks reasonable<br />
 </li>
 <li>If the source includes data on a species not previously represented, ensure that the species is added to data tables and plots</li>
-<li>Collaborate with Mark Tompkins to update description above the data that has been edited to relfect the changes: what type of modeling was done, what software was used, how/where/when the data were collected, who collected it, etc.</li>
+<li>Collaborate with Mark Tompkins to update description above the edited data table to relfect the changes: what type of modeling was done, what software was used, how/where/when the data were collected, who collected it, etc.</li>
+<li>Update modeling_exists spreadsheet if necessary (see above for details)</li>
 </ol>
 </div>
 <div id="naming-conventions" class="section level2">
 <h2>Naming Conventions</h2>
-<p><em>Fry &amp; Juvenile are two different rearing stages</em></p>
+<p><em>Fry &amp; Juvenile are two different rearing stages.</em></p>
 <ul>
 <li>flow_cfs: flow in cubic feet per second</li>
 <li>watershed: section of stream modeled for CVPIA SDM</li>

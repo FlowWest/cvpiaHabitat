@@ -1,8 +1,8 @@
 ---
 title: "CVPIA Habitat Documentation Edits Protocol"
-subtitle: "Instructions for updating Rmd files "
+subtitle: "Instructions for updating Rmd files"
 author: "[Isabelle Kavanagh](mailto:isabellekavanagh@berkeley.edu)"
-date: "July 16, 2020"
+date: "July 17, 2020"
 output: html_document
 ---
 
@@ -35,7 +35,7 @@ output: html_document
 ## Instructions for when the data *source* is changed or updated 
 For example, the CVPIA Annual Progress Report is updated annually, and hence the link in the "Data Source" section of the Rmd file must be updated. 
 
-1. Upload the data source pdf to Amazon AWS in the s3 bucket named [“cvpiahabitat-r-package/cvpia-sit-model-inputs”](https://s3.console.aws.amazon.com/s3/buckets/cvpiahabitat-r-package/cvpia-sit-model-inputs/?region=us-west-2&tab=overview)
+1. Upload the data source pdf to AWS in the s3 bucket named [“cvpiahabitat-r-package/cvpia-sit-model-inputs”](https://s3.console.aws.amazon.com/s3/buckets/cvpiahabitat-r-package/cvpia-sit-model-inputs/?region=us-west-2&tab=overview)
 2. Click "Next" to set permissions for the document > under "Manage Public Permissions" select "Grant public read access to this        object(s)"
 3. Click "Next" to set properties for the document > under "Storage class" select "Standard-IA" for long-lived, infrequently  accessed data  
 4. Click "Upload" 
@@ -43,7 +43,7 @@ For example, the CVPIA Annual Progress Report is updated annually, and hence the
 6. Change wording of data source in description if necessary 
 
 
-## Instructions for when the *raw data* (habitat modeling output) is changed or updated 
+## Instructions for when the data *itself* (habitat modeling output) is changed or updated 
 For example, if new data are presented for a certain species/lifestage or the previous data are edited. 
 
 1. Download new data as a csv file and move file to appropriate location: 
@@ -58,10 +58,11 @@ For example, if new data are presented for a certain species/lifestage or the pr
 6. Check that the column titles in the tables conform to naming conventions (see below), and that all column titles are represented in the "Header Descriptions" section above each table 
 7. Build the plots and check that they look accurate: the species names/lifestages in the plots are correct, units are correct, axis titles are correct, color coding is correct, data visualization looks reasonable  
 6. If the source includes data on a species not previously represented, ensure that the species is added to data tables and plots 
-7. Collaborate with Mark Tompkins to update description above the data that has been edited to relfect the changes: what type of modeling was done, what software was used, how/where/when the data were collected, who collected it, etc. 
+7. Collaborate with Mark Tompkins to update description above the edited data table to relfect the changes: what type of modeling was done, what software was used, how/where/when the data were collected, who collected it, etc. 
+8. Update modeling_exists spreadsheet if necessary (see above for details) 
 
 ## Naming Conventions
-*Fry & Juvenile are two different rearing stages* 
+*Fry & Juvenile are two different rearing stages.* 
 
 * flow_cfs: flow in cubic feet per second 
 * watershed: section of stream modeled for CVPIA SDM 
