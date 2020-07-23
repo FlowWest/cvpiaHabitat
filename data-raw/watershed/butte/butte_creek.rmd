@@ -47,10 +47,9 @@ Reach_2 <- butte_raw %>%
   filter(length == 9)
 
 # Steelhead spawning Data 
-butte_creek_st_spawn <-  read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                   range = "A71:E101", sheet = 'Butte') %>% 
-  rename(ST_spawn_wua = `Steelhead spawning`) %>% 
-  select(flow_cfs = Flow,ST_spawn_wua)
+butte_creek_st_spawn <-  read_excel('data-raw/watershed/butte/data/butte_creek_ST_spawn_data.xlsx', 
+                   range = "A2:B32") %>% 
+  select(flow_cfs,ST_spawn_wua)
 
 
 butte_creek_spawning <- tibble(
@@ -81,7 +80,7 @@ butte_creek_instream <- butte_creek_spawning %>%
 ```{r, echo = FALSE}
 knitr::kable(align = 'c', head(butte_creek_instream %>% select(flow_cfs,ST_spawn_wua,SR_spawn_wua) %>% 
                                  mutate(watershed = 'Butte Creek'), 5), 
-             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,ST_spawn_wua = Steelhead Spawning WUA
+             caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, ST_spawn_wua = Steelhead Spawning WUA,
              SR_spawn_wua = Spring Run Chinook Spawning WUA, watershed = section of stream modeled for CVPIA SDM")
 ```
 
