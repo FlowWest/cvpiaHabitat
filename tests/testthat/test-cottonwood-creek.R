@@ -9,8 +9,9 @@ test_that('FR fry Cottonwood Creek works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cottonwood_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cottonwood Creek', 'fr', 'fry', 95), x)
+    set_instream_habitat('Cottonwood Creek', 'fr', 'fry', flow), x)
 
 })
 
@@ -23,8 +24,9 @@ test_that('FR juv Cottonwood Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cottonwood_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cottonwood Creek', 'fr', 'juv', 95), x)
+    set_instream_habitat('Cottonwood Creek', 'fr', 'juv', flow), x)
 
 })
 
@@ -37,7 +39,8 @@ test_that('FR spawn Cottonwood Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cottonwood_creek_instream$flow_cfs[9]
   expect_equal(
-    set_spawning_habitat('Cottonwood Creek', 'fr', 86), x)
+    set_spawning_habitat('Cottonwood Creek', 'fr', flow), x)
 
 })
