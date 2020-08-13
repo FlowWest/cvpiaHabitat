@@ -2,6 +2,7 @@ library(cvpiaHabitat)
 context('Sutter Bypass Habitat')
 
 test_that('Sutter Bypass 2 instream works', {
+  flow = sutter_bypass_instream$flow_cfs[22]
   expect_equal(
     set_bypass_instream_habitat(bypass = 'sutter2',
                          flow = 4000),

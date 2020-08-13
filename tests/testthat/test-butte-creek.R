@@ -11,8 +11,9 @@ test_that('FR fry Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Butte Creek', 'fr', 'fry', 80), x)
+    set_instream_habitat('Butte Creek', 'fr', 'fry', flow), x)
 
 })
 
@@ -26,8 +27,9 @@ test_that('FR juv Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Butte Creek', 'fr', 'juv', 80), x)
+    set_instream_habitat('Butte Creek', 'fr', 'juv', flow), x)
 
 })
 
@@ -42,8 +44,9 @@ test_that('SR fry Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Butte Creek', 'sr', 'fry', 80), x)
+    set_instream_habitat('Butte Creek', 'sr', 'fry', flow), x)
 
 })
 
@@ -57,8 +60,9 @@ test_that('SR juv Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Butte Creek', 'sr', 'juv', 80), x)
+    set_instream_habitat('Butte Creek', 'sr', 'juv', flow), x)
 
 })
 
@@ -72,8 +76,9 @@ test_that('ST fry Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Butte Creek', 'st', 'fry', 80), x)
+    set_instream_habitat('Butte Creek', 'st', 'fry', flow), x)
 
 })
 
@@ -87,8 +92,9 @@ test_that('ST juv Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Butte Creek', 'st', 'juv', 80), x)
+    set_instream_habitat('Butte Creek', 'st', 'juv', flow), x)
 
 })
 
@@ -103,8 +109,9 @@ test_that('FR spawn Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Butte Creek', 'fr', 80), x)
+    set_spawning_habitat('Butte Creek', 'fr', flow), x)
 
 })
 
@@ -118,8 +125,9 @@ test_that('SR spawn Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Butte Creek', 'sr', 80), x)
+    set_spawning_habitat('Butte Creek', 'sr', flow), x)
 
 })
 
@@ -133,7 +141,8 @@ test_that('ST spawn Butte Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::butte_creek_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Butte Creek', 'st', 80), x)
+    set_spawning_habitat('Butte Creek', 'st', flow), x)
 
 })
