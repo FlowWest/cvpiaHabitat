@@ -9,8 +9,9 @@ test_that('FR fry Cow Creek works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cow_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cow Creek', 'fr', 'fry', 100), x)
+    set_instream_habitat('Cow Creek', 'fr', 'fry', flow), x)
 
 
 })
@@ -24,8 +25,9 @@ test_that('FR juv Cow Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cow_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cow Creek', 'fr', 'juv', 100), x)
+    set_instream_habitat('Cow Creek', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Cow Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Cow Creek', 'fr', 275), x)
+    set_spawning_habitat('Cow Creek', 'fr', flow), x)
 
 })
 
@@ -52,8 +55,9 @@ test_that('ST fry Cow Creek works', {
                           & species == 'st')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cow_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cow Creek', 'st', 'fry', 100), x)
+    set_instream_habitat('Cow Creek', 'st', 'fry', flow), x)
 
 
 })
@@ -67,8 +71,9 @@ test_that('ST juv Cow Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cow_creek_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cow Creek', 'st', 'juv', 100), x)
+    set_instream_habitat('Cow Creek', 'st', 'juv', flow), x)
 
 })
 
@@ -81,7 +86,8 @@ test_that('ST spawn Cow Creek works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Cow Creek', 'st', 275), x)
+    set_spawning_habitat('Cow Creek', 'st', flow), x)
 
 })

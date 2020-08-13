@@ -9,8 +9,9 @@ test_that('FR fry Merced River works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::merced_river_instream$flow_cfs[9]
   expect_equal(
-    set_instream_habitat('Merced River', 'fr', 'fry', 225), x)
+    set_instream_habitat('Merced River', 'fr', 'fry', flow), x)
 
 
 })
@@ -24,8 +25,9 @@ test_that('FR juv Merced River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::merced_river_instream$flow_cfs[9]
   expect_equal(
-    set_instream_habitat('Merced River', 'fr', 'juv', 225), x)
+    set_instream_habitat('Merced River', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Merced River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::merced_river_instream$flow_cfs[9]
   expect_equal(
-    set_spawning_habitat('Merced River', 'fr', 225), x)
+    set_spawning_habitat('Merced River', 'fr', flow), x)
 
 })
 
