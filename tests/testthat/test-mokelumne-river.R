@@ -9,8 +9,9 @@ test_that('FR fry Mokelumne River works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::mokelumne_river_instream$flow_cfs[12]
   expect_equal(
-    set_instream_habitat('Mokelumne River', 'fr', 'fry', 500), x)
+    set_instream_habitat('Mokelumne River', 'fr', 'fry', flow), x)
 
 
 })
@@ -24,8 +25,9 @@ test_that('FR juv Mokelumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::mokelumne_river_instream$flow_cfs[12]
   expect_equal(
-    set_instream_habitat('Mokelumne River', 'fr', 'juv', 500), x)
+    set_instream_habitat('Mokelumne River', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Mokelumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::mokelumne_river_instream$flow_cfs[11]
   expect_equal(
-    set_spawning_habitat('Mokelumne River', 'fr', 480), x)
+    set_spawning_habitat('Mokelumne River', 'fr', flow), x)
 
 })
 
@@ -52,8 +55,9 @@ test_that('ST spawn Mokelumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::mokelumne_river_instream$flow_cfs[11]
   expect_equal(
-    set_spawning_habitat('Mokelumne River', 'st', 480), x)
+    set_spawning_habitat('Mokelumne River', 'st', flow), x)
 
 })
 
@@ -70,8 +74,11 @@ test_that('ST and SR rearing is same as FR', {
 })
 
 test_that('FR floodplain works', {
+  floodplain <- mokelumne_river_floodplain$FR_floodplain_acres[2]
+  flow <- mokelumne_river_floodplain$flow_cfs[2]
+
   expect_equal(
-    mokelumne_river_floodplain$FR_floodplain_acres[2] / 0.000247105,
-    set_floodplain_habitat('Mokelumne River', 'fr', 800)
+    floodplain / 0.000247105,
+    set_floodplain_habitat('Mokelumne River', 'fr', flow)
   )
 })
