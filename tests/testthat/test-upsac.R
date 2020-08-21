@@ -79,6 +79,7 @@ test_that('FR floodplain Upper Sac works', {
     tolerance = .01)
 })
 
+# ----- modeling doesn't exist here
 test_that('SR floodplain Upper Sac works', {
   floodplain <- cvpiaHabitat::upper_sacramento_river_floodplain$floodplain_sq_meters[5]
   flow <- cvpiaHabitat::upper_sacramento_river_floodplain$flow_cfs[5]

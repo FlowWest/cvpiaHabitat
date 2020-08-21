@@ -98,6 +98,23 @@ test_that('ST juv Battle Creek works', {
 
 })
 
+# test_that('ST adult Battle Creek works', {
+#   # flow 100
+#   wua <- cvpiaHabitat::battle_creek_instream$ST_adult_wua[10]
+#   stream_length <- as.numeric(cvpiaHabitat::watershed_lengths[
+#     cvpiaHabitat::watershed_lengths$watershed == 'Battle Creek' &
+#       cvpiaHabitat::watershed_lengths$lifestage == 'rearing' &
+#       cvpiaHabitat::watershed_lengths$species == 'fr', 'feet'])
+#
+#   x <- ((stream_length/1000) * wua)/10.7639
+#
+#   flow = cvpiaHabitat::battle_creek_instream$flow_cfs[10]
+#   expect_equal(
+#     set_instream_habitat('Battle Creek', 'st', 'adult', flow), x)
+#
+# })
+
+
 # spawning
 test_that('FR spawn Battle Creek works', {
   # flow 100

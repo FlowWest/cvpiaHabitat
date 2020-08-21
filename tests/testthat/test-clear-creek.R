@@ -1,7 +1,7 @@
 library(cvpiaHabitat)
 context('Clear Creek Habitat')
 
-test_that('FR fry Clear Creek works', {
+test_that('FR fry and juv Clear Creek works', {
 
   wua1 <- cvpiaHabitat::clear_creek_instream$FR_fry_wua[1]
   wua2 <- cvpiaHabitat::clear_creek_instream$FR_juv_wua[1]
@@ -34,7 +34,7 @@ test_that('FR spawn Clear Creek works', {
 })
 
 
-test_that('SR fry Clear works', {
+test_that('SR fry and juv Clear works', {
 
   wua1 <- cvpiaHabitat::clear_creek_instream$SR_fry_wua[1]
   wua2 <- cvpiaHabitat::clear_creek_instream$SR_juv_wua[1]
@@ -65,7 +65,7 @@ test_that('SR spawn Clear Creek works', {
 
 })
 
-test_that('ST fry Clear works', {
+test_that('ST fry and juv Clear works', {
 
   wua1 <- cvpiaHabitat::clear_creek_instream$ST_fry_wua[1]
   wua2 <- cvpiaHabitat::clear_creek_instream$ST_juv_wua[1]

@@ -44,3 +44,13 @@ test_that('FR spawn Cottonwood Creek works', {
     set_spawning_habitat('Cottonwood Creek', 'fr', flow), x)
 
 })
+
+test_that('FR floodplain Cottonwood Creek works', {
+  flow <- cvpiaHabitat::cottonwood_creek_floodplain$flow_cfs[24]
+  floodplain <- as.numeric(cvpiaHabitat::cottonwood_creek_floodplain[cvpiaHabitat::cottonwood_creek_floodplain$flow_cfs == flow,
+                                                                "FR_floodplain_acres"])
+  expect_equal(
+    square_meters_to_acres(set_floodplain_habitat('Cottonwood Creek', 'fr', flow)),
+    floodplain,
+    tolerance = .01)
+})
