@@ -4,12 +4,14 @@
 \name{battle_creek_floodplain}
 \alias{battle_creek_floodplain}
 \title{Battle Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 22 rows and 3 variables:
+\format{
+dataframe with 22 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{floodplain_acres}{fall run floodplain acreage (use for Spring Run and Steelhead when required)}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Scaled from a Deer Creek flow to floodplain area relationship generated with a 1D HEC-RAS hydraulic model}
 }

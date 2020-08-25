@@ -4,7 +4,8 @@
 \name{clear_creek_instream}
 \alias{clear_creek_instream}
 \title{Clear Creek Instream Flow to Habitat Area Relationship}
-\format{dataframe with 23 rows and 11 variables:
+\format{
+dataframe with 23 rows and 11 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_fry_wua}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
@@ -17,7 +18,8 @@
   \item{ST_juv_wua}{steelhead juvenile WUA in square feet per 1000 feet}
   \item{ST_spawn_wua}{steelhead spawning WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2007-2013_ClearCreekInstream.pdf}{FWS 2007-2013}
 }

@@ -4,7 +4,8 @@
 \name{watershed_lengths}
 \alias{watershed_lengths}
 \title{Habitat Extent Lengths}
-\format{dataframe with 57 rows and 7 variables
+\format{
+dataframe with 57 rows and 7 variables
 \describe{
 \item{order}{integer value representing watershed order in SIT model}
 \item{watershed}{name of watershed}
@@ -13,7 +14,8 @@
 \item{feet}{length in feet}
 \item{source}{Expert who delineated habitat extents}
 \item{species}{species of habitat extent}
-}}
+}
+}
 \source{
 FlowWest, add url to shp file when mapping is complete
 }

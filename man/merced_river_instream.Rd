@@ -4,7 +4,8 @@
 \name{merced_river_instream}
 \alias{merced_river_instream}
 \title{Merced River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 30 rows and 6 variables:
+\format{
+dataframe with 30 rows and 6 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
@@ -12,7 +13,8 @@
   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
   \item{ST_adult_wua}{adult steelhead WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS1996_AmericanRiverSpawningFinalReport.pdf}{FWS 1996 and MID 2013}
 }

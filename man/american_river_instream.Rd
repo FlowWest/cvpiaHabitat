@@ -4,7 +4,8 @@
 \name{american_river_instream}
 \alias{american_river_instream}
 \title{American River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 61 rows and 6 variables:
+\format{
+dataframe with 61 rows and 6 variables:
 \describe{
 \item{flow_cfs}{integer flow value in cubic feet per second}
 \item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
@@ -12,7 +13,8 @@
 \item{FR_juv_wua}{chinook juvenile WUA in square feet per 1000 feet}
 \item{ST_spawn_wua}{steelhead spawning WUA in square feet per 1000 feet}
 \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/AmericanRiver1985IFIM.PDF}{FWS 1985} and \href{https://s3-us-west-2.amazonaws.com/cvpia-reference-docs/ARWA-702.pdf}{ARWA-702}
 }

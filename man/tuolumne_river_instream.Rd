@@ -4,7 +4,8 @@
 \name{tuolumne_river_instream}
 \alias{tuolumne_river_instream}
 \title{Tuolumne River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 30 rows and 8 variables:
+\format{
+dataframe with 30 rows and 8 variables:
 \describe{
 \item{flow_cfs}{integer flow value in cubic feet per second}
 \item{FR_spawn_wua}{chinook spawning WUA in square feet per 1000 feet}
@@ -15,7 +16,8 @@
 \item{ST_juv_WUA}{steelhead juvenile WUA in square feet per 1000 feet}
 \item{ST_adult_wua}{adult steelhead WUA in square feet per 1000 feet}
 \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Stillwater2010_Tuolumne_P-2299-075_71_DP_FLA_AttC_StudyRept_IFIM_AppA-H_140428.pdf}{Flo2D model by Stillwater, 2014}
 }

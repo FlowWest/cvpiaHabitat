@@ -7,12 +7,22 @@
 \alias{lower_mid_sacramento_river_floodplain}
 \alias{lower_sacramento_river_floodplain}
 \title{Mainstem Sacramento River Floodplain Rearing Habitat}
-\format{dataframe with 81 rows and 3 variables:
+\format{
+dataframe with 81 rows and 3 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{floodplain_sq_meters}{suitable floodplain area in square meters}
   \item{watershed}{name of watershed}
-}}
+}
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 78 rows and 3 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 78 rows and 3 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 78 rows and 3 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 30 rows and 3 columns.
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }
