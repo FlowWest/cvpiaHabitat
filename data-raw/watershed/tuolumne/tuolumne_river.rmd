@@ -30,7 +30,8 @@ tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
          FR_fry_wua = `Chinook\nFry`, FR_juv_wua = `Chinook\nJuvenile`,
          ST_spawn_wua = `O. mykiss\nSpawning`, ST_fry_wua = `O. mykiss\nFry`,
          ST_juv_wua = `O. mykiss\nJuvenile`, ST_adult_wua = `O. mykiss\nAdult`, watershed)
-# usethis::use_data(tuolumne_river_instream, overwrite = TRUE)
+
+usethis::use_data(tuolumne_river_instream, overwrite = TRUE)
 
 knitr::kable(align = 'c', head(tuolumne_river_instream, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
@@ -116,7 +117,8 @@ knitr::kable(align = 'c', head(tuolumne_river_floodplain, 5),
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM")
-# usethis::use_data(tuolumne_river_floodplain, overwrite = TRUE)
+
+usethis::use_data(tuolumne_river_floodplain, overwrite = TRUE)
 ```
 
 *...with 32 more rows*
