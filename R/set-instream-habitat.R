@@ -29,7 +29,7 @@
 #'
 #' \strong{Regional Approximation:}
 #' When a watershed has no associated flow to WUA reltionship, a regional approximation is made.
-#' First, the mean WUA at the given flow vale from a set of similar modeled watersheds nearby is calculated.
+#' First, the mean WUA at the given flow value from a set of similar modeled watersheds nearby is calculated.
 #' Then the mean WUA is multiplied by the river length of the watershed of interest.
 #'
 #' Below are the regions (defined by the downstream watershed) that contain

@@ -2,27 +2,21 @@
 % Please edit documentation in R/data.R
 \docType{data}
 \name{bypass}
-\alias{yolo_bypass_floodplain}
-\alias{yolo_bypass_instream}
-\alias{sutter_bypass_floodplain}
-\alias{sutter_bypass_instream}
+\alias{yolo_bypass_habitat}
+\alias{sutter_bypass_habitat}
 \title{Bypass Flow to Habitat Area Relationships}
 \format{4 dataframes, one for each bypass and floodplain or instream habitat type}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }
 \usage{
-yolo_bypass_floodplain
+yolo_bypass_habitat
 
-yolo_bypass_instream
-
-sutter_bypass_floodplain
-
-sutter_bypass_instream
+sutter_bypass_habitat
 }
 \description{
 A dataset containing the suitable habitat area in square meters as a
-function of flow in cubic feet per second for both instream and floodplain.
+function of flow in cubic feet per second.
 }
 \details{
 Habitat estimates from NOAA NMFS Winter Run Life Cycle Model
@@ -37,8 +31,8 @@ Velocity <= 0.15 m/s
 
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{Yolo Bypass 1}{suitable floodplain area in square meters in the Yolo Bypass, Fremont Weir to Sacramento Weir}
-  \item{Yolo Bypass 2}{suitable floodplain area in square meters in the Yolo Bypass below Sacramento Weir}
+  \item{Yolo Bypass 1}{suitable rearing area in square meters in the Yolo Bypass, Fremont Weir to Sacramento Weir}
+  \item{Yolo Bypass 2}{suitable rearing area in square meters in the Yolo Bypass below Sacramento Weir}
 }
 }
 
@@ -46,10 +40,10 @@ Velocity <= 0.15 m/s
 
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
-  \item{Sutter Bypass 1}{suitable floodplain area in square meters in the Sutter Bypass, to Moulton Weir}
-  \item{Sutter Bypass 2}{suitable floodplain area in square meters in the Sutter Bypass, to Colusa Weir}
-  \item{Sutter Bypass 3}{suitable floodplain area in square meters in the Sutter Bypass, to Tisdale Weir}
-  \item{Sutter Bypass 4}{suitable floodplain area in square meters in the Sutter Bypass below Tisdale Weir}
+  \item{Sutter Bypass 1}{suitable rearing area in square meters in the Sutter Bypass, to Moulton Weir}
+  \item{Sutter Bypass 2}{suitable rearing area in square meters in the Sutter Bypass, to Colusa Weir}
+  \item{Sutter Bypass 3}{suitable rearing area in square meters in the Sutter Bypass, to Tisdale Weir}
+  \item{Sutter Bypass 4}{suitable rearing area in square meters in the Sutter Bypass below Tisdale Weir}
 }
 }
 
