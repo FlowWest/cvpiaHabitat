@@ -4,13 +4,15 @@
 \name{cow_creek_instream}
 \alias{cow_creek_instream}
 \title{Cow Creek Instream Flow to Habitat Area Relationship}
-\format{dataframe with 30 rows and 4 variables:
+\format{
+dataframe with 30 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_fry_wua}{fall run fry (up to 50 mm) WUA in square feet per 1000 feet}
   \item{FR_juv_wua}{fall run juvenile WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/FWS2011_SouthCowrpt.pdf}{FWS 2011}
 }

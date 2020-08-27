@@ -4,12 +4,14 @@
 \name{delta_habitat}
 \alias{delta_habitat}
 \title{Delta Habitat Area}
-\format{dataframe with 372 rows and 3 variables
+\format{
+dataframe with 372 rows and 3 variables
 \describe{
   \item{date}{modeled results for 1980-2010}
   \item{North Delta}{high quality habitat area in square meters}
   \item{South Delta}{high quality habitat area in square meters}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 

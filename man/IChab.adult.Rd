@@ -4,7 +4,9 @@
 \name{IChab.adult}
 \alias{IChab.adult}
 \title{Steelhead Adult Rearing Habitat}
-\format{array[watersheds, months, years]}
+\format{
+array[watersheds, months, years]
+}
 \source{
 \itemize{
   \item Wrangling: Sadie Gill \email{sgill@flowwest.com}

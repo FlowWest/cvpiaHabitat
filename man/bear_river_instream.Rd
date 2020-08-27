@@ -4,13 +4,15 @@
 \name{bear_river_instream}
 \alias{bear_river_instream}
 \title{Bear River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 4 rows and 4 variables:
+\format{
+dataframe with 4 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
   \item{FR_juv_wua}{juvenile (>50 mm) WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Holton1985_BearRiverIFIM.PDF}{Holten 1985}
 }

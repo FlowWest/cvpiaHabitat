@@ -4,13 +4,15 @@
 \name{cosumnes_river_floodplain}
 \alias{cosumnes_river_floodplain}
 \title{Cosumnes River Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 37 rows and 4 variables:
+\format{
+dataframe with 37 rows and 4 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_floodplain_acres}{fall run floodplain acreage}
   \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Tuolumne_W-AR_21__Study+Report.pdf}{Scaled TUFLOW hydraulic model with 1D channel and 2D overbank components}
 }

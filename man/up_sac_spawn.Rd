@@ -5,14 +5,20 @@
 \alias{upper_sac_ACID_boards_in}
 \alias{upper_sac_ACID_boards_out}
 \title{Mainstem Sacramento River Spawning Habitat}
-\format{dataframe with 30 rows and 11 variables:
+\format{
+dataframe with 30 rows and 11 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_spawn_WUA}{fall run spawning WUA in square feet per 1000 feet}
   \item{LFR_spawn_WUA}{late-fall run fry spawning WUA in square feet per 1000 feet}
   \item{ST_spawn_WUA}{steelhead spawning WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 30 rows and 6 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 30 rows and 6 columns.
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }

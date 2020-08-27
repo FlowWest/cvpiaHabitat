@@ -4,7 +4,8 @@
 \name{yuba_river_instream}
 \alias{yuba_river_instream}
 \title{Yuba River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 34 rows and 10 variables
+\format{
+dataframe with 34 rows and 10 variables
 \describe{
 \item{flow_cfs}{numeric flow value in cubic feet per second}
 \item{FR_spawn_wua}{Fall Run spawning WUA in square feet per 1000 feet}
@@ -16,7 +17,8 @@
 \item{ST_juv_wua}{Steelhead juvenile WUA in square feet per 1000 feet}
 \item{ST_adult_wua}{Steelhead adult WUA in square feet per 1000 feet}
 \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 TODO fix source
 }

@@ -4,7 +4,8 @@
 \name{butte_creek_instream}
 \alias{butte_creek_instream}
 \title{Butte Creek Instream Flow to Habitat Area Relationship}
-\format{dataframe with 41 rows and 6 variables:
+\format{
+dataframe with 41 rows and 6 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
@@ -12,7 +13,8 @@
   \item{FR_juv_wua}{juvenile WUA in square feet per 1000 feet}
   \item{ST_adult_wua}{adult trout WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DeSabla2008ButteIFIM.pdf}{FWS and 2008 FERC relicensing of DeSabla}
 }

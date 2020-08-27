@@ -4,7 +4,8 @@
 \name{modeling_exist}
 \alias{modeling_exist}
 \title{Habitat Modeling Status}
-\format{dataframe with 33 rows and 15 variables
+\format{
+dataframe with 33 rows and 15 variables
 \describe{
 \item{Order}{integer value representing watershed order in SIT model}
 \item{Watershed}{name of watershed}
@@ -26,7 +27,8 @@
 \item{UseSpawnRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed}
 \item{UseFloodplainRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed}
 \item{Note}{misc notes}
-}}
+}
+}
 \source{
 Sadie Gill \email{sgill@flowwest.com}
 }
