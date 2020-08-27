@@ -1,13 +1,33 @@
 library(cvpiaHabitat)
 context('Antelope Creek Habitat')
 
-test_that('FR fry Antelope works', {
+test_that("modeling of species coverage hasn't changed since v2.0 - Antelope", {
+  modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Antelope Creek')
+
+  expect_equal(modeling$FR_spawn, FALSE)
+  expect_equal(modeling$FR_fry, FALSE)
+  expect_equal(modeling$FR_juv, FALSE)
+  expect_equal(modeling$FR_floodplain, FALSE)
+
+  expect_equal(modeling$SR_spawn, FALSE)
+  expect_equal(modeling$SR_fry, FALSE)
+  expect_equal(modeling$SR_juv, FALSE)
+  expect_equal(modeling$SR_floodplain, FALSE)
+
+  expect_equal(modeling$ST_spawn, FALSE)
+  expect_equal(modeling$ST_fry, FALSE)
+  expect_equal(modeling$ST_juv, FALSE)
+  expect_equal(modeling$ST_adult, FALSE)
+})
+
+# Tests for species without modeling (FALSE modeling_exists) ----
+test_that('FR rearing Antelope works', {
 
   wua1 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua[1]
   wua2 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua[1]
-  stream_length <- as.numeric(cvpiaHabitat::watershed_lengths[cvpiaHabitat::watershed_lengths$watershed == "Antelope Creek" &
-                                                     cvpiaHabitat::watershed_lengths$lifestage == "rearing",
-                                                   "feet"])
+  stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                          watershed == 'Antelope Creek' & lifestage == 'rearing'
+                          & species == 'fr')$feet
 
   x1 <- (((stream_length/1000) * wua1)/10.7639)
   x2 <- (((stream_length/1000) * wua2)/10.7639)
@@ -23,9 +43,9 @@ test_that('FR fry Antelope works', {
 test_that('FR spawn Antelope works', {
 
   wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua[1]
-  stream_length <- as.numeric(cvpiaHabitat::watershed_lengths[cvpiaHabitat::watershed_lengths$watershed == "Antelope Creek" &
-                                                     cvpiaHabitat::watershed_lengths$lifestage == "spawning",
-                                                   "feet"])
+  stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                          watershed == 'Antelope Creek' & lifestage == 'spawning'
+                          & species == 'fr')$feet
 
   x <- (((stream_length/1000) * wua)/10.7639)
 
@@ -36,7 +56,7 @@ test_that('FR spawn Antelope works', {
 })
 
 
-test_that('SR fry Antelope works', {
+test_that('SR rearing Antelope works', {
 
   wua1 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua[1]
   wua2 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua[1]
