@@ -9,8 +9,9 @@ test_that('FR fry Feather River works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::feather_river_instream$flow_cfs[9]
   expect_equal(
-    set_instream_habitat('Feather River', 'fr', 'fry', 2500), x)
+    set_instream_habitat('Feather River', 'fr', 'fry', flow), x)
 
 
 })
@@ -24,8 +25,9 @@ test_that('FR juv Feather River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::feather_river_instream$flow_cfs[9]
   expect_equal(
-    set_instream_habitat('Feather River', 'fr', 'juv', 2500), x)
+    set_instream_habitat('Feather River', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Feather River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::feather_river_instream$flow_cfs[9]
   expect_equal(
-    set_spawning_habitat('Feather River', 'fr', 2500), x)
+    set_spawning_habitat('Feather River', 'fr', flow), x)
 
 })
 
@@ -52,8 +55,9 @@ test_that('ST spawn Feather River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::feather_river_instream$flow_cfs[9]
   expect_equal(
-    set_spawning_habitat('Feather River', 'st', 2500), x)
+    set_spawning_habitat('Feather River', 'st', flow), x)
 
 })
 

@@ -9,8 +9,9 @@ test_that('FR fry San Joaquin River works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::san_joaquin_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('San Joaquin River', 'fr', 'fry', 450), x)
+    set_instream_habitat('San Joaquin River', 'fr', 'fry', flow), x)
 
 
 })
@@ -24,8 +25,9 @@ test_that('FR juv San Joaquin River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::san_joaquin_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('San Joaquin River', 'fr', 'juv', 450), x)
+    set_instream_habitat('San Joaquin River', 'fr', 'juv', flow), x)
 
 })
 

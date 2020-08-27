@@ -10,8 +10,9 @@ test_that('FR fry Stanislaus River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::stanislaus_river_instream$flow_cfs[6]
   expect_equal(
-    set_instream_habitat('Stanislaus River', 'fr', 'fry', 250), x)
+    set_instream_habitat('Stanislaus River', 'fr', 'fry', flow), x)
 
 })
 
@@ -24,8 +25,9 @@ test_that('FR juv Stanislaus River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::stanislaus_river_instream$flow_cfs[6]
   expect_equal(
-    set_instream_habitat('Stanislaus River', 'fr', 'juv', 250), x)
+    set_instream_habitat('Stanislaus River', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Stanislaus River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::stanislaus_river_instream$flow_cfs[6]
   expect_equal(
-    set_spawning_habitat('Stanislaus River', 'fr', 250), x)
+    set_spawning_habitat('Stanislaus River', 'fr', flow), x)
 
 })
 

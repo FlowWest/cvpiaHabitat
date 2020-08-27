@@ -9,8 +9,9 @@ test_that('FR fry Cosumnes River works', {
                           & species == 'fr')$feet
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cosumnes_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cosumnes River', 'fr', 'fry', 1000), x)
+    set_instream_habitat('Cosumnes River', 'fr', 'fry', flow), x)
 
 
 })
@@ -24,8 +25,9 @@ test_that('FR juv Cosumnes River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cosumnes_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Cosumnes River', 'fr', 'juv', 1000), x)
+    set_instream_habitat('Cosumnes River', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Cosumnes River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::cosumnes_river_instream$flow_cfs[4]
   expect_equal(
-    set_spawning_habitat('Cosumnes River', 'fr', 400), x)
+    set_spawning_habitat('Cosumnes River', 'fr', flow), x)
 
 })
 

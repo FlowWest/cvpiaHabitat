@@ -10,8 +10,9 @@ test_that('FR fry Tuolumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::tuolumne_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Tuolumne River', 'fr', 'fry', 275), x)
+    set_instream_habitat('Tuolumne River', 'fr', 'fry', flow), x)
 
 })
 
@@ -24,8 +25,9 @@ test_that('FR juv Tuolumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::tuolumne_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Tuolumne River', 'fr', 'juv', 275), x)
+    set_instream_habitat('Tuolumne River', 'fr', 'juv', flow), x)
 
 })
 
@@ -38,8 +40,9 @@ test_that('FR spawn Tuolumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::tuolumne_river_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Tuolumne River', 'fr', 275), x)
+    set_spawning_habitat('Tuolumne River', 'fr', flow), x)
 
 })
 
@@ -52,8 +55,9 @@ test_that('ST fry Tuolumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::tuolumne_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Tuolumne River', 'st', 'fry', 275), x)
+    set_instream_habitat('Tuolumne River', 'st', 'fry', flow), x)
 
 })
 
@@ -66,8 +70,9 @@ test_that('ST juv Tuolumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::tuolumne_river_instream$flow_cfs[10]
   expect_equal(
-    set_instream_habitat('Tuolumne River', 'st', 'juv', 275), x)
+    set_instream_habitat('Tuolumne River', 'st', 'juv', flow), x)
 
 })
 
@@ -80,8 +85,9 @@ test_that('ST spawn Tuolumne River works', {
 
   x <- ((stream_length/1000) * wua)/10.7639
 
+  flow <- cvpiaHabitat::tuolumne_river_instream$flow_cfs[10]
   expect_equal(
-    set_spawning_habitat('Tuolumne River', 'st', 275), x)
+    set_spawning_habitat('Tuolumne River', 'st', flow), x)
 
 })
 
