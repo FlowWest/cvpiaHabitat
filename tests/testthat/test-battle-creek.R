@@ -9,9 +9,9 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Battle", {
   expect_equal(modeling$FR_juv, TRUE)
   expect_equal(modeling$FR_floodplain, FALSE)
 
-  expect_equal(modeling$SR_spawn, FALSE)
-  expect_equal(modeling$SR_fry, FALSE)
-  expect_equal(modeling$SR_juv, FALSE)
+  expect_equal(modeling$SR_spawn, TRUE)
+  expect_equal(modeling$SR_fry, TRUE)
+  expect_equal(modeling$SR_juv, TRUE)
   expect_equal(modeling$SR_floodplain, FALSE)
 
   expect_equal(modeling$ST_spawn, TRUE)
@@ -42,8 +42,8 @@ test_that('FR rearing Battle Creek works', {
 
 test_that('SR rearing Battle Creek works', {
   # flow 100
-  wua1 <- cvpiaHabitat::battle_creek_instream$FR_fry_wua[10]
-  wua2 <- cvpiaHabitat::battle_creek_instream$FR_juv_wua[10]
+  wua1 <- cvpiaHabitat::battle_creek_instream$SR_fry_wua[10]
+  wua2 <- cvpiaHabitat::battle_creek_instream$SR_juv_wua[10]
 
   stream_length = subset(cvpiaHabitat::watershed_lengths,
          watershed == 'Battle Creek' & lifestage == 'rearing'
@@ -99,7 +99,7 @@ test_that('FR spawn Battle Creek works', {
 
 test_that('SR spawn Battle Creek works', {
   # flow 100
-  wua <- cvpiaHabitat::battle_creek_instream$FR_spawn_wua[10]
+  wua <- cvpiaHabitat::battle_creek_instream$SR_spawn_wua[10]
   stream_length <- subset(cvpiaHabitat::watershed_lengths,
                           watershed == 'Battle Creek' & lifestage == 'spawning'
                           & species == 'sr')$feet
