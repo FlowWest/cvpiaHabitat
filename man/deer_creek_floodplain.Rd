@@ -4,14 +4,16 @@
 \name{deer_creek_floodplain}
 \alias{deer_creek_floodplain}
 \title{Deer Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 30 rows and 5 variables:
+\format{
+dataframe with 30 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_floodplain_acres}{fall run floodplain acreage}
   \item{SR_floodplain_acres}{spring run floodplain acreage}
   \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/DRAFT+Deer+Creek+Hydraulic+Models+Tech+Memo+6-08-07.pdf}{Deer Creek Watershed Conservancy (DCWC) 1D HEC-RAS model}
 }

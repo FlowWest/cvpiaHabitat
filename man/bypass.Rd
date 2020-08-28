@@ -5,7 +5,13 @@
 \alias{yolo_bypass_habitat}
 \alias{sutter_bypass_habitat}
 \title{Bypass Flow to Habitat Area Relationships}
-\format{4 dataframes, one for each bypass and floodplain or instream habitat type}
+\format{
+4 dataframes, one for each bypass and floodplain or instream habitat type
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 41 rows and 3 columns.
+
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 41 rows and 5 columns.
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
 }

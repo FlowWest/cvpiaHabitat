@@ -4,12 +4,14 @@
 \name{weeks_inundated}
 \alias{weeks_inundated}
 \title{Flow Thresholds for Number of Weeks Inundated}
-\format{dataframe with rows and 3 variables
+\format{
+dataframe with rows and 3 variables
 \describe{
 \item{watershed}{name of CVPIA watershed}
 \item{weeks_inundated}{integer value between 0 and 4 to represent weeks of floodplain inundation}
 \item{flow_threshold}{flow threshold in cubic feet per second associated with number of weeks inundated}
-}}
+}
+}
 \source{
 Sadie Gill  \email{sgill@flowwest.com}
 }

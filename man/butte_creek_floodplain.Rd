@@ -4,14 +4,16 @@
 \name{butte_creek_floodplain}
 \alias{butte_creek_floodplain}
 \title{Butte Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 31 rows and 5 variables:
+\format{
+dataframe with 31 rows and 5 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_floodplain_acres}{fall run floodplain acreage}
   \item{SR_floodplain_acres}{spring run floodplain acreage}
   \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CombinedTM_IQAR_Final-FULL-REPORT_20140206.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model}
 }

@@ -4,7 +4,8 @@
 \name{stanislaus_river_instream}
 \alias{stanislaus_river_instream}
 \title{Stanislaus River Instream Flow to Habitat Area Relationship}
-\format{dataframe with 47 rows and 7 variables:
+\format{
+dataframe with 47 rows and 7 variables:
 \describe{
   \item{flow_cfs}{integer flow value in cubic feet per second}
   \item{FR_spawn_wua}{spawning WUA in square feet per 1000 feet}
@@ -13,7 +14,8 @@
   \item{ST_fry_wua}{steelhead fry (up to 50 mm) WUA in square feet per 1000 feet}
   \item{ST_juv_wua}{steelhead juvenile WUA in square feet per 1000 feet}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 FWS
 }

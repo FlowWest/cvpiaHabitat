@@ -4,13 +4,15 @@
 \name{stony_creek_floodplain}
 \alias{stony_creek_floodplain}
 \title{Stony Creek Flow to Floodplain Habitat Area Relationship}
-\format{dataframe with 32 rows and 4 variables:
+\format{
+dataframe with 32 rows and 4 variables:
 \describe{
   \item{flow_cfs}{flow value in cubic feet per second}
   \item{FR_floodplain_acres}{fall run floodplain acreage}
   \item{ST_floodplain_acres}{steelhead floodplain acreage}
   \item{watershed}{name of watershed}
-}}
+}
+}
 \source{
 \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/CVPIA+Annual+Progress+Report+Fiscal+Year+2017.pdf}{Scaled from a Cottonwood Creek flow to floodplain area relationship generated with a hybrid USFWS / FEMA 1D HEC-RAS hydraulic model}
 }
