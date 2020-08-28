@@ -13,7 +13,7 @@ library(cvpiaHabitat)
 ```
 
 ## Rearing Pools   
-Estimated percentages of rearing pools in certain watersheds were provided by [Mark Gard](mailto:mark_gard@fws.gov). The mean percentage of pools, excluding the Feather River, is 23.1%. This value was used for watersheds without an estimate. The total area of rearing pools in a watershed is calculated by multiplying the total channel area by the estimated percentange of pools. The channel areas were estimated using Google Earth Engine. 
+Estimated percentages of rearing pools in certain watersheds were provided by [Mark Gard](mailto:Mark.Gard@Wildlife.ca.gov). The mean percentage of pools, excluding the Feather River, is 23.1%. This value was used for watersheds without an estimate. The total area of rearing pools in a watershed is calculated by multiplying the total channel area by the estimated percentange of pools. The channel areas were estimated using Google Earth Engine. 
 
 ### Watersheds With Estimated Percent Pools 
 ```{r}
