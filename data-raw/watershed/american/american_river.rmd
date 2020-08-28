@@ -26,7 +26,7 @@ american_raw <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', range = "A35:
 
 spawn <- read_csv('data-raw/watershed/american/data/american_river_spawning_wua.csv')
  
-study_len <- 800+377+1553+522+3142+3103+1000+754+3442+1500
+study_len <- 800 + 377 + 1553 + 522 + 3142 + 3103 + 1000 + 754 + 3442 + 1500
  
 rearing <- american_raw %>% 
   select(-Spawning) %>% 
@@ -34,8 +34,8 @@ rearing <- american_raw %>%
   rename(flow_cfs = Flow) 
  
 spawning <- spawn %>%
-  mutate(FR_spawn_wua = FR_wua_ft2/(study_len/1000),
-         ST_spawn_wua = ST_wua_ft2/(study_len/1000)) %>% 
+  mutate(FR_spawn_wua = FR_wua_ft2 / (study_len / 1000),
+         ST_spawn_wua = ST_wua_ft2 / (study_len / 1000)) %>% 
   select(flow_cfs, FR_spawn_wua, ST_spawn_wua) %>% 
   gather(lifestage, WUA, -flow_cfs)
  
@@ -52,8 +52,8 @@ usethis::use_data(american_river_instream, overwrite = TRUE)
 ### Spawning Data 
 ```{r, echo = FALSE}
 american_spawning <- spawn %>%
-  mutate(FR_spawn_wua = FR_wua_ft2/(study_len/1000),
-         ST_spawn_wua = ST_wua_ft2/(study_len/1000)) %>% 
+  mutate(FR_spawn_wua = FR_wua_ft2 / (study_len / 1000),
+         ST_spawn_wua = ST_wua_ft2 / (study_len / 1000)) %>% 
   select(flow_cfs, FR_spawn_wua, ST_spawn_wua) %>% 
   mutate(watershed = 'American River')
 
@@ -97,8 +97,8 @@ american_river_instream %>%
   geom_line() +
   labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3')) +
-  theme(legend.justification = c(1,0), legend.position = c(.9,.7))
+  scale_color_manual(values = c('#d95f02', '#7570b3')) +
+  theme(legend.justification = c(1, 0), legend.position = c(.9, .7))
 
 ```
 
@@ -113,8 +113,8 @@ american_river_instream %>%
   geom_line() +
   labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
   theme_minimal() + 
-  scale_color_manual(values = c('#d95f02','#7570b3')) +
-  theme(legend.justification = c(1,0), legend.position = c(.9,.7))
+  scale_color_manual(values = c('#d95f02', '#7570b3')) +
+  theme(legend.justification = c(1, 0), legend.position = c(.9, .7))
 
 ```
 ```{r, include=FALSE}
@@ -169,6 +169,6 @@ american_river_floodplain %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+  theme(legend.justification = c(1, 0), legend.position = c(1, .1))
 ```
 
