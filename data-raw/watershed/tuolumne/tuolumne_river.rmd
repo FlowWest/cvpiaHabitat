@@ -5,8 +5,9 @@ date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -22,7 +23,7 @@ The instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelh
 
 ### Combine Spawning and Rearing Data 
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.    
-```{r, echo=FALSE}
+```{r}
 tuolumne_river_instream <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
                                       range = "A2:H32", sheet = 'Tuolumne') %>%
   mutate(watershed = 'Tuolumne River') %>%
@@ -49,7 +50,7 @@ knitr::kable(align = 'c', head(tuolumne_river_instream, 5),
 
 ### Spawning WUA 
 The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.
-``` {r,echo=FALSE}
+``` {r}
 tuolumne_river_instream %>% 
     select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua) %>%
     gather(Species, WUA, -flow_cfs) %>% 
@@ -63,7 +64,7 @@ tuolumne_river_instream %>%
 
 ### Rearing WUA
 The following plot shows the rearing WUA in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat.
-``` {r,echo=FALSE}
+``` {r}
 tuolumne_river_instream %>% 
   select(FR_juv_wua, FR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>%
   gather(species_lifestage, acres, -flow_cfs, -watershed) %>% 
@@ -92,7 +93,7 @@ The entire mapped rearing extent of 54.33 miles was modeled by TID and MID using
 
 ## Floodplain Data    
 The areas represent total inundated area in acres.    
-```{r, echo=FALSE}
+```{r}
 tuolumne_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx', 
                                         sheet = 'TuolumneRiver') %>%
   mutate(watershed = 'Tuolumne River',
@@ -124,7 +125,7 @@ usethis::use_data(tuolumne_river_floodplain, overwrite = TRUE)
 *...with 32 more rows*
 
 ## Floodplain Plot
-```{r, echo=FALSE}
+```{r}
 tuolumne_river_floodplain %>% 
   select(FR_floodplain_acres, flow_cfs, watershed) %>%
   rename(`Fall Run Chinook,
