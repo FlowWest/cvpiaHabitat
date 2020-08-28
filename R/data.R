@@ -1284,7 +1284,7 @@ NULL
 #' @examples
 #' modeling_exist
 #'
-#' @details This table was compiled from information provided by Mark Gard \email{mark_gard@@fws.gov}.
+#' @details This table was compiled from information provided by Mark Gard \email{Mark.Gard@@Wildlife.ca.gov}.
 #' Used as look up table for \code{\link{set_spawning_habitat}},
 #' \code{\link{set_instream_habitat}}, and \code{\link{set_floodplain_habitat}}
 #'
@@ -1410,7 +1410,7 @@ NULL
 #'
 #' @source
 #' \itemize{
-#'   \item Percent Pool Estimates: Mark Gard \email{mark_gard@@fws.gov}
+#'   \item Percent Pool Estimates: Mark Gard \email{Mark.Gard@@Wildlife.ca.gov}
 #'   \item Channel Area Estimates: Sadie Gill \email{sgill@@flowwest.com}
 #'   \item QA/QC: Mark Tompkins \email{mtompkins@@flowwest.com}
 #' }
