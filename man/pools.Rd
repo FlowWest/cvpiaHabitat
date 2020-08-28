@@ -14,7 +14,7 @@ dataframe with 31 rows and 3 variables
 }
 \source{
 \itemize{
-  \item Percent Pool Estimates: Mark Gard \email{mark_gard@fws.gov}
+  \item Percent Pool Estimates: Mark Gard \email{Mark.Gard@Wildlife.ca.gov}
   \item Channel Area Estimates: Sadie Gill \email{sgill@flowwest.com}
   \item QA/QC: Mark Tompkins \email{mtompkins@flowwest.com}
 }
