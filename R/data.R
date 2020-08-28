@@ -314,7 +314,7 @@ NULL
 #'   \item{watershed}{name of watershed}
 #' }
 #'
-#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (mark_gard@fws.gov) in 2017. A Battle Creek scaling factor of 147\% was calculated as the average ratio of Battle Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 5.87 mile low gradient mapped rearing extent in Battle Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 52.4 acres) and floodplain inundation area.
+#' @details HEC-RAS model runs to generate Deer Creek CVPIA DSM inputs conducted by Mark Gard (Mark.Gard@Wildlife.ca.gov) in 2017. A Battle Creek scaling factor of 147\% was calculated as the average ratio of Battle Creek monthly mean flow to Deer Creek monthly mean flow between December and June. This scaling factor was applied to Deer Creek flows and corresponding floodplain area per river mile values, which were then multiplied by the 5.87 mile low gradient mapped rearing extent in Battle Creek. Remote sensing analysis of aerial photography was used to confirm differentiation between instream (active channel area of 52.4 acres) and floodplain inundation area.
 #'
 #' @examples
 #' battle_creek_floodplain
