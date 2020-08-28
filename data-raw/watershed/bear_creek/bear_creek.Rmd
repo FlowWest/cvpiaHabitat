@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -38,7 +39,8 @@ source('data-raw/watershed/floodplain_utils.R')
 bear_creek_floodplain <- scale_fp_flow_area('Bear Creek')
 
 knitr::kable(align = 'c', head(bear_creek_floodplain, 5), caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, FR_floodplain_acres = Fall Run Chinook floodplain acres, ST_floodplain_acres = Steelhead floodplain acres, watershed = section of stream modeled for CVPIA SDM")
-# usethis::use_data(bear_creek_floodplain, overwrite = TRUE)
+
+usethis::use_data(bear_creek_floodplain, overwrite = TRUE)
 ```
 
 *...with 17 more rows*
