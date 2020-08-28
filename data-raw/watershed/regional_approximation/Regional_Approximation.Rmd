@@ -20,7 +20,7 @@ library(lubridate)
 
 **Details:** 
 
-Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:mark_gard@fws.gov) at the US Fish and Wildlife Service, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at a subset of flow values from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at flows from Battle Creek, Butte Creek, and Clear Creek. 
+Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:Mark.Gard@Wildlife.ca.gov) at the California Department of Fish and Wildlife, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at a subset of flow values from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at flows from Battle Creek, Butte Creek, and Clear Creek. 
 
 **The following table shows watershed areas and channel widths for all of the watersheds used to create regional approximations.**
 
