@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -42,7 +43,7 @@ knitr:: kable(head(battle_creek_instream, 5), align = 'c',
               Spring Run Chinook Fry WUA, SR_juv_wua = Spring Run Chinook Juvenile WUA,
               watershed = section of stream modeled for CVPIA SDM") 
 
-# usethis::use_data(battle_creek_instream, overwrite = TRUE)
+usethis::use_data(battle_creek_instream, overwrite = TRUE)
 ```
 
 *...with 30 more rows.* 
@@ -106,7 +107,8 @@ knitr::kable(align = 'c', head(battle_creek_floodplain, 5),
              SR_floodplain_acres = Spring Run Chinook floodplain acres,
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM") 
-# usethis::use_data(battle_creek_floodplain, overwrite = TRUE) 
+
+usethis::use_data(battle_creek_floodplain, overwrite = TRUE)
 ```
 
 *...with 25 more rows*
