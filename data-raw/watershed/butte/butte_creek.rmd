@@ -79,7 +79,7 @@ butte_creek_instream %>%
                         watershed = section of stream modeled for CVPIA SDM")
 ```
 
-*...with 36 more rows* 
+*... with `r nrow(butte_creek_instream) - 5` more rows*
 
 #### Steelhead
 
@@ -94,7 +94,7 @@ butte_creek_instream %>%
                         watershed = section of stream modeled for CVPIA SDM")
 ```
 
-*...with 25 more rows* 
+*... with `r nrow(butte_creek_instream[!is.na(butte_creek_instream$ST_spawn_wua), ]) - 5` more rows* 
 
 ### Rearing Data 
 ```{r}
@@ -109,7 +109,7 @@ butte_creek_instream %>%
                                   watershed = section of stream modeled for CVPIA SDM")
 ```
 
-*...with 25 more rows*
+*... with `r nrow(butte_creek_instream[!is.na(butte_creek_instream$FR_fry_wua), ]) - 5` more rows*
 
 ### Spawning WUA 
 The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet for Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
@@ -183,7 +183,7 @@ knitr::kable(align = 'c', head(butte_creek_floodplain, 5),
 usethis::use_data(butte_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 26 more rows*
+*... with `r nrow(butte_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r, echo = FALSE}
