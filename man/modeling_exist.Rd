@@ -39,7 +39,7 @@ modeling_exist
 A table lifestage, species, and watershed
 }
 \details{
-This table was compiled from information provided by Mark Gard \email{mark_gard@fws.gov}.
+This table was compiled from information provided by Mark Gard \email{Mark.Gard@Wildlife.ca.gov}.
 Used as look up table for \code{\link{set_spawning_habitat}},
 \code{\link{set_instream_habitat}}, and \code{\link{set_floodplain_habitat}}
 }

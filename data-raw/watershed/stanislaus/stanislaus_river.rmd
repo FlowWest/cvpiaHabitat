@@ -1,7 +1,7 @@
 ---
 title: "Stanislaus River"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](ecain@flowwest.com)"
-date: "August 16, 2019"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
+date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -19,7 +19,7 @@ None planned.
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Aceituno 1993](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/cvpia-sit-model-inputs/Aceituno1993_StanislausRiverIFIMStudy.pdf){target="_blank"} (pg. 19) and [FWS 2012](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/cvpia-sit-model-inputs/CVPIA_Annual_Progress_Report_Fiscal_Year_2012.pdf){target="_blank"} (pg. 6)
 
-The instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Stanislaus River are based on data from Aceituno 1993 and Fish and Wildlife Service (FWS) 2012. The Aceituno 1993 study uses the PHABSIM model, which was developed in 1989 to examine the relationship between physical habitat availability and stream flow for Spawning Chinook Salmon in approximately 24 miles of the Stanislaus. The original spawning data are on page 19 of the report. The rearing data come from the 2012 FWS CVPIA Annual progress report. The FWS used four sites on the river and conducted 2-D hydraulic modeling of all the sites. A graph representing the rearing totals for all sites is on page 6 of the report. The data were provided to us by [Mark Gard](mailto:mark_gard@fws.gov) from the U.S. Fish and Wildlife Service in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use I4:M33 of the 'Stanislaus' tab within the spreadsheet. These cells represent the sums of the rearing habitat in the canyon segment, knights ferry to orange blossom, orange blossom to jacob myers, and jacob myers to san joaquin. The values were then converted from sqft to sqft/1000ft. The Stanislaus spawning data were compiled in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/stanislaus_spawning_data.csv), and the 4 reaches were scaled by length to give a total spawning weighted usable area (WUA) value. 
+The instream spawning and rearing habitat for Fall Run Chinook Salmon and Steelhead in the Stanislaus River are based on data from Aceituno 1993 and Fish and Wildlife Service (FWS) 2012. The Aceituno 1993 study uses the PHABSIM model, which was developed in 1989 in approximately 24 miles of the Stanislaus River. The model was created to examine the relationship between physical habitat availability and stream flow for Spawning Chinook Salmon. The original spawning data are on page 19 of the report. The rearing data come from the 2012 FWS CVPIA Annual progress report. The FWS used four sites on the river and conducted 2-D hydraulic modeling of all the sites. A graph representing the rearing totals for all sites is on page 6 of the report. The data were provided to us by [Mark Gard](mailto:Mark.Gard@Wildlife.ca.gov) from the California Department of Fish and Wildlife in a [spreadsheet](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/IFIMWUA.xlsx). Mark Gard instructed us to use I4:M33 of the 'Stanislaus' tab within the spreadsheet. These cells represent the sums of the rearing habitat in the Canyon Segment, Knights Ferry to Orange Blossom, Orange Blossom to Jacob Myers, and Jacob Myers to San Joaquin segments. The values were then converted from sqft to sqft/1000ft. The Stanislaus spawning data were compiled in a spreadsheet, and the 4 reaches were scaled by length to give a total spawning weighted usable area (WUA) value. 
 
 ### Combine Spawning and Rearing Data 
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR) and Steelhead (ST) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.    
@@ -86,7 +86,8 @@ stanislaus_river_instream <- stanislaus_raw %>% bind_rows(stan_spawn) %>%
 ```{r, echo = FALSE}
 knitr::kable(align = 'c', head((stan_spawn %>% mutate(watershed = 'Stanislaus River')) , 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
-             FR_spawn_wua = Fall Run Chinook Spawning WUA")
+             FR_spawn_wua = Fall Run Chinook Spawning WUA,
+             watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 22 more rows.*
@@ -96,13 +97,14 @@ knitr::kable(align = 'c', head((stan_spawn %>% mutate(watershed = 'Stanislaus Ri
 knitr::kable(align = 'c', head((stanislaus_raw %>% mutate(watershed = 'Stanislaus River')) , 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
              FR_fry_wua = Fall Run Chinook Fry WUA, FR_juv_wua = Fall Run Chinook Juvenile WUA,
-             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA")
+             ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA, 
+             watershed = section of stream modeled for CVPIA SDM")
 ```
 
 *...with 25 more rows.*
 
 ### Spawning WUA 
-The following plot shows the weighted usable spawning area in square feet per thousand feet of river for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT). 
+The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
 ```{r, echo=FALSE}
 stanislaus_river_instream %>%
   filter(!is.na(FR_spawn_wua)) %>%
@@ -113,18 +115,18 @@ stanislaus_river_instream %>%
 ```
 
 ### Rearing WUA
-The following plot shows the weighted usable rearing area in square feet per thousand feet of river for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT. 
+The following plot shows the rearing WUA in square feet per thousand feet for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat.  
 ``` {r,echo=FALSE}
 stanislaus_raw %>%
   mutate(watershed = 'Stanislaus River') %>% 
   select(FR_juv_wua, FR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>% 
   gather(species_lifestage, acres, -flow_cfs, -watershed) %>% 
   mutate(
-    species = case_when(
+    Species = case_when(
       str_detect(species_lifestage, 'ST') ~ 'Steelhead', 
       str_detect(species_lifestage, 'FR') ~ 'Fall Run Chinook'),
       lifestage = ifelse(str_detect(species_lifestage, 'juv'), 'Juvenile', 'Fry')) %>% 
-  ggplot(aes(flow_cfs, acres, color = species)) +
+  ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
   theme_minimal() +
   facet_wrap(~lifestage, nrow = 2, scales = 'free_y') +
@@ -160,7 +162,8 @@ knitr::kable(align = 'c', head(stanislaus_river_floodplain, 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
-             ST_floodplain_acres = Steelhead floodplain acres")
+             ST_floodplain_acres = Steelhead floodplain acres,
+             watershed = section of stream modeled for CVPIA SDM")
 # usethis::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 ```
 

@@ -1,13 +1,14 @@
 ---
 title: "Bypasses"
 author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)"
-date: "July 2, 2019"
+date: "July 2020"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -65,14 +66,14 @@ sutter_bypass_habitat <- bind_rows(sutter1, sutter2, sutter3, sutter4) %>%
 
 knitr::kable(align = 'c', head(sutter_bypass_habitat, 5))
 
-# devtools::use_data(sutter_bypass_habitat)
+usethis::use_data(sutter_bypass_habitat, overwrite = TRUE)
 ```
 
-*... with 36 more rows*
+*... with `r nrow(sutter_bypass_habitat) - 5` more rows*
 
 ## Sutter Bypass Plot
 
-```{r, out.width = '90%'}
+```{r}
 sutter_bypass_habitat %>% 
   gather(Section, square_meters, -flow_cfs) %>% 
   ggplot(aes(flow_cfs, square_meters / 4046.86, color = Section)) +
@@ -80,7 +81,7 @@ sutter_bypass_habitat %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   scale_y_continuous(labels = comma) +
-  labs(x = 'Flow (cfs)', y = 'Suitable Habitat Acres') +
+  labs(x = 'Flow (cfs)', y = 'Suitable Habitat Acres', color = '') +
   theme(legend.position = "bottom")
 ```
 
@@ -111,14 +112,14 @@ yolo_bypass_habitat <- bind_rows(yolo1, yolo2) %>%
 
 knitr::kable(align = 'c', head(yolo_bypass_habitat, 5))
 
-# devtools::use_data(yolo_bypass_habitat)
+usethis::use_data(yolo_bypass_habitat, overwrite = TRUE)
 ```
 
-*... with 36 more rows*
+*... with `r nrow(yolo_bypass_habitat) - 5` more rows*
 
 ## Yolo Bypass Plot
 
-```{r, out.width = '90%'}
+```{r}
 yolo_bypass_habitat %>% 
   gather(Section, square_meters, -flow_cfs) %>% 
   ggplot(aes(flow_cfs, square_meters / 4046.86, color = Section)) +
@@ -126,6 +127,6 @@ yolo_bypass_habitat %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   scale_y_continuous(labels = comma) +
-  labs(x = 'Flow (cfs)', y = 'Suitable Habitat Acres') +
+  labs(x = 'Flow (cfs)', y = 'Suitable Habitat Acres', color = '') +
   theme(legend.position = "bottom")
 ```

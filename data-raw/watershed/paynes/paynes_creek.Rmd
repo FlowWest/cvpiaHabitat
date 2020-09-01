@@ -1,7 +1,7 @@
 ---
 title: "Paynes Creek"
-author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com), [Erin Cain](mailto:ecain@flowwest.com)"
-date: "August 15, 2019"
+author: "[Sadie Gill](mailto:sgill@flowwest.com), [Mark Tompkins](mailto:mtompkins@flowwest.com)" 
+date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
@@ -46,7 +46,8 @@ paynes_creek_floodplain <- scale_fp_flow_area('Paynes Creek')
 knitr::kable(align = 'c', head(paynes_creek_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
-             ST_floodplain_acres = Steelhead floodplain acres") 
+             ST_floodplain_acres = Steelhead floodplain acres,
+             watershed = section of stream modeled for CVPIA SDM") 
 # devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
 ```
 
