@@ -56,7 +56,6 @@ test_that('FR instream American River works', {
 
 
 test_that('ST spawn American River works', {
-  # flow 300
   first_not_na_habitat_index <- which(!is.na(cvpiaHabitat::american_river_instream$ST_spawn_wua))[1]
 
   wua <- cvpiaHabitat::american_river_instream$ST_spawn_wua[first_not_na_habitat_index]
