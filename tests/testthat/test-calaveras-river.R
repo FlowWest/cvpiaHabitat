@@ -55,7 +55,7 @@ test_that('ST instream Calaveras River works', {
     set_spawning_habitat('Calaveras River', 'st', spawn_flow), spawnx)
 })
 
-# Tests for species without modeling (FALSE modeling_exists) ----
+# Tests for species/habitat without modeling (FALSE modeling_exists) ----
 
 test_that('FR instream Calaveras River works', {
 

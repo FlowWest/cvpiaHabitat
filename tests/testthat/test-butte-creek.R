@@ -90,7 +90,7 @@ test_that('ST floodplain Butte Creek works', {
     tolerance = .01)
 })
 
-# Tests for species without modeling (FALSE modeling_exists) ----
+# Tests for species/habitat without modeling (FALSE modeling_exists) ----
 test_that('SR instream Butte Creek works', {
 
   fry_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_fry_wua))[1]

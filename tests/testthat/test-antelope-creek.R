@@ -21,7 +21,7 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Antelope", {
   expect_equal(modeling$ST_adult, FALSE)
 })
 
-# Tests for species without modeling (FALSE modeling_exists) ----
+# Tests for species/habitat without modeling (FALSE modeling_exists) ----
 
 test_that('FR instream Antelope Creek works', {
 
