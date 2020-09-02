@@ -72,7 +72,7 @@ test_that('ST spawn American River works', {
 
 })
 
-test_that('FR floodplain American works', {
+test_that('FR floodplain American River works', {
   first_flood_index <-  which(cvpiaHabitat::american_river_floodplain$FR_floodplain_acres > 0)[1]
 
   flow <- cvpiaHabitat::american_river_floodplain$flow_cfs[first_flood_index]
@@ -84,7 +84,7 @@ test_that('FR floodplain American works', {
     tolerance = .01)
 })
 
-test_that('ST floodplain American works', {
+test_that('ST floodplain American River works', {
   first_flood_index <-  which(cvpiaHabitat::american_river_floodplain$ST_floodplain_acres > 0)[1]
 
   flow <- cvpiaHabitat::american_river_floodplain$flow_cfs[first_flood_index]

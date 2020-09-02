@@ -90,7 +90,7 @@ test_that('SR instream Antelope Creek works', {
 })
 
 
-test_that('FR floodplain Antelope works', {
+test_that('FR floodplain Antelope Creek works', {
   first_flood_index <-  which(cvpiaHabitat::antelope_creek_floodplain$FR_floodplain_acres > 0)[1]
 
   flow <- cvpiaHabitat::antelope_creek_floodplain$flow_cfs[first_flood_index]
@@ -102,7 +102,7 @@ test_that('FR floodplain Antelope works', {
     tolerance = .01)
 })
 
-test_that('SR floodplain Antelope works', {
+test_that('SR floodplain Antelope Creek works', {
   first_flood_index <-  which(cvpiaHabitat::antelope_creek_floodplain$SR_floodplain_acres > 0)[1]
 
   flow <- cvpiaHabitat::antelope_creek_floodplain$flow_cfs[first_flood_index]

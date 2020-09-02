@@ -21,7 +21,7 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Butte", {
   expect_equal(modeling$ST_adult, FALSE)
 })
 
-test_that('FR instream Bear River works', {
+test_that('FR instream Butte Creek works', {
 
   fry_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_fry_wua))[1]
   juv_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_juv_wua))[1]
@@ -91,7 +91,7 @@ test_that('ST floodplain Butte Creek works', {
 })
 
 # Tests for species without modeling (FALSE modeling_exists) ----
-test_that('SR instream Bear River works', {
+test_that('SR instream Butte Creek works', {
 
   fry_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_fry_wua))[1]
   juv_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_juv_wua))[1]
@@ -124,7 +124,7 @@ test_that('SR instream Bear River works', {
     set_spawning_habitat('Butte Creek', 'sr', spawn_flow), spawnx)
 })
 
-test_that('ST instream Bear River works', {
+test_that('ST instream Butte Creek works', {
 
   fry_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_fry_wua))[1]
   juv_not_na_index <- which(!is.na(cvpiaHabitat::butte_creek_instream$FR_juv_wua))[1]
