@@ -1,49 +1,115 @@
 library(cvpiaHabitat)
 context('Merced River Habitat')
 
-test_that('FR fry Merced River works', {
+test_that("modeling of species coverage hasn't changed since v2.0 - Merced", {
+  modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Merced River')
 
-  wua <- cvpiaHabitat::merced_river_instream$FR_fry_wua[9]
-  stream_length <- subset(cvpiaHabitat::watershed_lengths,
-                          watershed == 'Merced River' & lifestage == 'rearing'
-                          & species == 'fr')$feet
-  x <- ((stream_length/1000) * wua)/10.7639
+  expect_equal(modeling$FR_spawn, TRUE)
+  expect_equal(modeling$FR_fry, TRUE)
+  expect_equal(modeling$FR_juv, TRUE)
+  expect_equal(modeling$FR_floodplain, TRUE)
 
-  flow <- cvpiaHabitat::merced_river_instream$flow_cfs[9]
-  expect_equal(
-    set_instream_habitat('Merced River', 'fr', 'fry', flow), x)
+  expect_equal(is.na(modeling$SR_spawn), TRUE)
+  expect_equal(is.na(modeling$SR_fry), TRUE)
+  expect_equal(is.na(modeling$SR_juv), TRUE)
+  expect_equal(is.na(modeling$SR_floodplain), TRUE)
 
-
+  expect_equal(modeling$ST_spawn, TRUE)
+  expect_equal(modeling$ST_fry, TRUE)
+  expect_equal(modeling$ST_juv, TRUE)
+  expect_equal(modeling$ST_floodplain, TRUE)
+  expect_equal(modeling$ST_adult, TRUE)
 })
 
-test_that('FR juv Merced River works', {
+test_that('FR instream Merced River works', {
 
-  wua <- cvpiaHabitat::merced_river_instream$FR_juv_wua[9]
-  stream_length <- subset(cvpiaHabitat::watershed_lengths,
-                          watershed == 'Merced River' & lifestage == 'rearing'
-                          & species == 'fr')$feet
+  fry_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$FR_fry_wua))[1]
+  juv_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$FR_juv_wua))[1]
+  spawn_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$FR_spawn_wua))[1]
 
-  x <- ((stream_length/1000) * wua)/10.7639
+  fry_wua <- cvpiaHabitat::merced_river_instream$FR_fry_wua[fry_not_na_index]
+  juv_wua <- cvpiaHabitat::merced_river_instream$FR_juv_wua[juv_not_na_index]
+  spawn_wua <- cvpiaHabitat::merced_river_instream$FR_spawn_wua[spawn_not_na_index]
 
-  flow <- cvpiaHabitat::merced_river_instream$flow_cfs[9]
+  rearing_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                  watershed == 'Merced River' & lifestage == 'rearing'
+                                  & species == 'fr')$feet
+  spawning_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                   watershed == 'Merced River' & lifestage == 'spawning'
+                                   & species == 'fr')$feet
+
+  fryx <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
+  juvx <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
+  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+
+  fry_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[fry_not_na_index]
+  juv_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[juv_not_na_index]
+  spawn_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[spawn_not_na_index]
+
   expect_equal(
-    set_instream_habitat('Merced River', 'fr', 'juv', flow), x)
-
+    set_instream_habitat('Merced River', 'fr', 'fry', fry_flow), fryx)
+  expect_equal(
+    set_instream_habitat('Merced River', 'fr', 'juv', juv_flow), juvx)
+  expect_equal(
+    set_spawning_habitat('Merced River', 'fr', spawn_flow), spawnx)
 })
 
-test_that('FR spawn Merced River works', {
+test_that('ST instream Merced River works', {
 
-  wua <- cvpiaHabitat::merced_river_instream$FR_spawn_wua[9]
-  stream_length <- subset(cvpiaHabitat::watershed_lengths,
-                          watershed == 'Merced River' & lifestage == 'spawning'
-                          & species == 'fr')$feet
+  fry_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$ST_fry_wua))[1]
+  juv_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$ST_juv_wua))[1]
+  spawn_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$ST_spawn_wua))[1]
 
-  x <- ((stream_length/1000) * wua)/10.7639
+  fry_wua <- cvpiaHabitat::merced_river_instream$ST_fry_wua[fry_not_na_index]
+  juv_wua <- cvpiaHabitat::merced_river_instream$ST_juv_wua[juv_not_na_index]
+  spawn_wua <- cvpiaHabitat::merced_river_instream$ST_spawn_wua[spawn_not_na_index]
 
-  flow <- cvpiaHabitat::merced_river_instream$flow_cfs[9]
+  #TODO - there is no steelhead extent for merced river - is fall run ok? (Issue #205)
+  rearing_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                  watershed == 'Merced River' & lifestage == 'rearing'
+                                  & species == 'fr')$feet
+  spawning_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                   watershed == 'Merced River' & lifestage == 'spawning'
+                                   & species == 'fr')$feet
+
+  fryx <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
+  juvx <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
+  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+
+  fry_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[fry_not_na_index]
+  juv_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[juv_not_na_index]
+  spawn_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[spawn_not_na_index]
+
   expect_equal(
-    set_spawning_habitat('Merced River', 'fr', flow), x)
+    set_instream_habitat('Merced River', 'st', 'fry', fry_flow), fryx)
+  expect_equal(
+    set_instream_habitat('Merced River', 'st', 'juv', juv_flow), juvx)
+  expect_equal(
+    set_spawning_habitat('Merced River', 'st', spawn_flow), spawnx)
+})
 
+test_that('FR floodplain Merced River works', {
+  first_flood_index <-  which(cvpiaHabitat::merced_river_floodplain$FR_floodplain_acres > 0)[1]
+
+  flow <- cvpiaHabitat::merced_river_floodplain$flow_cfs[first_flood_index]
+  floodplain <- subset(cvpiaHabitat::merced_river_floodplain,flow_cfs == flow)$FR_floodplain_acres
+
+  expect_equal(
+    square_meters_to_acres(set_floodplain_habitat('Merced River', 'fr', flow)),
+    floodplain,
+    tolerance = .01)
+})
+
+test_that('ST floodplain Merced River works', {
+  first_flood_index <-  which(cvpiaHabitat::merced_river_floodplain$ST_floodplain_acres > 0)[1]
+
+  flow <- cvpiaHabitat::merced_river_floodplain$flow_cfs[first_flood_index]
+  floodplain <- subset(cvpiaHabitat::merced_river_floodplain,flow_cfs == flow)$ST_floodplain_acres
+
+  expect_equal(
+    square_meters_to_acres(set_floodplain_habitat('Merced River', 'st', flow)),
+    floodplain,
+    tolerance = .01)
 })
 
 test_that('ST is same as FR', {
