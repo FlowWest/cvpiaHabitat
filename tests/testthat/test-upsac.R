@@ -1,51 +1,70 @@
 library(cvpiaHabitat)
 context('Upper Sacramento Habitat')
 
-test_that('FR fry Upper Sac works', {
+test_that("modeling of species coverage hasn't changed since v2.0 - Upper Sac", {
+  modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Upper Sacramento River')
 
-  expect_equal(
-    set_instream_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', life_stage = 'fry',
-                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
+  expect_equal(modeling$FR_spawn, TRUE)
+  expect_equal(modeling$FR_fry, FALSE)
+  expect_equal(modeling$FR_juv, TRUE)
+  expect_equal(modeling$FR_floodplain, TRUE)
 
-  expect_equal(
-    set_instream_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', life_stage = 'fry',
-                         flow = 200000), cvpiaHabitat::upper_sacramento_river_instream[[81, 2]])
+  expect_equal(modeling$SR_spawn, FALSE)
+  expect_equal(modeling$SR_fry, FALSE)
+  expect_equal(modeling$SR_juv, FALSE)
+  expect_equal(modeling$SR_floodplain, FALSE)
+
+  expect_equal(modeling$ST_spawn, TRUE)
+  expect_equal(modeling$ST_fry, FALSE)
+  expect_equal(modeling$ST_juv, FALSE)
+  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_adult, FALSE)
 })
 
-test_that('FR juv Upper Sac works', {
+test_that('FR rearing Upper Sac River works', {
+
+  fry_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
+  juv_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
+
+  fry_wua <- cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[fry_not_na_index]
+  juv_wua <- cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[juv_not_na_index]
+
+  fry_flow <- cvpiaHabitat::upper_sacramento_river_instream$flow_cfs[fry_not_na_index]
+  juv_flow <- cvpiaHabitat::upper_sacramento_river_instream$flow_cfs[juv_not_na_index]
 
   expect_equal(
-    set_instream_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', life_stage = 'juv',
-                         flow = 3000), cvpiaHabitat::upper_sacramento_river_instream[[3, 2]])
-
+    set_instream_habitat('Upper Sacramento River', 'fr', 'fry', fry_flow), fry_wua)
   expect_equal(
-    set_instream_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', life_stage = 'juv',
-                         flow = 6000), cvpiaHabitat::upper_sacramento_river_instream[[9, 2]])
+    set_instream_habitat('Upper Sacramento River', 'fr', 'juv', juv_flow), juv_wua)
+
+
 })
 
 test_that('FR spawn Upper Sac works', {
-  wua1 <- cvpiaHabitat::upper_sac_ACID_boards_in$FR_spawn_WUA[1]
-  wua2 <- cvpiaHabitat::upper_sac_ACID_boards_out$FR_spawn_WUA[1]
-  stream_length <- as.numeric(cvpiaHabitat::watershed_lengths[cvpiaHabitat::watershed_lengths$watershed == 'Upper Sacramento River' &
-                                                     cvpiaHabitat::watershed_lengths$lifestage == 'spawning','feet'])
 
-  x1 <- ((stream_length/1000) * wua1)/10.7639
-  x2 <- ((stream_length/1000) * wua2)/10.7639
+  spawn_not_na_index1 <- which(!is.na(cvpiaHabitat::upper_sac_ACID_boards_in$FR_spawn_WUA))[1]
+  spawn_not_na_index2 <- which(!is.na(cvpiaHabitat::upper_sac_ACID_boards_out$FR_spawn_WUA))[1]
 
-  flow1 <- cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs[1]
-  flow2 <- cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs[1]
+  spawn_wua1 <- cvpiaHabitat::upper_sac_ACID_boards_in$FR_spawn_WUA[spawn_not_na_index1]
+  spawn_wua2 <- cvpiaHabitat::upper_sac_ACID_boards_out$FR_spawn_WUA[spawn_not_na_index2]
+
+  spawning_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                   watershed == 'Upper Sacramento River' & lifestage == 'spawning'
+                                   & species == 'fr')$feet
+
+  spawnx1 <- ((spawning_stream_length/1000) * spawn_wua1)/10.7639
+  spawnx2 <- ((spawning_stream_length/1000) * spawn_wua2)/10.7639
+
+  spawn_flow1 <- cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs[spawn_not_na_index1]
+  spawn_flow2 <- cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs[spawn_not_na_index2]
 
   expect_equal(
     set_spawning_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', flow = flow1, month = 5), x1)
+                         species = 'fr', flow = spawn_flow1, month = 5), spawnx1)
 
   expect_equal(
     set_spawning_habitat(watershed = 'Upper Sacramento River',
-                         species = 'fr', flow = flow2, month = 2), x2)
+                         species = 'fr', flow = spawn_flow2, month = 2), spawnx2)
 })
 
 test_that('ST spawn Upper Sac works', {
@@ -69,9 +88,11 @@ test_that('ST spawn Upper Sac works', {
                          species = 'st', flow = flow2, month = 2), x2)
 })
 
-test_that('FR floodplain Upper Sac works', {
-  floodplain <- cvpiaHabitat::upper_sacramento_river_floodplain$floodplain_sq_meters[5]
-  flow <- cvpiaHabitat::upper_sacramento_river_floodplain$flow_cfs[5]
+test_that('FR floodplain Upper Sac River works', {
+  first_flood_index <-  which(cvpiaHabitat::upper_sacramento_river_floodplain$floodplain_sq_meters > 0)[1]
+
+  flow <- cvpiaHabitat::upper_sacramento_river_floodplain$flow_cfs[first_flood_index]
+  floodplain <- subset(cvpiaHabitat::upper_sacramento_river_floodplain,flow_cfs == flow)$floodplain_sq_meters
 
   expect_equal(
     set_floodplain_habitat('Upper Sacramento River', 'fr', flow),
@@ -79,10 +100,14 @@ test_that('FR floodplain Upper Sac works', {
     tolerance = .01)
 })
 
-# ----- modeling doesn't exist here
-test_that('SR floodplain Upper Sac works', {
-  floodplain <- cvpiaHabitat::upper_sacramento_river_floodplain$floodplain_sq_meters[5]
-  flow <- cvpiaHabitat::upper_sacramento_river_floodplain$flow_cfs[5]
+
+# Tests for species/habitat without modeling (FALSE modeling_exists) ----
+
+test_that('SR floodplain Upper Sac River works', {
+  first_flood_index <-  which(cvpiaHabitat::upper_sacramento_river_floodplain$floodplain_sq_meters > 0)[1]
+
+  flow <- cvpiaHabitat::upper_sacramento_river_floodplain$flow_cfs[first_flood_index]
+  floodplain <- subset(cvpiaHabitat::upper_sacramento_river_floodplain,flow_cfs == flow)$floodplain_sq_meters
 
   expect_equal(
     set_floodplain_habitat('Upper Sacramento River', 'sr', flow),
