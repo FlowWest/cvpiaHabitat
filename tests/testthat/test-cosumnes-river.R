@@ -1,6 +1,59 @@
 library(cvpiaHabitat)
 context('Cosumnes River Habitat')
 
+test_that("modeling of species coverage hasn't changed since v2.0 - Cosumnes", {
+  modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Cosumnes River')
+
+  expect_equal(modeling$FR_spawn, FALSE)
+  expect_equal(modeling$FR_fry, FALSE)
+  expect_equal(modeling$FR_juv, FALSE)
+  expect_equal(modeling$FR_floodplain, TRUE)
+
+  expect_equal(is.na(modeling$SR_spawn), TRUE)
+  expect_equal(is.na(modeling$SR_fry), TRUE)
+  expect_equal(is.na(modeling$SR_juv), TRUE)
+  expect_equal(is.na(modeling$SR_floodplain), TRUE)
+
+  expect_equal(modeling$ST_spawn, FALSE)
+  expect_equal(modeling$ST_fry, FALSE)
+  expect_equal(modeling$ST_juv, FALSE)
+  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_adult, FALSE)
+})
+
+test_that('FR instream Cosumnes River works', {
+
+  fry_not_na_index <- which(!is.na(cvpiaHabitat::cosumnes_river_instream$FR_fry_wua))[1]
+  juv_not_na_index <- which(!is.na(cvpiaHabitat::cosumnes_river_instream$FR_juv_wua))[1]
+  spawn_not_na_index <- which(!is.na(cvpiaHabitat::cosumnes_river_instream$FR_spawn_wua))[1]
+
+  fry_wua <- cvpiaHabitat::cosumnes_river_instream$FR_fry_wua[fry_not_na_index]
+  juv_wua <- cvpiaHabitat::cosumnes_river_instream$FR_juv_wua[juv_not_na_index]
+  spawn_wua <- cvpiaHabitat::cosumnes_river_instream$FR_spawn_wua[spawn_not_na_index]
+
+  rearing_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                  watershed == 'Cosumnes River' & lifestage == 'rearing'
+                                  & species == 'fr')$feet
+  spawning_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                   watershed == 'Cosumnes River' & lifestage == 'spawning'
+                                   & species == 'fr')$feet
+
+  fryx <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
+  juvx <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
+  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+
+  fry_flow <- cvpiaHabitat::cosumnes_river_instream$flow_cfs[fry_not_na_index]
+  juv_flow <- cvpiaHabitat::cosumnes_river_instream$flow_cfs[juv_not_na_index]
+  spawn_flow <- cvpiaHabitat::cosumnes_river_instream$flow_cfs[spawn_not_na_index]
+
+  expect_equal(
+    set_instream_habitat('Cosumnes River', 'fr', 'fry', fry_flow), fryx)
+  expect_equal(
+    set_instream_habitat('Cosumnes River', 'fr', 'juv', juv_flow), juvx)
+  expect_equal(
+    set_spawning_habitat('Cosumnes River', 'fr', spawn_flow), spawnx)
+})
+
 test_that('FR fry Cosumnes River works', {
 
   wua <- cvpiaHabitat::cosumnes_river_instream$FR_fry_wua[10]
