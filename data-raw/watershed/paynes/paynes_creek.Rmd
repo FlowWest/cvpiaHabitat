@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -17,15 +18,13 @@ None planned.
 
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Calculated with a relationship between flow and mean weighted usable area from watersheds in the region with modeled habitat](http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/Regional_Approximation.html){target="_blank"}
-```{r, include=FALSE}
+
+```{r}
 source('data-raw/watershed/regional_approximation/description_regional_approx.R')
+source('data-raw/watershed/floodplain_utils.R')
 ```
 
 `r print_regional_approx('paynes Creek')`
-
-```{r, include=FALSE}
-source('data-raw/watershed/floodplain_utils.R')
-```
 
 ## Floodplain Rearing Habitat
 
@@ -48,10 +47,11 @@ knitr::kable(align = 'c', head(paynes_creek_floodplain, 5),
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM") 
-# devtools::use_data(paynes_creek_floodplain, overwrite = TRUE)
+
+usethis::use_data(paynes_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 17 more rows*
+*... with `r nrow(paynes_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r}
@@ -64,5 +64,5 @@ paynes_creek_floodplain %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+  theme(legend.justification = c(1, 0), legend.position = c(1, .1))
 ```
