@@ -5,8 +5,9 @@ date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, out.width = '100%')
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -65,35 +66,32 @@ stanislaus_raw <- stan_rearing_1 %>%
   summarise(wua = sum((((sq_ft/km) * .3048) * (km/total)), na.rm = TRUE)) %>%
   spread(lifestage, wua) 
 
-
 # Spawning data for Fall Run 
 stan_spawn <- read.csv('data-raw/watershed/stanislaus/data/stanislaus_spawning_data.csv', 
                        skip = 1) %>% 
   select(flow_cfs, FR_total_spawn_WUA) %>%
   rename(FR_spawn_wua = FR_total_spawn_WUA)
 
-```
-
-```{r, echo=FALSE}
-stanislaus_river_instream <- stanislaus_raw %>% bind_rows(stan_spawn) %>%
+stanislaus_river_instream <- stanislaus_raw %>% 
+  bind_rows(stan_spawn) %>%
    mutate(watershed = 'Stanislaus River') %>% 
    select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, ST_fry_wua, ST_juv_wua, watershed)
- 
-# usethis::use_data(stanislaus_river_instream, overwrite = TRUE)
+
+usethis::use_data(stanislaus_river_instream, overwrite = TRUE)
 ```
 
-### Spawning Plot 
-```{r, echo = FALSE}
+#### Spawning Habitat
+```{r}
 knitr::kable(align = 'c', head((stan_spawn %>% mutate(watershed = 'Stanislaus River')) , 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_spawn_wua = Fall Run Chinook Spawning WUA,
              watershed = section of stream modeled for CVPIA SDM")
+
 ```
+*... with `r nrow(stan_spawn) - 5` more rows*
 
-*...with 22 more rows.*
-
-### Rearing Plot 
-```{r, echo = FALSE}
+#### Rearing Habitat
+```{r}
 knitr::kable(align = 'c', head((stanislaus_raw %>% mutate(watershed = 'Stanislaus River')) , 5),
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second, 
              FR_fry_wua = Fall Run Chinook Fry WUA, FR_juv_wua = Fall Run Chinook Juvenile WUA,
@@ -101,11 +99,11 @@ knitr::kable(align = 'c', head((stanislaus_raw %>% mutate(watershed = 'Stanislau
              watershed = section of stream modeled for CVPIA SDM")
 ```
 
-*...with 25 more rows.*
+*... with `r nrow(stanislaus_raw) - 5` more rows*
 
 ### Spawning WUA 
 The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
-```{r, echo=FALSE}
+```{r}
 stanislaus_river_instream %>%
   filter(!is.na(FR_spawn_wua)) %>%
   ggplot(aes(flow_cfs, FR_spawn_wua)) +
@@ -116,7 +114,7 @@ stanislaus_river_instream %>%
 
 ### Rearing WUA
 The following plot shows the rearing WUA in square feet per thousand feet for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat.  
-``` {r,echo=FALSE}
+``` {r}
 stanislaus_raw %>%
   mutate(watershed = 'Stanislaus River') %>% 
   select(FR_juv_wua, FR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>% 
@@ -147,8 +145,8 @@ source('data-raw/watershed/floodplain_utils.R')
 
 ## Floodplain Data
 The areas represent total inundated area in acres.    
-```{r, echo = FALSE}
-stanislaus_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
+```{r}
+stanislaus_fp <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
                                           sheet = 'StanislausRiver') %>%
   mutate(watershed = 'Stanislaus River',
          SR_floodplain_acres = modeled_floodplain_area_acres,
@@ -158,19 +156,28 @@ stanislaus_river_floodplain <- read_excel('data-raw/watershed/CVPIA_FloodplainAr
          SR_floodplain_acres, ST_floodplain_acres,
          watershed)
 
+threshold <- stanislaus_fp %>% 
+  filter(FR_floodplain_acres == 0) %>% 
+  pull(flow_cfs) %>% 
+  max()
+
+stanislaus_river_floodplain <- stanislaus_fp %>% 
+  filter(flow_cfs >= threshold)
+
 knitr::kable(align = 'c', head(stanislaus_river_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres, 
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM")
-# usethis::use_data(stanislaus_river_floodplain, overwrite = TRUE)
+
+usethis::use_data(stanislaus_river_floodplain, overwrite = TRUE)
 ```
 
-*...with 11 more rows*
+*... with `r nrow(stanislaus_river_floodplain) - 5` more rows*
 
 ## Floodplain Plot
-```{r, echo=FALSE}
+```{r}
 stanislaus_river_floodplain %>% 
   select(FR_floodplain_acres, flow_cfs, watershed) %>%
   rename(`Fall Run Chinook, 
@@ -181,6 +188,6 @@ and Steelhead` = FR_floodplain_acres) %>%
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
-  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres')+ 
-  theme(legend.justification = c(1,0), legend.position = c(.9,.25))
+  labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') + 
+  theme(legend.justification = c(1, 0), legend.position = c(.9, .25))
 ```
