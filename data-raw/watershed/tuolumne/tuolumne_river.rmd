@@ -46,7 +46,7 @@ knitr::kable(align = 'c', head(tuolumne_river_instream, 5),
              watershed = section of stream modeled for CVPIA SDM")
 ```
 
-*... with 25 more rows.* 
+*... with `r nrow(tuolumne_river_instream) - 5` more rows*
 
 ### Spawning WUA 
 The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.
@@ -59,7 +59,7 @@ tuolumne_river_instream %>%
     geom_line() +
     labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal()  +
     scale_color_manual(values = c('#d95f02','#7570b3')) +
-    theme(legend.justification = c(1,0), legend.position = c(1,.5))
+    theme(legend.justification = c(1, 0), legend.position = c(1, .5))
 ```
 
 ### Rearing WUA
@@ -79,7 +79,7 @@ tuolumne_river_instream %>%
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
-  theme(legend.justification = c(1,0), legend.position = c(.95,.25))
+  theme(legend.justification = c(1, 0), legend.position = c(.95, .25))
 ```
 
 ```{r, include=FALSE}
@@ -122,7 +122,7 @@ knitr::kable(align = 'c', head(tuolumne_river_floodplain, 5),
 usethis::use_data(tuolumne_river_floodplain, overwrite = TRUE)
 ```
 
-*...with 32 more rows*
+*... with `r nrow(tuolumne_river_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r}
@@ -137,7 +137,7 @@ and Steelhead` = FR_floodplain_acres) %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+  theme(legend.justification = c(1, 0), legend.position = c(1, .1))
 ```
 
 
