@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -48,22 +49,22 @@ knitr::kable(align = 'c', head(mill_creek_floodplain, 5),
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM") 
-# usethis::use_data(mill_creek_floodplain, overwrite = TRUE)
+
+usethis::use_data(mill_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*... with `r nrow(mill_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r}
 mill_creek_floodplain %>% 
   select(FR_floodplain_acres, SR_floodplain_acres, watershed, flow_cfs) %>%
-  rename(`Fall Run Chinook` = FR_floodplain_acres, `Spring Run Chinook 
-and Steelhead` = SR_floodplain_acres) %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres, `Spring Run Chinook and Steelhead` = SR_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(.9,.1))
+  theme(legend.justification = c(1, 0), legend.position = c(.9, .1))
 ```

@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(scales)
@@ -30,17 +31,17 @@ High quality habitat defined by:
 
 ```{r}
 south_yolo <- read_excel('data-raw/correigh_greene_data/delta habitat By Region.xlsx', sheet = 3, skip = 1) %>%
-  select(X__1, south_yolo = ppp)
+  select(...1, south_yolo = ppp)
 
 north_delta <- read_excel('data-raw/correigh_greene_data/delta habitat By Region.xlsx', sheet = 4, skip = 1)  %>%
-  select(X__1, north_delta = ppp)
+  select(...1, north_delta = ppp)
 
 south_delta <- read_excel('data-raw/correigh_greene_data/delta habitat By Region.xlsx', sheet = 5, skip = 1) %>%
-  select(X__1, south_delta = ppp)
+  select(...1, south_delta = ppp)
 
 north_delta_habitat <- north_delta %>%
   left_join(south_yolo) %>%
-  separate(col = X__1, into = c('year', 'month'), sep = ' ') %>%
+  separate(col = ...1, into = c('year', 'month'), sep = ' ') %>%
   mutate(`North Delta` = north_delta + south_yolo,
          date = mdy(paste0(month, ' 1, ', year))) %>%
   select(date, `North Delta`)
@@ -61,7 +62,7 @@ nd_hab <- north_delta_habitat %>%
   arrange(date)
 
 south_delta_habitat <- south_delta %>%
-  separate(col = X__1, into = c('year', 'month'), sep = ' ') %>%
+  separate(col = ...1, into = c('year', 'month'), sep = ' ') %>%
   mutate(date = mdy(paste0(month, ' 1, ', year))) %>%
   select(date, `South Delta` = south_delta)
 
@@ -82,12 +83,12 @@ sd_hab <- south_delta_habitat %>%
 
 delta_habitat <- left_join(nd_hab, sd_hab)
 
-# use_data(delta_habitat, overwrite = TRUE)
+usethis::use_data(delta_habitat, overwrite = TRUE)
 
 knitr::kable(align = 'c', head(delta_habitat, 5))
 ```
 
-*... with 357 more rows*
+*... with `r nrow(delta_habitat) - 5` more rows*
 
 ## North and South Deltas Rearing Habitat Plot
 

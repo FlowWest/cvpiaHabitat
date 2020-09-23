@@ -54,7 +54,7 @@ knitr::kable(align = 'c', head(cow_creek_instream, 5),
 usethis::use_data(cow_creek_instream, overwrite = TRUE)
 ```
 
-*...with 25 more rows.*
+*... with `r nrow(cow_creek_instream) - 5` more rows*
 
 ### Rearing WUA
 The following plot shows the weighted usable rearing area (WUA) in square feet per thousand feet for Fall Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
@@ -99,7 +99,7 @@ knitr::kable(align = 'c', head(cow_creek_floodplain, 5),
 usethis::use_data(cow_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 17 more rows*
+*... with `r nrow(cow_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r, echo = FALSE}

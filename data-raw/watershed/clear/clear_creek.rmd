@@ -5,8 +5,9 @@ date: "July 2020"
 output: html_document
 ---
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, out.width = '100%')
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -23,7 +24,7 @@ Instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Ch
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Spring Run Chinook Salmon (SR), and Steelhead (ST) is combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet.   
-```{r, echo=FALSE}
+```{r}
 clear_raw_ua <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
                            range = "A4:G26", sheet = 'Clear', 
                            col_names = c('flow_cfs', 'SR_spawn_wua', 'ST_spawn_wua', 
@@ -51,16 +52,16 @@ fr <- clear_raw_la %>%
    select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, miles) %>% 
    gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
    group_by(lifestage, flow_cfs) %>% 
-   summarise(wua = sum(sq_ft/miles/5.28, na.rm = TRUE)) %>% 
+   summarise(wua = sum(sq_ft / miles / 5.28, na.rm = TRUE)) %>% 
    spread(lifestage, wua) %>% 
-   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua)%>%
+   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua) %>%
    mutate(FR_spawn_wua = 13000)
  
 st <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>% 
    select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua, miles) %>% 
    gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
    group_by(lifestage, flow_cfs) %>% 
-   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+   summarise(wua = sum(sq_ft / miles / 5.28 * miles / total, na.rm = TRUE)) %>% 
    spread(lifestage, wua) %>% 
    select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua) 
  
@@ -68,7 +69,7 @@ sr_juv <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>%
    select(flow_cfs, SR_fry_wua, SR_juv_wua, miles) %>% 
    gather(lifestage, sq_ft, -flow_cfs, -miles) %>% 
    group_by(lifestage, flow_cfs) %>% 
-   summarise(wua = sum(sq_ft/miles/5.28 * miles/total, na.rm = TRUE)) %>% 
+   summarise(wua = sum(sq_ft / miles / 5.28 * miles / total, na.rm = TRUE)) %>% 
    spread(lifestage, wua) %>% 
    select(flow_cfs, SR_fry_wua, SR_juv_wua) 
  
@@ -76,14 +77,16 @@ sr_spawn <- bind_rows(clear_raw_la, clear_raw_c, clear_raw_ua) %>%
    select(flow_cfs, SR_spawn_wua, miles) %>% 
    gather(lifestage, sq_ft, -flow_cfs, -miles) %>%
    group_by(lifestage, flow_cfs) %>%
-   summarise(wua = sum(sq_ft/miles/5.28 * miles/(total-8.81), na.rm = TRUE)) %>% 
+   summarise(wua = sum(sq_ft / miles / 5.28 * miles / (total - 8.81), na.rm = TRUE)) %>% 
    spread(lifestage, wua) %>% 
    select(flow_cfs, SR_spawn_wua) 
  
-sr <- full_join(sr_spawn, sr_juv)
+sr <- sr_spawn %>% 
+  left_join(sr_juv)
  
-clear_creek_instream <- bind_cols(fr, sr, st) %>% 
-   select(-flow_cfs1, -flow_cfs2) %>% 
+clear_creek_instream <- fr %>% 
+  left_join(sr) %>% 
+  left_join(st) %>% 
   mutate(watershed = 'Clear Creek')
 
 knitr::kable(align = 'c', head(clear_creek_instream, 5), 
@@ -95,14 +98,15 @@ knitr::kable(align = 'c', head(clear_creek_instream, 5),
              ST_spawn_wua = Steelhead Spawning WUA, ST_fry_wua = Steelhead Fry WUA, 
              ST_juv_wua = Steelhead Juvenile WUA,
              watershed = section of stream modeled for CVPIA SDM") 
-# usethis::use_data(clear_creek_instream, overwrite = TRUE)
+
+usethis::use_data(clear_creek_instream, overwrite = TRUE)
 ```
 
-*...with 18 more rows.* 
+*... with `r nrow(clear_creek_instream) - 5` more rows*
 
 ### Spawning WUA 
 The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet for Fall Run Chinook salmon, Spring Run Chinook Salmon, and Steelhead. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
-```{r, echo=FALSE}
+```{r}
 
 clear_creek_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua,
@@ -137,7 +141,7 @@ clear_creek_instream %>%
   facet_wrap(~lifestage, ncol = 1, scales = 'free_y') +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
-  theme(legend.justification = c(1,0), legend.position = c(.95,.05))
+  theme(legend.justification = c(1, 0), legend.position = c(.95, .05))
 ```
 
 ```{r, include = FALSE}
@@ -165,15 +169,16 @@ knitr::kable(align = 'c', head(clear_creek_floodplain, 5),
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM") 
-# usethis::use_data(clear_creek_floodplain, overwrite = TRUE)
+
+usethis::use_data(clear_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 27 more rows*
+*... with `r nrow(clear_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r, echo = FALSE}
 clear_creek_floodplain %>% 
-  select(flow_cfs, FR_floodplain_acres, ST_floodplain_acres, watershed)%>%
+  select(flow_cfs, FR_floodplain_acres, ST_floodplain_acres, watershed) %>%
   rename(`Fall Run Chinook` = FR_floodplain_acres, 
          `Steelhead and Spring Run Chinook` = ST_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
@@ -182,5 +187,5 @@ clear_creek_floodplain %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(.9,.1))
+  theme(legend.justification = c(1, 0), legend.position = c(.9, .1))
 ```

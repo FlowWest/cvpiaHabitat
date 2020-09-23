@@ -15,7 +15,9 @@ LazyData: true
 Suggests: testthat,
     knitr,
     rmarkdown
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 VignetteBuilder: knitr
 URL: https://github.com/FlowWest/cvpiaHabitat
 BugReports: https://github.com/FlowWest/cvpiaHabitat/issues
+Depends: 
+    R (>= 2.10)

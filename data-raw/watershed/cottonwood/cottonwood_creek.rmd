@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -56,7 +57,7 @@ cottonwood_creek_instream <- cotton_spawn %>%
   arrange(flow_cfs) %>%
   mutate(watershed = 'Cottonwood Creek')
 
-# usethis::use_data(cottonwood_creek_instream, overwrite = TRUE)
+usethis::use_data(cottonwood_creek_instream, overwrite = TRUE)
 ```
 ```{r}
 knitr::kable(align = 'c', head(cottonwood_creek_instream, 5), 
@@ -67,7 +68,7 @@ knitr::kable(align = 'c', head(cottonwood_creek_instream, 5),
              watershed = section of stream modeled for CVPIA SDM")
 ```
 
-*...with 31 more rows.*
+*... with `r nrow(cottonwood_creek_instream) - 5` more rows*
 
 ### Spawning WUA 
 The following plot shows the weighted usable spawning area (WUA) in square feet per thousand feet for Fall Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat. 
@@ -138,10 +139,11 @@ knitr::kable(align = 'c', head(cottonwood_creek_floodplain, 5),
              SR_floodplain_acres = Spring Run Chinook floodplain acres, 
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM")
-# usethis::use_data(cottonwood_creek_floodplain, overwrite = TRUE)
+
+usethis::use_data(cottonwood_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 5 more rows*
+*... with `r nrow(cottonwood_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r}
