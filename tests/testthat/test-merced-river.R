@@ -112,16 +112,3 @@ test_that('ST floodplain Merced River works', {
     tolerance = .01)
 })
 
-test_that('ST is same as FR', {
-  expect_equal(
-    set_instream_habitat('Merced River', 'fr', 'fry', 2500),
-    set_instream_habitat('Merced River', 'st', 'fry', 2500))
-
-  expect_equal(
-    set_instream_habitat('Merced River', 'fr', 'juv', 2500),
-    set_instream_habitat('Merced River', 'st', 'juv', 2500))
-
-  expect_equal(
-    set_spawning_habitat('Merced River', 'fr', 2500),
-    set_spawning_habitat('Merced River', 'st', 2500))
-})

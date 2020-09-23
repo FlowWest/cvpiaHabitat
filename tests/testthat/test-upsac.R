@@ -23,8 +23,9 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Upper Sac", 
 
 test_that('FR rearing Upper Sac River works', {
 
-  fry_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
-  juv_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
+  #fry_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
+  #juv_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
+  # just do flow 1
 
   fry_wua <- cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[fry_not_na_index]
   juv_wua <- cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[juv_not_na_index]
