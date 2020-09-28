@@ -6,8 +6,6 @@
 \alias{sutter_bypass_habitat}
 \title{Bypass Flow to Habitat Area Relationships}
 \format{
-4 dataframes, one for each bypass and floodplain or instream habitat type
-
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 41 rows and 3 columns.
 
 An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 41 rows and 5 columns.
