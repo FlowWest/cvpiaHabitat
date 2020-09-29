@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>function creates the approx function for spring run — SR_spawn_approx • cvpiaHabitat</title>
+<title>Set Bypass Habitat Area — set_bypass_habitat • cvpiaHabitat</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="function creates the approx function for spring run — SR_spawn_approx" />
-<meta property="og:description" content="function creates the approx function for spring run" />
+<meta property="og:title" content="Set Bypass Habitat Area — set_bypass_habitat" />
+<meta property="og:description" content="This function returns an estimated suitable habitat area based on bypass and flow." />
 
 
 
@@ -108,31 +108,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>function creates the approx function for spring run</h1>
-    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/set-spawning-habitat.R'><code>R/set-spawning-habitat.R</code></a></small>
-    <div class="hidden name"><code>SR_spawn_approx.Rd</code></div>
+    <h1>Set Bypass Habitat Area</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/set-bypass-habitat.R'><code>R/set-bypass-habitat.R</code></a></small>
+    <div class="hidden name"><code>set_bypass_habitat.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>function creates the approx function for spring run</p>
+    <p>This function returns an estimated suitable habitat area based on bypass and flow.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>SR_spawn_approx</span><span class='op'>(</span><span class='va'>relationship_df</span>, <span class='va'>modeling_lookup</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>set_bypass_habitat</span><span class='op'>(</span><span class='va'>bypass</span>, <span class='va'>flow</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>relationship_df</th>
-      <td><p>dataframe from cvpiaHabitat with a flow to wua relationship</p></td>
+      <th>bypass</th>
+      <td><p>one section of the bypasses ('yolo1', 'yolo2', 'sutter1', 'sutter2', 'sutter3', or 'sutter4')</p></td>
     </tr>
     <tr>
-      <th>modeling_lookup</th>
-      <td><p>modeling lookup dataframe from cvpiaHabitat</p></td>
+      <th>flow</th>
+      <td><p>value used to determine habitat area</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>habitat area in square meters</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># habitat area in square meters for section 1 of the yolo bypass at 200 cfs</span>
+<span class='fu'>set_bypass_habitat</span><span class='op'>(</span><span class='st'>'yolo1'</span>, <span class='fl'>200</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 974867.7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
