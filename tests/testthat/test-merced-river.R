@@ -112,3 +112,22 @@ test_that('ST floodplain Merced River works', {
     tolerance = .01)
 })
 
+#this test should fail for now (10/01/20) until stream length & set-instream-habitat.R code updated
+test_that('ST adult Merced River works', {
+
+  adult_not_na_index <- which(!is.na(cvpiaHabitat::merced_river_instream$ST_adult_wua))[1]
+  adult_wua <- cvpiaHabitat::merced_river_instream$ST_adult_wua[adult_not_na_index]
+
+  adult_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                watershed == 'Merced River' & lifestage == 'adult'
+                                & species == 'st')$feet
+
+  adultx <- (((adult_stream_length/1000) * adult_wua)/10.7639)
+
+  adult_flow <- cvpiaHabitat::merced_river_instream$flow_cfs[adult_not_na_index]
+
+  expect_equal(
+    set_instream_habitat('Merced River', 'st', 'adult', adult_flow), adultx)
+
+})
+

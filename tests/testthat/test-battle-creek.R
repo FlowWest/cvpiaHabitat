@@ -119,3 +119,22 @@ test_that('ST instream Battle Creek works', {
   expect_equal(
     set_spawning_habitat('Battle Creek', 'st', spawn_flow), spawnx)
 })
+
+#this test should fail for now (10/01/20) until stream length & set-instream-habitat.R code updated
+test_that('ST adult Battle Creek works', {
+
+  adult_not_na_index <- which(!is.na(cvpiaHabitat::battle_creek_instream$ST_adult_wua))[1]
+  adult_wua <- cvpiaHabitat::battle_creek_instream$ST_adult_wua[adult_not_na_index]
+
+  adult_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                  watershed == 'Battle Creek' & lifestage == 'adult'
+                                  & species == 'st')$feet
+
+  adultx <- (((adult_stream_length/1000) * adult_wua)/10.7639)
+
+  adult_flow <- cvpiaHabitat::battle_creek_instream$flow_cfs[adult_not_na_index]
+
+  expect_equal(
+    set_instream_habitat('Battle Creek', 'st', 'adult', adult_flow), adultx)
+
+})

@@ -21,23 +21,15 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Upper Sac", 
   expect_equal(modeling$ST_adult, FALSE)
 })
 
-test_that('FR rearing Upper Sac River works', {
+test_that('FR juv Upper Sac River works', {
 
-  #fry_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
-  #juv_not_na_index <- which(!is.na(cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters))[1]
-  # just do flow 1
-
-  fry_wua <- cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[fry_not_na_index]
-  juv_wua <- cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[juv_not_na_index]
-
-  fry_flow <- cvpiaHabitat::upper_sacramento_river_instream$flow_cfs[fry_not_na_index]
-  juv_flow <- cvpiaHabitat::upper_sacramento_river_instream$flow_cfs[juv_not_na_index]
+  flow1 <- cvpiaHabitat::upper_sacramento_river_instream$flow_cfs[1]
 
   expect_equal(
-    set_instream_habitat('Upper Sacramento River', 'fr', 'fry', fry_flow), fry_wua)
-  expect_equal(
-    set_instream_habitat('Upper Sacramento River', 'fr', 'juv', juv_flow), juv_wua)
-
+    set_instream_habitat(watershed = 'Upper Sacramento River',
+                         species = 'fr', life_stage = 'juv',
+                         flow = flow1),
+    cvpiaHabitat::upper_sacramento_river_instream$rearing_sq_meters[1])
 
 })
 
