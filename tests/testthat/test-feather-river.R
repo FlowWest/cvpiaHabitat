@@ -38,20 +38,20 @@ test_that('FR instream Feather River works', {
                                    watershed == 'Feather River' & lifestage == 'spawning'
                                    & species == 'fr')$feet
 
-  fryx <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
-  juvx <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
-  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+  fry_m2 <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
+  juv_m2 <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
+  spawn_m2 <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
 
   fry_flow <- cvpiaHabitat::feather_river_instream$flow_cfs[fry_not_na_index]
   juv_flow <- cvpiaHabitat::feather_river_instream$flow_cfs[juv_not_na_index]
   spawn_flow <- cvpiaHabitat::feather_river_instream$flow_cfs[spawn_not_na_index]
 
   expect_equal(
-    set_instream_habitat('Feather River', 'fr', 'fry', fry_flow), fryx)
+    set_instream_habitat('Feather River', 'fr', 'fry', fry_flow), fry_m2)
   expect_equal(
-    set_instream_habitat('Feather River', 'fr', 'juv', juv_flow), juvx)
+    set_instream_habitat('Feather River', 'fr', 'juv', juv_flow), juv_m2)
   expect_equal(
-    set_spawning_habitat('Feather River', 'fr', spawn_flow), spawnx)
+    set_spawning_habitat('Feather River', 'fr', spawn_flow), spawn_m2)
 })
 
 
@@ -65,11 +65,11 @@ test_that('ST spawn Feather River works', {
                                    watershed == 'Feather River' & lifestage == 'spawning'
                                    & species == 'fr')$feet
 
-  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+  spawn_m2 <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
 
   spawn_flow <- cvpiaHabitat::feather_river_instream$flow_cfs[spawn_not_na_index]
   expect_equal(
-    set_spawning_habitat('Feather River', 'st', spawn_flow), spawnx)
+    set_spawning_habitat('Feather River', 'st', spawn_flow), spawn_m2)
 
 })
 
@@ -85,9 +85,9 @@ test_that('FR floodplain Feather River works', {
     tolerance = .01)
 })
 
-test_that('SR and FR are same for spawning', {
+test_that('SR and ST are same for spawning', {
   expect_equal(
-    set_spawning_habitat('Feather River', 'fr', 2500),
+    set_spawning_habitat('Feather River', 'st', 2500),
     set_spawning_habitat('Feather River', 'sr', 2500))
 })
 
