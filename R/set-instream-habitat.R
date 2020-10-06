@@ -72,7 +72,7 @@ set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
     spring_run_exists <- !is.na(dplyr::pull(
       dplyr::filter(cvpiaHabitat::modeling_exist,
                     Watershed == watershed), SR_juv))
-    if (!spring_run_exists){
+    if (!spring_run_exists) {
       return(NA)
     }
   }
@@ -92,13 +92,47 @@ set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
   if (watershed %in% upper_mid_region) {
     wua_func <- rearing_approx("Upper Mid Sac Region", species, life_stage)
   } else {
-    wua_func <- rearing_approx(watershed, species, life_stage)
+    watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
+    watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
+    df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
+
+    wua_selector <- get_wua_selector(names(df), species, life_stage)
+    flows <- df[ , "flow_cfs"][[1]]
+    wuas <- df[ , wua_selector][[1]]
+    wua_func <- approxfun(flows, wuas , rule = 2)
   }
 
   wua <- wua_func(flow)
   habitat_area <- wua_to_area(wua = wua, watershed = watershed,
                               life_stage = "rearing", species_name = species)
   return(habitat_area)
+}
+
+get_wua_selector <- function(species_wuas, species, life_stage) {
+
+  species_lifestage <- paste(toupper(species), life_stage, sep = "_")
+
+  combos <- switch(species_lifestage,
+                   SR_spawn = c("SR_spawn_wua", "ST_spawn_wua", "FR_spawn_wua"),
+                   SR_juv = c("SR_juv_wua", "SR_fry_wua", "ST_juv_wua",
+                              "FR_juv_wua", "ST_fry_wua", "FR_fry_wua"),
+                   SR_fry = c("SR_fry_wua",  "SR_juv_wua", "ST_fry_wua",
+                              "FR_fry_wua", "ST_juv_wua", "FR_juv_wua"),
+                   FR_spawn = c("FR_spawn_wua", "SR_spawn_wua", "ST_spawn_wua"),
+                   FR_juv = c("FR_juv_wua", "FR_fry_wua", "SR_juv_wua",
+                              "ST_juv_wua", "SR_fry_wua", "ST_fry_wua"),
+                   FR_fry = c("FR_fry_wua", "FR_juv_wua", "SR_fry_wua",
+                              "ST_fry_wua", "SR_juv_wua", "ST_juv_wua"),
+                   ST_adult = c("ST_adult_wua", "ST_juv_wua", "SR_juv_wua",
+                                "ST_fry_wua", "SR_fry_wua", "FR_juv_wua", "FR_fry_wua"),
+                   ST_spawn = c("ST_spawn_wua", "SR_spawn_wua", "FR_spawn_wua"),
+                   ST_juv = c("ST_juv_wua", "ST_fry_wua", "SR_juv_wua",
+                              "FR_juv_wua", "SR_fry_wua", "FR_fry_wua"),
+                   ST_fry = c("ST_fry_wua", "ST_juv_wua", "SR_fry_wua",
+                              "FR_fry_wua", "SR_juv_wua", "FR_juv_wua"))
+
+  return(combos[which(combos %in% species_wuas)[[1]]])
+
 }
 
 
