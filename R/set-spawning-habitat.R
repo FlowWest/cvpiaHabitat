@@ -94,7 +94,14 @@ set_spawning_habitat <- function(watershed, species, flow, ...) {
   if (watershed %in% upper_mid_region) {
     wua_func <- spawning_approx("Upper Mid Sac Region", species)
   } else {
-    wua_func <- spawning_approx(watershed, species)
+    watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
+    watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
+    df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
+
+    wua_selector <- get_wua_selector(names(df), species, "spawn")
+    flows <- df[ , "flow_cfs"][[1]]
+    wuas <- df[ , wua_selector][[1]]
+    wua_func <- approxfun(flows, wuas , rule = 2)
   }
 
   wua <- wua_func(flow)
@@ -104,6 +111,7 @@ set_spawning_habitat <- function(watershed, species, flow, ...) {
   return(habitat_area)
 
 }
+
 
 #' function creates the approx function for fall run
 #' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
