@@ -65,17 +65,14 @@ test_that('ST and SR = FR San Joaquin River works', {
 
   expect_equal(
     set_spawning_habitat('San Joaquin River', 'fr', 275),
-    set_spawning_habitat('San Joaquin River', 'sr', 275),
     set_spawning_habitat('San Joaquin River', 'st', 275))
 
   expect_equal(
     set_instream_habitat('San Joaquin River', 'fr', 'fry', 1000),
-    set_instream_habitat('San Joaquin River', 'sr', 'fry', 1000),
     set_instream_habitat('San Joaquin River', 'st', 'fry', 1000))
 
   expect_equal(
     set_instream_habitat('San Joaquin River', 'fr', 'juv', 1000),
-    set_instream_habitat('San Joaquin River', 'sr', 'juv', 1000),
     set_instream_habitat('San Joaquin River', 'st', 'juv', 1000))
 
 })
