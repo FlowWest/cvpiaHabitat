@@ -87,9 +87,10 @@ adult_trout <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx',
   select(-sq_ft)
 
 yuba_river_instream <- rearing %>% 
+  left_join(adult_trout) %>% 
   mutate(watershed = 'Yuba River') %>% 
   select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, SR_spawn_wua,
-         ST_spawn_wua, ST_fry_wua, ST_juv_wua, watershed)
+         ST_spawn_wua, ST_fry_wua, ST_juv_wua, ST_adult_wua, watershed)
 
 knitr::kable(align = 'c', head(yuba_river_instream, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
