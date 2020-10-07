@@ -69,10 +69,7 @@
 set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
 
   if (species == 'sr') {
-    spring_run_exists <- !is.na(dplyr::pull(
-      dplyr::filter(cvpiaHabitat::modeling_exist,
-                    Watershed == watershed), SR_juv))
-    if (!spring_run_exists) {
+    if (!cvpiaHabitat::watershed_metadata$sr[cvpiaHabitat::watershed_metadata$watershed == watershed]) {
       return(NA)
     }
   }
@@ -82,25 +79,22 @@ set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
     return(set_sac_habitat(watershed, flow, ...))
   }
 
-  # identify watersheds within upper mid that need to use region approx curve
-  upper_mid_region <- dplyr::pull(
-    dplyr::filter(cvpiaHabitat::modeling_exist,
-                  UseRearRegionApprox,
-                  Region == "Upper-mid Sacramento River"), Watershed)
-
-  # create approx functions
-  if (watershed %in% upper_mid_region) {
-    wua_func <- rearing_approx("Upper Mid Sac Region", species, life_stage)
+  if (cvpiaHabitat::watershed_metadata$use_mid_sac_rear_proxy[cvpiaHabitat::watershed_metadata$watershed == watershed]) {
+    w <- "Upper Mid Sac Region"
+    species <- "fr"
   } else {
-    watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
-    watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
-    df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
-
-    wua_selector <- get_wua_selector(names(df), species, life_stage)
-    flows <- df[ , "flow_cfs"][[1]]
-    wuas <- df[ , wua_selector][[1]]
-    wua_func <- approxfun(flows, wuas , rule = 2)
+    w <- watershed
   }
+
+  watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = w))
+  watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
+  df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
+
+  wua_selector <- get_wua_selector(names(df), species, life_stage)
+  df_na_rm <- df[!is.na(df[, wua_selector][[1]]), ]
+  flows <- df_na_rm[, "flow_cfs"][[1]]
+  wuas <- df_na_rm[ , wua_selector][[1]]
+  wua_func <- approxfun(flows, wuas , rule = 2)
 
   wua <- wua_func(flow)
   habitat_area <- wua_to_area(wua = wua, watershed = watershed,
@@ -165,7 +159,7 @@ FR_rearing_approx <- function(relationship_df, modeling_lookup, life_stage){
     # for calaveras
     FR_approx <- ST_rearing_approx(relationship_df, modeling_lookup, life_stage)
   }
-    return(FR_approx)
+  return(FR_approx)
 }
 
 #' Spring Run rearing habitat flow to area approximator
@@ -256,9 +250,9 @@ set_sac_habitat <- function(watershed, flow, flow2 = NULL) {
     if (is.null(flow2)) {
       warning('For CVPIA purposes: Lower-mid Sacramento River requires two flow values, one above and below Fremont Weir. Running with one flow value...')
       return(fp_approx(flow))
-      } else {
-        return(35.6/58 * rear_approx(flow) + 22.4/58 * rear_approx(flow2))
-      }
+    } else {
+      return(35.6/58 * rear_approx(flow) + 22.4/58 * rear_approx(flow2))
+    }
   } else {
     return(rear_approx(flow))
   }

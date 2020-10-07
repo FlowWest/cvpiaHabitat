@@ -20,3 +20,4 @@ modeling_exist %>% glimpse
 
 watershed_metadata <- read_csv('data-raw/watershed_metadata.csv')
 usethis::use_data(watershed_metadata, overwrite = TRUE)
+View(watershed_metadata)
