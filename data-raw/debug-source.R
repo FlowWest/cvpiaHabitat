@@ -32,8 +32,8 @@ set_instream_habitat('American River', 'fr', 'fry', fry_flow)
 t <- tibble::tibble(x = 1:10, y = letters[x])
 d <- as.data.frame(t)
 
-t[, "y", drop = FALSE]
-d[, "y", drop = FALSE]
+t[, "y"]
+d[, "y"]
 
 
 
