@@ -47,14 +47,14 @@ knitr::kable(head(battle_creek_instream, 5), align = 'c',
 usethis::use_data(battle_creek_instream, overwrite = TRUE)
 ```
 
-*...with 30 more rows.* 
+*... with `r nrow(battle_creek_instream) - 5` more rows*
 
 ### Spawning WUA    
 The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon, Steelhead, and Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.    
 ```{r}
 battle_creek_instream %>% 
-  select(flow_cfs, `Fall Run Chinook`= FR_spawn_wua, `Steelhead`= ST_spawn_wua, 
-         `Spring Run Chinook`= SR_spawn_wua) %>% 
+  select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua, 
+         `Spring Run Chinook` = SR_spawn_wua) %>% 
   gather(Species, WUA, -flow_cfs) %>% 
   filter(!is.na(WUA)) %>% 
   ggplot(aes(flow_cfs, WUA, color = Species)) +
@@ -113,14 +113,14 @@ knitr::kable(align = 'c', head(battle_creek_floodplain, 5),
 usethis::use_data(battle_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 25 more rows*
+*... with `r nrow(battle_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot
 ```{r}
 battle_creek_floodplain %>% 
   select(flow_cfs, FR_floodplain_acres, ST_floodplain_acres, watershed) %>%
-  rename(`Fall Run Chinook`= FR_floodplain_acres, 
-         `Steelhead and Spring Run Chinook`= ST_floodplain_acres) %>% 
+  rename(`Fall Run Chinook` = FR_floodplain_acres, 
+         `Steelhead and Spring Run Chinook` = ST_floodplain_acres) %>% 
   gather(Species, acres, -flow_cfs, -watershed) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +

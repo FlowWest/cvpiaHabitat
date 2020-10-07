@@ -43,7 +43,7 @@ knitr::kable(align = 'c', head(bear_creek_floodplain, 5), caption = "Header Desc
 usethis::use_data(bear_creek_floodplain, overwrite = TRUE)
 ```
 
-*...with 17 more rows*
+*... with `r nrow(bear_creek_floodplain) - 5` more rows*
 
 ## Floodplain Plot  
 ```{r}
