@@ -61,48 +61,36 @@
 #' }
 set_spawning_habitat <- function(watershed, species, flow, ...) {
 
-  no_spawning <- dplyr::pull(dplyr::filter(cvpiaHabitat::modeling_exist, is.na(FR_spawn)), Watershed)
-  if (watershed %in% no_spawning) {
+  if (!cvpiaHabitat::watershed_metadata$spawn[cvpiaHabitat::watershed_metadata$watershed == watershed]) {
     return(NA)
   }
 
   if (species == 'sr') {
-    spring_run_exists <- !is.na(dplyr::pull(
-      dplyr::filter(cvpiaHabitat::modeling_exist,
-                    Watershed == watershed), SR_spawn))
-    if (!spring_run_exists) {
+    if (!cvpiaHabitat::watershed_metadata$sr[cvpiaHabitat::watershed_metadata$watershed == watershed]) {
       return(NA)
     }
   }
-
 
   if (watershed == 'Upper Sacramento River') {
     return(set_upper_sac_spawn_habitat(species, flow, ...))
   }
 
-  # determine the set of watersheds that need to use the region approx curves
-  upper_mid_region <- dplyr::pull(
-    dplyr::filter(
-      cvpiaHabitat::modeling_exist,
-      UseSpawnRegionApprox,
-      Region == "Upper-mid Sacramento River"
-    ),
-    Watershed
-  )
-
-  # create approx functions
-  if (watershed %in% upper_mid_region) {
-    wua_func <- spawning_approx("Upper Mid Sac Region", species)
+  if (cvpiaHabitat::watershed_metadata$use_mid_sac_spawn_proxy[cvpiaHabitat::watershed_metadata$watershed == watershed]) {
+    w <- "Upper Mid Sac Region"
+    species <- "fr"
   } else {
-    watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = watershed))
-    watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
-    df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
-
-    wua_selector <- get_wua_selector(names(df), species, "spawn")
-    flows <- df[ , "flow_cfs"][[1]]
-    wuas <- df[ , wua_selector][[1]]
-    wua_func <- approxfun(flows, wuas , rule = 2)
+    w <- watershed
   }
+  watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = w))
+
+  watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
+  df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
+
+  wua_selector <- get_wua_selector(names(df), species, "spawn")
+  flows <- df[ , "flow_cfs"][[1]]
+  wuas <- df[ , wua_selector][[1]]
+  wua_func <- approxfun(flows, wuas , rule = 2)
+
 
   wua <- wua_func(flow)
   habitat_area <- wua_to_area(wua = wua, watershed = watershed,
@@ -110,79 +98,6 @@ set_spawning_habitat <- function(watershed, species, flow, ...) {
 
   return(habitat_area)
 
-}
-
-
-#' function creates the approx function for fall run
-#' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
-#' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
-FR_spawn_approx <- function(relationship_df, modeling_lookup){
-  if (dplyr::pull(modeling_lookup, FR_spawn)) {
-    # case when modeling exists
-    FR_approx <- approxfun(relationship_df$flow_cfs,
-                           relationship_df$FR_spawn_wua, rule = 2)
-  } else {
-    #for calaveras
-    FR_approx <- approxfun(relationship_df$flow_cfs,
-                           relationship_df$ST_spawn_wua, rule = 2)
-  }
-
-  return(FR_approx)
-}
-
-#' function creates the approx function for spring run
-#' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
-#' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
-SR_spawn_approx <- function(relationship_df, modeling_lookup){
-
-  if (dplyr::pull(modeling_lookup, SR_spawn)) {
-    # case when modeling exists
-    SR_approx <- approxfun(relationship_df$flow_cfs, relationship_df$SR_spawn_wua, rule = 2)
-  } else {
-    # use fall run if availble, defaults to fall if not
-    SR_approx <- FR_spawn_approx(relationship_df, modeling_lookup)
-  }
-
-  return(SR_approx)
-}
-
-#' function creates the approx function for steelhead
-#' @param relationship_df dataframe from cvpiaHabitat with a flow to wua relationship
-#' @param modeling_lookup modeling lookup dataframe from cvpiaHabitat
-ST_spawn_approx <- function(relationship_df, modeling_lookup){
-
-  if (dplyr::pull(modeling_lookup, ST_spawn)) {
-    # case when modeling exists
-    ST_approx <- approxfun(relationship_df$flow_cfs,
-                           relationship_df$ST_spawn_wua, rule = 2)
-  } else {
-    # case when no steelhead modeling but fall run modeling is used
-    ST_approx <- FR_spawn_approx(relationship_df, modeling_lookup)
-  }
-
-  return(ST_approx)
-}
-
-
-#' function uses an existing relationship to return a linear interpolated approx function
-#' @param watershed name of the watershed to compute approx function on
-#' @param species one of 'fr' (Fall Run), 'sr' (Spring Run), or 'st' (Steelhead)
-#' @return an approx function obtained from calling \code{\link[stats]{approxfun}}
-spawning_approx <- function(watershed, species = "fr") {
-
-  # format watershed name to load wua relationship in the package
-  watershed_name <- tolower(gsub(pattern = " ", replacement = "_", x = watershed))
-  watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
-  df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
-
-  # used to grab correct columns for approx functions
-  modeling_lookup <- dplyr::filter(cvpiaHabitat::modeling_exist, Watershed == watershed)
-
-  switch(species,
-         "fr" = {FR_spawn_approx(df, modeling_lookup)},
-         "sr" = {SR_spawn_approx(df, modeling_lookup)},
-         "st" = {ST_spawn_approx(df, modeling_lookup)}
-  )
 }
 
 set_upper_sac_spawn_habitat <- function(species, flow, month) {
@@ -194,24 +109,24 @@ set_upper_sac_spawn_habitat <- function(species, flow, month) {
   if (species == 'wr') {
     # winter run spawning
     upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
-                                     cvpiaHabitat::upper_sac_ACID_boards_in$WR_spawn_WUA, rule=2)
+                                     cvpiaHabitat::upper_sac_ACID_boards_in$WR_spawn_WUA, rule = 2)
 
     upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
-                                      cvpiaHabitat::upper_sac_ACID_boards_out$WR_spawn_WUA, rule=2)
+                                      cvpiaHabitat::upper_sac_ACID_boards_out$WR_spawn_WUA, rule = 2)
   } else if (species == 'st') {
     # steelhead spawning
     upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
-                                     cvpiaHabitat::upper_sac_ACID_boards_in$ST_spawn_WUA, rule=2)
+                                     cvpiaHabitat::upper_sac_ACID_boards_in$ST_spawn_WUA, rule = 2)
 
     upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
-                                      cvpiaHabitat::upper_sac_ACID_boards_out$ST_spawn_WUA, rule=2)
+                                      cvpiaHabitat::upper_sac_ACID_boards_out$ST_spawn_WUA, rule = 2)
   } else {
     # fall run and spring run spawning
     upper_sac_IN_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_in$flow_cfs,
-                                     cvpiaHabitat::upper_sac_ACID_boards_in$FR_spawn_WUA, rule=2)
+                                     cvpiaHabitat::upper_sac_ACID_boards_in$FR_spawn_WUA, rule = 2)
 
     upper_sac_OUT_approx <- approxfun(cvpiaHabitat::upper_sac_ACID_boards_out$flow_cfs,
-                                      cvpiaHabitat::upper_sac_ACID_boards_out$FR_spawn_WUA, rule=2)
+                                      cvpiaHabitat::upper_sac_ACID_boards_out$FR_spawn_WUA, rule = 2)
   }
 
 
