@@ -117,18 +117,19 @@ test_that('FR floodplain Yuba River works', {
     tolerance = .01)
 })
 
-test_that('SR rearing are same as FR', {
+test_that('SR rearing are same as ST', {
 
   expect_equal(
-    set_instream_habitat('Yuba River', 'fr', 'fry', 2500),
+    set_instream_habitat('Yuba River', 'st', 'fry', 2500),
     set_instream_habitat('Yuba River', 'sr', 'fry', 2500))
 
   expect_equal(
-    set_instream_habitat('Yuba River', 'fr', 'juv', 2500),
+    set_instream_habitat('Yuba River', 'st', 'juv', 2500),
     set_instream_habitat('Yuba River', 'sr', 'juv', 2500))
 
 })
 
+# TODO
 #this test should fail for now (10/01/20) until stream length & set-instream-habitat.R code updated
 test_that('ST adult Yuba River works', {
 

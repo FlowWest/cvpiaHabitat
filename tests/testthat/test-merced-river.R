@@ -112,6 +112,7 @@ test_that('ST floodplain Merced River works', {
     tolerance = .01)
 })
 
+# TODO
 #this test should fail for now (10/01/20) until stream length & set-instream-habitat.R code updated
 test_that('ST adult Merced River works', {
 
