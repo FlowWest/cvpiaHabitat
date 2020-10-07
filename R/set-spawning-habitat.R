@@ -77,16 +77,17 @@ set_spawning_habitat <- function(watershed, species, flow, ...) {
 
   if (cvpiaHabitat::watershed_metadata$use_mid_sac_spawn_proxy[cvpiaHabitat::watershed_metadata$watershed == watershed]) {
     w <- "Upper Mid Sac Region"
-    species <- "fr"
+    s <- "fr"
   } else {
     w <- watershed
+    s <- species
   }
   watershed_name <- tolower(gsub(pattern = "-| ", replacement = "_", x = w))
 
   watershed_rda_name <- paste(watershed_name, "instream", sep = "_")
   df <- as.data.frame(do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name)))
 
-  wua_selector <- get_wua_selector(names(df), species, "spawn")
+  wua_selector <- get_wua_selector(names(df), s, "spawn")
   df_na_rm <- df[!is.na(df[, wua_selector]), ]
   flows <- df_na_rm[ , "flow_cfs"]
   wuas <- df_na_rm[ , wua_selector]
