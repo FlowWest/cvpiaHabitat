@@ -60,7 +60,6 @@ battle_creek_instream %>%
   theme_minimal() + 
   scale_color_brewer(palette = 'Dark2') + 
   theme(legend.justification = c(1,0), legend.position = c(.9,.7))
-
 ```
 
 ### Rearing WUA
