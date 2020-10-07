@@ -91,9 +91,9 @@ set_instream_habitat <- function(watershed, species, life_stage, flow, ...) {
   df <- do.call(`::`, list(pkg = "cvpiaHabitat", name = watershed_rda_name))
 
   wua_selector <- get_wua_selector(names(df), species, life_stage)
-  df_na_rm <- df[!is.na(df[, wua_selector][[1]]), ]
-  flows <- df_na_rm[, "flow_cfs"][[1]]
-  wuas <- df_na_rm[ , wua_selector][[1]]
+  df_na_rm <- df[!is.na(df[, wua_selector]), ]
+  flows <- df_na_rm[, "flow_cfs", drop = FALSE][[1]]
+  wuas <- df_na_rm[ , wua_selector, drop = FALSE][[1]]
   wua_func <- approxfun(flows, wuas , rule = 2)
 
   wua <- wua_func(flow)
