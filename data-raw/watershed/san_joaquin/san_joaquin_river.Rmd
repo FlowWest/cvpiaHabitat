@@ -41,7 +41,7 @@ san_joaq_spawn <- list(get_approx_spawn(cvpiaHabitat::merced_river_instream),
                      get_approx_spawn(cvpiaHabitat::stanislaus_river_instream),
                      get_approx_spawn(cvpiaHabitat::tuolumne_river_instream))
 
-flows <- cvpiaHabitat::stanislaus_river_instream$flow_cfs
+flows <- sort(unique(cvpiaHabitat::stanislaus_river_instream$flow_cfs))
 
 san_joaquin_river_instream <- purrr::map_df(flows, function(flow) {
   spawn <- mean(purrr::map_dbl(1:length(san_joaq_juv), function(i){san_joaq_spawn[[i]](flow)}))
@@ -49,7 +49,7 @@ san_joaquin_river_instream <- purrr::map_df(flows, function(flow) {
   wua_juv <- mean(purrr::map_dbl(1:length(san_joaq_juv), function(i){san_joaq_juv[[i]](flow)}))
   tibble(flow_cfs = flow, FR_spawn_wua = spawn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv, 
          watershed = 'San Joaquin River')
-})
+}) 
 
 knitr::kable(align = 'c', head(san_joaquin_river_instream, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
