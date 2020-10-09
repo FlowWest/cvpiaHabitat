@@ -100,18 +100,18 @@ test_that('FR floodplain Tuolumne River works', {
     tolerance = .01)
 })
 
-test_that('SR and ST are the same Tuolumne River', {
+test_that('SR and FR are the same Tuolumne River', {
 
   expect_equal(
-    set_spawning_habitat('Tuolumne River', 'st', 275),
+    set_spawning_habitat('Tuolumne River', 'fr', 275),
     set_spawning_habitat('Tuolumne River', 'sr', 275))
 
   expect_equal(
-    set_instream_habitat('Tuolumne River', 'st', 'fry', 275),
+    set_instream_habitat('Tuolumne River', 'fr', 'fry', 275),
     set_instream_habitat('Tuolumne River', 'sr', 'fry', 275))
 
   expect_equal(
-    set_instream_habitat('Tuolumne River', 'st', 'juv', 275),
+    set_instream_habitat('Tuolumne River', 'fr', 'juv', 275),
     set_instream_habitat('Tuolumne River', 'sr', 'juv', 275))
 
 })
