@@ -22,6 +22,40 @@ wua_to_area <- function(wua, watershed_name,  life_stage, species_name) {
   ((stream_length/1000) * wua)/10.7639
 }
 
+#' Get WUA Selector
+#' @description Habitat Modeling Column Lookup
+#' @details Habitat modeling column lookup by species and lifestage. If desired
+#' combination of species and lifestage is not present in modeling data table for a watershed,
+#' then the column representing the most appropriate proxy will be returned.
+#' @param species_wuas vector of column names within modeling data table for the targeted watershed
+#' @param species target species: "fr" for fall run, "sr" for spring run, and "st" for steelhead
+#' @param life_stage "spawn", fry", "juv", or "adult"
+#' @return column name of desired habitat relationship
+get_wua_selector <- function(species_wuas, species, life_stage) {
+
+  species_lifestage <- paste(toupper(species), life_stage, sep = "_")
+
+  combos <- switch(species_lifestage,
+                   SR_spawn = c("SR_spawn_wua", "FR_spawn_wua", "ST_spawn_wua"),
+                   FR_spawn = c("FR_spawn_wua", "SR_spawn_wua", "ST_spawn_wua"),
+                   ST_spawn = c("ST_spawn_wua", "SR_spawn_wua", "FR_spawn_wua"),
+                   SR_juv = c("SR_juv_wua", "FR_juv_wua", "SR_fry_wua",
+                              "FR_fry_wua", "ST_juv_wua", "ST_fry_wua"),
+                   SR_fry = c("SR_fry_wua",  "FR_fry_wua", "SR_juv_wua",
+                              "FR_juv_wua", "ST_fry_wua", "ST_juv_wua"),
+                   FR_juv = c("FR_juv_wua", "SR_juv_wua", "FR_fry_wua",
+                              "SR_fry_wua", "ST_juv_wua", "ST_fry_wua"),
+                   FR_fry = c("FR_fry_wua", "FR_juv_wua", "SR_fry_wua",
+                              "ST_fry_wua", "SR_juv_wua", "ST_juv_wua"),
+                   ST_adult = c("ST_adult_wua"),
+                   ST_juv = c("ST_juv_wua", "ST_fry_wua", "SR_juv_wua",
+                              "SR_fry_wua", "FR_juv_wua", "FR_fry_wua"),
+                   ST_fry = c("ST_fry_wua", "ST_juv_wua", "SR_fry_wua",
+                              "SR_juv_wua", "FR_fry_wua", "FR_juv_wua"))
+
+  return(combos[which(combos %in% species_wuas)[[1]]])
+
+}
 
 #' Square Meters to Acres
 #' @description Function converts area in square meters to area in acres
