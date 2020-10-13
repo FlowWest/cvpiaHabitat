@@ -26,6 +26,7 @@ wr_juv <- battle_wr %>%
   spread(subreach, SR_juv)
 
 # need to fill in the in between values for some of these
+# so that when they spread they all have values on aligned cfs
 eagle_creek_approx_juv <- approxfun(wr_juv$flow, wr_juv$eagle_creek)
 mainstem_approx_juv <- approxfun(wr_juv$flow, wr_juv$mainstem)
 feeder_approx_juv <- approxfun(wr_juv$flow, wr_juv$north_battle_feeder)
@@ -47,8 +48,14 @@ wr_juv_imputed <- battle_wr %>%
   group_by(flow) %>%
   summarise(
     wua = sum(wua)
-  )
+  ) %>%
+  rename(flow_cfs = flow,
+         WR_juv_wua = wua)
 
+wr_juv_imputed %>%
+  ggplot(aes(flow_cfs, WR_juv_wua)) + geom_point()
+
+# fry --------------------------------------------------------
 wr_fry <- battle_wr %>%
   select(flow, SR_fry, subreach) %>%
   spread(subreach, SR_fry)
@@ -61,13 +68,59 @@ wildcat_approx_fry <- approxfun(wr_fry$flow, wr_fry$wildcat)
 
 wr_fry_imputed <- battle_wr %>%
   select(flow, SR_fry, subreach) %>%
-  spread(subreach, SR_fry) %>%
+  pivot_wider(names_from = subreach, values_from = SR_fry) %>%
   mutate(
     eagle_creek = eagle_creek_approx_fry(flow),
     mainstem = mainstem_approx_fry(flow),
     north_battle_feeder = feeder_approx_fry(flow),
     wildcat = wildcat_approx_fry(flow)
-  )
+  ) %>%
+  filter(across(everything(), ~ !is.na(.x))) %>%
+  pivot_longer(names_to = "reach", values_to = "wua", cols = wildcat:mainstem) %>%
+  left_join(subreach_lens) %>%
+  mutate(wua = wua * prop_of_creek) %>%
+  group_by(flow) %>%
+  summarise(
+    wua = sum(wua)
+  ) %>%
+  rename(flow_cfs = flow,
+         WR_fry_wua = wua)
 
+
+wr_fry_imputed %>%
+  ggplot(aes(flow_cfs, WR_fry_wua)) + geom_point()
 
 # spawning ---------------
+wr_spawn <- battle_wr %>%
+  select(flow, SR_spawn, subreach) %>%
+  spread(subreach, SR_spawn)
+
+# need to fill in the in between values for some of these
+eagle_creek_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$eagle_creek)
+mainstem_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$mainstem)
+feeder_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$north_battle_feeder)
+wildcat_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$wildcat)
+
+wr_spawn_imputed <- battle_wr %>%
+  select(flow, SR_spawn, subreach) %>%
+  pivot_wider(names_from = subreach, values_from = SR_spawn) %>%
+  mutate(
+    eagle_creek = eagle_creek_approx_spawn(flow),
+    mainstem = mainstem_approx_spawn(flow),
+    north_battle_feeder = feeder_approx_spawn(flow),
+    wildcat = wildcat_approx_spawn(flow)
+  ) %>%
+  filter(across(everything(), ~ !is.na(.x))) %>%
+  pivot_longer(names_to = "reach", values_to = "wua", cols = wildcat:mainstem) %>%
+  left_join(subreach_lens) %>%
+  mutate(wua = wua * prop_of_creek) %>%
+  group_by(flow) %>%
+  summarise(
+    wua = sum(wua)
+  ) %>%
+  rename(flow_cfs = flow,
+         WR_spawn_wua = wua)
+
+
+wr_spawn_imputed %>%
+  ggplot(aes(flow_cfs, WR_spawn_wua)) + geom_point()
