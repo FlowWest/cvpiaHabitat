@@ -4,15 +4,17 @@
 \name{pools}
 \alias{pools}
 \title{Pool Area}
-\format{dataframe with 31 rows and 3 variables
+\format{
+dataframe with 31 rows and 3 variables
 \describe{
   \item{watershed}{CVPIA watershed}
   \item{SR_pools_sq_meters}{Spring Run pool area estimate in square meters}
   \item{ST_pools_sq_meters}{Steelhead pool area estimate in square meters}
-}}
+}
+}
 \source{
 \itemize{
-  \item Percent Pool Estimates: Mark Gard \email{mark_gard@fws.gov}
+  \item Percent Pool Estimates: Mark Gard \email{Mark.Gard@Wildlife.ca.gov}
   \item Channel Area Estimates: Sadie Gill \email{sgill@flowwest.com}
   \item QA/QC: Mark Tompkins \email{mtompkins@flowwest.com}
 }

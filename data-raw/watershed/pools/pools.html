@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Sadie Gill, Mark Tompkins, Erin Cain" />
+<meta name="author" content="Sadie Gill, Mark Tompkins" />
 
-<meta name="date" content="2019-08-20" />
 
 <title>Pools</title>
 
@@ -270,7 +269,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -332,6 +330,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -343,18 +342,6 @@ summary {
   display: none;
 }
 </style>
-
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
 
 <!-- code folding -->
 
@@ -376,15 +363,15 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Pools</h1>
-<h4 class="author"><a href="mailto:sgill@flowwest.com">Sadie Gill</a>, <a href="mailto:mtompkins@flowwest.com">Mark Tompkins</a>, <a href="mailto:ecain@flowwest.com">Erin Cain</a></h4>
-<h4 class="date">August 20, 2019</h4>
+<h4 class="author"><a href="mailto:sgill@flowwest.com">Sadie Gill</a>, <a href="mailto:mtompkins@flowwest.com">Mark Tompkins</a></h4>
+<h4 class="date">July 2020</h4>
 
 </div>
 
 
 <div id="rearing-pools" class="section level2">
 <h2>Rearing Pools</h2>
-<p>Estimates of percent pools were provided by <a href="mark_gard@@fws.gov">Mark Gard</a> for some watersheds.The mean percent pools, excluding Feather River, is 23.1%. This value is used for watersheds without an estimate.The total area of pools is then caluculated by multiplying the estimated percent pools by the total channel area. Channel areas were estimated using Google Earth Engine.</p>
+<p>Estimated percentages of rearing pools in certain watersheds were provided by <a href="mailto:Mark.Gard@Wildlife.ca.gov">Mark Gard</a>. The mean percentage of pools, excluding the Feather River, is 23.1%. This value was used for watersheds without an estimate. The total area of rearing pools in a watershed is calculated by multiplying the total channel area by the estimated percentange of pools. The channel areas were estimated using Google Earth Engine.</p>
 <div id="watersheds-with-estimated-percent-pools" class="section level3">
 <h3>Watersheds With Estimated Percent Pools</h3>
 <table>
@@ -489,7 +476,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p><em>…with 26 more rows.</em></p>
+<p><em>… with 26 more rows</em></p>
 </div>
 </div>
 
@@ -510,6 +497,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

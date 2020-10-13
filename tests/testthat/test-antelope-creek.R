@@ -1,73 +1,115 @@
 library(cvpiaHabitat)
 context('Antelope Creek Habitat')
 
-test_that('FR fry Antelope works', {
+test_that("modeling of species coverage hasn't changed since v2.0 - Antelope", {
+  modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Antelope Creek')
 
-  wua1 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua[1]
-  wua2 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[4, 5]]
+  expect_equal(modeling$FR_spawn, FALSE)
+  expect_equal(modeling$FR_fry, FALSE)
+  expect_equal(modeling$FR_juv, FALSE)
+  expect_equal(modeling$FR_floodplain, FALSE)
 
-  x1 <- ((stream_length/1000) * wua1)/10.7639
-  x2 <- ((stream_length/1000) * wua2)/10.7639
+  expect_equal(modeling$SR_spawn, FALSE)
+  expect_equal(modeling$SR_fry, FALSE)
+  expect_equal(modeling$SR_juv, FALSE)
+  expect_equal(modeling$SR_floodplain, FALSE)
 
-  expect_equal(
-    set_instream_habitat('Antelope Creek', 'fr', 'fry', 50), x1)
-
-  expect_equal(
-    set_instream_habitat('Antelope Creek', 'fr', 'juv', 50), x2)
+  expect_equal(modeling$ST_spawn, FALSE)
+  expect_equal(modeling$ST_fry, FALSE)
+  expect_equal(modeling$ST_juv, FALSE)
+  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_adult, FALSE)
 })
 
-test_that('FR spawn Antelope works', {
+# Tests for species/habitat without modeling (FALSE modeling_exists) ----
 
-  wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[3, 5]]
+test_that('FR instream Antelope Creek works', {
 
-  x <- ((stream_length/1000) * wua)/10.7639
+  fry_not_na_index <- which(!is.na(cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua))[1]
+  juv_not_na_index <- which(!is.na(cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua))[1]
+  spawn_not_na_index <- which(!is.na(cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua))[1]
+
+  fry_wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua[fry_not_na_index]
+  juv_wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua[juv_not_na_index]
+  spawn_wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua[spawn_not_na_index]
+
+  rearing_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                  watershed == 'Antelope Creek' & lifestage == 'rearing'
+                                  & species == 'fr')$feet
+  spawning_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                   watershed == 'Antelope Creek' & lifestage == 'spawning'
+                                   & species == 'fr')$feet
+
+  fryx <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
+  juvx <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
+  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+
+  fry_flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[fry_not_na_index]
+  juv_flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[juv_not_na_index]
+  spawn_flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[spawn_not_na_index]
 
   expect_equal(
-    set_spawning_habitat('Antelope Creek', 'fr',50), x)
+    set_instream_habitat('Antelope Creek', 'fr', 'fry', fry_flow), fryx)
+  expect_equal(
+    set_instream_habitat('Antelope Creek', 'fr', 'juv', juv_flow), juvx)
+  expect_equal(
+    set_spawning_habitat('Antelope Creek', 'fr', spawn_flow), spawnx)
+})
 
+test_that('SR instream Antelope Creek works', {
+
+  fry_not_na_index <- which(!is.na(cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua))[1]
+  juv_not_na_index <- which(!is.na(cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua))[1]
+  spawn_not_na_index <- which(!is.na(cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua))[1]
+
+  fry_wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua[fry_not_na_index]
+  juv_wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua[juv_not_na_index]
+  spawn_wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua[spawn_not_na_index]
+
+  rearing_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                  watershed == 'Antelope Creek' & lifestage == 'rearing'
+                                  & species == 'fr')$feet
+  spawning_stream_length <- subset(cvpiaHabitat::watershed_lengths,
+                                   watershed == 'Antelope Creek' & lifestage == 'spawning'
+                                   & species == 'fr')$feet
+
+  fryx <- (((rearing_stream_length/1000) * fry_wua)/10.7639)
+  juvx <- (((rearing_stream_length/1000) * juv_wua)/10.7639)
+  spawnx <- (((spawning_stream_length/1000) * spawn_wua)/10.7639)
+
+  fry_flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[fry_not_na_index]
+  juv_flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[juv_not_na_index]
+  spawn_flow <- cvpiaHabitat::upper_mid_sac_region_instream$flow_cfs[spawn_not_na_index]
+
+  expect_equal(
+    set_instream_habitat('Antelope Creek', 'sr', 'fry', fry_flow), fryx)
+  expect_equal(
+    set_instream_habitat('Antelope Creek', 'sr', 'juv', juv_flow), juvx)
+  expect_equal(
+    set_spawning_habitat('Antelope Creek', 'sr', spawn_flow), spawnx)
 })
 
 
-test_that('SR fry Antelope works', {
+test_that('FR floodplain Antelope Creek works', {
+  first_flood_index <-  which(cvpiaHabitat::antelope_creek_floodplain$FR_floodplain_acres > 0)[1]
 
-  wua1 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_fry_wua[1]
-  wua2 <- cvpiaHabitat::upper_mid_sac_region_instream$FR_juv_wua[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[4, 5]]
-
-  x1 <- ((stream_length/1000) * wua1)/10.7639
-  x2 <- ((stream_length/1000) * wua2)/10.7639
+  flow <- cvpiaHabitat::antelope_creek_floodplain$flow_cfs[first_flood_index]
+  floodplain <- subset(cvpiaHabitat::antelope_creek_floodplain,flow_cfs == flow)$FR_floodplain_acres
 
   expect_equal(
-    set_instream_habitat('Antelope Creek', 'sr', 'fry', 50), x1)
-
-  expect_equal(
-    set_instream_habitat('Antelope Creek', 'sr', 'juv', 50), x2)
-})
-
-test_that('SR spawn Antelope works', {
-
-  wua <- cvpiaHabitat::upper_mid_sac_region_instream$FR_spawn_wua[1]
-  stream_length <- cvpiaHabitat::watershed_lengths[[3, 5]]
-
-  x <- ((stream_length/1000) * wua)/10.7639
-
-  expect_equal(
-    set_spawning_habitat('Antelope Creek', 'sr',50), x)
-
-})
-
-test_that('FR floodplain Antelope works', {
-  expect_equal(
-    square_meters_to_acres(set_floodplain_habitat('Antelope Creek', 'fr', 406.32224)),
-    cvpiaHabitat::antelope_creek_floodplain[[10,2]],
+    square_meters_to_acres(set_floodplain_habitat('Antelope Creek', 'fr', flow)),
+    floodplain,
     tolerance = .01)
 })
 
-test_that('SR floodplain Antelope works', {
+test_that('SR floodplain Antelope Creek works', {
+  first_flood_index <-  which(cvpiaHabitat::antelope_creek_floodplain$SR_floodplain_acres > 0)[1]
+
+  flow <- cvpiaHabitat::antelope_creek_floodplain$flow_cfs[first_flood_index]
+  floodplain <- subset(cvpiaHabitat::antelope_creek_floodplain,flow_cfs == flow)$SR_floodplain_acres
+
   expect_equal(
-    square_meters_to_acres(set_floodplain_habitat('Antelope Creek', 'sr', 406.32224)),
-    cvpiaHabitat::antelope_creek_floodplain[[10,2]],
+    square_meters_to_acres(set_floodplain_habitat('Antelope Creek', 'sr', flow)),
+    floodplain,
     tolerance = .01)
 })

@@ -7,3 +7,4 @@ _scratch/*
 inst/doc
 
 *.DS_Store
+*~lock*

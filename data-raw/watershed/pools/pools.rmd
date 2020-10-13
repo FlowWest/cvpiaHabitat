@@ -7,21 +7,22 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
 ```
 
 ## Rearing Pools   
-Estimated percentages of rearing pools in certain watersheds were provided by [Mark Gard](mailto:mark_gard@fws.gov). The mean percentage of pools, excluding the Feather River, is 23.1%. This value was used for watersheds without an estimate. The total area of rearing pools in a watershed is calculated by multiplying the total channel area by the estimated percentange of pools. The channel areas were estimated using Google Earth Engine. 
+Estimated percentages of rearing pools in certain watersheds were provided by [Mark Gard](mailto:Mark.Gard@Wildlife.ca.gov). The mean percentage of pools, excluding the Feather River, is 23.1%. This value was used for watersheds without an estimate. The total area of rearing pools in a watershed is calculated by multiplying the total channel area by the estimated percentange of pools. The channel areas were estimated using Google Earth Engine. 
 
 ### Watersheds With Estimated Percent Pools 
 ```{r}
-lengths_table <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
-                            sheet = 'MetaData',
-                            col_types = c('text', 'text', 'text', 'text', rep('numeric', 17),
-                                          'text', 'numeric', 'text'),
-                            na = 'na')
+lengths <- read_excel('data-raw/watershed/CVPIA_FloodplainAreas.xlsx',
+                      sheet = 'MetaData',
+                      col_types = c('text', 'text', 'text', 'text', rep('numeric', 17),
+                                    'text', 'numeric', 'text'),
+                      na = 'na')
 
 pools_perc <- read_csv('data-raw/watershed/pools/data/pools.csv', col_types = 'cnc') %>%
   select(-FW_QAQC)
@@ -31,40 +32,50 @@ mean_pools_perc <- filter(pools_perc, watershed != 'Feather River') %>%
 
 knitr::kable(align = 'c', pools_perc)
 
-wss <- cvpiaData::watershed_ordering$watershed
+wss <- data.frame(order = 1:31, 
+                  watershed = c("Upper Sacramento River", "Antelope Creek", "Battle Creek", 
+                                "Bear Creek", "Big Chico Creek", "Butte Creek", "Clear Creek", 
+                                "Cottonwood Creek", "Cow Creek", "Deer Creek", "Elder Creek", 
+                                "Mill Creek", "Paynes Creek", "Stony Creek", "Thomes Creek", 
+                                "Upper-mid Sacramento River", "Sutter Bypass", "Bear River", 
+                                "Feather River", "Yuba River", "Lower-mid Sacramento River", 
+                                "Yolo Bypass", "American River", "Lower Sacramento River", "Calaveras River", 
+                                "Cosumnes River", "Mokelumne River", "Merced River", "Stanislaus River", 
+                                "Tuolumne River", "San Joaquin River"))
 
-pools <- lengths_table %>%
-  filter(watershed %in% wss) %>%
-  mutate(SR_prop_length = SR_rearing_length_mi/FR_rearing_length_mi,
-         ST_prop_length = ST_rearing_length_mi/FR_rearing_length_mi,
+# put combinded values of upper sac + upper mid sac in upper sac
+# upper sac + upper mid sac 6174 acres, from mark gard
+pools_upper_sac <- 6174 * 7.2/100 * 4046.86
+
+pools <- lengths %>%
+  mutate(SR_prop_length = SR_rearing_length_mi / FR_rearing_length_mi,
+         ST_prop_length = ST_rearing_length_mi / FR_rearing_length_mi,
          FR_channel_area = FR_channel_area_of_length_modeled_acres,
          SR_channel_area = FR_channel_area * SR_prop_length,
          ST_channel_area = FR_channel_area * ST_prop_length) %>%
   select(watershed, FR_channel_area, SR_channel_area, ST_channel_area) %>%
   left_join(pools_perc) %>%
   mutate(percent_pools = replace(percent_pools, is.na(percent_pools), mean_pools_perc),
-         SR_pools_sq_meters = SR_channel_area * percent_pools/100 * 4046.86,
-         ST_pools_sq_meters = ST_channel_area * percent_pools/100 * 4046.86) %>%
+         SR_pools_sq_meters = case_when(
+           watershed == 'Upper Sacramento River' ~ pools_upper_sac,
+           TRUE ~ SR_channel_area * percent_pools/100 * 4046.86),
+         ST_pools_sq_meters =  case_when(
+           watershed == 'Upper Sacramento River' ~ pools_upper_sac,
+           TRUE ~ ST_channel_area * percent_pools/100 * 4046.86)) %>%
   select(watershed, SR_pools_sq_meters, ST_pools_sq_meters) %>%
-  left_join(cvpiaData::watershed_ordering) %>%
-  arrange(order) %>%
+  left_join(wss) %>%
+  arrange(order) %>% 
+  filter(!is.na(order)) %>% 
   select(-order)
 
-# put combinded values of upper sac + upper mid sac in upper sac
-# upper sac + upper mid sac 6174 acres, from mark gard
-
-pools_upper_sac <- 6174 * 7.2/100 * 4046.86
-
-pools[pools$watershed == 'Upper Sacramento River', c('SR_pools_sq_meters', 'ST_pools_sq_meters')] <- c(pools_upper_sac, pools_upper_sac)
-
+usethis::use_data(pools, overwrite = TRUE)
 ```
 
 ### Spring Run Chinook and Steelhead Pools 
 ```{r}
-# use_data(pools, overwrite = TRUE)
 knitr::kable(align = 'c', head(pools, 5), 
              caption = 'SR_pools_sq_meters = Spring Run Chinook Pools in square meters,
              ST_pools_sq_meters = Steelhead Pools in square meters')
 ```
 
-*...with 26 more rows.*
+*... with `r nrow(pools) - 5` more rows*

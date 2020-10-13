@@ -8,6 +8,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -17,10 +18,9 @@ library(lubridate)
 
 ### Instream Spawning and Rearing Habitat
 
-
 **Details:** 
 
-Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:mark_gard@fws.gov) at the US Fish and Wildlife Service, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at a subset of flow values from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at flows from Battle Creek, Butte Creek, and Clear Creek. 
+Habitat modeling is not available for several tributaries of the Upper Sacramento River. These tributaries share similar hydrologic and geomorphic conditions. In consultation with [Mark Gard](mailto:Mark.Gard@Wildlife.ca.gov) at the California Department of Fish and Wildlife, regional approximations of instream spawning and rearing habitat were developed for tributaries without habitat modeling. The regional approximation for instream rearing habitat uses the mean weighted usable area (WUA) at a subset of flow values from Battle Creek, Butte Creek, Clear Creek, and Cow Creek. For instream spawning, the regional approximation uses the mean WUA at flows from Battle Creek, Butte Creek, and Clear Creek. 
 
 **The following table shows watershed areas and channel widths for all of the watersheds used to create regional approximations.**
 
@@ -29,8 +29,7 @@ tibble(
   Watershed = c("Battle Creek", "Butte Creek", "Clear Creek", "Cottonwood Creek", 
                 "Cow Creek*"), 
   `Area (sqkm)` = c(957, 2123, 645, 2444, 1107), 
-  `Width (m)` = c(22.5, 15.2, 18, 28.25, 8.5)
-) %>% 
+  `Width (m)` = c(22.5, 15.2, 18, 28.25, 8.5)) %>% 
   knitr::kable(align = 'c')
 ```
 
@@ -43,8 +42,7 @@ tibble(
                 "Elder Creek", "Mill Creek", "Paynes Creek", "Stony Creek", 
                 "Thomes Creek"), 
   `Area (sqkm)` = c(508, 649, 930, 1107, 358, 334, 243, 2021, 758), 
-  `Width (m)` = c(15.8, 4.3, 14.8, 8.5, 8.6, 14.3, 6.3, 19.6, 12.9)
-) %>% 
+  `Width (m)` = c(15.8, 4.3, 14.8, 8.5, 8.6, 14.3, 6.3, 19.6, 12.9)) %>% 
   knitr::kable(align = 'c')
 ```
 
@@ -124,26 +122,25 @@ upper_mid_sac_region_instream <- purrr::map_df(flows, function(flow) {
   tibble(flow_cfs = flow, FR_spawn_wua = wua_spn, FR_fry_wua = wua_fry, FR_juv_wua = wua_juv,
          watershed = 'Upper-mid Sacramento River Region')
 })
-#usethis::use_data(upper_mid_sac_region_instream, overwrite = TRUE)
-```
 
-```{r, echo = FALSE}
 knitr::kable(align = 'c', head(upper_mid_sac_region_instream, 5), caption = "Header Descriptions:
               flow_cfs = flow in cubic feet per second,
               FR_spawn_wua = Fall Run Chinook Spawning WUA,
               FR_fry_wua = Fall Run Chinook Fry WUA,
               FR_juv_wua = Fall Run Chinook Juvenile WUA,
               watershed = section of stream modeled for CVPIA SDM")
+
+usethis::use_data(upper_mid_sac_region_instream, overwrite = TRUE)
 ```
 
-*...with 18 more rows.*
+*... with `r nrow(upper_mid_sac_region_instream) - 5` more rows*
 
 ### Spawning WUA 
 
 The following plot shows the WUA in square feet per thousand feet for Chinook Salmon used for Upper Sacramento River tributaries without adequate habitat modeling. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate habitat area.  
 
-```{r, echo=FALSE}
-  upper_mid_sac_region_instream %>%
+```{r}
+upper_mid_sac_region_instream %>%
   filter(!is.na(FR_spawn_wua)) %>%
   ggplot(aes(flow_cfs, FR_spawn_wua)) +
   geom_line(color = '#7570b3' ) +
@@ -155,13 +152,15 @@ The following plot shows the WUA in square feet per thousand feet for Chinook Sa
 
 The following plot shows the rearing WUA in square feet per thousand feet for Chinook Salmon used for Upper Sacramento River tributaries without adequate habitat modeling. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate habitat area. 
 
-``` {r,echo=FALSE}
+``` {r}
 upper_mid_sac_region_instream %>% 
-  gather(lifestage, wua, -flow_cfs, -watershed)  %>% 
-  filter(!is.na(wua), lifestage != 'FR_spawn_wua', lifestage != "ST_fry_wua", lifestage != "ST_juv_wua") %>%
-  mutate(lifestage = ifelse(lifestage == 'FR_fry_wua', 'Fry', 'Juvenile')) %>% 
-  ggplot(aes(x = flow_cfs , y = wua, color = lifestage)) +
+  select(flow_cfs, FR_fry_wua, FR_juv_wua) %>% 
+  gather(Lifestage, wua, -flow_cfs) %>% 
+  mutate(Lifestage = ifelse(Lifestage == 'FR_fry_wua', 'Fry', 'Juvenile')) %>% 
+  filter(!is.na(wua)) %>% 
+  ggplot(aes(x = flow_cfs , y = wua, color = Lifestage)) +
   geom_line() +
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + theme_minimal() +
-  scale_color_manual(values = c('#d95f02','#7570b3'))
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') + 
+  theme_minimal() +
+  scale_color_manual(values = c('#d95f02', '#7570b3'))
 ```

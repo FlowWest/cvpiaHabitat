@@ -7,6 +7,7 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, out.width = '100%')
 knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+options(usethis.quiet = TRUE)
 library(tidyverse)
 library(readxl)
 library(cvpiaHabitat)
@@ -42,7 +43,8 @@ knitr::kable(align = 'c', head(antelope_creek_floodplain, 5),
              SR_floodplain_acres = Spring Run Chinook floodplain acres,
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM")
-# usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
+
+usethis::use_data(antelope_creek_floodplain, overwrite = TRUE)
 ```
 
 
@@ -59,5 +61,5 @@ antelope_creek_floodplain %>%
   theme_minimal() +
   scale_color_brewer(palette = 'Dark2') +
   labs(x = 'Flow (cfs)', y = 'Total Inundated Acres') +
-  theme(legend.justification = c(1,0), legend.position = c(1,.1))
+  theme(legend.justification = c(1, 0), legend.position = c(1, .1))
 ```
