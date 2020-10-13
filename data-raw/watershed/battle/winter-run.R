@@ -1,7 +1,7 @@
 library(tidyverse)
 library(zoo)
 
-battle_wr_raw <- read_csv("data-raw/watershed/battle/data/winter-run-weighted-composite-battle.csv")
+battle_wr_raw <- read_csv("data-raw/watershed/battle/data/spring-run-WUA-mainstem-and-north-fork.csv")
 
 # subreach lenghts (from report)
 subreach_lens <- tribble(
@@ -124,3 +124,4 @@ wr_spawn_imputed <- battle_wr %>%
 
 wr_spawn_imputed %>%
   ggplot(aes(flow_cfs, WR_spawn_wua)) + geom_point()
+
