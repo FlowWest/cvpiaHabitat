@@ -117,14 +117,14 @@ Typical data structure for streams:
 \section{Bypasses}{
 
 \itemize{
-  \item \href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/bypasses.html}{Sutter and Yolo Bypass}
+  \item \link[=bypass]{Sutter and Yolo Bypasses}
 }
 }
 
 \section{Delta}{
 
 \itemize{
-  \item \href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/delta.html}{North and South Delta}
+  \item \link[=delta_habitat]{North and South Delta}
 }
 }
 

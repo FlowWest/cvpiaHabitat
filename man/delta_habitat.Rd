@@ -13,7 +13,7 @@ dataframe with 372 rows and 3 variables
 }
 }
 \source{
-\href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+\href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/delta.html}{North and South Delta Modeling Details}
 
 \itemize{
   \item Modeling Output: Correigh Green \email{correigh.greene@noaa.gov}
@@ -27,18 +27,5 @@ delta_habitat
 \description{
 A dataset containing the area of highly suitable habitat within the
 North and South Deltas
-}
-\details{
-Habitat estimates from NOAA NMFS Winter Run Life Cycle Model. The model
-outputs habitat area estimates for months December-May. Habitat for months
-June-Novemeber are represented by the yearly average habitat.
-
-High quality habitat defined by:
-
-Channel type: mainstem, distributaries, or open water
-
-Depth: > 0.2 m and <= 1.5 m
-
-Cover Vegetated edge
 }
 \keyword{datasets}
