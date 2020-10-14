@@ -98,6 +98,7 @@ knitr::kable(align = 'c', head(yuba_river_instream, 5),
              FR_juv_wua = Fall Run Chinook Juvenile WUA, SR_spawn_wua = 
              Spring Run Chinook Spawning WUA, ST_spawn_wua = Steelhead Spawning WUA, 
              ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA,
+             ST_adult_wua = Steelhead Adult WUA,
              watershed = section of stream modeled for CVPIA SDM")
 
 usethis::use_data(yuba_river_instream, overwrite = TRUE)

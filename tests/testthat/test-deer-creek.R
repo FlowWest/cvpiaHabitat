@@ -12,12 +12,12 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Deer", {
   expect_equal(modeling$SR_spawn, FALSE)
   expect_equal(modeling$SR_fry, FALSE)
   expect_equal(modeling$SR_juv, FALSE)
-  expect_equal(modeling$SR_floodplain, FALSE)
+  expect_equal(modeling$SR_floodplain, TRUE)
 
   expect_equal(modeling$ST_spawn, FALSE)
   expect_equal(modeling$ST_fry, FALSE)
   expect_equal(modeling$ST_juv, FALSE)
-  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_floodplain, TRUE)
   expect_equal(modeling$ST_adult, FALSE)
 })
 

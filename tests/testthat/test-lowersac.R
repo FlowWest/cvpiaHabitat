@@ -6,13 +6,18 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Lower Sac", 
 
   expect_equal(is.na(modeling$FR_spawn), TRUE)
   expect_equal(modeling$FR_fry, FALSE)
-  expect_equal(modeling$FR_juv, TRUE)
-  expect_equal(modeling$FR_floodplain, TRUE)
+  expect_equal(modeling$FR_juv, FALSE)
+  expect_equal(modeling$FR_floodplain, FALSE)
 
   expect_equal(is.na(modeling$SR_spawn), TRUE)
   expect_equal(modeling$SR_fry, FALSE)
   expect_equal(modeling$SR_juv, FALSE)
   expect_equal(modeling$SR_floodplain, FALSE)
+
+  expect_equal(is.na(modeling$WR_spawn), TRUE)
+  expect_equal(modeling$WR_fry, FALSE)
+  expect_equal(modeling$WR_juv, TRUE)
+  expect_equal(modeling$WR_floodplain, TRUE)
 
   expect_equal(is.na(modeling$ST_spawn), TRUE)
   expect_equal(modeling$ST_fry, FALSE)

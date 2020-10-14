@@ -5,7 +5,7 @@
 \alias{modeling_exist}
 \title{Habitat Modeling Status}
 \format{
-dataframe with 33 rows and 15 variables
+dataframe with 32 rows and 23 variables
 \describe{
 \item{Order}{integer value representing watershed order in SIT model}
 \item{Watershed}{name of watershed}
@@ -22,11 +22,14 @@ dataframe with 33 rows and 15 variables
 \item{ST_juv}{TRUE if juvenile rearing habitat modeling exists for Steelhead}
 \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
 \item{ST_adult}{TRUE if adult rearing habitat modeling exists for Steelhead}
-\item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
-\item{UseRearRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed}
-\item{UseSpawnRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed}
-\item{UseFloodplainRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed}
-\item{Note}{misc notes}
+\item{LFR_spawn}{TRUE if spawning habitat modeling exists for Late-fall Run}
+\item{LFR_fry}{TRUE if fry rearing habitat modeling exists for Late-fall Run}
+\item{LFR_juv}{TRUE if juvenile rearing habitat modeling exists for Late-fall Run}
+\item{LFR_floodplain}{TRUE if floodplain rearing modeling exists for Late-fall Run}
+\item{WR_spawn}{TRUE if spawning habitat modeling exists for Winter Run}
+\item{WR_fry}{TRUE if fry rearing habitat modeling exists for Winter Run}
+\item{WR_juv}{TRUE if juvenile rearing habitat modeling exists for Winter Run}
+\item{WR_floodplain}{TRUE if floodplain rearing modeling exists for Winter Run}
 }
 }
 \source{
@@ -36,12 +39,8 @@ Sadie Gill \email{sgill@flowwest.com}
 modeling_exist
 }
 \description{
-A table lifestage, species, and watershed
-}
-\details{
-This table was compiled from information provided by Mark Gard \email{Mark.Gard@Wildlife.ca.gov}.
-Used as look up table for \code{\link{set_spawning_habitat}},
-\code{\link{set_instream_habitat}}, and \code{\link{set_floodplain_habitat}}
+This table summaries modeling availability based on species and
+lifestage combinations for each watershed
 }
 \examples{
 modeling_exist
