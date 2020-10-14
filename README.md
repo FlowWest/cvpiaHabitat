@@ -1,5 +1,4 @@
------
-<img src="cvpia_logo2.png" align="right" width="40%"/>
+<img src="man/figures/cvpia_logo.jpg" align="right" width="40%"/>
 
 ### Modeled Habitat Areas
 *This package is for estimating spawning and rearing (instream and floodplain) habitat within the Sacramento and San Joaquin river systems for use with the CVPIA salmon life cycle model.*
@@ -41,7 +40,5 @@ Where available, results from Instream Flow Incremental Methodology (IFIM) studi
 Similarly, where available, results from floodplain hydraulic modeling studies were used to generate floodplain flow to suitable area relationships. Where no modeling studies were available, suitable floodplain area were scaled from nearby, geomorphically similar watersheds. Specific methods and supporting documents for instream and floodplain habitat inputs in every watershed are provided on the reference tab. 
 
 
-
-<style>.logo{margin-top: 40px;}</style>
-<div class = 'logo'>Data Assembled and Maintained by <a href = "http://www.flowwest.com/" target = "_blank"> <img src="TransLogoTreb.png" width="150px"/></div>
+<div style="margin-top: 40px;">Data Assembled and Maintained by <a href = "http://www.flowwest.com/" target = "_blank"> <img src="man/figures/TransLogoTreb.png" width="150px"/></div>
 
