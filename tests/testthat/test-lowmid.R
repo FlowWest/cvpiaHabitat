@@ -1,7 +1,7 @@
 library(cvpiaHabitat)
 context('Lower-mid Sacramento Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Lower mid Sac", {
+test_that("modeling of species coverage hasn't changed - Lower mid Sac", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Lower-mid Sacramento River')
 
   expect_equal(is.na(modeling$FR_spawn), TRUE)

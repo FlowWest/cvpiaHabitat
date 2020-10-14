@@ -1,7 +1,7 @@
 library(cvpiaHabitat)
 context('Cow Creek Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Cow", {
+test_that("modeling of species coverage hasn't changed - Cow", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Cow Creek')
 
   expect_equal(modeling$FR_spawn, FALSE)

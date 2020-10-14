@@ -3,7 +3,7 @@ context('Sutter Bypass Habitat')
 
 # Sutter bypass -----
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Sutter Bypass", {
+test_that("modeling of species coverage hasn't changed - Sutter Bypass", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Sutter Bypass')
 
   expect_equal(is.na(modeling$FR_spawn), TRUE)
@@ -56,7 +56,7 @@ test_that('Sutter Bypass 2 instream works', {
 
 # Yolo bypass -----
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Yolo Bypass", {
+test_that("modeling of species coverage hasn't changed - Yolo Bypass", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Yolo Bypass')
 
   expect_equal(is.na(modeling$FR_spawn), TRUE)
