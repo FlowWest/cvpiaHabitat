@@ -213,12 +213,13 @@ battle_creek_instream %>%
 The following plot shows the weighted usable rearing area in square feet per thousand feet for Fall Run Chinook Salmon and Steelhead fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 ```{r}
 battle_creek_instream %>% 
-  select(SR_juv_wua, SR_fry_wua, ST_juv_wua, ST_fry_wua, flow_cfs, watershed) %>%
+  select(SR_juv_wua, SR_fry_wua, ST_juv_wua, ST_fry_wua, WR_fry_wua, WR_juv_wua, flow_cfs, watershed) %>%
   gather(species_lifestage, acres, -flow_cfs, -watershed) %>% 
   mutate(
     Species = case_when( 
       str_detect(species_lifestage, 'SR') ~ 'Spring and Fall Run',
-      str_detect(species_lifestage, 'ST') ~ 'Steelhead'),
+      str_detect(species_lifestage, 'ST') ~ 'Steelhead', 
+      str_detect(species_lifestage, 'WR') ~ 'Winter Run'),
     lifestage = ifelse(str_detect(species_lifestage, 'juv'), 'Juvenile', 'Fry')) %>% 
   ggplot(aes(flow_cfs, acres, color = Species)) +
   geom_line() +
