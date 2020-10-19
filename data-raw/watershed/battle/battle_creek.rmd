@@ -18,10 +18,108 @@ None planned.
 ## Instream Spawning and Rearing Habitat
 **Data Source:** [Thomas R. Payne & Associates 1995](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf){target="_blank"} (pg C-1)
 
-The instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in Battle Creek are based on data from Thomas R. Payne & Associates' instream flow evaluations. The flow evaluations were conducted for the California Department of Fish and Wildlife. They uncovered relationships between flow and both suitable spawning habitat and suitable rearing habitat from seven study reaches in Battle Creek. For both species, the weighted usable area (WUA) data were consolidated from all mainstem reaches. 
+**Data Source (Winter Run):** [Thomas R. Payne & Associates 1998](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/TRPA-1998-Task-1.pdf){target="_blank"} (pg C-1)
+
+The instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in Battle Creek are based on data from Thomas R. Payne & Associates' 1995 instream flow evaluations. The Winter Run in Battle Creek are based on the 1998 instream flow evaluations. The flow evaluations were conducted for the California Department of Fish and Wildlife. They uncovered relationships between flow and both suitable spawning habitat and suitable rearing habitat from seven study reaches in Battle Creek. For both species, the weighted usable area (WUA) data were consolidated from all mainstem reaches. 
 
 ### Combine Spawning and Rearing Data
 The instream spawning and rearing habitat data described above for Fall Run Chinook Salmon (FR), Spring Run Chinook Salmon (SR), and Steelhead (ST) are combined for use in the Decision Support Model (DSM) in the following format. Units are in square feet per 1000 feet. 
+
+```{r}
+# WINTER RUN 
+battle_ms_and_nf <- read_csv("data-raw/watershed/battle/data/spring-run-WUA-mainstem-and-north-fork.csv")
+
+props_lookup <- c(wildcat = 0.135135135135135, eagle_creek = 0.162162162162162, 
+                  north_battle_feeder = 0.216216216216216, mainstem = 0.486486486486487)
+
+# JUVS ---
+wr_juv <- battle_ms_and_nf %>%
+  select(flow, SR_juv, subreach) %>%
+  spread(subreach, SR_juv) %>%
+  arrange(flow)
+
+eagle_creek_approx_juv <- approxfun(wr_juv$flow, wr_juv$eagle_creek)
+mainstem_approx_juv <- approxfun(wr_juv$flow, wr_juv$mainstem)
+feeder_approx_juv <- approxfun(wr_juv$flow, wr_juv$north_battle_feeder)
+wildcat_approx_juv <- approxfun(wr_juv$flow, wr_juv$wildcat)
+
+wr_juv_imputed <- wr_juv %>%
+  mutate(
+    eagle_creek = eagle_creek_approx_juv(flow) * props_lookup["eagle_creek"],
+    mainstem = mainstem_approx_juv(flow) * props_lookup["mainstem"],
+    north_battle_feeder = feeder_approx_juv(flow) * props_lookup["north_battle_feeder"],
+    wildcat = wildcat_approx_juv(flow) * props_lookup["wildcat"]
+  ) %>%
+  filter(across(everything(), ~!is.na(.x))) %>% # remove cases where any one creeks is NA
+  gather(reach, wua, eagle_creek:wildcat) %>% 
+  group_by(flow) %>%
+  summarise(
+    wua = sum(wua)
+  ) %>%
+  rename(flow_cfs = flow,
+         WR_juv_wua = wua)
+
+# FRY ---
+wr_fry <- battle_ms_and_nf %>%
+  select(flow, SR_fry, subreach) %>%
+  spread(subreach, SR_fry) %>%
+  arrange(flow)
+
+eagle_creek_approx_fry <- approxfun(wr_fry$flow, wr_fry$eagle_creek)
+mainstem_approx_fry <- approxfun(wr_fry$flow, wr_fry$mainstem)
+feeder_approx_fry <- approxfun(wr_fry$flow, wr_fry$north_battle_feeder)
+wildcat_approx_fry <- approxfun(wr_fry$flow, wr_fry$wildcat)
+
+wr_fry_imputed <- wr_fry %>%
+  mutate(
+    eagle_creek = eagle_creek_approx_fry(flow) * props_lookup["eagle_creek"],
+    mainstem = mainstem_approx_fry(flow) * props_lookup["mainstem"],
+    north_battle_feeder = feeder_approx_fry(flow) * props_lookup["north_battle_feeder"],
+    wildcat = wildcat_approx_fry(flow) * props_lookup["wildcat"]
+  ) %>%
+  filter(across(everything(), ~!is.na(.x))) %>% # remove cases where any one creeks is NA
+  gather(reach, wua, eagle_creek:wildcat) %>% 
+  group_by(flow) %>%
+  summarise(
+    wua = sum(wua)
+  ) %>%
+  rename(flow_cfs = flow,
+         WR_fry_wua = wua)
+
+# SPAWN ---
+wr_spawn <- battle_ms_and_nf %>%
+  select(flow, SR_spawn, subreach) %>%
+  spread(subreach, SR_spawn) %>%
+  arrange(flow)
+
+eagle_creek_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$eagle_creek)
+mainstem_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$mainstem)
+feeder_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$north_battle_feeder)
+wildcat_approx_spawn <- approxfun(wr_spawn$flow, wr_spawn$wildcat)
+
+wr_spawn_imputed <- wr_spawn %>%
+  mutate(
+    eagle_creek = eagle_creek_approx_spawn(flow) * props_lookup["eagle_creek"],
+    mainstem = mainstem_approx_spawn(flow) * props_lookup["mainstem"],
+    north_battle_feeder = feeder_approx_spawn(flow) * props_lookup["north_battle_feeder"],
+    wildcat = wildcat_approx_spawn(flow) * props_lookup["wildcat"]
+  ) %>%
+  filter(across(everything(), ~!is.na(.x))) %>% # remove cases where any one creeks is NA
+  gather(reach, wua, eagle_creek:wildcat) %>% 
+  group_by(flow) %>%
+  summarise(
+    wua = sum(wua)
+  ) %>%
+  rename(flow_cfs = flow,
+         WR_spawn_wua = wua)
+
+wr_wua <- wr_juv_imputed %>% 
+  left_join(wr_fry_imputed) %>% 
+  left_join(wr_spawn_imputed)
+
+```
+
+
 ```{r}
 battle <- read_csv('data-raw/watershed/battle/data/Weighted_composite_Battle.csv', skip = 1) 
 
@@ -32,6 +130,7 @@ battle_creek_instream <- battle %>%
          ST_fry_wua = `Fry Rearing ST`, ST_juv_wua = `Juv Rearing ST`, 
          SR_spawn_wua = `Spawning SR`, SR_fry_wua = `Fry Rearing SR`, 
          SR_juv_wua = `Juv Rearing SR`) %>%
+  left_join(wr_wua) %>% # add winter run results
   mutate(watershed = 'Battle Creek')
 
 knitr::kable(head(battle_creek_instream, 5), align = 'c', 
@@ -43,18 +142,62 @@ knitr::kable(head(battle_creek_instream, 5), align = 'c',
                         SR_spawn_wua = Spring Run Chinook Spawning WUA,  SR_fry_wua = 
                         Spring Run Chinook Fry WUA, SR_juv_wua = Spring Run Chinook Juvenile WUA,
                         watershed = section of stream modeled for CVPIA SDM") 
-
-usethis::use_data(battle_creek_instream, overwrite = TRUE)
 ```
 
+
+**Fall Run**
+
+```{r}
+battle_creek_instream %>% 
+  head() %>% 
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua) %>% 
+  knitr::kable()
+```
 *... with `r nrow(battle_creek_instream) - 5` more rows*
+
+
+**Spring Run**
+
+```{r}
+battle_creek_instream %>% 
+  head() %>% 
+  select(flow_cfs, SR_spawn_wua, SR_fry_wua, SR_juv_wua) %>% 
+  knitr::kable()
+```
+*... with `r nrow(battle_creek_instream) - 5` more rows*
+
+
+**Steelhead**
+
+```{r}
+battle_creek_instream %>% 
+  head() %>% 
+  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua) %>% 
+  knitr::kable()
+```
+*... with `r nrow(battle_creek_instream) - 5` more rows*
+
+**Winter Run**
+
+```{r}
+battle_creek_instream %>% 
+  head() %>% 
+  select(flow_cfs, WR_spawn_wua, WR_fry_wua, WR_juv_wua) %>% 
+  knitr::kable()
+```
+*... with `r nrow(battle_creek_instream) - 5` more rows*
+
+
+```{r}
+usethis::use_data(battle_creek_instream, overwrite = TRUE)
+```
 
 ### Spawning WUA    
 The following plot shows the spawning WUA in square feet per thousand feet for Fall Run Chinook Salmon, Steelhead, and Spring Run Chinook Salmon. These area per length rates are multiplied by the total spawning reach length mapped by the Science Integration Team (SIT) to estimate available habitat.    
 ```{r}
 battle_creek_instream %>% 
   select(flow_cfs, `Fall Run Chinook` = FR_spawn_wua, `Steelhead` = ST_spawn_wua, 
-         `Spring Run Chinook` = SR_spawn_wua) %>% 
+         `Spring Run Chinook` = SR_spawn_wua, `Winter Run Chinook` = WR_spawn_wua) %>% 
   gather(Species, WUA, -flow_cfs) %>% 
   filter(!is.na(WUA)) %>% 
   ggplot(aes(flow_cfs, WUA, color = Species)) +
