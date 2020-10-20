@@ -1,7 +1,7 @@
 library(cvpiaHabitat)
 context('Cosumnes River Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Cosumnes", {
+test_that("modeling of species coverage hasn't changed - Cosumnes", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Cosumnes River')
 
   expect_equal(modeling$FR_spawn, FALSE)
@@ -17,7 +17,7 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Cosumnes", {
   expect_equal(modeling$ST_spawn, FALSE)
   expect_equal(modeling$ST_fry, FALSE)
   expect_equal(modeling$ST_juv, FALSE)
-  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_floodplain, TRUE)
   expect_equal(modeling$ST_adult, FALSE)
 })
 

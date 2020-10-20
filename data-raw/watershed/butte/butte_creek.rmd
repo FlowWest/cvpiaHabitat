@@ -54,14 +54,15 @@ st_spawn <-  read_csv('data-raw/watershed/butte/data/butte_creek_steelhead_spawn
 
 # Rearing Data 
 rear <- read_excel('data-raw/mark_gard_data/IFIMWUA.xlsx', 
-                      range = "A71:C101", sheet = 'Butte') %>% 
-  rename(flow_cfs = Flow, FR_fry_wua = `Fry Rearing`, FR_juv_wua = `Juv Rearing`)
+                      range = "A71:D101", sheet = 'Butte') %>% 
+  rename(flow_cfs = Flow, FR_fry_wua = `Fry Rearing`, FR_juv_wua = `Juv Rearing`, ST_adult_wua = `adult trout`)
 
 # Combine spawning and rearing data 
 butte_creek_instream <- sr_spawn %>% 
-  full_join(st_spawn) %>%
-  full_join(rear) %>%
-  mutate(watershed = 'Butte Creek')
+  left_join(st_spawn) %>%
+  left_join(rear) %>% 
+  mutate(watershed = 'Butte Creek') %>% 
+  select(flow_cfs, FR_fry_wua, FR_juv_wua, SR_spawn_wua, ST_spawn_wua, ST_adult_wua, watershed)
 
 usethis::use_data(butte_creek_instream, overwrite = TRUE)
 ```
@@ -100,12 +101,13 @@ butte_creek_instream %>%
 ```{r}
 butte_creek_instream %>% 
   filter(!is.na(FR_fry_wua)) %>% 
-  select(flow_cfs, FR_fry_wua, FR_juv_wua, watershed) %>% 
+  select(flow_cfs, FR_fry_wua, FR_juv_wua, ST_adult_wua, watershed) %>% 
   head(5) %>% 
   knitr::kable(align = 'c', caption = 
                  "Header Descriptions: flow_cfs = flow in cubic feet per second, 
-                                  FR_fry_wua = Spring Run Chinook Fry WUA,
-                                  FR_juv_wua = Spring Run Chinook Juvenile WUA,
+                                  FR_fry_wua = Fall Run Chinook Fry WUA,
+                                  FR_juv_wua = Fall Run Chinook Juvenile WUA,
+                                  ST_adult_wua = Steelhead Adult WUA,
                                   watershed = section of stream modeled for CVPIA SDM")
 ```
 
@@ -132,17 +134,22 @@ butte_creek_instream %>%
 The following plot shows the rearing WUA in square feet per thousand feet for Spring Run Chinook Salmon fry and juvenile. These rates are multiplied by the total rearing reach length mapped by the SIT to estimate available habitat. 
 
 ``` {r}
+labs <- c('Fall Run - fry', 'Fall Run - juvenile', 'Steelhead - adult')
+names(labs) <- c('FR_fry_wua', 'FR_juv_wua', 'ST_adult_wua')
+
 butte_creek_instream %>% 
-  filter(!is.na(FR_fry_wua)) %>% 
-  ggplot(aes(x = flow_cfs)) +
-  geom_line(aes(y = FR_fry_wua, color = '#d95f02', Lifestage = 'Fry Rearing')) +
-  geom_line(aes(y = FR_juv_wua, color = '#7570b3', Lifestage = 'Juv Rearing')) + 
-  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)', color = 'Lifestage') +
+  select(flow_cfs, FR_fry_wua, FR_juv_wua, ST_adult_wua) %>% 
+  gather(Lifestage, wua, -flow_cfs) %>% 
+  filter(!is.na(wua)) %>% 
+  mutate(Lifestage = labs[Lifestage]) %>% 
+  ggplot(aes(x = flow_cfs, y = wua, color = Lifestage)) +
+  geom_line() +
   theme_minimal() + 
-  scale_color_manual(labels = c('Fry Rearing','Juv Rearing'), 
-                     values = c('#d95f02','#7570b3')) +
+  labs(x = 'Flow (cfs)', y = 'WUA (sqft/1000ft)') +
+  scale_color_manual(values = c('#d95f02', '#7570b3', '#1b9e77')) +
   theme(legend.justification = c(1, 0), 
         legend.position = c(.9, .75))
+
 ```
 
 ```{r, include = FALSE}

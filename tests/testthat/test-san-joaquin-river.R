@@ -1,7 +1,7 @@
 library(cvpiaHabitat)
 context('San Joaquin River Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - San Joaquin", {
+test_that("modeling of species coverage hasn't changed - San Joaquin", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'San Joaquin River')
 
   expect_equal(modeling$FR_spawn, FALSE)
@@ -12,12 +12,12 @@ test_that("modeling of species coverage hasn't changed since v2.0 - San Joaquin"
   expect_equal(is.na(modeling$SR_spawn), TRUE)
   expect_equal(modeling$SR_fry, FALSE)
   expect_equal(modeling$SR_juv, FALSE)
-  expect_equal(modeling$SR_floodplain, FALSE)
+  expect_equal(modeling$SR_floodplain, TRUE)
 
   expect_equal(is.na(modeling$ST_spawn), TRUE)
   expect_equal(modeling$ST_fry, FALSE)
   expect_equal(modeling$ST_juv, FALSE)
-  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_floodplain, TRUE)
   expect_equal(modeling$ST_adult, FALSE)
 })
 

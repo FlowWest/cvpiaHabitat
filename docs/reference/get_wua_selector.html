@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pool Area — pools • cvpiaHabitat</title>
+<title>Get WUA Selector — get_wua_selector • cvpiaHabitat</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Pool Area — pools" />
-<meta property="og:description" content="A dataset containing estimated area of pools within a watershed" />
+<meta property="og:title" content="Get WUA Selector — get_wua_selector" />
+<meta property="og:description" content="Habitat Modeling Column Lookup" />
 
 
 
@@ -108,61 +108,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Pool Area</h1>
-    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/data.R'><code>R/data.R</code></a></small>
-    <div class="hidden name"><code>pools.Rd</code></div>
+    <h1>Get WUA Selector</h1>
+    <small class="dont-index">Source: <a href='https://github.com/FlowWest/cvpiaHabitat/blob/master/R/utils.R'><code>R/utils.R</code></a></small>
+    <div class="hidden name"><code>get_wua_selector.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A dataset containing estimated area of pools within a watershed</p>
+    <p>Habitat Modeling Column Lookup</p>
     </div>
 
-    <pre class="usage"><span class='va'>pools</span></pre>
+    <pre class="usage"><span class='fu'>get_wua_selector</span><span class='op'>(</span><span class='va'>species_wuas</span>, <span class='va'>species</span>, <span class='va'>life_stage</span><span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>species_wuas</th>
+      <td><p>vector of column names within modeling data table for the targeted watershed</p></td>
+    </tr>
+    <tr>
+      <th>species</th>
+      <td><p>target species: "fr" for fall run, "sr" for spring run, and "st" for steelhead</p></td>
+    </tr>
+    <tr>
+      <th>life_stage</th>
+      <td><p>"spawn", fry", "juv", or "adult"</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>dataframe with 31 rows and 3 variables</p><dl>
-  <dt>watershed</dt><dd><p>CVPIA watershed</p></dd>
-  <dt>SR_pools_sq_meters</dt><dd><p>Spring Run pool area estimate in square meters</p></dd>
-  <dt>ST_pools_sq_meters</dt><dd><p>Steelhead pool area estimate in square meters</p></dd>
-
-</dl>
-
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    
-<ul>
-<li><p>Percent Pool Estimates: Mark Gard <a href='mailto:Mark.Gard@Wildlife.ca.gov'>Mark.Gard@Wildlife.ca.gov</a></p></li>
-<li><p>Channel Area Estimates: Sadie Gill <a href='mailto:sgill@flowwest.com'>sgill@flowwest.com</a></p></li>
-<li><p>QA/QC: Mark Tompkins <a href='mailto:mtompkins@flowwest.com'>mtompkins@flowwest.com</a></p></li>
-</ul>
-
+    <p>column name of desired habitat relationship</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Estimates of percent pools were provided by Mark Gard for some watersheds.
-The mean percent pools, excluding Feather River, is 23.1%. This value is used for watersheds without an estimate.
-The total area of pools is then caluculated
-by multiplying the estimated percent pools by the total channel area. Channel
-areas were estimated using Google Earth Engine.</p>
-<p>Watersheds With Estimated Percent Pools:</p><ul>
-<li><p>Antelope Creek</p></li>
-<li><p>Battle Creek</p></li>
-<li><p>Butte Creek</p></li>
-<li><p>Clear Creek</p></li>
-<li><p>Cottonwood Creek</p></li>
-<li><p>Deer Creek</p></li>
-<li><p>Feather River (*80<!-- % percent pools seems high, but was confirmed by Jason Kindopp) --></p></li>
-<li><p>Mill Creek</p></li>
-<li><p>Mokelumne River</p></li>
-<li><p>Stanislaus River</p></li>
-<li><p>Tuolumne River</p></li>
-<li><p>Upper Sacramento River</p></li>
-<li><p>Yuba River</p></li>
-</ul>
-
-<p><strong>Note:</strong> The area of pools that covers both the Upper Sacramento and
-Upper-mid Sacramento DSM segments is assigned to the Upper Sacramento River.</p>
+    <p>Habitat modeling column lookup by species and lifestage. If desired
+combination of species and lifestage is not present in modeling data table for a watershed,
+then the column representing the most appropriate proxy will be returned.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

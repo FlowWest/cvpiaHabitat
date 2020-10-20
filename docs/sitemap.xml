@@ -4,25 +4,7 @@
     <loc>https://flowwest.github.io/cvpiaHabitat//index.html</loc>
   </url>
   <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/FR_rearing_approx.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/FR_spawn_approx.html</loc>
-  </url>
-  <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/IChab.adult.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/SR_rearing_approx.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/SR_spawn_approx.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/ST_rearing_approx.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/ST_spawn_approx.html</loc>
   </url>
   <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/acres_to_square_meters.html</loc>
@@ -37,6 +19,9 @@
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/delta_habitat.html</loc>
   </url>
   <url>
+    <loc>https://flowwest.github.io/cvpiaHabitat//reference/get_wua_selector.html</loc>
+  </url>
+  <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/habitat_data.html</loc>
   </url>
   <url>
@@ -44,9 +29,6 @@
   </url>
   <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/pools.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/rearing_approx.html</loc>
   </url>
   <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/sacramento_habitat.html</loc>
@@ -62,9 +44,6 @@
   </url>
   <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/set_spawning_habitat.html</loc>
-  </url>
-  <url>
-    <loc>https://flowwest.github.io/cvpiaHabitat//reference/spawning_approx.html</loc>
   </url>
   <url>
     <loc>https://flowwest.github.io/cvpiaHabitat//reference/square_meters_to_acres.html</loc>

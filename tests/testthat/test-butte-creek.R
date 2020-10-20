@@ -1,17 +1,17 @@
 library(cvpiaHabitat)
 context('Butte Creek Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Butte", {
+test_that("modeling of species coverage hasn't changed - Butte", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Butte Creek')
 
   expect_equal(modeling$FR_spawn, FALSE)
-  expect_equal(modeling$FR_fry, TRUE)
-  expect_equal(modeling$FR_juv, TRUE)
+  expect_equal(modeling$FR_fry, FALSE)
+  expect_equal(modeling$FR_juv, FALSE)
   expect_equal(modeling$FR_floodplain, TRUE)
 
   expect_equal(modeling$SR_spawn, TRUE)
-  expect_equal(modeling$SR_fry, FALSE)
-  expect_equal(modeling$SR_juv, FALSE)
+  expect_equal(modeling$SR_fry, TRUE)
+  expect_equal(modeling$SR_juv, TRUE)
   expect_equal(modeling$SR_floodplain, TRUE)
 
   expect_equal(modeling$ST_spawn, TRUE)

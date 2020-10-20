@@ -3,18 +3,23 @@ context('Sutter Bypass Habitat')
 
 # Sutter bypass -----
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Sutter Bypass", {
+test_that("modeling of species coverage hasn't changed - Sutter Bypass", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Sutter Bypass')
 
   expect_equal(is.na(modeling$FR_spawn), TRUE)
   expect_equal(modeling$FR_fry, FALSE)
-  expect_equal(modeling$FR_juv, TRUE)
+  expect_equal(modeling$FR_juv, FALSE)
   expect_equal(is.na(modeling$FR_floodplain), TRUE)
 
   expect_equal(is.na(modeling$SR_spawn), TRUE)
   expect_equal(modeling$SR_fry, FALSE)
   expect_equal(modeling$SR_juv, FALSE)
   expect_equal(is.na(modeling$SR_floodplain), TRUE)
+
+  expect_equal(is.na(modeling$WR_spawn), TRUE)
+  expect_equal(modeling$WR_fry, FALSE)
+  expect_equal(modeling$WR_juv, TRUE)
+  expect_equal(is.na(modeling$WR_floodplain), TRUE)
 
   expect_equal(is.na(modeling$ST_spawn), TRUE)
   expect_equal(modeling$ST_fry, FALSE)
@@ -51,18 +56,23 @@ test_that('Sutter Bypass 2 instream works', {
 
 # Yolo bypass -----
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Yolo Bypass", {
+test_that("modeling of species coverage hasn't changed - Yolo Bypass", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Yolo Bypass')
 
   expect_equal(is.na(modeling$FR_spawn), TRUE)
   expect_equal(modeling$FR_fry, FALSE)
-  expect_equal(modeling$FR_juv, TRUE)
+  expect_equal(modeling$FR_juv, FALSE)
   expect_equal(is.na(modeling$FR_floodplain), TRUE)
 
   expect_equal(is.na(modeling$SR_spawn), TRUE)
   expect_equal(modeling$SR_fry, FALSE)
   expect_equal(modeling$SR_juv, FALSE)
   expect_equal(is.na(modeling$SR_floodplain), TRUE)
+
+  expect_equal(is.na(modeling$WR_spawn), TRUE)
+  expect_equal(modeling$WR_fry, FALSE)
+  expect_equal(modeling$WR_juv, TRUE)
+  expect_equal(is.na(modeling$WR_floodplain), TRUE)
 
   expect_equal(is.na(modeling$ST_spawn), TRUE)
   expect_equal(modeling$ST_fry, FALSE)

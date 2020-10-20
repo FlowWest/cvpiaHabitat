@@ -63,12 +63,12 @@
 #'
 #' @section Bypasses:
 #' \itemize{
-#'   \item \href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/bypasses.html}{Sutter and Yolo Bypass}
+#'   \item \link[=bypass]{Sutter and Yolo Bypasses}
 #' }
 #'
 #' @section Delta:
 #' \itemize{
-#'   \item \href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/delta.html}{North and South Delta}
+#'   \item \link[=delta_habitat]{North and South Delta}
 #' }
 #' @name habitat_data
 NULL
@@ -432,18 +432,11 @@ NULL
 #'   \item{Sutter Bypass 4}{suitable rearing area in square meters in the Sutter Bypass below Tisdale Weir}
 #' }
 #'
-#' @details Habitat estimates from NOAA NMFS Winter Run Life Cycle Model
-#'
-#' High quality defined by:
-#'
-#' Channel depth > 0.2 m and < 1.5 m
-#'
-#' Velocity <= 0.15 m/s
 #'
 #' @examples
 #' yolo_bypass_floodplain
 #'
-#' @source \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' @source \href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/bypasses.html}{Sutter and Yolo Bypass Modeling Details}
 #' @name bypass
 #' @aliases NULL
 NULL
@@ -469,21 +462,9 @@ NULL
 #'   \item{South Delta}{high quality habitat area in square meters}
 #' }
 #'
-#' @details
-#' Habitat estimates from NOAA NMFS Winter Run Life Cycle Model. The model
-#' outputs habitat area estimates for months December-May. Habitat for months
-#' June-Novemeber are represented by the yearly average habitat.
-#'
-#' High quality habitat defined by:
-#'
-#' Channel type: mainstem, distributaries, or open water
-#'
-#' Depth: > 0.2 m and <= 1.5 m
-#'
-#' Cover Vegetated edge
 #'
 #' @source
-#' \href{https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/HendrixEtAl2014_Winter_Run_Model_Tech_Memo.pdf}{Central Valley Floodplain Evaluation and Delineation (CVFED) HEC-RAS hydraulic model refined for use in the NOAA-NMFS Winter Run Chinook Salmon life cycle model}
+#' \href{http://cvpia-habitat-docs-markdown.s3-website-us-west-2.amazonaws.com/watershed/delta.html}{North and South Delta Modeling Details}
 #'
 #' \itemize{
 #'   \item Modeling Output: Correigh Green \email{correigh.greene@@noaa.gov}
@@ -516,9 +497,10 @@ NULL
 'watershed_lengths'
 
 #' Habitat Modeling Status
-#' @description A table lifestage, species, and watershed
+#' @description This table summaries modeling availability based on species and
+#' lifestage combinations for each watershed
 #'
-#' @format dataframe with 33 rows and 15 variables
+#' @format dataframe with 32 rows and 23 variables
 #' \describe{
 #' \item{Order}{integer value representing watershed order in SIT model}
 #' \item{Watershed}{name of watershed}
@@ -535,19 +517,18 @@ NULL
 #' \item{ST_juv}{TRUE if juvenile rearing habitat modeling exists for Steelhead}
 #' \item{ST_floodplain}{TRUE if floodplain rearing modeling exists for Steelhead}
 #' \item{ST_adult}{TRUE if adult rearing habitat modeling exists for Steelhead}
-#' \item{Region}{Regional grouping of watersheds used for estimating values for watersheds without modeling}
-#' \item{UseRearRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no rearing modeling exists for watershed}
-#' \item{UseSpawnRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no spawning modeling exists for watershed}
-#' \item{UseFloodplainRegionApprox}{boolean flag for set_habitat functions, TRUE denotes no floodplain rearing modeling exists for watershed}
-#' \item{Note}{misc notes}
+#' \item{LFR_spawn}{TRUE if spawning habitat modeling exists for Late-fall Run}
+#' \item{LFR_fry}{TRUE if fry rearing habitat modeling exists for Late-fall Run}
+#' \item{LFR_juv}{TRUE if juvenile rearing habitat modeling exists for Late-fall Run}
+#' \item{LFR_floodplain}{TRUE if floodplain rearing modeling exists for Late-fall Run}
+#' \item{WR_spawn}{TRUE if spawning habitat modeling exists for Winter Run}
+#' \item{WR_fry}{TRUE if fry rearing habitat modeling exists for Winter Run}
+#' \item{WR_juv}{TRUE if juvenile rearing habitat modeling exists for Winter Run}
+#' \item{WR_floodplain}{TRUE if floodplain rearing modeling exists for Winter Run}
 #' }
 #'
 #' @examples
 #' modeling_exist
-#'
-#' @details This table was compiled from information provided by Mark Gard \email{Mark.Gard@@Wildlife.ca.gov}.
-#' Used as look up table for \code{\link{set_spawning_habitat}},
-#' \code{\link{set_instream_habitat}}, and \code{\link{set_floodplain_habitat}}
 #'
 #' @source Sadie Gill \email{sgill@@flowwest.com}
 'modeling_exist'
@@ -643,6 +624,7 @@ NULL
 #'
 'pools'
 
+# TODO revise now that we have more adult rearing modeling
 #' Steelhead Adult Rearing Habitat
 #'
 #' @description A dataset containing adult rearing habitat quanities in square meters

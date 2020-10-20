@@ -2,7 +2,7 @@ title: cvpiaHabitat
 url: https://flowwest.github.io/cvpiaHabitat/
 template:
   params:
-    bootswatch: paper
+    bootswatch: yeti
 
 home:
   links:

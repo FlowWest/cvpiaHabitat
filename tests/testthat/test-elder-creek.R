@@ -1,7 +1,7 @@
 library(cvpiaHabitat)
 context('Elder Creek Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Elder", {
+test_that("modeling of species coverage hasn't changed - Elder", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Elder Creek')
 
   expect_equal(modeling$FR_spawn, FALSE)
@@ -17,7 +17,7 @@ test_that("modeling of species coverage hasn't changed since v2.0 - Elder", {
   expect_equal(modeling$ST_spawn, FALSE)
   expect_equal(modeling$ST_fry, FALSE)
   expect_equal(modeling$ST_juv, FALSE)
-  expect_equal(modeling$ST_floodplain, FALSE)
+  expect_equal(modeling$ST_floodplain, TRUE)
   expect_equal(modeling$ST_adult, FALSE)
 })
 

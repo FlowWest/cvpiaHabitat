@@ -1,13 +1,23 @@
 library(cvpiaHabitat)
 context('Upper Sacramento Habitat')
 
-test_that("modeling of species coverage hasn't changed since v2.0 - Upper Sac", {
+test_that("modeling of species coverage hasn't changed - Upper Sac", {
   modeling <- subset(cvpiaHabitat::modeling_exist, Watershed == 'Upper Sacramento River')
 
   expect_equal(modeling$FR_spawn, TRUE)
   expect_equal(modeling$FR_fry, FALSE)
-  expect_equal(modeling$FR_juv, TRUE)
-  expect_equal(modeling$FR_floodplain, TRUE)
+  expect_equal(modeling$FR_juv, FALSE)
+  expect_equal(modeling$FR_floodplain, FALSE)
+
+  expect_equal(modeling$WR_spawn, TRUE)
+  expect_equal(modeling$WR_fry, FALSE)
+  expect_equal(modeling$WR_juv, TRUE)
+  expect_equal(modeling$WR_floodplain, TRUE)
+
+  expect_equal(modeling$LFR_spawn, TRUE)
+  expect_equal(modeling$LFR_fry, FALSE)
+  expect_equal(modeling$LFR_juv, FALSE)
+  expect_equal(modeling$LFR_floodplain, FALSE)
 
   expect_equal(modeling$SR_spawn, FALSE)
   expect_equal(modeling$SR_fry, FALSE)
