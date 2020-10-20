@@ -29,8 +29,20 @@ The instream spawning and rearing habitat data described above for Fall Run Chin
 # WINTER RUN 
 battle_ms_and_nf <- read_csv("data-raw/watershed/battle/data/spring-run-WUA-mainstem-and-north-fork.csv")
 
-props_lookup <- c(wildcat = 0.135135135135135, eagle_creek = 0.162162162162162, 
-                  north_battle_feeder = 0.216216216216216, mainstem = 0.486486486486487)
+# subreach lenghts (from report)
+subreach_lens <- tribble(
+  ~reach, ~length_miles,
+  "wildcat", 2.5,
+  "eagle_creek", 3,
+  "north_battle_feeder", 4,
+  "mainstem", 9
+) %>%
+  mutate(
+    prop_of_creek = length_miles/sum(length_miles)
+  )
+
+props_lookup <- subreach_lens$prop_of_creek
+names(props_lookup) <- subreach_lens$reach
 
 # JUVS ---
 wr_juv <- battle_ms_and_nf %>%
@@ -133,15 +145,6 @@ battle_creek_instream <- battle %>%
   left_join(wr_wua) %>% # add winter run results
   mutate(watershed = 'Battle Creek')
 
-knitr::kable(head(battle_creek_instream, 5), align = 'c', 
-              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
-                        FR_spawn_wua = Fall Run Chinook Spawning WUA,  FR_fry_wua = 
-                        Fall Run Chinook Fry WUA, FR_juv_wua = Fall Run Chinook Juvenile WUA, 
-                        ST_adult_wua = Steelhead Adult WUA, ST_spawn_wua = Steelhead Spawning WUA,
-                        ST_fry_wua = Steelhead Fry WUA, ST_juv_wua = Steelhead Juvenile WUA,
-                        SR_spawn_wua = Spring Run Chinook Spawning WUA,  SR_fry_wua = 
-                        Spring Run Chinook Fry WUA, SR_juv_wua = Spring Run Chinook Juvenile WUA,
-                        watershed = section of stream modeled for CVPIA SDM") 
 ```
 
 
@@ -150,8 +153,12 @@ knitr::kable(head(battle_creek_instream, 5), align = 'c',
 ```{r}
 battle_creek_instream %>% 
   head() %>% 
-  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua) %>% 
-  knitr::kable()
+  select(flow_cfs, FR_spawn_wua, FR_fry_wua, FR_juv_wua, watershed) %>% 
+  knitr::kable(align = 'c', 
+              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+                        FR_spawn_wua = Fall Run Chinook Spawning WUA,  FR_fry_wua = 
+                        Fall Run Chinook Fry WUA, FR_juv_wua = Fall Run Chinook Juvenile WUA
+                        watershed = section of stream modeled for CVPIA SDM")
 ```
 *... with `r nrow(battle_creek_instream) - 5` more rows*
 
@@ -161,8 +168,12 @@ battle_creek_instream %>%
 ```{r}
 battle_creek_instream %>% 
   head() %>% 
-  select(flow_cfs, SR_spawn_wua, SR_fry_wua, SR_juv_wua) %>% 
-  knitr::kable()
+  select(flow_cfs, SR_spawn_wua, SR_fry_wua, SR_juv_wua, watershed) %>% 
+  knitr::kable(align = 'c', 
+              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+                        SR_spawn_wua = Spring Run Chinook Spawning WUA,  SR_fry_wua = 
+                        Spring Run Chinook Fry WUA, SR_juv_wua = Spring Run Chinook Juvenile WUA
+                        watershed = section of stream modeled for CVPIA SDM")
 ```
 *... with `r nrow(battle_creek_instream) - 5` more rows*
 
@@ -172,8 +183,13 @@ battle_creek_instream %>%
 ```{r}
 battle_creek_instream %>% 
   head() %>% 
-  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua) %>% 
-  knitr::kable()
+  select(flow_cfs, ST_spawn_wua, ST_fry_wua, ST_juv_wua, ST_adult_wua, watershed) %>% 
+  knitr::kable(align = 'c', 
+              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+                        ST_spawn_wua = Spring Run Chinook Spawning WUA,  ST_fry_wua = 
+                        Steelhead Chinook Fry WUA, SR_juv_wua = Steelhead Chinook Juvenile WUA,
+                        ST_adult_wua = Steelhead Adult Rearing WUA,
+                        watershed = section of stream modeled for CVPIA SDM")
 ```
 *... with `r nrow(battle_creek_instream) - 5` more rows*
 
@@ -182,8 +198,12 @@ battle_creek_instream %>%
 ```{r}
 battle_creek_instream %>% 
   head() %>% 
-  select(flow_cfs, WR_spawn_wua, WR_fry_wua, WR_juv_wua) %>% 
-  knitr::kable()
+  select(flow_cfs, WR_spawn_wua, WR_fry_wua, WR_juv_wua, watershed) %>% 
+  knitr::kable(align = 'c', 
+              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
+                        WR_spawn_wua = Winter Run Chinook Spawning WUA,  WR_fry_wua = 
+                        Winter Run Chinook Fry WUA, WR_juv_wua = Winter Run Chinook Juvenile WUA
+                        watershed = section of stream modeled for CVPIA SDM")
 ```
 *... with `r nrow(battle_creek_instream) - 5` more rows*
 
