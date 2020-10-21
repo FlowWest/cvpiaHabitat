@@ -655,4 +655,4 @@ NULL
 #'   \item Method: Mark Tompkins \email{mtompkins@@flowwest.com}
 #' }
 #'
-'IChab.adult'
+'inchannel_habitat_adult'
