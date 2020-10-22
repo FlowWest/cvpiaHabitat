@@ -16,9 +16,7 @@ library(cvpiaHabitat)
 None planned. 
 
 ## Instream Spawning and Rearing Habitat
-**Data Source:** [Thomas R. Payne & Associates 1995](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf){target="_blank"} (pg C-1)
-
-**Data Source (Winter Run):** [Thomas R. Payne & Associates 1998](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/TRPA-1998-Task-1.pdf){target="_blank"} (pg C-1)
+**Data Source:** [Thomas R. Payne & Associates 1995](https://s3-us-west-2.amazonaws.com/cvpiahabitat-r-package/cvpia-sit-model-inputs/Payne1995_BattleCreekIFIM.pdf){target="_blank"} (pg C-1) and [Thomas R. Payne & Associates 1998](https://cvpiahabitat-r-package.s3-us-west-2.amazonaws.com/TRPA-1998-Task-1.pdf){target="_blank"} (pg C-1)
 
 The instream spawning and rearing habitat for Fall Run Chinook Salmon, Spring Run Chinook Salmon, and Steelhead in Battle Creek are based on data from Thomas R. Payne & Associates' 1995 instream flow evaluations. The Winter Run in Battle Creek are based on the 1998 instream flow evaluations. The flow evaluations were conducted for the California Department of Fish and Wildlife. They uncovered relationships between flow and both suitable spawning habitat and suitable rearing habitat from seven study reaches in Battle Creek. For both species, the weighted usable area (WUA) data were consolidated from all mainstem reaches. 
 
@@ -265,12 +263,16 @@ source('data-raw/watershed/floodplain_utils.R')
 ## Floodplain Data
 The areas represent total inundated area in acres.
 ```{r}
-battle_creek_floodplain <- scale_fp_flow_area('Battle Creek')
+battle_creek_floodplain <- scale_fp_flow_area('Battle Creek') %>% 
+  mutate(WR_floodplain_acres = 0) %>% 
+  select(flow_cfs, FR_floodplain_acres, SR_floodplain_acres, WR_floodplain_acres, 
+         ST_floodplain_acres, watershed)
 
 knitr::kable(align = 'c', head(battle_creek_floodplain, 5), 
              caption = "Header Descriptions: flow_cfs = flow in cubic feet per second,
              FR_floodplain_acres = Fall Run Chinook floodplain acres,
              SR_floodplain_acres = Spring Run Chinook floodplain acres,
+             WR_floodplain_acres = Winter Run floodplain acres,
              ST_floodplain_acres = Steelhead floodplain acres,
              watershed = section of stream modeled for CVPIA SDM") 
 
