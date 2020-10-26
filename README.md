@@ -1,4 +1,4 @@
-# Development on CVPIA DSM habitat inputs has moved to [Central Valley Project Improvement Act - Open Science Collaborative](https://github.com/CVPIA-OSC)
+Development on CVPIA DSM habitat inputs has moved to [Central Valley Project Improvement Act - Open Science Collaborative](https://github.com/CVPIA-OSC). This repository remains posted for archive purposes. The habitat inputs were used to inform FY2019-20 recommendations. Habitat inputs were developed through a formal Structured Decision Making process by the [CVPIA Science Integration Team](http://cvpia.scienceintegrationteam.com/).
 
 This repository remains posted for archive purposes. The habitat inputs were used to inform FY2017-2019 recommendations.
 
